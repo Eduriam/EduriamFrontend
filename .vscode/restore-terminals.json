@@ -29,8 +29,9 @@
     {
       "splitTerminals": [
         {
-          "name": "client",
-          "commands": ["yarn install", "yarn dev"]
+          "name": "build and run",
+          "commands": ["docker-compose up"],
+          "shouldRunCommands": false
         }
       ]
     }
