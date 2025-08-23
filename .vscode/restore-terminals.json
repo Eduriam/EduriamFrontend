@@ -7,7 +7,7 @@
       "splitTerminals": [
         {
           "name": "storybook",
-          "commands": ["yarn storybook"],
+          "commands": ["docker-compose up eduriam-frontend-storybook"],
           "shouldRunCommands": false
         }
       ]
@@ -16,12 +16,7 @@
       "splitTerminals": [
         {
           "name": "lint",
-          "commands": ["yarn lint"],
-          "shouldRunCommands": false
-        },
-        {
-          "name": "build",
-          "commands": ["yarn build"],
+          "commands": ["docker-compose run --rm eduriam-frontend-lint"],
           "shouldRunCommands": false
         }
       ]
@@ -29,8 +24,17 @@
     {
       "splitTerminals": [
         {
-          "name": "build and run",
-          "commands": ["docker-compose up"],
+          "name": "build",
+          "commands": ["docker-compose run --rm eduriam-frontend-build"],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "dev",
+          "commands": ["docker-compose up eduriam-frontend-dev"],
           "shouldRunCommands": false
         }
       ]

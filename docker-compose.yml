@@ -1,8 +1,7 @@
 services:
-  eduriam-frontend:
+  eduriam-frontend-dev:
     build:
       context: .
-      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
@@ -11,7 +10,37 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=development
-      - NEXT_TELEMETRY_DISABLED=1
     stdin_open: true
     tty: true
-    restart: unless-stopped
+    command: yarn dev
+
+  eduriam-frontend-build:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=production
+    command: yarn build
+
+  eduriam-frontend-lint:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    command: yarn lint
+
+  eduriam-frontend-storybook:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "6006:6006"
+    command: yarn storybook
