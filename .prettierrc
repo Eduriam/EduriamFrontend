@@ -1,9 +1,12 @@
 {
   "importOrder": [
-    "^react(.*)$",
+    "^react$",
+    "^react-dom$",
     "^next(.*)$",
     "^@mui/(.*)$",
+    "^@(?!mui)(.*)$",
     "^components/(.*)$",
+    "^infrastructure/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

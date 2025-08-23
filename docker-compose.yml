@@ -6,6 +6,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+      # Use it's own node_modules and .next directory
       - /app/node_modules
       - /app/.next
     environment:
@@ -16,27 +17,32 @@ services:
 
   eduriam-frontend-build:
     build: .
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
     environment:
       - NODE_ENV=production
     command: yarn build
 
   eduriam-frontend-lint:
     build: .
-    volumes:
-      - .:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=production
     command: yarn lint
+
+  eduriam-frontend-prettier:
+    build: .
+    volumes:
+      - .:/app
+      # Use it's own node_modules and .next directory
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=production
+    command: yarn prettier
 
   eduriam-frontend-storybook:
     build: .
     volumes:
       - .:/app
+      # Use it's own node_modules and .next directory
       - /app/node_modules
       - /app/.next
     environment:
