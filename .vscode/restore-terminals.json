@@ -7,7 +7,7 @@
       "splitTerminals": [
         {
           "name": "storybook",
-          "commands": ["docker-compose up eduriam-frontend-storybook"],
+          "commands": ["docker-compose up --build eduriam-frontend-storybook"],
           "shouldRunCommands": false
         }
       ]
@@ -16,7 +16,7 @@
       "splitTerminals": [
         {
           "name": "lint",
-          "commands": ["docker-compose run --rm eduriam-frontend-lint"],
+          "commands": ["docker-compose up --build eduriam-frontend-lint"],
           "shouldRunCommands": false
         }
       ]
@@ -25,7 +25,7 @@
       "splitTerminals": [
         {
           "name": "build",
-          "commands": ["docker-compose run --rm eduriam-frontend-build"],
+          "commands": ["docker-compose up --build eduriam-frontend-build"],
           "shouldRunCommands": false
         }
       ]
@@ -34,7 +34,7 @@
       "splitTerminals": [
         {
           "name": "dev",
-          "commands": ["docker-compose up eduriam-frontend-dev"],
+          "commands": ["docker-compose up --build eduriam-frontend-dev"],
           "shouldRunCommands": false
         }
       ]

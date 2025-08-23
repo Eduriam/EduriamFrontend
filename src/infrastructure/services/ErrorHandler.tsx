@@ -32,7 +32,9 @@ export function ErrorHandler({
 
   const setError = useCallback(
     (message?: string) => {
-      if (!message) message = t("general-error-message");
+      if (!message) {
+        message = t("general-error-message");
+      }
 
       if (message && !errorMessages.includes(message)) {
         enqueueSnackbar(message);

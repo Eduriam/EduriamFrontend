@@ -100,19 +100,24 @@ const StudySession: React.FC<IStudySession> = ({
     } else {
       nextExercise();
 
-      if (index >= exerciseQueue.length - 1) handleFinished(arr);
+      if (index >= exerciseQueue.length - 1) {
+        handleFinished(arr);
+      }
     }
   }
 
   function toggleExpansion() {
-    if (openExpansion) setOpenExpansion(false);
-    else {
+    if (openExpansion) {
+      setOpenExpansion(false);
+    } else {
       setOpenExpansion(true);
     }
   }
 
   useEffect(() => {
-    if (openExpansion) executeScroll();
+    if (openExpansion) {
+      executeScroll();
+    }
   }, [openExpansion, executeScroll]);
 
   function renderNewVocabulary(exercise: Exercise, index: number) {
@@ -172,8 +177,11 @@ const StudySession: React.FC<IStudySession> = ({
 
     attemptArray.forEach((attempt) => {
       attempt.states.forEach((state) => {
-        if (state === "RIGHT") rightAnswers++;
-        else if (state === "WRONG") wrongAnswers++;
+        if (state === "RIGHT") {
+          rightAnswers++;
+        } else if (state === "WRONG") {
+          wrongAnswers++;
+        }
       });
     });
 

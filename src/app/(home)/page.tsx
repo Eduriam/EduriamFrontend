@@ -38,7 +38,9 @@ const HomePage: React.FC<IHomePage> = () => {
 
     if (params !== null && !isNaN(Number(params))) {
       level = Number(params);
-    } else level = undefined;
+    } else {
+      level = undefined;
+    }
 
     if (
       user?.lastViewedStudyMapLevel &&

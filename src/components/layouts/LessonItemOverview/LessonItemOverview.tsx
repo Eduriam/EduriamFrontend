@@ -56,7 +56,9 @@ const LessonItemOverview: React.FC<ILessonItemOverview> = ({
   }
 
   function getLessonItemProgress(dateToReview?: Date | null) {
-    if (dateToReview === null || dateToReview === undefined) return 0;
+    if (dateToReview === null || dateToReview === undefined) {
+      return 0;
+    }
 
     const today = new Date();
     const date = new Date(dateToReview);

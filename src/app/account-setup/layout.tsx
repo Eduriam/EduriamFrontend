@@ -14,7 +14,9 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   const { user } = useAuth();
   const router = useRouter();
 
-  if (user?.accountInitialized === true) router.push("/");
+  if (user?.accountInitialized === true) {
+    router.push("/");
+  }
 
   return <ProtectedRoute>{children}</ProtectedRoute>;
 };

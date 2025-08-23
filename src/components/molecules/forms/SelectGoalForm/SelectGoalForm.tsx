@@ -42,7 +42,9 @@ const SelectGoalForm: React.FC<ISelectGoalForm> = ({ onSubmit }) => {
 
       <FullWidthButton
         onClick={() => {
-          if (selectedIndex !== undefined) onSubmit(goalOptions[selectedIndex]);
+          if (selectedIndex !== undefined) {
+            onSubmit(goalOptions[selectedIndex]);
+          }
         }}
         disabled={selectedIndex === undefined}
       >

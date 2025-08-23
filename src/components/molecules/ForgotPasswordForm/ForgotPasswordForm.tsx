@@ -37,7 +37,9 @@ const ForgotPasswordForm: React.FC<IForgotPasswordForm> = ({ onEmailSent }) => {
   const onSubmit = (data: { email: string }) => {
     ResetPasswordAPI.resetPassword(data)
       .catch((err) => {
-        if (err === errorCodes.invalidEmailAddress) setInvalidEmail(true);
+        if (err === errorCodes.invalidEmailAddress) {
+          setInvalidEmail(true);
+        }
       })
       .then(() => {
         onEmailSent();

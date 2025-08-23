@@ -70,11 +70,14 @@ const MatchAudioOption: React.FC<IMatchAudioOption> = ({
 
   const handleButtonClick = () => {
     if (audioRef.current.paused) {
-      if (audioRef.current.currentTime === audioRef.current.duration)
+      if (audioRef.current.currentTime === audioRef.current.duration) {
         resetSound();
+      }
 
       setState("RUNNING");
-    } else setState("PAUSED");
+    } else {
+      setState("PAUSED");
+    }
 
     onClick?.();
   };

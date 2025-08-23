@@ -43,7 +43,9 @@ const FeedOverview: React.FC<IFeedOverview> = () => {
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
   }, [handleObserver]);
 
   return (

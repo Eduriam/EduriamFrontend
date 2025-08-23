@@ -45,11 +45,15 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
   }
 
   function decrementPage() {
-    if (page > 0) setPage(page - 1);
+    if (page > 0) {
+      setPage(page - 1);
+    }
   }
 
   useEffect(() => {
-    if (startingLevel) submitSetup();
+    if (startingLevel) {
+      submitSetup();
+    }
 
     async function submitSetup() {
       // Isn't implemented on backend in v1.0.0
@@ -140,7 +144,9 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
             onSubmit={(startOptionId) => {
               setStartOptionId(startOptionId);
 
-              if (startOptionId !== "startFromZero") incrementPage();
+              if (startOptionId !== "startFromZero") {
+                incrementPage();
+              }
             }}
           />
         ) : (

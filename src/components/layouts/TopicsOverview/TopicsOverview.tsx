@@ -27,8 +27,11 @@ const TopicsOverview: React.FC<ITopicsOverview> = ({ courseId }) => {
 
   const updateMainTopics = (topicId: Id, enabled: boolean) => {
     const newTopics = mainTopics.map((topic) => {
-      if (topic.id === topicId) return { ...topic, enabled };
-      else return topic;
+      if (topic.id === topicId) {
+        return { ...topic, enabled };
+      } else {
+        return topic;
+      }
     });
 
     mutateMainTopics(async () => {
@@ -48,8 +51,11 @@ const TopicsOverview: React.FC<ITopicsOverview> = ({ courseId }) => {
 
   const updateExtraTopics = (topicId: Id, enabled: boolean) => {
     const newTopics = mainTopics.map((topic) => {
-      if (topic.id === topicId) return { ...topic, enabled };
-      else return topic;
+      if (topic.id === topicId) {
+        return { ...topic, enabled };
+      } else {
+        return topic;
+      }
     });
 
     mutateExtraTopics(async () => {

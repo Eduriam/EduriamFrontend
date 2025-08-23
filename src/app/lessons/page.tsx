@@ -20,7 +20,9 @@ const LessonsPage: React.FC<ILessonsPage> = () => {
     const lessonType = searchParams?.get("type");
     if (isLessonType(lessonType)) {
       return lessonType;
-    } else return undefined;
+    } else {
+      return undefined;
+    }
   }
 
   const lessonType = getLessonType();

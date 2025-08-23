@@ -86,7 +86,9 @@ const TableQuestionAnswer: React.FC<ITableQuestionAnswer> = ({
   }
 
   function handleAddCharacter(char: string) {
-    if (!lastSelectedInput) return;
+    if (!lastSelectedInput) {
+      return;
+    }
 
     handleCellChange(
       lastSelectedInput.x,

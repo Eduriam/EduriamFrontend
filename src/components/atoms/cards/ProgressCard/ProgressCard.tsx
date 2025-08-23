@@ -57,7 +57,7 @@ const ProgressCard: React.FC<IProgressCard> = ({
           px: 2,
           pt: 2,
           pb:
-            progress === undefined || cardHighlight == "achieved"
+            progress === undefined || cardHighlight === "achieved"
               ? 2
               : undefined,
         }}

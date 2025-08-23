@@ -41,14 +41,20 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
         }
 
         return followers.map((item) => {
-          if (item.id === itemId) return { ...item, isFollowed };
-          else return item;
+          if (item.id === itemId) {
+            return { ...item, isFollowed };
+          } else {
+            return item;
+          }
         });
       },
       optimisticMutationOption<Array<Follower>>(
         followers.map((item) => {
-          if (item.id === itemId) return { ...item, isFollowed };
-          else return item;
+          if (item.id === itemId) {
+            return { ...item, isFollowed };
+          } else {
+            return item;
+          }
         }),
       ),
     );
@@ -64,14 +70,20 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
         }
 
         return following.map((item) => {
-          if (item.id === itemId) return { ...item, isFollowed };
-          else return item;
+          if (item.id === itemId) {
+            return { ...item, isFollowed };
+          } else {
+            return item;
+          }
         });
       },
       optimisticMutationOption<Array<Following>>(
         following.map((item) => {
-          if (item.id === itemId) return { ...item, isFollowed };
-          else return item;
+          if (item.id === itemId) {
+            return { ...item, isFollowed };
+          } else {
+            return item;
+          }
         }),
       ),
     );

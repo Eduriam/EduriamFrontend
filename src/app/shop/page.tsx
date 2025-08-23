@@ -34,8 +34,11 @@ const ShopPage: React.FC<IShopPage> = () => {
 
   const handleBuy = (itemId: Id) => {
     const updatedArray = shopItems.map((item) => {
-      if (item.id === itemId) return { ...item, bought: true };
-      else return item;
+      if (item.id === itemId) {
+        return { ...item, bought: true };
+      } else {
+        return item;
+      }
     });
 
     mutate(async () => {
@@ -59,7 +62,9 @@ const ShopPage: React.FC<IShopPage> = () => {
       } else {
         if (equipped === true) {
           return { ...item, equipped: false };
-        } else return item;
+        } else {
+          return item;
+        }
       }
     });
 

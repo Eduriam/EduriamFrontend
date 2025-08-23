@@ -9,9 +9,13 @@ import {
 export function getQuestionAnswerComponent(
   questionAnswer: QuestionAnswer,
 ): React.ElementType {
-  if (isFillInBlankQuestionAnswer(questionAnswer)) return FillTheBlank;
+  if (isFillInBlankQuestionAnswer(questionAnswer)) {
+    return FillTheBlank;
+  }
 
-  if (isTextQuestionAnswer(questionAnswer)) return TextQuestionAnswer;
+  if (isTextQuestionAnswer(questionAnswer)) {
+    return TextQuestionAnswer;
+  }
 
   return TextQuestionAnswer;
 }

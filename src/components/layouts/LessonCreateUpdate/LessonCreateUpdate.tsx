@@ -59,8 +59,9 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
       name !== lesson.name ||
       description !== lesson.description ||
       items?.length !== lesson.items?.length
-    )
+    ) {
       return true;
+    }
 
     const arr1 = items.slice().sort((a, b) => a.id.localeCompare(b.id));
     const arr2 = lesson.items

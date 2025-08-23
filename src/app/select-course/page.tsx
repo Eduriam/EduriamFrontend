@@ -34,7 +34,9 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
   }
 
   function decrementPage() {
-    if (page > 0) setPage(page - 1);
+    if (page > 0) {
+      setPage(page - 1);
+    }
   }
 
   async function submitSetup(courseId: Id, content: EnrollInCourseDTO) {

@@ -55,9 +55,14 @@ const AuthManager = {
     if (token) {
       const decodedToken = jwtDecode<DecodedToken>(token);
       // If Id token is expired
-      if (decodedToken.exp * 1000 < Date.now()) await this.refreshIdToken();
-      else this.setAuthHeader(token);
-    } else this.logout();
+      if (decodedToken.exp * 1000 < Date.now()) {
+        await this.refreshIdToken();
+      } else {
+        this.setAuthHeader(token);
+      }
+    } else {
+      this.logout();
+    }
 
     let user = LocalStorageManager.getItem<UserPrivate>("user");
     if (user === null) {

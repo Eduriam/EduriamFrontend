@@ -15,10 +15,13 @@ export interface IStudyMap {
 }
 
 export function getNumberOfCurves(numberOfLessons: number) {
-  if (numberOfLessons % 3 === 1) return Math.floor(numberOfLessons / 3) * 2 + 1;
-  else if (numberOfLessons % 3 === 2)
+  if (numberOfLessons % 3 === 1) {
+    return Math.floor(numberOfLessons / 3) * 2 + 1;
+  } else if (numberOfLessons % 3 === 2) {
     return Math.floor(numberOfLessons / 3) * 2 + 2;
-  else return Math.floor(numberOfLessons / 3) * 2;
+  } else {
+    return Math.floor(numberOfLessons / 3) * 2;
+  }
 }
 
 const StudyMap: React.FC<IStudyMap> = ({
@@ -70,7 +73,9 @@ const StudyMap: React.FC<IStudyMap> = ({
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
   }, [handleObserver]);
 
   return (

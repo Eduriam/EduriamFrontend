@@ -34,7 +34,9 @@ const AudioPlayer: React.FC<IAudioPlayer> = ({
   }
 
   useEffect(() => {
-    if (finished) onFinish?.();
+    if (finished) {
+      onFinish?.();
+    }
   }, [finished, onFinish]);
 
   useEffect(() => {
@@ -62,11 +64,14 @@ const AudioPlayer: React.FC<IAudioPlayer> = ({
 
   const handleButtonClick = () => {
     if (audioRef.current.paused) {
-      if (audioRef.current.currentTime >= audioRef.current.duration)
+      if (audioRef.current.currentTime >= audioRef.current.duration) {
         resetSound();
+      }
 
       setState("RUNNING");
-    } else setState("PAUSED");
+    } else {
+      setState("PAUSED");
+    }
   };
 
   const handleReplay = () => {
@@ -75,11 +80,11 @@ const AudioPlayer: React.FC<IAudioPlayer> = ({
       audioRef.current.play();
     }
 
-    audioRef.current.currentTime = audioRef.current.currentTime - 10;
+    audioRef.current.currentTime -= 10;
   };
 
   const handleForward = () => {
-    audioRef.current.currentTime = audioRef.current.currentTime + 10;
+    audioRef.current.currentTime += 10;
   };
 
   return (

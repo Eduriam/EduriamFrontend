@@ -88,7 +88,9 @@ const FillInBlankQuestionAnswer: React.FC<IFillInBlankQuestionAnswer> = ({
   function canAddMoreAnswers() {
     let answerCounter = 0;
     answerArray.forEach((answer) => {
-      if (answer) answerCounter++;
+      if (answer) {
+        answerCounter++;
+      }
     });
 
     return answerCounter < questionAnswer.blankIndexes.length;

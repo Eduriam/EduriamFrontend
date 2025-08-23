@@ -32,8 +32,9 @@ const FillTheBlank: React.FC<IFillTheBlank> = ({
       let lastIndex: number | undefined = undefined;
       questionAnswer.blankIndexes.sort().forEach((blankIndex) => {
         // Ignore neighbouring blanks
-        if (lastIndex === undefined || lastIndex !== blankIndex - 1)
+        if (lastIndex === undefined || lastIndex !== blankIndex - 1) {
           states[blankIndex] = "NONE";
+        }
 
         lastIndex = blankIndex;
       });
@@ -54,7 +55,9 @@ const FillTheBlank: React.FC<IFillTheBlank> = ({
   const evaluateAnswer = (userAnswer: UserAnswer): UserAnswer => {
     const words = questionAnswer.answer.split(" ");
     userAnswer.answers.forEach((answer, i) => {
-      if (answer === undefined) return;
+      if (answer === undefined) {
+        return;
+      }
 
       if (answer === concatBlanks(words, i, questionAnswer.blankIndexes)) {
         userAnswer.states[i] = "RIGHT";
@@ -84,11 +87,12 @@ const FillTheBlank: React.FC<IFillTheBlank> = ({
         {words.map((word, i) => {
           // Merge neighbouring blanks into one
           if (
-            0 < i &&
+            i > 0 &&
             questionAnswer.blankIndexes?.includes(i - 1) &&
             questionAnswer.blankIndexes?.includes(i)
-          )
+          ) {
             return;
+          }
 
           if (questionAnswer.blankIndexes?.includes(i)) {
             return (

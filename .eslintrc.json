@@ -12,6 +12,16 @@
   "globals": {
     "React": "readonly"
   },
+  "rules": {
+    "curly": "error",
+    "eqeqeq": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "operator-assignment": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "yoda": "error"
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],

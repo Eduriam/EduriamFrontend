@@ -114,7 +114,9 @@ class Exercise extends Component<IExercise, IExerciseState> {
         allQuestionsAnswered = false;
       } else {
         answer?.states.forEach((s) => {
-          if (s === "NONE") allQuestionsAnswered = false;
+          if (s === "NONE") {
+            allQuestionsAnswered = false;
+          }
         });
       }
     });

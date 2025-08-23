@@ -50,7 +50,9 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
 
   // Documentation source: https://stripe.com/docs/payments/accept-a-payment-deferred?platform=web&type=subscription
   async function handleSubscribe() {
-    if (!user?.id || !stripe || !elements) return;
+    if (!user?.id || !stripe || !elements) {
+      return;
+    }
 
     const { error: submitError } = await elements.submit();
     if (submitError) {

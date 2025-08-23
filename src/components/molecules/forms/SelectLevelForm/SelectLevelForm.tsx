@@ -43,8 +43,9 @@ const SelectLevelForm: React.FC<ISelectLevelForm> = ({ onSubmit }) => {
 
       <FullWidthButton
         onClick={() => {
-          if (selectedIndex !== undefined)
+          if (selectedIndex !== undefined) {
             onSubmit(levelOptions[selectedIndex]);
+          }
         }}
         disabled={selectedIndex === undefined}
       >

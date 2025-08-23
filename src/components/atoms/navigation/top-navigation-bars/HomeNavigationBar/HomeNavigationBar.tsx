@@ -29,7 +29,9 @@ const HomeNavigationBar: React.FC<IHomeNavigationBar & AppBarProps> = ({
   const { user } = useAuth();
 
   function completedTodaysStudySession(lastSessionDate?: Date | null) {
-    if (lastSessionDate === null || lastSessionDate === undefined) return false;
+    if (lastSessionDate === null || lastSessionDate === undefined) {
+      return false;
+    }
 
     const today = new Date();
     const date = new Date(lastSessionDate);

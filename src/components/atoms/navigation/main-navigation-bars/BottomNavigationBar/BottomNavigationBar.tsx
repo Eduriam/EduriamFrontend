@@ -53,9 +53,11 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
         onChange={(_, newValue) => {
           setValue(newValue);
 
-          if (primaryNavigation[newValue].path === "/profile")
+          if (primaryNavigation[newValue].path === "/profile") {
             router.push(`/users/${user?.id}`);
-          else router.push(primaryNavigation[newValue].path);
+          } else {
+            router.push(primaryNavigation[newValue].path);
+          }
         }}
         sx={{
           boxShadow: "0 -2px 0 0 rgba(0,0,0,0.09)",

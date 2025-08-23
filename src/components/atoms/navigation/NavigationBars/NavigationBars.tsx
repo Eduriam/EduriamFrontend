@@ -29,9 +29,13 @@ const Navigation: React.FC<INavigation> = () => {
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
 
   function renderTopNavBar(pathname: string) {
-    if (/\/users\/.*\/followers/.test(pathname)) return <BackNavigationBar />;
-    if (/^\/help\//.test(pathname)) return <BackNavigationBar header="help" />;
-    if (/^\/help/.test(pathname))
+    if (/\/users\/.*\/followers/.test(pathname)) {
+      return <BackNavigationBar />;
+    }
+    if (/^\/help\//.test(pathname)) {
+      return <BackNavigationBar header="help" />;
+    }
+    if (/^\/help/.test(pathname)) {
       return (
         <DrawerContainer
           child={{
@@ -40,6 +44,7 @@ const Navigation: React.FC<INavigation> = () => {
           }}
         />
       );
+    }
     if (/^\/lesson-items\//.test(pathname)) {
       if (desktop) {
         return <BackNavigationBar />;
@@ -131,19 +136,27 @@ const Navigation: React.FC<INavigation> = () => {
           return (
             <DrawerContainer child={{ component: DefaultNavigationBar }} />
           );
-        } else return <></>;
+        } else {
+          return <></>;
+        }
       }
     }
   }
 
   function renderMainNavBar(pathname: string) {
-    if (!user) return <></>;
+    if (!user) {
+      return <></>;
+    }
 
-    if (pathname === "/subscribed") return <></>;
+    if (pathname === "/subscribed") {
+      return <></>;
+    }
 
     if (desktop === true) {
       return <SideNavigationBar pathname={pathname} />;
-    } else return <BottomNavigationBar pathname={pathname} />;
+    } else {
+      return <BottomNavigationBar pathname={pathname} />;
+    }
   }
 
   return (

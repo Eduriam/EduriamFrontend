@@ -29,11 +29,15 @@ const Timer: React.FC<ITimer> = ({ milliseconds, onFinish }) => {
   }
 
   useEffect(() => {
-    if (finished) onFinish?.();
+    if (finished) {
+      onFinish?.();
+    }
   }, [finished, onFinish]);
 
   useEffect(() => {
-    if (state !== "RUNNING") return;
+    if (state !== "RUNNING") {
+      return;
+    }
 
     const tickMilliseconds = 1000;
     const interval = setInterval(() => {
@@ -42,11 +46,12 @@ const Timer: React.FC<ITimer> = ({ milliseconds, onFinish }) => {
         setState("STOPPED");
       }
 
-      if (state === "RUNNING")
+      if (state === "RUNNING") {
         setValue((value) => {
           const newValue = value + tickMilliseconds;
           return newValue >= milliseconds ? milliseconds : newValue;
         });
+      }
     }, tickMilliseconds);
     return () => clearInterval(interval);
   }, [value, milliseconds, state]);

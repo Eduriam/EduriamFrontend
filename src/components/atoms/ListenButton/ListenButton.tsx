@@ -34,7 +34,9 @@ const ListenButton: React.FC<IListenButton> = ({
   }
 
   useEffect(() => {
-    if (finished) onFinish?.();
+    if (finished) {
+      onFinish?.();
+    }
   }, [finished, onFinish]);
 
   useEffect(() => {
@@ -62,11 +64,14 @@ const ListenButton: React.FC<IListenButton> = ({
 
   const handleButtonClick = () => {
     if (audioRef.current.paused) {
-      if (audioRef.current.currentTime === audioRef.current.duration)
+      if (audioRef.current.currentTime === audioRef.current.duration) {
         resetSound();
+      }
 
       setState("RUNNING");
-    } else setState("PAUSED");
+    } else {
+      setState("PAUSED");
+    }
   };
 
   return (

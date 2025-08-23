@@ -49,13 +49,19 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
     );
 
     const newFeed = feed.map((item) => {
-      if (item.id === feedItem.id) return { ...item, reactions };
-      else return item;
+      if (item.id === feedItem.id) {
+        return { ...item, reactions };
+      } else {
+        return item;
+      }
     });
 
     mutate(async () => {
-      if (reacted) await ReactionsAPI.addReaction(feedItem.id, reactionId);
-      else await ReactionsAPI.deleteReaction(feedItem.id, reactionId);
+      if (reacted) {
+        await ReactionsAPI.addReaction(feedItem.id, reactionId);
+      } else {
+        await ReactionsAPI.deleteReaction(feedItem.id, reactionId);
+      }
 
       return newFeed;
     }, optimisticMutationOption<Array<FeedItem>>(newFeed));
@@ -88,12 +94,13 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
       })
       .filter((reaction) => reaction.counter !== 0);
 
-    if (reacted && !reactionExists)
+    if (reacted && !reactionExists) {
       newReactions.push({
         counter: 1,
         reactedByUser: true,
         id: reactionId,
       });
+    }
 
     return newReactions;
   }
@@ -107,7 +114,7 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
         hasDivider = true;
         onDividerDisplayed();
 
-        if (i !== 0)
+        if (i !== 0) {
           markup.push(
             <Box>
               <DividerWithText
@@ -117,14 +124,17 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
               />
             </Box>,
           );
+        }
       }
-      if (isFeedArticle(feedItem))
+      if (isFeedArticle(feedItem)) {
         markup.push(
           <FeedArticleCard key={feedItem.id} feedArticle={feedItem} />,
         );
-      if (isFeedVideo(feedItem))
+      }
+      if (isFeedVideo(feedItem)) {
         markup.push(<FeedVideoCard key={feedItem.id} feedVideo={feedItem} />);
-      if (isFeedMessage(feedItem))
+      }
+      if (isFeedMessage(feedItem)) {
         markup.push(
           <FeedMessageCard
             key={feedItem.id}
@@ -137,6 +147,7 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
             }
           />,
         );
+      }
     });
 
     return markup;

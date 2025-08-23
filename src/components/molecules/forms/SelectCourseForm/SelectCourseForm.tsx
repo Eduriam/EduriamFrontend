@@ -98,7 +98,9 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
 
       <FullWidthButton
         onClick={() => {
-          if (selectedCourseId !== undefined) onSubmit(selectedCourseId);
+          if (selectedCourseId !== undefined) {
+            onSubmit(selectedCourseId);
+          }
         }}
         disabled={selectedCourseId === undefined}
       >

@@ -41,11 +41,12 @@ const InitialSurveyForm: React.FC<IInitialSurveyForm> = ({ onSubmit }) => {
 
       <FullWidthButton
         onClick={() => {
-          if (selectedIndex !== undefined)
+          if (selectedIndex !== undefined) {
             onSubmit({
               answer: surveyOptions[selectedIndex].id,
               surveyId: initialSurveyId,
             });
+          }
         }}
         disabled={selectedIndex === undefined}
       >

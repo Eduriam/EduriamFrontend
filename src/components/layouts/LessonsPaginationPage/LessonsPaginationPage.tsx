@@ -70,7 +70,9 @@ const LessonsPaginationPage: React.FC<ILessonsPaginationPage> = ({
             } else {
               return lesson;
             }
-          } else return lesson;
+          } else {
+            return lesson;
+          }
         })
       : [];
 

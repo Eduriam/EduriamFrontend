@@ -48,7 +48,9 @@ const RatingSurveyNotice: React.FC<IRatingSurveyNotice> = ({ notice }) => {
             size="large"
             value={rating}
             onChange={(_, newValue) => {
-              if (newValue) setRating(newValue);
+              if (newValue) {
+                setRating(newValue);
+              }
             }}
             max={notice.maxPoints}
           />

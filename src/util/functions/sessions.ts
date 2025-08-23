@@ -5,13 +5,16 @@ export function concatBlanks(
   blankIndexes?: Array<number>,
 ) {
   let result = words[index];
-  if (0 < index && blankIndexes?.includes(index - 1)) return result;
+  if (index > 0 && blankIndexes?.includes(index - 1)) {
+    return result;
+  }
 
   if (blankIndexes?.includes(index)) {
     for (let i = index + 1; i < words.length; i++) {
-      if (!blankIndexes?.includes(i)) break;
-      else {
-        result = result + " " + words[i];
+      if (!blankIndexes?.includes(i)) {
+        break;
+      } else {
+        result = `${result} ${words[i]}`;
       }
     }
   }

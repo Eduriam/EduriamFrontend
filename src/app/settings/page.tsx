@@ -76,7 +76,9 @@ const SettingsPage: React.FC<ISettingsPage> = () => {
   }
 
   function displaySaveButton() {
-    if (Object.keys(change).length !== 0) return true;
+    if (Object.keys(change).length !== 0) {
+      return true;
+    }
 
     return false;
   }

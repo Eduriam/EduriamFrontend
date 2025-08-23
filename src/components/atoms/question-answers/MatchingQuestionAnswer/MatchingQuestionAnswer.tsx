@@ -85,7 +85,9 @@ const MatchingQuestionAnswer: React.FC<IMatchingQuestionAnswer> = ({
 
     let shouldReportChange = true;
     optionStates1.forEach((state) => {
-      if (state !== "RIGHT") shouldReportChange = false;
+      if (state !== "RIGHT") {
+        shouldReportChange = false;
+      }
     });
     if (shouldReportChange) {
       onChange?.({
@@ -96,7 +98,9 @@ const MatchingQuestionAnswer: React.FC<IMatchingQuestionAnswer> = ({
             return option.audioUrl;
           } else if (isMatchImageOption(option)) {
             return option.imageUrl;
-          } else return "";
+          } else {
+            return "";
+          }
         }),
         exerciseId: questionAnswer.id,
         states: answerStates,
@@ -122,9 +126,11 @@ const MatchingQuestionAnswer: React.FC<IMatchingQuestionAnswer> = ({
     if (
       questionAnswer.options1.some((option) => isMatchImageOption(option)) ||
       questionAnswer.options2.some((option) => isMatchImageOption(option))
-    )
+    ) {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   return (

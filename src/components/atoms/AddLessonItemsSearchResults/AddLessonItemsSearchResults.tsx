@@ -46,7 +46,7 @@ const AddLessonItemsSearchResults: React.FC<IAddLessonItemsSearchResults> = ({
                 <ListItem
                   key={item.id}
                   secondaryAction={
-                    items.some((i) => i.id == item.id) ? (
+                    items.some((i) => i.id === item.id) ? (
                       <IconButton onClick={() => onItemRemove(item)}>
                         <IconContainer name={icons.remove} />
                       </IconButton>

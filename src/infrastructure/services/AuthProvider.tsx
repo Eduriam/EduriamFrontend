@@ -54,7 +54,9 @@ export function AuthProvider({
   // If page changes
   useEffect(() => {
     // Reset error state
-    if (errors) setError(() => []);
+    if (errors) {
+      setError(() => []);
+    }
 
     setInitialLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
