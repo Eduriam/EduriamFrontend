@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import ChangePasswordAPI from "infrastructure/api/change-password/ChangePasswordAPI";
 import theme from "styles/theme";
 
 import { useForm } from "react-hook-form";
@@ -10,6 +9,8 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import ChangePasswordAPI from "infrastructure/api/change-password/ChangePasswordAPI";
 
 interface InputTypes {
   password: string;

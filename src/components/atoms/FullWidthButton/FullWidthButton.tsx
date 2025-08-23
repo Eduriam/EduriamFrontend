@@ -65,8 +65,8 @@ const FullWidthButton: React.FC<IFullWidthButton & ButtonProps> = ({
                 buttonVariant === "right"
                   ? "success"
                   : buttonVariant === "wrong"
-                  ? "error"
-                  : "primary"
+                    ? "error"
+                    : "primary"
               }
               {...rest}
             >

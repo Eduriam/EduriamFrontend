@@ -1,10 +1,4 @@
-// prettier-ignore
-"use client"
-
-import { EnrollInCourseDTO } from "infrastructure/api/user/courses/UserCourses";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-import { Topic } from "infrastructure/api/user/topics/Topics";
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import { useState } from "react";
 
@@ -17,6 +11,11 @@ import SelectLevelForm from "components/molecules/forms/SelectLevelForm/SelectLe
 import SelectStartForm from "components/molecules/forms/SelectStartForm/SelectStartForm";
 import { StartOptionId } from "components/molecules/forms/SelectStartForm/config";
 import SelectTopicsForm from "components/molecules/forms/SelectTopicsForm/SelectTopicsForm";
+
+import { EnrollInCourseDTO } from "infrastructure/api/user/courses/UserCourses";
+import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import { Topic } from "infrastructure/api/user/topics/Topics";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ISelectCoursePage {}
 

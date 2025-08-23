@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
 
 import { useForm } from "react-hook-form";
 
@@ -10,6 +8,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+
+import errorCodes from "infrastructure/api/error-codes";
+import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
 
 export interface IAccountSettings {
   username: string;
@@ -65,9 +66,9 @@ const AccountSettings: React.FC<IAccountSettings> = ({
             errors.username?.type === "required"
               ? t("error.field-is-required")
               : accountErrors.includes(errorCodes.usernameTaken) &&
-                getValues("username") === username
-              ? t("error.username-taken")
-              : undefined
+                  getValues("username") === username
+                ? t("error.username-taken")
+                : undefined
           }
           error={
             errors.username !== undefined ||

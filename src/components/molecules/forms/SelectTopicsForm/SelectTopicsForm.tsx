@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
-import { Topic } from "infrastructure/api/user/topics/Topics";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -12,6 +10,9 @@ import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
+
+import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
+import { Topic } from "infrastructure/api/user/topics/Topics";
 
 export interface ISelectTopicsForm {
   onSubmit: (topics: Array<Topic>) => void;

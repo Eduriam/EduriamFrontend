@@ -1,5 +1,4 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";

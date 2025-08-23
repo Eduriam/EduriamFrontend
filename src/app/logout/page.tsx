@@ -1,13 +1,13 @@
-// prettier-ignore
-"use client"
+"use client";
+
+import { useRouter } from "next/navigation";
 
 import useAuth from "infrastructure/services/AuthProvider";
-import { useRouter } from "next/navigation";
 
 export interface ILogoutPage {}
 
 const LogoutPage: React.FC<ILogoutPage> = () => {
-  const {logout} = useAuth();
+  const { logout } = useAuth();
   const router = useRouter();
 
   logout();

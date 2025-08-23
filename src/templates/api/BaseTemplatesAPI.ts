@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { BaseTemplate } from "./BaseTemplates";
 
@@ -11,26 +12,26 @@ const BaseTemplatesAPI = {
   URI: "base-templates",
 
   useBaseTemplate(
-    id: Id
+    id: Id,
   ): Modify<FetchHook<BaseTemplate>, { baseTemplate: BaseTemplate }> {
     const { data, ...rest } = useAPI<BaseTemplate>(`${this.URI}/${id}`);
     return { baseTemplate: data, ...rest };
   },
 
   useBaseTemplates(
-    params: BaseTemplateParams = {}
+    params: BaseTemplateParams = {},
   ): Modify<
     FetchHook<Array<BaseTemplate>>,
     { baseTemplates: Array<BaseTemplate> }
   > {
     const { data, ...rest } = useAPI<Array<BaseTemplate>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { baseTemplates: data, ...rest };
   },
 
   async createBaseTemplate(
-    baseTemplate: Omit<BaseTemplate, "id">
+    baseTemplate: Omit<BaseTemplate, "id">,
   ): Promise<BaseTemplate> {
     return API.post(`${this.URI}`, baseTemplate);
   },
@@ -40,13 +41,13 @@ const BaseTemplatesAPI = {
   },
 
   async getBaseTemplates(
-    params: BaseTemplateParams = {}
+    params: BaseTemplateParams = {},
   ): Promise<Array<BaseTemplate>> {
     return API.get(`${this.URI}?${parseQueryParams(params)}`);
   },
 
   async updateBaseTemplate(
-    baseTemplate: Partial<BaseTemplate>
+    baseTemplate: Partial<BaseTemplate>,
   ): Promise<BaseTemplate> {
     return API.put(`${this.URI}/${baseTemplate.id}`, baseTemplate);
   },

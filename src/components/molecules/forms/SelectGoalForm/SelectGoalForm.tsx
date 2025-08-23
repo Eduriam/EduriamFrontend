@@ -32,7 +32,7 @@ const SelectGoalForm: React.FC<ISelectGoalForm> = ({ onSubmit }) => {
           return {
             name: tForm(`accountSetup.goalSelectOptions.${goal.id}.name`),
             description: tForm(
-              `accountSetup.goalSelectOptions.${goal.id}.description`
+              `accountSetup.goalSelectOptions.${goal.id}.description`,
             ),
           };
         })}

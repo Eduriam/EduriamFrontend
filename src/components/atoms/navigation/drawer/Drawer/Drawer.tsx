@@ -1,5 +1,3 @@
-import useAuth from "infrastructure/services/AuthProvider";
-
 import { useState } from "react";
 
 import Link from "next/link";
@@ -19,6 +17,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { useTranslation } from "../../../../../i18n/client";
 import { drawerWidth, lessons, levels, other, studying } from "./config";

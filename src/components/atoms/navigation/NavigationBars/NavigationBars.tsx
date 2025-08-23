@@ -1,6 +1,5 @@
 import config from "config/config";
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 import theme from "styles/theme";
 
 import { usePathname } from "next/navigation";
@@ -9,6 +8,8 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 import DrawerContainer from "../drawer/DrawerContainer/DrawerContainer";
 import BottomNavigationBar from "../main-navigation-bars/BottomNavigationBar/BottomNavigationBar";

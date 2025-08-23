@@ -1,8 +1,9 @@
 import { useTranslation } from "i18n/client";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import LinkCardList from "../lists/LinkCardList/LinkCardList";
 

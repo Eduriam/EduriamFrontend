@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { Lesson } from "infrastructure/api/user/courses/lessons/Lessons";
 
 import { useState } from "react";
 
@@ -11,6 +10,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
+
+import { Lesson } from "infrastructure/api/user/courses/lessons/Lessons";
 
 import FavoriteButton from "../../FavoriteButton/FavoriteButton";
 import VisibilityButton from "../../VisibilityButton/VisibilityButton";

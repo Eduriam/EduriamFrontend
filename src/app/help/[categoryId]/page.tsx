@@ -1,9 +1,8 @@
-// prettier-ignore
-"use client"
-
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import HelpArticlesOverview from "components/layouts/HelpArticlesOverview/HelpArticlesOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IHelpArticlesPage {
   params: {

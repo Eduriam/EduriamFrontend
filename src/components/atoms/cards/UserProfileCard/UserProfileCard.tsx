@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { UserProfile } from "infrastructure/api/users/Users";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
@@ -13,6 +11,9 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
+
+import { UserProfile } from "infrastructure/api/users/Users";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IUserProfileCard {
   userProfile: Pick<

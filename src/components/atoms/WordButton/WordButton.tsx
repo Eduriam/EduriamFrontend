@@ -1,7 +1,7 @@
-import { AnswerState } from "infrastructure/api/user/courses/study-session/Exercises";
-
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+
+import { AnswerState } from "infrastructure/api/user/courses/study-session/Exercises";
 
 export interface IWordButton {
   onClick?: () => void;
@@ -38,12 +38,12 @@ const WordButton: React.FC<IWordButton> = ({
                 borderColor: "error.main",
               }
             : state === "RIGHT"
-            ? {
-                borderStyle: "solid",
-                borderWidth: 2,
-                borderColor: "success.main",
-              }
-            : undefined,
+              ? {
+                  borderStyle: "solid",
+                  borderWidth: 2,
+                  borderColor: "success.main",
+                }
+              : undefined,
       }}
       onClick={onClick}
       disabled={disabled || empty}

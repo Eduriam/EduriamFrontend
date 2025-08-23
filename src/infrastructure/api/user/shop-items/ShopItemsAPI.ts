@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { ShopItem } from "./ShopItems";
 
@@ -13,10 +14,10 @@ const ShopItemsAPI = {
   URI: "user/shop-items",
 
   useShopItems(
-    params: ShopItemParams
+    params: ShopItemParams,
   ): Modify<FetchHook<Array<ShopItem>>, { shopItems: Array<ShopItem> }> {
     const { data, ...rest } = useAPI<Array<ShopItem>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { shopItems: data, ...rest };
   },

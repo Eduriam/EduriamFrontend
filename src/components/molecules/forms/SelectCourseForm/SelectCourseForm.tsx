@@ -1,7 +1,6 @@
 import { Language } from "domain/models/types/languages";
 import { useTranslation } from "i18n/client";
 import { languages } from "i18n/settings";
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -18,6 +17,8 @@ import IconContainer from "components/atoms/IconContainer/IconContainer";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
 
+import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
+
 export interface ISelectCourseForm {
   onSubmit: (courseId: Id) => void;
   omitCourseIds?: Array<Id>;
@@ -28,7 +29,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
   omitCourseIds,
 }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(
-    languages[0]
+    languages[0],
   );
   const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>();
   const { t: tLanguages } = useTranslation("languages");
@@ -77,7 +78,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
             cards={courses
               .filter(
                 (course) =>
-                  !omitCourseIds?.some((courseId) => courseId === course.id)
+                  !omitCourseIds?.some((courseId) => courseId === course.id),
               )
               .map((course) => {
                 return {

@@ -20,11 +20,11 @@ const PlacementTest: React.FC<IPlacementTest> = ({
 
   async function handleSessionFinish(
     studyStats: StudyStats,
-    attempts: Array<QuestionAttempt>
+    attempts: Array<QuestionAttempt>,
   ) {
     const { userLevel } = await PlacementTestAPI.updatePlacementTest(
       courseId,
-      attempts
+      attempts,
     );
     onSubmit(userLevel);
   }

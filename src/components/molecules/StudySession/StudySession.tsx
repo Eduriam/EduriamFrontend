@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { isTextExercise } from "infrastructure/api/user/courses/study-session/ExercisesGuard";
-import { StudyStats } from "infrastructure/api/user/notices/Notices";
-import useAuth from "infrastructure/services/AuthProvider";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
 import theme from "styles/theme";
@@ -22,6 +19,10 @@ import Container from "@mui/material/Container";
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import StudySessionProgressBar from "components/atoms/StudySessionProgressBar/StudySessionProgressBar";
 import NavigationBar from "components/atoms/navigation/top-navigation-bars/NavigationBar/NavigationBar";
+
+import { isTextExercise } from "infrastructure/api/user/courses/study-session/ExercisesGuard";
+import { StudyStats } from "infrastructure/api/user/notices/Notices";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { getExplanation } from "../../../domain/models/utils/type-guards";
 import { Exercise } from "../../../infrastructure/api/user/courses/study-session/Exercises";
@@ -86,7 +87,7 @@ const StudySession: React.FC<IStudySession> = ({
 
   function handleContinue(
     attempts: Array<QuestionAttempt>,
-    reschedule: boolean
+    reschedule: boolean,
   ) {
     const arr = [...attemptArray, ...attempts];
     setAttemptArray(arr);

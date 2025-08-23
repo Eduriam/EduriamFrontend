@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import { Subscription } from "infrastructure/api/user/subscriptions/Subscriptions";
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
 
 import { useState } from "react";
 
@@ -15,13 +12,17 @@ import Typography from "@mui/material/Typography";
 
 import MultipleChoiceCardList from "components/atoms/lists/MultipleChoiceCardList/MultipleChoiceCardList";
 
+import { optimisticMutationOption } from "infrastructure/api/API";
+import { Subscription } from "infrastructure/api/user/subscriptions/Subscriptions";
+import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+
 import common from "../../../../public/locales/cs/common.json";
 
 export interface ISubscriptionOverview {}
 
 const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const { t } = useTranslation("common");
   const [page, setPage] = useState(0);
@@ -41,7 +42,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
           ? common.manageSubscription.unsubscribeReasons[selectedIndex]
           : "",
       }),
-      optimisticMutationOption(data)
+      optimisticMutationOption(data),
     );
   }
 
@@ -65,12 +66,12 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                   </Typography>
                   <Typography>
                     {`${t("manageSubscription.subscriptionState")}: ${t(
-                      `manageSubscription.subscriptionStates.${subscription.status.toLowerCase()}`
+                      `manageSubscription.subscriptionStates.${subscription.status.toLowerCase()}`,
                     )}`}
                   </Typography>
                   <Typography>
                     {`${t("manageSubscription.nextPayment")}: ${new Date(
-                      subscription.currentPeriodEnd
+                      subscription.currentPeriodEnd,
                     ).toLocaleDateString()}`}
                   </Typography>
                 </CardContent>
@@ -97,7 +98,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                     return {
                       name: reason,
                     };
-                  }
+                  },
                 )}
                 onChange={(index) => setSelectedIndex(index)}
               />

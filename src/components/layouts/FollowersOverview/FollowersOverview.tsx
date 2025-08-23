@@ -1,10 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
-import { Follower } from "infrastructure/api/users/followers/Followers";
-import FollowersAPI from "infrastructure/api/users/followers/FollowersAPI";
-import { Following } from "infrastructure/api/users/following/Following";
-import FollowingAPI from "infrastructure/api/users/following/FollowingAPI";
 
 import { useState } from "react";
 
@@ -13,6 +7,13 @@ import Typography from "@mui/material/Typography";
 
 import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import UsersList from "components/atoms/lists/UsersList/UsersList";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
+import { Follower } from "infrastructure/api/users/followers/Followers";
+import FollowersAPI from "infrastructure/api/users/followers/FollowersAPI";
+import { Following } from "infrastructure/api/users/following/Following";
+import FollowingAPI from "infrastructure/api/users/following/FollowingAPI";
 
 export interface IFollowersOverview {
   userId: Id;
@@ -48,8 +49,8 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
         followers.map((item) => {
           if (item.id === itemId) return { ...item, isFollowed };
           else return item;
-        })
-      )
+        }),
+      ),
     );
   };
 
@@ -71,8 +72,8 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
         following.map((item) => {
           if (item.id === itemId) return { ...item, isFollowed };
           else return item;
-        })
-      )
+        }),
+      ),
     );
   };
 
@@ -101,14 +102,14 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
                 />
               )
             : value === "following"
-            ? following && (
-                <UsersList
-                  users={following}
-                  onFollow={(userId) => updateFollowing(userId, true)}
-                  onUnfollow={(userId) => updateFollowing(userId, false)}
-                />
-              )
-            : undefined
+              ? following && (
+                  <UsersList
+                    users={following}
+                    onFollow={(userId) => updateFollowing(userId, true)}
+                    onUnfollow={(userId) => updateFollowing(userId, false)}
+                  />
+                )
+              : undefined
         }
         value={value}
       />

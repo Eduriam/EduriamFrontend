@@ -1,12 +1,12 @@
-import { IQuestionAnswerComponent } from "infrastructure/api/user/courses/study-session/Exercises";
-import { BuildWordQuestionAnswer as BuildWordQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
-import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+
+import { IQuestionAnswerComponent } from "infrastructure/api/user/courses/study-session/Exercises";
+import { BuildWordQuestionAnswer as BuildWordQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
+import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
 
 import CharacterButton, {
   CHARACTER_BUTTON_SIZE,
@@ -35,7 +35,7 @@ const BuildWordQuestionAnswer: React.FC<IBuildWordQuestionAnswer> = ({
   const [letters, setLetters] = useState<Array<LetterOption>>(
     questionAnswer.letters.map((character) => {
       return { character: character, used: false };
-    })
+    }),
   );
   const [answerArray, setAnswerArray] = useState<Array<LetterAnswers>>([]);
 
@@ -57,7 +57,7 @@ const BuildWordQuestionAnswer: React.FC<IBuildWordQuestionAnswer> = ({
         exerciseId: questionAnswer.id,
         states: ["NONE"],
         lessonItemId: questionAnswer.lessonItemId,
-      })
+      }),
     );
   }
 
@@ -78,7 +78,7 @@ const BuildWordQuestionAnswer: React.FC<IBuildWordQuestionAnswer> = ({
         exerciseId: questionAnswer.id,
         states: ["NONE"],
         lessonItemId: questionAnswer.lessonItemId,
-      })
+      }),
     );
   }
 
@@ -121,8 +121,8 @@ const BuildWordQuestionAnswer: React.FC<IBuildWordQuestionAnswer> = ({
             displayAnswers && answerStates?.[0] === "RIGHT"
               ? "success.main"
               : displayAnswers && answerStates?.[0] === "WRONG"
-              ? "error.main"
-              : undefined,
+                ? "error.main"
+                : undefined,
           borderWidth: displayAnswers ? 2 : undefined,
           borderRadius: 0.4,
           boxShadow: "none",

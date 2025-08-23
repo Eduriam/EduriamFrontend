@@ -1,26 +1,26 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import useAuth from "infrastructure/services/AuthProvider";
+import { useTranslation } from "i18n/client";
+import icons from "styles/icons";
+
+import { useEffect } from "react";
+
+import { useRouter, useSearchParams } from "next/navigation";
 
 import BottomFab from "components/atoms/BottomFab/BottomFab";
 import StudyMap from "components/atoms/StudyMap/StudyMap";
 import NoticeBoard from "components/molecules/NoticeBoard/NoticeBoard";
-import { useTranslation } from "i18n/client";
+
 import { UserPrivate } from "infrastructure/api/user/User";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import icons from "styles/icons";
-
-import { useSearchParams } from "next/navigation";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IHomePage {}
 
 const HomePage: React.FC<IHomePage> = () => {
   const searchParams = useSearchParams();
   const { user, mutateUser } = useAuth();
-  const {t} = useTranslation("common");
+  const { t } = useTranslation("common");
   const router = useRouter();
 
   function getSearchParamsLevel(): number | undefined {
@@ -32,7 +32,7 @@ const HomePage: React.FC<IHomePage> = () => {
     return undefined;
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     const params = searchParams?.get("level");
     let level;
 
@@ -40,24 +40,32 @@ const HomePage: React.FC<IHomePage> = () => {
       level = Number(params);
     } else level = undefined;
 
-
-    if(user?.lastViewedStudyMapLevel && (level === undefined || level === null)) {
-      router.push(`/?level=${user?.lastViewedStudyMapLevel}`)
+    if (
+      user?.lastViewedStudyMapLevel &&
+      (level === undefined || level === null)
+    ) {
+      router.push(`/?level=${user?.lastViewedStudyMapLevel}`);
     }
 
-    if(level !== user?.lastViewedStudyMapLevel && level !== undefined) {
+    if (level !== user?.lastViewedStudyMapLevel && level !== undefined) {
       const change: Partial<UserPrivate> = {
-        lastViewedStudyMapLevel: level
-      }
+        lastViewedStudyMapLevel: level,
+      };
       mutateUser(change);
       LocalStorageManager.setItem<number>("lastViewedStudyMapLevel", level);
     }
-  }, [searchParams, mutateUser, user?.lastViewedStudyMapLevel, router])
+  }, [searchParams, mutateUser, user?.lastViewedStudyMapLevel, router]);
 
   return (
     <>
       {user && <NoticeBoard fetchNewNotices={true} />}
-      {user && <StudyMap courseId={user.selectedCourse.id} level={getSearchParamsLevel()} lastViewedLevel={user.lastViewedStudyMapLevel ?? 0}/> }
+      {user && (
+        <StudyMap
+          courseId={user.selectedCourse.id}
+          level={getSearchParamsLevel()}
+          lastViewedLevel={user.lastViewedStudyMapLevel ?? 0}
+        />
+      )}
       <BottomFab
         header={t("studying.study")}
         icon={icons.start}

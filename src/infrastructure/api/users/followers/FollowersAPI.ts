@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { Follower } from "./Followers";
 
@@ -12,10 +13,10 @@ const FollowersAPI = {
 
   useFollowers(
     userId: Id,
-    params: FollowerParams = {}
+    params: FollowerParams = {},
   ): Modify<FetchHook<Array<Follower>>, { followers: Array<Follower> }> {
     const { data, ...rest } = useAPI<Array<Follower>>(
-      `${this.URI(userId)}?${parseQueryParams(params)}`
+      `${this.URI(userId)}?${parseQueryParams(params)}`,
     );
     return { followers: data, ...rest };
   },

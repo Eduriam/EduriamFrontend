@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import ChangeEmailAPI from "infrastructure/api/change-email/ChangeEmailAPI";
-import errorCodes from "infrastructure/api/error-codes";
 import { useSnackbar } from "notistack";
 import theme from "styles/theme";
 
@@ -15,6 +13,9 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+
+import ChangeEmailAPI from "infrastructure/api/change-email/ChangeEmailAPI";
+import errorCodes from "infrastructure/api/error-codes";
 
 import { EMAIL_REGEX } from "../SignupForm/SignupForm";
 
@@ -80,10 +81,10 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
             errors.email?.type === "required"
               ? t("error.field-is-required")
               : errors.email?.type === "pattern"
-              ? t("error.invalid-email-address")
-              : apiErrors.includes(errorCodes.emailAddressTaken) &&
-                getValues("email") === sentEmail &&
-                t("error.email-taken")
+                ? t("error.invalid-email-address")
+                : apiErrors.includes(errorCodes.emailAddressTaken) &&
+                  getValues("email") === sentEmail &&
+                  t("error.email-taken")
           }
           error={
             errors.email !== undefined ||
@@ -104,9 +105,9 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
             errors.reenterEmail?.type === "required"
               ? t("error.field-is-required")
               : errors.reenterEmail?.type === "pattern"
-              ? t("error.invalid-email-address")
-              : errors.reenterEmail?.type === "matches" &&
-                t("error.emails-dont-match")
+                ? t("error.invalid-email-address")
+                : errors.reenterEmail?.type === "matches" &&
+                  t("error.emails-dont-match")
           }
           error={errors.reenterEmail !== undefined}
           {...register("reenterEmail", {

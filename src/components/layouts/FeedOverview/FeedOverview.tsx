@@ -10,7 +10,7 @@ const FeedOverview: React.FC<IFeedOverview> = () => {
   const loader = useRef(null);
   const [pageCounter, setPageCounter] = useState(1);
   const [pagewithDivider, setPageWithDivider] = useState<number | undefined>(
-    undefined
+    undefined,
   );
 
   const pages = [];
@@ -21,7 +21,7 @@ const FeedOverview: React.FC<IFeedOverview> = () => {
         index={i}
         onDividerDisplayed={() => setPageWithDivider(i)}
         displayDivider={pagewithDivider === i || pagewithDivider === undefined}
-      />
+      />,
     );
   }
 
@@ -33,7 +33,7 @@ const FeedOverview: React.FC<IFeedOverview> = () => {
         setPageCounter((prev) => prev + 1);
       }
     },
-    []
+    [],
   );
 
   useEffect(() => {

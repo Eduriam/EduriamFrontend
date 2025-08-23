@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { FeedMessage } from "infrastructure/api/user/feed/Feed";
-import { ReactionId } from "infrastructure/api/user/feed/reactions/Reactions";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -16,6 +14,9 @@ import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
+
+import { FeedMessage } from "infrastructure/api/user/feed/Feed";
+import { ReactionId } from "infrastructure/api/user/feed/reactions/Reactions";
 
 import { availableMessages, availableReactions } from "./config";
 

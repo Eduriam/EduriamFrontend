@@ -43,7 +43,7 @@ const DailyGoalSettings: React.FC<IDailyGoalSettings> = ({
           {goalOptions.map((option) => (
             <MenuItem value={option.value} key={option.value}>
               {`${t(`accountSetup.goalSelectOptions.${option.id}.name`)}: ${t(
-                `accountSetup.goalSelectOptions.${option.id}.description`
+                `accountSetup.goalSelectOptions.${option.id}.description`,
               )}`}
             </MenuItem>
           ))}

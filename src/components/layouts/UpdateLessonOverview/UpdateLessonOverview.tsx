@@ -1,10 +1,11 @@
-import { optimisticMutationOption } from "infrastructure/api/API";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 import { useSnackbar } from "notistack";
 
 import React from "react";
 
 import LessonCreateUpdate from "components/layouts/LessonCreateUpdate/LessonCreateUpdate";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import { useTranslation } from "../../../i18n/client";
 
@@ -42,7 +43,7 @@ const UpdateLessonOverview: React.FC<IUpdateLessonOverview> = ({
 
             await mutate(
               LessonsAPI.updateCustomLesson(courseId, data),
-              optimisticMutationOption(data)
+              optimisticMutationOption(data),
             );
 
             enqueueSnackbar(t("userLessons.lessonSaved"), {

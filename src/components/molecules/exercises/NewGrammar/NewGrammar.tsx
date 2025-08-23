@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import { LessonUpdateDTO } from "infrastructure/api/user/courses/lessons/Lessons";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 import icons from "styles/icons";
 
 import Box from "@mui/material/Box";
@@ -10,6 +7,10 @@ import Typography from "@mui/material/Typography";
 import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import LessonCard from "components/atoms/cards/LessonCard/LessonCard";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import { LessonUpdateDTO } from "infrastructure/api/user/courses/lessons/Lessons";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 export interface INewGrammar {
   courseId: Id;

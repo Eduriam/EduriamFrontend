@@ -2,7 +2,7 @@
 export function concatBlanks(
   words: Array<string>,
   index: number,
-  blankIndexes?: Array<number>
+  blankIndexes?: Array<number>,
 ) {
   let result = words[index];
   if (0 < index && blankIndexes?.includes(index - 1)) return result;

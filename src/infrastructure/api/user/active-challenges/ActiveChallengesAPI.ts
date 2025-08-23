@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { Challenge } from "./ActiveChallenges";
 
@@ -11,10 +12,10 @@ const ActiveChallengesAPI = {
   URI: "user/active-challenges",
 
   useChallenges(
-    params: ChallengeParams = {}
+    params: ChallengeParams = {},
   ): Modify<FetchHook<Array<Challenge>>, { challenges: Array<Challenge> }> {
     const { data, ...rest } = useAPI<Array<Challenge>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { challenges: data, ...rest };
   },

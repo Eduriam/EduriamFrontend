@@ -1,9 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
-import { Feedback } from "infrastructure/api/user/courses/lessons/feedback/LessonFeedback";
-import LessonFeedbackAPI from "infrastructure/api/user/courses/lessons/feedback/LessonFeedbackAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 import theme from "styles/theme";
 
@@ -18,6 +13,12 @@ import BottomFab from "components/atoms/BottomFab/BottomFab";
 import FeedbackCard from "components/atoms/cards/FeedbackCard/FeedbackCard";
 import LessonCard from "components/atoms/cards/LessonCard/LessonCard";
 import LessonItemList from "components/atoms/lists/LessonItemList/LessonItemList";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
+import { Feedback } from "infrastructure/api/user/courses/lessons/feedback/LessonFeedback";
+import LessonFeedbackAPI from "infrastructure/api/user/courses/lessons/feedback/LessonFeedbackAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import ContentContainer from "../ContentContainer/ContentContainer";
 import { defaultBackgroundGradients } from "./config";

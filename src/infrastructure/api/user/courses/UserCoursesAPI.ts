@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { EnrollInCourseDTO, UserCourse } from "./UserCourses";
 
@@ -11,17 +12,17 @@ const UserCoursesAPI = {
   URI: "user/courses",
 
   useUserCourses(
-    params: CourseParams = {}
+    params: CourseParams = {},
   ): Modify<FetchHook<Array<UserCourse>>, { courses: Array<UserCourse> }> {
     const { data, ...rest } = useAPI<Array<UserCourse>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { courses: data, ...rest };
   },
 
   async enrollInCourse(
     courseId: Id,
-    content: EnrollInCourseDTO
+    content: EnrollInCourseDTO,
   ): Promise<void> {
     return API.put(`${this.URI}/${courseId}`, content);
   },

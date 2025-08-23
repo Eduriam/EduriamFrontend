@@ -1,16 +1,16 @@
-import {
-  AnswerState,
-  IQuestionAnswerComponent,
-} from "infrastructure/api/user/courses/study-session/Exercises";
-import { FillInBlankQuestionAnswer as FillInBlankQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
-import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import WordButton from "components/atoms/WordButton/WordButton";
+
+import {
+  AnswerState,
+  IQuestionAnswerComponent,
+} from "infrastructure/api/user/courses/study-session/Exercises";
+import { FillInBlankQuestionAnswer as FillInBlankQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
+import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
 
 export interface IFillInBlankQuestionAnswer extends IQuestionAnswerComponent {
   questionAnswer: FillInBlankQuestionAnswerType;

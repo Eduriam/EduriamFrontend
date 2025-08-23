@@ -1,8 +1,9 @@
 import { useTranslation } from "i18n/client";
-import UsersAPI from "infrastructure/api/users/UsersAPI";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+import UsersAPI from "infrastructure/api/users/UsersAPI";
 
 import UsersList from "../lists/UsersList/UsersList";
 

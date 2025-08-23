@@ -29,7 +29,7 @@ const MatchAudioOption: React.FC<IMatchAudioOption> = ({
 }) => {
   const [value, setValue] = useState(0);
   const [state, setState] = useState<"STOPPED" | "RUNNING" | "PAUSED">(
-    "STOPPED"
+    "STOPPED",
   );
   const audioRef = useRef(new Audio(audioUrl));
 
@@ -62,7 +62,7 @@ const MatchAudioOption: React.FC<IMatchAudioOption> = ({
       }
 
       setValue(
-        () => (audioRef.current.currentTime / audioRef.current.duration) * 100
+        () => (audioRef.current.currentTime / audioRef.current.duration) * 100,
       );
     }, 50);
     return () => clearInterval(interval);

@@ -1,9 +1,7 @@
-// prettier-ignore
-"use client"
+"use client";
 
-
-import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
+import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 
 export interface ILayout {
   children: React.ReactNode;
@@ -12,9 +10,7 @@ export interface ILayout {
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <ProtectedRoute>
-      <ContentContainer>
-        {children}
-      </ContentContainer>
+      <ContentContainer>{children}</ContentContainer>
     </ProtectedRoute>
   );
 };

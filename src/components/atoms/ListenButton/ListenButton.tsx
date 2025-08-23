@@ -21,7 +21,7 @@ const ListenButton: React.FC<IListenButton> = ({
 }) => {
   const [value, setValue] = useState(0);
   const [state, setState] = useState<"STOPPED" | "RUNNING" | "PAUSED">(
-    playOnMount ? "RUNNING" : "STOPPED"
+    playOnMount ? "RUNNING" : "STOPPED",
   );
   const [finished, setFinished] = useState(false);
   const audioRef = useRef(new Audio(audioLink));
@@ -54,7 +54,7 @@ const ListenButton: React.FC<IListenButton> = ({
       }
 
       setValue(
-        () => (audioRef.current.currentTime / audioRef.current.duration) * 100
+        () => (audioRef.current.currentTime / audioRef.current.duration) * 100,
       );
     }, 50);
     return () => clearInterval(interval);

@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import { Topic } from "infrastructure/api/user/topics/Topics";
-import TopicsAPI from "infrastructure/api/user/topics/TopicsAPI";
 
 import { useState } from "react";
 
@@ -9,6 +6,10 @@ import Box from "@mui/material/Box";
 
 import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import TopicList from "components/atoms/lists/TopicList/TopicList";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import { Topic } from "infrastructure/api/user/topics/Topics";
+import TopicsAPI from "infrastructure/api/user/topics/TopicsAPI";
 
 export interface ITopicsOverview {
   courseId: Id;
@@ -19,7 +20,7 @@ const TopicsOverview: React.FC<ITopicsOverview> = ({ courseId }) => {
   const [value, setValue] = useState<string>("main");
   const { topics: mainTopics, mutate: mutateMainTopics } = TopicsAPI.useTopics(
     courseId,
-    { category: "main" }
+    { category: "main" },
   );
   const { topics: extraTopics, mutate: mutateExtraTopics } =
     TopicsAPI.useTopics(courseId, { category: "extra" });
@@ -93,15 +94,15 @@ const TopicsOverview: React.FC<ITopicsOverview> = ({ courseId }) => {
                     />
                   )
                 : value === "extra"
-                ? extraTopics && (
-                    <TopicList
-                      topics={extraTopics}
-                      onTopicChange={(id, enabled) =>
-                        updateExtraTopics(id, enabled)
-                      }
-                    />
-                  )
-                : undefined
+                  ? extraTopics && (
+                      <TopicList
+                        topics={extraTopics}
+                        onTopicChange={(id, enabled) =>
+                          updateExtraTopics(id, enabled)
+                        }
+                      />
+                    )
+                  : undefined
             }
             value={value}
           />

@@ -55,7 +55,7 @@ class Exercise extends Component<IExercise, IExerciseState> {
 
   handleChange = (answer: UserAnswer) => {
     const questionAnswer = this.props.questionAnswers.find(
-      (qa) => qa.id === answer.exerciseId
+      (qa) => qa.id === answer.exerciseId,
     );
 
     if (!questionAnswer) {
@@ -64,13 +64,13 @@ class Exercise extends Component<IExercise, IExerciseState> {
     }
 
     const prevUserAnswer = this.state.userAnswers.find(
-      (ua) => ua?.exerciseId === answer?.exerciseId
+      (ua) => ua?.exerciseId === answer?.exerciseId,
     );
     answer.answers = this.patchAnswers(answer.answers, prevUserAnswer?.answers);
 
     const answers = [...this.state.userAnswers];
     const index = this.props.questionAnswers.findIndex(
-      (qa) => qa.id === answer.exerciseId
+      (qa) => qa.id === answer.exerciseId,
     );
     answers[index] = answer;
 
@@ -105,7 +105,7 @@ class Exercise extends Component<IExercise, IExerciseState> {
 
   isReadyToSubmit(
     questionAnswers: Array<QuestionAnswer>,
-    userAnswers: Array<UserAnswer>
+    userAnswers: Array<UserAnswer>,
   ) {
     let allQuestionsAnswered = true;
     questionAnswers.forEach((qa) => {
@@ -164,7 +164,7 @@ class Exercise extends Component<IExercise, IExerciseState> {
                   key={i}
                 />
               );
-            }
+            },
           )}
         </Box>
 
@@ -177,9 +177,9 @@ class Exercise extends Component<IExercise, IExerciseState> {
               !this.state.readyToSubmit
                 ? "DISABLED"
                 : this.state.submitted ||
-                  this.props.submitBeforeContinue === false
-                ? "CONTINUE"
-                : "CHECK"
+                    this.props.submitBeforeContinue === false
+                  ? "CONTINUE"
+                  : "CHECK"
             }
           />
         </Box>

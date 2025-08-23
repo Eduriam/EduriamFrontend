@@ -1,5 +1,4 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 

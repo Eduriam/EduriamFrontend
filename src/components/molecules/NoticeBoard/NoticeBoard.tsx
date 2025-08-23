@@ -1,3 +1,13 @@
+import { useEffect, useState } from "react";
+
+import AchievementNotice from "components/atoms/notices/AchievementNotice/AchievementNotice";
+import AdvertisementNotice from "components/atoms/notices/AdvertisementNotice/AdvertisementNotice";
+import FreeTrialEndNotice from "components/atoms/notices/FreeTrialEndNotice/FreeTrialEndNotice";
+import FreeTrialOfferNotice from "components/atoms/notices/FreeTrialOfferNotice/FreeTrialOfferNotice";
+import RatingSurveyNotice from "components/atoms/notices/RatingSurveyNotice/RatingSurveyNotice";
+import RewardNotice from "components/atoms/notices/RewardNotice/RewardNotice";
+import StudyStatsNotice from "components/atoms/notices/StudyStatsNotice/StudyStatsNotice";
+
 import { Notice } from "infrastructure/api/user/notices/Notices";
 import {
   isAchievementNotice,
@@ -9,16 +19,6 @@ import {
   isStudyStatsNotice,
 } from "infrastructure/api/user/notices/NoticesGuard";
 import useNotices from "infrastructure/services/NoticeProvider";
-
-import { useEffect, useState } from "react";
-
-import AchievementNotice from "components/atoms/notices/AchievementNotice/AchievementNotice";
-import AdvertisementNotice from "components/atoms/notices/AdvertisementNotice/AdvertisementNotice";
-import FreeTrialEndNotice from "components/atoms/notices/FreeTrialEndNotice/FreeTrialEndNotice";
-import FreeTrialOfferNotice from "components/atoms/notices/FreeTrialOfferNotice/FreeTrialOfferNotice";
-import RatingSurveyNotice from "components/atoms/notices/RatingSurveyNotice/RatingSurveyNotice";
-import RewardNotice from "components/atoms/notices/RewardNotice/RewardNotice";
-import StudyStatsNotice from "components/atoms/notices/StudyStatsNotice/StudyStatsNotice";
 
 export interface INoticeBoard {
   fetchNewNotices?: boolean;

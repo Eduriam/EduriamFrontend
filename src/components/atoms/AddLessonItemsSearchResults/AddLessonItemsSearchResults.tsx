@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 import icons from "styles/icons";
 
 import Avatar from "@mui/material/Avatar";
@@ -11,6 +9,9 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+
+import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
+import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 
 import IconContainer from "../IconContainer/IconContainer";
 import CardList from "../lists/CardList/CardList";

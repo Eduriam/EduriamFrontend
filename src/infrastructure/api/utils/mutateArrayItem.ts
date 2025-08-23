@@ -7,7 +7,7 @@ export default function mutateArrayItem<T>(
   itemId: Id,
   change: Partial<T>,
   mutate: KeyedMutator<Array<T>>,
-  updateFn: (obj: Partial<T>) => unknown
+  updateFn: (obj: Partial<T>) => unknown,
 ) {
   mutate(
     async () => {
@@ -22,7 +22,7 @@ export default function mutateArrayItem<T>(
       array.map((item) => {
         if (item.id === itemId) return { ...item, ...change };
         else return item;
-      })
-    )
+      }),
+    ),
   );
 }

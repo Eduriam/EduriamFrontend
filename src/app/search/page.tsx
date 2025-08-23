@@ -1,8 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 
 import { useState } from "react";
 
@@ -13,6 +11,8 @@ import LessonsSearchResults from "components/atoms/LessonsSearchResults/LessonsS
 import SearchBar from "components/atoms/SearchBar/SearchBar";
 import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import UserSearchResults from "components/atoms/UserSearchResults/UserSearchResults";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { categories } from "./config";
 

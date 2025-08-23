@@ -1,5 +1,3 @@
-import { LessonItem } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,6 +6,8 @@ import Typography from "@mui/material/Typography";
 
 import ListenIconButton from "components/atoms/ListenIconButton/ListenIconButton";
 import MarkdownText from "components/atoms/MarkdownText/MarkdownText";
+
+import { LessonItem } from "infrastructure/api/user/courses/lesson-items/LessonItems";
 
 import FavoriteButton from "../../FavoriteButton/FavoriteButton";
 

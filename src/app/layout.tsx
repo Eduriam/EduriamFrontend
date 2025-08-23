@@ -1,16 +1,16 @@
-// prettier-ignore
 "use client";
 
 import axios from "axios";
-import { NoticeProvider } from "infrastructure/services/NoticeProvider";
 import { SnackbarProvider } from "notistack";
 
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 
+import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
 import Navigation from "components/atoms/navigation/NavigationBars/NavigationBars";
 
-import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
+import { NoticeProvider } from "infrastructure/services/NoticeProvider";
+
 import { AuthProvider } from "../infrastructure/services/AuthProvider";
 import { ErrorHandler } from "../infrastructure/services/ErrorHandler";
 import "../styles/globals.css";

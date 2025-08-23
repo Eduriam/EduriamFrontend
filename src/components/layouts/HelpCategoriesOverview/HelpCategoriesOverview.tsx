@@ -1,8 +1,8 @@
-import ArticleCategoriesAPI from "infrastructure/api/courses/article-categories/ArticleCategoriesAPI";
-
 import Box from "@mui/material/Box";
 
 import LinkCardList from "components/atoms/lists/LinkCardList/LinkCardList";
+
+import ArticleCategoriesAPI from "infrastructure/api/courses/article-categories/ArticleCategoriesAPI";
 
 export interface IHelpCategoriesOverview {
   courseId: Id;

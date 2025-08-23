@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 import theme from "styles/theme";
 
@@ -13,6 +12,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import Twemoji from "components/atoms/Twemoji/Twemoji";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { IDrawerController } from "../../drawer/DrawerContainer/DrawerContainer";
 import { SIDE_NAV_BAR_WIDTH } from "../../main-navigation-bars/SideNavigationBar/SideNavigationBar";

@@ -1,7 +1,3 @@
-import errorCodes from "infrastructure/api/error-codes";
-import { UserPrivate } from "infrastructure/api/user/User";
-import UserAPI from "infrastructure/api/user/UserAPI";
-import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { useSnackbar } from "notistack";
 
 import {
@@ -14,6 +10,11 @@ import {
 } from "react";
 
 import { usePathname, useRouter } from "next/navigation";
+
+import errorCodes from "infrastructure/api/error-codes";
+import { UserPrivate } from "infrastructure/api/user/User";
+import UserAPI from "infrastructure/api/user/UserAPI";
+import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
 import { setLanguage, useTranslation } from "../../i18n/client";
 import AuthManager from "../repositories/AuthManager";
@@ -30,7 +31,7 @@ export interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>(
-  {} as AuthContextType
+  {} as AuthContextType,
 );
 
 // Source: https://dev.to/finiam/predictable-react-authentication-with-the-context-api-g10
@@ -172,7 +173,7 @@ export function AuthProvider({
       revalidateUser,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [user, loading, errors]
+    [user, loading, errors],
   );
 
   return (

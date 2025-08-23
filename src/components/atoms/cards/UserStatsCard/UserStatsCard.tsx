@@ -1,7 +1,6 @@
 import { ResponsiveLine } from "@nivo/line";
 import { BasicTooltip } from "@nivo/tooltip";
 import { useTranslation } from "i18n/client";
-import { LearningDataPoint } from "infrastructure/api/users/Users";
 import icons from "styles/icons";
 import theme from "styles/theme";
 
@@ -12,6 +11,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
+
+import { LearningDataPoint } from "infrastructure/api/users/Users";
 
 export interface IUserStatsCard {
   streak: number;

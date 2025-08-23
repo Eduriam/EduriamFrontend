@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 import icons from "styles/icons";
 
 import Box from "@mui/material/Box";
@@ -9,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import LessonItemCard from "components/atoms/cards/LessonItemCard/LessonItemCard";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 
 export interface INewVocabulary {
   lessonItemId: Id;
@@ -24,7 +25,7 @@ const NewVocabulary: React.FC<INewVocabulary> = ({
   const { t } = useTranslation("common");
   const { lessonItem, mutate } = LessonItemsAPI.useLessonItem(
     courseId,
-    lessonItemId
+    lessonItemId,
   );
 
   function handleLessonItemChange(change: { [key: string]: boolean | string }) {

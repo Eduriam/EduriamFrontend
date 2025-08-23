@@ -1,10 +1,9 @@
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
-    "^react$",
-    "^react-dom$",
+    "^react(.*)$",
     "^next(.*)$",
     "^@mui/(.*)$",
-    "^@(?!mui)(.*)$",
     "^components/(.*)$",
     "^infrastructure/(.*)$",
     "^[./]"

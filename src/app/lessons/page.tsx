@@ -1,13 +1,12 @@
-// prettier-ignore
-"use client"
-
-import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
-import { isLessonType } from "infrastructure/api/user/courses/lessons/LessonsGuard";
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import { useSearchParams } from "next/navigation";
 
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
+
+import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
+import { isLessonType } from "infrastructure/api/user/courses/lessons/LessonsGuard";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import LessonsOverview from "../../components/layouts/LessonsOverview/LessonsOverview";
 

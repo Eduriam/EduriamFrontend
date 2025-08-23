@@ -1,7 +1,8 @@
 import { useTranslation } from "i18n/client";
-import { TextQuestionAnswer } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 
 import { Box } from "@mui/material";
+
+import { TextQuestionAnswer } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 
 import {
   IExerciseComponent,

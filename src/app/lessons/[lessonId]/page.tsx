@@ -1,17 +1,16 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import useAuth from "infrastructure/services/AuthProvider";
+import { useParams } from "next/navigation";
 
 import LessonOverview from "components/layouts/LessonOverview/LessonOverview";
 
-import { useParams } from 'next/navigation';
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ILessonPage {}
 
 const LessonPage: React.FC<ILessonPage> = () => {
   const { user } = useAuth();
-  const params = useParams<{ lessonId: Id }>()
+  const params = useParams<{ lessonId: Id }>();
 
   return (
     <>

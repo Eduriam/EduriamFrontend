@@ -1,6 +1,7 @@
 import { Modify } from "domain/models/utils/modify";
-import API, { FetchHook } from "infrastructure/api/API";
 import { parseQueryParams } from "util/functions/api";
+
+import API, { FetchHook } from "infrastructure/api/API";
 
 import useAPI from "../../hooks/useAPI";
 import { Exercise } from "../../user/courses/study-session/Exercises";
@@ -14,17 +15,17 @@ const PlacementTestAPI = {
 
   usePlacementTest(
     courseId: Id,
-    params: PlacementTestParams = {}
+    params: PlacementTestParams = {},
   ): Modify<FetchHook<Array<Exercise>>, { exercises: Array<Exercise> }> {
     const { data, ...rest } = useAPI<Array<Exercise>>(
-      `${this.URI(courseId)}?${parseQueryParams(params)}`
+      `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { exercises: data, ...rest };
   },
 
   async updatePlacementTest(
     courseId: Id,
-    attempts: Array<QuestionAttempt>
+    attempts: Array<QuestionAttempt>,
   ): Promise<PlacementTestResult> {
     return API.post(`${this.URI(courseId)}`, attempts);
   },

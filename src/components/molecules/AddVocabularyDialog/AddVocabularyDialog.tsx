@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -17,6 +15,9 @@ import AddLessonItemsSearchResults from "components/atoms/AddLessonItemsSearchRe
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import NavigationBar from "components/atoms/navigation/top-navigation-bars/NavigationBar/NavigationBar";
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
+
+import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IAddVocabularyDialog {
   open: boolean;

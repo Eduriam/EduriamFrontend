@@ -1,8 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import ChangeEmailConfirmAPI from "infrastructure/api/change-email-confirm/ChangeEmailConfirmAPI";
 
 import { useEffect, useState } from "react";
 
@@ -15,6 +13,8 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+
+import ChangeEmailConfirmAPI from "infrastructure/api/change-email-confirm/ChangeEmailConfirmAPI";
 
 export interface IChangeEmailPage {}
 
@@ -32,7 +32,7 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
     const confirmEmailChange = async (
       token: string,
       oldEmail: string,
-      newEmail: string
+      newEmail: string,
     ) => {
       await ChangeEmailConfirmAPI.confirmEmailChange({
         token,

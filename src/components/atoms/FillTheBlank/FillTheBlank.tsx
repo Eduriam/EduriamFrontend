@@ -47,7 +47,7 @@ const FillTheBlank: React.FC<IFillTheBlank> = ({
         states,
         exerciseId: questionAnswer.id,
         lessonItemId: questionAnswer.lessonItemId,
-      })
+      }),
     );
   }
 
@@ -106,8 +106,8 @@ const FillTheBlank: React.FC<IFillTheBlank> = ({
                           displayAnswers && answerStates?.[i] === "RIGHT"
                             ? "success.main"
                             : answerStates?.[i] === "WRONG"
-                            ? "error.main"
-                            : undefined,
+                              ? "error.main"
+                              : undefined,
                         borderWidth: 2,
                       },
                   }}

@@ -1,12 +1,11 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import FeedOverview from "components/layouts/FeedOverview/FeedOverview";
 
 export interface IFeed {}
 
 const Feed: React.FC<IFeed> = () => {
-  return <FeedOverview/>
+  return <FeedOverview />;
 };
 
 export default Feed;

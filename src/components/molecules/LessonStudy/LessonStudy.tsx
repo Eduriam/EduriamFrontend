@@ -1,8 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { QuestionAttempt } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
-import { Notice, StudyStats } from "infrastructure/api/user/notices/Notices";
-import useNotices from "infrastructure/services/NoticeProvider";
 import { useSnackbar } from "notistack";
 
 import { useEffect } from "react";
@@ -10,6 +6,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import StudySession from "components/molecules/StudySession/StudySession";
+
+import { QuestionAttempt } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
+import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
+import { Notice, StudyStats } from "infrastructure/api/user/notices/Notices";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface ILessonStudy {
   courseId: Id;
@@ -37,29 +38,29 @@ const LessonStudy: React.FC<ILessonStudy> = ({ courseId, lessonId }) => {
 
   async function handleSessionFinish(
     studyStats: StudyStats,
-    attempts: Array<QuestionAttempt>
+    attempts: Array<QuestionAttempt>,
   ) {
     const { reward } = await StudySessionAPI.updateStudySession(
       courseId,
       attempts.map((attempt) => {
         const totalAnswers = attempt.states.length;
         const rightAnswers = attempt.states.filter(
-          (answer) => answer === "RIGHT"
+          (answer) => answer === "RIGHT",
         ).length;
 
         const answerRating =
           rightAnswers === totalAnswers
             ? 100
             : rightAnswers === 0
-            ? 0
-            : (rightAnswers / totalAnswers) * 100;
+              ? 0
+              : (rightAnswers / totalAnswers) * 100;
 
         return {
           answerRating,
           exerciseId: attempt.exerciseId,
           lessonItemId: attempt.lessonItemId,
         };
-      })
+      }),
     );
 
     /* const notices: Array<Notice> =
@@ -85,7 +86,7 @@ const LessonStudy: React.FC<ILessonStudy> = ({ courseId, lessonId }) => {
           type: "REWARD",
           reward: reward,
         },
-      ])
+      ]),
     );
     router.push("/");
   }

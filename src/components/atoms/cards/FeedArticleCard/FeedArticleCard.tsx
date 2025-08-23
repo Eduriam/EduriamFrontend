@@ -1,5 +1,3 @@
-import { FeedArticle } from "infrastructure/api/user/feed/Feed";
-
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
@@ -7,6 +5,8 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+
+import { FeedArticle } from "infrastructure/api/user/feed/Feed";
 
 export interface IFeedArticleCard {
   feedArticle: FeedArticle;

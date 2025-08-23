@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { LessonItem, LessonItemSummary } from "./LessonItems";
 
@@ -15,7 +16,7 @@ const LessonItemsAPI = {
 
   useLessonItem(
     courseId: Id,
-    id: Id
+    id: Id,
   ): Modify<FetchHook<LessonItem>, { lessonItem: LessonItem }> {
     const { data, ...rest } = useAPI<LessonItem>(`${this.URI(courseId)}/${id}`);
     return { lessonItem: data, ...rest };
@@ -23,20 +24,20 @@ const LessonItemsAPI = {
 
   useLessonItems(
     courseId: Id,
-    params: LessonItemParams = {}
+    params: LessonItemParams = {},
   ): Modify<
     FetchHook<Array<LessonItemSummary>>,
     { lessonItems: Array<LessonItemSummary> }
   > {
     const { data, ...rest } = useAPI<Array<LessonItemSummary>>(
-      `${this.URI(courseId)}?${parseQueryParams(params)}`
+      `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { lessonItems: data, ...rest };
   },
 
   async updateLessonItem(
     courseId: Id,
-    lessonItem: Partial<LessonItem>
+    lessonItem: Partial<LessonItem>,
   ): Promise<LessonItem> {
     return API.patch(`${this.URI(courseId)}/${lessonItem.id}`, lessonItem);
   },

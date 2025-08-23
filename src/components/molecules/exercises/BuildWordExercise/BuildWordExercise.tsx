@@ -1,13 +1,14 @@
 import { useTranslation } from "i18n/client";
+
+import Exercise from "components/atoms/Exercise/Exercise";
+import BuildWordQuestionAnswer from "components/atoms/question-answers/BuildWordQuestionAnswer/BuildWordQuestionAnswer";
+
 import {
   BuildWordExercise as BuildWordExerciseType,
   IExerciseComponent,
 } from "infrastructure/api/user/courses/study-session/Exercises";
 import { BuildWordQuestionAnswer as BuildWordQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-
-import Exercise from "components/atoms/Exercise/Exercise";
-import BuildWordQuestionAnswer from "components/atoms/question-answers/BuildWordQuestionAnswer/BuildWordQuestionAnswer";
 
 export interface IBuildWordExercise extends IExerciseComponent {
   exercise: BuildWordExerciseType;

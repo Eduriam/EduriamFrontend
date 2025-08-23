@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
 import theme from "styles/theme";
 
 import { useState } from "react";
@@ -12,6 +10,9 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import errorCodes from "infrastructure/api/error-codes";
+import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 

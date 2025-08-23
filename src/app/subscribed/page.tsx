@@ -1,5 +1,4 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
 
@@ -8,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
 import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 
 export interface ISubscribedPage {}

@@ -39,7 +39,7 @@ export function ErrorHandler({
         setErrorMessage((errorMessages) => [...errorMessages, `${message}`]);
       }
     },
-    [enqueueSnackbar, errorMessages, t]
+    [enqueueSnackbar, errorMessages, t],
   );
 
   // Clear errors on path change
@@ -53,7 +53,7 @@ export function ErrorHandler({
     () => ({
       setError,
     }),
-    [setError]
+    [setError],
   );
 
   return (

@@ -1,5 +1,3 @@
-import { optimisticMutationOption } from "infrastructure/api/API";
-import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 import theme from "styles/theme";
 
 import { useMediaQuery } from "@mui/material";
@@ -9,6 +7,9 @@ import Toolbar from "@mui/material/Toolbar";
 import LevelProgressBar from "components/atoms/LevelProgressBar/LevelProgressBar";
 import LessonItemCard from "components/atoms/cards/LessonItemCard/LessonItemCard";
 import ExampleSentenceList from "components/atoms/lists/ExampleSentenceList/ExampleSentenceList";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 
 export interface ILessonItemOverview {
   courseId: Id;
@@ -21,7 +22,7 @@ const LessonItemOverview: React.FC<ILessonItemOverview> = ({
 }) => {
   const { lessonItem, mutate } = LessonItemsAPI.useLessonItem(
     courseId,
-    lessonItemId
+    lessonItemId,
   );
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
 

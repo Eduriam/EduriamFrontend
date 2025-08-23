@@ -1,9 +1,8 @@
-// prettier-ignore
-"use client"
-
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import HelpCategoriesOverview from "components/layouts/HelpCategoriesOverview/HelpCategoriesOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IHelpPage {}
 

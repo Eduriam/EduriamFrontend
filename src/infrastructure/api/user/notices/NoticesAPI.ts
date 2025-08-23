@@ -1,5 +1,6 @@
-import API from "infrastructure/api/API";
 import { parseQueryParams } from "util/functions/api";
+
+import API from "infrastructure/api/API";
 
 import { Notice } from "./Notices";
 

@@ -1,9 +1,10 @@
 import { useTranslation } from "i18n/client";
-import useNotices from "infrastructure/services/NoticeProvider";
 
 import Box from "@mui/material/Box";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IAdvertisementNotice {}
 

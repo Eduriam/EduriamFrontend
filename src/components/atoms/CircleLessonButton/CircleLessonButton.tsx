@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
 import icons from "styles/icons";
 import theme from "styles/theme";
 import { getLessonColor } from "util/functions/lessons";
@@ -13,6 +12,8 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
 
 import IconContainer from "../IconContainer/IconContainer";
 

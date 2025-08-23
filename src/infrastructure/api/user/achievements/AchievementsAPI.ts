@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { Achievement } from "./Achievements";
 
@@ -11,13 +12,13 @@ const AchievementsAPI = {
   URI: "user/achievements",
 
   useAchievements(
-    params: AchievementParams = {}
+    params: AchievementParams = {},
   ): Modify<
     FetchHook<Array<Achievement>>,
     { achievements: Array<Achievement> }
   > {
     const { data, ...rest } = useAPI<Array<Achievement>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { achievements: data, ...rest };
   },

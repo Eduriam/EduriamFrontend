@@ -1,11 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
 
@@ -13,14 +8,19 @@ import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
+import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-import { Container } from "@mui/material";
 import BottomFab from "components/atoms/BottomFab/BottomFab";
 import AccountSettings from "components/molecules/settings/AccountSettings/AccountSettings";
 import DailyGoalSettings from "components/molecules/settings/DailyGoalSettings/DailyGoalSettings";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import errorCodes from "infrastructure/api/error-codes";
+import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ISettingsPage {}
 
@@ -35,25 +35,28 @@ const SettingsPage: React.FC<ISettingsPage> = () => {
   const [changePasswordEmailSent, setChangePasswordEmailSent] = useState(false);
 
   function handleSave() {
-    mutate(async () => {
-      try {
-        const newSettings = await SettingsAPI.updateSettings({
-          ...change,
-        });
+    mutate(
+      async () => {
+        try {
+          const newSettings = await SettingsAPI.updateSettings({
+            ...change,
+          });
 
-        enqueueSnackbar(t("settings.saved"), {
-          variant: "success",
-        });
+          enqueueSnackbar(t("settings.saved"), {
+            variant: "success",
+          });
 
-        setErrors([]);
-        setChange({});
-        revalidateUser();
-        return newSettings;
-      } catch (err) {
-        handleError(err);
-        return { ...settings, ...change };
-      }
-    }, optimisticMutationOption({ ...settings, ...change }));
+          setErrors([]);
+          setChange({});
+          revalidateUser();
+          return newSettings;
+        } catch (err) {
+          handleError(err);
+          return { ...settings, ...change };
+        }
+      },
+      optimisticMutationOption({ ...settings, ...change }),
+    );
   }
 
   function handleError(error: unknown) {
@@ -151,8 +154,8 @@ const SettingsPage: React.FC<ISettingsPage> = () => {
           )}
         </>
       )}
-    
-  </>);
+    </>
+  );
 };
 
 export default SettingsPage;

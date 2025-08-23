@@ -1,5 +1,3 @@
-import useAuth from "infrastructure/services/AuthProvider";
-
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
@@ -7,6 +5,8 @@ import { useRouter } from "next/navigation";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Box from "@mui/material/Box";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { useTranslation } from "../../../../../i18n/client";
 import { primaryNavigation } from "../../config";

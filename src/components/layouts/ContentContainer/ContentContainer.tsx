@@ -1,5 +1,4 @@
 import config from "config/config";
-import useAuth from "infrastructure/services/AuthProvider";
 import theme from "styles/theme";
 
 import { ReactNode } from "react";
@@ -12,6 +11,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { BOTTOM_NAV_BAR_HEIGHT } from "components/atoms/navigation/main-navigation-bars/BottomNavigationBar/BottomNavigationBar";
 import { SIDE_NAV_BAR_WIDTH } from "components/atoms/navigation/main-navigation-bars/SideNavigationBar/SideNavigationBar";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IContentContainer {
   children?: ReactNode;

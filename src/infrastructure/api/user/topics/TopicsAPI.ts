@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { Topic } from "./Topics";
 
@@ -14,10 +15,10 @@ const TopicsAPI = {
 
   useTopics(
     courseId: Id,
-    params: TopicParams = {}
+    params: TopicParams = {},
   ): Modify<FetchHook<Array<Topic>>, { topics: Array<Topic> }> {
     const { data, ...rest } = useAPI<Array<Topic>>(
-      `${this.URI(courseId)}?${parseQueryParams(params)}`
+      `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { topics: data, ...rest };
   },

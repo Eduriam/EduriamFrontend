@@ -1,8 +1,7 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import UnauthenticatedOnlyRoute from "components/layouts/authentication/UnauthenticatedOnlyRoute/UnauthenticatedOnlyRoute";
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
+import UnauthenticatedOnlyRoute from "components/layouts/authentication/UnauthenticatedOnlyRoute/UnauthenticatedOnlyRoute";
 
 export interface ILayout {
   children: React.ReactNode;

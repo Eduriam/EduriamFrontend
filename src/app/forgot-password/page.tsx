@@ -1,6 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
+import { useTranslation } from "i18n/client";
 import theme from "styles/theme";
 
 import { useState } from "react";
@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import ForgotPasswordForm from "components/molecules/ForgotPasswordForm/ForgotPasswordForm";
-import { useTranslation } from "i18n/client";
 
 export interface IForgotPasswordPage {}
 
@@ -36,8 +35,12 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
           </>
         ) : (
           <>
-            <Typography variant="h3">{t("forgotPassword.passwordSent")}</Typography>
-            <Typography variant="body2">{t("forgotPassword.passwordSentDescription")}</Typography>
+            <Typography variant="h3">
+              {t("forgotPassword.passwordSent")}
+            </Typography>
+            <Typography variant="body2">
+              {t("forgotPassword.passwordSentDescription")}
+            </Typography>
           </>
         )}
       </Box>

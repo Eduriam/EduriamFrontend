@@ -1,13 +1,7 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { shopCategories } from "config/config";
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import { ShopItem } from "infrastructure/api/user/shop-items/ShopItems";
-import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
-import useErrorHandler from "infrastructure/services/ErrorHandler";
 
 import { useState } from "react";
 
@@ -19,6 +13,12 @@ import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import Twemoji from "components/atoms/Twemoji/Twemoji";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import errorCodes from "infrastructure/api/error-codes";
+import { ShopItem } from "infrastructure/api/user/shop-items/ShopItems";
+import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
+import useErrorHandler from "infrastructure/services/ErrorHandler";
 
 export interface IShopPage {}
 
@@ -98,15 +98,24 @@ const ShopPage: React.FC<IShopPage> = () => {
                         item.equipped === true
                           ? t("shop.equipped")
                           : item.bought
-                          ? t("shop.bought")
-                          : item.price,
+                            ? t("shop.bought")
+                            : item.price,
                       headerEmoji: !item.bought ? "🪙" : undefined,
                       imageUrl: item.imageUrl,
                       highlightCard: item.equipped,
                       onClick: () => {
                         const buyPopupProps = {
                           displayCloseButton: true,
-                          subheader: <Box display="flex" justifyContent="center" alignItems="center">{item.price}<Twemoji emoji={"🪙"} width={20} height={20} /></Box>,
+                          subheader: (
+                            <Box
+                              display="flex"
+                              justifyContent="center"
+                              alignItems="center"
+                            >
+                              {item.price}
+                              <Twemoji emoji={"🪙"} width={20} height={20} />
+                            </Box>
+                          ),
                           imageUrl: item.imageUrl,
                           primaryAction: {
                             text: t("shop.buy"),
@@ -145,8 +154,8 @@ const ShopPage: React.FC<IShopPage> = () => {
                           item.equipped === true
                             ? unequipPopupProps
                             : item.bought === true
-                            ? equipPopupProps
-                            : buyPopupProps
+                              ? equipPopupProps
+                              : buyPopupProps,
                         );
                       },
                     },

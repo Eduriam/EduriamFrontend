@@ -1,9 +1,3 @@
-import {
-  AnswerState,
-  IQuestionAnswerComponent,
-} from "infrastructure/api/user/courses/study-session/Exercises";
-import { TableQuestionAnswer as TableQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
-
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
@@ -17,6 +11,12 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import CharacterButton from "components/atoms/CharacterButton/CharacterButton";
+
+import {
+  AnswerState,
+  IQuestionAnswerComponent,
+} from "infrastructure/api/user/courses/study-session/Exercises";
+import { TableQuestionAnswer as TableQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 
 export interface ITableQuestionAnswer extends IQuestionAnswerComponent {
   questionAnswer: TableQuestionAnswerType;
@@ -33,7 +33,7 @@ const TableQuestionAnswer: React.FC<ITableQuestionAnswer> = ({
   const [answers, setAnswers] = useState<Array<Array<string>>>(
     questionAnswer.tableRows.map((row) => {
       return row.map(() => "");
-    })
+    }),
   );
   const [lastSelectedInput, setLastSelectedInput] = useState<{
     x: number;
@@ -91,7 +91,7 @@ const TableQuestionAnswer: React.FC<ITableQuestionAnswer> = ({
     handleCellChange(
       lastSelectedInput.x,
       lastSelectedInput.y,
-      `${answers[lastSelectedInput.y][lastSelectedInput.x]}${char}`
+      `${answers[lastSelectedInput.y][lastSelectedInput.x]}${char}`,
     );
   }
 
@@ -118,7 +118,7 @@ const TableQuestionAnswer: React.FC<ITableQuestionAnswer> = ({
                   {row.map((cell, x) => (
                     <TableCell key={`cell-${y}-${x}`} align="left">
                       {questionAnswer.blankCellCoords.some(
-                        (e) => e[0] === x && e[1] === y
+                        (e) => e[0] === x && e[1] === y,
                       ) ? (
                         <TextField
                           value={(answers[y] && answers[y][x]) ?? ""}
@@ -136,9 +136,9 @@ const TableQuestionAnswer: React.FC<ITableQuestionAnswer> = ({
                                 getAnswerState(x, y) === "RIGHT"
                                   ? "success.main"
                                   : displayAnswers &&
-                                    getAnswerState(x, y) === "WRONG"
-                                  ? "error.main"
-                                  : undefined,
+                                      getAnswerState(x, y) === "WRONG"
+                                    ? "error.main"
+                                    : undefined,
                               borderBottomWidth: displayAnswers
                                 ? "2px"
                                 : undefined,

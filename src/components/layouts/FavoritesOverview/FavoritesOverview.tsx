@@ -1,6 +1,3 @@
-import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
-
 import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
@@ -8,6 +5,9 @@ import Typography from "@mui/material/Typography";
 
 import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import LinkCardList from "components/atoms/lists/LinkCardList/LinkCardList";
+
+import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import { useTranslation } from "../../../i18n/client";
 
@@ -54,20 +54,20 @@ const FavoritesOverview: React.FC<IFavoritesOverview> = ({ courseId }) => {
                 />
               )
             : value === "vocabulary"
-            ? lessonItems && (
-                <LinkCardList
-                  links={lessonItems.map((item) => {
-                    return {
-                      id: item.id,
-                      name: item.nameL2,
-                      secondaryName: item.nameL1,
-                      url: `/lesson-items/${item.id}`,
-                      imageUrl: item.imageUrl,
-                    };
-                  })}
-                />
-              )
-            : undefined
+              ? lessonItems && (
+                  <LinkCardList
+                    links={lessonItems.map((item) => {
+                      return {
+                        id: item.id,
+                        name: item.nameL2,
+                        secondaryName: item.nameL1,
+                        url: `/lesson-items/${item.id}`,
+                        imageUrl: item.imageUrl,
+                      };
+                    })}
+                  />
+                )
+              : undefined
         }
         value={value}
       />

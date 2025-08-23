@@ -7,7 +7,7 @@ import {
 } from "../../infrastructure/api/user/courses/study-session/guards/questionGuard";
 
 export function getQuestionAnswerComponent(
-  questionAnswer: QuestionAnswer
+  questionAnswer: QuestionAnswer,
 ): React.ElementType {
   if (isFillInBlankQuestionAnswer(questionAnswer)) return FillTheBlank;
 

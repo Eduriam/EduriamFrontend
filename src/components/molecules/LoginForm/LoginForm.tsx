@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import errorCodes from "infrastructure/api/error-codes";
-import useAuth from "infrastructure/services/AuthProvider";
 import theme from "styles/theme";
 
 import { useForm } from "react-hook-form";
@@ -13,6 +11,9 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import errorCodes from "infrastructure/api/error-codes";
+import useAuth from "infrastructure/services/AuthProvider";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 

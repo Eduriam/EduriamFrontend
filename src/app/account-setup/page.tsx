@@ -1,11 +1,5 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import AccountSetupAPI from "infrastructure/api/user/account-setup/AccountSetupAPI";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-import { SurveyAnswer } from "infrastructure/api/user/survey-answers/SurveyAnswers";
-import { Topic } from "infrastructure/api/user/topics/Topics";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 
 import { useEffect, useState } from "react";
@@ -25,6 +19,12 @@ import { LanguageLevel } from "components/molecules/forms/SelectLevelForm/config
 import SelectStartForm from "components/molecules/forms/SelectStartForm/SelectStartForm";
 import { StartOptionId } from "components/molecules/forms/SelectStartForm/config";
 import SelectTopicsForm from "components/molecules/forms/SelectTopicsForm/SelectTopicsForm";
+
+import AccountSetupAPI from "infrastructure/api/user/account-setup/AccountSetupAPI";
+import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import { SurveyAnswer } from "infrastructure/api/user/survey-answers/SurveyAnswers";
+import { Topic } from "infrastructure/api/user/topics/Topics";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IAccountSetupPage {}
 

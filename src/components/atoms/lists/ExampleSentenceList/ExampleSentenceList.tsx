@@ -1,9 +1,9 @@
-import { ExampleSentence } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
 import ListenIconButton from "components/atoms/ListenIconButton/ListenIconButton";
+
+import { ExampleSentence } from "infrastructure/api/user/courses/lesson-items/LessonItems";
 
 import CardList from "../CardList/CardList";
 

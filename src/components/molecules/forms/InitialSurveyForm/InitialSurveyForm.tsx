@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { SurveyAnswer } from "infrastructure/api/user/survey-answers/SurveyAnswers";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -10,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import MultipleChoiceCardList from "components/atoms/lists/MultipleChoiceCardList/MultipleChoiceCardList";
+
+import { SurveyAnswer } from "infrastructure/api/user/survey-answers/SurveyAnswers";
 
 import { initialSurveyId, surveyOptions } from "./config";
 

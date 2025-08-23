@@ -19,7 +19,7 @@ export interface ITimer {
 const Timer: React.FC<ITimer> = ({ milliseconds, onFinish }) => {
   const [value, setValue] = useState<number>(0);
   const [state, setState] = useState<"STOPPED" | "RUNNING" | "PAUSED">(
-    "RUNNING"
+    "RUNNING",
   );
   const [finished, setFinished] = useState(false);
 

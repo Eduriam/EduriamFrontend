@@ -31,15 +31,15 @@ const CorrectAnswerBox: React.FC<ICorrectAnswerBox> = ({
                 state === "RIGHT"
                   ? "green"
                   : state === "WRONG"
-                  ? `red`
-                  : undefined,
+                    ? `red`
+                    : undefined,
             }}
           >
             {state === "RIGHT"
               ? t("exercise.right")
               : state === "WRONG"
-              ? t("exercise.wrong")
-              : ""}
+                ? t("exercise.wrong")
+                : ""}
           </Typography>
           {correctAnswer !== answer && (
             <>
@@ -47,8 +47,8 @@ const CorrectAnswerBox: React.FC<ICorrectAnswerBox> = ({
                 {state === "RIGHT"
                   ? t("exercise.alternativeAnswer")
                   : state === "WRONG"
-                  ? t("exercise.correctAnswer")
-                  : ""}
+                    ? t("exercise.correctAnswer")
+                    : ""}
               </Typography>
               <Typography variant="body2">{correctAnswer}</Typography>
             </>

@@ -1,9 +1,9 @@
-import { AudioQuestionAnswer as AudioQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
-
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+import { AudioQuestionAnswer as AudioQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 
 import { IQuestionAnswerComponent } from "../../../../infrastructure/api/user/courses/study-session/Exercises";
 import { UserAnswer } from "../../../../infrastructure/api/user/courses/study-session/QuestionAttempt";
@@ -37,14 +37,14 @@ const AudioQuestionAnswer: React.FC<IAudioQuestionAnswer> = ({
           states: ["NONE"],
           lessonItemId: questionAnswer.lessonItemId,
         },
-        similarityRatio
-      )
+        similarityRatio,
+      ),
     );
   };
 
   const evaluateAnswer = (
     userAnswer: UserAnswer,
-    similarityRatio: number
+    similarityRatio: number,
   ): UserAnswer => {
     const obj = userAnswer;
 
@@ -78,7 +78,7 @@ const AudioQuestionAnswer: React.FC<IAudioQuestionAnswer> = ({
           >
             {answer.split(" ").map((word, i, answer) => {
               const correctWord = removeInterpunction(
-                questionAnswer.answer
+                questionAnswer.answer,
               ).split(" ")[i];
               if (
                 word === correctWord ||
@@ -142,7 +142,7 @@ const AudioQuestionAnswer: React.FC<IAudioQuestionAnswer> = ({
                 callback: (command, spokenPhrase, similarityRatio) => {
                   handleChange(
                     removeInterpunction(spokenPhrase),
-                    Math.round(similarityRatio * 10)
+                    Math.round(similarityRatio * 10),
                   );
                 },
                 isFuzzyMatch: true,

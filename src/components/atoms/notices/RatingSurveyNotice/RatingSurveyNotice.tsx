@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { RatingSurveyNotice as RatingSurveyNoticeType } from "infrastructure/api/user/notices/Notices";
-import SurveyAnswersAPI from "infrastructure/api/user/survey-answers/SurveyAnswersAPI";
-import useNotices from "infrastructure/services/NoticeProvider";
 
 import { useState } from "react";
 
@@ -10,6 +7,10 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import { RatingSurveyNotice as RatingSurveyNoticeType } from "infrastructure/api/user/notices/Notices";
+import SurveyAnswersAPI from "infrastructure/api/user/survey-answers/SurveyAnswersAPI";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IRatingSurveyNotice {
   notice: RatingSurveyNoticeType;

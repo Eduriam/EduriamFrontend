@@ -1,6 +1,4 @@
 import { categories } from "config/config";
-import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import React, { useState } from "react";
 
@@ -10,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import LinkCardList from "components/atoms/lists/LinkCardList/LinkCardList";
 import { LanguageLevel } from "components/molecules/forms/SelectLevelForm/config";
+
+import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import { useTranslation } from "../../../i18n/client";
 

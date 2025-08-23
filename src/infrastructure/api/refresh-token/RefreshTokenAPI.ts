@@ -11,7 +11,7 @@ const RefreshTokenAPI = {
   URI: "refresh-token",
 
   async refreshIdToken(
-    data: RefreshTokenRequestBody
+    data: RefreshTokenRequestBody,
   ): Promise<RefreshTokenResponseBody> {
     return API.post(`${this.URI}`, data);
   },

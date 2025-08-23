@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { FreeTrialOfferNotice as FreeTrialOfferNoticeType } from "infrastructure/api/user/notices/Notices";
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
-import useNotices from "infrastructure/services/NoticeProvider";
 import theme from "styles/theme";
 
 import Image from "next/image";
@@ -12,6 +9,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import { FreeTrialOfferNotice as FreeTrialOfferNoticeType } from "infrastructure/api/user/notices/Notices";
+import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IFreeTrialOfferNotice {
   notice: FreeTrialOfferNoticeType;

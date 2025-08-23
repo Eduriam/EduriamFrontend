@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+
+import Box from "@mui/material/Box";
+
 import {
   AnswerState,
   IQuestionAnswerComponent,
@@ -8,10 +12,6 @@ import {
   isMatchImageOption,
   isMatchTextOption,
 } from "infrastructure/api/user/courses/study-session/guards/matchingOptionsGuard";
-
-import { useEffect, useState } from "react";
-
-import Box from "@mui/material/Box";
 
 import MatchAudioOption from "../matching-options/MatchAudioOption/MatchAudioOption";
 import MatchImageOption from "../matching-options/MatchImageOption/MatchImageOption";
@@ -28,15 +28,15 @@ const MatchingQuestionAnswer: React.FC<IMatchingQuestionAnswer> = ({
   const [selectedIndex1, setSelectedIndex1] = useState<number | undefined>();
   const [selectedIndex2, setSelectedIndex2] = useState<number | undefined>();
   const [optionStates1, setOptionStates1] = useState<Array<AnswerState>>(
-    questionAnswer.options1.map(() => "NONE")
+    questionAnswer.options1.map(() => "NONE"),
   );
 
   const [optionStates2, setOptionStates2] = useState<Array<AnswerState>>(
-    questionAnswer.options2.map(() => "NONE")
+    questionAnswer.options2.map(() => "NONE"),
   );
 
   const [answerStates, setAnswerStates] = useState<Array<AnswerState>>(
-    questionAnswer.options1.map(() => "NONE")
+    questionAnswer.options1.map(() => "NONE"),
   );
 
   useEffect(() => {

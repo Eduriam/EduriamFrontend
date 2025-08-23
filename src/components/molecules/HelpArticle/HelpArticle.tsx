@@ -1,9 +1,9 @@
-import ArticlesAPI from "infrastructure/api/courses/articles/ArticlesAPI";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import MarkdownText from "components/atoms/MarkdownText/MarkdownText";
+
+import ArticlesAPI from "infrastructure/api/courses/articles/ArticlesAPI";
 
 export interface IHelpArticle {
   courseId: Id;

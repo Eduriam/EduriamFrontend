@@ -1,4 +1,5 @@
 import i18next from "i18next";
+
 import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
 
 import theme from "../../styles/theme";

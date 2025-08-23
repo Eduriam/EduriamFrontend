@@ -1,13 +1,14 @@
 import { useTranslation } from "i18n/client";
+
+import Exercise from "components/atoms/Exercise/Exercise";
+import MatchingQuestionAnswer from "components/atoms/question-answers/MatchingQuestionAnswer/MatchingQuestionAnswer";
+
 import {
   IExerciseComponent,
   MatchingExercise as MatchingExerciseType,
 } from "infrastructure/api/user/courses/study-session/Exercises";
 import { MatchingQuestionAnswer as MatchingQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 import { UserAnswer } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-
-import Exercise from "components/atoms/Exercise/Exercise";
-import MatchingQuestionAnswer from "components/atoms/question-answers/MatchingQuestionAnswer/MatchingQuestionAnswer";
 
 export interface IMatchingExercise extends IExerciseComponent {
   exercise: MatchingExerciseType;

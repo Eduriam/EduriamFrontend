@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { FreeTrialEndNotice as FreeTrialEndNoticeType } from "infrastructure/api/user/notices/Notices";
-import useNotices from "infrastructure/services/NoticeProvider";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,6 +8,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import { FreeTrialEndNotice as FreeTrialEndNoticeType } from "infrastructure/api/user/notices/Notices";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 import { featureIdList } from "./config";
 

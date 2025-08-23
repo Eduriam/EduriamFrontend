@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { Feedback } from "infrastructure/api/user/courses/lessons/feedback/LessonFeedback";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
 
@@ -12,6 +11,8 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+
+import { Feedback } from "infrastructure/api/user/courses/lessons/feedback/LessonFeedback";
 
 import IconContainer from "../../IconContainer/IconContainer";
 

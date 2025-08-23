@@ -1,9 +1,8 @@
-// prettier-ignore
-"use client"
-
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import UpdateLessonOverview from "components/layouts/UpdateLessonOverview/UpdateLessonOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IUpdateLessonPage {
   params: {

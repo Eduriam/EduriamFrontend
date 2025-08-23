@@ -1,17 +1,16 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 import { useSnackbar } from "notistack";
 
 import { useRouter } from "next/navigation";
 
 import LessonCreateUpdate from "components/layouts/LessonCreateUpdate/LessonCreateUpdate";
 
-export interface ICreateLessonPage {
-}
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
+import useAuth from "infrastructure/services/AuthProvider";
+
+export interface ICreateLessonPage {}
 
 const CreateLessonPage: React.FC<ICreateLessonPage> = () => {
   const { user } = useAuth();

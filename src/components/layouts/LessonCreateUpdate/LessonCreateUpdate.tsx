@@ -1,7 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-import { LessonCreateUpdateDTO } from "infrastructure/api/user/courses/lessons/Lessons";
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
 
@@ -27,6 +24,10 @@ import Popup from "components/atoms/Popup/Popup";
 import CardList from "components/atoms/lists/CardList/CardList";
 import AddVocabularyDialog from "components/molecules/AddVocabularyDialog/AddVocabularyDialog";
 
+import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
+import { LessonCreateUpdateDTO } from "infrastructure/api/user/courses/lessons/Lessons";
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
+
 import ContentContainer from "../ContentContainer/ContentContainer";
 
 export interface ILessonCreateUpdate {
@@ -43,7 +44,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
   isCreate = false,
 }) => {
   const [items, setItems] = useState<Array<LessonItemSummary>>(
-    lesson.items ? lesson.items : []
+    lesson.items ? lesson.items : [],
   );
   const [name, setName] = useState(lesson.name);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -65,7 +66,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
     const arr2 = lesson.items
       .slice()
       .sort((a: LessonItemSummary, b: LessonItemSummary) =>
-        a.id.localeCompare(b.id)
+        a.id.localeCompare(b.id),
       );
 
     if (arr1 && arr2) {

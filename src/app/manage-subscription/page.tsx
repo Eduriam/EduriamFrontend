@@ -1,12 +1,12 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 
 import Typography from "@mui/material/Typography";
 
 import SubscriptionOverview from "components/layouts/SubscriptionOverview/SubscriptionOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IManageSubscriptionPage {}
 

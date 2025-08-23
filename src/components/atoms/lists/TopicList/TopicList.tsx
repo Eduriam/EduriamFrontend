@@ -1,8 +1,8 @@
-import { Topic } from "infrastructure/api/user/topics/Topics";
-
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Switch from "@mui/material/Switch";
+
+import { Topic } from "infrastructure/api/user/topics/Topics";
 
 import CardList from "../CardList/CardList";
 

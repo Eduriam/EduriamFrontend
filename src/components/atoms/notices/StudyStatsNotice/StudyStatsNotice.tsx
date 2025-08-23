@@ -1,12 +1,13 @@
 import { ResponsivePie } from "@nivo/pie";
 import { useTranslation } from "i18n/client";
-import { StudyStatsNotice as StudyStatsNoticeType } from "infrastructure/api/user/notices/Notices";
-import useNotices from "infrastructure/services/NoticeProvider";
 import theme from "styles/theme";
 
 import Box from "@mui/material/Box";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import { StudyStatsNotice as StudyStatsNoticeType } from "infrastructure/api/user/notices/Notices";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IStudyStatsNotice {
   notice: StudyStatsNoticeType;
@@ -37,7 +38,7 @@ const StudyStatsNotice: React.FC<IStudyStatsNotice> = ({ notice }) => {
               value: Math.round(
                 (notice.stats.rightAnswers /
                   (notice.stats.rightAnswers + notice.stats.wrongAnswers)) *
-                  100
+                  100,
               ),
             },
             {
@@ -45,7 +46,7 @@ const StudyStatsNotice: React.FC<IStudyStatsNotice> = ({ notice }) => {
               value: Math.round(
                 (notice.stats.wrongAnswers /
                   (notice.stats.rightAnswers + notice.stats.wrongAnswers)) *
-                  100
+                  100,
               ),
             },
           ]}

@@ -18,7 +18,7 @@ const ListenIconButton: React.FC<IListenIconButton> = ({
   onFinish,
 }) => {
   const [state, setState] = useState<"STOPPED" | "RUNNING" | "PAUSED">(
-    playOnMount ? "RUNNING" : "STOPPED"
+    playOnMount ? "RUNNING" : "STOPPED",
   );
   const [finished, setFinished] = useState(false);
   const audioRef = useRef(new Audio(audioLink));

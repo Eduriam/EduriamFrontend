@@ -1,10 +1,11 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
+
 import { LoginRequestBody } from "infrastructure/api/login/Login";
 import LoginAPI from "infrastructure/api/login/LoginAPI";
 import RefreshTokenAPI from "infrastructure/api/refresh-token/RefreshTokenAPI";
 import { SignupRequestBody } from "infrastructure/api/signup/Signup";
 import SignupAPI from "infrastructure/api/signup/SignupAPI";
-import jwtDecode from "jwt-decode";
 
 import { UserPrivate } from "../api/user/User";
 import { LocalStorageManager } from "./LocalStorageManager";
@@ -63,7 +64,7 @@ const AuthManager = {
       return Promise.reject("No user found.");
     } else {
       const studyMapLevel = LocalStorageManager.getItem<number>(
-        "lastViewedStudyMapLevel"
+        "lastViewedStudyMapLevel",
       );
       if (studyMapLevel !== null) {
         user = { ...user, lastViewedStudyMapLevel: studyMapLevel };

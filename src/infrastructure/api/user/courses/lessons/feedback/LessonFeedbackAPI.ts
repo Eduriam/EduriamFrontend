@@ -11,7 +11,7 @@ const LessonFeedbackAPI = {
   async updateLessonFeedback(
     courseId: Id,
     lessonId: Id,
-    feedback: Partial<Feedback>
+    feedback: Partial<Feedback>,
   ): Promise<void> {
     return API.put(`${this.URI(courseId, lessonId)}`, feedback);
   },

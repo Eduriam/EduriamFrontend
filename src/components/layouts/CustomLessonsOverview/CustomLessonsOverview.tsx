@@ -1,4 +1,3 @@
-import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 import icons from "styles/icons";
 
 import React from "react";
@@ -11,6 +10,8 @@ import Typography from "@mui/material/Typography";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
 import UserLessonsList from "components/atoms/lists/UserLessonsList/UserLessonsList";
+
+import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
 
 import { useTranslation } from "../../../i18n/client";
 

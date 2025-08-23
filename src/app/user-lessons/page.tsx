@@ -1,12 +1,13 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import useAuth from "infrastructure/services/AuthProvider";
+import { useEffect } from "react";
+
+import { useRouter } from "next/navigation";
 
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 import CustomLessonsOverview from "components/layouts/CustomLessonsOverview/CustomLessonsOverview";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IUserLessonsPage {}
 

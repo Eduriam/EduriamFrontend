@@ -1,5 +1,4 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import {
   AddressElement,
@@ -8,8 +7,6 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { useTranslation } from "i18n/client";
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 import { useSnackbar } from "notistack";
 
 import { useEffect, useState } from "react";
@@ -21,6 +18,9 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
+
+import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import { PAYMENT_SUCCESS_URL, PLAN_PRICING_OPTIONS } from "./config";
 

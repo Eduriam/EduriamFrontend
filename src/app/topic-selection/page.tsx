@@ -1,9 +1,8 @@
-// prettier-ignore
-"use client"
-
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import TopicsOverview from "components/layouts/TopicsOverview/TopicsOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ITopicSelectionPage {}
 

@@ -1,7 +1,7 @@
+import { ReactNode, createContext, useContext, useState } from "react";
+
 import { Notice } from "infrastructure/api/user/notices/Notices";
 import NoticesAPI from "infrastructure/api/user/notices/NoticesAPI";
-
-import { ReactNode, createContext, useContext, useState } from "react";
 
 export interface NoticeContextType {
   notices: Array<Notice>;
@@ -12,7 +12,7 @@ export interface NoticeContextType {
 }
 
 export const NoticeContext = createContext<NoticeContextType>(
-  {} as NoticeContextType
+  {} as NoticeContextType,
 );
 
 // Source: https://dev.to/finiam/predictable-react-authentication-with-the-context-api-g10

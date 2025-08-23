@@ -1,8 +1,9 @@
 import { useTranslation } from "i18n/client";
-import { AchievementNotice as AchievementNoticeType } from "infrastructure/api/user/notices/Notices";
-import useNotices from "infrastructure/services/NoticeProvider";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
+
+import { AchievementNotice as AchievementNoticeType } from "infrastructure/api/user/notices/Notices";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IAchievementNotice {
   notice: AchievementNoticeType;

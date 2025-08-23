@@ -1,8 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 import theme from "styles/theme";
 
 import Image from "next/image";
@@ -15,6 +13,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ISubscriptionPage {}
 
@@ -36,7 +35,7 @@ const SubscriptionPage: React.FC<ISubscriptionPage> = () => {
       markup.push(
         <ListItem sx={{ display: "list-item" }} key={i}>
           {t(`subscription.subscribedFeatures.${i}`)}
-        </ListItem>
+        </ListItem>,
       );
     }
 

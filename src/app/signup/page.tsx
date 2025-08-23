@@ -1,16 +1,15 @@
-// prettier-ignore
-"use client"
+"use client";
+
+import theme from "styles/theme";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import SignupForm from "components/molecules/SignupForm/SignupForm";
-import theme from "styles/theme";
 
-export interface ISignupPage {
-  
-}
+import SignupForm from "components/molecules/SignupForm/SignupForm";
+
+export interface ISignupPage {}
 
 const SignupPage: React.FC<ISignupPage> = () => {
   const desktop = useMediaQuery(theme.breakpoints.up("md"));

@@ -1,7 +1,7 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import HelpArticle from "components/molecules/HelpArticle/HelpArticle";
+
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IHelpArticlePage {

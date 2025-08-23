@@ -1,11 +1,12 @@
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 
 import { ReactNode, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
 import { CircularProgress, Container } from "@mui/material";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IUnauthenticatedOnlyRoute {
   children: ReactNode;

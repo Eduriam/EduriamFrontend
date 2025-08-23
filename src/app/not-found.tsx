@@ -1,4 +1,3 @@
-// prettier-ignore
 "use client";
 
 import { useTranslation } from "i18n/client";

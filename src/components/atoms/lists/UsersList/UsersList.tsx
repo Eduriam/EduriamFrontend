@@ -1,5 +1,3 @@
-import { UserSummary } from "infrastructure/api/users/Users";
-import useAuth from "infrastructure/services/AuthProvider";
 import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
@@ -12,6 +10,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
 import IconContainer from "components/atoms/IconContainer/IconContainer";
+
+import { UserSummary } from "infrastructure/api/users/Users";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import CardList from "../CardList/CardList";
 

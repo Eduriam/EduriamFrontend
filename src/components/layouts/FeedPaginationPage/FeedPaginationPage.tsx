@@ -1,4 +1,14 @@
 import { useTranslation } from "i18n/client";
+
+import { ReactNode } from "react";
+
+import Box from "@mui/material/Box";
+
+import DividerWithText from "components/atoms/DividerWithText/DividerWithText";
+import FeedArticleCard from "components/atoms/cards/FeedArticleCard/FeedArticleCard";
+import FeedMessageCard from "components/atoms/cards/FeedMessageCard/FeedMessageCard";
+import FeedVideoCard from "components/atoms/cards/FeedVideoCard/FeedVideoCard";
+
 import { optimisticMutationOption } from "infrastructure/api/API";
 import { FeedItem, FeedMessage } from "infrastructure/api/user/feed/Feed";
 import FeedAPI from "infrastructure/api/user/feed/FeedAPI";
@@ -12,15 +22,6 @@ import {
   ReactionId,
 } from "infrastructure/api/user/feed/reactions/Reactions";
 import ReactionsAPI from "infrastructure/api/user/feed/reactions/ReactionsAPI";
-
-import { ReactNode } from "react";
-
-import Box from "@mui/material/Box";
-
-import DividerWithText from "components/atoms/DividerWithText/DividerWithText";
-import FeedArticleCard from "components/atoms/cards/FeedArticleCard/FeedArticleCard";
-import FeedMessageCard from "components/atoms/cards/FeedMessageCard/FeedMessageCard";
-import FeedVideoCard from "components/atoms/cards/FeedVideoCard/FeedVideoCard";
 
 export interface IFeedPaginationPage {
   index: number;
@@ -39,12 +40,12 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
   function handleReactionUpdate(
     feedItem: FeedMessage,
     reactionId: ReactionId,
-    reacted: boolean
+    reacted: boolean,
   ) {
     const reactions = updateReactionArray(
       feedItem.reactions,
       reactionId,
-      reacted
+      reacted,
     );
 
     const newFeed = feed.map((item) => {
@@ -63,7 +64,7 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
   function updateReactionArray(
     reactions: Array<Reaction>,
     reactionId: ReactionId,
-    reacted: boolean
+    reacted: boolean,
   ): Array<Reaction> {
     let reactionExists = false;
 
@@ -79,8 +80,8 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
               !reaction.reactedByUser && reacted
                 ? reaction.counter + 1
                 : reaction.reactedByUser && !reacted
-                ? reaction.counter - 1
-                : reaction.counter,
+                  ? reaction.counter - 1
+                  : reaction.counter,
           };
         }
         return reaction;
@@ -114,12 +115,12 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
                 text={t("feed.earlier")}
                 variant="subtitle2"
               />
-            </Box>
+            </Box>,
           );
       }
       if (isFeedArticle(feedItem))
         markup.push(
-          <FeedArticleCard key={feedItem.id} feedArticle={feedItem} />
+          <FeedArticleCard key={feedItem.id} feedArticle={feedItem} />,
         );
       if (isFeedVideo(feedItem))
         markup.push(<FeedVideoCard key={feedItem.id} feedVideo={feedItem} />);
@@ -134,7 +135,7 @@ const FeedPaginationPage: React.FC<IFeedPaginationPage> = ({
             onRemoveReaction={(reactionId) =>
               handleReactionUpdate(feedItem, reactionId, false)
             }
-          />
+          />,
         );
     });
 

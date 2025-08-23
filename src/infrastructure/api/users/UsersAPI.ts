@@ -1,7 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
+import { parseQueryParams } from "util/functions/api";
+
 import { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
-import { parseQueryParams } from "util/functions/api";
 
 import { UserProfile, UserSummary } from "./Users";
 
@@ -13,16 +14,16 @@ const UsersAPI = {
   URI: "users",
 
   useUsers(
-    params: UserParams = {}
+    params: UserParams = {},
   ): Modify<FetchHook<Array<UserSummary>>, { users: Array<UserSummary> }> {
     const { data, ...rest } = useAPI<Array<UserSummary>>(
-      `${this.URI}?${parseQueryParams(params)}`
+      `${this.URI}?${parseQueryParams(params)}`,
     );
     return { users: data, ...rest };
   },
 
   useUser(
-    userId: Id
+    userId: Id,
   ): Modify<FetchHook<UserProfile>, { userProfile: UserProfile }> {
     const { data, ...rest } = useAPI<UserProfile>(`${this.URI}/${userId}`);
     return { userProfile: data, ...rest };

@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react";
+
+import Box from "@mui/material/Box";
+
+import CircleLessonButton from "components/atoms/CircleLessonButton/CircleLessonButton";
+
 import {
   StudyMap,
   StudyMapLesson,
 } from "infrastructure/api/user/courses/study-map/StudyMap";
 import StudyMapAPI from "infrastructure/api/user/courses/study-map/StudyMapAPI";
 import mutateArrayItem from "infrastructure/api/utils/mutateArrayItem";
-
-import { useEffect, useState } from "react";
-
-import Box from "@mui/material/Box";
-
-import CircleLessonButton from "components/atoms/CircleLessonButton/CircleLessonButton";
 
 export interface ILessonsPaginationPage {
   courseId: Id;
@@ -52,7 +52,7 @@ const LessonsPaginationPage: React.FC<ILessonsPaginationPage> = ({
     });
 
     mutateArrayItem(newStudyMap, lessonId, change, mutate, () =>
-      StudyMapAPI.setActiveLesson(courseId, lessonId)
+      StudyMapAPI.setActiveLesson(courseId, lessonId),
     );
 
     onActiveLessonChange(lessonId);
@@ -125,7 +125,7 @@ const LessonsPaginationPage: React.FC<ILessonsPaginationPage> = ({
             active={lessons[i].isActive}
             onSetActive={handleSetActive}
           />
-        </Box>
+        </Box>,
       );
     }
     return markup;

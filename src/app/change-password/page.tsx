@@ -1,5 +1,4 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
 import theme from "styles/theme";

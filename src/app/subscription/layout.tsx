@@ -1,8 +1,7 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
+import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 
 export interface ILayout {
   children: React.ReactNode;

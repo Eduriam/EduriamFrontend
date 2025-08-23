@@ -1,7 +1,5 @@
 import config from "config/config";
 import { useTranslation } from "i18n/client";
-import errorCodes from "infrastructure/api/error-codes";
-import useAuth from "infrastructure/services/AuthProvider";
 import theme from "styles/theme";
 
 import { useForm } from "react-hook-form";
@@ -16,6 +14,9 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import errorCodes from "infrastructure/api/error-codes";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
@@ -68,9 +69,9 @@ const SignupForm: React.FC<ISignupForm> = () => {
             errors.username?.type === "required"
               ? t("error.field-is-required")
               : authErrors?.includes(errorCodes.invalidUsername)
-              ? t("error.invalid-username")
-              : authErrors?.includes(errorCodes.usernameTaken) &&
-                t("error.username-taken")
+                ? t("error.invalid-username")
+                : authErrors?.includes(errorCodes.usernameTaken) &&
+                  t("error.username-taken")
           }
           error={
             errors.username !== undefined ||
@@ -91,10 +92,10 @@ const SignupForm: React.FC<ISignupForm> = () => {
             errors.email?.type === "required"
               ? t("error.field-is-required")
               : errors.email?.type === "pattern" ||
-                authErrors?.includes(errorCodes.invalidEmailAddress)
-              ? t("error.invalid-email-address")
-              : authErrors?.includes(errorCodes.emailAddressTaken) &&
-                t("error.email-taken")
+                  authErrors?.includes(errorCodes.invalidEmailAddress)
+                ? t("error.invalid-email-address")
+                : authErrors?.includes(errorCodes.emailAddressTaken) &&
+                  t("error.email-taken")
           }
           error={
             errors.email !== undefined ||

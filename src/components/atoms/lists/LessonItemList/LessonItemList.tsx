@@ -1,5 +1,3 @@
-import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
-
 import { useRouter } from "next/navigation";
 
 import Avatar from "@mui/material/Avatar";
@@ -9,6 +7,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 
 import ListenIconButton from "components/atoms/ListenIconButton/ListenIconButton";
+
+import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
 
 import CardList from "../CardList/CardList";
 

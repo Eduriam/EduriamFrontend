@@ -1,9 +1,8 @@
-// prettier-ignore
-"use client"
-
-import useAuth from "infrastructure/services/AuthProvider";
+"use client";
 
 import FavoritesOverview from "components/layouts/FavoritesOverview/FavoritesOverview";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IFavoritesPage {}
 

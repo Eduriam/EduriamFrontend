@@ -1,10 +1,6 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
-import UsersAPI from "infrastructure/api/users/UsersAPI";
 
 import { useState } from "react";
 
@@ -15,6 +11,10 @@ import Popup, { IPopup } from "components/atoms/Popup/Popup";
 import ProgressCard from "components/atoms/cards/ProgressCard/ProgressCard";
 import UserProfileCard from "components/atoms/cards/UserProfileCard/UserProfileCard";
 import UserStatsCard from "components/atoms/cards/UserStatsCard/UserStatsCard";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
+import UsersAPI from "infrastructure/api/users/UsersAPI";
 
 export interface IUsersPage {
   params: {
@@ -34,15 +34,18 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           userProfile={userProfile}
           userId={params.userId}
           onFollowChange={(isFollowed) => {
-            mutate(async () => {
-              if (isFollowed) {
-                await UserFollowingAPI.followUser(params.userId);
-              } else {
-                await UserFollowingAPI.unfollowUser(params.userId);
-              }
+            mutate(
+              async () => {
+                if (isFollowed) {
+                  await UserFollowingAPI.followUser(params.userId);
+                } else {
+                  await UserFollowingAPI.unfollowUser(params.userId);
+                }
 
-              return { ...userProfile, isFollowed };
-            }, optimisticMutationOption({ ...userProfile, isFollowed }));
+                return { ...userProfile, isFollowed };
+              },
+              optimisticMutationOption({ ...userProfile, isFollowed }),
+            );
           }}
         />
       )}

@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import { RewardNotice as RewardNoticeType } from "infrastructure/api/user/notices/Notices";
-import useNotices from "infrastructure/services/NoticeProvider";
 
 import Image from "next/image";
 
@@ -8,6 +6,9 @@ import { Box, Typography } from "@mui/material";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
 import Twemoji from "components/atoms/Twemoji/Twemoji";
+
+import { RewardNotice as RewardNoticeType } from "infrastructure/api/user/notices/Notices";
+import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IRewardNotice {
   notice: RewardNoticeType;

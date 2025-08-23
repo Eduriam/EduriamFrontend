@@ -1,11 +1,11 @@
-import { TextQuestionAnswer as TextQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
-
 import { MutableRefObject, useState } from "react";
 
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+
+import { TextQuestionAnswer as TextQuestionAnswerType } from "infrastructure/api/user/courses/study-session/QuestionAnswers";
 
 import { IQuestionAnswerComponent } from "../../../../infrastructure/api/user/courses/study-session/Exercises";
 import { UserAnswer } from "../../../../infrastructure/api/user/courses/study-session/QuestionAttempt";
@@ -44,7 +44,7 @@ const TextQuestionAnswer: React.FC<ITextQuestionAnswer> = ({
         exerciseId: questionAnswer.id,
         states: ["NONE"],
         lessonItemId: questionAnswer.lessonItemId,
-      })
+      }),
     );
   };
 
@@ -81,8 +81,8 @@ const TextQuestionAnswer: React.FC<ITextQuestionAnswer> = ({
                 displayAnswers && answerStates?.[0] === "RIGHT"
                   ? "success.main"
                   : displayAnswers && answerStates?.[0] === "WRONG"
-                  ? "error.main"
-                  : undefined,
+                    ? "error.main"
+                    : undefined,
               borderWidth: 2,
             },
         }}
@@ -92,8 +92,8 @@ const TextQuestionAnswer: React.FC<ITextQuestionAnswer> = ({
           displayAnswers && answerStates?.[0] === "RIGHT"
             ? "success"
             : displayAnswers && answerStates?.[0] === "WRONG"
-            ? "error"
-            : undefined
+              ? "error"
+              : undefined
         }
         focused={
           displayAnswers &&
