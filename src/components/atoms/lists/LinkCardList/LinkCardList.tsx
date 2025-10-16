@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
@@ -7,8 +8,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import CardList from "../CardList/CardList";
 
@@ -42,7 +41,7 @@ const LinkCardList: React.FC<ILinkCardList> = ({ links }) => {
                 primary={link.name}
                 secondary={link.secondaryName ?? undefined}
               />
-              <IconContainer name={icons.next} />
+              <Icon name={icons.next} />
             </ListItemButton>
           </ListItem>
         );

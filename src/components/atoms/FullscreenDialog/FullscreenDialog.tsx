@@ -1,3 +1,4 @@
+import { FullWidthButton, Icon } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import { ReactNode } from "react";
@@ -9,8 +10,6 @@ import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import FullWidthButton from "../FullWidthButton/FullWidthButton";
-import IconContainer from "../IconContainer/IconContainer";
 import KeyPress from "../KeyPress/KeyPress";
 import ImageCard from "../cards/ImageCard/ImageCard";
 
@@ -85,7 +84,7 @@ const FullscreenDialog: React.FC<
               onClick={() => secondaryButton.onClick?.()}
               endIcon={
                 secondaryButton.icon ? (
-                  <IconContainer name={secondaryButton.icon} />
+                  <Icon name={secondaryButton.icon} />
                 ) : undefined
               }
             >
@@ -97,7 +96,7 @@ const FullscreenDialog: React.FC<
               onClick={() => primaryButton.onClick?.()}
               endIcon={
                 primaryButton.icon ? (
-                  <IconContainer name={primaryButton.icon} />
+                  <Icon name={primaryButton.icon} />
                 ) : undefined
               }
             >

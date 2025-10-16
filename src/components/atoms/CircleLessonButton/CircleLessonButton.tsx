@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 import theme from "styles/theme";
@@ -14,8 +15,6 @@ import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { LessonType } from "infrastructure/api/user/courses/lessons/Lessons";
-
-import IconContainer from "../IconContainer/IconContainer";
 
 export interface ICircleLessonButton {
   title: string;
@@ -82,7 +81,7 @@ const CircleLessonButton: React.FC<ICircleLessonButton> = ({
             onClick={handleClick}
           >
             {icon && (
-              <IconContainer
+              <Icon
                 sx={{
                   fontSize: desktop ? 40 : 35,
                   filter: "drop-shadow(0px 3px 8px rgba(0, 0, 0, 0.10));",
@@ -123,14 +122,14 @@ const CircleLessonButton: React.FC<ICircleLessonButton> = ({
               onSetActive(lessonId);
             }}
           >
-            <IconContainer
+            <Icon
               baseClassName="material-icons-outlined"
               name={icons.moveHere}
             />
           </IconButton>
           <Button
             variant="contained"
-            endIcon={<IconContainer name={icons.next} />}
+            endIcon={<Icon name={icons.next} />}
             onClick={() => router.push(`/lessons/${lessonId}`)}
           >
             {t("navigation.open")}

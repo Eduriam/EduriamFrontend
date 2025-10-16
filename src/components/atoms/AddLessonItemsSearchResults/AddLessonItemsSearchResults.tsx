@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -13,7 +14,6 @@ import Typography from "@mui/material/Typography";
 import { LessonItemSummary } from "infrastructure/api/user/courses/lesson-items/LessonItems";
 import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 
-import IconContainer from "../IconContainer/IconContainer";
 import CardList from "../lists/CardList/CardList";
 
 export interface IAddLessonItemsSearchResults {
@@ -48,11 +48,11 @@ const AddLessonItemsSearchResults: React.FC<IAddLessonItemsSearchResults> = ({
                   secondaryAction={
                     items.some((i) => i.id === item.id) ? (
                       <IconButton onClick={() => onItemRemove(item)}>
-                        <IconContainer name={icons.remove} />
+                        <Icon name={icons.remove} />
                       </IconButton>
                     ) : (
                       <IconButton onClick={() => onItemAdd(item)}>
-                        <IconContainer name={icons.add} />
+                        <Icon name={icons.add} />
                       </IconButton>
                     )
                   }

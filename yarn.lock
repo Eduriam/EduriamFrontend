@@ -1702,6 +1702,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eduriam/ui-core@npm:0.2.0":
+  version: 0.2.0
+  resolution: "@eduriam/ui-core@npm:0.2.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.2.0%2F73fa375d566f302049e3f166fafd6889c7c54d5c"
+  peerDependencies:
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
+    "@mui/material": ^5
+    react: ^18
+    react-dom: ^18
+  checksum: 10c0/50a7c736f30cb413a34dae0822e80b99031d813f0012fc5e22029495b9cd552d1344c8a54fb42e6c1302c87b63785334359de9eae84da665bd60d1f7aa2369d0
+  languageName: node
+  linkType: hard
+
 "@emnapi/core@npm:^1.4.3":
   version: 1.4.5
   resolution: "@emnapi/core@npm:1.4.5"
@@ -12777,6 +12790,7 @@ __metadata:
     "@babel/preset-typescript": "npm:^7.23.2"
     "@commitlint/cli": "npm:^17.1.2"
     "@commitlint/config-conventional": "npm:^17.1.0"
+    "@eduriam/ui-core": "npm:0.2.0"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"

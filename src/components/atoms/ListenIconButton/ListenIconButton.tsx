@@ -1,10 +1,9 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useEffect, useRef, useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
-
-import IconContainer from "../IconContainer/IconContainer";
 
 export interface IListenIconButton {
   playOnMount?: boolean;
@@ -68,7 +67,7 @@ const ListenIconButton: React.FC<IListenIconButton> = ({
 
   return (
     <IconButton onClick={handleButtonClick}>
-      <IconContainer
+      <Icon
         color={state === "RUNNING" ? "primary" : undefined}
         name={icons.sound}
       />

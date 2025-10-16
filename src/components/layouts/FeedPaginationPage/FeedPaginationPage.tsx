@@ -1,10 +1,10 @@
+import { DividerWithText } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { ReactNode } from "react";
 
 import Box from "@mui/material/Box";
 
-import DividerWithText from "components/atoms/DividerWithText/DividerWithText";
 import FeedArticleCard from "components/atoms/cards/FeedArticleCard/FeedArticleCard";
 import FeedMessageCard from "components/atoms/cards/FeedMessageCard/FeedMessageCard";
 import FeedVideoCard from "components/atoms/cards/FeedVideoCard/FeedVideoCard";

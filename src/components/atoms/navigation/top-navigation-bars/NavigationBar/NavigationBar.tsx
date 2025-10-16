@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import { AppBarProps } from "@mui/material";
@@ -7,8 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import { SIDE_NAV_BAR_WIDTH } from "../../main-navigation-bars/SideNavigationBar/SideNavigationBar";
 
@@ -51,7 +50,7 @@ const NavigationBar: React.FC<INavigationBar & AppBarProps> = ({
         <Box>
           {leftIconButton && (
             <IconButton onClick={leftIconButton.onClick}>
-              <IconContainer name={leftIconButton.icon} />
+              <Icon name={leftIconButton.icon} />
             </IconButton>
           )}
         </Box>
@@ -64,7 +63,7 @@ const NavigationBar: React.FC<INavigationBar & AppBarProps> = ({
         <Box>
           {rightIconButton && (
             <IconButton onClick={rightIconButton.onClick}>
-              <IconContainer name={rightIconButton.icon} />
+              <Icon name={rightIconButton.icon} />
             </IconButton>
           )}
         </Box>

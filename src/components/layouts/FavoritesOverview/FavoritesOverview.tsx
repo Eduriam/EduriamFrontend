@@ -1,9 +1,10 @@
+import { TabBarPanel } from "@eduriam/ui-core";
+
 import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import LinkCardList from "components/atoms/lists/LinkCardList/LinkCardList";
 
 import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
@@ -29,7 +30,7 @@ const FavoritesOverview: React.FC<IFavoritesOverview> = ({ courseId }) => {
     <Box sx={{ width: "100%" }}>
       <Typography variant="subtitle1">{t("categories")}</Typography>
       <TabBarPanel
-        onChange={(value) => setValue(value)}
+        onChange={(value) => setValue(value as string)}
         tabs={[
           {
             id: "lessons",

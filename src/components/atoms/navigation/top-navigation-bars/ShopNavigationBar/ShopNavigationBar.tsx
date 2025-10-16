@@ -1,3 +1,4 @@
+import { Emoji, Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 import theme from "styles/theme";
@@ -9,9 +10,6 @@ import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
-import Twemoji from "components/atoms/Twemoji/Twemoji";
 
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -45,7 +43,7 @@ const ShopNavigationBar: React.FC<IShopNavigationBar & AppBarProps> = ({
       >
         <Box>
           <IconButton onClick={onDrawerOpen}>
-            <IconContainer name={icons.menu} />
+            <Icon name={icons.menu} />
           </IconButton>
         </Box>
         <Typography
@@ -60,7 +58,7 @@ const ShopNavigationBar: React.FC<IShopNavigationBar & AppBarProps> = ({
           {user?.balance && (
             <>
               <Typography variant="subtitle2">{user?.balance}</Typography>
-              <Twemoji emoji="🪙" />
+              <Emoji emoji="🪙" />
             </>
           )}
         </Box>

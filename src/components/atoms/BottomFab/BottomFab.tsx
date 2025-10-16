@@ -1,9 +1,9 @@
+import { Icon } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import Fab from "@mui/material/Fab";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import IconContainer from "../IconContainer/IconContainer";
 import { BOTTOM_NAV_BAR_HEIGHT } from "../navigation/main-navigation-bars/BottomNavigationBar/BottomNavigationBar";
 
 export interface IBottomFab {
@@ -27,7 +27,7 @@ const BottomFab: React.FC<IBottomFab> = ({ icon, onClick, header }) => {
       onClick={onClick}
     >
       {header}
-      {icon && <IconContainer sx={{ ml: 1 }} name={icon} />}
+      {icon && <Icon sx={{ ml: 1 }} name={icon} />}
     </Fab>
   );
 };

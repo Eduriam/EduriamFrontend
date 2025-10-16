@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
@@ -16,7 +17,6 @@ import {
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import StudySessionProgressBar from "components/atoms/StudySessionProgressBar/StudySessionProgressBar";
 import NavigationBar from "components/atoms/navigation/top-navigation-bars/NavigationBar/NavigationBar";
 
@@ -209,7 +209,7 @@ const StudySession: React.FC<IStudySession> = ({
               />
 
               <IconButton onClick={() => onExit()}>
-                <IconContainer name={icons.close} />
+                <Icon name={icons.close} />
               </IconButton>
             </Toolbar>
           </Container>

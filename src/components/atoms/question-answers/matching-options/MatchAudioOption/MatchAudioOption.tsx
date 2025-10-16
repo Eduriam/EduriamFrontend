@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useEffect, useRef, useState } from "react";
@@ -7,8 +8,6 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import IconButton from "@mui/material/IconButton";
 import LinearProgress from "@mui/material/LinearProgress";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import styles from "./MatchAudioOption.module.css";
 
@@ -106,13 +105,13 @@ const MatchAudioOption: React.FC<IMatchAudioOption> = ({
             disabled={disabled}
           >
             {state === "STOPPED" || state === "PAUSED" ? (
-              <IconContainer
+              <Icon
                 name={icons.start}
                 color={disabled ? undefined : "primary"}
                 fontSize="large"
               />
             ) : (
-              <IconContainer
+              <Icon
                 name={icons.pause}
                 color={disabled ? undefined : "primary"}
                 fontSize="large"

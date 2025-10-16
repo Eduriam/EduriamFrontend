@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
@@ -13,8 +14,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import { Feedback } from "infrastructure/api/user/courses/lessons/feedback/LessonFeedback";
-
-import IconContainer from "../../IconContainer/IconContainer";
 
 export interface IFeedbackCard {
   onFeedbackChange: (value: Feedback) => void;
@@ -43,18 +42,18 @@ const FeedbackCard: React.FC<IFeedbackCard> = ({
             onClick={() => onFeedbackChange({ state: "LIKE", text: "" })}
           >
             {feedback && feedback.state === "LIKE" ? (
-              <IconContainer name={icons.liked} />
+              <Icon name={icons.liked} />
             ) : (
-              <IconContainer name={icons.like} />
+              <Icon name={icons.like} />
             )}
           </IconButton>
           <IconButton
             onClick={() => onFeedbackChange({ state: "DISLIKE", text: "" })}
           >
             {feedback && feedback.state === "DISLIKE" ? (
-              <IconContainer name={icons.disliked} />
+              <Icon name={icons.disliked} />
             ) : (
-              <IconContainer name={icons.dislike} />
+              <Icon name={icons.dislike} />
             )}
           </IconButton>
         </Box>

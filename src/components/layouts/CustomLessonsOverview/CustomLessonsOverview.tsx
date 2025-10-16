@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import React from "react";
@@ -8,7 +9,6 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import UserLessonsList from "components/atoms/lists/UserLessonsList/UserLessonsList";
 
 import LessonsAPI from "infrastructure/api/user/courses/lessons/LessonsAPI";
@@ -41,7 +41,7 @@ const CustomLessonsOverview: React.FC<ICustomLessonsOverview> = ({
           {tCommon("navigation.myLessons")}
         </Typography>
         <IconButton onClick={() => router.push("/lessons-create")}>
-          <IconContainer name={icons.add} />
+          <Icon name={icons.add} />
         </IconButton>
       </Box>
       {lessons && lessons.length !== 0 ? (

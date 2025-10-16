@@ -1,10 +1,10 @@
+import { TabBarPanel } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
 
 import Box from "@mui/material/Box";
 
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import TopicList from "components/atoms/lists/TopicList/TopicList";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -78,7 +78,7 @@ const TopicsOverview: React.FC<ITopicsOverview> = ({ courseId }) => {
       {courseId ? (
         <Box sx={{ width: "100%" }}>
           <TabBarPanel
-            onChange={(value) => setValue(value)}
+            onChange={(value) => setValue(value as string)}
             tabs={[
               {
                 id: "main",

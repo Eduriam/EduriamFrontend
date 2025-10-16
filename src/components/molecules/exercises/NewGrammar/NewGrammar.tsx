@@ -1,11 +1,10 @@
+import { FullWidthButton, Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import LessonCard from "components/atoms/cards/LessonCard/LessonCard";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -75,7 +74,7 @@ const NewGrammar: React.FC<INewGrammar> = ({
         </FullWidthButton>
         <FullWidthButton
           onClick={() => onContinue()}
-          endIcon={<IconContainer name={icons.next} />}
+          endIcon={<Icon name={icons.next} />}
         >
           {t("exercise.continue")}
         </FullWidthButton>

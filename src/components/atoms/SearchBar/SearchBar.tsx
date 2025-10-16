@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import Box from "@mui/material/Box";
@@ -6,7 +7,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 
-import IconContainer from "../IconContainer/IconContainer";
 import KeyPress from "../KeyPress/KeyPress";
 
 export interface ISearchBar {
@@ -33,7 +33,7 @@ const SearchBar: React.FC<ISearchBar> = ({
           endAdornment: (
             <InputAdornment position="end">
               <IconButton onClick={() => onSearchClick(value)}>
-                <IconContainer name={icons.search} />
+                <Icon name={icons.search} />
               </IconButton>
             </InputAdornment>
           ),

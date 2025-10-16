@@ -1,3 +1,4 @@
+import { YouTubeVideoEmbed } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
@@ -15,7 +16,6 @@ import { Lesson } from "infrastructure/api/user/courses/lessons/Lessons";
 
 import FavoriteButton from "../../FavoriteButton/FavoriteButton";
 import VisibilityButton from "../../VisibilityButton/VisibilityButton";
-import YouTubeVideoEmbed from "../../YouTubeVideoEmbed/YouTubeVideoEmbed";
 
 export interface ILessonCard {
   lesson: Lesson;

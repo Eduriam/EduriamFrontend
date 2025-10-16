@@ -1,5 +1,6 @@
 "use client";
 
+import { TabBarPanel } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
@@ -9,7 +10,6 @@ import Box from "@mui/material/Box";
 import LessonItemsSearchResults from "components/atoms/LessonItemsSearchResults/LessonItemsSearchResults";
 import LessonsSearchResults from "components/atoms/LessonsSearchResults/LessonsSearchResults";
 import SearchBar from "components/atoms/SearchBar/SearchBar";
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import UserSearchResults from "components/atoms/UserSearchResults/UserSearchResults";
 
 import useAuth from "infrastructure/services/AuthProvider";
@@ -43,7 +43,7 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
 
       {searchPrompt && (
         <TabBarPanel
-          onChange={(value) => setValue(value)}
+          onChange={(value) => setValue(value as string)}
           tabs={categories}
           panelContent={
             value === categories[0].id ? (

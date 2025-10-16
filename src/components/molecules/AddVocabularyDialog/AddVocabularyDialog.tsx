@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -12,7 +13,6 @@ import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 
 import AddLessonItemsSearchResults from "components/atoms/AddLessonItemsSearchResults/AddLessonItemsSearchResults";
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import NavigationBar from "components/atoms/navigation/top-navigation-bars/NavigationBar/NavigationBar";
 import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 
@@ -70,7 +70,7 @@ const AddVocabularyDialog: React.FC<IAddVocabularyDialog> = ({
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton onClick={() => setSearchPrompt(text)}>
-                      <IconContainer name={icons.search} />
+                      <Icon name={icons.search} />
                     </IconButton>
                   </InputAdornment>
                 ),

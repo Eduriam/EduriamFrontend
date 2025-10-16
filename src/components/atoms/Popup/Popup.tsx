@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import Image from "next/image";
@@ -11,8 +12,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-
-import IconContainer from "../IconContainer/IconContainer";
 
 export interface IPopup {
   header?: string;
@@ -59,7 +58,7 @@ const Popup: React.FC<IPopup> = ({
               color: theme.palette.grey[500],
             }}
           >
-            <IconContainer name={icons.close} />
+            <Icon name={icons.close} />
           </IconButton>
         )}
       </DialogTitle>

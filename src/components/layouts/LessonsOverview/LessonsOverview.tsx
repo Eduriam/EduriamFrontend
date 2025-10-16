@@ -1,3 +1,4 @@
+import { TabBarPanel } from "@eduriam/ui-core";
 import { categories } from "config/config";
 
 import React, { useState } from "react";
@@ -5,7 +6,6 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import LinkCardList from "components/atoms/lists/LinkCardList/LinkCardList";
 import { LanguageLevel } from "components/molecules/forms/SelectLevelForm/config";
 
@@ -36,7 +36,7 @@ const LessonsOverview: React.FC<ILessonsOverview> = ({
         <Box sx={{ width: "100%" }}>
           <Typography variant="subtitle1">{t("categories")}</Typography>
           <TabBarPanel
-            onChange={(value) => setValue(value)}
+            onChange={(value) => setValue(value as string)}
             tabs={categories}
             panelContent={
               lessons && (

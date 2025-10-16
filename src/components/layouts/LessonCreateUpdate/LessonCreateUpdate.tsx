@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import icons from "styles/icons";
@@ -19,7 +20,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 import BottomFab from "components/atoms/BottomFab/BottomFab";
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import Popup from "components/atoms/Popup/Popup";
 import CardList from "components/atoms/lists/CardList/CardList";
 import AddVocabularyDialog from "components/molecules/AddVocabularyDialog/AddVocabularyDialog";
@@ -153,7 +153,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
               {t("userLessons.vocabulary")}
             </Typography>
             <IconButton onClick={() => setSearchDialogOpen(true)}>
-              <IconContainer name={icons.add} />
+              <Icon name={icons.add} />
             </IconButton>
           </Box>
           <AddVocabularyDialog
@@ -183,7 +183,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
                           setItems(items.filter((e) => e.id !== item.id));
                         }}
                       >
-                        <IconContainer name={icons.remove} />
+                        <Icon name={icons.remove} />
                       </IconButton>
                     }
                     sx={{ pr: 2 }}

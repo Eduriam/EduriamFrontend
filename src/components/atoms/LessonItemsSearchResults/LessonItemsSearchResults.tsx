@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -13,7 +14,6 @@ import Typography from "@mui/material/Typography";
 
 import LessonItemsAPI from "infrastructure/api/user/courses/lesson-items/LessonItemsAPI";
 
-import IconContainer from "../IconContainer/IconContainer";
 import CardList from "../lists/CardList/CardList";
 
 export interface ILessonItemsSearchResults {
@@ -46,7 +46,7 @@ const LessonItemsSearchResults: React.FC<ILessonItemsSearchResults> = ({
                     <Avatar src={item.imageUrl} variant="rounded" />
                   </ListItemAvatar>
                   <ListItemText primary={item.nameL2} secondary={item.nameL1} />
-                  <IconContainer name={icons.next} />
+                  <Icon name={icons.next} />
                 </ListItemButton>
               </ListItem>
             );

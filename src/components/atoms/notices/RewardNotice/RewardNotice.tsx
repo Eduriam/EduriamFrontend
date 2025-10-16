@@ -1,3 +1,4 @@
+import { Emoji } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import Image from "next/image";
@@ -5,7 +6,6 @@ import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 
 import FullscreenDialog from "components/atoms/FullscreenDialog/FullscreenDialog";
-import Twemoji from "components/atoms/Twemoji/Twemoji";
 
 import { RewardNotice as RewardNoticeType } from "infrastructure/api/user/notices/Notices";
 import useNotices from "infrastructure/services/NoticeProvider";
@@ -44,7 +44,7 @@ const RewardNotice: React.FC<IRewardNotice> = ({ notice }) => {
           <Typography variant="h6" sx={{ textAlign: "center" }}>
             {`${notice.reward}`}
           </Typography>
-          <Twemoji emoji="🪙" />
+          <Emoji emoji="🪙" />
         </Box>
       </Box>
     </FullscreenDialog>

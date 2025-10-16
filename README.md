@@ -8,7 +8,12 @@ Projekt je přizpůsoben pro vývoj ve Visual Studio Code.
 
 ## Instalace
 
-Před spuštěním projektu je třeba spustit příkaz `yarn install`.
+Před spuštěním projektu je třeba spustit příkaz `yarn install`:
+
+```bash
+export NPM_AUTH_TOKEN=... # Nastavení GitHub PAT tokenu s permission read:packages z EduriamUI repozitáře pro stažení EduriamUI závislostí
+yarn install
+```
 
 ## Lint
 

@@ -1,9 +1,9 @@
+import { YouTubeVideoEmbed } from "@eduriam/ui-core";
+
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
-import YouTubeVideoEmbed from "components/atoms/YouTubeVideoEmbed/YouTubeVideoEmbed";
 
 import { FeedVideo } from "infrastructure/api/user/feed/Feed";
 

@@ -1,3 +1,4 @@
+import { TabBarPanel } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
@@ -5,7 +6,6 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
 import UsersList from "components/atoms/lists/UsersList/UsersList";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -93,7 +93,7 @@ const FollowersOverview: React.FC<IFollowersOverview> = ({
     <Box sx={{ width: "100%" }}>
       <Typography variant="subtitle1">{t("categories")}</Typography>
       <TabBarPanel
-        onChange={(value) => setValue(value)}
+        onChange={(value) => setValue(value as string)}
         tabs={[
           {
             id: "followers",

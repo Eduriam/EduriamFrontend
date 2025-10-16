@@ -1,3 +1,4 @@
+import { Emoji } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import Card from "@mui/material/Card";
@@ -5,8 +6,6 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
-import Twemoji from "components/atoms/Twemoji/Twemoji";
 
 export interface ISimpleCard {
   header: string;
@@ -59,9 +58,7 @@ const SimpleCard: React.FC<ISimpleCard> = ({
           >
             {header}
           </Typography>
-          {headerEmoji && (
-            <Twemoji emoji={headerEmoji} width={20} height={20} />
-          )}
+          {headerEmoji && <Emoji emoji={headerEmoji} width={20} height={20} />}
         </CardContent>
       </CardActionArea>
     </Card>

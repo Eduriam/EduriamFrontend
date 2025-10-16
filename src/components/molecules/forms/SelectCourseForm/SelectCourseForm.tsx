@@ -1,3 +1,4 @@
+import { FullWidthButton, Icon } from "@eduriam/ui-core";
 import { Language } from "domain/models/types/languages";
 import { useTranslation } from "i18n/client";
 import { languages } from "i18n/settings";
@@ -12,8 +13,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
-import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
 
@@ -105,7 +104,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
         disabled={selectedCourseId === undefined}
       >
         {tCommon("accountSetup.selectCourse")}
-        <IconContainer name={icons.next} />
+        <Icon name={icons.next} />
       </FullWidthButton>
     </Box>
   );

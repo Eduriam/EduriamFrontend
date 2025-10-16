@@ -1,10 +1,9 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 import theme from "styles/theme";
 
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-import IconContainer from "../IconContainer/IconContainer";
 
 export interface ILevelProgressBar {
   progress: number; // Number between 0 and 100
@@ -26,7 +25,7 @@ const LevelProgressBar: React.FC<ILevelProgressBar> = ({ progress }) => {
     return iconSizes.map((size, i) => (
       <>
         {fillStar(i) ? (
-          <IconContainer
+          <Icon
             key={i}
             sx={{
               fontSize: size,
@@ -36,7 +35,7 @@ const LevelProgressBar: React.FC<ILevelProgressBar> = ({ progress }) => {
             name={icons.starFilled}
           />
         ) : (
-          <IconContainer
+          <Icon
             key={i}
             sx={{
               fontSize: size,

@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
@@ -8,8 +9,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import { UserSummary } from "infrastructure/api/users/Users";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -38,11 +37,11 @@ const UsersList: React.FC<IUsersList> = ({ users, onFollow, onUnfollow }) => {
                 userItem.id !== user?.id && onFollow && onUnfollow ? (
                   userItem.isFollowed ? (
                     <IconButton onClick={() => onUnfollow(userItem.id)}>
-                      <IconContainer name={icons.unfollow} />
+                      <Icon name={icons.unfollow} />
                     </IconButton>
                   ) : (
                     <IconButton onClick={() => onFollow(userItem.id)}>
-                      <IconContainer name={icons.follow} />
+                      <Icon name={icons.follow} />
                     </IconButton>
                   )
                 ) : undefined

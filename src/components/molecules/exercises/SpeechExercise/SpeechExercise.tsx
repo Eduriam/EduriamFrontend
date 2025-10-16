@@ -1,3 +1,5 @@
+import { Icon } from "@eduriam/ui-core";
+import { FullWidthButton } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -6,14 +8,11 @@ import useKeypress from "react-use-keypress";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import IconContainer from "components/atoms/IconContainer/IconContainer";
-
 import {
   IExerciseComponent,
   SpeechExercise as SpeechExerciseType,
 } from "../../../../infrastructure/api/user/courses/study-session/Exercises";
 import { QuestionAttempt } from "../../../../infrastructure/api/user/courses/study-session/QuestionAttempt";
-import FullWidthButton from "../../../atoms/FullWidthButton/FullWidthButton";
 import Timer from "../../../atoms/Timer/Timer";
 import CheckList from "../../../atoms/lists/CheckList/CheckList";
 
@@ -78,7 +77,7 @@ const SpeechExercise: React.FC<ISpeechExercise> = ({
       <Box sx={{ pt: 8 }} display="flex" justifyContent="center">
         <FullWidthButton
           onClick={handleContinue}
-          endIcon={<IconContainer name={icons.next} />}
+          endIcon={<Icon name={icons.next} />}
         >
           {t("exercise.continue")}
         </FullWidthButton>

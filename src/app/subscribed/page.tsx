@@ -1,5 +1,6 @@
 "use client";
 
+import { FullWidthButton } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import Image from "next/image";
@@ -7,8 +8,6 @@ import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
-import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
 
 export interface ISubscribedPage {}
 

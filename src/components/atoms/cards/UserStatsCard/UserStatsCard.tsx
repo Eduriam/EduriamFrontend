@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { ResponsiveLine } from "@nivo/line";
 import { BasicTooltip } from "@nivo/tooltip";
 import { useTranslation } from "i18n/client";
@@ -9,8 +10,6 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import { LearningDataPoint } from "infrastructure/api/users/Users";
 
@@ -87,7 +86,7 @@ const UserStatsCard: React.FC<IUserStatsCard> = ({
           }}
         >
           <Box display="flex" alignItems="center">
-            <IconContainer
+            <Icon
               sx={{ position: "relative", bottom: 2, mr: 1 }}
               name={icons.streak}
             />

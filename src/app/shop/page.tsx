@@ -1,5 +1,6 @@
 "use client";
 
+import { Emoji, TabBarPanel } from "@eduriam/ui-core";
 import { shopCategories } from "config/config";
 import { useTranslation } from "i18n/client";
 
@@ -9,8 +10,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import Popup, { IPopup } from "components/atoms/Popup/Popup";
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
-import Twemoji from "components/atoms/Twemoji/Twemoji";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
 
@@ -88,7 +87,7 @@ const ShopPage: React.FC<IShopPage> = () => {
       <Typography variant="subtitle1">{t("categories")}</Typography>
       {popup && <Popup {...popup} open={true} onClose={() => setPopup(null)} />}
       <TabBarPanel
-        onChange={(value) => setValue(value)}
+        onChange={(value) => setValue(value as string)}
         tabs={shopCategories}
         panelContent={
           shopItems && (
@@ -118,7 +117,7 @@ const ShopPage: React.FC<IShopPage> = () => {
                               alignItems="center"
                             >
                               {item.price}
-                              <Twemoji emoji={"🪙"} width={20} height={20} />
+                              <Emoji emoji={"🪙"} width={20} height={20} />
                             </Box>
                           ),
                           imageUrl: item.imageUrl,

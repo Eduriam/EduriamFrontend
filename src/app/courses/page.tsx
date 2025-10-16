@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -9,7 +10,6 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
 import CardGrid from "components/layouts/CardGrid/CardGrid";
 
@@ -38,7 +38,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
             {tCommon("navigation.myCourses")}
           </Typography>
           <IconButton onClick={() => router.push("/select-course")}>
-            <IconContainer name={icons.add} />
+            <Icon name={icons.add} />
           </IconButton>
         </Box>
 

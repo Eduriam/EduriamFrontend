@@ -1,3 +1,5 @@
+import { Icon } from "@eduriam/ui-core";
+
 import { useState } from "react";
 
 import Link from "next/link";
@@ -15,8 +17,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -118,7 +118,7 @@ const Drawer: React.FC<IDrawer> = ({ open, onClose }) => {
                       }}
                     >
                       <ListItemIcon>
-                        <IconContainer name={item.icon} />
+                        <Icon name={item.icon} />
                       </ListItemIcon>
                       <ListItemText primary={t(item.label)} />
                     </ListItemButton>
@@ -152,7 +152,7 @@ const Drawer: React.FC<IDrawer> = ({ open, onClose }) => {
                     }}
                   >
                     <ListItemIcon>
-                      <IconContainer name={item.icon} />
+                      <Icon name={item.icon} />
                     </ListItemIcon>
                     <ListItemText primary={t(item.label)} />
                   </ListItemButton>
@@ -175,7 +175,7 @@ const Drawer: React.FC<IDrawer> = ({ open, onClose }) => {
                 }}
               >
                 <ListItemIcon>
-                  <IconContainer name={item.icon} />
+                  <Icon name={item.icon} />
                 </ListItemIcon>
                 <ListItemText primary={t(item.label)} />
               </ListItemButton>
@@ -199,7 +199,7 @@ const Drawer: React.FC<IDrawer> = ({ open, onClose }) => {
                 }}
               >
                 <ListItemIcon>
-                  <IconContainer name={item.icon} />
+                  <Icon name={item.icon} />
                 </ListItemIcon>
                 <ListItemText primary={t(item.label)} />
               </ListItemButton>

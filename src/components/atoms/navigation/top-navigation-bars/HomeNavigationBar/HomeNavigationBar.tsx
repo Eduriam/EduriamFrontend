@@ -1,3 +1,4 @@
+import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 import theme from "styles/theme";
@@ -10,7 +11,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import IconContainer from "components/atoms/IconContainer/IconContainer";
 import Streak from "components/atoms/Streak/Streak";
 
 import useAuth from "infrastructure/services/AuthProvider";
@@ -60,7 +60,7 @@ const HomeNavigationBar: React.FC<IHomeNavigationBar & AppBarProps> = ({
       >
         <Box>
           <IconButton onClick={onDrawerOpen}>
-            <IconContainer name={icons.menu} />
+            <Icon name={icons.menu} />
           </IconButton>
         </Box>
         {user && (
