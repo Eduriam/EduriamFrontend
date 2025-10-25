@@ -1,4 +1,5 @@
 import { AnswerState, StudySession } from "@eduriam/ui-x";
+import { useTranslation } from "i18n/client";
 
 import PlacementTestAPI from "infrastructure/api/courses/placement-test/PlacementTestAPI";
 
@@ -15,6 +16,7 @@ const PlacementTest: React.FC<IPlacementTest> = ({
   onSubmit,
   onCancel,
 }) => {
+  const { t } = useTranslation("common");
   const { studySession, isLoading } =
     PlacementTestAPI.usePlacementTest(courseId);
 
@@ -59,6 +61,10 @@ const PlacementTest: React.FC<IPlacementTest> = ({
           studySession={studySession}
           onFinish={handleSessionFinish}
           onExit={() => onCancel()}
+          localizedTexts={{
+            continueButton: t("exercise.continue"),
+            checkButton: t("exercise.check"),
+          }}
         />
       )}
     </>

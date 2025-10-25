@@ -19,17 +19,18 @@ const DailyStudy: React.FC<IDailyStudy> = ({ courseId }) => {
   const router = useRouter();
   const { studySession, isLoading } = StudySessionAPI.useStudySession(courseId);
   const { enqueueSnackbar } = useSnackbar();
-  const { t } = useTranslation("error-codes");
+  const { t } = useTranslation("common");
+  const { t: tError } = useTranslation("error-codes");
 
   // Check empty session errors
   useEffect(() => {
     if (!isLoading && !studySession) {
-      enqueueSnackbar(t("studySessionEmpty"), {
+      enqueueSnackbar(tError("studySessionEmpty"), {
         variant: "success",
       });
       router.push("/");
     }
-  }, [studySession, isLoading, enqueueSnackbar, t, router]);
+  }, [studySession, isLoading, enqueueSnackbar, tError, router]);
 
   async function handleSessionFinish(
     studyStats: { correctAnswerCount: number; incorrectAnswerCount: number },
@@ -93,6 +94,10 @@ const DailyStudy: React.FC<IDailyStudy> = ({ courseId }) => {
           studySession={studySession}
           onFinish={handleSessionFinish}
           onExit={() => router.push("/")}
+          localizedTexts={{
+            continueButton: t("exercise.continue"),
+            checkButton: t("exercise.check"),
+          }}
         />
       )}
     </>
