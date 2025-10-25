@@ -1,8 +1,7 @@
-import PlacementTestAPI from "infrastructure/api/courses/placement-test/PlacementTestAPI";
-import { QuestionAttempt } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
-import { StudyStats } from "infrastructure/api/user/notices/Notices";
+import { AnswerState, StudySession } from "@eduriam/ui-x";
 
-import StudySession from "../StudySession/StudySession";
+import PlacementTestAPI from "infrastructure/api/courses/placement-test/PlacementTestAPI";
+
 import { LanguageLevel } from "../forms/SelectLevelForm/config";
 
 export interface IPlacementTest {
@@ -16,12 +15,36 @@ const PlacementTest: React.FC<IPlacementTest> = ({
   onSubmit,
   onCancel,
 }) => {
-  const { exercises, isLoading } = PlacementTestAPI.usePlacementTest(courseId);
+  const { studySession, isLoading } =
+    PlacementTestAPI.usePlacementTest(courseId);
 
   async function handleSessionFinish(
-    studyStats: StudyStats,
-    attempts: Array<QuestionAttempt>,
+    studyStats: { correctAnswerCount: number; incorrectAnswerCount: number },
+    atomProgressRatings: Array<{ atomId: string; rating: number }>,
   ) {
+    // Transform atomProgressRatings to QuestionAttempt format
+    const attempts = atomProgressRatings.map((rating) => {
+      // Find the study block for this atom
+      const studyBlock = studySession?.studyBlocks.find(
+        (block) => block.atomId === rating.atomId,
+      );
+
+      if (!studyBlock) {
+        throw new Error(`Study block with id ${rating.atomId} not found`);
+      }
+
+      // Convert rating to states array (simplified logic)
+      const states: AnswerState[] =
+        rating.rating >= 0.8 ? ["RIGHT"] : ["WRONG"];
+
+      return {
+        exerciseId: rating.atomId,
+        lessonItemId: studyBlock.atomId, // Assuming atomId maps to lessonItemId
+        states,
+        answers: [], // Empty answers array
+      };
+    });
+
     const { userLevel } = await PlacementTestAPI.updatePlacementTest(
       courseId,
       attempts,
@@ -31,12 +54,11 @@ const PlacementTest: React.FC<IPlacementTest> = ({
 
   return (
     <>
-      {!isLoading && exercises && (
+      {!isLoading && studySession && (
         <StudySession
-          exercises={exercises}
+          studySession={studySession}
           onFinish={handleSessionFinish}
           onExit={() => onCancel()}
-          displayExplanations={false}
         />
       )}
     </>

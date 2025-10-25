@@ -1,3 +1,4 @@
+import { StudySession } from "@eduriam/ui-x";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 
@@ -5,11 +6,8 @@ import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
-import StudySession from "components/molecules/StudySession/StudySession";
-
-import { QuestionAttempt } from "infrastructure/api/user/courses/study-session/QuestionAttempt";
 import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
-import { Notice, StudyStats } from "infrastructure/api/user/notices/Notices";
+import { Notice } from "infrastructure/api/user/notices/Notices";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface IDailyStudy {
@@ -19,55 +17,55 @@ export interface IDailyStudy {
 const DailyStudy: React.FC<IDailyStudy> = ({ courseId }) => {
   const { addNotices } = useNotices();
   const router = useRouter();
-  const { exercises, isLoading } = StudySessionAPI.useStudySession(courseId);
+  const { studySession, isLoading } = StudySessionAPI.useStudySession(courseId);
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation("error-codes");
 
   // Check empty session errors
   useEffect(() => {
-    if (!isLoading && !Array.isArray(exercises)) {
+    if (!isLoading && !studySession) {
       enqueueSnackbar(t("studySessionEmpty"), {
         variant: "success",
       });
       router.push("/");
     }
-  }, [exercises, isLoading, enqueueSnackbar, t, router]);
+  }, [studySession, isLoading, enqueueSnackbar, t, router]);
 
   async function handleSessionFinish(
-    studyStats: StudyStats,
-    attempts: Array<QuestionAttempt>,
+    studyStats: { correctAnswerCount: number; incorrectAnswerCount: number },
+    atomProgressRatings: Array<{ atomId: string; rating: number }>,
   ) {
+    // Transform studyStats to old format
+    const oldStudyStats = {
+      rightAnswers: studyStats.correctAnswerCount,
+      wrongAnswers: studyStats.incorrectAnswerCount,
+    };
+
+    // Transform atomProgressRatings to UserAnswerDTO format
+    const attempts = atomProgressRatings.map((rating) => {
+      // Find the study block for this atom
+      const studyBlock = studySession?.studyBlocks.find(
+        (block) => block.atomId === rating.atomId,
+      );
+
+      if (!studyBlock) {
+        throw new Error(`Study block with id ${rating.atomId} not found`);
+      }
+
+      // Convert rating to answer rating (0-100)
+      const answerRating = Math.round(rating.rating * 100);
+
+      return {
+        answerRating,
+        exerciseId: rating.atomId,
+        lessonItemId: studyBlock.atomId, // Assuming atomId maps to lessonItemId
+      };
+    });
+
     const { reward } = await StudySessionAPI.updateStudySession(
       courseId,
-      attempts.map((attempt) => {
-        const totalAnswers = attempt.states.length;
-        const rightAnswers = attempt.states.filter(
-          (answer) => answer === "RIGHT",
-        ).length;
-
-        const answerRating =
-          rightAnswers === totalAnswers
-            ? 100
-            : rightAnswers === 0
-              ? 0
-              : (rightAnswers / totalAnswers) * 100;
-
-        return {
-          answerRating,
-          exerciseId: attempt.exerciseId,
-          lessonItemId: attempt.lessonItemId,
-        };
-      }),
+      attempts,
     );
-
-    /* const notices: Array<Notice> =
-      user?.role === "PREMIUM_USER" ? []
-        : [
-            {
-              id: "study_advertisement_notice",
-              type: "ADVERTISEMENT",
-            },
-          ];*/
 
     const notices: Array<Notice> = [];
 
@@ -76,7 +74,7 @@ const DailyStudy: React.FC<IDailyStudy> = ({ courseId }) => {
         {
           id: "study_stats_notice",
           type: "STUDY_STATS",
-          stats: studyStats,
+          stats: oldStudyStats,
         },
         {
           id: "study_reward_notice",
@@ -90,9 +88,9 @@ const DailyStudy: React.FC<IDailyStudy> = ({ courseId }) => {
 
   return (
     <>
-      {!isLoading && exercises && (
+      {!isLoading && studySession && (
         <StudySession
-          exercises={exercises}
+          studySession={studySession}
           onFinish={handleSessionFinish}
           onExit={() => router.push("/")}
         />

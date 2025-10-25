@@ -1,4 +1,4 @@
-import { AnswerState } from "./Exercises";
+import { AnswerState } from "@eduriam/ui-x";
 
 export type QuestionAttempt = UserAnswer;
 
