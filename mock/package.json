@@ -1,0 +1,12 @@
+{
+  "name": "Linguino-API-Mock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Morcinus/Linguino-API-Mock.git",
+  "author": "Morcinus <11.honzik@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@mockoon/serverless": "^9.4.0",
+    "openapi-types": "^12.1.3"
+  }
+}

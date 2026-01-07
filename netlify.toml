@@ -1,0 +1,13 @@
+# Netlify configuration for mock API deployment
+
+[build]
+  base = "mock"
+  command = "npm install"
+  functions = "netlify/functions"
+
+# API redirects - routes /api/* requests to the mock function
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/mock/api/:splat"
