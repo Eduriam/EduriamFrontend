@@ -2,6 +2,8 @@ services:
   eduriam-frontend-dev:
     build:
       context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
     ports:
       - "3000:3000"
     volumes:
@@ -11,24 +13,40 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=development
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
     stdin_open: true
     tty: true
     command: yarn dev
 
   eduriam-frontend-build:
-    build: .
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
     environment:
       - NODE_ENV=production
+    env_file:
+      - .env
     command: yarn build
 
   eduriam-frontend-lint:
-    build: .
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
     environment:
       - NODE_ENV=production
+    env_file:
+      - .env
     command: yarn lint
 
   eduriam-frontend-prettier:
-    build: .
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
     volumes:
       - .:/app
       # Use it's own node_modules and .next directory
@@ -36,10 +54,16 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=production
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
     command: yarn prettier
 
   eduriam-frontend-storybook:
-    build: .
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
     volumes:
       - .:/app
       # Use it's own node_modules and .next directory
@@ -47,6 +71,9 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=development
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
     ports:
       - "6006:6006"
     command: yarn storybook

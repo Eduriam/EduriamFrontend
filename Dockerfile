@@ -7,6 +7,10 @@ RUN corepack enable && corepack prepare yarn@4.9.3 --activate
 # Disable NextJS telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Accept NPM_AUTH_TOKEN as build argument
+ARG NPM_AUTH_TOKEN
+ENV NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+
 # Set working directory
 WORKDIR /app
 
