@@ -3,9 +3,9 @@ services:
     image: mockoon/cli:latest
     entrypoint: ["mockoon-cli"]
     ports:
-      - "${MOCKOON_PORT:-3001}:3001"
+      - "3001:3001"
     volumes:
-      - "${MOCKOON_DATA_FILE}:/data/datafile.json:ro"
+      - "./mock/netlify/functions/datafile.json:/data/datafile.json:ro"
     command:
       [
         "start",
