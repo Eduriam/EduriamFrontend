@@ -2,7 +2,7 @@
 
 [build]
   base = "mock"
-  command = "npm install"
+  command = "yarn install"
   functions = "netlify/functions"
 
 # API redirects - routes /api/* requests to the mock function
@@ -10,4 +10,4 @@
   force = true
   from = "/api/*"
   status = 200
-  to = "/.netlify/functions/mock"
+  to = "/.netlify/functions/mock/api/:splat"

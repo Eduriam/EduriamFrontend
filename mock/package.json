@@ -6,7 +6,7 @@
   "author": "Morcinus <11.honzik@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@mockoon/serverless": "^9.4.0",
+    "@mockoon/serverless": "^8.0.0",
     "openapi-types": "^12.1.3"
   }
 }
