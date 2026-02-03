@@ -4,6 +4,7 @@ const config = {
     "/account-setup",
     "/change-email",
     "/welcome",
+    "/change-password",
   ],
   pagesWithoutContentContainer: ["/study"],
   termsAndConditionsUrl: "https://www.example.com",

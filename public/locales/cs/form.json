@@ -45,7 +45,10 @@
     "reenterPassword": "Heslo znovu",
     "changePassword": "Změnit heslo",
     "passwordChanged": "Heslo změněno",
-    "login": "Přihlásit se"
+    "passwordChangedDescription": "Nyní se můžete přihlásit novým heslem.",
+    "login": "Přihlásit se",
+    "invalidLink": "Neplatný odkaz",
+    "invalidLinkDescription": "Odkaz pro změnu hesla je neplatný nebo vypršel."
   },
 
   "changeEmail": {
