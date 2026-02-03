@@ -28,3 +28,38 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media (max-width: 600px) {
+  ::view-transition-old(root) {
+    animation: slide-out-left 300ms ease-out both;
+  }
+
+  ::view-transition-new(root) {
+    animation: slide-in-right 300ms ease-out both;
+  }
+}
+
+@media (min-width: 601px) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translate3d(0%, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0%, 0, 0);
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Header, LargeButton } from "@eduriam/ui-core";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect } from "react";
 
@@ -18,6 +19,7 @@ export interface IWelcomePage {}
 const WelcomePage: React.FC<IWelcomePage> = () => {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   useEffect(() => {
     if (!loading && user) {
@@ -103,7 +105,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               data-test="signup-button"
               variant="contained"
               fullWidth
-              onClick={() => router.push("/signup")}
+              onClick={navigateWithTransition("/signup")}
             >
               Continue
             </LargeButton>
@@ -112,7 +114,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               variant="outlined"
               color="primary"
               fullWidth
-              onClick={() => router.push("/login")}
+              onClick={navigateWithTransition("/login")}
             >
               Sign In
             </LargeButton>

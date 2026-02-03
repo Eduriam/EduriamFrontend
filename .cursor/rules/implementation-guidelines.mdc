@@ -48,3 +48,10 @@ If you want to include a navigation bar for your page, put it into the "page" fi
 - ProgressNavbar - simple navigation bar with a progress indicator and one icon button (from @eduriam/ui-core)
 
 Or you can create your own page specific navigation bar. To do that, just use the BasicNavigationBar (from @eduriam/ui-core) and customize it via props. If you need a fully custom navigation bar, you can create it as a separate component in the given page folder.
+
+### Page Transitions
+
+Use `useTransitionNavigationHandler()` for transition-aware navigation:
+
+- `navigateWithTransition("/path")` for forward slide
+- `navigateWithTransition("/path", { direction: "back" })` for back slide

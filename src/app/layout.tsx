@@ -3,6 +3,8 @@
 import axios from "axios";
 import { SnackbarProvider } from "notistack";
 
+import { ViewTransitions } from "next-view-transitions";
+
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 
 import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
@@ -40,7 +42,7 @@ export default function RootLayout({
                   <Navigation />
                   <GoogleAnalytics />
                   <GoogleAdsense />
-                  {children}
+                  <ViewTransitions>{children}</ViewTransitions>
                 </NoticeProvider>
               </AuthProvider>
             </ErrorHandler>
