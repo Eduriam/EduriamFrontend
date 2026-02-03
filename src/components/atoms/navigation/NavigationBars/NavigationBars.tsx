@@ -159,13 +159,21 @@ const Navigation: React.FC<INavigation> = () => {
     }
   }
 
-  const shouldShowToolbar = !!(
-    pathname && !config.pagesWithoutToolbar.includes(pathname)
-  );
+  function isToolbarPage(path: string) {
+    return config.pagesWithToolbar.some((page) => {
+      if (page instanceof RegExp) {
+        return page.test(path);
+      }
+
+      return page === path;
+    });
+  }
+
+  const shouldShowToolbar = !!(pathname && isToolbarPage(pathname));
 
   return (
     <>
-      {pathname && !config.pagesWithoutToolbar.includes(pathname) && (
+      {pathname && isToolbarPage(pathname) && (
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
 
