@@ -7,7 +7,8 @@ import {
 import { Browser, BrowserContext, Page, chromium } from "playwright";
 
 // Set default timeout for all steps
-setDefaultTimeout(10 * 1000);
+// Next.js dev server compilation + navigation can exceed 10s on cold start.
+setDefaultTimeout(30 * 1000);
 
 export interface CustomWorld extends World {
   browser?: Browser;

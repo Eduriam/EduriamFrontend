@@ -25,7 +25,7 @@ async function runTests() {
     const scriptDir = __dirname;
     const rootDir = path.resolve(scriptDir, "../..");
 
-    const defaultFeatureGlob = "../features/**/*.feature";
+    const defaultFeatureGlob = "features/**/*.feature";
     const hasCliFeaturePath = cucumberArgsFromCli.some((a) =>
       a.endsWith(".feature"),
     );

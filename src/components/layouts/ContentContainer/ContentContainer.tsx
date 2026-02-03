@@ -34,6 +34,9 @@ const ContentContainer: React.FC<IContentContainer> = ({
     pathname &&
     !config.pagesWithoutContentContainer.includes(pathname) ? (
     <Box
+      // E2E: Use a reliably visible container as the "home-page" marker.
+      // The home page content can render conditionally, which made the page-level marker flaky.
+      data-test={pathname === "/" ? "home-page" : undefined}
       sx={{
         pt: disablePadding ? undefined : 3,
         minHeight: "100vh",

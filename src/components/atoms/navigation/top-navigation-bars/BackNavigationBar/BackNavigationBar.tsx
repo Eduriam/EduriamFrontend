@@ -26,7 +26,7 @@ const BackNavigationBar: React.FC<IBackNavigationBar & AppBarProps> = ({
           router.back();
         },
       }}
-      color="neutral"
+      color="default"
       {...rest}
     />
   );

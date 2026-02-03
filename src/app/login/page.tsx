@@ -15,7 +15,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Container maxWidth="xs" sx={{ pt: 3 }}>
+    <Container data-test="login-page" maxWidth="xs" sx={{ pt: 3 }}>
       <Box>
         {desktop ? (
           <Card sx={{ textAlign: "center" }}>

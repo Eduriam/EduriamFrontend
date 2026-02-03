@@ -7,7 +7,10 @@ const FRONTEND_PORT = process.env.TEST_FRONTEND_PORT || "3000";
 const BASE_URL = `http://localhost:${FRONTEND_PORT}`;
 
 const PAGE_URLS: Record<string, string> = {
+  "home-page": `${BASE_URL}/`,
   "login-page": `${BASE_URL}/login`,
+  "signup-page": `${BASE_URL}/signup`,
+  "welcome-page": `${BASE_URL}/welcome`,
 };
 
 Given(

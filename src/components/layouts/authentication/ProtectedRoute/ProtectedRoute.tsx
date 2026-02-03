@@ -31,7 +31,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({ children }) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login");
+      router.push("/welcome");
     }
   }, [loading, user, router]);
 

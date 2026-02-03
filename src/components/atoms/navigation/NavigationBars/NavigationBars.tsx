@@ -61,6 +61,8 @@ const Navigation: React.FC<INavigation> = () => {
     }
 
     switch (pathname) {
+      case "/welcome":
+        return <></>;
       case "/login":
         return <></>;
       case "/signup":
@@ -159,6 +161,10 @@ const Navigation: React.FC<INavigation> = () => {
     }
   }
 
+  const shouldShowToolbar = !!(
+    pathname && !config.pagesWithoutToolbar.includes(pathname)
+  );
+
   return (
     <>
       {pathname && !config.pagesWithoutToolbar.includes(pathname) && (
@@ -170,7 +176,7 @@ const Navigation: React.FC<INavigation> = () => {
         </Box>
       )}
 
-      {pathname !== "/study" ? <Toolbar /> : <></>}
+      {shouldShowToolbar ? <Toolbar /> : <></>}
     </>
   );
 };

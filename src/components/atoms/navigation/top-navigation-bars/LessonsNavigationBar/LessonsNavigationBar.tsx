@@ -23,7 +23,7 @@ const LessonsNavigationBar: React.FC<ILessonsNavigationBar> = ({
         icon: icons.menu,
         onClick: onDrawerOpen,
       }}
-      color="neutral"
+      color="default"
     />
   );
 };

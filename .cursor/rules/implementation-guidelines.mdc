@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Implementation Guidelines
+
+This document describes the implementation guidelines that must be followed in this project.
+
+## Project structure
+
+- `features/` directory contains feature files organized in a feature based way
+- `mock/netlify/functions/datafile.json` contains a Mockoon API mock definition
+- `src/app/` directory contains all pages of the app organized by Next.JS documentation
+- `src/app/<page-name>/components/` directory contains all React components that are used only on that page
+- `src/components/` directory contains shared components that are used across multiple features
+
+The project also contains the following important packages.
+
+- `@eduriam/ui-core` - a component library used by this project
+- `@eduriam/ui-x` - a library of more complex components for this project
+
+## Conventions and best practices
+
+### Component usage and implementation
+
+When using or creating a new component:
+
+1. Always use @eduriam/ui-core and @eduriam/ui-x components if available
+2. If the component is not available and is only used by the given page (feature), implement it in the components directory of that page
+3. If the component is not available and is used by multiple pages (feature), implement it in the `src/components/` directory
+
+#### Component structure
+
+Each component implemented in this project should be in a separate folder named in PascalCase.
+
+The component folder should have the following structure:
+
+- `<Name>.tsx`: component implementation
+- `<Name>.stories.tsx`: Storybook stories with interaction tests

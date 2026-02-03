@@ -18,7 +18,7 @@ const DefaultNavigationBar: React.FC<IDefaultNavigationBar> = ({
         icon: icons.menu,
         onClick: onDrawerOpen,
       }}
-      color="neutral"
+      color="default"
       header={header}
     />
   );
