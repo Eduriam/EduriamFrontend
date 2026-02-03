@@ -69,8 +69,6 @@ const Navigation: React.FC<INavigation> = () => {
         return <></>;
       case "/change-password":
         return <></>;
-      case "/forgot-password":
-        return <BackNavigationBar color="transparent" />;
       case "/change-email":
         return <></>;
       case "/change-email-request":

@@ -37,3 +37,14 @@ The component folder should have the following structure:
 
 - `<Name>.tsx`: component implementation
 - `<Name>.stories.tsx`: Storybook stories with interaction tests
+
+## Code
+
+### Top Navigation Bars
+
+If you want to include a navigation bar for your page, put it into the "page" file. You can use the following reusable navigation bars:
+
+- BackNavigationBar - simple navigation bar with a back button
+- ProgressNavbar - simple navigation bar with a progress indicator and one icon button (from @eduriam/ui-core)
+
+Or you can create your own page specific navigation bar. To do that, just use the BasicNavigationBar (from @eduriam/ui-core) and customize it via props. If you need a fully custom navigation bar, you can create it as a separate component in the given page folder.

@@ -5,6 +5,7 @@ const config = {
     "/change-email",
     "/welcome",
     "/change-password",
+    "/forgot-password",
   ],
   pagesWithoutContentContainer: ["/study"],
   termsAndConditionsUrl: "https://www.example.com",
