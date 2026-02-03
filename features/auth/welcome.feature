@@ -11,14 +11,14 @@ Feature: Welcome page
   Scenario: User can choose to log in from the welcome page
     Given I am on the "welcome-page" page
     When I click on the "login-button" button
-    Then I should be redirected to the "login-page" page
+    Then I should be on the "login-page" page
 
   Scenario: User can choose to register from the welcome page
     Given I am on the "welcome-page" page
     When I click on the "signup-button" button
-    Then I should be redirected to the "signup-page" page
+    Then I should be on the "signup-page" page
 
   Scenario: Signed-in user is redirected from the welcome page to the home page
     Given I am logged in
     And I am on the "welcome-page" page
-    Then I should be redirected to the "home-page" page
+    Then I should be on the "home-page" page
