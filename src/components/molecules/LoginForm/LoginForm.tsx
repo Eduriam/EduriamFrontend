@@ -52,7 +52,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
       justifyContent="space-between"
       sx={{ minHeight: "100%", flexGrow: 1 }}
     >
-      <Stack alignItems="center" sx={{ gap: 22 }}>
+      <Stack alignItems="center" sx={{ gap: 16 }}>
         <Header
           level="title"
           text={t("auth.login-header")}

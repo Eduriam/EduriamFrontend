@@ -4,7 +4,7 @@ import { BasicNavbar, ContentContainer } from "@eduriam/ui-core";
 import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 import LoginForm from "components/molecules/LoginForm/LoginForm";
 
@@ -14,7 +14,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <Box data-test="login-page">
+    <Stack data-test="login-page" sx={{ minHeight: "100vh" }}>
       <BasicNavbar
         leftButton={{
           icon: icons.back,
@@ -24,12 +24,12 @@ const LoginPage: React.FC<ILoginPage> = () => {
         }}
         color="transparent"
       />
-      <ContentContainer width="small">
+      <ContentContainer width="small" sx={{ flexGrow: 1 }}>
         <LoginForm
           onForgotPasswordClick={navigateWithTransition("/forgot-password")}
         />
       </ContentContainer>
-    </Box>
+    </Stack>
   );
 };
 
