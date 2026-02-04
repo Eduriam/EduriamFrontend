@@ -1,6 +1,5 @@
 "use client";
 
-import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 import UnauthenticatedOnlyRoute from "components/layouts/authentication/UnauthenticatedOnlyRoute/UnauthenticatedOnlyRoute";
 
 export interface ILayout {
@@ -8,11 +7,7 @@ export interface ILayout {
 }
 
 const Layout: React.FC<ILayout> = ({ children }) => {
-  return (
-    <UnauthenticatedOnlyRoute>
-      <ContentContainer>{children}</ContentContainer>
-    </UnauthenticatedOnlyRoute>
-  );
+  return <UnauthenticatedOnlyRoute>{children}</UnauthenticatedOnlyRoute>;
 };
 
 export default Layout;

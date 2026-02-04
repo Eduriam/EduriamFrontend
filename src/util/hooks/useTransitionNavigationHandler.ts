@@ -13,65 +13,55 @@ type TransitionDirection = "forward" | "back";
 
 export type TransitionNavigationOptions = {
   direction?: TransitionDirection;
-  replace?: boolean;
 };
 
 const useTransitionNavigationHandler = () => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const router = useRouter();
   const transitionRouter = useTransitionRouter();
+  const setTransitionDirection = useCallback(
+    (direction: TransitionDirection) => {
+      document.documentElement.dataset.transitionDirection = direction;
+    },
+    [],
+  );
 
   const push = useCallback(
     (path: string) => {
       if (mobile) {
-        document.documentElement.dataset.transitionDirection = "forward";
+        setTransitionDirection("forward");
         transitionRouter.push(path);
         return;
       }
 
       router.push(path);
     },
-    [mobile, router, transitionRouter],
+    [mobile, router, setTransitionDirection, transitionRouter],
   );
 
-  const replace = useCallback(
+  const back = useCallback(
     (path: string) => {
       if (mobile) {
-        document.documentElement.dataset.transitionDirection = "forward";
-        transitionRouter.replace(path);
+        setTransitionDirection("back");
+        transitionRouter.push(path);
         return;
       }
 
-      router.replace(path);
+      router.push(path);
     },
-    [mobile, router, transitionRouter],
+    [mobile, router, setTransitionDirection, transitionRouter],
   );
-
-  const back = useCallback(() => {
-    if (mobile) {
-      document.documentElement.dataset.transitionDirection = "back";
-      transitionRouter.back();
-      return;
-    }
-
-    router.back();
-  }, [mobile, router, transitionRouter]);
 
   return useCallback(
     (path: string, options?: TransitionNavigationOptions) => () => {
       if (options?.direction === "back") {
-        back();
-        return;
-      }
-
-      if (options?.replace) {
-        replace(path);
+        back(path);
         return;
       }
 
       push(path);
     },
-    [back, push, replace],
+    [back, push],
   );
 };
 

@@ -1,16 +1,15 @@
+import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import theme from "styles/theme";
 
+import type { MouseEvent } from "react";
 import { useForm } from "react-hook-form";
 
-import { LoadingButton } from "@mui/lab";
 import Box from "@mui/material/Box";
 import FormHelperText from "@mui/material/FormHelperText";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
+
+import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -22,9 +21,11 @@ interface InputTypes {
   password: string;
 }
 
-export interface ILoginForm {}
+export interface ILoginForm {
+  onForgotPasswordClick?: () => void;
+}
 
-const LoginForm: React.FC<ILoginForm> = () => {
+const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
   const {
     register,
     handleSubmit,
@@ -32,89 +33,127 @@ const LoginForm: React.FC<ILoginForm> = () => {
   } = useForm<InputTypes>();
   const { login, loading, errors: authErrors } = useAuth();
   const { t } = useTranslation("form");
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
-
   const onSubmit = (data: { email: string; password: string }) => {
     login(data.email, data.password);
   };
 
+  const handleForgotPasswordClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!onForgotPasswordClick) {
+      return;
+    }
+
+    event.preventDefault();
+    onForgotPasswordClick();
+  };
+
   return (
-    <Stack direction="column" justifyContent="center" spacing={2} sx={{ m: 3 }}>
-      <Typography variant="h3" sx={{ mb: 2 }}>
-        {t("auth.login-header")}
-      </Typography>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        spacing={2}
-        component="form"
-        noValidate
-        onSubmit={handleSubmit(onSubmit)}
-        style={{ textAlign: "center" }}
-      >
-        <TextField
-          id="email"
-          type="email"
-          label={t("auth.email")}
-          helperText={
-            errors.email?.type === "required"
-              ? t("error.field-is-required")
-              : errors.email?.type === "pattern" &&
-                t("error.invalid-email-address")
-          }
-          error={errors.email !== undefined}
-          {...register("email", {
-            required: true,
-            pattern: EMAIL_REGEX,
-          })}
-          fullWidth
-          autoComplete="email"
+    <Stack
+      direction="column"
+      justifyContent="space-between"
+      sx={{ minHeight: "100%", flexGrow: 1 }}
+    >
+      <Stack alignItems="center" sx={{ gap: 22 }}>
+        <Header
+          level="title"
+          text={t("auth.login-header")}
+          sx={{ color: "common.black", textAlign: "center" }}
         />
-        <TextField
-          id="password"
-          type="password"
-          label={t("auth.password")}
-          helperText={
-            errors.password?.type === "required" && t("error.field-is-required")
-          }
-          error={errors.password !== undefined}
-          {...register("password", {
-            required: true,
-          })}
-          fullWidth
-          autoComplete="new-password"
-        />
-        <FormHelperText
-          error={authErrors?.includes(errorCodes.wrongEmailOrPassword)}
-          sx={{ textAlign: "center" }}
-        >
-          {authErrors?.includes(errorCodes.wrongEmailOrPassword) && (
-            <>
-              {t("error.wrong-email-or-password")}{" "}
-              <Link href="/forgot-password">{t("auth.forgot-password")}</Link>
-            </>
-          )}
-        </FormHelperText>
-        <Box>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            disabled={loading || Object.keys(errors).length !== 0}
-            loading={loading}
-            fullWidth={!desktop}
-            size="large"
+        <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
+          <Stack
+            direction="column"
+            justifyContent="center"
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{ width: "100%", gap: "16px" }}
           >
-            {t("auth.login")}
-          </LoadingButton>
+            <TextField
+              id="email"
+              type="email"
+              label={t("auth.email")}
+              displayLabel={false}
+              placeholder={t("auth.email")}
+              error={errors.email !== undefined}
+              {...register("email", {
+                required: true,
+                pattern: EMAIL_REGEX,
+              })}
+              fullWidth
+              autoComplete="email"
+              inputProps={{ "aria-label": t("auth.email") }}
+            />
+            {errors.email && (
+              <Typography
+                variant="caption"
+                color="error"
+                sx={{ textAlign: "left" }}
+              >
+                {errors.email?.type === "required"
+                  ? t("error.field-is-required")
+                  : errors.email?.type === "pattern" &&
+                    t("error.invalid-email-address")}
+              </Typography>
+            )}
+            <TextField
+              id="password"
+              type="password"
+              label={t("auth.password")}
+              displayLabel={false}
+              placeholder={t("auth.password")}
+              error={errors.password !== undefined}
+              {...register("password", {
+                required: true,
+              })}
+              fullWidth
+              autoComplete="new-password"
+              inputProps={{ "aria-label": t("auth.password") }}
+            />
+            {errors.password && (
+              <Typography
+                variant="caption"
+                color="error"
+                sx={{ textAlign: "left" }}
+              >
+                {errors.password?.type === "required" &&
+                  t("error.field-is-required")}
+              </Typography>
+            )}
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Link
+                href="/forgot-password"
+                color="textSecondary"
+                text={t("auth.forgot-password")}
+                onClick={handleForgotPasswordClick}
+              />
+            </Box>
+            <FormHelperText
+              error={authErrors?.includes(errorCodes.wrongEmailOrPassword)}
+              sx={{ textAlign: "center" }}
+            >
+              {authErrors?.includes(errorCodes.wrongEmailOrPassword) && (
+                <>{t("error.wrong-email-or-password")}</>
+              )}
+            </FormHelperText>
+          </Stack>
+          <Stack sx={{ width: "100%", gap: 4 }}>
+            <LargeButton
+              type="submit"
+              variant="contained"
+              disabled={loading || Object.keys(errors).length !== 0}
+              fullWidth
+            >
+              {t("auth.login")}
+            </LargeButton>
+            <GoogleSignupButton width="100%" />
+          </Stack>
+        </Stack>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: "4px" }}>
+          <Typography variant="body1" sx={{ color: "#989898" }}>
+            {t("auth.dont-have-account")}
+          </Typography>
+          <Link href="/signup" text={t("auth.here")} />
         </Box>
       </Stack>
-      <Typography variant="body2" sx={{ textAlign: "center" }}>
-        {t("auth.dont-have-account")}{" "}
-        <Link href="/signup" style={{ textDecoration: "underline" }}>
-          {t("auth.here")}
-        </Link>
-        .
-      </Typography>
     </Stack>
   );
 };

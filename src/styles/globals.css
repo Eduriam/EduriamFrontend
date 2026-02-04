@@ -37,6 +37,14 @@ a {
   ::view-transition-new(root) {
     animation: slide-in-right 300ms ease-out both;
   }
+
+  html[data-transition-direction="back"]::view-transition-old(root) {
+    animation: slide-out-right 300ms ease-out both;
+  }
+
+  html[data-transition-direction="back"]::view-transition-new(root) {
+    animation: slide-in-left 300ms ease-out both;
+  }
 }
 
 @media (min-width: 601px) {
@@ -58,6 +66,24 @@ a {
 @keyframes slide-in-right {
   from {
     transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translate3d(0%, 0, 0);
+  }
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
   }
   to {
     transform: translate3d(0%, 0, 0);

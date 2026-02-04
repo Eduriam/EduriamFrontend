@@ -19,13 +19,44 @@ The project also contains the following important packages.
 - `@eduriam/ui-core` - a component library used by this project
 - `@eduriam/ui-x` - a library of more complex components for this project
 
-## Conventions and best practices
+## Code conventions and best practices
+
+### Pages
+
+Pages are located in the `src/app/` directory. Each page folder contains:
+
+- `layout.tsx` - page config, such as using `<ProtectedRoute>` or `<UnauthenticatedOnlyRoute>`
+- `page.tsx` - all contents of the page
+- `components/` - optional folder with components that are page-specific
+
+#### Page Example
+
+Typical `page.tsx` file would look like this:
+
+```tsx
+"use client";
+
+import { ContentContainer } from "@eduriam/ui-core";
+
+export interface ISignupPage {}
+
+const SignupPage: React.FC<ISignupPage> = () => {
+  return (
+    <Box data-test="signup-page">
+      <BackNavigationBar />
+      <ContentContainer>{/* Page Content Here */}</ContentContainer>
+    </Box>
+  );
+};
+
+export default SignupPage;
+```
 
 ### Component usage and implementation
 
 When using or creating a new component:
 
-1. Always use @eduriam/ui-core and @eduriam/ui-x components if available
+1. Always use @eduriam/ui-core and @eduriam/ui-x components if available. When using these components, DO NOT apply custom styles via sx prop unless absolutely necessary. These components are already styled precisely based on the Figma prototype, so there is no need to style them further.
 2. If the component is not available and is only used by the given page (feature), implement it in the components directory of that page
 3. If the component is not available and is used by multiple pages (feature), implement it in the `src/components/` directory
 

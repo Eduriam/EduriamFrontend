@@ -1,7 +1,9 @@
 "use client";
 
-import { Header } from "@eduriam/ui-core";
+import { BasicNavbar, Header } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import icons from "styles/icons";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useState } from "react";
 
@@ -9,7 +11,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-import BackNavigationBar from "components/atoms/navigation/top-navigation-bars/BackNavigationBar/BackNavigationBar";
 import ForgotPasswordForm from "components/molecules/ForgotPasswordForm/ForgotPasswordForm";
 
 export interface IForgotPasswordPage {}
@@ -17,10 +18,19 @@ export interface IForgotPasswordPage {}
 const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
   const { t } = useTranslation("form");
   const [emailSent, setEmailSent] = useState(false);
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
     <Box sx={{ minHeight: "100svh" }}>
-      <BackNavigationBar color="transparent" />
+      <BasicNavbar
+        leftButton={{
+          icon: icons.back,
+          onClick: navigateWithTransition("/login", {
+            direction: "back",
+          }),
+        }}
+        color="transparent"
+      />
       <Container
         maxWidth="xs"
         sx={{

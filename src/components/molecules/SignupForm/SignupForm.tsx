@@ -1,19 +1,16 @@
+import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import config from "config/config";
 import { useTranslation } from "i18n/client";
-import theme from "styles/theme";
 
 import { useForm } from "react-hook-form";
 
-import LoadingButton from "@mui/lab/LoadingButton";
-import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
+
+import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -37,7 +34,6 @@ const SignupForm: React.FC<ISignupForm> = () => {
   } = useForm<InputTypes>();
   const { signUp, loading, errors: authErrors } = useAuth();
   const { t } = useTranslation("form");
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const onSubmit = (data: {
     username: string;
@@ -47,136 +43,183 @@ const SignupForm: React.FC<ISignupForm> = () => {
     signUp(data.username, data.email, data.password);
   };
 
+  const usernameHelperText =
+    errors.username?.type === "required"
+      ? t("error.field-is-required")
+      : authErrors?.includes(errorCodes.invalidUsername)
+        ? t("error.invalid-username")
+        : authErrors?.includes(errorCodes.usernameTaken) &&
+          t("error.username-taken");
+  const emailHelperText =
+    errors.email?.type === "required"
+      ? t("error.field-is-required")
+      : errors.email?.type === "pattern" ||
+          authErrors?.includes(errorCodes.invalidEmailAddress)
+        ? t("error.invalid-email-address")
+        : authErrors?.includes(errorCodes.emailAddressTaken) &&
+          t("error.email-taken");
+  const passwordHelperText =
+    errors.password?.type === "required"
+      ? t("error.field-is-required")
+      : (errors.password?.type === "minLength" ||
+          authErrors?.includes(errorCodes.passwordTooShort)) &&
+        t("error.password-too-short");
+
   return (
-    <Stack direction="column" justifyContent="center" spacing={2} sx={{ m: 3 }}>
-      <Typography variant="h3" sx={{ mb: 2 }}>
-        {t("auth.signup-header")}
-      </Typography>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        spacing={2}
-        component="form"
-        noValidate
-        onSubmit={handleSubmit(onSubmit)}
-        style={{ textAlign: "center" }}
-      >
-        <TextField
-          id="username"
-          type="text"
-          label={t("auth.username")}
-          helperText={
-            errors.username?.type === "required"
-              ? t("error.field-is-required")
-              : authErrors?.includes(errorCodes.invalidUsername)
-                ? t("error.invalid-username")
-                : authErrors?.includes(errorCodes.usernameTaken) &&
-                  t("error.username-taken")
-          }
-          error={
-            errors.username !== undefined ||
-            authErrors?.includes(errorCodes.usernameTaken) ||
-            authErrors?.includes(errorCodes.invalidUsername)
-          }
-          {...register("username", {
-            required: true,
-          })}
-          fullWidth
-          autoComplete="username"
+    <Stack
+      direction="column"
+      justifyContent="space-between"
+      sx={{ minHeight: "100%", flexGrow: 1 }}
+    >
+      <Stack alignItems="center" sx={{ gap: "88px" }}>
+        <Header
+          level="title"
+          text={t("auth.signup-header")}
+          sx={{ color: "common.black", textAlign: "center" }}
         />
-        <TextField
-          id="email"
-          type="email"
-          label={t("auth.email")}
-          helperText={
-            errors.email?.type === "required"
-              ? t("error.field-is-required")
-              : errors.email?.type === "pattern" ||
-                  authErrors?.includes(errorCodes.invalidEmailAddress)
-                ? t("error.invalid-email-address")
-                : authErrors?.includes(errorCodes.emailAddressTaken) &&
-                  t("error.email-taken")
-          }
-          error={
-            errors.email !== undefined ||
-            authErrors?.includes(errorCodes.emailAddressTaken) ||
-            authErrors?.includes(errorCodes.invalidEmailAddress)
-          }
-          {...register("email", {
-            required: true,
-            pattern: EMAIL_REGEX,
-          })}
-          fullWidth
-          autoComplete="email"
-        />
-        <TextField
-          id="password"
-          type="password"
-          label={t("auth.password")}
-          helperText={
-            errors.password?.type === "required"
-              ? t("error.field-is-required")
-              : (errors.password?.type === "minLength" ||
-                  authErrors?.includes(errorCodes.passwordTooShort)) &&
-                t("error.password-too-short")
-          }
-          error={
-            errors.password !== undefined ||
-            authErrors?.includes(errorCodes.passwordTooShort)
-          }
-          {...register("password", {
-            required: true,
-            minLength: 8,
-          })}
-          fullWidth
-          autoComplete="new-password"
-        />
-        <FormControlLabel
-          control={<Checkbox {...register("checked", { required: true })} />}
-          label={
-            <Typography variant="body2" sx={{ textAlign: "left" }}>
-              {t("auth.terms.0")}{" "}
-              <Link
-                target="blank_"
-                rel="noopener"
-                href={config.termsAndConditionsUrl}
-              >
-                {t("auth.terms.1")}
-              </Link>{" "}
-              {t("auth.terms.2")}{" "}
-              <Link
-                target="blank_"
-                rel="noopener"
-                href={config.privacyPolicyUrl}
-              >
-                {t("auth.terms.3")}
-              </Link>
-              .
-            </Typography>
-          }
-        />
-        <FormHelperText
-          error={errors.checked !== undefined}
-          sx={{ textAlign: "center" }}
-        >
-          {errors.checked?.type === "required" && t("error.agree-with-terms")}
-        </FormHelperText>
-        <Box>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            disabled={loading || Object.keys(errors).length !== 0}
-            loading={loading}
-            fullWidth={!desktop}
-            size="large"
+        <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
+          <Stack
+            direction="column"
+            justifyContent="center"
+            component="form"
+            id="signup-form"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            sx={{ width: "100%", gap: "16px" }}
           >
-            {t("auth.signup")}
-          </LoadingButton>
-        </Box>
+            <TextField
+              displayLabel={false}
+              id="username"
+              type="text"
+              placeholder={t("auth.username")}
+              {...register("username", {
+                required: true,
+              })}
+              fullWidth
+              autoComplete="username"
+              inputProps={{ "aria-label": t("auth.username") }}
+            />
+            {usernameHelperText ? (
+              <FormHelperText
+                error={
+                  errors.username !== undefined ||
+                  authErrors?.includes(errorCodes.usernameTaken) ||
+                  authErrors?.includes(errorCodes.invalidUsername)
+                }
+                sx={{ mt: 0, textAlign: "left" }}
+              >
+                {usernameHelperText}
+              </FormHelperText>
+            ) : null}
+            <TextField
+              displayLabel={false}
+              id="email"
+              type="email"
+              placeholder={t("auth.email")}
+              {...register("email", {
+                required: true,
+                pattern: EMAIL_REGEX,
+              })}
+              fullWidth
+              autoComplete="email"
+              inputProps={{ "aria-label": t("auth.email") }}
+            />
+            {emailHelperText ? (
+              <FormHelperText
+                error={
+                  errors.email !== undefined ||
+                  authErrors?.includes(errorCodes.emailAddressTaken) ||
+                  authErrors?.includes(errorCodes.invalidEmailAddress)
+                }
+                sx={{ mt: 0, textAlign: "left" }}
+              >
+                {emailHelperText}
+              </FormHelperText>
+            ) : null}
+            <TextField
+              displayLabel={false}
+              id="password"
+              type="password"
+              placeholder={t("auth.password")}
+              {...register("password", {
+                required: true,
+                minLength: 8,
+              })}
+              fullWidth
+              autoComplete="new-password"
+              inputProps={{ "aria-label": t("auth.password") }}
+            />
+            {passwordHelperText ? (
+              <FormHelperText
+                error={
+                  errors.password !== undefined ||
+                  authErrors?.includes(errorCodes.passwordTooShort)
+                }
+                sx={{ mt: 0, textAlign: "left" }}
+              >
+                {passwordHelperText}
+              </FormHelperText>
+            ) : null}
+            <FormControlLabel
+              control={
+                <Checkbox {...register("checked", { required: true })} />
+              }
+              sx={{ alignItems: "center" }}
+              label={
+                <Typography
+                  variant="body2"
+                  sx={{ textAlign: "left", color: "#989898" }}
+                >
+                  {t("auth.terms.0")}{" "}
+                  <Link
+                    target="blank_"
+                    rel="noopener"
+                    href={config.termsAndConditionsUrl}
+                    color="textPrimary"
+                    text={t("auth.terms.1")}
+                    variant="body2"
+                  />{" "}
+                  {t("auth.terms.2")}{" "}
+                  <Link
+                    target="blank_"
+                    rel="noopener"
+                    href={config.privacyPolicyUrl}
+                    color="textPrimary"
+                    text={t("auth.terms.3")}
+                    variant="body2"
+                  />
+                  .
+                </Typography>
+              }
+            />
+            <FormHelperText
+              error={errors.checked !== undefined}
+              sx={{ textAlign: "center" }}
+            >
+              {errors.checked?.type === "required" &&
+                t("error.agree-with-terms")}
+            </FormHelperText>
+          </Stack>
+          <Stack sx={{ width: "100%", gap: 4 }}>
+            <LargeButton
+              type="submit"
+              form="signup-form"
+              variant="contained"
+              disabled={loading || Object.keys(errors).length !== 0}
+              fullWidth
+            >
+              {t("auth.signup")}
+            </LargeButton>
+            <GoogleSignupButton width="100%" />
+          </Stack>
+        </Stack>
+        <Stack direction="row" justifyContent="center" sx={{ gap: 1 }}>
+          <Typography variant="body1" sx={{ color: "#989898" }}>
+            {t("auth.have-an-account")}
+          </Typography>
+          <Link href="/login" text={t("auth.here")} />
+        </Stack>
       </Stack>
-      <Typography variant="body2" sx={{ textAlign: "center" }}>
-        {t("auth.have-an-account")} <Link href="/login">{t("auth.here")}</Link>.
-      </Typography>
     </Stack>
   );
 };
