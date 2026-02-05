@@ -47,114 +47,108 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
   };
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="space-between"
-      sx={{ minHeight: "100%", flexGrow: 1 }}
-    >
-      <Stack alignItems="center" sx={{ gap: 16 }}>
-        <Header
-          level="title"
-          text={t("auth.login-header")}
-          sx={{ color: "common.black", textAlign: "center" }}
-        />
-        <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            component="form"
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
-            sx={{ width: "100%", gap: "16px" }}
+    <>
+      <Header
+        level="title"
+        text={t("auth.login-header")}
+        sx={{ color: "common.black", textAlign: "center" }}
+      />
+      <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          component="form"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{ width: "100%", gap: "16px" }}
+        >
+          <TextField
+            id="email"
+            type="email"
+            label={t("auth.email")}
+            displayLabel={false}
+            placeholder={t("auth.email")}
+            error={errors.email !== undefined}
+            {...register("email", {
+              required: true,
+              pattern: EMAIL_REGEX,
+            })}
+            fullWidth
+            autoComplete="email"
+            inputProps={{ "aria-label": t("auth.email") }}
+          />
+          {errors.email && (
+            <Typography
+              variant="caption"
+              color="error"
+              sx={{ textAlign: "left" }}
+            >
+              {errors.email?.type === "required"
+                ? t("error.field-is-required")
+                : errors.email?.type === "pattern" &&
+                  t("error.invalid-email-address")}
+            </Typography>
+          )}
+          <TextField
+            id="password"
+            type="password"
+            label={t("auth.password")}
+            displayLabel={false}
+            placeholder={t("auth.password")}
+            error={errors.password !== undefined}
+            {...register("password", {
+              required: true,
+            })}
+            fullWidth
+            autoComplete="new-password"
+            inputProps={{ "aria-label": t("auth.password") }}
+          />
+          {errors.password && (
+            <Typography
+              variant="caption"
+              color="error"
+              sx={{ textAlign: "left" }}
+            >
+              {errors.password?.type === "required" &&
+                t("error.field-is-required")}
+            </Typography>
+          )}
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Link
+              href="/forgot-password"
+              color="textSecondary"
+              text={t("auth.forgot-password")}
+              onClick={handleForgotPasswordClick}
+            />
+          </Box>
+          <FormHelperText
+            error={authErrors?.includes(errorCodes.wrongEmailOrPassword)}
+            sx={{ textAlign: "center" }}
           >
-            <TextField
-              id="email"
-              type="email"
-              label={t("auth.email")}
-              displayLabel={false}
-              placeholder={t("auth.email")}
-              error={errors.email !== undefined}
-              {...register("email", {
-                required: true,
-                pattern: EMAIL_REGEX,
-              })}
-              fullWidth
-              autoComplete="email"
-              inputProps={{ "aria-label": t("auth.email") }}
-            />
-            {errors.email && (
-              <Typography
-                variant="caption"
-                color="error"
-                sx={{ textAlign: "left" }}
-              >
-                {errors.email?.type === "required"
-                  ? t("error.field-is-required")
-                  : errors.email?.type === "pattern" &&
-                    t("error.invalid-email-address")}
-              </Typography>
+            {authErrors?.includes(errorCodes.wrongEmailOrPassword) && (
+              <>{t("error.wrong-email-or-password")}</>
             )}
-            <TextField
-              id="password"
-              type="password"
-              label={t("auth.password")}
-              displayLabel={false}
-              placeholder={t("auth.password")}
-              error={errors.password !== undefined}
-              {...register("password", {
-                required: true,
-              })}
-              fullWidth
-              autoComplete="new-password"
-              inputProps={{ "aria-label": t("auth.password") }}
-            />
-            {errors.password && (
-              <Typography
-                variant="caption"
-                color="error"
-                sx={{ textAlign: "left" }}
-              >
-                {errors.password?.type === "required" &&
-                  t("error.field-is-required")}
-              </Typography>
-            )}
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Link
-                href="/forgot-password"
-                color="textSecondary"
-                text={t("auth.forgot-password")}
-                onClick={handleForgotPasswordClick}
-              />
-            </Box>
-            <FormHelperText
-              error={authErrors?.includes(errorCodes.wrongEmailOrPassword)}
-              sx={{ textAlign: "center" }}
-            >
-              {authErrors?.includes(errorCodes.wrongEmailOrPassword) && (
-                <>{t("error.wrong-email-or-password")}</>
-              )}
-            </FormHelperText>
-          </Stack>
-          <Stack sx={{ width: "100%", gap: 4 }}>
-            <LargeButton
-              type="submit"
-              variant="contained"
-              disabled={loading || Object.keys(errors).length !== 0}
-              fullWidth
-            >
-              {t("auth.login")}
-            </LargeButton>
-            <GoogleSignupButton width="100%" />
-          </Stack>
+          </FormHelperText>
         </Stack>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: "4px" }}>
-          <Typography variant="body1" sx={{ color: "#989898" }}>
-            {t("auth.dont-have-account")}
-          </Typography>
-          <Link href="/signup" text={t("auth.here")} />
-        </Box>
+        <Stack sx={{ width: "100%", gap: 4 }}>
+          <LargeButton
+            type="submit"
+            variant="contained"
+            disabled={loading || Object.keys(errors).length !== 0}
+            fullWidth
+          >
+            {t("auth.login")}
+          </LargeButton>
+          <GoogleSignupButton width="100%" />
+        </Stack>
       </Stack>
-    </Stack>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: "4px" }}>
+        <Typography variant="body1" sx={{ color: "#989898" }}>
+          {t("auth.dont-have-account")}
+        </Typography>
+        <Link href="/signup" text={t("auth.here")} />
+      </Box>
+    </>
   );
 };
 

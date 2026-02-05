@@ -24,10 +24,8 @@ const SignupPage: React.FC<ISignupPage> = () => {
         }}
         color="transparent"
       />
-      <ContentContainer width="small" sx={{ flexGrow: 1, display: "flex" }}>
-        <Stack sx={{ flexGrow: 1, width: "100%" }}>
-          <SignupForm />
-        </Stack>
+      <ContentContainer width="small" justifyContent="space-between">
+        <SignupForm />
       </ContentContainer>
     </Stack>
   );

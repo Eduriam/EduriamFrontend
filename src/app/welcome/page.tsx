@@ -1,6 +1,6 @@
 "use client";
 
-import { Header, LargeButton } from "@eduriam/ui-core";
+import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect } from "react";
@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
@@ -28,25 +27,8 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
   }, [loading, user, router]);
 
   return (
-    <Box
-      data-test="welcome-page"
-      sx={{
-        bgcolor: "background.default",
-        minHeight: "100svh",
-        display: "flex",
-      }}
-    >
-      <Container
-        maxWidth="xs"
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          py: { xs: 5, sm: 7 },
-        }}
-      >
+    <Stack data-test="welcome-page" sx={{ minHeight: "100vh" }}>
+      <ContentContainer width="small" justifyContent="space-between">
         <Box
           data-test="welcome-branding-section"
           sx={{
@@ -57,7 +39,6 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
             justifyContent: "center",
             flexGrow: 1,
             gap: { xs: 3, sm: 4.5 },
-            pt: { xs: 2, sm: 4 },
           }}
         >
           <Box
@@ -67,17 +48,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
             sx={{ width: 128, height: 128, display: "block" }}
           />
 
-          <Header
-            level="page"
-            text="Eduriam"
-            sx={{
-              textAlign: "center",
-              color: "#000",
-              fontWeight: 700,
-              fontSize: 40,
-              lineHeight: 1.1,
-            }}
-          />
+          <Header level="page" text="Eduriam" />
 
           <Box
             data-test="welcome-value-proposition-section"
@@ -120,8 +91,8 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
             </LargeButton>
           </Stack>
         </Box>
-      </Container>
-    </Box>
+      </ContentContainer>
+    </Stack>
   );
 };
 

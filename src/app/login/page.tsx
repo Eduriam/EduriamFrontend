@@ -24,7 +24,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
         }}
         color="transparent"
       />
-      <ContentContainer width="small" sx={{ flexGrow: 1 }}>
+      <ContentContainer width="small" justifyContent="flex-start" spacing={16}>
         <LoginForm
           onForgotPasswordClick={navigateWithTransition("/forgot-password")}
         />

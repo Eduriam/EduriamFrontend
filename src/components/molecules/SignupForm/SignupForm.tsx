@@ -66,11 +66,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
         t("error.password-too-short");
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="space-between"
-      sx={{ height: "100%" }}
-    >
+    <>
       <Header
         level="title"
         text={t("auth.signup-header")}
@@ -215,7 +211,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
         </Typography>
         <Link href="/login" text={t("auth.here")} />
       </Stack>
-    </Stack>
+    </>
   );
 };
 
