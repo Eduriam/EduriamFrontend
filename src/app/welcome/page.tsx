@@ -3,6 +3,7 @@
 import {
   ContentContainer,
   Header,
+  Illustration,
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
@@ -46,12 +47,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
             gap: { xs: 3, sm: 4.5 },
           }}
         >
-          <Box
-            component="img"
-            src="/images/illustrations/eduriam-logo.svg"
-            alt="Eduriam"
-            sx={{ width: 128, height: 128, display: "block" }}
-          />
+          <Illustration name="eduriam-logo" width={128} height={128} />
 
           <Header level="page" text="Eduriam" />
 
