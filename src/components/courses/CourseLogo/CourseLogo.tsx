@@ -15,10 +15,6 @@ export interface CourseLogoProps {
    * Matches the Figma variants.
    */
   size?: CourseLogoSize;
-  /**
-   * Optional class name passed to the underlying image.
-   */
-  className?: string;
 }
 
 const variantToSrc: Record<CourseLogoVariant, string> = {
@@ -31,11 +27,7 @@ const sizeToPixels: Record<CourseLogoSize, number> = {
   small: 24,
 };
 
-const CourseLogo: React.FC<CourseLogoProps> = ({
-  variant,
-  size = "large",
-  className,
-}) => {
+const CourseLogo: React.FC<CourseLogoProps> = ({ variant, size = "large" }) => {
   const dimension = sizeToPixels[size];
 
   return (
@@ -43,7 +35,6 @@ const CourseLogo: React.FC<CourseLogoProps> = ({
       component="img"
       src={variantToSrc[variant]}
       alt={`${variant} logo`}
-      className={className}
       sx={{
         width: dimension,
         height: dimension,
