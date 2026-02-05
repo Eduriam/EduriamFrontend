@@ -200,6 +200,22 @@
     "monthlyChallenge": "Měsíční výzva"
   },
 
+  "leaderboard": {
+    "league": "Liga",
+    "leagues": {
+      "iron": "Železná",
+      "bronze": "Bronzová",
+      "silver": "Stříbrná",
+      "gold": "Zlatá",
+      "platinum": "Platinová",
+      "emerald": "Smaragdová",
+      "ruby": "Rubínová",
+      "sapphire": "Safírová",
+      "diamond": "Diamantová",
+      "mythic": "Mýtická"
+    }
+  },
+
   "achievements": {
     "achievements": "Ocenění",
     "collectReward": "Sebrat odměnu"
