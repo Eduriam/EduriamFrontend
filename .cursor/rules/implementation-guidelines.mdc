@@ -36,16 +36,26 @@ Typical `page.tsx` file would look like this:
 ```tsx
 "use client";
 
-import { ContentContainer } from "@eduriam/ui-core";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 export interface ISignupPage {}
 
 const SignupPage: React.FC<ISignupPage> = () => {
+  const navigateWithTransition = useTransitionNavigationHandler();
+
   return (
-    <Box data-test="signup-page">
-      <BackNavigationBar />
+    <PageRoot data-test="signup-page">
+      <BasicNavbar
+        leftButton={{
+          icon: icons.back,
+          onClick: navigateWithTransition("/welcome", {
+            direction: "back",
+          }),
+        }}
+      />
       <ContentContainer>{/* Page Content Here */}</ContentContainer>
-    </Box>
+    </PageRoot>
   );
 };
 

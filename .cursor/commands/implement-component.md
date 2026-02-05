@@ -11,3 +11,8 @@ You will be given a Figma design and your job is to implement the component in t
 
 1. ANALYZE carefully the Figma design and all of the used variables and structure.
 2. IMPLEMENT the component precisely based on the Figma design.
+
+## Details
+
+- Do not integrate the new component into any of the pages unless explicitely told.
+- Always follow the implementation guidelines defined in `.cursor/rules/implementation-guidelines.mdc`
