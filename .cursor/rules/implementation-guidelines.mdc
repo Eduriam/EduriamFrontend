@@ -67,7 +67,7 @@ export default SignupPage;
 When using or creating a new component:
 
 1. Always use @eduriam/ui-core and @eduriam/ui-x components if available. When using these components, DO NOT apply custom styles via sx prop unless absolutely necessary. These components are already styled precisely based on the Figma prototype, so there is no need to style them further.
-2. If the component is not available and is only used by the given page (feature), implement it in the components directory of that page
+2. If the component is not available and is only used by the given page (feature), implement it in the `components` directory of that page (for example `app/users/[userId]/components/LeagueCard`). The story file title should then have the following format `pages/users/[userId]/LeagueCard`
 3. If the component is not available and is used by multiple pages (feature), implement it in the `src/components/` directory
 
 #### Component structure
