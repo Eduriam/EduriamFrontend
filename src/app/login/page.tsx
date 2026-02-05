@@ -20,7 +20,6 @@ const LoginPage: React.FC<ILoginPage> = () => {
             direction: "back",
           }),
         }}
-        color="transparent"
       />
       <ContentContainer width="small" justifyContent="flex-start" spacing={16}>
         <LoginForm

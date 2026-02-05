@@ -165,8 +165,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
               >
                 {t("auth.terms.0")}{" "}
                 <Link
-                  target="blank_"
-                  rel="noopener"
+                  target="_blank"
                   href={config.termsAndConditionsUrl}
                   color="textPrimary"
                   text={t("auth.terms.1")}
@@ -174,8 +173,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
                 />{" "}
                 {t("auth.terms.2")}{" "}
                 <Link
-                  target="blank_"
-                  rel="noopener"
+                  target="_blank"
                   href={config.privacyPolicyUrl}
                   color="textPrimary"
                   text={t("auth.terms.3")}
@@ -195,7 +193,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
         <Stack sx={{ width: "100%", gap: 4 }}>
           <LargeButton
             type="submit"
-            form="signup-form"
+            onClick={handleSubmit(onSubmit)}
             variant="contained"
             disabled={loading || Object.keys(errors).length !== 0}
             fullWidth
