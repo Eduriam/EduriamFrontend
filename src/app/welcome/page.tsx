@@ -1,6 +1,11 @@
 "use client";
 
-import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
+import {
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect } from "react";
@@ -27,7 +32,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
   }, [loading, user, router]);
 
   return (
-    <Stack data-test="welcome-page" sx={{ minHeight: "100vh" }}>
+    <PageRoot data-test="welcome-page">
       <ContentContainer width="small" justifyContent="space-between">
         <Box
           data-test="welcome-branding-section"
@@ -92,7 +97,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
           </Stack>
         </Box>
       </ContentContainer>
-    </Stack>
+    </PageRoot>
   );
 };
 

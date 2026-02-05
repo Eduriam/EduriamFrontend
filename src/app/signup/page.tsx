@@ -1,10 +1,8 @@
 "use client";
 
-import { BasicNavbar, ContentContainer } from "@eduriam/ui-core";
+import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
-
-import Stack from "@mui/material/Stack";
 
 import SignupForm from "components/molecules/SignupForm/SignupForm";
 
@@ -14,7 +12,7 @@ const SignupPage: React.FC<ISignupPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <Stack sx={{ minHeight: "100vh" }}>
+    <PageRoot>
       <BasicNavbar
         leftButton={{
           icon: icons.back,
@@ -22,12 +20,11 @@ const SignupPage: React.FC<ISignupPage> = () => {
             direction: "back",
           }),
         }}
-        color="transparent"
       />
       <ContentContainer width="small" justifyContent="space-between">
         <SignupForm />
       </ContentContainer>
-    </Stack>
+    </PageRoot>
   );
 };
 

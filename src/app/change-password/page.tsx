@@ -1,6 +1,11 @@
 "use client";
 
-import { Header, LargeButton } from "@eduriam/ui-core";
+import {
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
@@ -8,7 +13,6 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import ChangePasswordForm from "components/molecules/ChangePasswordForm/ChangePasswordForm";
@@ -25,18 +29,8 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
   const email = searchParams?.get("email");
 
   return (
-    <Box sx={{ backgroundColor: "common.white", minHeight: "100svh" }}>
-      <Container
-        maxWidth="xs"
-        sx={{
-          minHeight: "100svh",
-          px: "26px",
-          pt: "104px",
-          pb: "32px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+    <PageRoot>
+      <ContentContainer width="small" justifyContent="center">
         {passwordChanged ? (
           <>
             <Box
@@ -110,8 +104,8 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
             </Box>
           </>
         )}
-      </Container>
-    </Box>
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

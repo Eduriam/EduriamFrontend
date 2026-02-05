@@ -1,6 +1,6 @@
 "use client";
 
-import { BasicNavbar, Header } from "@eduriam/ui-core";
+import { BasicNavbar, Header, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -21,7 +21,7 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <Box sx={{ minHeight: "100svh" }}>
+    <PageRoot>
       <BasicNavbar
         leftButton={{
           icon: icons.back,
@@ -29,7 +29,6 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
             direction: "back",
           }),
         }}
-        color="transparent"
       />
       <Container
         maxWidth="xs"
@@ -64,7 +63,7 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
           </>
         )}
       </Container>
-    </Box>
+    </PageRoot>
   );
 };
 
