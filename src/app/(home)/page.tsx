@@ -1,5 +1,6 @@
 "use client";
 
+import { PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import icons from "styles/icons";
 
@@ -59,7 +60,7 @@ const HomePage: React.FC<IHomePage> = () => {
   }, [searchParams, mutateUser, user?.lastViewedStudyMapLevel, router]);
 
   return (
-    <>
+    <PageRoot data-test="home-page">
       {user && <NoticeBoard fetchNewNotices={true} />}
       {user && (
         <StudyMap
@@ -73,7 +74,7 @@ const HomePage: React.FC<IHomePage> = () => {
         icon={icons.start}
         onClick={() => router.push(`/study`)}
       />
-    </>
+    </PageRoot>
   );
 };
 

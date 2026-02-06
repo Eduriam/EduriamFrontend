@@ -21,4 +21,4 @@ Feature: Welcome page
   Scenario: Signed-in user is redirected from the welcome page to the home page
     Given I am logged in
     And I am on the "welcome-page" page
-    Then I should be on the "home-page" page
+    Then I should be redirected to the "home-page" page
