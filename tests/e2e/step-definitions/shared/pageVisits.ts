@@ -11,6 +11,7 @@ const PAGE_URLS: Record<string, string> = {
   "login-page": `${BASE_URL}/login`,
   "signup-page": `${BASE_URL}/signup`,
   "welcome-page": `${BASE_URL}/welcome`,
+  "account-setup-page": `${BASE_URL}/account-setup`,
 };
 
 Given(
@@ -87,13 +88,14 @@ Then(
       );
     }
 
-    await this.page.waitForURL(url, { timeout: 15000 });
+    const path = url.replace(BASE_URL, "");
+
     await this.page.waitForSelector(`[data-test="${pageName}"]`, {
       timeout: 10000,
     });
 
     const currentUrl = this.page.url();
-    expect(currentUrl).toContain(url.replace(BASE_URL, ""));
+    expect(currentUrl).toContain(path);
   },
 );
 

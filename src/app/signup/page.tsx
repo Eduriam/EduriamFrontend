@@ -12,7 +12,7 @@ const SignupPage: React.FC<ISignupPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <PageRoot>
+    <PageRoot data-test="signup-page">
       <BasicNavbar
         leftButton={{
           icon: icons.back,

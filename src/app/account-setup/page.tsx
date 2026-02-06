@@ -1,5 +1,6 @@
 "use client";
 
+import { PageRoot } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useEffect, useState } from "react";
@@ -92,7 +93,7 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
   }, [startOptionId, setStartingLevel]);
 
   return (
-    <>
+    <PageRoot data-test="account-setup-page">
       {page !== 0 && (page !== 5 || startOptionId !== "takeTest") && (
         <NavigationBar
           leftIconButton={{
@@ -170,7 +171,7 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
           </>
         )}
       </Container>
-    </>
+    </PageRoot>
   );
 };
 

@@ -2,7 +2,7 @@ import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import type { MouseEvent } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import Box from "@mui/material/Box";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -27,7 +27,7 @@ export interface ILoginForm {
 
 const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<InputTypes>();
@@ -58,24 +58,33 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
           direction="column"
           justifyContent="center"
           component="form"
+          id="login-form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
           sx={{ width: "100%", gap: "16px" }}
         >
-          <TextField
-            id="email"
-            type="email"
-            label={t("auth.email")}
-            displayLabel={false}
-            placeholder={t("auth.email")}
-            error={errors.email !== undefined}
-            {...register("email", {
-              required: true,
-              pattern: EMAIL_REGEX,
-            })}
-            fullWidth
-            autoComplete="email"
-            inputProps={{ "aria-label": t("auth.email") }}
+          <Controller
+            name="email"
+            control={control}
+            rules={{ required: true, pattern: EMAIL_REGEX }}
+            render={({ field }) => (
+              <Box data-test="login-email-field">
+                <TextField
+                  id="email"
+                  type="email"
+                  label={t("auth.email")}
+                  displayLabel={false}
+                  placeholder={t("auth.email")}
+                  error={errors.email !== undefined}
+                  fullWidth
+                  autoComplete="email"
+                  inputProps={{ "aria-label": t("auth.email") }}
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                />
+              </Box>
+            )}
           />
           {errors.email && (
             <Typography
@@ -89,19 +98,28 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
                   t("error.invalid-email-address")}
             </Typography>
           )}
-          <TextField
-            id="password"
-            type="password"
-            label={t("auth.password")}
-            displayLabel={false}
-            placeholder={t("auth.password")}
-            error={errors.password !== undefined}
-            {...register("password", {
-              required: true,
-            })}
-            fullWidth
-            autoComplete="new-password"
-            inputProps={{ "aria-label": t("auth.password") }}
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Box data-test="login-password-field">
+                <TextField
+                  id="password"
+                  type="password"
+                  label={t("auth.password")}
+                  displayLabel={false}
+                  placeholder={t("auth.password")}
+                  error={errors.password !== undefined}
+                  fullWidth
+                  autoComplete="new-password"
+                  inputProps={{ "aria-label": t("auth.password") }}
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                />
+              </Box>
+            )}
           />
           {errors.password && (
             <Typography
@@ -133,9 +151,11 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
         <Stack sx={{ width: "100%", gap: 4 }}>
           <LargeButton
             type="submit"
+            onClick={handleSubmit(onSubmit)}
             variant="contained"
             disabled={loading || Object.keys(errors).length !== 0}
             fullWidth
+            data-test="login-submit-button"
           >
             {t("auth.login")}
           </LargeButton>

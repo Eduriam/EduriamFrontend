@@ -103,6 +103,7 @@ export function AuthProvider({
     AuthManager.signUp({ username, email, password })
       .then((user) => {
         setUser(user);
+        router.push("/");
       })
       .catch((errorCode) => {
         handleError(errorCode);

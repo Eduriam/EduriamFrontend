@@ -2,7 +2,7 @@ import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import config from "config/config";
 import { useTranslation } from "i18n/client";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -28,6 +28,7 @@ export interface ISignupForm {}
 
 const SignupForm: React.FC<ISignupForm> = () => {
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -82,17 +83,26 @@ const SignupForm: React.FC<ISignupForm> = () => {
           onSubmit={handleSubmit(onSubmit)}
           sx={{ width: "100%", gap: "16px" }}
         >
-          <TextField
-            displayLabel={false}
-            id="username"
-            type="text"
-            placeholder={t("auth.username")}
-            {...register("username", {
-              required: true,
-            })}
-            fullWidth
-            autoComplete="username"
-            inputProps={{ "aria-label": t("auth.username") }}
+          <Controller
+            name="username"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Stack data-test="signup-username-field">
+                <TextField
+                  displayLabel={false}
+                  id="username"
+                  type="text"
+                  placeholder={t("auth.username")}
+                  fullWidth
+                  autoComplete="username"
+                  inputProps={{ "aria-label": t("auth.username") }}
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                />
+              </Stack>
+            )}
           />
           {usernameHelperText ? (
             <FormHelperText
@@ -106,18 +116,26 @@ const SignupForm: React.FC<ISignupForm> = () => {
               {usernameHelperText}
             </FormHelperText>
           ) : null}
-          <TextField
-            displayLabel={false}
-            id="email"
-            type="email"
-            placeholder={t("auth.email")}
-            {...register("email", {
-              required: true,
-              pattern: EMAIL_REGEX,
-            })}
-            fullWidth
-            autoComplete="email"
-            inputProps={{ "aria-label": t("auth.email") }}
+          <Controller
+            name="email"
+            control={control}
+            rules={{ required: true, pattern: EMAIL_REGEX }}
+            render={({ field }) => (
+              <Stack data-test="signup-email-field">
+                <TextField
+                  displayLabel={false}
+                  id="email"
+                  type="email"
+                  placeholder={t("auth.email")}
+                  fullWidth
+                  autoComplete="email"
+                  inputProps={{ "aria-label": t("auth.email") }}
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                />
+              </Stack>
+            )}
           />
           {emailHelperText ? (
             <FormHelperText
@@ -131,18 +149,26 @@ const SignupForm: React.FC<ISignupForm> = () => {
               {emailHelperText}
             </FormHelperText>
           ) : null}
-          <TextField
-            displayLabel={false}
-            id="password"
-            type="password"
-            placeholder={t("auth.password")}
-            {...register("password", {
-              required: true,
-              minLength: 8,
-            })}
-            fullWidth
-            autoComplete="new-password"
-            inputProps={{ "aria-label": t("auth.password") }}
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: true, minLength: 8 }}
+            render={({ field }) => (
+              <Stack data-test="signup-password-field">
+                <TextField
+                  displayLabel={false}
+                  id="password"
+                  type="password"
+                  placeholder={t("auth.password")}
+                  fullWidth
+                  autoComplete="new-password"
+                  inputProps={{ "aria-label": t("auth.password") }}
+                  value={field.value ?? ""}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                />
+              </Stack>
+            )}
           />
           {passwordHelperText ? (
             <FormHelperText
@@ -158,6 +184,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
           <FormControlLabel
             control={<Checkbox {...register("checked", { required: true })} />}
             sx={{ alignItems: "center" }}
+            data-test="signup-terms-checkbox"
             label={
               <Typography
                 variant="body2"
@@ -197,6 +224,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
             variant="contained"
             disabled={loading || Object.keys(errors).length !== 0}
             fullWidth
+            data-test="signup-submit-button"
           >
             {t("auth.signup")}
           </LargeButton>
