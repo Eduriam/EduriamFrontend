@@ -15,7 +15,7 @@ Feature: Signup
     And I enter "ValidPassword123" in the "signup-password-field" field
     And I click on the "signup-terms-checkbox" button
     And I click on the "signup-submit-button" button
-    Then I should be redirected to the "account-setup-page" page
+    Then I should be redirected to the "onboarding-page" page
 
   Scenario: User cannot sign up without accepting terms
     Given I am on the "signup-page" page

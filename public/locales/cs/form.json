@@ -67,6 +67,54 @@
     "backToSettings": "Zpět do nastavení"
   },
 
+  "onboarding": {
+    "codingExperienceTitle": "Jaké jsou vaše zkušenosti s programováním?",
+    "codingExperienceOptions": {
+      "beginner": {
+        "text": "Začátečník",
+        "subText": "Znám pouze základy nebo jsem nikdy neprogramoval(a)."
+      },
+      "intermediate": {
+        "text": "Mírně pokročilý",
+        "subText": "Umím vytvářet jednoduché aplikace nebo programy."
+      },
+      "advanced": {
+        "text": "Pokročilý",
+        "subText": "Programuji profesionálně nebo mám hodně zkušeností."
+      }
+    },
+    "areaOfInterestTitle": "Co se chcete naučit?",
+    "areaOfInterestOptions": {
+      "frontend-development": {
+        "text": "Frontend vývoj"
+      },
+      "backend-development": {
+        "text": "Backend vývoj"
+      },
+      "fullstack": { "text": "Fullstack vývoj" }
+    },
+    "userGoalTitle": "Jaký je váš cíl?",
+    "userGoalOptions": {
+      "switch-career": {
+        "text": "Přestoupit do IT",
+        "subText": "Chci změnit kariéru."
+      },
+      "learn-hobby": {
+        "text": "Učit se pro zábavu",
+        "subText": "Programování jako koníček."
+      },
+      "improve-skills": {
+        "text": "Zlepšit dovednosti",
+        "subText": "Už programuji, chci být lepší."
+      }
+    },
+    "valuePropositionTitle": "Co získáte",
+    "exploreAllCourses": "Prozkoumat všechny kurzy",
+    "startLearning": "Začít učit se",
+    "recommendedForYou": "Doporučeno pro vás",
+    "dailyGoalTitle": "Vyberte si denní cíl"
+  },
+
   "accountSetup": {
     "selectCourse": "Vyberte kurz",
     "iSpeak": "Mluvím",

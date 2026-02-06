@@ -21,7 +21,7 @@ const UnauthenticatedOnlyRoute: React.FC<IUnauthenticatedOnlyRoute> = ({
 
   useEffect(() => {
     if (!loading && user) {
-      router.push("/");
+      router.push(user.accountInitialized ? "/" : "/onboarding");
     }
   }, [loading, user, router]);
 

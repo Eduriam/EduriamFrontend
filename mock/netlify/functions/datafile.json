@@ -2097,7 +2097,7 @@
       "responses": [
         {
           "uuid": "6e077f75-82c3-4cd7-9247-36c7e2e67428",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"language1\": \"cs\",\n    \"language2\": \"en\",\n    \"name\": \"Angličtina\",\n    \"thumbnailUrl\": \"https://picsum.photos/id/20/512/512\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": \"html\",\n    \"language1\": \"en\",\n    \"language2\": \"cs\",\n    \"name\": \"HTML\",\n    \"thumbnailUrl\": \"https://picsum.photos/id/20/512/512\"\n  },\n  {\n    \"id\": \"javascript\",\n    \"language1\": \"en\",\n    \"language2\": \"cs\",\n    \"name\": \"JavaScript\",\n    \"thumbnailUrl\": \"https://picsum.photos/id/21/512/512\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"language1\": \"cs\",\n    \"language2\": \"en\",\n    \"name\": \"Angličtina\",\n    \"thumbnailUrl\": \"https://picsum.photos/id/20/512/512\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response: language1=cs",

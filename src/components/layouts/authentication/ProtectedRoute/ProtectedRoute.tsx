@@ -23,9 +23,9 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({ children }) => {
       !loading &&
       user &&
       user?.accountInitialized !== true &&
-      pathname !== "/account-setup"
+      pathname !== "/onboarding"
     ) {
-      router.push("/account-setup");
+      router.push("/onboarding");
     }
   }, [loading, user, pathname, router]);
 
@@ -42,7 +42,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({ children }) => {
       (!loading &&
         user &&
         user?.accountInitialized !== true &&
-        pathname !== "/account-setup") ? (
+        pathname !== "/onboarding") ? (
         <Container
           sx={{
             justifyContent: "center",

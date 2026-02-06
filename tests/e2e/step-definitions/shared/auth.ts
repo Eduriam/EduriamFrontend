@@ -3,21 +3,7 @@ import { Given } from "@cucumber/cucumber";
 import { UserPrivate } from "infrastructure/api/user/User";
 
 import { CustomWorld } from "../../support/world";
-
-function base64UrlEncode(value: string): string {
-  return Buffer.from(value)
-    .toString("base64")
-    .replace(/=/g, "")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_");
-}
-
-function createJwt(expSecondsFromNow: number): string {
-  const exp = Math.floor(Date.now() / 1000) + expSecondsFromNow;
-  const header = base64UrlEncode(JSON.stringify({ alg: "HS256", typ: "JWT" }));
-  const payload = base64UrlEncode(JSON.stringify({ exp }));
-  return `${header}.${payload}.sig`;
-}
+import { createJwt } from "../util/jwt";
 
 Given("I am logged in", async function (this: CustomWorld) {
   if (!this.page) {
@@ -71,3 +57,71 @@ Given("I am logged in", async function (this: CustomWorld) {
   }
   await this.page.addInitScript(initScript, { user, idToken, refreshToken });
 });
+
+Given(
+  "I am logged in and I am not enrolled in any course",
+  async function (this: CustomWorld) {
+    if (!this.page || !this.context) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const user = {
+      id: "test-user",
+      username: "Test user",
+      role: "USER",
+      streak: 0,
+      balance: 0,
+      accountInitialized: false,
+      lastSessionDate: null,
+      activeSubscription: null,
+      selectedCourse: null,
+      lastViewedStudyMapLevel: 0,
+    } as unknown as UserPrivate;
+
+    const idToken = createJwt(60 * 60);
+    const refreshToken = "test-refresh-token";
+
+    const initScript = ({
+      user,
+      idToken,
+      refreshToken,
+    }: {
+      user: UserPrivate;
+      idToken: string;
+      refreshToken: string;
+    }) => {
+      localStorage.setItem("idToken", JSON.stringify(idToken));
+      localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+      localStorage.setItem("user", JSON.stringify(user));
+    };
+
+    await this.context.addInitScript(initScript, {
+      user,
+      idToken,
+      refreshToken,
+    });
+    await this.page.addInitScript(initScript, {
+      user,
+      idToken,
+      refreshToken,
+    });
+
+    // Load app so init script runs and localStorage is set
+    await this.page.goto("/", {
+      waitUntil: "domcontentloaded",
+      timeout: 15000,
+    });
+    // Ensure localStorage is set then reload so app reads it (handles init script timing)
+    await this.page.evaluate(
+      ({ user, idToken, refreshToken }) => {
+        localStorage.setItem("idToken", JSON.stringify(idToken));
+        localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+        localStorage.setItem("user", JSON.stringify(user));
+      },
+      { user, idToken, refreshToken },
+    );
+    await this.page.reload({ waitUntil: "domcontentloaded", timeout: 15000 });
+  },
+);

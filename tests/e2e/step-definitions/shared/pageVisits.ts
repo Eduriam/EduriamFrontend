@@ -12,10 +12,107 @@ const PAGE_URLS: Record<string, string> = {
   "signup-page": `${BASE_URL}/signup`,
   "welcome-page": `${BASE_URL}/welcome`,
   "account-setup-page": `${BASE_URL}/account-setup`,
+  "onboarding-page": `${BASE_URL}/onboarding`,
 };
+
+/**
+ * Navigate to the onboarding page with special handling.
+ * Onboarding always requires a fresh navigation to ensure init scripts run.
+ */
+async function navigateToOnboardingPage(
+  page: CustomWorld["page"],
+): Promise<void> {
+  if (!page) {
+    throw new Error("Page is not initialized.");
+  }
+
+  const url = PAGE_URLS["onboarding-page"];
+  await page.goto(url, {
+    waitUntil: "domcontentloaded",
+    timeout: 30000,
+  });
+
+  // Wait for navigation to complete (either onboarding or redirect to welcome)
+  await page.waitForURL(/\/onboarding|\/welcome/, { timeout: 10000 });
+
+  if (page.url().includes("/welcome")) {
+    throw new Error(
+      "Landed on /welcome instead of /onboarding — auth may have failed (e.g. getCurrentUser rejected). Check that test user is in localStorage.",
+    );
+  }
+}
+
+/**
+ * Navigate to a standard page, skipping navigation if already on that page.
+ */
+async function navigateToStandardPage(
+  page: CustomWorld["page"],
+  url: string,
+): Promise<void> {
+  if (!page) {
+    throw new Error("Page is not initialized.");
+  }
+
+  const path = url.replace(BASE_URL, "");
+  const alreadyOnPage = page.url().includes(path);
+
+  if (!alreadyOnPage) {
+    await page.goto(url, {
+      waitUntil: "domcontentloaded",
+      timeout: 30000,
+    });
+    await page
+      .waitForLoadState("networkidle", { timeout: 15000 })
+      .catch(() => undefined);
+  }
+}
+
+/**
+ * Wait for the page marker element, handling welcome-page redirects.
+ */
+async function waitForPageMarker(
+  page: CustomWorld["page"],
+  pageName: string,
+  timeout: number,
+): Promise<void> {
+  if (!page) {
+    throw new Error("Page is not initialized.");
+  }
+
+  const selector = `[data-test="${pageName}"]`;
+
+  if (pageName === "welcome-page") {
+    try {
+      await page.waitForSelector(selector, {
+        timeout,
+        state: "attached",
+      });
+    } catch (error) {
+      // For signed-in users, navigating to /welcome should immediately
+      // redirect them to the home page. In that case we don't expect the
+      // welcome marker to appear, and this step should still succeed.
+      const currentUrl = page.url();
+      const homePath = PAGE_URLS["home-page"].replace(BASE_URL, "");
+      const welcomePath = PAGE_URLS["welcome-page"].replace(BASE_URL, "");
+
+      const redirectedToHome =
+        !currentUrl.includes(welcomePath) && currentUrl.includes(homePath);
+
+      if (!redirectedToHome) {
+        throw error;
+      }
+    }
+  } else {
+    await page.waitForSelector(selector, {
+      timeout,
+      state: "attached",
+    });
+  }
+}
 
 Given(
   "I am on the {string} page",
+  { timeout: 60 * 1000 },
   async function (this: CustomWorld, pageName: string) {
     if (!this.page) {
       throw new Error(
@@ -32,20 +129,16 @@ Given(
       );
     }
 
-    await this.page.goto(url, {
-      waitUntil: "domcontentloaded",
-      timeout: 30000,
-    });
+    // Navigate to the page
+    if (pageName === "onboarding-page") {
+      await navigateToOnboardingPage(this.page);
+    } else {
+      await navigateToStandardPage(this.page, url);
+    }
 
-    await this.page
-      .waitForLoadState("networkidle", { timeout: 10000 })
-      .catch(() => undefined);
-
-    await this.page
-      .waitForSelector(`[data-test="${pageName}"]`, {
-        timeout: 15000,
-      })
-      .catch(() => undefined);
+    // Wait for the page marker element
+    const timeout = pageName === "onboarding-page" ? 45000 : 15000;
+    await waitForPageMarker(this.page, pageName, timeout);
   },
 );
 
