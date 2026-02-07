@@ -138,6 +138,12 @@
       }
     },
     "exploreAllCourses": "Prozkoumat všechny kurzy",
+    "courseCategories": {
+      "web-development": "Web development",
+      "backend-development": "Backend development",
+      "languages": "Jazyky",
+      "other": "Ostatní"
+    },
     "accountReady": "Váš účet je připraven!",
     "startLearning": "Začít se učit",
     "recommendedForYou": "Vyberte si kurz",

@@ -5,8 +5,9 @@ import { FeaturedTopic } from "infrastructure/api/user/topics/Topics";
 export interface Course {
   id: Id;
   name: string;
-  language1: Language;
-  language2: Language;
-  thumbnailUrl?: string;
+  language: Language;
+  category?: string;
+  logoId?: string;
+  type?: "career-path" | "course";
   featuredTopics?: Array<FeaturedTopic>;
 }

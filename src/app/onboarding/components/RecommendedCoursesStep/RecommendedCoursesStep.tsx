@@ -6,8 +6,11 @@ import { useTranslation } from "i18n/client";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
+import CareerPathCard from "components/courses/CareerPathCard/CareerPathCard";
 import CourseCard from "components/courses/CourseCard/CourseCard";
-import CourseLogo from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo, {
+  getVariantFromLogoId,
+} from "components/courses/CourseLogo/CourseLogo";
 
 import type { Course } from "infrastructure/api/courses/Courses";
 
@@ -34,32 +37,45 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
           text={tForm("onboarding.recommendedForYou")}
         />
         <Stack direction="column" spacing={3}>
-          {courses.map((course, index) => (
-            <Box
-              key={course.id}
-              data-test={
-                index === 0 ||
-                course.id === htmlCourseId ||
-                course.name?.toLowerCase().includes("html")
-                  ? "html-course-card"
-                  : undefined
-              }
-            >
-              <CourseCard
-                title={course.name}
-                icon={
-                  <CourseLogo
-                    variant={
-                      course.name?.toLowerCase().includes("javascript")
-                        ? "JavaScript"
-                        : "HTML"
-                    }
-                  />
+          {courses.map((course, index) => {
+            const icon = (
+              <CourseLogo
+                variant={
+                  getVariantFromLogoId(course.logoId) ??
+                  (course.name?.toLowerCase().includes("javascript")
+                    ? "JavaScript"
+                    : "HTML")
                 }
-                onClick={() => onCourseSelect(course.id)}
               />
-            </Box>
-          ))}
+            );
+            const isCareerPath = course.type === "career-path";
+            return (
+              <Box
+                key={course.id}
+                data-test={
+                  index === 0 ||
+                  course.id === htmlCourseId ||
+                  course.name?.toLowerCase().includes("html")
+                    ? "html-course-card"
+                    : undefined
+                }
+              >
+                {isCareerPath ? (
+                  <CareerPathCard
+                    title={course.name}
+                    icon={icon}
+                    onClick={() => onCourseSelect(course.id)}
+                  />
+                ) : (
+                  <CourseCard
+                    title={course.name}
+                    icon={icon}
+                    onClick={() => onCourseSelect(course.id)}
+                  />
+                )}
+              </Box>
+            );
+          })}
         </Stack>
         <LargeButton
           data-test="explore-all-courses-button"

@@ -34,7 +34,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
   const { t: tLanguages } = useTranslation("languages");
   const { t: tForm } = useTranslation("form");
   const { t: tCommon } = useTranslation("common");
-  const { courses } = CoursesAPI.useCourses({ language1: selectedLanguage });
+  const { courses } = CoursesAPI.useCourses({ language: selectedLanguage });
 
   return (
     <Box
@@ -84,7 +84,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
                   component: SimpleCard,
                   props: {
                     header: course.name,
-                    imageUrl: course.thumbnailUrl,
+                    imageUrl: undefined,
                     highlightCard: selectedCourseId === course.id,
                     highlightVariant: "outlined",
                     onClick: () => setSelectedCourseId(course.id),

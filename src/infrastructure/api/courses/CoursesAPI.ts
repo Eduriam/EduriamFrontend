@@ -8,7 +8,7 @@ import useAPI from "infrastructure/api/hooks/useAPI";
 import { Course } from "./Courses";
 
 export interface CourseParams {
-  language1?: Language;
+  language?: Language;
 }
 
 const CoursesAPI = {

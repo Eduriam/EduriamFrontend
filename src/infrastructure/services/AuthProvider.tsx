@@ -68,7 +68,7 @@ export function AuthProvider({
     AuthManager.getCurrentUser()
       .then(async (user) => {
         setUser(user);
-        setLanguage(user.selectedCourse?.language1);
+        setLanguage(user.selectedCourse?.language);
       })
       .catch(() => {
         setLanguage();

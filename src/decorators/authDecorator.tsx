@@ -14,8 +14,7 @@ export default function AuthDecorator(Story: Story) {
       selectedCourse: {
         id: "abcd",
         name: "Czech course",
-        language1: "cs",
-        language2: "cs",
+        language: "cs",
       },
       username: "pepaokurka",
       balance: 999,

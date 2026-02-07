@@ -4,6 +4,24 @@ export type CourseLogoVariant = "HTML" | "JavaScript";
 
 export type CourseLogoSize = "large" | "small";
 
+const LOGO_ID_TO_VARIANT: Record<string, CourseLogoVariant> = {
+  html: "HTML",
+  javascript: "JavaScript",
+};
+
+/**
+ * Maps a course logoId (e.g. from API) to a CourseLogo variant.
+ * Returns undefined if logoId is not recognized.
+ */
+export function getVariantFromLogoId(
+  logoId: string | undefined,
+): CourseLogoVariant | undefined {
+  if (!logoId) {
+    return undefined;
+  }
+  return LOGO_ID_TO_VARIANT[logoId.toLowerCase()];
+}
+
 export interface CourseLogoProps {
   /**
    * Visual variant of the logo.

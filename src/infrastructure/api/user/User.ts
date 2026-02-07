@@ -10,7 +10,7 @@ export interface UserPrivate {
   accountInitialized: boolean;
   lastSessionDate: Date | null;
   activeSubscription: Subscription | null;
-  selectedCourse: Pick<Course, "id" | "name" | "language1" | "language2">;
+  selectedCourse: Pick<Course, "id" | "name" | "language">;
   lastViewedStudyMapLevel: number;
 }
 
