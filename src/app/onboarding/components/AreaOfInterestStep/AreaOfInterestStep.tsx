@@ -20,7 +20,6 @@ export interface IAreaOfInterestStepProps {
 }
 
 const AreaOfInterestStep: React.FC<IAreaOfInterestStepProps> = ({
-  selectedId,
   onSelect,
   onContinue,
   canContinue,
@@ -54,32 +53,29 @@ const AreaOfInterestStep: React.FC<IAreaOfInterestStepProps> = ({
   ];
 
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="area-of-interest-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.areaOfInterestTitle")}
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="area-of-interest-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.areaOfInterestTitle")}
+        />
+        <Box sx={{ mt: 2 }}>
+          <LargeRadioButtonGroup
+            data-test="area-of-interest-radio-group"
+            options={options}
+            onChange={onSelect}
+            fullWidth
           />
-          <Box sx={{ mt: 2 }}>
-            <LargeRadioButtonGroup
-              data-test="area-of-interest-radio-group"
-              options={options}
-              defaultSelectedId={selectedId ?? undefined}
-              onChange={onSelect}
-              fullWidth
-            />
-          </Box>
-          <Box data-test="continue-button">
-            <LargeButton
-              onClick={onContinue}
-              disabled={!canContinue}
-            >
-              {tCommon("navigation.continue")}
-            </LargeButton>
-          </Box>
         </Box>
       </Stack>
+      <LargeButton
+        data-test="continue-button"
+        onClick={onContinue}
+        disabled={!canContinue}
+        fullWidth
+      >
+        {tCommon("navigation.continue")}
+      </LargeButton>
     </ContentContainer>
   );
 };

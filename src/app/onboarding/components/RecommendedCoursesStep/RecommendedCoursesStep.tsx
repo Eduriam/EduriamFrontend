@@ -27,49 +27,48 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
   const { t: tForm } = useTranslation("form");
 
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="recommended-courses-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.recommendedForYou")}
-          />
-          <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
-            {courses.map((course, index) => (
-              <Box
-                key={course.id}
-                data-test={
-                  index === 0 ||
-                  course.id === htmlCourseId ||
-                  course.name?.toLowerCase().includes("html")
-                    ? "html-course-card"
-                    : undefined
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="recommended-courses-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.recommendedForYou")}
+        />
+        <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
+          {courses.map((course, index) => (
+            <Box
+              key={course.id}
+              data-test={
+                index === 0 ||
+                course.id === htmlCourseId ||
+                course.name?.toLowerCase().includes("html")
+                  ? "html-course-card"
+                  : undefined
+              }
+            >
+              <CourseCard
+                title={course.name}
+                icon={
+                  <CourseLogo
+                    variant={
+                      course.name?.toLowerCase().includes("javascript")
+                        ? "JavaScript"
+                        : "HTML"
+                    }
+                  />
                 }
-              >
-                <CourseCard
-                  title={course.name}
-                  icon={
-                    <CourseLogo
-                      variant={
-                        course.name?.toLowerCase().includes("javascript")
-                          ? "JavaScript"
-                          : "HTML"
-                      }
-                    />
-                  }
-                  onClick={() => onCourseSelect(course.id)}
-                />
-              </Box>
-            ))}
-          </Stack>
-
-          <Box data-test="explore-all-courses-button">
-            <LargeButton onClick={onExploreAll}>
-              {tForm("onboarding.exploreAllCourses")}
-            </LargeButton>
-          </Box>
-        </Box>
+                onClick={() => onCourseSelect(course.id)}
+              />
+            </Box>
+          ))}
+        </Stack>
       </Stack>
+      <LargeButton
+        data-test="explore-all-courses-button"
+        onClick={onExploreAll}
+        fullWidth
+      >
+        {tForm("onboarding.exploreAllCourses")}
+      </LargeButton>
     </ContentContainer>
   );
 };

@@ -20,7 +20,6 @@ export interface IUserGoalStepProps {
 }
 
 const UserGoalStep: React.FC<IUserGoalStepProps> = ({
-  selectedId,
   onSelect,
   onContinue,
   canContinue,
@@ -50,32 +49,29 @@ const UserGoalStep: React.FC<IUserGoalStepProps> = ({
   ];
 
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="user-goal-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.userGoalTitle")}
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="user-goal-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.userGoalTitle")}
+        />
+        <Box sx={{ mt: 2 }}>
+          <LargeRadioButtonGroup
+            data-test="user-goal-radio-group"
+            options={options}
+            onChange={onSelect}
+            fullWidth
           />
-          <Box sx={{ mt: 2 }}>
-            <LargeRadioButtonGroup
-              data-test="user-goal-radio-group"
-              options={options}
-              defaultSelectedId={selectedId ?? undefined}
-              onChange={onSelect}
-              fullWidth
-            />
-          </Box>
-          <Box data-test="continue-button">
-            <LargeButton
-              onClick={onContinue}
-              disabled={!canContinue}
-            >
-              {tCommon("navigation.continue")}
-            </LargeButton>
-          </Box>
         </Box>
       </Stack>
+      <LargeButton
+        data-test="continue-button"
+        onClick={onContinue}
+        disabled={!canContinue}
+        fullWidth
+      >
+        {tCommon("navigation.continue")}
+      </LargeButton>
     </ContentContainer>
   );
 };

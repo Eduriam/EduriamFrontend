@@ -3,7 +3,6 @@
 import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 export interface IOnboardingCompleteStepProps {
@@ -16,20 +15,20 @@ const OnboardingCompleteStep: React.FC<IOnboardingCompleteStepProps> = ({
   const { t: tForm } = useTranslation("form");
 
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="onboarding-complete-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.startLearning")}
-          />
-          <Box data-test="start-learning-button">
-            <LargeButton onClick={onStartLearning}>
-              {tForm("onboarding.startLearning")}
-            </LargeButton>
-          </Box>
-        </Box>
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="onboarding-complete-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.startLearning")}
+        />
       </Stack>
+      <LargeButton
+        data-test="start-learning-button"
+        onClick={onStartLearning}
+        fullWidth
+      >
+        {tForm("onboarding.startLearning")}
+      </LargeButton>
     </ContentContainer>
   );
 };

@@ -49,7 +49,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
         >
           <Illustration name="eduriam-logo" width={128} height={128} />
 
-          <Header level="page" text="Eduriam" />
+          <Header variant="page" text="Eduriam" align="center" />
 
           <Box
             data-test="welcome-value-proposition-section"

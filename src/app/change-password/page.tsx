@@ -43,9 +43,8 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
             >
               <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <Header
-                  level="title"
+                  variant="title"
                   text={t("changePassword.passwordChanged")}
-                  sx={{ color: "common.black", textAlign: "left" }}
                 />
                 <Typography
                   variant="body1"
@@ -83,9 +82,8 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
             >
               <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <Header
-                  level="title"
+                  variant="title"
                   text={t("changePassword.invalidLink")}
-                  sx={{ color: "common.black", textAlign: "left" }}
                 />
                 <Typography
                   variant="body1"

@@ -7,7 +7,6 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import ValuePropositionListItem from "../ValuePropositionListItem";
@@ -23,26 +22,26 @@ const ValuePropositionStep: React.FC<IValuePropositionStepProps> = ({
   const { t: tCommon } = useTranslation("common");
 
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="value-proposition-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.valuePropositionTitle")}
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="value-proposition-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.valuePropositionTitle")}
+        />
+        <Stack spacing={0} sx={{ mt: 2 }}>
+          <ValuePropositionListItem
+            title={tForm("onboarding.valuePropositionTitle")}
+            illustrationName="eduriam-logo"
           />
-          <Stack spacing={0} sx={{ mt: 2 }}>
-            <ValuePropositionListItem
-              title={tForm("onboarding.valuePropositionTitle")}
-              illustrationName="eduriam-logo"
-            />
-          </Stack>
-          <Box data-test="continue-button">
-            <LargeButton onClick={onContinue}>
-              {tCommon("navigation.continue")}
-            </LargeButton>
-          </Box>
-        </Box>
+        </Stack>
       </Stack>
+      <LargeButton
+        data-test="continue-button"
+        onClick={onContinue}
+        fullWidth
+      >
+        {tCommon("navigation.continue")}
+      </LargeButton>
     </ContentContainer>
   );
 };

@@ -34,7 +34,6 @@ export interface IDailyGoalStepProps {
 }
 
 const DailyGoalStep: React.FC<IDailyGoalStepProps> = ({
-  selectedValue,
   onSelect,
   onContinue,
   canContinue,
@@ -62,38 +61,30 @@ const DailyGoalStep: React.FC<IDailyGoalStepProps> = ({
     }
   };
 
-  const defaultSelectedId = DAILY_GOAL_OPTIONS.find(
-    (o) => o.value === selectedValue,
-  )?.id;
-
   return (
-    <ContentContainer width="small">
-      <Stack spacing={3} sx={{ py: 2 }}>
-        <Box data-test="daily-goal-section">
-          <Header
-            component="h1"
-            text={tForm("onboarding.dailyGoalTitle")}
+    <ContentContainer width="small" justifyContent="space-between">
+      <Stack spacing={6} data-test="daily-goal-section">
+        <Header
+          variant="section"
+          text={tForm("onboarding.dailyGoalTitle")}
+        />
+        <Box sx={{ mt: 2 }}>
+          <LargeRadioButtonGroup
+            data-test="daily-goal-radio-group"
+            options={options}
+            onChange={handleChange}
+            fullWidth
           />
-          <Box sx={{ mt: 2 }}>
-            <LargeRadioButtonGroup
-              data-test="daily-goal-radio-group"
-              options={options}
-              defaultSelectedId={defaultSelectedId}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Box>
-
-          <Box data-test="continue-button">
-            <LargeButton
-              onClick={onContinue}
-              disabled={!canContinue}
-            >
-              {tCommon("navigation.continue")}
-            </LargeButton>
-          </Box>
         </Box>
       </Stack>
+      <LargeButton
+        data-test="continue-button"
+        onClick={onContinue}
+        disabled={!canContinue}
+        fullWidth
+      >
+        {tCommon("navigation.continue")}
+      </LargeButton>
     </ContentContainer>
   );
 };

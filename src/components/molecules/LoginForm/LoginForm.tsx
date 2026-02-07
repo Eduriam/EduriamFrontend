@@ -48,11 +48,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
 
   return (
     <>
-      <Header
-        level="title"
-        text={t("auth.login-header")}
-        sx={{ color: "common.black", textAlign: "center" }}
-      />
+      <Header variant="title" text={t("auth.login-header")} align="center" />
       <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
         <Stack
           direction="column"

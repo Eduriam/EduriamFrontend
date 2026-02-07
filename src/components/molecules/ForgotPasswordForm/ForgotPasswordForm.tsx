@@ -54,17 +54,7 @@ const ForgotPasswordForm: React.FC<IForgotPasswordForm> = ({ onEmailSent }) => {
       justifyContent="center"
       sx={{ gap: "128px", width: "100%" }}
     >
-      <Header
-        level="title"
-        text={t("forgotPassword.title")}
-        sx={{
-          color: "common.black",
-          fontSize: 40,
-          fontWeight: 700,
-          lineHeight: "40px",
-          textAlign: "left",
-        }}
-      />
+      <Header variant="title" text={t("forgotPassword.title")} align="center" />
       <Stack
         direction="column"
         component="form"

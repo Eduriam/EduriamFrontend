@@ -1,6 +1,6 @@
 "use client";
 
-import { BasicNavbar, PageRoot } from "@eduriam/ui-core";
+import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -67,6 +67,10 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 
   const currentStepIndex = STEPS.indexOf(step);
   const showBack = currentStepIndex > 0 && step !== "all-courses";
+  const progressValue =
+    STEPS.length > 1
+      ? Math.round((currentStepIndex / (STEPS.length - 1)) * 100)
+      : 0;
 
   const handleBack = () => {
     if (step === "recommended-courses" && showAllCourses) {
@@ -128,14 +132,17 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   return (
     <PageRoot>
       <Box data-test="onboarding-page" sx={{ display: "contents" }}>
-        {showBack && (
-          <BasicNavbar
-            leftButton={{
-              icon: icons.back,
-              onClick: handleBack,
-            }}
-          />
-        )}
+        <ProgressNavbar
+          leftButton={
+            showBack
+              ? {
+                  icon: icons.back,
+                  onClick: handleBack,
+                }
+              : undefined
+          }
+          progressValue={progressValue}
+        />
 
         {step === "coding-experience" && (
           <CodingExperienceStep
@@ -190,7 +197,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
             selectedValue={dailyGoalValue}
             onSelect={setDailyGoalValue}
             onContinue={handleContinue}
-            canContinue={canContinue}
+            canContinue={!!canContinue}
           />
         )}
 

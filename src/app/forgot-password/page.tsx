@@ -48,11 +48,7 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
         ) : (
           <>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <Header
-                level="title"
-                text={t("forgotPassword.passwordSent")}
-                sx={{ color: "common.black", textAlign: "left" }}
-              />
+              <Header variant="title" text={t("forgotPassword.passwordSent")} />
               <Typography
                 variant="body1"
                 sx={{ color: "#989898", textAlign: "left" }}
