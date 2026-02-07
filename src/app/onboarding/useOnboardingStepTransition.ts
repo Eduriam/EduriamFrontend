@@ -27,7 +27,9 @@ export const useOnboardingStepTransition = <TStep extends string>() => {
   >(null);
 
   useEffect(() => {
-    if (leavingStep === null) return;
+    if (leavingStep === null) {
+      return;
+    }
     const t = setTimeout(() => {
       setLeavingStep(null);
       setLeavingShowAllCourses(null);

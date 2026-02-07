@@ -24,6 +24,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
   const [page, setPage] = useState(0);
 
   const [selectedCourseId, setSelectedCourseId] = useState<Id>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- setter used by SelectTopicsForm; value reserved for future use
   const [selectedTopics, setSelectedTopics] = useState<Array<Topic>>([]);
   const [startOptionId, setStartOptionId] = useState<StartOptionId>();
   const { courses } = UserCoursesAPI.useUserCourses();
@@ -91,9 +92,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
           {startOptionId === "selectLevel" && selectedCourseId && (
             <ContentContainer>
               <SelectLevelForm
-                onSubmit={(levelOption) =>
-                  submitSetup(selectedCourseId)
-                }
+                onSubmit={() => submitSetup(selectedCourseId)}
               />
             </ContentContainer>
           )}
@@ -101,9 +100,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
           {startOptionId === "takeTest" && selectedCourseId && (
             <PlacementTest
               courseId={selectedCourseId}
-              onSubmit={(levelOption) =>
-                submitSetup(selectedCourseId)
-              }
+              onSubmit={() => submitSetup(selectedCourseId)}
               onCancel={() => {
                 decrementPage();
                 setStartOptionId(undefined);
