@@ -50,6 +50,10 @@ const AreaOfInterestStep: React.FC<IAreaOfInterestStepProps> = ({
       subText: tForm("onboarding.areaOfInterestOptions.fullstack.subText"),
       "data-test": "fullstack-option",
     },
+    {
+      id: "other-option",
+      text: tForm("onboarding.areaOfInterestOptions.other.text"),
+    },
   ];
 
   return (

@@ -83,15 +83,23 @@
         "subText": "Programuji profesionálně nebo mám hodně zkušeností."
       }
     },
-    "areaOfInterestTitle": "Co se chcete naučit?",
+    "areaOfInterestTitle": "Která témata se chcete nejvíce naučit?",
     "areaOfInterestOptions": {
       "frontend-development": {
-        "text": "Frontend vývoj"
+        "text": "Vytváření webových stránek a aplikací",
+        "subText": "React, Next.js, Tailwind, TypeScript, ..."
       },
       "backend-development": {
-        "text": "Backend vývoj"
+        "text": "Backend vývoj",
+        "subText": "API, Node.js, Docker, SQL, NoSQL, ..."
       },
-      "fullstack": { "text": "Fullstack vývoj" }
+      "fullstack": {
+        "text": "Fullstack vývoj",
+        "subText": "Creating the entire application, from frontend to backend."
+      },
+      "other": {
+        "text": "Something else"
+      }
     },
     "userGoalTitle": "Jaký je váš cíl?",
     "userGoalOptions": {
