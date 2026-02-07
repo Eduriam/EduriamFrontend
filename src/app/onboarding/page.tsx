@@ -1,15 +1,6 @@
 "use client";
 
-import type { LargeRadioButtonOption } from "@eduriam/ui-core";
-import {
-  BasicNavbar,
-  ContentContainer,
-  Header,
-  LargeButton,
-  LargeRadioButtonGroup,
-  PageRoot,
-} from "@eduriam/ui-core";
-import { useTranslation } from "i18n/client";
+import { BasicNavbar, PageRoot } from "@eduriam/ui-core";
 import icons from "styles/icons";
 
 import { useState } from "react";
@@ -17,17 +8,20 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-
-import CourseCard from "components/courses/CourseCard/CourseCard";
-import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import AccountSetupAPI from "infrastructure/api/user/account-setup/AccountSetupAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
-import ValuePropositionListItem from "./components/ValuePropositionListItem";
+import AllCoursesStep from "./components/AllCoursesStep";
+import AreaOfInterestStep from "./components/AreaOfInterestStep";
+import CodingExperienceStep from "./components/CodingExperienceStep";
+import DailyGoalStep from "./components/DailyGoalStep";
+import OnboardingCompleteStep from "./components/OnboardingCompleteStep";
+import RecommendedCoursesStep from "./components/RecommendedCoursesStep";
+import UserGoalStep from "./components/UserGoalStep";
+import ValuePropositionStep from "./components/ValuePropositionStep";
 
 type OnboardingStep =
   | "coding-experience"
@@ -49,19 +43,10 @@ const STEPS: OnboardingStep[] = [
   "complete",
 ];
 
-const DAILY_GOAL_OPTIONS: Array<{ id: string; value: number }> = [
-  { id: "5-option", value: 300000 },
-  { id: "10-option", value: 600000 },
-  { id: "15-option", value: 900000 },
-  { id: "20-option", value: 1200000 },
-];
-
 export interface IOnboardingPage {}
 
 const OnboardingPage: React.FC<IOnboardingPage> = () => {
-  const { t: tForm } = useTranslation("form");
-  const { t: tCommon } = useTranslation("common");
-  const { revalidateUser } = useAuth();
+  const revalidateUser = useAuth().revalidateUser;
   const router = useRouter();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
@@ -133,92 +118,6 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     router.push("/");
   };
 
-  const codingExperienceOptions: LargeRadioButtonOption[] = [
-    {
-      id: "beginner-option",
-      text: tForm("onboarding.codingExperienceOptions.beginner.text"),
-      subText: tForm("onboarding.codingExperienceOptions.beginner.subText"),
-      "data-test": "beginner-option",
-    },
-    {
-      id: "intermediate-option",
-      text: tForm("onboarding.codingExperienceOptions.intermediate.text"),
-      subText: tForm("onboarding.codingExperienceOptions.intermediate.subText"),
-      "data-test": "intermediate-option",
-    },
-    {
-      id: "advanced-option",
-      text: tForm("onboarding.codingExperienceOptions.advanced.text"),
-      subText: tForm("onboarding.codingExperienceOptions.advanced.subText"),
-      "data-test": "advanced-option",
-    },
-  ];
-
-  const areaOfInterestOptions: LargeRadioButtonOption[] = [
-    {
-      id: "frontend-development-option",
-      text: tForm("onboarding.areaOfInterestOptions.frontend-development.text"),
-      subText: tForm(
-        "onboarding.areaOfInterestOptions.frontend-development.subText",
-      ),
-      "data-test": "frontend-development-option",
-    },
-    {
-      id: "backend-development-option",
-      text: tForm("onboarding.areaOfInterestOptions.backend-development.text"),
-      subText: tForm(
-        "onboarding.areaOfInterestOptions.backend-development.subText",
-      ),
-      "data-test": "backend-development-option",
-    },
-    {
-      id: "fullstack-option",
-      text: tForm("onboarding.areaOfInterestOptions.fullstack.text"),
-      subText: tForm("onboarding.areaOfInterestOptions.fullstack.subText"),
-      "data-test": "fullstack-option",
-    },
-  ];
-
-  const userGoalOptions: LargeRadioButtonOption[] = [
-    {
-      id: "switch-career-option",
-      text: tForm("onboarding.userGoalOptions.switch-career.text"),
-      subText: tForm("onboarding.userGoalOptions.switch-career.subText"),
-      "data-test": "switch-career-option",
-    },
-    {
-      id: "learn-hobby-option",
-      text: tForm("onboarding.userGoalOptions.learn-hobby.text"),
-      subText: tForm("onboarding.userGoalOptions.learn-hobby.subText"),
-      "data-test": "learn-hobby-option",
-    },
-    {
-      id: "improve-skills-option",
-      text: tForm("onboarding.userGoalOptions.improve-skills.text"),
-      subText: tForm("onboarding.userGoalOptions.improve-skills.subText"),
-      "data-test": "improve-skills-option",
-    },
-  ];
-
-  const goalOptionKey: Record<string, string> = {
-    "5-option": "casual",
-    "10-option": "medium",
-    "15-option": "dedicated",
-    "20-option": "intense",
-  };
-  const dailyGoalOptions: LargeRadioButtonOption[] = DAILY_GOAL_OPTIONS.map(
-    (opt) => ({
-      id: opt.id,
-      text: tForm(
-        `accountSetup.goalSelectOptions.${goalOptionKey[opt.id]}.name`,
-      ),
-      subText: tForm(
-        `accountSetup.goalSelectOptions.${goalOptionKey[opt.id]}.description`,
-      ),
-      "data-test": opt.id,
-    }),
-  );
-
   const canContinue =
     (step === "coding-experience" && codingExperience) ||
     (step === "area-of-interest" && areaOfInterest) ||
@@ -238,264 +137,65 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           />
         )}
 
-        {/* Coding experience */}
         {step === "coding-experience" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="coding-experience-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.codingExperienceTitle")}
-                />
-                <Box sx={{ mt: 2 }}>
-                  <LargeRadioButtonGroup
-                    data-test="coding-experience-radio-group"
-                    options={codingExperienceOptions}
-                    onChange={setCodingExperience}
-                    fullWidth
-                  />
-                </Box>
-                <LargeButton
-                  data-test="continue-button"
-                  onClick={handleContinue}
-                  disabled={!canContinue}
-                >
-                  {tCommon("navigation.continue")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <CodingExperienceStep
+            selectedId={codingExperience}
+            onSelect={setCodingExperience}
+            onContinue={handleContinue}
+            canContinue={!!codingExperience}
+          />
         )}
 
-        {/* Area of interest */}
         {step === "area-of-interest" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="area-of-interest-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.areaOfInterestTitle")}
-                />
-                <Box sx={{ mt: 2 }}>
-                  <LargeRadioButtonGroup
-                    data-test="area-of-interest-radio-group"
-                    options={areaOfInterestOptions}
-                    onChange={setAreaOfInterest}
-                    fullWidth
-                  />
-                </Box>
-                <LargeButton
-                  data-test="continue-button"
-                  onClick={handleContinue}
-                  disabled={!canContinue}
-                >
-                  {tCommon("navigation.continue")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <AreaOfInterestStep
+            selectedId={areaOfInterest}
+            onSelect={setAreaOfInterest}
+            onContinue={handleContinue}
+            canContinue={!!areaOfInterest}
+          />
         )}
 
-        {/* User goal */}
         {step === "user-goal" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="user-goal-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.userGoalTitle")}
-                />
-                <Box sx={{ mt: 2 }}>
-                  <LargeRadioButtonGroup
-                    data-test="user-goal-radio-group"
-                    options={userGoalOptions}
-                    onChange={setUserGoal}
-                    fullWidth
-                  />
-                </Box>
-                <LargeButton
-                  data-test="continue-button"
-                  onClick={handleContinue}
-                  disabled={!canContinue}
-                >
-                  {tCommon("navigation.continue")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <UserGoalStep
+            selectedId={userGoal}
+            onSelect={setUserGoal}
+            onContinue={handleContinue}
+            canContinue={!!userGoal}
+          />
         )}
 
-        {/* Value proposition */}
         {step === "value-proposition" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="value-proposition-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.valuePropositionTitle")}
-                />
-                <Stack spacing={0} sx={{ mt: 2 }}>
-                  <ValuePropositionListItem
-                    title={tForm("onboarding.valuePropositionTitle")}
-                    illustrationName="eduriam-logo"
-                  />
-                </Stack>
-                <LargeButton
-                  data-test="continue-button"
-                  onClick={handleContinue}
-                  disabled={!canContinue}
-                >
-                  {tCommon("navigation.continue")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <ValuePropositionStep onContinue={handleContinue} />
         )}
 
-        {/* Recommended courses */}
         {step === "recommended-courses" && !showAllCourses && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="recommended-courses-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.recommendedForYou")}
-                />
-                <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
-                  {displayCourses.map((course, index) => (
-                    <Box
-                      key={course.id}
-                      data-test={
-                        index === 0 ||
-                        course.id === htmlCourseId ||
-                        course.name?.toLowerCase().includes("html")
-                          ? "html-course-card"
-                          : undefined
-                      }
-                    >
-                      <CourseCard
-                        title={course.name}
-                        icon={
-                          <CourseLogo
-                            variant={
-                              course.name?.toLowerCase().includes("javascript")
-                                ? "JavaScript"
-                                : "HTML"
-                            }
-                          />
-                        }
-                        onClick={() => handleCourseSelect(course.id)}
-                      />
-                    </Box>
-                  ))}
-                </Stack>
-
-                <LargeButton
-                  data-test="explore-all-courses-button"
-                  onClick={() => setShowAllCourses(true)}
-                >
-                  {tForm("onboarding.exploreAllCourses")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <RecommendedCoursesStep
+            courses={displayCourses}
+            htmlCourseId={htmlCourseId}
+            onCourseSelect={handleCourseSelect}
+            onExploreAll={() => setShowAllCourses(true)}
+          />
         )}
 
-        {/* All courses */}
         {step === "recommended-courses" && showAllCourses && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="all-courses-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.exploreAllCourses")}
-                />
-                <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
-                  {allCourses.map((course, index) => (
-                    <Box
-                      key={course.id}
-                      data-test={
-                        index === 0 ||
-                        course.id === htmlCourseId ||
-                        course.name?.toLowerCase().includes("html")
-                          ? "html-course-card"
-                          : undefined
-                      }
-                    >
-                      <CourseCard
-                        title={course.name}
-                        icon={
-                          <CourseLogo
-                            variant={
-                              course.name?.toLowerCase().includes("javascript")
-                                ? "JavaScript"
-                                : "HTML"
-                            }
-                          />
-                        }
-                        onClick={() => handleCourseSelect(course.id)}
-                      />
-                    </Box>
-                  ))}
-                </Stack>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <AllCoursesStep
+            courses={allCourses}
+            htmlCourseId={htmlCourseId}
+            onCourseSelect={handleCourseSelect}
+          />
         )}
 
-        {/* Daily goal */}
         {step === "daily-goal" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="daily-goal-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.dailyGoalTitle")}
-                />
-                <Box sx={{ mt: 2 }}>
-                  <LargeRadioButtonGroup
-                    data-test="daily-goal-radio-group"
-                    options={dailyGoalOptions}
-                    onChange={(id) => {
-                      const opt = DAILY_GOAL_OPTIONS.find((o) => o.id === id);
-                      if (opt) {
-                        setDailyGoalValue(opt.value);
-                      }
-                    }}
-                    fullWidth
-                  />
-                </Box>
-
-                <LargeButton
-                  data-test="continue-button"
-                  onClick={handleContinue}
-                  disabled={!canContinue}
-                >
-                  {tCommon("navigation.continue")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <DailyGoalStep
+            selectedValue={dailyGoalValue}
+            onSelect={setDailyGoalValue}
+            onContinue={handleContinue}
+            canContinue={canContinue}
+          />
         )}
 
-        {/* Complete */}
         {step === "complete" && (
-          <ContentContainer width="small">
-            <Stack spacing={3} sx={{ py: 2 }}>
-              <Box data-test="onboarding-complete-section">
-                <Header
-                  component="h1"
-                  text={tForm("onboarding.startLearning")}
-                />
-                <LargeButton
-                  data-test="start-learning-button"
-                  onClick={handleStartLearning}
-                >
-                  {tForm("onboarding.startLearning")}
-                </LargeButton>
-              </Box>
-            </Stack>
-          </ContentContainer>
+          <OnboardingCompleteStep onStartLearning={handleStartLearning} />
         )}
       </Box>
     </PageRoot>

@@ -1,0 +1,77 @@
+"use client";
+
+import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
+import { useTranslation } from "i18n/client";
+
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+
+import CourseCard from "components/courses/CourseCard/CourseCard";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
+
+import type { Course } from "infrastructure/api/courses/Courses";
+
+export interface IRecommendedCoursesStepProps {
+  courses: Course[];
+  htmlCourseId: Id | undefined;
+  onCourseSelect: (courseId: Id) => void;
+  onExploreAll: () => void;
+}
+
+const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
+  courses,
+  htmlCourseId,
+  onCourseSelect,
+  onExploreAll,
+}) => {
+  const { t: tForm } = useTranslation("form");
+
+  return (
+    <ContentContainer width="small">
+      <Stack spacing={3} sx={{ py: 2 }}>
+        <Box data-test="recommended-courses-section">
+          <Header
+            component="h1"
+            text={tForm("onboarding.recommendedForYou")}
+          />
+          <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
+            {courses.map((course, index) => (
+              <Box
+                key={course.id}
+                data-test={
+                  index === 0 ||
+                  course.id === htmlCourseId ||
+                  course.name?.toLowerCase().includes("html")
+                    ? "html-course-card"
+                    : undefined
+                }
+              >
+                <CourseCard
+                  title={course.name}
+                  icon={
+                    <CourseLogo
+                      variant={
+                        course.name?.toLowerCase().includes("javascript")
+                          ? "JavaScript"
+                          : "HTML"
+                      }
+                    />
+                  }
+                  onClick={() => onCourseSelect(course.id)}
+                />
+              </Box>
+            ))}
+          </Stack>
+
+          <Box data-test="explore-all-courses-button">
+            <LargeButton onClick={onExploreAll}>
+              {tForm("onboarding.exploreAllCourses")}
+            </LargeButton>
+          </Box>
+        </Box>
+      </Stack>
+    </ContentContainer>
+  );
+};
+
+export default RecommendedCoursesStep;
