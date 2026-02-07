@@ -104,16 +104,22 @@
     "userGoalTitle": "Jaký je váš cíl?",
     "userGoalOptions": {
       "switch-career": {
-        "text": "Přestoupit do IT",
-        "subText": "Chci změnit kariéru."
+        "text": "Změnit kariéru"
       },
-      "learn-hobby": {
-        "text": "Učit se pro zábavu",
-        "subText": "Programování jako koníček."
+      "build-project": {
+        "text": "Vytvořit vlastní projekt"
       },
-      "improve-skills": {
-        "text": "Zlepšit dovednosti",
-        "subText": "Už programuji, chci být lepší."
+      "learn-school": {
+        "text": "Excelovat ve škole nebo na univerzitě"
+      },
+      "advance-career": {
+        "text": "Postoupit v současné kariéře"
+      },
+      "learn-for-fun": {
+        "text": "Učit se programovat pro zábavu"
+      },
+      "something-else": {
+        "text": "Něco jiného"
       }
     },
     "valuePropositionTitle": "Co získáte",

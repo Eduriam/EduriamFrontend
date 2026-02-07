@@ -31,20 +31,32 @@ const UserGoalStep: React.FC<IUserGoalStepProps> = ({
     {
       id: "switch-career-option",
       text: tForm("onboarding.userGoalOptions.switch-career.text"),
-      subText: tForm("onboarding.userGoalOptions.switch-career.subText"),
       "data-test": "switch-career-option",
     },
     {
-      id: "learn-hobby-option",
-      text: tForm("onboarding.userGoalOptions.learn-hobby.text"),
-      subText: tForm("onboarding.userGoalOptions.learn-hobby.subText"),
-      "data-test": "learn-hobby-option",
+      id: "build-project-option",
+      text: tForm("onboarding.userGoalOptions.build-project.text"),
+      "data-test": "build-project-option",
     },
     {
-      id: "improve-skills-option",
-      text: tForm("onboarding.userGoalOptions.improve-skills.text"),
-      subText: tForm("onboarding.userGoalOptions.improve-skills.subText"),
-      "data-test": "improve-skills-option",
+      id: "learn-school-option",
+      text: tForm("onboarding.userGoalOptions.learn-school.text"),
+      "data-test": "learn-school-option",
+    },
+    {
+      id: "advance-career-option",
+      text: tForm("onboarding.userGoalOptions.advance-career.text"),
+      "data-test": "advance-career-option",
+    },
+    {
+      id: "learn-for-fun-option",
+      text: tForm("onboarding.userGoalOptions.learn-for-fun.text"),
+      "data-test": "learn-for-fun-option",
+    },
+    {
+      id: "something-else-option",
+      text: tForm("onboarding.userGoalOptions.something-else.text"),
+      "data-test": "something-else-option",
     },
   ];
 
