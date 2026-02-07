@@ -33,7 +33,7 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
           variant="section"
           text={tForm("onboarding.recommendedForYou")}
         />
-        <Stack direction="column" spacing={1} sx={{ mt: 2 }}>
+        <Stack direction="column" spacing={3}>
           {courses.map((course, index) => (
             <Box
               key={course.id}
@@ -61,14 +61,15 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
             </Box>
           ))}
         </Stack>
+        <LargeButton
+          data-test="explore-all-courses-button"
+          onClick={onExploreAll}
+          fullWidth
+          variant="text"
+        >
+          {tForm("onboarding.exploreAllCourses")}
+        </LargeButton>
       </Stack>
-      <LargeButton
-        data-test="explore-all-courses-button"
-        onClick={onExploreAll}
-        fullWidth
-      >
-        {tForm("onboarding.exploreAllCourses")}
-      </LargeButton>
     </ContentContainer>
   );
 };
