@@ -106,7 +106,6 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
         selectedTopicIds: [],
       });
       await UserCoursesAPI.selectCourse(selectedCourseId);
-      await revalidateUser();
       setStep("complete");
     } catch {
       setStep("complete");
@@ -118,7 +117,8 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     setStep("daily-goal");
   };
 
-  const handleStartLearning = () => {
+  const handleStartLearning = async () => {
+    await revalidateUser();
     router.push("/");
   };
 
