@@ -65,10 +65,7 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
           dailyGoal: selectedGoal.value,
         });
 
-        await UserCoursesAPI.enrollInCourse(selectedCourseId, {
-          startingLevel: startingLevel,
-          selectedTopicIds: selectedTopics.map((topic) => topic.id),
-        });
+        await UserCoursesAPI.enrollInCourse(selectedCourseId);
 
         await UserCoursesAPI.selectCourse(selectedCourseId);
 

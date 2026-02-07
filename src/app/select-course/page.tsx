@@ -12,7 +12,6 @@ import SelectStartForm from "components/molecules/forms/SelectStartForm/SelectSt
 import { StartOptionId } from "components/molecules/forms/SelectStartForm/config";
 import SelectTopicsForm from "components/molecules/forms/SelectTopicsForm/SelectTopicsForm";
 
-import { EnrollInCourseDTO } from "infrastructure/api/user/courses/UserCourses";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import { Topic } from "infrastructure/api/user/topics/Topics";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -39,8 +38,8 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
     }
   }
 
-  async function submitSetup(courseId: Id, content: EnrollInCourseDTO) {
-    await UserCoursesAPI.enrollInCourse(courseId, content);
+  async function submitSetup(courseId: Id) {
+    await UserCoursesAPI.enrollInCourse(courseId);
     await revalidateUser();
     router.push("/");
   }
@@ -79,10 +78,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
                 setStartOptionId(startOptionId);
 
                 if (startOptionId === "startFromZero") {
-                  submitSetup(selectedCourseId, {
-                    selectedTopicIds: selectedTopics.map((topic) => topic.id),
-                    startingLevel: "a1",
-                  });
+                  submitSetup(selectedCourseId);
                 } else {
                   incrementPage();
                 }
@@ -96,10 +92,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
             <ContentContainer>
               <SelectLevelForm
                 onSubmit={(levelOption) =>
-                  submitSetup(selectedCourseId, {
-                    selectedTopicIds: selectedTopics.map((topic) => topic.id),
-                    startingLevel: levelOption.id,
-                  })
+                  submitSetup(selectedCourseId)
                 }
               />
             </ContentContainer>
@@ -109,10 +102,7 @@ const SelectCoursePage: React.FC<ISelectCoursePage> = () => {
             <PlacementTest
               courseId={selectedCourseId}
               onSubmit={(levelOption) =>
-                submitSetup(selectedCourseId, {
-                  selectedTopicIds: selectedTopics.map((topic) => topic.id),
-                  startingLevel: levelOption,
-                })
+                submitSetup(selectedCourseId)
               }
               onCancel={() => {
                 decrementPage();

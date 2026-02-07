@@ -24,8 +24,7 @@ Given("I am logged in", async function (this: CustomWorld) {
     selectedCourse: {
       id: "test-course",
       name: "Test course",
-      language1: "en-US",
-      language2: "cs",
+      language: "en-US",
     },
     lastViewedStudyMapLevel: 0,
   };

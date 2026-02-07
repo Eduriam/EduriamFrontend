@@ -2564,6 +2564,35 @@
       "responseMode": null
     },
     {
+      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/recommended-courses",
+      "responses": [
+        {
+          "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+          "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"react-developer\",\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\"\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"frontend-developer\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"career-path\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
       "uuid": "cb813032-aed1-4f03-a57f-40e555d2ca94",
       "type": "http",
       "documentation": "",
@@ -4172,6 +4201,10 @@
         {
           "type": "folder",
           "uuid": "1d58577b-3d83-47d2-84e2-1c05839b3f6d"
+        },
+        {
+          "type": "folder",
+          "uuid": "22e5017c-7324-48c6-abfe-03faca17e8ce"
         }
       ]
     },
@@ -4312,6 +4345,16 @@
         {
           "type": "route",
           "uuid": "e2bbf69a-63ca-4e2f-be65-49751b34611d"
+        }
+      ]
+    },
+    {
+      "uuid": "22e5017c-7324-48c6-abfe-03faca17e8ce",
+      "name": "recommended-courses",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
         }
       ]
     }

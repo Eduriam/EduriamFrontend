@@ -4,7 +4,7 @@ import { parseQueryParams } from "util/functions/api";
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
 
-import { EnrollInCourseDTO, UserCourse } from "./UserCourses";
+import { UserCourse } from "./UserCourses";
 
 export interface CourseParams {}
 
@@ -20,11 +20,8 @@ const UserCoursesAPI = {
     return { courses: data, ...rest };
   },
 
-  async enrollInCourse(
-    courseId: Id,
-    content: EnrollInCourseDTO,
-  ): Promise<void> {
-    return API.put(`${this.URI}/${courseId}`, content);
+  async enrollInCourse(courseId: Id): Promise<void> {
+    return API.put(`${this.URI}/${courseId}`, {});
   },
 
   async selectCourse(courseId: Id): Promise<void> {

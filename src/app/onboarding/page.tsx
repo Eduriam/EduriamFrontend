@@ -11,7 +11,9 @@ import Box from "@mui/material/Box";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import AccountSetupAPI from "infrastructure/api/user/account-setup/AccountSetupAPI";
+import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import AllCoursesStep from "./components/AllCoursesStep";
@@ -57,8 +59,10 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const [dailyGoalValue, setDailyGoalValue] = useState<number | null>(null);
   const [showAllCourses, setShowAllCourses] = useState(false);
 
+  const { recommendedCourses: recommendedFromApi } =
+    RecommendedCoursesAPI.useRecommendedCourses();
   const { courses } = CoursesAPI.useCourses({});
-  const recommendedCourses = courses ?? [];
+  const recommendedCourses = (recommendedFromApi ?? []).slice(0, 3);
   const allCourses = courses ?? [];
   const htmlCourseId = allCourses.find(
     (c) => c.name?.toLowerCase().includes("html") || c.id === "html",
@@ -81,17 +85,32 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (step === "coding-experience" && codingExperience) {
       setStep("area-of-interest");
     } else if (step === "area-of-interest" && areaOfInterest) {
       setStep("user-goal");
     } else if (step === "user-goal" && userGoal) {
+      await updateCoursePreferences();
       setStep("value-proposition");
     } else if (step === "value-proposition") {
       setStep("recommended-courses");
     } else if (step === "daily-goal" && dailyGoalValue !== null) {
       submitOnboarding();
+    }
+  };
+
+  const updateCoursePreferences = async () => {
+    try {
+      await SettingsAPI.updateSettings({
+        coursePreferences: {
+          codingExperience: codingExperience ?? undefined,
+          areaOfInterest: areaOfInterest ?? undefined,
+          userGoal: userGoal ?? undefined,
+        },
+      });
+    } catch {
+      // Continue to next step even if update fails
     }
   };
 
@@ -101,10 +120,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     }
     try {
       await AccountSetupAPI.setupAccount({ dailyGoal: dailyGoalValue });
-      await UserCoursesAPI.enrollInCourse(selectedCourseId, {
-        startingLevel: "a1",
-        selectedTopicIds: [],
-      });
+      await UserCoursesAPI.enrollInCourse(selectedCourseId);
       await UserCoursesAPI.selectCourse(selectedCourseId);
       setStep("complete");
     } catch {
