@@ -46,7 +46,7 @@ const ValuePropositionListItem: React.FC<IValuePropositionListItemProps> = ({
           justifyContent: "center",
         }}
       >
-        <Illustration name={illustrationName} width={64} height={64} />
+        <Illustration name={illustrationName} width={70} height={70} />
       </Box>
 
       <Box
@@ -58,26 +58,10 @@ const ValuePropositionListItem: React.FC<IValuePropositionListItemProps> = ({
           gap: "8px",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "18px",
-            lineHeight: 1,
-            fontWeight: 400,
-            color: "text.primary",
-          }}
-        >
-          {title}
-        </Typography>
+        <Typography variant="subtitle1">{title}</Typography>
 
         {description && (
-          <Typography
-            sx={{
-              fontSize: "16px",
-              lineHeight: 1,
-              fontWeight: 400,
-              color: "text.secondary",
-            }}
-          >
+          <Typography variant="body1" color="textSecondary">
             {description}
           </Typography>
         )}

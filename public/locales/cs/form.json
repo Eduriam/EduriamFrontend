@@ -122,7 +122,21 @@
         "text": "Něco jiného"
       }
     },
-    "valuePropositionTitle": "Co získáte",
+    "valuePropositionTitle": "S Eduriamem to dokážete!",
+    "valuePropositionItems": {
+      "masterProgramming": {
+        "title": "Zdokonalíte programování",
+        "description": "Staňte se skvelým programátorem pomocí krátých a zábavných cvičení"
+      },
+      "buildKnowledge": {
+        "title": "Vybudujete si znalosti",
+        "description": "Díky chytrému opakování nikdy nezapomenete, co se naučíte"
+      },
+      "improveEveryDay": {
+        "title": "Zlepšujte se každý den",
+        "description": "Vytvořte si návyk učení pomocí výzev, žebříčků a dalších funkcí"
+      }
+    },
     "exploreAllCourses": "Prozkoumat všechny kurzy",
     "startLearning": "Začít učit se",
     "recommendedForYou": "Doporučeno pro vás",

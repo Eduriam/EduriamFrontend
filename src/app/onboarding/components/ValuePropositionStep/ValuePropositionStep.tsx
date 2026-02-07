@@ -2,6 +2,7 @@
 
 import {
   ContentContainer,
+  Divider,
   Header,
   LargeButton,
 } from "@eduriam/ui-core";
@@ -28,18 +29,39 @@ const ValuePropositionStep: React.FC<IValuePropositionStepProps> = ({
           variant="section"
           text={tForm("onboarding.valuePropositionTitle")}
         />
-        <Stack spacing={0} sx={{ mt: 2 }}>
+        <Stack spacing={4}>
           <ValuePropositionListItem
-            title={tForm("onboarding.valuePropositionTitle")}
-            illustrationName="eduriam-logo"
+            title={tForm(
+              "onboarding.valuePropositionItems.masterProgramming.title",
+            )}
+            description={tForm(
+              "onboarding.valuePropositionItems.masterProgramming.description",
+            )}
+            illustrationName="prize"
+          />
+          <Divider />
+          <ValuePropositionListItem
+            title={tForm(
+              "onboarding.valuePropositionItems.buildKnowledge.title",
+            )}
+            description={tForm(
+              "onboarding.valuePropositionItems.buildKnowledge.description",
+            )}
+            illustrationName="certificate"
+          />
+          <Divider />
+          <ValuePropositionListItem
+            title={tForm(
+              "onboarding.valuePropositionItems.improveEveryDay.title",
+            )}
+            description={tForm(
+              "onboarding.valuePropositionItems.improveEveryDay.description",
+            )}
+            illustrationName="improvement"
           />
         </Stack>
       </Stack>
-      <LargeButton
-        data-test="continue-button"
-        onClick={onContinue}
-        fullWidth
-      >
+      <LargeButton data-test="continue-button" onClick={onContinue} fullWidth>
         {tCommon("navigation.continue")}
       </LargeButton>
     </ContentContainer>
