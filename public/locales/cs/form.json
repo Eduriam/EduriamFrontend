@@ -140,7 +140,7 @@
     "exploreAllCourses": "Prozkoumat všechny kurzy",
     "startLearning": "Začít učit se",
     "recommendedForYou": "Doporučeno pro vás",
-    "dailyGoalTitle": "Vyberte si denní cíl"
+    "dailyGoalTitle": "Jaký je váš denní cíl učení?"
   },
 
   "accountSetup": {
@@ -161,23 +161,23 @@
       "other": "Ostatní"
     },
 
-    "goalSelectTitle": "Vyberte si svůj denní cíl",
+    "goalSelectTitle": "Jaký je váš denní cíl učení?",
     "goalSelectOptions": {
       "casual": {
         "name": "Lehký",
-        "description": "~5 min / den"
+        "description": "5 min denně"
       },
       "medium": {
         "name": "Normální",
-        "description": "~10 min / den"
+        "description": "10 min denně"
       },
       "dedicated": {
-        "name": "Těžší",
-        "description": "~15 min / den"
+        "name": "Soustředěný",
+        "description": "15 min denně"
       },
       "intense": {
-        "name": "Seriózní",
-        "description": "~20 min / den"
+        "name": "Intenzivní",
+        "description": "20 min denně"
       }
     },
 
