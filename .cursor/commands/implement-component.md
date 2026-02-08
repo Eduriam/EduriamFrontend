@@ -16,3 +16,4 @@ You will be given a Figma design and your job is to implement the component in t
 
 - Do not integrate the new component into any of the pages unless explicitely told.
 - Always follow the implementation guidelines defined in `.cursor/rules/implementation-guidelines.mdc`
+- Always use the Figma MCP server to fetch the data about Figma design.
