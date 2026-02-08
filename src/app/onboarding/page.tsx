@@ -18,13 +18,13 @@ import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-c
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
+import AreaOfInterestStep from "../courses/recommended/quiz/components/AreaOfInterestStep";
+import CodingExperienceStep from "../courses/recommended/quiz/components/CodingExperienceStep";
+import UserGoalStep from "../courses/recommended/quiz/components/UserGoalStep";
 import AllCoursesStep from "./components/AllCoursesStep";
-import AreaOfInterestStep from "./components/AreaOfInterestStep";
-import CodingExperienceStep from "./components/CodingExperienceStep";
 import DailyGoalStep from "./components/DailyGoalStep";
 import OnboardingCompleteStep from "./components/OnboardingCompleteStep";
 import RecommendedCoursesStep from "./components/RecommendedCoursesStep";
-import UserGoalStep from "./components/UserGoalStep";
 import ValuePropositionStep from "./components/ValuePropositionStep";
 import { useOnboardingStepTransition } from "./useOnboardingStepTransition";
 

@@ -211,12 +211,13 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
         )}
       </Box>
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Stack
-          spacing={3}
-          data-test="recommended-courses-section"
-          id="recommended-courses-section"
-          sx={{ scrollMarginTop: 120 }}
-        >
+        <Box data-test="courses-section" sx={{ width: "100%" }}>
+          <Stack
+            spacing={3}
+            data-test="recommended-courses-section"
+            id="recommended-courses-section"
+            sx={{ scrollMarginTop: 120 }}
+          >
           <Box
             sx={{
               display: "flex",
@@ -227,6 +228,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
           >
             <Header variant="section" text={t("courses.recommended")} />
             <IconButton
+              data-test="all-recommendations-button"
               onClick={navigateWithTransition("/courses/recommended")}
               variant="text"
               icon="arrowRight"
@@ -275,6 +277,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
             </Stack>
           ))}
         </Stack>
+        </Box>
       </ContentContainer>
     </PageRoot>
   );

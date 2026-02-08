@@ -14,6 +14,8 @@ const PAGE_URLS: Record<string, string> = {
   "account-setup-page": `${BASE_URL}/account-setup`,
   "onboarding-page": `${BASE_URL}/onboarding`,
   "courses-page": `${BASE_URL}/courses`,
+  "recommendations-page": `${BASE_URL}/courses/recommended`,
+  "recommendation-quiz-page": `${BASE_URL}/courses/recommended/quiz`,
 };
 
 /**

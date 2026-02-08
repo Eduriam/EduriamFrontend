@@ -4,6 +4,7 @@ import {
   BasicNavbar,
   ContentContainer,
   Header,
+  LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
@@ -29,9 +30,13 @@ function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
 
 function CourseOrCareerPathCard({
   course,
+  dataTestCourse,
+  dataTestCareerPath,
   onSelect,
 }: {
   course: Course;
+  dataTestCourse?: string;
+  dataTestCareerPath?: string;
   onSelect: (courseId: Id, isCareerPath: boolean) => void;
 }) {
   const icon = (
@@ -42,13 +47,14 @@ function CourseOrCareerPathCard({
     />
   );
   const isCareerPath = course.type === "career-path";
+  const dataTest = isCareerPath ? dataTestCareerPath : dataTestCourse;
   const handleClick = () => onSelect(course.id, isCareerPath);
   const enrolled = typeof course.userProgress === "number";
   const progress = course.userProgress ?? 0;
 
   if (isCareerPath) {
     return (
-      <Box data-test="career-path-card">
+      <Box data-test={dataTest}>
         <CareerPathCard
           title={course.name}
           icon={icon}
@@ -60,7 +66,7 @@ function CourseOrCareerPathCard({
     );
   }
   return (
-    <Box data-test="course-card">
+    <Box data-test={dataTest}>
       <CourseCard
         title={course.name}
         icon={icon}
@@ -106,18 +112,30 @@ const RecommendedCoursesPage: React.FC = () => {
         />
       </Box>
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Stack spacing={3} data-test="recommended-courses-list">
+        <Stack spacing={3} data-test="recommended-courses-and-career-paths-section">
           <Header variant="section" text={t("courses.recommended")} />
           <Stack direction="column" spacing={3}>
             {displayRecommended.map((course) => (
               <CourseOrCareerPathCard
                 key={course.id}
                 course={course}
+                dataTestCourse="recommended-course-card"
+                dataTestCareerPath="recommended-career-path-card"
                 onSelect={handleCourseSelect}
               />
             ))}
           </Stack>
         </Stack>
+        <Box sx={{ pt: 2 }}>
+          <LargeButton
+            data-test="retake-recommendation-quiz-button"
+            onClick={() => navigateWithTransition("/courses/recommended/quiz")()}
+            variant="outlined"
+            fullWidth
+          >
+            {t("courses.retakeRecommendationQuiz")}
+          </LargeButton>
+        </Box>
       </ContentContainer>
     </PageRoot>
   );

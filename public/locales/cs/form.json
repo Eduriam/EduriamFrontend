@@ -150,6 +150,12 @@
     "dailyGoalTitle": "Jaký je váš denní cíl učení?"
   },
 
+  "recommendationQuiz": {
+    "quizFinishedTitle": "Kvíz dokončen!",
+    "quizFinishedDescription": "Vaše nová doporučení kurzů jsou připravena.",
+    "viewCourses": "Zobrazit kurzy"
+  },
+
   "accountSetup": {
     "selectCourse": "Vyberte kurz",
     "iSpeak": "Mluvím",

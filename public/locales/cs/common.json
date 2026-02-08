@@ -201,7 +201,8 @@
   },
 
   "courses": {
-    "recommended": "Doporučené kurzy"
+    "recommended": "Doporučené kurzy",
+    "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz"
   },
 
   "leaderboard": {
