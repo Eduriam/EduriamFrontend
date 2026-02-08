@@ -4,7 +4,7 @@ import SectionCard, { type ISectionCard } from "./SectionCard";
 import { mockSectionCardProps } from "./SectionCard.mocks";
 
 export default {
-  title: "pages/courses/[courseId]/chapters/[chapterId]/SectionCard",
+  title: "courses/SectionCard",
   component: SectionCard,
   argTypes: {
     expanded: {
