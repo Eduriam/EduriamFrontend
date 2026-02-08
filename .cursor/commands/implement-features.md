@@ -26,3 +26,4 @@ Based on the provided feature files and links to Figma prototype pages and compo
 - The E2E tests take a long time to run. You can always run the `sleep` command to wait for the tests to finish. Recommended sleep time
 - If you have any questions regarding the implementation you can ask.
 - If the Figma page contains SVG images, download them and put them in a `public/images` directory
+- Always use the Figma MCP server to fetch the data about Figma design.

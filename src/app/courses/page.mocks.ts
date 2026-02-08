@@ -1,10 +1,6 @@
 import { ICoursesPage } from "./page";
 
-const base: ICoursesPage = {
-  params: {
-    userId: "karel123",
-  },
-};
+const base: ICoursesPage = {};
 
 export const mockCoursesPageProps = {
   base,

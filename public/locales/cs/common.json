@@ -200,6 +200,10 @@
     "monthlyChallenge": "Měsíční výzva"
   },
 
+  "courses": {
+    "recommended": "Doporučené kurzy"
+  },
+
   "leaderboard": {
     "league": "Liga",
     "leagues": {

@@ -10,4 +10,5 @@ export interface Course {
   logoId?: string;
   type?: "career-path" | "course";
   featuredTopics?: Array<FeaturedTopic>;
+  userProgress?: number;
 }
