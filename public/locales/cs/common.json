@@ -209,6 +209,12 @@
     "description": "Dokončete všechny lekce kurzu pro odemčení vašeho certifikátu.",
     "continue": "Pokračovat"
   },
+  "certificate": {
+    "projectTitle": "Eduriam",
+    "certificateOfCompletion": "Certifikát o absolvování",
+    "successfullyCompletedTheCourse": "úspěšně dokončil(a) kurz",
+    "signatureAlt": "Podpis"
+  },
   "courseDetailsDrawer": {
     "title": "Detaily kurzu",
     "prerequisites": "Prerekvizity",
