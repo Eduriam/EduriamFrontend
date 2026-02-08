@@ -204,11 +204,17 @@
     "recommended": "Doporučené kurzy",
     "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz"
   },
+  "certificateLockedDrawer": {
+    "title": "Jen tak dál!",
+    "description": "Dokončete všechny lekce kurzu pro odemčení vašeho certifikátu.",
+    "continue": "Pokračovat"
+  },
   "courseDetailsDrawer": {
     "title": "Detaily kurzu",
     "prerequisites": "Prerekvizity",
     "description": "Popis",
-    "manageCourses": "Spravovat kurzy"
+    "manageCourses": "Spravovat kurzy",
+    "close": "Zavřít"
   },
 
   "leaderboard": {
