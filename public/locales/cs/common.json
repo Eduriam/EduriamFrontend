@@ -204,6 +204,12 @@
     "recommended": "Doporučené kurzy",
     "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz"
   },
+  "courseDetailsDrawer": {
+    "title": "Detaily kurzu",
+    "prerequisites": "Prerekvizity",
+    "description": "Popis",
+    "manageCourses": "Spravovat kurzy"
+  },
 
   "leaderboard": {
     "league": "Liga",
