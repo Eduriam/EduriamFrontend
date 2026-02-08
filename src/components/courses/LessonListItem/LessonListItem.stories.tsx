@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import LessonListItem, {
@@ -50,17 +51,17 @@ export const AllStates = () => (
     <LessonListItem
       title="Basics of JavaScript"
       status="default"
-      onClick={() => {}}
+      onClick={action("onClick")}
     />
     <LessonListItem
       title="Basics of JavaScript"
       status="completed"
-      onClick={() => {}}
+      onClick={action("onClick")}
     />
     <LessonListItem
       title="Basics of JavaScript"
       status="active"
-      onClick={() => {}}
+      onClick={action("onClick")}
     />
   </div>
 );

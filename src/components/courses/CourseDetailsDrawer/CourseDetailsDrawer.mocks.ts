@@ -1,3 +1,5 @@
+import { action } from "@storybook/addon-actions";
+
 import type { ICourseDetailsDrawer, PrerequisiteItem } from "./CourseDetailsDrawer";
 
 const defaultPrerequisites: PrerequisiteItem[] = [
@@ -21,7 +23,7 @@ const defaultDescription = [
 
 export const mockCourseDetailsDrawerProps: ICourseDetailsDrawer = {
   open: true,
-  onClose: () => {},
+  onClose: action("onClose"),
   prerequisites: defaultPrerequisites,
   description: defaultDescription,
 };
