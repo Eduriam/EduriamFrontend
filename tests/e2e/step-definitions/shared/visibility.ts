@@ -28,3 +28,17 @@ Then(
       .waitFor({ state: "visible", timeout: 15000 });
   },
 );
+
+Then(
+  "I should see the {string} drawer",
+  async function (this: CustomWorld, drawerTestId: string) {
+    if (!this.page) {
+      throw new Error("Page is not initialized.");
+    }
+
+    await this.page
+      .locator(`[data-test="${drawerTestId}"]`)
+      .first()
+      .waitFor({ state: "visible", timeout: 15000 });
+  },
+);

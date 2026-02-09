@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 
 export interface PrerequisiteItem {
   courseId: Id;
-  label: string;
+  courseName: string;
   completed?: boolean;
 }
 
@@ -61,7 +61,7 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
                 style={{ textDecoration: "none" }}
               >
                 <Chip
-                  label={item.label}
+                  label={item.courseName}
                   color={item.completed ? "chipGreen" : "neutral"}
                   icon={item.completed ? "check" : "arrowRight"}
                   variant="outlined"
@@ -87,7 +87,7 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
           variant="text"
           color="primary"
           onClick={handleManageCourses}
-          data-test="course-details-drawer-manage-courses"
+          data-test="manage-courses-button"
         >
           {t("courseDetailsDrawer.manageCourses")}
         </LargeButton>

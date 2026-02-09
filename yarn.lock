@@ -1837,16 +1837,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.27":
-  version: 0.6.27
-  resolution: "@eduriam/ui-core@npm:0.6.27::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.27%2Fae4cea99a03be286bc56733f160d3e73430d3ab8"
+"@eduriam/ui-core@npm:^0.6.31":
+  version: 0.6.31
+  resolution: "@eduriam/ui-core@npm:0.6.31::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.31%2Fc91b8cc8bf51b0bd1cdccef13ec12247551109c8"
   peerDependencies:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/eae24643a59baa5c1f71fc971f10d23a458204f48053ca353e3153c958143fafe307a9aee5afa8730cb29ec774c9fdc37204a08c0d60b9947a3b01f7bd9d32fc
+  checksum: 10c0/f7645922540ddd6cab159497b984156627add27778799a5bf5c88d8bd9834f8a7ca6e88a93b3025daae9a6d63049c55df14cb0c9aaf53356c95d7cd7eb8e930e
   languageName: node
   linkType: hard
 
@@ -13159,7 +13159,7 @@ __metadata:
     "@commitlint/cli": "npm:^17.1.2"
     "@commitlint/config-conventional": "npm:^17.1.0"
     "@cucumber/cucumber": "npm:^10.3.1"
-    "@eduriam/ui-core": "npm:^0.6.27"
+    "@eduriam/ui-core": "npm:^0.6.31"
     "@eduriam/ui-x": "npm:^0.2.4"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"

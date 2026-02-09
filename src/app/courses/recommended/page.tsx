@@ -8,7 +8,6 @@ import {
   PageRoot,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Box from "@mui/material/Box";
@@ -104,7 +103,7 @@ const RecommendedCoursesPage: React.FC = () => {
       >
         <BasicNavbar
           leftButton={{
-            icon: icons.back,
+            icon: "arrowLeft",
             onClick: navigateWithTransition("/courses", {
               direction: "back",
             }),

@@ -9,7 +9,6 @@ import {
   Tabs,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import { useScrollSpy } from "util/hooks/useScrollSpy";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -191,7 +190,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
       >
         <BasicNavbar
           leftButton={{
-            icon: icons.back,
+            icon: "arrowLeft",
             onClick: navigateWithTransition("/", {
               direction: "back",
             }),

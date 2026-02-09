@@ -58,6 +58,61 @@ Given("I am logged in", async function (this: CustomWorld) {
 });
 
 Given(
+  "I am logged in and enrolled the course",
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const user: UserPrivate = {
+      id: "test-user",
+      username: "Test user",
+      role: "USER",
+      streak: 0,
+      balance: 0,
+      accountInitialized: true,
+      lastSessionDate: null,
+      activeSubscription: null,
+      selectedCourse: {
+        id: "html",
+        name: "HTML",
+        language: "en-US",
+      },
+      lastViewedStudyMapLevel: 0,
+    };
+
+    const idToken = createJwt(60 * 60);
+    const refreshToken = "test-refresh-token";
+
+    const initScript = ({
+      user,
+      idToken,
+      refreshToken,
+    }: {
+      user: UserPrivate;
+      idToken: string;
+      refreshToken: string;
+    }) => {
+      localStorage.setItem("idToken", JSON.stringify(idToken));
+      localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+      localStorage.setItem("user", JSON.stringify(user));
+    };
+
+    // Make sure storage is set before the app scripts run.
+    if (this.context) {
+      await this.context.addInitScript(initScript, {
+        user,
+        idToken,
+        refreshToken,
+      });
+    }
+    await this.page.addInitScript(initScript, { user, idToken, refreshToken });
+  },
+);
+
+Given(
   "I am logged in and I am not enrolled in any course",
   async function (this: CustomWorld) {
     if (!this.page || !this.context) {
