@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 
 export type CourseLogoVariant = "HTML" | "JavaScript";
 
-export type CourseLogoSize = "large" | "small";
+export type CourseLogoSize = "large" | "medium" | "small";
 
 const LOGO_ID_TO_VARIANT: Record<string, CourseLogoVariant> = {
   html: "HTML",
@@ -28,7 +28,10 @@ export interface CourseLogoProps {
    */
   variant: CourseLogoVariant;
   /**
-   * Size of the logo. Large corresponds to 64px, small to 24px.
+   * Size of the logo.
+   * - large: 100px
+   * - medium: 64px
+   * - small: 24px
    *
    * Matches the Figma variants.
    */
@@ -41,11 +44,15 @@ const variantToSrc: Record<CourseLogoVariant, string> = {
 };
 
 const sizeToPixels: Record<CourseLogoSize, number> = {
-  large: 64,
+  large: 100,
+  medium: 64,
   small: 24,
 };
 
-const CourseLogo: React.FC<CourseLogoProps> = ({ variant, size = "large" }) => {
+const CourseLogo: React.FC<CourseLogoProps> = ({
+  variant,
+  size = "medium",
+}) => {
   const dimension = sizeToPixels[size];
 
   return (

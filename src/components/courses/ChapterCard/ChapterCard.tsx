@@ -6,9 +6,9 @@ import { Box, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 export interface IChapterCard {
-  /** Main title (e.g. course or lesson name). */
+  /** Main title (e.g. chapter name). */
   title: string;
-  /** Subtitle (e.g. chapter or section label). */
+  /** Subtitle (e.g. chapter label). */
   subtitle: string;
   /** Progress in percent (0–100). */
   progress: number;

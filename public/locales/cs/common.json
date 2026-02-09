@@ -202,7 +202,16 @@
 
   "courses": {
     "recommended": "Doporučené kurzy",
-    "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz"
+    "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz",
+    "courseLabel": "Kurz",
+    "startCourse": "Začít kurz",
+    "continueLearning": "Pokračovat v učení",
+    "description": "Popis kurzu",
+    "chapters": "Kapitoly",
+    "courseShortDescriptionPlaceholder": "Krátký popis kurzu zatím není k dispozici.",
+    "courseDescriptionPlaceholder": "Podrobný popis kurzu zatím není k dispozici.",
+    "chapterNumber": "Kapitola {{index}}",
+    "certificateButton": "Zobrazit certifikát"
   },
   "certificateLockedDrawer": {
     "title": "Jen tak dál!",

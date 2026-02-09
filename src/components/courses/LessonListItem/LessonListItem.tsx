@@ -1,6 +1,6 @@
 "use client";
 
-import { IconButton } from "@eduriam/ui-core";
+import { IconButton, IconName } from "@eduriam/ui-core";
 
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
@@ -20,7 +20,7 @@ export interface ILessonListItem {
 
 const STATUS_CONFIG: Record<
   LessonListItemStatus,
-  { icon: string; color: "textDisabled" | "success" | "primary" }
+  { icon: IconName; color: "textDisabled" | "success" | "primary" }
 > = {
   default: { icon: "play", color: "textDisabled" },
   completed: { icon: "check", color: "success" },
@@ -47,7 +47,7 @@ const LessonListItem: React.FC<ILessonListItem> = ({
         width: "100%",
         justifyContent: "flex-start",
         paddingY: 1,
-        paddingX: 0,
+        paddingX: 3,
       }}
     >
       <span onClick={(e) => e.stopPropagation()}>
