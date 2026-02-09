@@ -5,7 +5,6 @@ import AreaOfInterestStep from "app/courses/recommended/quiz/components/AreaOfIn
 import CodingExperienceStep from "app/courses/recommended/quiz/components/CodingExperienceStep";
 import UserGoalStep from "app/courses/recommended/quiz/components/UserGoalStep";
 import { useOnboardingStepTransition } from "app/onboarding/useOnboardingStepTransition";
-import icons from "styles/icons";
 import theme from "styles/theme";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -136,7 +135,7 @@ const RecommendationQuizPage: React.FC = () => {
           leftButton={
             showBack
               ? {
-                  icon: icons.back,
+                  icon: "chevronLeft",
                   onClick: handleBack,
                 }
               : undefined

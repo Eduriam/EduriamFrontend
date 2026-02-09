@@ -13,11 +13,11 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import CareerPathCard from "components/courses/CareerPathCard/CareerPathCard";
 import CourseCard from "components/courses/CourseCard/CourseCard";
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
 import type { Course } from "infrastructure/api/courses/Courses";
 import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
@@ -27,16 +27,16 @@ function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
-function CourseOrCareerPathCard({
+function CourseOrLearningPathCard({
   course,
   dataTestCourse,
-  dataTestCareerPath,
+  dataTestLearningPath,
   onSelect,
 }: {
   course: Course;
   dataTestCourse?: string;
-  dataTestCareerPath?: string;
-  onSelect: (courseId: Id, isCareerPath: boolean) => void;
+  dataTestLearningPath?: string;
+  onSelect: (courseId: Id, isLearningPath: boolean) => void;
 }) {
   const icon = (
     <CourseLogo
@@ -45,16 +45,16 @@ function CourseOrCareerPathCard({
       }
     />
   );
-  const isCareerPath = course.type === "career-path";
-  const dataTest = isCareerPath ? dataTestCareerPath : dataTestCourse;
-  const handleClick = () => onSelect(course.id, isCareerPath);
+  const isLearningPath = course.type === "learning-path";
+  const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
+  const handleClick = () => onSelect(course.id, isLearningPath);
   const enrolled = typeof course.userProgress === "number";
   const progress = course.userProgress ?? 0;
 
-  if (isCareerPath) {
+  if (isLearningPath) {
     return (
       <Box data-test={dataTest}>
-        <CareerPathCard
+        <LearningPathCard
           title={course.name}
           icon={icon}
           enrolled={enrolled}
@@ -84,9 +84,9 @@ const RecommendedCoursesPage: React.FC = () => {
   const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
   const displayRecommended = recommendedCourses ?? [];
 
-  const handleCourseSelect = (courseId: Id, isCareerPath: boolean) => {
-    const path = isCareerPath
-      ? `/career-paths/${courseId}`
+  const handleCourseSelect = (courseId: Id, isLearningPath: boolean) => {
+    const path = isLearningPath
+      ? `/learning-paths/${courseId}`
       : `/courses/${courseId}`;
     navigateWithTransition(path)();
   };
@@ -111,15 +111,18 @@ const RecommendedCoursesPage: React.FC = () => {
         />
       </Box>
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Stack spacing={3} data-test="recommended-courses-and-career-paths-section">
+        <Stack
+          spacing={3}
+          data-test="recommended-courses-and-learning-paths-section"
+        >
           <Header variant="section" text={t("courses.recommended")} />
           <Stack direction="column" spacing={3}>
             {displayRecommended.map((course) => (
-              <CourseOrCareerPathCard
+              <CourseOrLearningPathCard
                 key={course.id}
                 course={course}
                 dataTestCourse="recommended-course-card"
-                dataTestCareerPath="recommended-career-path-card"
+                dataTestLearningPath="recommended-learning-path-card"
                 onSelect={handleCourseSelect}
               />
             ))}
@@ -128,7 +131,9 @@ const RecommendedCoursesPage: React.FC = () => {
         <Box sx={{ pt: 2 }}>
           <LargeButton
             data-test="retake-recommendation-quiz-button"
-            onClick={() => navigateWithTransition("/courses/recommended/quiz")()}
+            onClick={() =>
+              navigateWithTransition("/courses/recommended/quiz")()
+            }
             variant="outlined"
             fullWidth
           >

@@ -17,11 +17,11 @@ import { useEffect, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import CareerPathCard from "components/courses/CareerPathCard/CareerPathCard";
 import CourseCard from "components/courses/CourseCard/CourseCard";
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
 import type { Course } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
@@ -53,18 +53,16 @@ function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
-type CourseCardKind = "course" | "career-path" | "learning-path";
+type CourseCardKind = "course" | "learning-path";
 
-function CourseOrCareerPathCard({
+function CourseOrLearningPathCard({
   course,
   dataTestCourse,
-  dataTestCareerPath,
   dataTestLearningPath,
   onSelect,
 }: {
   course: Course;
   dataTestCourse?: string;
-  dataTestCareerPath?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, kind: CourseCardKind) => void;
 }) {
@@ -76,26 +74,17 @@ function CourseOrCareerPathCard({
     />
   );
   const isLearningPath = course.type === "learning-path";
-  const isCareerPath = course.type === "career-path";
-  const dataTest = isLearningPath
-    ? dataTestLearningPath
-    : isCareerPath
-      ? dataTestCareerPath
-      : dataTestCourse;
-  const kind: CourseCardKind = isLearningPath
-    ? "learning-path"
-    : isCareerPath
-      ? "career-path"
-      : "course";
+  const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
+  const kind: CourseCardKind = isLearningPath ? "learning-path" : "course";
   const handleClick = () => onSelect(course.id, kind);
 
   const enrolled = typeof course.userProgress === "number";
   const progress = course.userProgress ?? 0;
 
-  if (isLearningPath || isCareerPath) {
+  if (isLearningPath) {
     return (
       <Box data-test={dataTest}>
-        <CareerPathCard
+        <LearningPathCard
           title={course.name}
           icon={icon}
           enrolled={enrolled}
@@ -189,9 +178,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
     const path =
       kind === "learning-path"
         ? `/learning-paths/${courseId}`
-        : kind === "career-path"
-          ? `/career-paths/${courseId}`
-          : `/courses/${courseId}`;
+        : `/courses/${courseId}`;
     navigateWithTransition(path)();
   };
 
@@ -234,67 +221,65 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
             id="recommended-courses-section"
             sx={{ scrollMarginTop: 120 }}
           >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
-            <Header variant="section" text={t("courses.recommended")} />
-            <IconButton
-              data-test="all-recommendations-button"
-              onClick={navigateWithTransition("/courses/recommended")}
-              variant="text"
-              icon="arrowRight"
-              color="textPrimary"
-            ></IconButton>
-          </Box>
-          <Stack direction="column" spacing={3}>
-            {displayRecommended.map((course) => (
-              <CourseOrCareerPathCard
-                key={course.id}
-                course={course}
-                dataTestCourse="course-card"
-                dataTestCareerPath="career-path-card"
-                dataTestLearningPath="learning-path-card"
-                onSelect={handleCourseSelect}
-              />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <Header variant="section" text={t("courses.recommended")} />
+              <IconButton
+                data-test="all-recommendations-button"
+                onClick={navigateWithTransition("/courses/recommended")}
+                variant="text"
+                icon="arrowRight"
+                color="textPrimary"
+              ></IconButton>
+            </Box>
+            <Stack direction="column" spacing={3}>
+              {displayRecommended.map((course) => (
+                <CourseOrLearningPathCard
+                  key={course.id}
+                  course={course}
+                  dataTestCourse="course-card"
+                  dataTestLearningPath="learning-path-card"
+                  onSelect={handleCourseSelect}
+                />
+              ))}
+            </Stack>
+          </Stack>
+
+          <Stack spacing={10} data-test="all-courses-section">
+            {allCourseGroups.map(({ category, courses: categoryCourses }) => (
+              <Stack
+                key={category}
+                id={`category-${category}`}
+                direction="column"
+                spacing={3}
+                sx={{ scrollMarginTop: 120 }}
+              >
+                <Header
+                  variant="section"
+                  text={
+                    tForm(`onboarding.courseCategories.${category}`) || category
+                  }
+                />
+                <Stack direction="column" spacing={3}>
+                  {categoryCourses.map((course) => (
+                    <CourseOrLearningPathCard
+                      key={course.id}
+                      course={course}
+                      dataTestCourse="course-card"
+                      dataTestLearningPath="learning-path-card"
+                      onSelect={handleCourseSelect}
+                    />
+                  ))}
+                </Stack>
+              </Stack>
             ))}
           </Stack>
-        </Stack>
-
-        <Stack spacing={10} data-test="all-courses-section">
-          {allCourseGroups.map(({ category, courses: categoryCourses }) => (
-            <Stack
-              key={category}
-              id={`category-${category}`}
-              direction="column"
-              spacing={3}
-              sx={{ scrollMarginTop: 120 }}
-            >
-              <Header
-                variant="section"
-                text={
-                  tForm(`onboarding.courseCategories.${category}`) || category
-                }
-              />
-              <Stack direction="column" spacing={3}>
-                {categoryCourses.map((course) => (
-                  <CourseOrCareerPathCard
-                    key={course.id}
-                    course={course}
-                    dataTestCourse="course-card"
-                    dataTestCareerPath="career-path-card"
-                    dataTestLearningPath="learning-path-card"
-                    onSelect={handleCourseSelect}
-                  />
-                ))}
-              </Stack>
-            </Stack>
-          ))}
-        </Stack>
         </Box>
       </ContentContainer>
     </PageRoot>

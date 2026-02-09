@@ -1,5 +1,5 @@
 @course-recommendations
-Feature: Browse recommended courses and career paths and update recommendations
+Feature: Browse recommended courses and learning paths and update recommendations
 
   Scenario: User opens recommendations page and a recommended course
     Given I am logged in
@@ -7,20 +7,20 @@ Feature: Browse recommended courses and career paths and update recommendations
     Then I should see the "courses-section" section
     When I click on the "all-recommendations-button" button
     Then I should be on the "recommendations-page" page
-    And I should see the "recommended-courses-and-career-paths-section" section
+    And I should see the "recommended-courses-and-learning-paths-section" section
     When I click on the "recommended-course-card" card
     Then I should be on the "course-page" page
 
-  Scenario: User opens recommendations page and a recommended career path
+  Scenario: User opens recommendations page and a recommended learning path
     Given I am logged in
     And I am on the "courses-page" page
     Then I should see the "courses-section" section
     And I should see the "recommended-courses-section" section
     When I click on the "all-recommendations-button" button
     Then I should be on the "recommendations-page" page
-    And I should see the "recommended-courses-and-career-paths-section" section
-    When I click on the "recommended-career-path-card" card
-    Then I should be on the "career-path-page" page
+    And I should see the "recommended-courses-and-learning-paths-section" section
+    When I click on the "recommended-learning-path-card" card
+    Then I should be on the "learning-path-page" page
 
   Scenario: User updates preferences in the recommendation questionnaire
     Given I am logged in

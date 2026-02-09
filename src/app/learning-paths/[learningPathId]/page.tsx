@@ -26,14 +26,12 @@ import CourseLogo, {
 
 import LearningPathAPI from "infrastructure/api/learning-paths/LearningPathAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ILearningPathPage {}
 
 const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { user } = useAuth();
 
   const params = useParams<{ learningPathId: Id }>();
   const learningPathId = params.learningPathId ?? "";
@@ -66,10 +64,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const shortDescription = learningPath?.shortDescription;
   const description = learningPath?.description;
   const courses = learningPath?.courses ?? [];
-
-  const isEnrolled =
-    (learningPath?.enrolled ?? false) ||
-    user?.selectedLearningPath?.id === learningPathId;
+  const isEnrolled = learningPath?.enrolled ?? false;
 
   return (
     <>
@@ -186,7 +181,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                 spacing={2}
                 sx={{ mt: 2, position: "relative", zIndex: 1 }}
               >
-                {courses.map((course, index) => (
+                {courses.map((course) => (
                   <CourseCard
                     key={course.id}
                     title={course.name}

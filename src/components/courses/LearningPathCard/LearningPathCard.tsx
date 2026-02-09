@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
-export interface ICareerPathCard {
+export interface ILearningPathCard {
   title: string;
   subtitle?: string;
   enrolled?: boolean;
@@ -22,9 +22,9 @@ export interface ICareerPathCard {
   onClick?: () => void;
 }
 
-const CareerPathCard: React.FC<ICareerPathCard> = ({
+const LearningPathCard: React.FC<ILearningPathCard> = ({
   title,
-  subtitle = "Career Path",
+  subtitle = "Learning Path",
   enrolled = false,
   progress = 40,
   icon,
@@ -72,4 +72,4 @@ const CareerPathCard: React.FC<ICareerPathCard> = ({
   );
 };
 
-export default CareerPathCard;
+export default LearningPathCard;

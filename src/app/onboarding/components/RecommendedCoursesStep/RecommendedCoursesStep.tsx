@@ -6,11 +6,11 @@ import { useTranslation } from "i18n/client";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import CareerPathCard from "components/courses/CareerPathCard/CareerPathCard";
 import CourseCard from "components/courses/CourseCard/CourseCard";
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
 import type { Course } from "infrastructure/api/courses/Courses";
 
@@ -48,7 +48,7 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
                 }
               />
             );
-            const isCareerPath = course.type === "career-path";
+            const isLearningPath = course.type === "learning-path";
             return (
               <Box
                 key={course.id}
@@ -60,8 +60,8 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
                     : undefined
                 }
               >
-                {isCareerPath ? (
-                  <CareerPathCard
+                {isLearningPath ? (
+                  <LearningPathCard
                     title={course.name}
                     icon={icon}
                     onClick={() => onCourseSelect(course.id)}
