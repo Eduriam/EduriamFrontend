@@ -20,7 +20,7 @@ export interface Course {
   language: Language;
   category?: string;
   logoId?: string;
-  type?: "career-path" | "course";
+  type?: "career-path" | "course" | "learning-path";
   featuredTopics?: Array<FeaturedTopic>;
   userProgress?: number;
   /** Whether the current user is enrolled in this course. */

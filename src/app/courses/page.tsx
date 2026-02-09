@@ -53,16 +53,20 @@ function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
+type CourseCardKind = "course" | "career-path" | "learning-path";
+
 function CourseOrCareerPathCard({
   course,
   dataTestCourse,
   dataTestCareerPath,
+  dataTestLearningPath,
   onSelect,
 }: {
   course: Course;
   dataTestCourse?: string;
   dataTestCareerPath?: string;
-  onSelect: (courseId: Id, isCareerPath: boolean) => void;
+  dataTestLearningPath?: string;
+  onSelect: (courseId: Id, kind: CourseCardKind) => void;
 }) {
   const icon = (
     <CourseLogo
@@ -71,14 +75,24 @@ function CourseOrCareerPathCard({
       }
     />
   );
+  const isLearningPath = course.type === "learning-path";
   const isCareerPath = course.type === "career-path";
-  const dataTest = isCareerPath ? dataTestCareerPath : dataTestCourse;
-  const handleClick = () => onSelect(course.id, isCareerPath);
+  const dataTest = isLearningPath
+    ? dataTestLearningPath
+    : isCareerPath
+      ? dataTestCareerPath
+      : dataTestCourse;
+  const kind: CourseCardKind = isLearningPath
+    ? "learning-path"
+    : isCareerPath
+      ? "career-path"
+      : "course";
+  const handleClick = () => onSelect(course.id, kind);
 
   const enrolled = typeof course.userProgress === "number";
   const progress = course.userProgress ?? 0;
 
-  if (isCareerPath) {
+  if (isLearningPath || isCareerPath) {
     return (
       <Box data-test={dataTest}>
         <CareerPathCard
@@ -171,10 +185,13 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
     })),
   ];
 
-  const handleCourseSelect = (courseId: Id, isCareerPath: boolean) => {
-    const path = isCareerPath
-      ? `/career-paths/${courseId}`
-      : `/courses/${courseId}`;
+  const handleCourseSelect = (courseId: Id, kind: CourseCardKind) => {
+    const path =
+      kind === "learning-path"
+        ? `/learning-paths/${courseId}`
+        : kind === "career-path"
+          ? `/career-paths/${courseId}`
+          : `/courses/${courseId}`;
     navigateWithTransition(path)();
   };
 
@@ -241,6 +258,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
                 course={course}
                 dataTestCourse="course-card"
                 dataTestCareerPath="career-path-card"
+                dataTestLearningPath="learning-path-card"
                 onSelect={handleCourseSelect}
               />
             ))}
@@ -269,6 +287,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
                     course={course}
                     dataTestCourse="course-card"
                     dataTestCareerPath="career-path-card"
+                    dataTestLearningPath="learning-path-card"
                     onSelect={handleCourseSelect}
                   />
                 ))}

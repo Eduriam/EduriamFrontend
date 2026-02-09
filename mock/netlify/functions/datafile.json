@@ -2097,7 +2097,7 @@
       "responses": [
         {
           "uuid": "6e077f75-82c3-4cd7-9247-36c7e2e67428",
-          "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"react-developer\",\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\",\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"vue-developer\",\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"frontend-developer\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"career-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": \"git\",\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"docker\",\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"apis\",\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"sql\",\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"nosql\",\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"typescript\",\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true\n  }\n]",
+          "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"react-developer\",\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\",\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"vue-developer\",\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"frontend-developer\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"career-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": \"git\",\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"docker\",\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"apis\",\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"sql\",\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"nosql\",\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"typescript\",\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true\n  },\n  {\n    \"id\": \"react-developer-path\",\n    \"language\": \"en\",\n    \"name\": \"React Developer Path\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"userProgress\": 0,\n    \"enrolled\": false\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response: language=cs",
@@ -2191,6 +2191,35 @@
         {
           "uuid": "bf8b9a84-be39-462f-941f-7997905c8f89",
           "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "learning-paths/:learningPathId",
+      "responses": [
+        {
+          "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+          "body": "{\n  \"id\": \"react-developer-path\",\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"enrolled\": false,\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": \"html\",\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"javascript\",\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": \"react-developer\",\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2593,14 +2622,14 @@
       "responseMode": null
     },
     {
-      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "uuid": "8b7b3d5d-27e1-4eff-b522-4a18f7aabc7d",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/recommended-courses",
       "responses": [
         {
-          "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+          "uuid": "81f2e82f-6593-4e07-907c-7e06ac49540d",
           "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"react-developer\",\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"career-path\"\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"frontend-developer\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"career-path\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -4387,7 +4416,7 @@
       "children": [
         {
           "type": "route",
-          "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          "uuid": "8b7b3d5d-27e1-4eff-b522-4a18f7aabc7d"
         }
       ]
     },
@@ -4398,6 +4427,16 @@
         {
           "type": "route",
           "uuid": "4e0c5b1e-1c2a-4f8d-9b4c-0f1a2b3c4d5e"
+        }
+      ]
+    },
+    {
+      "uuid": "1586d6e9-1c2f-4a32-b5d3-1487d108b149",
+      "name": "learning-paths",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
         }
       ]
     }
@@ -4414,6 +4453,10 @@
     {
       "type": "folder",
       "uuid": "f90b3022-75ab-4d50-b719-9c6fe65b13f7"
+    },
+    {
+      "type": "folder",
+      "uuid": "1586d6e9-1c2f-4a32-b5d3-1487d108b149"
     },
     {
       "type": "folder",

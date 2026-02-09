@@ -113,6 +113,67 @@ Given(
 );
 
 Given(
+  "I am logged in and enrolled in the learning path",
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const user = {
+      id: "test-user",
+      username: "Test user",
+      role: "USER",
+      streak: 0,
+      balance: 0,
+      accountInitialized: true,
+      lastSessionDate: null,
+      activeSubscription: null,
+      selectedCourse: {
+        id: "test-course",
+        name: "Test course",
+        language: "en-US",
+      },
+      lastViewedStudyMapLevel: 0,
+      // Extra field used only by the app runtime to mark the enrolled learning path.
+      // It is intentionally not part of the UserPrivate TypeScript type.
+      selectedLearningPath: { id: "react-developer-path" },
+    } as unknown as UserPrivate;
+
+    const idToken = createJwt(60 * 60);
+    const refreshToken = "test-refresh-token";
+
+    const initScript = ({
+      user,
+      idToken,
+      refreshToken,
+    }: {
+      user: UserPrivate;
+      idToken: string;
+      refreshToken: string;
+    }) => {
+      localStorage.setItem("idToken", JSON.stringify(idToken));
+      localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+      localStorage.setItem("user", JSON.stringify(user));
+    };
+
+    if (this.context) {
+      await this.context.addInitScript(initScript, {
+        user,
+        idToken,
+        refreshToken,
+      });
+    }
+    await this.page.addInitScript(initScript, {
+      user,
+      idToken,
+      refreshToken,
+    });
+  },
+);
+
+Given(
   "I am logged in and I am not enrolled in any course",
   async function (this: CustomWorld) {
     if (!this.page || !this.context) {

@@ -22,6 +22,8 @@ export interface ICourseDetailsDrawer {
   onClose: () => void;
   prerequisites?: PrerequisiteItem[];
   description?: string;
+  /** Override data-test for the drawer (e.g. "learning-path-details-drawer"). */
+  "data-test"?: string;
 }
 
 const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
@@ -29,6 +31,7 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
   onClose,
   prerequisites = [],
   description = "",
+  "data-test": dataTest = "course-details-drawer",
 }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -104,7 +107,7 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
   );
 
   return (
-    <Drawer open={open} onClose={onClose} data-test="course-details-drawer">
+    <Drawer open={open} onClose={onClose} data-test={dataTest}>
       {drawerContent}
     </Drawer>
   );
