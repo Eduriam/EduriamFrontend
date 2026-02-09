@@ -3,20 +3,20 @@ import { INavigationBar } from "./NavigationBar";
 const primary: INavigationBar = {
   header: "Header",
   leftIconButton: {
-    icon: "NavigateBefore",
+    icon: "chevronLeft",
   },
   rightIconButton: {
-    icon: "NavigateNext",
+    icon: "chevronRight",
   },
 };
 
 const transparent: INavigationBar = {
   header: "Header",
   leftIconButton: {
-    icon: "NavigateBefore",
+    icon: "chevronLeft",
   },
   rightIconButton: {
-    icon: "NavigateNext",
+    icon: "chevronRight",
   },
 };
 

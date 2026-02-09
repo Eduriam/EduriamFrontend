@@ -121,7 +121,7 @@ const LessonsPaginationPage: React.FC<ILessonsPaginationPage> = ({
         >
           <CircleLessonButton
             title={lessons[i].name}
-            icon={lessons[i].icon}
+            icon="study"
             lessonType={lessons[i].type}
             lessonId={lessons[i].id}
             active={lessons[i].isActive}

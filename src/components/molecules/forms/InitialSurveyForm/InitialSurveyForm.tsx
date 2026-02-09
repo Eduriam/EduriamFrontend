@@ -1,6 +1,5 @@
 import { FullWidthButton, Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -50,7 +49,7 @@ const InitialSurveyForm: React.FC<IInitialSurveyForm> = ({ onSubmit }) => {
         disabled={selectedIndex === undefined}
       >
         {tCommon("navigation.continue")}
-        <Icon name={icons.next} />
+        <Icon name="arrowRight" />
       </FullWidthButton>
     </Box>
   );

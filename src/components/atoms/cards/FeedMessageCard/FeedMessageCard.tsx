@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -98,7 +97,7 @@ const FeedMessageCard: React.FC<IFeedMessageCard> = ({
               );
             })}
             <IconButton onClick={handleClick} size="small">
-              <Icon fontSize="small" name={icons.addReaction} />
+              <Icon fontSize="small" name="addReaction" />
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <Grid container spacing={0}>

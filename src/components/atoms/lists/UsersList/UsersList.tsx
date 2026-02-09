@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -37,11 +36,11 @@ const UsersList: React.FC<IUsersList> = ({ users, onFollow, onUnfollow }) => {
                 userItem.id !== user?.id && onFollow && onUnfollow ? (
                   userItem.isFollowed ? (
                     <IconButton onClick={() => onUnfollow(userItem.id)}>
-                      <Icon name={icons.unfollow} />
+                      <Icon name="unfollow" />
                     </IconButton>
                   ) : (
                     <IconButton onClick={() => onFollow(userItem.id)}>
-                      <Icon name={icons.follow} />
+                      <Icon name="follow" />
                     </IconButton>
                   )
                 ) : undefined

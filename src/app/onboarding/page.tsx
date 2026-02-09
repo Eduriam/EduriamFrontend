@@ -1,7 +1,6 @@
 "use client";
 
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
-import icons from "styles/icons";
 import theme from "styles/theme";
 
 import { useState } from "react";
@@ -262,7 +261,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           leftButton={
             showBack
               ? {
-                  icon: icons.back,
+                  icon: "chevronLeft",
                   onClick: handleBack,
                 }
               : undefined

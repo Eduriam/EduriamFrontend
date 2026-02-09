@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -78,9 +77,9 @@ const UserProfileCard: React.FC<IUserProfileCard> = ({
               variant="contained"
               startIcon={
                 userProfile.isFollowed ? (
-                  <Icon name={icons.unfollow} />
+                  <Icon name="unfollow" />
                 ) : (
-                  <Icon name={icons.follow} />
+                  <Icon name="follow" />
                 )
               }
               onClick={() => onFollowChange(!userProfile.isFollowed)}

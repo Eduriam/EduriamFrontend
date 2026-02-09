@@ -2,7 +2,6 @@ import { Icon } from "@eduriam/ui-core";
 import { ResponsiveLine } from "@nivo/line";
 import { BasicTooltip } from "@nivo/tooltip";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import theme from "styles/theme";
 
 import { useMediaQuery } from "@mui/material";
@@ -88,7 +87,7 @@ const UserStatsCard: React.FC<IUserStatsCard> = ({
           <Box display="flex" alignItems="center">
             <Icon
               sx={{ position: "relative", bottom: 2, mr: 1 }}
-              name={icons.streak}
+              name="star"
             />
             <Typography variant="body1" flexGrow={1}>
               {t("userProfile.streak")}

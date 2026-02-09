@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -18,7 +17,7 @@ const Streak: React.FC<IStreak> = ({ completedDailyGoal, streak }) => {
             fontSize: 30,
             color: completedDailyGoal ? "#F29800" : "#E5E5E5",
           }}
-          name={icons.streak}
+          name="star"
         />
         <Typography
           variant="body1"

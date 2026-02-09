@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -41,7 +40,7 @@ const LinkCardList: React.FC<ILinkCardList> = ({ links }) => {
                 primary={link.name}
                 secondary={link.secondaryName ?? undefined}
               />
-              <Icon name={icons.next} />
+              <Icon name="arrowRight" />
             </ListItemButton>
           </ListItem>
         );

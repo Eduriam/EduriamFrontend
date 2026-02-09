@@ -1,7 +1,6 @@
 "use client";
 
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
-import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import LoginForm from "components/molecules/LoginForm/LoginForm";
@@ -15,7 +14,7 @@ const LoginPage: React.FC<ILoginPage> = () => {
     <PageRoot data-test="login-page">
       <BasicNavbar
         leftButton={{
-          icon: icons.back,
+          icon: "chevronLeft",
           onClick: navigateWithTransition("/welcome", {
             direction: "back",
           }),

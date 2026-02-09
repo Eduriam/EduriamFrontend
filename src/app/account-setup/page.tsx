@@ -1,7 +1,6 @@
 "use client";
 
 import { PageRoot } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import { useEffect, useState } from "react";
 
@@ -94,7 +93,7 @@ const AccountSetupPage: React.FC<IAccountSetupPage> = () => {
       {page !== 0 && (page !== 5 || startOptionId !== "takeTest") && (
         <NavigationBar
           leftIconButton={{
-            icon: icons.back,
+            icon: "chevronLeft",
             onClick: () => {
               decrementPage();
             },

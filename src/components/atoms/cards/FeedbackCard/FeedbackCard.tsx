@@ -1,7 +1,6 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -41,20 +40,12 @@ const FeedbackCard: React.FC<IFeedbackCard> = ({
           <IconButton
             onClick={() => onFeedbackChange({ state: "LIKE", text: "" })}
           >
-            {feedback && feedback.state === "LIKE" ? (
-              <Icon name={icons.liked} />
-            ) : (
-              <Icon name={icons.like} />
-            )}
+            <Icon name="thumbUp" />
           </IconButton>
           <IconButton
             onClick={() => onFeedbackChange({ state: "DISLIKE", text: "" })}
           >
-            {feedback && feedback.state === "DISLIKE" ? (
-              <Icon name={icons.disliked} />
-            ) : (
-              <Icon name={icons.dislike} />
-            )}
+            <Icon name="thumbDown" />
           </IconButton>
         </Box>
         {feedback && feedback.state === "DISLIKE" && !feedback.text && (

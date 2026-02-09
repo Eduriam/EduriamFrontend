@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import theme from "styles/theme";
 
 import { AppBarProps } from "@mui/material";
@@ -60,7 +59,7 @@ const HomeNavigationBar: React.FC<IHomeNavigationBar & AppBarProps> = ({
       >
         <Box>
           <IconButton onClick={onDrawerOpen}>
-            <Icon name={icons.menu} />
+            <Icon name="menu" />
           </IconButton>
         </Box>
         {user && (

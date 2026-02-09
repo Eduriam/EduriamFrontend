@@ -1,4 +1,4 @@
-import { Icon } from "@eduriam/ui-core";
+import { Icon, IconName } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import { AppBarProps } from "@mui/material";
@@ -14,11 +14,11 @@ import { SIDE_NAV_BAR_WIDTH } from "../../main-navigation-bars/SideNavigationBar
 export interface INavigationBar {
   leftIconButton?: {
     onClick?: () => void;
-    icon: string;
+    icon: IconName;
   };
   rightIconButton?: {
     onClick?: () => void;
-    icon: string;
+    icon: IconName;
   };
   header?: string;
 }

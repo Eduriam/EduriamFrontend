@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import theme from "styles/theme";
 
 import React from "react";
@@ -155,13 +154,13 @@ const LessonOverview: React.FC<ILessonOverview> = ({ lessonId, courseId }) => {
           user?.role !== "PREMIUM_USER" ? (
             <BottomFab
               header={t("studying.premiumStudying")}
-              icon={icons.lock}
+              icon="lock"
               onClick={() => router.push(`/subscription`)}
             />
           ) : (
             <BottomFab
               header={t("studying.studyLesson")}
-              icon={icons.startStudy}
+              icon="play"
               onClick={() => router.push(`/study?lessonId=${lessonId}`)}
             />
           )}

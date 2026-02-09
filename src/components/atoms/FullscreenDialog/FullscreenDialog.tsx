@@ -1,4 +1,4 @@
-import { FullWidthButton, Icon } from "@eduriam/ui-core";
+import { FullWidthButton, Icon, IconName } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import { ReactNode } from "react";
@@ -22,12 +22,12 @@ export interface IFullscreenDialog {
   primaryButton?: {
     onClick?: () => void;
     text?: string;
-    icon?: string;
+    icon?: IconName;
   };
   secondaryButton?: {
     onClick?: () => void;
     text?: string;
-    icon?: string;
+    icon?: IconName;
   };
   maxWidth?: "sm" | "md";
 }

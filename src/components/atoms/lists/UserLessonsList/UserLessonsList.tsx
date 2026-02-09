@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -37,7 +36,7 @@ const UserLessonsList: React.FC<IUserLessonsList> = ({ lessons }) => {
               <IconButton
                 onClick={() => router.push(`/lessons/${link.id}/update`)}
               >
-                <Icon name={icons.edit} />
+                <Icon name="settings" />
               </IconButton>
             }
           >

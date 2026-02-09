@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 import theme from "styles/theme";
 
 import Box from "@mui/material/Box";
@@ -32,7 +31,7 @@ const LevelProgressBar: React.FC<ILevelProgressBar> = ({ progress }) => {
               textShadow: "0px 0px 5px rgba(0,0,0,0.2)",
               color: "#FFD700",
             }}
-            name={icons.starFilled}
+            name="star"
           />
         ) : (
           <Icon
@@ -41,7 +40,7 @@ const LevelProgressBar: React.FC<ILevelProgressBar> = ({ progress }) => {
               fontSize: size,
               color: "#383838",
             }}
-            name={icons.star}
+            name="star"
           />
         )}
       </>

@@ -1,5 +1,3 @@
-import icons from "styles/icons";
-
 import NavigationBar from "components/atoms/navigation/top-navigation-bars/NavigationBar/NavigationBar";
 
 import { IDrawerController } from "../../drawer/DrawerContainer/DrawerContainer";
@@ -15,7 +13,7 @@ const DefaultNavigationBar: React.FC<IDefaultNavigationBar> = ({
   return (
     <NavigationBar
       leftIconButton={{
-        icon: icons.menu,
+        icon: "menu",
         onClick: onDrawerOpen,
       }}
       color="default"

@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import Image from "next/image";
 
@@ -58,7 +57,7 @@ const Popup: React.FC<IPopup> = ({
               color: theme.palette.grey[500],
             }}
           >
-            <Icon name={icons.close} />
+            <Icon name="close" />
           </IconButton>
         )}
       </DialogTitle>

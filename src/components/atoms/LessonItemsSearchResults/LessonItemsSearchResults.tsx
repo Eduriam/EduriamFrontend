@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -46,7 +45,7 @@ const LessonItemsSearchResults: React.FC<ILessonItemsSearchResults> = ({
                     <Avatar src={item.imageUrl} variant="rounded" />
                   </ListItemAvatar>
                   <ListItemText primary={item.nameL2} secondary={item.nameL1} />
-                  <Icon name={icons.next} />
+                  <Icon name="arrowRight" />
                 </ListItemButton>
               </ListItem>
             );

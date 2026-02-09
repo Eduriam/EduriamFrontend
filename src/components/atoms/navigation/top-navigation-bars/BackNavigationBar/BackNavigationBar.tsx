@@ -1,6 +1,5 @@
 import { BasicNavbar } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useRouter } from "next/navigation";
 
@@ -20,7 +19,7 @@ const BackNavigationBar: React.FC<IBackNavigationBar & AppBarProps> = ({
     <BasicNavbar
       header={header ? t(`navigation.${header}`) : undefined}
       leftButton={{
-        icon: icons.back,
+        icon: "chevronLeft",
         onClick: () => {
           router.back();
         },

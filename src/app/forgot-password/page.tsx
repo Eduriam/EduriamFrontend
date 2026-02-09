@@ -2,7 +2,6 @@
 
 import { BasicNavbar, Header, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useState } from "react";
@@ -24,7 +23,7 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
     <PageRoot>
       <BasicNavbar
         leftButton={{
-          icon: icons.back,
+          icon: "chevronLeft",
           onClick: navigateWithTransition("/login", {
             direction: "back",
           }),

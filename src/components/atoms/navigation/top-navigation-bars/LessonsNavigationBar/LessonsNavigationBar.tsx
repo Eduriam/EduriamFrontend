@@ -1,5 +1,4 @@
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useSearchParams } from "next/navigation";
 
@@ -20,7 +19,7 @@ const LessonsNavigationBar: React.FC<ILessonsNavigationBar> = ({
     <NavigationBar
       header={t(`lessons.${lessonType?.toLowerCase()}`)}
       leftIconButton={{
-        icon: icons.menu,
+        icon: "menu",
         onClick: onDrawerOpen,
       }}
       color="default"

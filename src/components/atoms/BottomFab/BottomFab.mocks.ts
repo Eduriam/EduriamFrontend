@@ -1,7 +1,7 @@
 import { IBottomFab } from "./BottomFab";
 
 const base: IBottomFab = {
-  icon: "NavigateNext",
+  icon: "arrowRight",
 };
 
 export const mockBottomFabProps = {

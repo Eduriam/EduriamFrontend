@@ -1,121 +1,128 @@
-import icons from "../../../../../styles/icons";
+import type { IconName } from "@eduriam/ui-core";
 
 export const drawerWidth = 240;
 
-export const lessons = [
+interface DrawerItem {
+  label: string;
+  icon: IconName;
+  path: string;
+  premium?: boolean;
+}
+
+export const lessons: DrawerItem[] = [
   {
     label: "studying.vocabulary",
-    icon: icons.vocabulary,
+    icon: "study",
     path: "/lessons?type=VOCABULARY",
   },
   {
     label: "studying.grammar",
-    icon: icons.grammar,
+    icon: "study",
     path: "/lessons?type=GRAMMAR",
   },
   {
     label: "studying.pronunciation",
-    icon: icons.pronunciation,
+    icon: "study",
     path: "/lessons?type=PRONUNCIATION",
   },
   {
     label: "studying.speaking",
-    icon: icons.speaking,
+    icon: "study",
     path: "/lessons?type=SPEAKING",
   },
   {
     label: "studying.reading",
-    icon: icons.reading,
+    icon: "study",
     path: "/lessons?type=READING",
   },
   {
     label: "studying.listening",
-    icon: icons.listening,
+    icon: "study",
     path: "/lessons?type=LISTENING",
   },
 ];
 
-export const levels = [
+export const levels: DrawerItem[] = [
   {
     label: "levels.0",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=0",
     premium: false,
   },
   {
     label: "levels.1",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=1",
     premium: false,
   },
   {
     label: "levels.2",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=2",
     premium: false,
   },
   {
     label: "levels.3",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=3",
     premium: false,
   },
   {
     label: "levels.4",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=4",
     premium: true,
   },
   {
     label: "levels.5",
-    icon: "signpost_outlined",
+    icon: "study",
     path: "/?level=5",
     premium: true,
   },
 ];
 
-export const studying = [
+export const studying: DrawerItem[] = [
   {
     label: "navigation.favorites",
-    icon: icons.favorites,
+    icon: "star",
     path: "/favorites",
   },
   {
     label: "navigation.myVocabulary",
-    icon: icons.myVocabulary,
+    icon: "study",
     path: "/user-lessons",
   },
   {
     label: "navigation.courses",
-    icon: icons.courses,
+    icon: "courses",
     path: "/courses",
   },
   {
     label: "navigation.search",
-    icon: icons.search,
+    icon: "search",
     path: "/search",
   },
 ];
 
-export const other = [
+export const other: DrawerItem[] = [
   {
     label: "navigation.help",
-    icon: icons.help,
+    icon: "help",
     path: "/help",
   },
   {
     label: "navigation.premium",
-    icon: icons.premium,
+    icon: "premium",
     path: "/subscription",
   },
   {
     label: "navigation.settings",
-    icon: icons.settings,
+    icon: "settings",
     path: "/settings",
   },
   {
     label: "navigation.logout",
-    icon: icons.logout,
+    icon: "logout",
     path: "/logout",
   },
 ];

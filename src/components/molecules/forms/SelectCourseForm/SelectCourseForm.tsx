@@ -2,7 +2,6 @@ import { FullWidthButton, Icon } from "@eduriam/ui-core";
 import { Language } from "domain/models/types/languages";
 import { useTranslation } from "i18n/client";
 import { languages } from "i18n/settings";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -104,7 +103,7 @@ const SelectCourseForm: React.FC<ISelectCourseForm> = ({
         disabled={selectedCourseId === undefined}
       >
         {tCommon("accountSetup.selectCourse")}
-        <Icon name={icons.next} />
+        <Icon name="arrowRight" />
       </FullWidthButton>
     </Box>
   );

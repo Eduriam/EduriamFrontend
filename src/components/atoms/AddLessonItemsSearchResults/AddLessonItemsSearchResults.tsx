@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -48,11 +47,11 @@ const AddLessonItemsSearchResults: React.FC<IAddLessonItemsSearchResults> = ({
                   secondaryAction={
                     items.some((i) => i.id === item.id) ? (
                       <IconButton onClick={() => onItemRemove(item)}>
-                        <Icon name={icons.remove} />
+                        <Icon name="delete" />
                       </IconButton>
                     ) : (
                       <IconButton onClick={() => onItemAdd(item)}>
-                        <Icon name={icons.add} />
+                        <Icon name="add" />
                       </IconButton>
                     )
                   }

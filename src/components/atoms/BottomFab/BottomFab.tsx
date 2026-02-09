@@ -1,4 +1,4 @@
-import { Icon } from "@eduriam/ui-core";
+import { Icon, IconName } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
 import Fab from "@mui/material/Fab";
@@ -8,7 +8,7 @@ import { BOTTOM_NAV_BAR_HEIGHT } from "../navigation/main-navigation-bars/Bottom
 
 export interface IBottomFab {
   header?: string;
-  icon?: string;
+  icon?: IconName;
   onClick?: () => void;
 }
 

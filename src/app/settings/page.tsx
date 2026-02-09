@@ -2,7 +2,6 @@
 
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -150,7 +149,7 @@ const SettingsPage: React.FC<ISettingsPage> = () => {
           {displaySaveButton() && (
             <BottomFab
               header={t("userActions.save")}
-              icon={icons.save}
+              icon="check"
               onClick={() => handleSave()}
             />
           )}

@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import React from "react";
 
@@ -41,7 +40,7 @@ const CustomLessonsOverview: React.FC<ICustomLessonsOverview> = ({
           {tCommon("navigation.myLessons")}
         </Typography>
         <IconButton onClick={() => router.push("/lessons-create")}>
-          <Icon name={icons.add} />
+          <Icon name="add" />
         </IconButton>
       </Box>
       {lessons && lessons.length !== 0 ? (

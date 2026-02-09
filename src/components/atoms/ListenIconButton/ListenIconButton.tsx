@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -69,7 +68,7 @@ const ListenIconButton: React.FC<IListenIconButton> = ({
     <IconButton onClick={handleButtonClick}>
       <Icon
         color={state === "RUNNING" ? "primary" : undefined}
-        name={icons.sound}
+        name="play"
       />
     </IconButton>
   );

@@ -1,7 +1,6 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -153,7 +152,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
               {t("userLessons.vocabulary")}
             </Typography>
             <IconButton onClick={() => setSearchDialogOpen(true)}>
-              <Icon name={icons.add} />
+              <Icon name="add" />
             </IconButton>
           </Box>
           <AddVocabularyDialog
@@ -183,7 +182,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
                           setItems(items.filter((e) => e.id !== item.id));
                         }}
                       >
-                        <Icon name={icons.remove} />
+                        <Icon name="delete" />
                       </IconButton>
                     }
                     sx={{ pr: 2 }}
@@ -213,7 +212,7 @@ const LessonCreateUpdate: React.FC<ILessonCreateUpdate> = ({
       {displaySaveButton() && (
         <BottomFab
           header={isCreate ? t("userActions.create") : t("userActions.save")}
-          icon={icons.save}
+          icon="check"
           onClick={() => onSave({ name, description, items, id: lesson.id })}
         />
       )}

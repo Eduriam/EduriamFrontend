@@ -1,6 +1,5 @@
 import { Icon } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useState } from "react";
 
@@ -44,7 +43,7 @@ const AddVocabularyDialog: React.FC<IAddVocabularyDialog> = ({
       <NavigationBar
         header={t("userLessons.addVocabulary")}
         leftIconButton={{
-          icon: icons.back,
+          icon: "chevronLeft",
           onClick: onClose,
         }}
       />
@@ -70,7 +69,7 @@ const AddVocabularyDialog: React.FC<IAddVocabularyDialog> = ({
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton onClick={() => setSearchPrompt(text)}>
-                      <Icon name={icons.search} />
+                      <Icon name="search" />
                     </IconButton>
                   </InputAdornment>
                 ),

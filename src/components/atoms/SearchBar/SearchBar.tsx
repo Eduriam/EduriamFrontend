@@ -1,5 +1,4 @@
 import { Icon } from "@eduriam/ui-core";
-import icons from "styles/icons";
 
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -33,7 +32,7 @@ const SearchBar: React.FC<ISearchBar> = ({
           endAdornment: (
             <InputAdornment position="end">
               <IconButton onClick={() => onSearchClick(value)}>
-                <Icon name={icons.search} />
+                <Icon name="search" />
               </IconButton>
             </InputAdornment>
           ),

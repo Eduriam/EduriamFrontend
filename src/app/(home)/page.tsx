@@ -2,7 +2,6 @@
 
 import { PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import icons from "styles/icons";
 
 import { useEffect } from "react";
 
@@ -71,7 +70,7 @@ const HomePage: React.FC<IHomePage> = () => {
       )}
       <BottomFab
         header={t("studying.study")}
-        icon={icons.start}
+        icon="play"
         onClick={() => router.push(`/study`)}
       />
     </PageRoot>
