@@ -11,6 +11,7 @@ Feature: Learning path page and enrollment
 
   Scenario: User enrolls in learning path and is taken to first lesson of the first course
     Given I am logged in
+    And I am not enrolled in a course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page
@@ -18,7 +19,8 @@ Feature: Learning path page and enrollment
     Then I should be redirected to the "study-session-page" page
 
   Scenario: User continues learning in learning path and is taken to next lesson
-    Given I am logged in and enrolled in the learning path
+    Given I am logged in
+    And I am enrolled in a course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page

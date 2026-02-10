@@ -6,6 +6,8 @@ services:
       - "3001:3001"
     volumes:
       - "./mock/netlify/functions/datafile.json:/data/datafile.json:ro"
+    environment:
+      - MOCKOON_LEARNING_PATH_ENROLLED=false
     command:
       [
         "start",
