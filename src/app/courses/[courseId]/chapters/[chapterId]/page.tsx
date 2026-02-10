@@ -8,7 +8,7 @@ import {
 } from "@eduriam/ui-core";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useParams } from "next/navigation";
 
@@ -31,7 +31,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
 
   const { chapter } = ChaptersAPI.useChapter(courseId, chapterId);
 
-  const sections = chapter?.sections ?? [];
+  const sections = useMemo(() => chapter?.sections ?? [], [chapter?.sections]);
 
   const [expandedSections, setExpandedSections] = useState<
     Record<string, boolean>
@@ -54,7 +54,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
   };
 
   return (
-    <PageRoot data-test="course-chapter-page">
+    <PageRoot data-test="chapter-page">
       <BasicNavbar
         leftButton={{
           icon: "chevronLeft",
@@ -71,7 +71,10 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
         <Stack spacing={4} sx={{ py: 3, width: "100%" }}>
           <Header variant="section" text={chapter?.name ?? ""} />
 
-          <Box sx={{ width: "100%", position: "relative" }}>
+          <Box
+            sx={{ width: "100%", position: "relative" }}
+            data-test="sections-list-section"
+          >
             {sections.length > 0 && (
               <Box
                 sx={{
@@ -98,9 +101,10 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
                       title={section.name}
                       expanded={expanded}
                       onToggle={() => toggleSection(section.id)}
+                      data-test="section-card"
                     />
                     {expanded && (
-                      <>
+                      <Stack spacing={2} data-test="lessons-list-section">
                         {section.lessons.map((lesson) => (
                           <LessonListItem
                             key={lesson.id}
@@ -112,9 +116,11 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
                                   ? "completed"
                                   : "default"
                             }
+                            onClick={navigateWithTransition("/study-session")}
+                            data-test="lesson-button"
                           />
                         ))}
-                      </>
+                      </Stack>
                     )}
                   </Stack>
                 );

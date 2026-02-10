@@ -6,6 +6,8 @@ Feature: Chapter page
     And I am on the "course-page" page
     When I click on the "chapter-card" card
     Then I should be on the "chapter-page" page
-    And I should see the "lessons-list-section" section
+    And I should see the "sections-list-section" section
+    When I click on the "section-card" card
+    Then I should see the "lessons-list-section" section
     When I click on the "lesson-button" button
     Then I should be redirected to the "study-session-page" page
