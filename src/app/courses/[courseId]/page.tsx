@@ -26,14 +26,12 @@ import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ICoursePage {}
 
 const CoursePage: React.FC<ICoursePage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { user } = useAuth();
 
   const params = useParams<{ courseId: Id }>();
   const courseId = params.courseId ?? "";
@@ -73,8 +71,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const chapters = course?.chapters ?? [];
 
-  const isEnrolled =
-    (course?.enrolled ?? false) || user?.selectedCourse?.id === courseId;
+  const isEnrolled = course?.enrolled ?? false;
 
   return (
     <>

@@ -11,6 +11,7 @@ Feature: Course page and enrollment
 
   Scenario: User enrolls in course and is taken to first lesson
     Given I am logged in
+    And I am not enrolled in the course
     And I am on the "courses-page" page
     When I click on the "course-card" card
     Then I should be on the "course-page" page
@@ -18,7 +19,8 @@ Feature: Course page and enrollment
     Then I should be redirected to the "study-session-page" page
 
   Scenario: User continues learning and is taken to next lesson
-    Given I am logged in and enrolled the course
+    Given I am logged in
+    And I am enrolled in the course
     And I am on the "courses-page" page
     When I click on the "course-card" card
     Then I should be on the "course-page" page

@@ -33,9 +33,7 @@ function requestJson(
       // Any 2xx status is treated as success
       if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
         // Drain response
-        res.on("data", () => {
-          console.log("Data received");
-        });
+        res.on("data", () => {});
         res.on("end", () => resolve());
       } else {
         let data = "";
@@ -76,6 +74,13 @@ export async function setLearningPathEnrolled(
 ): Promise<void> {
   await setMockoonEnvVar(
     "MOCKOON_LEARNING_PATH_ENROLLED",
+    enrolled ? "true" : "false",
+  );
+}
+
+export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
+  await setMockoonEnvVar(
+    "MOCKOON_COURSE_ENROLLED",
     enrolled ? "true" : "false",
   );
 }
