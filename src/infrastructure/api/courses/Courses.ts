@@ -25,6 +25,12 @@ export interface Course {
   userProgress?: number;
   /** Whether the current user is enrolled in this course. */
   enrolled?: boolean;
+  /**
+   * ID of the certificate for this course for the current user.
+   * If the user has not completed the course or does not have access
+   * to the certificate yet, this will be null or undefined.
+   */
+  userCertificate?: Id | null;
   /** Short marketing description for the course hero. */
   shortDescription?: string;
   /** Detailed course description used in the details drawer. */

@@ -2,7 +2,9 @@
 Feature: Learning path completion certificate
 
   Scenario: Premium user who completed learning path views certificate
-    Given I am logged in as a premium user who completed the learning path
+    Given I am logged in
+    And I am a premium user
+    And I have the learning path certificate
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page
@@ -12,7 +14,9 @@ Feature: Learning path completion certificate
     And I should see the "certificate-section" section
 
   Scenario: Premium user who has not completed learning path cannot view certificate
-    Given I am logged in as a premium user who has not completed the learning path
+    Given I am logged in
+    And I am a premium user
+    And I do not have the learning path certificate
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page

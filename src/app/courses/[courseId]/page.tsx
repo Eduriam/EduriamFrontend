@@ -26,12 +26,14 @@ import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ICoursePage {}
 
 const CoursePage: React.FC<ICoursePage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
 
   const params = useParams<{ courseId: Id }>();
   const courseId = params.courseId ?? "";
@@ -40,6 +42,9 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
+
+  const isPremiumUser = user?.role === "PREMIUM_USER";
+  const hasCertificate = course?.userCertificate !== null;
 
   const handleStartCourse = async () => {
     if (!courseId) {
@@ -52,6 +57,33 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const handleContinueLearning = () => {
     navigateWithTransition("/lesson")();
+  };
+
+  const handleViewCertificate = () => {
+    if (!courseId) {
+      return;
+    }
+
+    // Non-premium users are redirected to the premium benefits page.
+    if (!isPremiumUser) {
+      navigateWithTransition("/subscription")();
+      return;
+    }
+
+    // Premium users with a certificate go directly to the certificate page.
+    if (hasCertificate) {
+      const certificateId =
+        course?.userCertificate ?? ("test-course-certificate" as Id);
+      if (certificateId) {
+        navigateWithTransition(`/certificates/${certificateId}`)();
+        return;
+      }
+    }
+
+    console.log("redirecting to locked drawer");
+
+    // Premium users without an available certificate see the locked drawer.
+    setIsCertificateDrawerOpen(true);
   };
 
   const handleOpenDetails = () => {
@@ -112,6 +144,8 @@ const CoursePage: React.FC<ICoursePage> = () => {
                   size="medium"
                   icon="certificate"
                   color="textPrimary"
+                  data-test="view-certificate-button"
+                  onClick={handleViewCertificate}
                 />
               </Stack>
 
@@ -149,26 +183,15 @@ const CoursePage: React.FC<ICoursePage> = () => {
                 </LargeButton>
               )}
               {isEnrolled && (
-                <>
-                  <LargeButton
-                    variant="contained"
-                    color="primary"
-                    onClick={handleContinueLearning}
-                    data-test="continue-learning-button"
-                    fullWidth
-                  >
-                    {t("courses.continueLearning")}
-                  </LargeButton>
-                  <LargeButton
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => setIsCertificateDrawerOpen(true)}
-                    data-test="certificate-button"
-                    fullWidth
-                  >
-                    {t("courses.certificateButton")}
-                  </LargeButton>
-                </>
+                <LargeButton
+                  variant="contained"
+                  color="primary"
+                  onClick={handleContinueLearning}
+                  data-test="continue-learning-button"
+                  fullWidth
+                >
+                  {t("courses.continueLearning")}
+                </LargeButton>
               )}
             </Stack>
 
@@ -227,7 +250,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
         open={isCertificateDrawerOpen}
         onClose={() => setIsCertificateDrawerOpen(false)}
         data-test="certificate-locked-drawer"
-        data-test-continue="certificate-locked-drawer-continue"
+        data-test-continue="continue-button"
       />
     </>
   );

@@ -240,3 +240,82 @@ Given(
     await this.page.reload({ waitUntil: "domcontentloaded", timeout: 15000 });
   },
 );
+
+Given(
+  "I am a premium user",
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const user = {
+      id: "test-user",
+      username: "Test user",
+      role: "PREMIUM_USER",
+      streak: 0,
+      balance: 0,
+      accountInitialized: true,
+      lastSessionDate: null,
+      activeSubscription: {
+        id: "test-subscription",
+        validUntil: new Date().toISOString(),
+      },
+      selectedCourse: {
+        id: "test-course",
+        name: "Test course",
+        language: "en-US",
+      },
+      lastViewedStudyMapLevel: 0,
+    } as unknown as UserPrivate;
+
+    const idToken = createJwt(60 * 60);
+    const refreshToken = "test-refresh-token";
+
+    const initScript = ({
+      user,
+      idToken,
+      refreshToken,
+    }: {
+      user: UserPrivate;
+      idToken: string;
+      refreshToken: string;
+    }) => {
+      localStorage.setItem("idToken", JSON.stringify(idToken));
+      localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+      localStorage.setItem("user", JSON.stringify(user));
+    };
+
+    if (this.context) {
+      await this.context.addInitScript(initScript, {
+        user,
+        idToken,
+        refreshToken,
+      });
+    }
+    await this.page.addInitScript(initScript, {
+      user,
+      idToken,
+      refreshToken,
+    });
+  },
+);
+
+Given(
+  "I am not logged in",
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    // Clear any existing auth data so the app treats the user as logged out.
+    await this.page.addInitScript(() => {
+      localStorage.removeItem("idToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("user");
+    });
+  },
+);

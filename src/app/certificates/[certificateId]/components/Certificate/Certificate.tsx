@@ -49,7 +49,7 @@ const Certificate: React.FC<ICertificate> = ({
         spacing={25}
         sx={{
           px: 3,
-          py: 4,
+          py: 8,
           alignItems: "center",
           textAlign: "center",
           width: "100%",
@@ -57,7 +57,11 @@ const Certificate: React.FC<ICertificate> = ({
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
           <Illustration name="eduriam-logo" width={32} height={32} />
-          <Header variant="section" text={t("certificate.projectTitle")} align="center" />
+          <Header
+            variant="section"
+            text={t("certificate.projectTitle")}
+            align="center"
+          />
         </Box>
 
         <Stack spacing={8} alignItems="center">

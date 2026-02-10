@@ -5,6 +5,7 @@ import {
   Chip,
   ContentContainer,
   Header,
+  IconButton,
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
@@ -18,6 +19,7 @@ import { useParams } from "next/navigation";
 import { Box, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
+import CertificateLockedDrawer from "components/courses/CertificateLockedDrawer/CertificateLockedDrawer";
 import CourseCard from "components/courses/CourseCard/CourseCard";
 import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDetailsDrawer";
 import CourseLogo, {
@@ -26,12 +28,14 @@ import CourseLogo, {
 
 import LearningPathAPI from "infrastructure/api/learning-paths/LearningPathAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ILearningPathPage {}
 
 const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
 
   const params = useParams<{ learningPathId: Id }>();
   const learningPathId = params.learningPathId ?? "";
@@ -39,6 +43,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { learningPath } = LearningPathAPI.useLearningPath(learningPathId);
 
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
+  const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
 
   const handleStartLearningPath = async () => {
     if (!learningPathId) {
@@ -65,6 +70,34 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const description = learningPath?.description;
   const courses = learningPath?.courses ?? [];
   const isEnrolled = learningPath?.enrolled ?? false;
+  const isPremiumUser = user?.role === "PREMIUM_USER";
+  const hasCertificate = learningPath?.userCertificate !== null;
+
+  const handleViewCertificate = () => {
+    if (!learningPathId) {
+      return;
+    }
+
+    // Non-premium users are redirected to the premium benefits page.
+    if (!isPremiumUser) {
+      navigateWithTransition("/subscription")();
+      return;
+    }
+
+    // Premium users with a certificate go directly to the certificate page.
+    if (hasCertificate) {
+      const certificateId =
+        learningPath?.userCertificate ??
+        ("react-developer-path-certificate" as Id);
+      if (certificateId) {
+        navigateWithTransition(`/certificates/${certificateId}`)();
+        return;
+      }
+    }
+
+    // Premium users without an available certificate see the locked drawer.
+    setIsCertificateDrawerOpen(true);
+  };
 
   return (
     <>
@@ -99,6 +132,14 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                   label={t("courses.learningPathLabel") || "Learning path"}
                   color="chipBlue"
                   variant="filled"
+                />
+                <IconButton
+                  variant="text"
+                  size="medium"
+                  icon="certificate"
+                  color="textPrimary"
+                  data-test="view-certificate-button"
+                  onClick={handleViewCertificate}
                 />
               </Stack>
 
@@ -210,6 +251,12 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
         description={description}
         prerequisites={learningPath?.prerequisites}
         data-test="learning-path-details-drawer"
+      />
+      <CertificateLockedDrawer
+        open={isCertificateDrawerOpen}
+        onClose={() => setIsCertificateDrawerOpen(false)}
+        data-test="certificate-locked-drawer"
+        data-test-continue="continue-button"
       />
     </>
   );

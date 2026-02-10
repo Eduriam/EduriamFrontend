@@ -32,8 +32,10 @@ function requestJson(
     const req = client.request(options, (res) => {
       // Any 2xx status is treated as success
       if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
-        // Drain response
-        res.on("data", () => {});
+        // Drain response to avoid holding onto the stream.
+        res.on("data", () => {
+          // Intentionally empty – data is ignored.
+        });
         res.on("end", () => resolve());
       } else {
         let data = "";
@@ -85,3 +87,20 @@ export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
   );
 }
 
+export async function setCourseCertificate(
+  hasCertificate: boolean,
+): Promise<void> {
+  await setMockoonEnvVar(
+    "MOCKOON_COURSE_CERTIFICATE",
+    hasCertificate ? "test-course-certificate" : "null",
+  );
+}
+
+export async function setLearningPathCertificate(
+  hasCertificate: boolean,
+): Promise<void> {
+  await setMockoonEnvVar(
+    "MOCKOON_LEARNING_PATH_CERTIFICATE",
+    hasCertificate ? "react-developer-path-certificate" : "null",
+  );
+}

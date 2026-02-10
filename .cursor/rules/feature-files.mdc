@@ -48,3 +48,15 @@ Only create feature-specific steps when shared steps cannot handle the scenario.
 #### Naming
 
 Step definition files should match feature file names (e.g., `login.steps.ts` for `login.feature`).
+
+### Using different API responses for different scenarios
+
+Sometimes it is necessary to send different values in the Mockoon API response in different scenarios. For that we set environment variables via the Mockoon server in real time to change the response attributes. For that, please use the `/tests/e2e/util/mockoon-env.ts` utility functions.
+
+When specifying a new variable in the mock definition file, always specify the default value (the second value). For example:
+
+```json
+{
+    "enrolled": {{getEnvVar 'MOCKOON_COURSE_ENROLLED' 'false'}},
+}
+```

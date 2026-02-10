@@ -2,7 +2,9 @@
 Feature: Course completion certificate
 
   Scenario: Premium user who completed course views certificate
-    Given I am logged in as a premium user who completed the course
+    Given I am logged in
+    And I am a premium user
+    And I have the course certificate
     And I am on the "courses-page" page
     When I click on the "course-card" card
     Then I should be on the "course-page" page
@@ -12,7 +14,9 @@ Feature: Course completion certificate
     And I should see the "certificate-section" section
 
   Scenario: Premium user who has not completed course cannot view certificate
-    Given I am logged in as a premium user who has not completed the course
+    Given I am logged in
+    And I am a premium user
+    And I do not have the course certificate
     And I am on the "courses-page" page
     When I click on the "course-card" card
     Then I should be on the "course-page" page

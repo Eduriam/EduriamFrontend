@@ -20,7 +20,9 @@ const PAGE_URLS: Record<string, string> = {
   "study-session-page": `${BASE_URL}/study-session`,
   "lesson-page": `${BASE_URL}/lesson`,
   "manage-courses-page": `${BASE_URL}/settings/courses`,
-  "learning-path-page": `${BASE_URL}/learning-paths`,
+  "learning-path-page": `${BASE_URL}/learning-paths/react-developer-path`,
+  "certificate-page": `${BASE_URL}/certificates/test-course-certificate`,
+  "premium-page": `${BASE_URL}/subscription`,
 };
 
 /**

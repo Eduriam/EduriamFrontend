@@ -2217,7 +2217,7 @@
       "responses": [
         {
           "uuid": "de0d8315-aa85-4938-9442-5699e514a54c",
-          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": \"course\",\n  \"enrolled\": {{getEnvVar 'MOCKOON_COURSE_ENROLLED'}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"name\": \"Introduction\",\n      \"userProgress\": 75\n    },\n    {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": \"test-course\",\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": \"course\",\n  \"enrolled\": {{getEnvVar 'MOCKOON_COURSE_ENROLLED' 'false'}},\n  \"userCertificate\": {{#if (getEnvVar 'MOCKOON_COURSE_CERTIFICATE')}} {{getEnvVar 'MOCKOON_COURSE_CERTIFICATE'}} {{else}}\"test-certificate-id\"{{/if}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": \"intro-chapter\",\n      \"name\": \"Introduction\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"intermediate-chapter\",\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\": \"advanced-chapter\",\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2279,7 +2279,7 @@
       "responses": [
         {
           "uuid": "59216491-0730-418f-82fa-dc55aec4c4d1",
-          "body": "{\n  \"id\": \"react-developer-path\",\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"enrolled\": {{getEnvVar 'MOCKOON_LEARNING_PATH_ENROLLED'}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": \"html\",\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"javascript\",\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": \"react-developer\",\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": \"react-developer-path\",\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"enrolled\": {{getEnvVar 'MOCKOON_LEARNING_PATH_ENROLLED' 'false'}},\n  \"userCertificate\": {{#if (getEnvVar 'MOCKOON_LEARNING_PATH_CERTIFICATE')}} {{getEnvVar 'MOCKOON_LEARNING_PATH_CERTIFICATE'}} {{else}}\"test-certificate-id\"{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": \"html\",\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"javascript\",\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": \"react-developer\",\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2302,15 +2302,15 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "7fc03210-a9fd-48ce-a5c5-8e68e9c5f74c",
+      "uuid": "7e9a4d77-5b5e-4c2e-8f1e-bc7a1b2c3d4e",
       "type": "http",
       "documentation": "",
-      "method": "post",
-      "endpoint": "user/survey-answers",
+      "method": "get",
+      "endpoint": "certificate/:certificateId",
       "responses": [
         {
-          "uuid": "5c086c75-0f7b-4403-92db-90faa72b8e7a",
-          "body": "{}",
+          "uuid": "3a4b5c6d-7e8f-9012-a3b4-c5d6e7f89012",
+          "body": "{\n  \"id\": \"{{urlParam 'certificateId'}}\",\n  \"userName\": \"Pepa Okurka\",\n  \"courseName\": \"JavaScript Basics\",\n  \"completedAt\": \"July 23, 2026\",\n  \"signatoryName\": \"Bořivoj Ježek\",\n  \"signatoryTitle\": \"CEO of Company\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -4079,12 +4079,7 @@
     {
       "uuid": "4ebd996b-8e4f-4881-bba1-f27f7575ff96",
       "name": "survey-answers",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "7fc03210-a9fd-48ce-a5c5-8e68e9c5f74c"
-        }
-      ]
+      "children": []
     },
     {
       "uuid": "24568455-5440-4b5f-a1e0-5613e3df40a0",
@@ -4571,6 +4566,16 @@
           "uuid": "733b72f1-4372-4134-a832-0b552f2b5ea4"
         }
       ]
+    },
+    {
+      "uuid": "bca60b53-1e5f-46cc-bde0-7e968b4306c3",
+      "name": "certificate",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "7e9a4d77-5b5e-4c2e-8f1e-bc7a1b2c3d4e"
+        }
+      ]
     }
   ],
   "rootChildren": [
@@ -4617,6 +4622,10 @@
     {
       "type": "folder",
       "uuid": "77ce5ee6-b4ef-40aa-9472-c8600770f4ac"
+    },
+    {
+      "type": "folder",
+      "uuid": "bca60b53-1e5f-46cc-bde0-7e968b4306c3"
     }
   ],
   "callbacks": [

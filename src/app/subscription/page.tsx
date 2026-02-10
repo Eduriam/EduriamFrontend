@@ -48,6 +48,7 @@ const SubscriptionPage: React.FC<ISubscriptionPage> = () => {
       flexDirection="column"
       alignItems="center"
       sx={{ width: "100%" }}
+      data-test="premium-page"
     >
       {user?.activeSubscription ? (
         <>
