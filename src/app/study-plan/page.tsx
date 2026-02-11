@@ -105,6 +105,9 @@ const StudyPlanPage: React.FC = () => {
     }
   }, [courses, lanes]);
 
+  const [dragOverLane, setDragOverLane] =
+    React.useState<StudyPlanLaneId | null>(null);
+
   const [dragging, setDragging] = React.useState<{
     courseId: string;
     fromLane: StudyPlanLaneId;
@@ -116,6 +119,7 @@ const StudyPlanPage: React.FC = () => {
 
   const handleDragEnd = () => {
     setDragging(null);
+    setDragOverLane(null);
   };
 
   const handleDropOnLane = (targetLane: StudyPlanLaneId) => {
@@ -153,6 +157,7 @@ const StudyPlanPage: React.FC = () => {
     });
 
     setDragging(null);
+    setDragOverLane(null);
   };
 
   const renderLane = (
@@ -168,6 +173,9 @@ const StudyPlanPage: React.FC = () => {
         data-test={dataTest}
         onDragOver={(event) => {
           event.preventDefault();
+          if (dragging) {
+            setDragOverLane(laneId);
+          }
         }}
         onDrop={(event) => {
           event.preventDefault();
@@ -177,6 +185,18 @@ const StudyPlanPage: React.FC = () => {
       >
         <Header variant="section" text={title} />
         <Stack direction="column" spacing={3} mt={3}>
+          {dragging && dragOverLane === laneId && (
+            <Box
+              sx={{
+                height: 96,
+                borderRadius: 2,
+                border: "2px dashed",
+                borderColor: "divider",
+                bgcolor: "background.paper",
+                opacity: 0.8,
+              }}
+            />
+          )}
           {courses.map((course) => (
             <Box
               key={course.id}
