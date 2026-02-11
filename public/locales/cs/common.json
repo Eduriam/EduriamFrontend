@@ -222,6 +222,12 @@
     "description": "Dokončete všechny lekce kurzu pro odemčení vašeho certifikátu.",
     "continue": "Pokračovat"
   },
+  "energy": {
+    "title": "Energie",
+    "pointsLeft": "Zbývá vám dnes {{pointsLeft}} bodů energie",
+    "subtitle": "Energii můžete využít na učení.",
+    "button": "Odemknout neomezenou energii"
+  },
   "certificate": {
     "projectTitle": "Eduriam",
     "certificateOfCompletion": "Certifikát o absolvování",
