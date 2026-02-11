@@ -2341,7 +2341,7 @@
       "responses": [
         {
           "uuid": "42a5df02-d66e-4454-ad35-a9b97c02ef57",
-          "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"language\": \"en\",\n    \"name\": \"Angličtina\",\n    \"type\": \"course\"\n  },\n  {{#repeat 2}}\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"language\": \"en\",\n    \"name\": \"{{faker 'lorem.word'}}\",\n    \"type\": \"course\"\n  }\n  {{/repeat}}\n]",
+          "body": "[\n  {\n    \"id\": \"test-course-learn\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"studyMode\": \"learn\"\n  },\n  {\n    \"id\": \"test-course-paused\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"studyMode\": \"paused\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
