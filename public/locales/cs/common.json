@@ -228,6 +228,12 @@
     "subtitle": "Energii můžete využít na učení.",
     "button": "Odemknout neomezenou energii"
   },
+  "streakDrawer": {
+    "title": "Denní řada",
+    "daysLabel": "{{countFormatted}} dní",
+    "freezeTitle": "Zmrazení řady",
+    "equippedLabel": "{{equippedFormatted}} / {{maxFormatted}} zapnuto"
+  },
   "certificate": {
     "projectTitle": "Eduriam",
     "certificateOfCompletion": "Certifikát o absolvování",
