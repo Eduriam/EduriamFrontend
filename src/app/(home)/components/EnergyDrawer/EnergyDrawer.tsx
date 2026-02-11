@@ -78,7 +78,11 @@ const EnergyDrawer: React.FC<IEnergyDrawerProps> = ({
             }}
           >
             <Box sx={{ flexGrow: 1 }}>
-              <ProgressBar value={clampedProgress} size="large" />
+              <ProgressBar
+                value={clampedProgress}
+                size="large"
+                color="energy.main"
+              />
             </Box>
             <Illustration name="energy" width={48} height={48} />
           </Box>
