@@ -122,7 +122,7 @@ const StudyPlanPage: React.FC = () => {
     setDragOverLane(null);
   };
 
-  const handleDropOnLane = (targetLane: StudyPlanLaneId) => {
+  const handleDropOnLane = async (targetLane: StudyPlanLaneId) => {
     if (!dragging || !lanes) {
       return;
     }
@@ -155,6 +155,15 @@ const StudyPlanPage: React.FC = () => {
         [targetLane]: [course, ...targetCourses],
       };
     });
+
+    // Persist study mode change to backend
+    const newStudyMode: UserCourse["studyMode"] =
+      targetLane === "learn" ? "learn" : targetLane;
+    try {
+      await UserCoursesAPI.updateStudyMode(courseId, newStudyMode);
+    } catch {
+      // Silently ignore errors for now; UI has already updated optimistically.
+    }
 
     setDragging(null);
     setDragOverLane(null);

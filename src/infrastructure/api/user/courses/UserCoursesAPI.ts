@@ -20,6 +20,13 @@ const UserCoursesAPI = {
     return { courses: data, ...rest };
   },
 
+  async updateStudyMode(
+    courseId: Id,
+    studyMode: UserCourse["studyMode"],
+  ): Promise<void> {
+    await API.patch(`${this.URI}/${courseId}`, { studyMode });
+  },
+
   async enrollInCourse(courseId: Id): Promise<void> {
     return API.put(`${this.URI}/${courseId}`, {});
   },

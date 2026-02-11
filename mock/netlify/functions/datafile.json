@@ -3935,6 +3935,37 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "c578e931-305f-4cdc-8062-6ad9191fe978",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "user/courses/:courseId",
+      "responses": [
+        {
+          "uuid": "b5fcfda0-d21c-427d-913a-1225f3b241e8",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Used for changing \"studyMode\" course attribute",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "proxyMode": false,
@@ -4438,6 +4469,10 @@
         {
           "type": "route",
           "uuid": "299ad045-0e48-4bc9-a637-03dd4166895c"
+        },
+        {
+          "type": "route",
+          "uuid": "c578e931-305f-4cdc-8062-6ad9191fe978"
         },
         {
           "type": "route",
