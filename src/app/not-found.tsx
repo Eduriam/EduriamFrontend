@@ -1,44 +1,44 @@
 "use client";
 
+import {
+  ContentContainer,
+  Header,
+  Illustration,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import theme from "styles/theme";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-
-import { Container, useMediaQuery } from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 export default function NotFound() {
   const { t } = useTranslation("common");
-  const router = useRouter();
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <Container maxWidth="sm" sx={{ justifyContent: "center", display: "flex" }}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        sx={{ pt: 8 }}
-      >
-        <Box>
-          <Image
-            src={"/images/404-image.svg"}
-            alt="404"
-            width={desktop ? 500 : 350}
-            height={desktop ? 332 : 232}
-          />
-        </Box>
-        <Typography variant="subtitle1" sx={{ mb: 8, mt: 4 }}>
-          {t("404.header")}
-        </Typography>
-        <Button onClick={() => router.push("/")} variant="contained">
+    <PageRoot data-test="not-found-page">
+      <ContentContainer width="small" justifyContent="space-between">
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          spacing={16}
+          flexGrow={1}
+        >
+          <Illustration name="magnifyingGlass" width={200} height={200} />
+          <Header variant="section" text={t("404.header")} align="center" />
+        </Stack>
+
+        <LargeButton
+          variant="contained"
+          fullWidth
+          onClick={navigateWithTransition("/")}
+          data-test="not-found-home-button"
+        >
           {t("404.backToHome")}
-        </Button>
-      </Box>{" "}
-    </Container>
+        </LargeButton>
+      </ContentContainer>
+    </PageRoot>
   );
 }
