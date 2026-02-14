@@ -25,7 +25,10 @@ import StudyPlanCourseCard, {
 type StudyPlanLaneId = "learn" | "review" | "paused";
 
 interface StudyPlanCourse
-  extends Pick<IStudyPlanCourseCard, "title" | "logoVariant"> {
+  extends Pick<
+    IStudyPlanCourseCard,
+    "title" | "logoVariant" | "data-test-learn-button"
+  > {
   id: string;
   /**
    * Optional data-test attribute for E2E tests.
@@ -58,6 +61,10 @@ function mapCourseToStudyPlanCourse(course: UserCourse): StudyPlanCourse {
         : course.id === "test-course-paused"
           ? "test-course-paused-card"
           : undefined,
+    "data-test-learn-button":
+      course.id === "test-course-learn"
+        ? "start-test-course-learning-button"
+        : undefined,
   };
 }
 
@@ -175,6 +182,7 @@ const StudyPlanPage: React.FC = () => {
     dataTest: string,
   ) => {
     const courses = lanes?.[laneId] ?? [];
+    const isLearnLane = laneId === "learn";
 
     return (
       <Box
@@ -217,6 +225,10 @@ const StudyPlanPage: React.FC = () => {
               <StudyPlanCourseCard
                 title={course.title}
                 logoVariant={course.logoVariant}
+                onPlayClick={
+                  isLearnLane ? navigateWithTransition("/study") : undefined
+                }
+                data-test-learn-button={course["data-test-learn-button"]}
               />
             </Box>
           ))}

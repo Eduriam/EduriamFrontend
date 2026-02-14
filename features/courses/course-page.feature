@@ -16,7 +16,7 @@ Feature: Course page and enrollment
     When I click on the "course-card" card
     Then I should be on the "course-page" page
     When I click on the "start-course-button" button
-    Then I should be redirected to the "study-session-page" page
+    Then I should be redirected to the "study-page" page
 
   Scenario: User continues learning and is taken to next lesson
     Given I am logged in

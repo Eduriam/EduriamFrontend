@@ -16,7 +16,7 @@ Feature: Learning path page and enrollment
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page
     When I click on the "start-learning-path-button" button
-    Then I should be redirected to the "study-session-page" page
+    Then I should be redirected to the "study-page" page
 
   Scenario: User continues learning in learning path and is taken to next lesson
     Given I am logged in

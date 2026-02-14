@@ -17,7 +17,7 @@ const PAGE_URLS: Record<string, string> = {
   "course-page": `${BASE_URL}/courses/test-course`,
   "recommendations-page": `${BASE_URL}/courses/recommended`,
   "recommendation-quiz-page": `${BASE_URL}/courses/recommended/quiz`,
-  "study-session-page": `${BASE_URL}/study-session`,
+  "study-page": `${BASE_URL}/study`,
   "lesson-page": `${BASE_URL}/lesson`,
   "manage-courses-page": `${BASE_URL}/settings/courses`,
   "learning-path-page": `${BASE_URL}/learning-paths/react-developer-path`,

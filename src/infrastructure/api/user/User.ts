@@ -7,6 +7,8 @@ export interface UserPrivate {
   role: UserRole;
   streak: number;
   balance: number;
+  energy: number;
+  equippedStreakFreezes: number;
   accountInitialized: boolean;
   lastSessionDate: Date | null;
   activeSubscription: Subscription | null;

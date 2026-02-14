@@ -13,11 +13,11 @@ export interface IStreakDrawerProps {
   /** Invoked when the drawer should be dismissed. */
   onClose: () => void;
   /** Total number of consecutive streak days. */
-  streakDays?: number;
+  streakDays: number;
   /** How many streak-freeze power-ups are currently equipped. */
-  equippedStreakFreezes?: number;
+  equippedStreakFreezes: number;
   /** Maximum number of streak-freeze slots available. */
-  maxStreakFreezes?: number;
+  maxStreakFreezes: number;
   /** Optional data attribute for e2e tests. */
   "data-test"?: string;
 }
@@ -28,9 +28,9 @@ const formatNumber = (value: number) =>
 const StreakDrawer: React.FC<IStreakDrawerProps> = ({
   open,
   onClose,
-  streakDays = 0,
-  equippedStreakFreezes = 0,
-  maxStreakFreezes = 0,
+  streakDays,
+  equippedStreakFreezes,
+  maxStreakFreezes,
   "data-test": dataTest,
 }) => {
   const { t } = useTranslation("common");
@@ -40,7 +40,9 @@ const StreakDrawer: React.FC<IStreakDrawerProps> = ({
     countFormatted: formattedStreakCount,
   });
   const effectiveMaxStreakFreezes =
-    maxStreakFreezes > 0 ? maxStreakFreezes : Math.max(equippedStreakFreezes, 1);
+    maxStreakFreezes > 0
+      ? maxStreakFreezes
+      : Math.max(equippedStreakFreezes, 1);
   const formattedEquipped = formatNumber(equippedStreakFreezes);
   const formattedMax = formatNumber(effectiveMaxStreakFreezes);
   const streakFreezeLabel = t("streakDrawer.equippedLabel", {

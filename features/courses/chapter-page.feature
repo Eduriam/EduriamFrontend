@@ -10,4 +10,4 @@ Feature: Chapter page
     When I click on the "section-card" card
     Then I should see the "lessons-list-section" section
     When I click on the "lesson-button" button
-    Then I should be redirected to the "study-session-page" page
+    Then I should be redirected to the "study-page" page

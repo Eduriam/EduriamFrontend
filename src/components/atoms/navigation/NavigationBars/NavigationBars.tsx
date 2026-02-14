@@ -16,7 +16,6 @@ import BottomNavigationBar from "../main-navigation-bars/BottomNavigationBar/Bot
 import SideNavigationBar from "../main-navigation-bars/SideNavigationBar/SideNavigationBar";
 import BackNavigationBar from "../top-navigation-bars/BackNavigationBar/BackNavigationBar";
 import DefaultNavigationBar from "../top-navigation-bars/DefaultNavigationBar/DefaultNavigationBar";
-import HomeNavigationBar from "../top-navigation-bars/HomeNavigationBar/HomeNavigationBar";
 import LessonsNavigationBar from "../top-navigation-bars/LessonsNavigationBar/LessonsNavigationBar";
 import ShopNavigationBar from "../top-navigation-bars/ShopNavigationBar/ShopNavigationBar";
 
@@ -61,6 +60,8 @@ const Navigation: React.FC<INavigation> = () => {
     }
 
     switch (pathname) {
+      case "/":
+        return <></>;
       case "/welcome":
         return <></>;
       case "/login":
@@ -77,8 +78,6 @@ const Navigation: React.FC<INavigation> = () => {
         return <DrawerContainer child={{ component: LessonsNavigationBar }} />;
       case "/shop":
         return <DrawerContainer child={{ component: ShopNavigationBar }} />;
-      case "/":
-        return <DrawerContainer child={{ component: HomeNavigationBar }} />;
       case "/manage-subscription":
         return <BackNavigationBar header="manageSubscription" />;
       case "/lessons-create":

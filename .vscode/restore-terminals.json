@@ -52,7 +52,7 @@
       "splitTerminals": [
         {
           "name": "dev",
-          "commands": ["docker-compose up --build eduriam-frontend-dev"],
+          "commands": ["yarn dev"],
           "shouldRunCommands": false
         }
       ]

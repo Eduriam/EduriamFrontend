@@ -104,3 +104,21 @@ export async function setLearningPathCertificate(
     hasCertificate ? "react-developer-path-certificate" : "null",
   );
 }
+
+export async function setUpcomingLessonDefined(
+  defined: boolean,
+): Promise<void> {
+  await setMockoonEnvVar(
+    "MOCKOON_UPCOMING_LESSON_DEFINED",
+    defined ? "true" : "false",
+  );
+}
+
+export async function setUpcomingReviewDefined(
+  defined: boolean,
+): Promise<void> {
+  await setMockoonEnvVar(
+    "MOCKOON_UPCOMING_REVIEW_DEFINED",
+    defined ? "true" : "false",
+  );
+}

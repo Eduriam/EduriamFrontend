@@ -1,8 +1,16 @@
 "use client";
 
-import { IconButton, Illustration } from "@eduriam/ui-core";
+import {
+  DESKTOP_PADDING_X,
+  IconButton,
+  Illustration,
+  MOBILE_PADDING_X,
+} from "@eduriam/ui-core";
 
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 export interface IHomepageNavbar {
@@ -12,6 +20,12 @@ export interface IHomepageNavbar {
   coins?: number;
   /** Current energy count */
   energy?: number;
+  /** Invoked when the streak section is clicked. */
+  onStreakClick?: () => void;
+  /** Invoked when the coins section is clicked. */
+  onCoinsClick?: () => void;
+  /** Invoked when the energy section is clicked. */
+  onEnergyClick?: () => void;
   /** Click handler for study plan button */
   onStudyPlanClick: () => void;
   /** Optional data attribute for study plan button E2E tests */
@@ -22,51 +36,115 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
   streak = 0,
   coins = 0,
   energy = 0,
+  onStreakClick,
+  onCoinsClick,
+  onEnergyClick,
   onStudyPlanClick,
   "data-test-study-plan-button": dataTestStudyPlanButton,
 }) => {
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      padding={4}
-      sx={{ backgroundColor: "background.default" }}
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "background.default",
+        boxShadow: "none",
+      }}
     >
-      {/* Streak */}
-      <Stack direction="row" alignItems="center" gap={2}>
-        <Illustration name="fire" width={32} height={32} />
-        <Typography variant="h6" fontWeight="medium">
-          {streak}
-        </Typography>
-      </Stack>
+      <Toolbar
+        sx={(theme) => ({
+          display: "flex",
+          justifyContent: { xs: "flex-end", md: "space-between" },
+          minHeight: { xs: 56 },
+          px: MOBILE_PADDING_X,
+          [theme.breakpoints.up("sm")]: {
+            px: DESKTOP_PADDING_X,
+          },
+          maxWidth: 1000,
+          margin: "0 auto",
+          width: "100%",
+        })}
+      >
+        {/* Logo + project name: desktop only */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 1.5,
+          }}
+        >
+          <Illustration name="eduriam-logo" width={32} height={32} />
+          <Typography variant="h6" fontWeight="medium" component="span">
+            Eduriam
+          </Typography>
+        </Box>
 
-      {/* Coins */}
-      <Stack direction="row" alignItems="center" gap={2}>
-        <Illustration name="coin" width={32} height={32} />
-        <Typography variant="h6" fontWeight="medium">
-          {coins >= 1000 ? `${Math.floor(coins / 1000)}k` : coins}
-        </Typography>
-      </Stack>
+        {/* Streak, coins, energy, study plan: aligned to the right */}
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={{ xs: 0, md: 4 }}
+          sx={{
+            justifyContent: { xs: "space-between", md: "flex-start" },
+            width: { xs: "100%", md: "auto" },
+          }}
+        >
+          {/* Streak */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={2}
+            onClick={onStreakClick}
+            sx={{ cursor: onStreakClick ? "pointer" : "default" }}
+            data-test="streak-section"
+          >
+            <Illustration name="fire" width={32} height={32} />
+            <Typography variant="h6" fontWeight="medium">
+              {streak}
+            </Typography>
+          </Stack>
 
-      {/* Energy */}
-      <Stack direction="row" alignItems="center" gap={2}>
-        <Illustration name="energy" width={32} height={32} />
-        <Typography variant="h6" fontWeight="medium">
-          {energy}
-        </Typography>
-      </Stack>
+          {/* Coins */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={2}
+            onClick={onCoinsClick}
+            sx={{ cursor: onCoinsClick ? "pointer" : "default" }}
+            data-test="coins-section"
+          >
+            <Illustration name="coin" width={32} height={32} />
+            <Typography variant="h6" fontWeight="medium">
+              {coins >= 1000 ? `${Math.floor(coins / 1000)}k` : coins}
+            </Typography>
+          </Stack>
 
-      {/* Study Plan Button */}
-      <IconButton
-        icon="studyPlan"
-        variant="text"
-        size="medium"
-        color="textPrimary"
-        onClick={onStudyPlanClick}
-        data-test={dataTestStudyPlanButton}
-      />
-    </Stack>
+          {/* Energy */}
+          <Stack
+            direction="row"
+            alignItems="center"
+            gap={2}
+            onClick={onEnergyClick}
+            sx={{ cursor: onEnergyClick ? "pointer" : "default" }}
+            data-test="energy-section"
+          >
+            <Illustration name="energy" width={32} height={32} />
+            <Typography variant="h6" fontWeight="medium">
+              {energy}
+            </Typography>
+          </Stack>
+
+          {/* Study Plan Button */}
+          <IconButton
+            icon="studyPlan"
+            variant="text"
+            size="medium"
+            color="textPrimary"
+            onClick={onStudyPlanClick}
+            data-test={dataTestStudyPlanButton}
+          />
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 };
 

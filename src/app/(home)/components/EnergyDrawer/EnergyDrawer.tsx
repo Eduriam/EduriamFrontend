@@ -30,9 +30,8 @@ export interface IEnergyDrawerProps {
   "data-test-unlock"?: string;
   /**
    * Optional callback invoked when the "Unlock unlimited energy" button is clicked.
-   * Falls back to `onClose` when not provided.
    */
-  onUnlockUnlimited?: () => void;
+  onUnlockUnlimited: () => void;
 }
 
 const clampProgress = (value: number): number => {

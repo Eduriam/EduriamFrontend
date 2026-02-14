@@ -1,33 +1,20 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { ContentContainer, Header, PageRoot } from "@eduriam/ui-core";
 
-import DailyStudy from "components/molecules/DailyStudy/DailyStudy";
-import LessonStudy from "components/molecules/LessonStudy/LessonStudy";
-
-import useAuth from "infrastructure/services/AuthProvider";
+import Stack from "@mui/material/Stack";
 
 export interface IStudyPage {}
 
 const StudyPage: React.FC<IStudyPage> = () => {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("lessonId");
-  const lessonId = search !== null ? search : undefined;
-
-  const { user } = useAuth();
-
   return (
-    <>
-      {user?.selectedCourse.id ? (
-        lessonId ? (
-          <LessonStudy lessonId={lessonId} courseId={user.selectedCourse.id} />
-        ) : (
-          <DailyStudy courseId={user.selectedCourse.id} />
-        )
-      ) : (
-        <></>
-      )}
-    </>
+    <PageRoot data-test="study-page">
+      <ContentContainer width="small" justifyContent="flex-start">
+        <Stack spacing={3} sx={{ py: 3 }}>
+          <Header variant="page" text="Study session" />
+        </Stack>
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

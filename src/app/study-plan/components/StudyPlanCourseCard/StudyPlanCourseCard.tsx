@@ -65,13 +65,15 @@ const StudyPlanCourseCard: React.FC<IStudyPlanCourseCard> = ({
           </Stack>
         </Stack>
 
-        <IconButton
-          icon="play"
-          variant="contained"
-          size="medium"
-          data-test-learn-button={dataTestLearnButton}
-          onClick={onPlayClick}
-        />
+        {onPlayClick !== undefined && onPlayClick !== null && (
+          <IconButton
+            icon="play"
+            variant="contained"
+            size="medium"
+            data-test={dataTestLearnButton}
+            onClick={onPlayClick}
+          />
+        )}
       </Stack>
     </Card>
   );

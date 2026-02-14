@@ -567,7 +567,7 @@
         },
         {
           "uuid": "1e75a1e6-d8da-45be-bf3c-e3c60441212f",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{body 'username'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":0,\r\n      \"balance\":0,\r\n      \"accountInitialized\":false,\r\n      \"lastSessionDate\":null,\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":null\r\n   }\r\n}",
+          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{body 'username'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":0,\r\n      \"balance\":0,\r\n      \"energy\":0,\r\n      \"equippedStreakFreezes\":0,\r\n      \"accountInitialized\":false,\r\n      \"lastSessionDate\":null,\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":null\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",
@@ -698,7 +698,7 @@
         },
         {
           "uuid": "a8df4829-60bd-4145-bbb6-2329d871942a",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"PREMIUM_USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":{\r\n         \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\r\n         \"status\":\"ACTIVE\"\r\n      },\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
+          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"PREMIUM_USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":{{faker 'number.int' min=0 max=20}},\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":{\r\n         \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\r\n         \"status\":\"ACTIVE\"\r\n      },\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -737,7 +737,7 @@
         },
         {
           "uuid": "a49ecc8c-9034-460c-9a09-5e67ab0cf1d6",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
+          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":{{faker 'number.int' min=0 max=20}},\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",
@@ -3403,7 +3403,7 @@
       "responses": [
         {
           "uuid": "6f8eeef6-717f-43fa-9b66-4b21d29ce172",
-          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=0 max=999}},\n  \"balance\":{{faker 'number.int' min=0 max=999}},\n  \"accountInitialized\":true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  },\n  \"selectedCourse\":{\n     \"id\":\"{{faker 'string.uuid'}}\",\n     \"name\":\"English Course\",\n     \"language\":\"en\"\n  }\n}",
+          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  },\n  \"selectedCourse\":{\n     \"id\":\"{{faker 'string.uuid'}}\",\n     \"name\":\"English Course\",\n     \"language\":\"en\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -3422,7 +3422,7 @@
         },
         {
           "uuid": "0c55444e-6227-44d2-877a-deaa274c15fa",
-          "body": "{\n  \"id\": \"{{faker 'string.uuid'}}\",\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"role\": \"USER\",\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"accountInitialized\": true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\": null,\n  \"selectedCourse\": {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Angličtina\",\n    \"language\": \"en\"\n  }\n}",
+          "body": "{\n  \"id\": \"{{faker 'string.uuid'}}\",\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"role\": \"USER\",\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"energy\": {{faker 'number.int' min=0 max=20}},\n  \"equippedStreakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\": null,\n  \"selectedCourse\": {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Angličtina\",\n    \"language\": \"en\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",
@@ -3966,6 +3966,37 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "73b30876-f484-42a2-99ef-1a6b04a5f136",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/study-plan",
+      "responses": [
+        {
+          "uuid": "3e098a6a-126e-4571-ad32-43de5112716b",
+          "body": "{\n  \"upcomingLearnLesson\": {{#if (eq (getEnvVar 'MOCKOON_UPCOMING_LESSON_DEFINED' 'true') 'true')}}{\"title\":\"HTML basics\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}},\n  \"upcomingReviewCourse\": {{#if (eq (getEnvVar 'MOCKOON_UPCOMING_REVIEW_DEFINED' 'true') 'true')}}{\"title\":\"Fullstack Developer\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}}\n\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "proxyMode": false,
@@ -4425,6 +4456,10 @@
         {
           "type": "folder",
           "uuid": "e11ae7b6-8422-4399-88cf-4c1a482b93dc"
+        },
+        {
+          "type": "folder",
+          "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
         }
       ]
     },
@@ -4609,6 +4644,16 @@
         {
           "type": "route",
           "uuid": "7e9a4d77-5b5e-4c2e-8f1e-bc7a1b2c3d4e"
+        }
+      ]
+    },
+    {
+      "uuid": "1a7920fa-2755-433b-b028-f32ea886416a",
+      "name": "study-plan",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "73b30876-f484-42a2-99ef-1a6b04a5f136"
         }
       ]
     }

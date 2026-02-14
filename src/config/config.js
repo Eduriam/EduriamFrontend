@@ -1,6 +1,5 @@
 const config = {
   pagesWithToolbar: /** @type {Array<string | RegExp>} */ ([
-    "/",
     "/change-email-request",
     "/challenges",
     "/favorites",

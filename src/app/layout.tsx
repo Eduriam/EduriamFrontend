@@ -29,24 +29,26 @@ export default function RootLayout({
     <html>
       <body>
         <ThemeProvider theme={theme}>
-          <SnackbarProvider
-            maxSnack={3}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-          >
-            <ErrorHandler>
-              <AuthProvider>
-                <NoticeProvider>
-                  <Navigation />
-                  <GoogleAnalytics />
-                  <GoogleAdsense />
-                  <ViewTransitions>{children}</ViewTransitions>
-                </NoticeProvider>
-              </AuthProvider>
-            </ErrorHandler>
-          </SnackbarProvider>
+          <ViewTransitions>
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+            >
+              <ErrorHandler>
+                <AuthProvider>
+                  <NoticeProvider>
+                    <Navigation />
+                    <GoogleAnalytics />
+                    <GoogleAdsense />
+                    {children}
+                  </NoticeProvider>
+                </AuthProvider>
+              </ErrorHandler>
+            </SnackbarProvider>
+          </ViewTransitions>
         </ThemeProvider>
       </body>
     </html>

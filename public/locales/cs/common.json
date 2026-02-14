@@ -163,6 +163,20 @@
     "thanks": "Děkujeme za zpětnou vazbu!"
   },
 
+  "home": {
+    "learnTab": "Učení",
+    "reviewTab": "Opakování",
+    "nextStudyPlanLesson": "Další lekce studijního plánu.",
+    "startLesson": "Spustit lekci",
+    "allLessonsLearnedTitle": "Všechny lekce dokončeny!",
+    "allLessonsLearnedSubtitle": "Začněte nový kurz a učte se další lekce.",
+    "browseCourses": "Procházet kurzy",
+    "reviewDescription": "Zopakuj si nejdůležitější koncepty vybrané přímo pro tebe.",
+    "startReview": "Spustit opakování",
+    "allLessonsReviewedTitle": "Všechny lekce zopakovány!",
+    "allLessonsReviewedSubtitle": "Vrať se později."
+  },
+
   "manageSubscription": {
     "current": "Momentální předplatné",
     "nextPayment": "Další platba",
