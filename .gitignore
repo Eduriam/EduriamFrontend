@@ -47,6 +47,9 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 
+# Storybook
+storybook-static/
+
 # Sentry Config File
 .sentryclirc
 
