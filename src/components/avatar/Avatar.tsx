@@ -5,21 +5,17 @@ import Box from "@mui/material/Box";
 import type {
   BackgroundColorKey,
   BeardColorKey,
-  ClothingColorKey,
   EyeColorKey,
   GlassesColorKey,
   HairColorKey,
-  HeadwearColorKey,
   SkinColorKey,
 } from "./avatarColors";
 import {
   backgroundColors,
   beardColors,
-  clothingColors,
   eyeColors,
   glassesColors,
   hairColors,
-  headwearColors,
   skinColors,
 } from "./avatarColors";
 
@@ -27,7 +23,8 @@ import {
  * Avatar layer option keys.
  * Shape/variant options (one SVG per option).
  */
-export type FaceKey = "face_1" | "face_2";
+export type EyesKey = "eyes_1" | "eyes_2";
+export type ExpressionKey = "expression_1" | "expression_2";
 export type HairKey = "hair_1" | "hair_2" | "none";
 export type AccessoriesKey = "glasses_1" | "none";
 export type BeardKey = "beard_1" | "beard_2" | "none";
@@ -40,8 +37,9 @@ export type ClothingKey = "shirt_1" | "shirt_2";
  */
 export interface AvatarDefinition {
   skinColor?: SkinColorKey;
-  face?: FaceKey;
+  eyes?: EyesKey;
   eyeColor?: EyeColorKey;
+  expression?: ExpressionKey;
   hair?: HairKey;
   hairColor?: HairColorKey;
   accessories?: AccessoriesKey;
@@ -49,9 +47,7 @@ export interface AvatarDefinition {
   beard?: BeardKey;
   beardColor?: BeardColorKey;
   headwear?: HeadwearKey;
-  headwearColor?: HeadwearColorKey;
   clothing?: ClothingKey;
-  clothingColor?: ClothingColorKey;
   backgroundColor?: BackgroundColorKey;
 }
 
@@ -187,20 +183,25 @@ const Avatar: React.FC<AvatarProps> = ({
     }
   }
 
-  // 4. Face
-  if (definition.face) {
-    const path = getLayerPath("face", definition.face);
+  // 4. Eyes
+  if (definition.eyes) {
+    const path = getLayerPath("eyes", definition.eyes);
     if (path) {
       layers.push({
         path,
         color: definition.eyeColor ? eyeColors[definition.eyeColor] : undefined,
-        key: "face",
+        key: "eyes",
       });
     }
   }
 
-  // 5. Eyes (if we have a separate eyes layer)
-  // Eye color could be applied to face or a separate layer - depends on asset structure
+  // 5. Expression
+  if (definition.expression) {
+    const path = getLayerPath("expression", definition.expression);
+    if (path) {
+      layers.push({ path, key: "expression" });
+    }
+  }
 
   // 6. Accessories (glasses)
   if (definition.accessories && definition.accessories !== "none") {
@@ -248,13 +249,7 @@ const Avatar: React.FC<AvatarProps> = ({
   if (definition.headwear && definition.headwear !== "none") {
     const path = getLayerPath("headwear", definition.headwear);
     if (path) {
-      layers.push({
-        path,
-        color: definition.headwearColor
-          ? headwearColors[definition.headwearColor]
-          : undefined,
-        key: "headwear",
-      });
+      layers.push({ path, key: "headwear" });
     }
   }
 
@@ -262,13 +257,7 @@ const Avatar: React.FC<AvatarProps> = ({
   if (definition.clothing) {
     const path = getLayerPath("clothing", definition.clothing);
     if (path) {
-      layers.push({
-        path,
-        color: definition.clothingColor
-          ? clothingColors[definition.clothingColor]
-          : undefined,
-        key: "clothing",
-      });
+      layers.push({ path, key: "clothing" });
     }
   }
 

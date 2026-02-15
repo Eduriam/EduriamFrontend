@@ -2,15 +2,16 @@ import type { AvatarDefinition } from "./Avatar";
 
 /**
  * Default avatar with background and typical layer options.
- * Add body/face/hair SVG assets to public/images/avatar/ to see full avatar.
+ * Add body/eyes/expression/hair SVG assets to public/images/avatar/ to see full avatar.
  */
 export const defaultAvatar: AvatarDefinition = {
   skinColor: "light",
-  face: "face_1",
+  eyes: "eyes_1",
+  eyeColor: "brown",
+  expression: "expression_1",
   hair: "hair_1",
   hairColor: "mediumBrown",
   clothing: "shirt_1",
-  clothingColor: "blue",
   backgroundColor: "lightGray",
 };
 
@@ -28,8 +29,9 @@ export const minimalAvatar: AvatarDefinition = {
  */
 export const fullAvatar: AvatarDefinition = {
   skinColor: "lightMedium",
-  face: "face_1",
+  eyes: "eyes_1",
   eyeColor: "darkBrown",
+  expression: "expression_2",
   hair: "hair_2",
   hairColor: "black",
   accessories: "glasses_1",
@@ -38,6 +40,5 @@ export const fullAvatar: AvatarDefinition = {
   beardColor: "black",
   headwear: "hat_1",
   clothing: "shirt_2",
-  clothingColor: "gray",
   backgroundColor: "pastelCyan",
 };
