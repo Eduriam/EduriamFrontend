@@ -18,6 +18,8 @@ export default function AuthDecorator(Story: Story) {
       },
       username: "pepaokurka",
       balance: 999,
+      energy: 12,
+      equippedStreakFreezes: 0,
       lastSessionDate: new Date(),
       lastViewedStudyMapLevel: 2,
       streak: 114,
