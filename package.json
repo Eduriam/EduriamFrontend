@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@eduriam/ui-core": "^0.6.48",
-    "@eduriam/ui-x": "^0.2.59",
+    "@eduriam/ui-x": "^0.2.60",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
