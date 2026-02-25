@@ -28,6 +28,8 @@
   "exercise": {
     "right": "Správně!",
     "wrong": "Špatně!",
+    "why": "Proč?",
+    "skipExercise": "Přeskočit cvičení",
     "correctAnswer": "Správná odpověď:",
     "alternativeAnswer": "Další možná odpověď:",
     "check": "Zkontrolovat",
@@ -42,6 +44,9 @@
   },
 
   "exercises": {
+    "multipleChoice": {
+      "assignmentTitle": "Vyber správnou odpověď"
+    },
     "textExercise": {
       "assignmentTitle": "Přelož text!"
     },
@@ -75,6 +80,14 @@
     "matching": {
       "assignmentTitle": "Spoj odpovídající dvojice!"
     }
+  },
+
+  "studySessionStats": {
+    "title": "Učení dokončeno!",
+    "xpGained": "XP bodů",
+    "minStudied": "min učení",
+    "successRate": "úspěšnost",
+    "newConcepts": "konceptů"
   },
 
   "other": {

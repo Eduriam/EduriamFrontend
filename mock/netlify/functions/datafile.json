@@ -11,41 +11,14 @@
       "uuid": "5adc6171-64ce-4a75-b32d-3bf7d318b5ea",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/courses/:courseId/study-session",
+      "endpoint": "users/me/study-sessions",
       "responses": [
         {
           "uuid": "14d0c597-e449-4ac3-b2b3-f17861ff34ac",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": true,\n    \"lessonId\": \"abcd\",\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"lessonItemType\": \"GRAMMAR\",\n    \"type\": \"FillInTableExercise\",\n    \"questionL2\": \"Doplň množné číslo slovíčka.\",\n    \"explanation\": null,\n    \"tableRows\": [\n      [\n        \"Jednotné číslo\",\n        \"pineapple\"\n      ],\n      [\n        \"Množné číslo\",\n        \"pineapples\"\n      ]\n    ],\n    \"blankCellCoords\": [\n      [\n        1,\n        1\n      ]\n    ]\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": true,\n    \"lessonId\": \"abcd\",\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"lessonItemType\": \"GRAMMAR\",\n    \"type\": \"FillInSentenceExercise\",\n    \"textL1\": \"Mám rád víno.\",\n    \"textL2\": \"I like grapes .\",\n    \"blankIndexes\": [\n      2\n    ],\n    \"options\": [\n      \"apples\",\n      \"grapes\",\n      \"lemons\"\n    ],\n    \"imageUrl\": \"https://picsum.photos/id/674/512/512\"\n  },\n    {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": true,\n    \"lessonId\": \"abcd\",\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"lessonItemType\": \"GRAMMAR\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"text\": \"Jablko\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Pomeranč\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Ananas\",\n        \"matchIndex\": 3\n      },\n      {\n        \"text\": \"Banán\",\n        \"matchIndex\": 2\n      }\n    ],\n    \"options2\": [\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/orange.mp3\",\n        \"matchIndex\": 1\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/apple.mp3\",\n        \"matchIndex\": 0\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/banana.mp3\",\n        \"matchIndex\": 3\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/pineapple.mp3\",\n        \"matchIndex\": 2\n      }\n    ]\n  }\n]",
+          "body": "{\n  \"studyBlocks\": [\n    {\n      \"type\": \"explanation\",\n      \"atomId\": \"atom-explanation-1\",\n      \"scenes\": [\n        {\n          \"id\": \"scene-1\",\n          \"duration\": 5000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" This\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" is\",\n                \"startMs\": 280,\n                \"endMs\": 450,\n                \"timestampMs\": 365,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" the\",\n                \"startMs\": 450,\n                \"endMs\": 650,\n                \"timestampMs\": 550,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" explanation\",\n                \"startMs\": 650,\n                \"endMs\": 1200,\n                \"timestampMs\": 925,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" block.\",\n                \"startMs\": 1200,\n                \"endMs\": 1700,\n                \"timestampMs\": 1450,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-1\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg1\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#0ea5e9\"\n                },\n                {\n                  \"id\": \"ph1\",\n                  \"type\": \"PAGE_HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Explanation\"\n                },\n                {\n                  \"id\": \"ps1\",\n                  \"type\": \"PAGE_SUBHEADER\",\n                  \"startTime\": 800,\n                  \"text\": \"Key concepts in this lesson\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"id\": \"scene-2\",\n          \"duration\": 8000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" Here\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" are\",\n                \"startMs\": 280,\n                \"endMs\": 480,\n                \"timestampMs\": 380,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" more\",\n                \"startMs\": 480,\n                \"endMs\": 760,\n                \"timestampMs\": 620,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" details\",\n                \"startMs\": 760,\n                \"endMs\": 1180,\n                \"timestampMs\": 970,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" in\",\n                \"startMs\": 1180,\n                \"endMs\": 1340,\n                \"timestampMs\": 1260,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" scene\",\n                \"startMs\": 1340,\n                \"endMs\": 1680,\n                \"timestampMs\": 1510,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" two.\",\n                \"startMs\": 1680,\n                \"endMs\": 2150,\n                \"timestampMs\": 1915,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-2\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg2\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#e5e5e5\"\n                },\n                {\n                  \"id\": \"h1\",\n                  \"type\": \"HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Scene 2\",\n                  \"position\": \"CENTER\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "Multiple Exercises - lessonId in query",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "lessonId",
-              "value": "",
-              "invert": true,
-              "operator": "null"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "7c58de27-f80d-48ac-8589-1ac442afee77",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": false,\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"type\": \"BuildWordExercise\",\n    \"wordL1\": \"jablko\",\n    \"wordL2\": \"apple\",\n    \"letters\": [\n      \"c\",\n      \"p\",\n      \"e\",\n      \"l\",\n      \"p\",\n      \"b\",\n      \"a\",\n      \"u\"\n    ],\n    \"imageUrl\": \"https://picsum.photos/id/48/512/512\",\n    \"answerAudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": true,\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"lessonId\": \"{{faker 'string.uuid'}}\",\n    \"lessonItemType\": \"VOCABULARY\",\n    \"type\": \"TextExercise\",\n    \"textL1\": \"ananas\",\n    \"textL2\": \"pineapple\",\n    \"imageUrl\": \"https://picsum.photos/id/824/512/512\",\n    \"textL2AudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": false,\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"text\": \"Jablko\",\n        \"matchIndex\": 2\n      },\n      {\n        \"text\": \"Les\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Ananas\",\n        \"matchIndex\": 3\n      },\n      {\n        \"text\": \"Kniha\",\n        \"matchIndex\": 0\n      }\n    ],\n    \"options2\": [\n      {\n        \"text\": \"Book\",\n        \"matchIndex\": 3\n      },\n      {\n        \"text\": \"Forest\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Apple\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Pineapple\",\n        \"matchIndex\": 2\n      }\n    ]\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": false,\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"type\": \"ShortListeningExercise\",\n    \"textL2\": \"pineapple\",\n    \"textL2AudioUrl\": \"https://mocks.linguino.org/pineapple.mp3\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\": false,\n    \"lessonItemId\": \"{{faker 'string.uuid'}}\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"imageUrl\": \"https://picsum.photos/id/17/512/512\",\n        \"matchIndex\": 2\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/235/512/512\",\n        \"matchIndex\": 0\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/24/512/512\",\n        \"matchIndex\": 3\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/471/512/512\",\n        \"matchIndex\": 1\n      }\n    ],\n    \"options2\": [\n      {\n        \"text\": \"Mountain\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Forest\",\n        \"matchIndex\": 3\n      },\n      {\n        \"text\": \"Road\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Book\",\n        \"matchIndex\": 2\n      }\n    ]\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Multiple Exercises",
+          "label": "Lesson learning study session",
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
@@ -56,272 +29,6 @@
           "default": true,
           "databucketID": "",
           "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "cb613d99-ad90-4d1b-8657-18c5106c595d",
-          "body": "[]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Empty Study Session",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "76c16dce-1c49-4d6d-840a-1c35a945d084",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"BuildWordExercise\",\n    \"wordL1\": \"jablko\",\n    \"wordL2\": \"apple\",\n    \"letters\": [\"a\", \"p\", \"p\", \"l\", \"e\", \"x\", \"y\", \"z\"],\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n    \"answerAudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Build The Word",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "4b4229d0-22fd-4899-baa7-3f44ff15145e",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"TextExercise\",\n    \"textL1\": \"jablko\",\n    \"textL2\": \"apple\",\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n    \"textL2AudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\",\n    \"explanation\": \"#### Lorem ipsum\\n Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nam condimentum tempus diam, ultricies sollicitudin erat facilisis eget. Vestibulum rhoncus dui vel eros laoreet consectetur. Vivamus eget elementum ligula, vitae pharetra quam. Nullam at ligula sed metu. Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nam condimentum tempus diam, ultricies sollicitudin erat facilisis eget. Vestibulum rhoncus dui vel eros laoreet consectetur. Vivamus eget elementum ligula, vitae pharetra quam. Nullam at ligula sed metu\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Text Exercise",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "166d8939-b7f2-47f5-8afa-aa68ecbcdb52",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"ShortListeningExercise\",\n    \"textL2\": \"apple\",\n    \"textL2AudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Short Listening",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "ac311c50-35a2-4da7-afc3-f678950b8ba8",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"ListeningExercise\",\n    \"questionL2\": \"What color was the T-shirt?\",\n    \"answerL2\": \"blue\",\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-long.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Listening",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "0eb39d4e-c4be-4f35-9723-ef4eedbe36ce",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"ReadingExercise\",\n    \"article\": \"#### Hello world \\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis lacus eu tortor venenatis, quis vestibulum nisi fringilla. Ut elit est, lacinia sed interdum vel, facilisis ac magna. Sed rutrum scelerisque neque, quis luctus purus convallis eu. Donec vehicula mi quis ante volutpat egestas. Proin et risus ac sem congue posuere. Mauris rutrum lobortis augue at malesuada. Nunc quis lorem nec nulla faucibus sagittis. Quisque nec aliquam sapien. Sed imperdiet semper lectus, interdum hendrerit diam aliquam pharetra.\",\n    \"questionL2\": \"What color was the T-shirt?\",\n    \"answerL2\": \"blue\",\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Reading",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "790908ec-ef9a-47d0-82f0-44e1e9145ceb",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FillInSentenceExercise\",\n    \"textL1\": \"Mám rád jablka.\",\n    \"textL2\": \"I like apples .\",\n    \"blankIndexes\": [2],\n    \"options\": [\"apples\", \"pears\", \"lemons\"],\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Fill In Sentence",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "0ef91678-997f-4fee-9ab5-90ee924e1f66",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FillInTableExercise\",\n    \"questionL2\": \"Complete the conjugation of the verb 'to be'\",\n    \"tableRows\": [\n      [\n        \"I\",\n        \"am\"\n      ],\n      [\n        \"you\",\n        \"are\"\n      ],\n      [\n        \"he/she/it\",\n        \"is\"\n      ]\n    ],\n    \"blankCellCoords\": [\n      [\n        1,\n        0\n      ],\n      [\n        1,\n        2\n      ]\n    ]\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Fill In Table",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "39019066-2ef0-4a5b-b718-afbe3005f30c",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"ReadAloudExercise\",\n    \"textL2\": \"I like vegetables\",\n    \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: ReadAloud",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "d881d689-e655-4331-a77d-ce98a79509a6",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"RepeatAudioExercise\",\n    \"textL2\": \"I like vegetables\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise:  Repeat Audio",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "487120d3-698a-4611-987f-f2c5149699e5",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"SpeechExercise\",\n    \"assignmentTopicL2\": \"The best holiday of my life\",\n    \"questionsL2\": [\"What did you do?\", \"Where did you travel?\", \"Why was it the best holiday?\"],\n    \"timeMs\": 60000\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Speech",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "4aad1f72-0738-4f37-99d3-d84473024aad",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"imageUrl\": \"https://picsum.photos/id/1/512/512\",\n        \"matchIndex\": 0\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/10/512/512\",\n        \"matchIndex\": 1\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/17/512/512\",\n        \"matchIndex\": 2\n      },\n      {\n        \"imageUrl\": \"https://picsum.photos/id/24/512/512\",\n        \"matchIndex\": 3\n      }\n    ],\n    \"options2\": [\n      {\n        \"text\": \"Laptop\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Forest\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Road\",\n        \"matchIndex\": 2\n      },\n      {\n        \"text\": \"Book\",\n        \"matchIndex\": 3\n      }\n    ]\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Matching (Image-Text)",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "e575f9e8-d0c8-47db-8834-978e0261411f",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"text\": \"Notebook\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Les\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Cesta\",\n        \"matchIndex\": 2\n      },\n      {\n        \"text\": \"Kniha\",\n        \"matchIndex\": 3\n      }\n    ],\n    \"options2\": [\n      {\n        \"text\": \"Laptop\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Forest\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Road\",\n        \"matchIndex\": 2\n      },\n      {\n        \"text\": \"Book\",\n        \"matchIndex\": 3\n      }\n    ]\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Matching (Text-Text)",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "0fcbb455-a411-4ed1-a305-efb51e39d3c5",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"isNew\":false,\n    \"lessonItemId\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"MatchingExercise\",\n    \"options1\": [\n      {\n        \"text\": \"Laptop\",\n        \"matchIndex\": 0\n      },\n      {\n        \"text\": \"Forest\",\n        \"matchIndex\": 1\n      },\n      {\n        \"text\": \"Road\",\n        \"matchIndex\": 2\n      },\n      {\n        \"text\": \"Book\",\n        \"matchIndex\": 3\n      }\n    ],\n    \"options2\": [\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\",\n        \"matchIndex\": 0\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\",\n        \"matchIndex\": 1\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\",\n        \"matchIndex\": 2\n      },\n      {\n        \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\",\n        \"matchIndex\": 3\n      }\n    ]\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Exercise: Matching (Text-Audio)",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
           "crudKey": "id",
           "callbacks": []
         }
@@ -335,11 +42,11 @@
       "uuid": "f547b322-3bf8-44a3-8cc4-8c9d6e6e9e35",
       "documentation": "",
       "method": "post",
-      "endpoint": "user/courses/:courseId/study-session",
+      "endpoint": "users/me/study-sessions",
       "responses": [
         {
           "uuid": "fca7d87f-7274-4ae8-8e89-0600617cd6b5",
-          "body": "{\n  \"reward\": 20\n}",
+          "body": "{\n  \"ok\": true,\n  \"reward\": 20\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -4135,6 +3842,10 @@
         {
           "type": "folder",
           "uuid": "7626bc00-af0e-4b55-8540-dabf6e86adcb"
+        },
+        {
+          "type": "folder",
+          "uuid": "21254458-c0bb-4064-851e-aa06a6986d3d"
         }
       ]
     },
@@ -4290,20 +4001,6 @@
         {
           "type": "route",
           "uuid": "babbcc78-5386-4799-9b12-be84a7c3b64f"
-        }
-      ]
-    },
-    {
-      "uuid": "c1f9ba03-ee8c-44f7-a8f5-6bc02040cabd",
-      "name": "study-session",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "5adc6171-64ce-4a75-b32d-3bf7d318b5ea"
-        },
-        {
-          "type": "route",
-          "uuid": "f547b322-3bf8-44a3-8cc4-8c9d6e6e9e35"
         }
       ]
     },
@@ -4532,10 +4229,6 @@
         {
           "type": "folder",
           "uuid": "5a2ffd26-f157-4b19-ba95-860db4b39484"
-        },
-        {
-          "type": "folder",
-          "uuid": "c1f9ba03-ee8c-44f7-a8f5-6bc02040cabd"
         }
       ]
     },
@@ -4654,6 +4347,30 @@
         {
           "type": "route",
           "uuid": "73b30876-f484-42a2-99ef-1a6b04a5f136"
+        }
+      ]
+    },
+    {
+      "uuid": "363ddfe8-7de4-4441-81ee-8f03aeb54308",
+      "name": "study-sessions",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "5adc6171-64ce-4a75-b32d-3bf7d318b5ea"
+        },
+        {
+          "type": "route",
+          "uuid": "f547b322-3bf8-44a3-8cc4-8c9d6e6e9e35"
+        }
+      ]
+    },
+    {
+      "uuid": "21254458-c0bb-4064-851e-aa06a6986d3d",
+      "name": "me",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "363ddfe8-7de4-4441-81ee-8f03aeb54308"
         }
       ]
     }

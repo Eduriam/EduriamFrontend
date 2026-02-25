@@ -1,35 +1,39 @@
-import { StudySessionDTO } from "@eduriam/ui-x";
+import { AtomProgressRating, StudySessionDTO } from "@eduriam/ui-x";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-
 import useAPI from "../../../hooks/useAPI";
-import { UserAnswerDTO } from "./QuestionAttempt";
-import { Reward } from "./StudySession";
 
 export interface StudySessionParams {
   lessonId?: Id;
 }
 
+export interface StudySessionUpdateBody {
+  lessonId?: Id;
+  atomProgress: Array<Pick<AtomProgressRating, "atomId" | "rating">>;
+}
+
 const StudySessionAPI = {
-  URI: (courseId: Id) => `user/courses/${courseId}/study-session`,
+  URI: "users/me/study-sessions",
 
   useStudySession(
-    courseId: Id,
     params: StudySessionParams = {},
   ): Modify<FetchHook<StudySessionDTO>, { studySession: StudySessionDTO }> {
-    const { data, ...rest } = useAPI<StudySessionDTO>(
-      `${this.URI(courseId)}?${parseQueryParams(params)}`,
-    );
-    return { studySession: data, ...rest };
+    const queryParams = parseQueryParams(params);
+    const uri = queryParams.length > 0 ? `${this.URI}?${queryParams}` : this.URI;
+    const { data, ...rest } = useAPI<StudySessionDTO>(uri);
+
+    return {
+      studySession: data,
+      ...rest,
+    };
   },
 
   async updateStudySession(
-    courseId: Id,
-    attempts: Array<UserAnswerDTO>,
-  ): Promise<Reward> {
-    return API.post(`${this.URI(courseId)}`, attempts);
+    payload: StudySessionUpdateBody,
+  ): Promise<void> {
+    await API.post(this.URI, payload);
   },
 };
 

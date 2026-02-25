@@ -16,7 +16,9 @@
       "splitTerminals": [
         {
           "name": "yarn up",
-          "commands": ["set -a; . ./.env; set +a && yarn up @eduriam/ui-core"],
+          "commands": [
+            "set -a; . ./.env; set +a && yarn up @eduriam/ui-core && yarn up @eduriam/ui-x"
+          ],
           "shouldRunCommands": false
         }
       ]
@@ -26,6 +28,15 @@
         {
           "name": "storybook",
           "commands": ["yarn storybook"],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "test:e2e",
+          "commands": ["yarn test:e2e -- --tags \"@lesson-learning\""],
           "shouldRunCommands": false
         }
       ]
