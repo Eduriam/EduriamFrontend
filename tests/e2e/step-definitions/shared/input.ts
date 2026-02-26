@@ -13,7 +13,7 @@ When(
 
     // Find actual input inside the Material UI TextField component
     const element = this.page.locator(
-      `[data-test="${fieldTestId}"] input, [data-test="${fieldTestId}"] textarea`,
+      `input[data-test="${fieldTestId}"], textarea[data-test="${fieldTestId}"], [data-test="${fieldTestId}"] input, [data-test="${fieldTestId}"] textarea`,
     );
     await element.fill(value);
 

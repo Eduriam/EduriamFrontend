@@ -45,6 +45,31 @@
     "explanationTitle": "Vysvětlení"
   },
 
+  "reportStudyBlock": {
+    "header": "Nahlásit problém",
+    "problemTypePlaceholder": "Vyberte typ problému",
+    "descriptionPlaceholder": "Popište problém",
+    "submitLabel": "Odeslat",
+    "thankYouTitle": "Děkujeme za nahlášení",
+    "thankYouDescription": "Vaše nahlášení jsme přijali.",
+    "problemGroups": {
+      "user": {
+        "title": "Typ problému",
+        "options": {
+          "incorrectContent": "Nesprávný obsah",
+          "unclearExplanation": "Nejasné vysvětlení"
+        }
+      },
+      "corrector": {
+        "title": "Typ problému pro korektora",
+        "options": {
+          "wrongMetadata": "Chybná metadata",
+          "invalidStructure": "Neplatná struktura"
+        }
+      }
+    }
+  },
+
   "exercises": {
     "multipleChoice": {
       "assignmentTitle": "Vyber správnou odpověď"

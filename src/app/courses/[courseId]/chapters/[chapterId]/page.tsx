@@ -116,7 +116,9 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
                                   ? "completed"
                                   : "default"
                             }
-                            onClick={navigateWithTransition("/study-session")}
+                            onClick={navigateWithTransition(
+                              `/study?lessonId=${lesson.id}`,
+                            )}
                             data-test="lesson-button"
                           />
                         ))}

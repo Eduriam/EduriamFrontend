@@ -59,6 +59,59 @@ Given("I am logged in", async function (this: CustomWorld) {
   await this.page.addInitScript(initScript, { user, idToken, refreshToken });
 });
 
+Given("I am logged in as corrector", async function (this: CustomWorld) {
+  if (!this.page) {
+    throw new Error(
+      "Page is not initialized. Make sure browser is initialized.",
+    );
+  }
+
+  const user = {
+    id: "test-corrector",
+    username: "Test corrector",
+    role: "CORRECTOR",
+    streak: 0,
+    balance: 0,
+    energy: 0,
+    equippedStreakFreezes: 0,
+    accountInitialized: true,
+    lastSessionDate: null,
+    activeSubscription: null,
+    selectedCourse: {
+      id: "test-course",
+      name: "Test course",
+      language: "en-US",
+    },
+    lastViewedStudyMapLevel: 0,
+  } as unknown as UserPrivate;
+
+  const idToken = createJwt(60 * 60);
+  const refreshToken = "test-refresh-token";
+
+  const initScript = ({
+    user,
+    idToken,
+    refreshToken,
+  }: {
+    user: UserPrivate;
+    idToken: string;
+    refreshToken: string;
+  }) => {
+    localStorage.setItem("idToken", JSON.stringify(idToken));
+    localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  if (this.context) {
+    await this.context.addInitScript(initScript, {
+      user,
+      idToken,
+      refreshToken,
+    });
+  }
+  await this.page.addInitScript(initScript, { user, idToken, refreshToken });
+});
+
 Given(
   "I am logged in and enrolled the course",
   async function (this: CustomWorld) {

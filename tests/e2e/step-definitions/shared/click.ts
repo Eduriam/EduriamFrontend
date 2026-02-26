@@ -2,24 +2,37 @@ import { When } from "@cucumber/cucumber";
 
 import { CustomWorld } from "../../support/world";
 
+async function clickButtonByTestId(
+  world: CustomWorld,
+  buttonTestId: string,
+): Promise<unknown> {
+  if (!world.page) {
+    throw new Error(
+      "Page is not initialized. Make sure browser is initialized.",
+    );
+  }
+
+  const container = world.page
+    .locator(`[data-test="${buttonTestId}"]`)
+    .first();
+  const innerButton = container.locator("button").first();
+  const clickTarget = (await innerButton.count()) > 0 ? innerButton : container;
+  await clickTarget.click();
+
+  return container;
+}
+
 When(
   "I click on the {string} button",
   async function (this: CustomWorld, buttonTestId: string) {
-    if (!this.page) {
-      throw new Error(
-        "Page is not initialized. Make sure browser is initialized.",
-      );
-    }
+    return clickButtonByTestId(this, buttonTestId);
+  },
+);
 
-    const container = this.page
-      .locator(`[data-test="${buttonTestId}"]`)
-      .first();
-    const innerButton = container.locator("button").first();
-    const clickTarget =
-      (await innerButton.count()) > 0 ? innerButton : container;
-    await clickTarget.click();
-
-    return container;
+When(
+  "I click the {string} button",
+  async function (this: CustomWorld, buttonTestId: string) {
+    return clickButtonByTestId(this, buttonTestId);
   },
 );
 

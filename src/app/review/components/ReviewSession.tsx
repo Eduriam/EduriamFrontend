@@ -1,14 +1,11 @@
 "use client";
 
-import {
-  AtomProgressRating,
-  StudySession,
-} from "@eduriam/ui-x";
+import { AtomProgressRating, StudySession } from "@eduriam/ui-x";
 import { useTranslation } from "i18n/client";
 import {
-  createStudySessionLocalization,
   STUDY_SESSION_DATA_TEST,
-} from "util/functions/studySession";
+  createStudySessionLocalization,
+} from "util/functions/studySessionConfig";
 
 import { useRouter } from "next/navigation";
 

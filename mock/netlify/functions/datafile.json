@@ -15,7 +15,7 @@
       "responses": [
         {
           "uuid": "14d0c597-e449-4ac3-b2b3-f17861ff34ac",
-          "body": "{\n  \"studyBlocks\": [\n    {\n      \"type\": \"explanation\",\n      \"atomId\": \"atom-explanation-1\",\n      \"scenes\": [\n        {\n          \"id\": \"scene-1\",\n          \"duration\": 5000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" This\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" is\",\n                \"startMs\": 280,\n                \"endMs\": 450,\n                \"timestampMs\": 365,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" the\",\n                \"startMs\": 450,\n                \"endMs\": 650,\n                \"timestampMs\": 550,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" explanation\",\n                \"startMs\": 650,\n                \"endMs\": 1200,\n                \"timestampMs\": 925,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" block.\",\n                \"startMs\": 1200,\n                \"endMs\": 1700,\n                \"timestampMs\": 1450,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-1\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg1\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#0ea5e9\"\n                },\n                {\n                  \"id\": \"ph1\",\n                  \"type\": \"PAGE_HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Explanation\"\n                },\n                {\n                  \"id\": \"ps1\",\n                  \"type\": \"PAGE_SUBHEADER\",\n                  \"startTime\": 800,\n                  \"text\": \"Key concepts in this lesson\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"id\": \"scene-2\",\n          \"duration\": 8000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" Here\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" are\",\n                \"startMs\": 280,\n                \"endMs\": 480,\n                \"timestampMs\": 380,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" more\",\n                \"startMs\": 480,\n                \"endMs\": 760,\n                \"timestampMs\": 620,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" details\",\n                \"startMs\": 760,\n                \"endMs\": 1180,\n                \"timestampMs\": 970,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" in\",\n                \"startMs\": 1180,\n                \"endMs\": 1340,\n                \"timestampMs\": 1260,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" scene\",\n                \"startMs\": 1340,\n                \"endMs\": 1680,\n                \"timestampMs\": 1510,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" two.\",\n                \"startMs\": 1680,\n                \"endMs\": 2150,\n                \"timestampMs\": 1915,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-2\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg2\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#e5e5e5\"\n                },\n                {\n                  \"id\": \"h1\",\n                  \"type\": \"HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Scene 2\",\n                  \"position\": \"CENTER\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
+          "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"learn-explanation-1\",\n      \"type\": \"explanation\",\n      \"atomId\": \"atom-explanation-1\",\n      \"scenes\": [\n        {\n          \"id\": \"scene-1\",\n          \"duration\": 5000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" This\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" is\",\n                \"startMs\": 280,\n                \"endMs\": 450,\n                \"timestampMs\": 365,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" the\",\n                \"startMs\": 450,\n                \"endMs\": 650,\n                \"timestampMs\": 550,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" explanation\",\n                \"startMs\": 650,\n                \"endMs\": 1200,\n                \"timestampMs\": 925,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" block.\",\n                \"startMs\": 1200,\n                \"endMs\": 1700,\n                \"timestampMs\": 1450,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-1\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg1\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#0ea5e9\"\n                },\n                {\n                  \"id\": \"ph1\",\n                  \"type\": \"PAGE_HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Explanation\"\n                },\n                {\n                  \"id\": \"ps1\",\n                  \"type\": \"PAGE_SUBHEADER\",\n                  \"startTime\": 800,\n                  \"text\": \"Key concepts in this lesson\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"id\": \"scene-2\",\n          \"duration\": 8000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" Here\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" are\",\n                \"startMs\": 280,\n                \"endMs\": 480,\n                \"timestampMs\": 380,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" more\",\n                \"startMs\": 480,\n                \"endMs\": 760,\n                \"timestampMs\": 620,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" details\",\n                \"startMs\": 760,\n                \"endMs\": 1180,\n                \"timestampMs\": 970,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" in\",\n                \"startMs\": 1180,\n                \"endMs\": 1340,\n                \"timestampMs\": 1260,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" scene\",\n                \"startMs\": 1340,\n                \"endMs\": 1680,\n                \"timestampMs\": 1510,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" two.\",\n                \"startMs\": 1680,\n                \"endMs\": 2150,\n                \"timestampMs\": 1915,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-2\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg2\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#e5e5e5\"\n                },\n                {\n                  \"id\": \"h1\",\n                  \"type\": \"HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Scene 2\",\n                  \"position\": \"CENTER\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"learn-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Lesson study session",
@@ -49,7 +49,7 @@
         },
         {
           "uuid": "d5f0c802-0ea5-4b8b-b18e-b2ba5fdbaa79",
-          "body": "{\n  \"studyBlocks\": [\n    {\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"review\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
+          "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"review-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"review\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Course review study session",
@@ -96,6 +96,37 @@
         {
           "uuid": "fca7d87f-7274-4ae8-8e89-0600617cd6b5",
           "body": "{\n  \"ok\": true,\n  \"reward\": 20\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1c8e5f18-5abc-4b9f-a02f-2b6fa4ad9b45",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "study-blocks/:id/report",
+      "responses": [
+        {
+          "uuid": "95a329f6-0cb7-4bc8-b422-39e0074f9da7",
+          "body": "{\n  \"ok\": true\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -4342,6 +4373,16 @@
           "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
         }
       ]
+    },
+    {
+      "uuid": "1e444254-6500-4de5-8628-1f751ab1b77d",
+      "name": "study-blocks",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1c8e5f18-5abc-4b9f-a02f-2b6fa4ad9b45"
+        }
+      ]
     }
   ],
   "rootChildren": [
@@ -4392,6 +4433,10 @@
     {
       "type": "folder",
       "uuid": "bca60b53-1e5f-46cc-bde0-7e968b4306c3"
+    },
+    {
+      "type": "folder",
+      "uuid": "1e444254-6500-4de5-8628-1f751ab1b77d"
     }
   ],
   "callbacks": [
