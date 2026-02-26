@@ -4,8 +4,8 @@ import { PageRoot } from "@eduriam/ui-core";
 import { AtomProgressRating, StudySession } from "@eduriam/ui-x";
 import { useTranslation } from "i18n/client";
 import {
-  createStudySessionLocalization,
   STUDY_SESSION_DATA_TEST,
+  createStudySessionLocalization,
 } from "util/functions/studySession";
 
 import { useEffect, useState } from "react";
@@ -65,7 +65,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
       <StudySession
         studySession={studySession}
         onFinish={handleFinish}
-        onExit={() => router.push("/review")}
+        onExit={() => router.push("/")}
         localization={localization}
         dataTest={STUDY_SESSION_DATA_TEST}
       />

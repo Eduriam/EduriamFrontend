@@ -150,7 +150,9 @@ const HomePage: React.FC<IHomePage> = () => {
 
                 <LargeButton
                   fullWidth
-                  onClick={navigateWithTransition("/study")}
+                  onClick={navigateWithTransition(
+                    `/study?lessonId=${studyPlan?.upcomingLearnLesson?.id}`,
+                  )}
                   data-test="start-upcoming-lesson-button"
                 >
                   {t("home.startLesson") ?? "Start Lesson"}
@@ -209,7 +211,9 @@ const HomePage: React.FC<IHomePage> = () => {
                 />
                 <LargeButton
                   fullWidth
-                  onClick={navigateWithTransition("/study")}
+                  onClick={navigateWithTransition(
+                    `/review?courseId=${studyPlan?.upcomingReviewCourse?.id}`,
+                  )}
                   data-test="start-review-button"
                 >
                   {t("home.startReview") ?? "Start Review"}

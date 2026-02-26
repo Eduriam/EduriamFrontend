@@ -6,7 +6,7 @@ import useAPI from "infrastructure/api/hooks/useAPI";
 import { StudyPlanOverview } from "./StudyPlan";
 
 const StudyPlanAPI = {
-  URI: "user/study-plan",
+  URI: "users/me/study-plan",
 
   useStudyPlan(): Modify<
     FetchHook<StudyPlanOverview>,
@@ -26,4 +26,3 @@ const StudyPlanAPI = {
 };
 
 export default StudyPlanAPI;
-

@@ -29,7 +29,7 @@ Feature: Home page learning and review
     Then I should see the "review-section" section
     And I should see the "start-review-button" button
     When I click on the "start-review-button" button
-    Then I should be redirected to the "study-page" page
+    Then I should be redirected to the "review-page" page
 
   Scenario: User is informed when there is no content to review
     Given I am logged in

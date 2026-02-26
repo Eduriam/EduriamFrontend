@@ -3666,7 +3666,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/study-plan",
+      "endpoint": "users/me/study-plan",
       "responses": [
         {
           "uuid": "3e098a6a-126e-4571-ad32-43de5112716b",
@@ -4136,10 +4136,6 @@
         {
           "type": "folder",
           "uuid": "e11ae7b6-8422-4399-88cf-4c1a482b93dc"
-        },
-        {
-          "type": "folder",
-          "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
         }
       ]
     },
@@ -4340,6 +4336,10 @@
         {
           "type": "folder",
           "uuid": "363ddfe8-7de4-4441-81ee-8f03aeb54308"
+        },
+        {
+          "type": "folder",
+          "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
         }
       ]
     }
