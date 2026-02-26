@@ -6,6 +6,8 @@ Feature: Review
     And I am on the "review-page" page
 
   Scenario: User completes lesson review successfully
+    Given The course is defined
+
     Then I should see the "multiple-choice-exercise" exercise
     When I answer the "multiple-choice-exercise" exercise correctly
     And I click on the "check-answer-button" button
@@ -14,6 +16,8 @@ Feature: Review
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly once and then completes the exercise in review
+    Given The course is defined
+
     # First exercise
     Then I should see the "multiple-choice-exercise" exercise
     When I answer the "multiple-choice-exercise" exercise incorrectly
@@ -43,6 +47,8 @@ Feature: Review
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly three times and skips the exercise in review
+    Given The course is defined
+
     # Exercise first attempt
     Then I should see the "multiple-choice-exercise" exercise
     When I answer the "multiple-choice-exercise" exercise incorrectly
@@ -69,3 +75,26 @@ Feature: Review
     And I should see the "skip-exercise-button" button
     When I click on the "skip-exercise-button" button
     Then I should see the "study-stats-section" section
+
+  Scenario: Start review with no course defined
+    Given The course is not defined
+    Then I should see the "review-section" section
+    And I should see the "start-review-button" button
+    When I click on the "start-review-button" button
+    
+    # Complete review session
+    Then I should see the "multiple-choice-exercise" exercise
+    When I answer the "multiple-choice-exercise" exercise correctly
+    And I click on the "check-answer-button" button
+    Then I should see the "correct-answer" drawer
+    When I click on the "continue-button" button
+    Then I should see the "study-stats-section" section
+    When I click on the "continue-button" button
+    Then I should be redirected to the "home-page" page
+
+  Scenario: Skip review with no course defined
+    Given The course is not defined
+    Then I should see the "review-section" section
+    And I should see the "skip-review-button" button
+    When I click on the "skip-review-button" button
+    Then I should be redirected to the "home-page" page

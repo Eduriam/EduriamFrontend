@@ -6,6 +6,7 @@ Feature: Lesson learning
     And I am on the "study-page" page
 
   Scenario: User completes lesson learning successfully
+    Given The lesson is defined
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
     Then I should see the "multiple-choice-exercise" exercise
@@ -16,6 +17,7 @@ Feature: Lesson learning
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly once and then completes the exercise
+    Given The lesson is defined
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
     Then I should see the "multiple-choice-exercise" exercise
@@ -37,6 +39,7 @@ Feature: Lesson learning
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly three times and skips the exercise
+    Given The lesson is defined
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
     Then I should see the "multiple-choice-exercise" exercise

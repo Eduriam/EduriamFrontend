@@ -1,15 +1,108 @@
 "use client";
 
-import { ContentContainer, Header, PageRoot } from "@eduriam/ui-core";
+import { ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
+import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
+import { useEffect, useState } from "react";
+
+import { useRouter, useSearchParams } from "next/navigation";
+
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
+
+import StudyPreview from "../(home)/components/StudyPreview/StudyPreview";
+import ReviewSession from "./components/ReviewSession";
 
 export interface IReviewPage {}
 
 const ReviewPage: React.FC<IReviewPage> = () => {
+  const { t } = useTranslation("common");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const navigateWithTransition = useTransitionNavigationHandler();
+
+  const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>(
+    () => searchParams.get("courseId") ?? undefined,
+  );
+
+  useEffect(() => {
+    const queryCourseId = searchParams.get("courseId") ?? undefined;
+    setSelectedCourseId(queryCourseId);
+  }, [searchParams]);
+
+  const { studyPlan, isLoading: isStudyPlanLoading } = StudyPlanAPI.useStudyPlan();
+
+  const upcomingReviewCourse = studyPlan?.upcomingReviewCourse;
+
+  const handleStartReview = () => {
+    if (!upcomingReviewCourse?.id) {
+      return;
+    }
+
+    setSelectedCourseId(upcomingReviewCourse.id);
+    router.replace(`/review?courseId=${upcomingReviewCourse.id}`, {
+      scroll: false,
+    });
+  };
+
   return (
     <PageRoot data-test="review-page">
-      <ContentContainer width="small" justifyContent="flex-start">
-        <Header variant="page" text="review page" />
-      </ContentContainer>
+      {selectedCourseId ? (
+        <ReviewSession courseId={selectedCourseId} />
+      ) : (
+        <ContentContainer width="small" justifyContent="flex-start">
+          <Stack
+            spacing={8}
+            alignItems="center"
+            sx={{ width: "100%", mt: 10 }}
+            data-test="review-section"
+          >
+            {!isStudyPlanLoading && (
+              <>
+                <StudyPreview
+                  title={upcomingReviewCourse?.title ?? "Fullstack Developer"}
+                  description={
+                    t("home.reviewDescription") ??
+                    "Review the most important concepts carefully selected for you."
+                  }
+                  imageSrc={upcomingReviewCourse?.thumbnailUrl}
+                />
+
+                <Stack spacing={4} alignItems="center" sx={{ width: "100%" }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    align="center"
+                  >
+                    Reviews give you 2x the XP!
+                  </Typography>
+
+                  <LargeButton
+                    fullWidth
+                    onClick={handleStartReview}
+                    disabled={!upcomingReviewCourse?.id}
+                    data-test="start-review-button"
+                  >
+                    {t("home.startReview") ?? "Start review"}
+                  </LargeButton>
+
+                  <LargeButton
+                    fullWidth
+                    variant="outlined"
+                    onClick={navigateWithTransition("/")}
+                    data-test="skip-review-button"
+                  >
+                    Skip for today
+                  </LargeButton>
+                </Stack>
+              </>
+            )}
+          </Stack>
+        </ContentContainer>
+      )}
     </PageRoot>
   );
 };

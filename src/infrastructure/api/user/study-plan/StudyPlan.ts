@@ -1,10 +1,16 @@
-export interface StudyPlanLessonPreview {
+export interface StudyPlanUpcomingLesson {
+  id: Id;
+  title: string;
+  thumbnailUrl: string;
+}
+
+export interface StudyPlanUpcomingCourse {
+  id: Id;
   title: string;
   thumbnailUrl: string;
 }
 
 export interface StudyPlanOverview {
-  upcomingLearnLesson: StudyPlanLessonPreview | null;
-  upcomingReviewCourse: StudyPlanLessonPreview | null;
+  upcomingLearnLesson: StudyPlanUpcomingLesson | null;
+  upcomingReviewCourse: StudyPlanUpcomingCourse | null;
 }
-
