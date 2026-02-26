@@ -1909,9 +1909,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.60":
-  version: 0.2.60
-  resolution: "@eduriam/ui-x@npm:0.2.60::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.60%2F3c9bd11c244576977768ac4db4bba3bbbcc55ec9"
+"@eduriam/ui-x@npm:^0.2.61":
+  version: 0.2.61
+  resolution: "@eduriam/ui-x@npm:0.2.61::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.61%2Fca054729e8a2267db2af04f28fcd25c43b153149"
   dependencies:
     "@eduriam/ui-core": "npm:^0.6.48"
     "@remotion/captions": "npm:^4.0.353"
@@ -1932,7 +1932,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/64615c6f6d4901ebb71997686b51fa83909f119706c78b6815d57cc8e55ac137f161d908783a6644b49c40e1f26aa39298d77a169167b2183db595817745958b
+  checksum: 10c0/e0cb5a9ec624154ab24e6be7d3e4d278bed0ba9c7468f22d0b344a4077f331e3bed4426cf4860354b5d53a0ccb4eda59787a4ac9e849313cd64ada14f02581bf
   languageName: node
   linkType: hard
 
@@ -14078,7 +14078,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:^17.1.0"
     "@cucumber/cucumber": "npm:^10.3.1"
     "@eduriam/ui-core": "npm:^0.6.48"
-    "@eduriam/ui-x": "npm:^0.2.60"
+    "@eduriam/ui-x": "npm:^0.2.61"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"

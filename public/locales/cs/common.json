@@ -40,7 +40,9 @@
     "iKnowWord": "Toto slovíčko už umím!",
 
     "newGrammar": "Nová gramatika!",
-    "iKnowGrammar": "Tuto gramatiku už umím!"
+    "iKnowGrammar": "Tuto gramatiku už umím!",
+
+    "explanationTitle": "Vysvětlení"
   },
 
   "exercises": {
