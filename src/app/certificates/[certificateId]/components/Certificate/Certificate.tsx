@@ -93,7 +93,7 @@ const Certificate: React.FC<ICertificate> = ({
             <Box
               component="img"
               src="/images/certificates/signature.svg"
-              alt={t("certificate.signatureAlt")}
+              alt={t("certificate.signatureAlt") as string}
               sx={{
                 height: 40,
                 width: "auto",

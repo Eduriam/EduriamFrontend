@@ -3058,68 +3058,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "21bcc96a-ab1c-43ef-8eb0-6b4f7afa2380",
-      "type": "http",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "courses/:courseId/placement-test",
-      "responses": [
-        {
-          "uuid": "f593fac4-6ad4-4c3c-bb54-ecf37850d216",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"TextExercise\",\r\n      \"textL1\":\"jablko\",\r\n      \"textL2\":\"apple\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"textL2AudioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n   },\r\n   {\r\n      \"id\": \"{{faker 'string.uuid'}}\",\r\n      \"type\": \"BuildWordExercise\",\r\n      \"wordL1\": \"jablko\",\r\n      \"wordL2\": \"apple\",\r\n      \"letters\": [\"a\", \"p\", \"p\", \"l\", \"e\", \"x\", \"y\", \"z\"],\r\n      \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"answerAudioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\r\n   },\r\n   {\r\n      \"id\": \"{{faker 'string.uuid'}}\",\r\n      \"type\": \"FillInSentenceExercise\",\r\n      \"textL1\": \"Mám rád jablka.\",\r\n      \"textL2\": \"I like apples .\",\r\n      \"blankIndexes\": [2],\r\n      \"options\": [\"apples\", \"pears\", \"lemons\"],\r\n      \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\r\n   }\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "f3dade52-4f6b-4615-aec6-30321069ff90",
-      "type": "http",
-      "documentation": "",
-      "method": "post",
-      "endpoint": "courses/:courseId/placement-test",
-      "responses": [
-        {
-          "uuid": "913db464-3b18-4912-a0f6-f806bf83491e",
-          "body": "{\n  \"userLevel\": \"b2\"\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "1a900ba7-4dee-4942-9516-373141c3f0c7",
       "type": "http",
       "documentation": "",
@@ -3856,10 +3794,6 @@
         },
         {
           "type": "folder",
-          "uuid": "6d03ff78-8598-4f26-87dd-4da80ad1a002"
-        },
-        {
-          "type": "folder",
           "uuid": "c175d768-1edc-4446-98c8-1c61038b4560"
         },
         {
@@ -4206,20 +4140,6 @@
         {
           "type": "folder",
           "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
-        }
-      ]
-    },
-    {
-      "uuid": "6d03ff78-8598-4f26-87dd-4da80ad1a002",
-      "name": "placement-test",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "21bcc96a-ab1c-43ef-8eb0-6b4f7afa2380"
-        },
-        {
-          "type": "route",
-          "uuid": "f3dade52-4f6b-4615-aec6-30321069ff90"
         }
       ]
     },
