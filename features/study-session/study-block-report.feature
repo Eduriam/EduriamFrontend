@@ -20,8 +20,8 @@ Feature: Study block report
     When I click on the "problem-type-select-button" button
     Then I should see the "problem-type-select-drawer" section
     And I should see the "problem-group-section" section
-    And I should see the "problem-option-1-button" button
-    When I click the "problem-option-1-button" button
+    And I should see the "problem-option-exercise-not-understood-button" button
+    When I click the "problem-option-exercise-not-understood-button" button
     Then I should see the "report-study-block-section" section
     When I enter "ProblemDescription" in the "problem-description-field" field
     And I click the "submit-button" button
@@ -49,8 +49,8 @@ Feature: Study block report
     When I click on the "problem-type-select-button" button
     Then I should see the "problem-type-select-drawer" section
     And I should see the "problem-group-section" section
-    And I should see the "problem-option-1-button" button
-    When I click the "problem-option-1-button" button
+    And I should see the "problem-option-explanation-not-understood-button" button
+    When I click the "problem-option-explanation-not-understood-button" button
     Then I should see the "report-study-block-section" section
     When I enter "ProblemDescription" in the "problem-description-field" field
     And I click the "submit-button" button
@@ -76,8 +76,8 @@ Feature: Study block report
     When I click on the "problem-type-select-button" button
     Then I should see the "problem-type-select-drawer" section
     And I should see the "problem-group-corrector-section" section
-    And I should see the "problem-option-corrector-1-button" button
-    When I click the "problem-option-corrector-1-button" button
+    And I should see the "problem-option-lesson-structure-should-be-changed-button" button
+    When I click the "problem-option-lesson-structure-should-be-changed-button" button
     Then I should see the "report-study-block-section" section
     When I enter "ProblemDescription" in the "problem-description-field" field
     And I click the "submit-button" button

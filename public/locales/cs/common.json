@@ -56,15 +56,21 @@
       "user": {
         "title": "Typ problému",
         "options": {
-          "incorrectContent": "Nesprávný obsah",
-          "unclearExplanation": "Nejasné vysvětlení"
+          "explanationNotUnderstood": "Nerozuměl(a) jsem vysvětlení.",
+          "exerciseNotUnderstood": "Nerozuměl(a) jsem cvičení.",
+          "answerShouldNotBeAccepted": "Moje odpověď by neměla být uznána.",
+          "answerShouldBeAccepted": "Moje odpověď by měla být uznána.",
+          "audioDoesNotSoundRight": "Zvuk nezní správně.",
+          "audioMissing": "Zvuk chybí.",
+          "somethingElseWentWrong": "Něco jiného se pokazilo."
         }
       },
       "corrector": {
-        "title": "Typ problému pro korektora",
+        "title": "Možnosti pro korektora",
         "options": {
-          "wrongMetadata": "Chybná metadata",
-          "invalidStructure": "Neplatná struktura"
+          "explanationStructureShouldBeChanged": "Struktura vysvětlení by se měla změnit.",
+          "exerciseStructureShouldBeChanged": "Struktura cvičení by se měla změnit.",
+          "lessonStructureShouldBeChanged": "Struktura lekce by se měla změnit."
         }
       }
     }

@@ -8,12 +8,14 @@ import {
 } from "@eduriam/ui-x";
 import { useTranslation } from "i18n/client";
 import {
-  STUDY_BLOCK_REPORT_DATA_TEST,
   STUDY_SESSION_DATA_TEST,
-  createStudyBlockReportProblemTypeSections,
-  createStudyBlockReportLocalization,
   createStudySessionLocalization,
 } from "util/functions/studySessionConfig";
+import {
+  STUDY_BLOCK_REPORT_DATA_TEST,
+  createStudyBlockReportProblemTypeSections,
+  createStudyBlockReportLocalization,
+} from "util/functions/studyBlockReportConfig";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -24,6 +26,12 @@ import StudySessionAPI from "infrastructure/api/user/courses/study-session/Study
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IStudyPage {}
+
+type SelectedStudyBlockData = {
+  id: Id;
+  type: "exercise" | "explanation";
+  answerState: "RIGHT" | "WRONG" | "NONE" | null;
+};
 
 const StudyPage: React.FC<IStudyPage> = () => {
   const searchParams = useSearchParams();
@@ -49,23 +57,19 @@ const StudyPage: React.FC<IStudyPage> = () => {
 
   const localization = createStudySessionLocalization(t);
   const reportStudyBlockLocalization = createStudyBlockReportLocalization(t);
-  const allReportProblemTypeSections = useMemo(
-    () => createStudyBlockReportProblemTypeSections(t),
-    [t],
-  );
+  const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
+  const [selectedStudyBlockData, setSelectedStudyBlockData] = useState<
+    SelectedStudyBlockData | undefined
+  >(undefined);
   const reportProblemTypeSections = useMemo(() => {
     const isCorrector = (user?.role as string) === "CORRECTOR";
-    const targetSectionId = isCorrector ? "corrector-problems" : "user-problems";
 
-    return allReportProblemTypeSections.filter(
-      (section) => section.id === targetSectionId,
-    );
-  }, [allReportProblemTypeSections, user?.role]);
-
-  const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
-  const [selectedStudyBlockId, setSelectedStudyBlockId] = useState<
-    Id | undefined
-  >(undefined);
+    return createStudyBlockReportProblemTypeSections(t, {
+      studyBlockType: selectedStudyBlockData?.type ?? "explanation",
+      answerState: selectedStudyBlockData?.answerState ?? null,
+      isCorrector,
+    });
+  }, [selectedStudyBlockData, t, user?.role]);
 
   const { studySession, isLoading } = StudySessionAPI.useStudySession({
     lessonId,
@@ -95,7 +99,11 @@ const StudyPage: React.FC<IStudyPage> = () => {
         onFinish={handleFinish}
         onExit={() => router.push("/")}
         onReportStudyBlockClick={(studyBlock) => {
-          setSelectedStudyBlockId(studyBlock.id);
+          setSelectedStudyBlockData({
+            id: studyBlock.id,
+            type: studyBlock.type,
+            answerState: studyBlock.answerState,
+          });
           setIsReportDialogOpen(true);
         }}
         localization={localization}
@@ -105,15 +113,15 @@ const StudyPage: React.FC<IStudyPage> = () => {
         open={isReportDialogOpen}
         onClose={() => {
           setIsReportDialogOpen(false);
-          setSelectedStudyBlockId(undefined);
+          setSelectedStudyBlockData(undefined);
         }}
         onSubmit={async (payload) => {
-          if (!selectedStudyBlockId) {
+          if (!selectedStudyBlockData) {
             return;
           }
 
           await StudyBlocksReportAPI.reportStudyBlock(
-            selectedStudyBlockId,
+            selectedStudyBlockData.id,
             payload,
           );
         }}
