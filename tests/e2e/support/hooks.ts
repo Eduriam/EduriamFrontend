@@ -3,9 +3,11 @@ import { After, Before } from "@cucumber/cucumber";
 import { UserPrivate } from "infrastructure/api/user/User";
 
 import { createJwt } from "../step-definitions/util/jwt";
+import { resetMockoonEnvVarsToDefaults } from "../util/mockoon-env";
 import { CustomWorld } from "./world";
 
 Before(async function (this: CustomWorld) {
+  await resetMockoonEnvVarsToDefaults();
   await this.initBrowser();
 });
 
@@ -48,5 +50,9 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
 });
 
 After(async function (this: CustomWorld) {
-  await this.closeBrowser();
+  try {
+    await resetMockoonEnvVarsToDefaults();
+  } finally {
+    await this.closeBrowser();
+  }
 });

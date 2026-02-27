@@ -26,7 +26,7 @@ Feature: Course page and enrollment
     Then I should be on the "course-page" page
     And I should see the "continue-learning-button" button
     When I click on the "continue-learning-button" button
-    Then I should be redirected to the "lesson-page" page
+    Then I should be redirected to the "study-page" page
 
   Scenario: User navigates to manage enrolled courses
     Given I am logged in

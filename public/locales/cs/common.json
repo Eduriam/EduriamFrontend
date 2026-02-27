@@ -1,4 +1,4 @@
-{
+﻿{
   "project-name": "Linguino",
   "loading": "Načítání...",
 
@@ -223,6 +223,11 @@
     "allLessonsReviewedSubtitle": "Vrať se později."
   },
 
+  "review": {
+    "reviewXpInfo": "Opakování ti dá 2x více XP!",
+    "skipForToday": "Pro dnešek přeskočit"
+  },
+
   "manageSubscription": {
     "current": "Momentální předplatné",
     "nextPayment": "Další platba",
@@ -266,6 +271,8 @@
     "courseLabel": "Kurz",
     "learningPathLabel": "Learning path",
     "startCourse": "Začít kurz",
+    "reviewCourse": "Zopakovat látku",
+    "reviewLearningPath": "Zopakovat látku",
     "startLearningPath": "Začít learning path",
     "continueLearning": "Pokračovat v učení",
     "description": "Popis kurzu",

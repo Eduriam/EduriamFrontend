@@ -1,12 +1,11 @@
-@review
-Feature: Review
+@review-page
+Feature: Review page
 
   Background:
     Given I am logged in
-    And I am on the "review-page" page
 
   Scenario: User completes lesson review successfully
-    Given The course is defined
+    Given I am on the "review-page" page with the "course" defined
 
     Then I should see the "multiple-choice-exercise" exercise
     When I answer the "multiple-choice-exercise" exercise correctly
@@ -16,7 +15,7 @@ Feature: Review
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly once and then completes the exercise in review
-    Given The course is defined
+    Given I am on the "review-page" page with the "course" defined
 
     # First exercise
     Then I should see the "multiple-choice-exercise" exercise
@@ -47,7 +46,7 @@ Feature: Review
     Then I should see the "study-stats-section" section
 
   Scenario: User answers incorrectly three times and skips the exercise in review
-    Given The course is defined
+    Given I am on the "review-page" page with the "course" defined
 
     # Exercise first attempt
     Then I should see the "multiple-choice-exercise" exercise
@@ -77,7 +76,7 @@ Feature: Review
     Then I should see the "study-stats-section" section
 
   Scenario: Start review with no course defined
-    Given The course is not defined
+    Given I am on the "review-page" page
     Then I should see the "review-section" section
     And I should see the "start-review-button" button
     When I click on the "start-review-button" button
@@ -93,7 +92,7 @@ Feature: Review
     Then I should be redirected to the "home-page" page
 
   Scenario: Skip review with no course defined
-    Given The course is not defined
+    Given I am on the "review-page" page
     Then I should see the "review-section" section
     And I should see the "skip-review-button" button
     When I click on the "skip-review-button" button

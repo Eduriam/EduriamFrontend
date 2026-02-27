@@ -26,7 +26,8 @@ import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
 
-import LearningPathAPI from "infrastructure/api/learning-paths/LearningPathAPI";
+import { LearningPath } from "infrastructure/api/courses/Courses";
+import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -40,7 +41,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const params = useParams<{ learningPathId: Id }>();
   const learningPathId = params.learningPathId ?? "";
 
-  const { learningPath } = LearningPathAPI.useLearningPath(learningPathId);
+  const { course: learningPath } = CoursesAPI.useCourse(learningPathId);
 
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
@@ -51,11 +52,25 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
     }
 
     await UserCoursesAPI.enrollInCourse(learningPathId);
-    navigateWithTransition("/study-session")();
+    navigateWithTransition(`/study?courseId=${learningPathId}`)();
   };
 
   const handleContinueLearning = () => {
-    navigateWithTransition("/lesson")();
+    if (!learningPath?.upcomingLessonId) {
+      return;
+    }
+
+    navigateWithTransition(
+      `/study?lessonId=${learningPath.upcomingLessonId}`,
+    )();
+  };
+
+  const handleReviewLearningPath = () => {
+    if (!learningPathId) {
+      return;
+    }
+
+    navigateWithTransition(`/review?courseId=${learningPathId}`)();
   };
 
   const handleOpenDetails = () => {
@@ -68,8 +83,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
   const shortDescription = learningPath?.shortDescription;
   const description = learningPath?.description;
-  const courses = learningPath?.courses ?? [];
+  const courses = (learningPath as LearningPath)?.courses ?? [];
   const isEnrolled = learningPath?.enrolled ?? false;
+  const hasUpcomingLesson = Boolean(learningPath?.upcomingLessonId);
   const isPremiumUser = user?.role === "PREMIUM_USER";
   const hasCertificate = learningPath?.userCertificate !== null;
 
@@ -181,7 +197,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                   {t("courses.startLearningPath")}
                 </LargeButton>
               )}
-              {isEnrolled && (
+              {isEnrolled && hasUpcomingLesson && (
                 <LargeButton
                   variant="contained"
                   color="primary"
@@ -190,6 +206,19 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                   fullWidth
                 >
                   {t("courses.continueLearning")}
+                </LargeButton>
+              )}
+              {isEnrolled && !hasUpcomingLesson && (
+                <LargeButton
+                  variant="contained"
+                  color="primary"
+                  onClick={handleReviewLearningPath}
+                  data-test="review-learning-path-button"
+                  fullWidth
+                >
+                  {t("courses.reviewLearningPath") ||
+                    t("courses.reviewCourse") ||
+                    "Review learning path"}
                 </LargeButton>
               )}
             </Stack>

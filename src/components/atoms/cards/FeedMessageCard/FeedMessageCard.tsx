@@ -97,7 +97,7 @@ const FeedMessageCard: React.FC<IFeedMessageCard> = ({
               );
             })}
             <IconButton onClick={handleClick} size="small">
-              <Icon fontSize="small" name="addReaction" />
+              <Icon name="addReaction" sx={{ fontSize: 16 }} />
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <Grid container spacing={0}>

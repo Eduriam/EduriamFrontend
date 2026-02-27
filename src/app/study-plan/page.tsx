@@ -226,7 +226,9 @@ const StudyPlanPage: React.FC = () => {
                 title={course.title}
                 logoVariant={course.logoVariant}
                 onPlayClick={
-                  isLearnLane ? navigateWithTransition("/study") : undefined
+                  isLearnLane
+                    ? navigateWithTransition(`/study?courseId=${course.id}`)
+                    : undefined
                 }
                 data-test-learn-button={course["data-test-learn-button"]}
               />

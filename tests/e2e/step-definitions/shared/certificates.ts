@@ -1,35 +1,22 @@
 import { Given } from "@cucumber/cucumber";
 
-import {
-  setCourseCertificate,
-  setLearningPathCertificate,
-} from "../../util/mockoon-env";
+import { setCourseCertificate } from "../../util/mockoon-env";
 
-Given(
-  "I have the course certificate",
-  async function (): Promise<void> {
-    await setCourseCertificate(true);
-  },
-);
+Given("I have the course certificate", async function (): Promise<void> {
+  await setCourseCertificate(true);
+});
 
-Given(
-  "I do not have the course certificate",
-  async function (): Promise<void> {
-    await setCourseCertificate(false);
-  },
-);
+Given("I do not have the course certificate", async function (): Promise<void> {
+  await setCourseCertificate(false);
+});
 
-Given(
-  "I have the learning path certificate",
-  async function (): Promise<void> {
-    await setLearningPathCertificate(true);
-  },
-);
+Given("I have the learning path certificate", async function (): Promise<void> {
+  await setCourseCertificate(true);
+});
 
 Given(
   "I do not have the learning path certificate",
   async function (): Promise<void> {
-    await setLearningPathCertificate(false);
+    await setCourseCertificate(false);
   },
 );
-

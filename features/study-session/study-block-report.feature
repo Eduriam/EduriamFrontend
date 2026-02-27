@@ -3,8 +3,7 @@ Feature: Study block report
 
   Scenario: User reports a problem from an exercise block
     Given I am logged in
-    And I am on the "study-page" page
-    And The lesson is defined
+    And I am on the "study-page" page with the "lesson" defined
 
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
@@ -33,8 +32,7 @@ Feature: Study block report
 
   Scenario: User reports a problem from an explanation block
     Given I am logged in
-    And I am on the "study-page" page
-    And The lesson is defined
+    And I am on the "study-page" page with the "lesson" defined
   
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
@@ -61,7 +59,7 @@ Feature: Study block report
 
   Scenario: Corrector reports a problem from an exercise block using extended problem types
     Given I am logged in as corrector
-    And The lesson is defined
+    And I am on the "study-page" page with the "lesson" defined
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
     Then I should see the "multiple-choice-exercise" exercise

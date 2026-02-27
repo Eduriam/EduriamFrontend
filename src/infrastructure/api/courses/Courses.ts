@@ -1,10 +1,15 @@
 import { Language } from "domain/models/types/languages";
 
-import { FeaturedTopic } from "infrastructure/api/user/topics/Topics";
-
 export interface CourseChapterSummary {
   id: Id;
   name: string;
+  userProgress?: number;
+}
+
+export interface LearningPathCourseSummary {
+  id: Id;
+  name: string;
+  logoId?: string;
   userProgress?: number;
 }
 
@@ -14,14 +19,25 @@ export interface CoursePrerequisite {
   completed?: boolean;
 }
 
-export interface Course {
+export type CourseDTO = Course | LearningPath;
+
+export interface Course extends CourseBase {
+  type: "course";
+  chapters?: Array<CourseChapterSummary>;
+}
+
+export interface LearningPath extends CourseBase {
+  type: "learning-path";
+  courses?: Array<LearningPathCourseSummary>;
+}
+
+interface CourseBase {
   id: Id;
   name: string;
   language: Language;
   category?: string;
   logoId?: string;
   type?: "learning-path" | "course";
-  featuredTopics?: Array<FeaturedTopic>;
   userProgress?: number;
   /** Whether the current user is enrolled in this course. */
   enrolled?: boolean;
@@ -37,5 +53,6 @@ export interface Course {
   description?: string;
   /** List of course prerequisites shown in the details drawer. */
   prerequisites?: Array<CoursePrerequisite>;
-  chapters?: Array<CourseChapterSummary>;
+  /** Next lesson ID to continue learning in this course. */
+  upcomingLessonId?: Id;
 }

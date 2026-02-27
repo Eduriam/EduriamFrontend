@@ -24,6 +24,7 @@ import ChapterCard from "components/courses/ChapterCard/ChapterCard";
 import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDetailsDrawer";
 import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
+import { Course } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -52,11 +53,19 @@ const CoursePage: React.FC<ICoursePage> = () => {
     }
 
     await UserCoursesAPI.enrollInCourse(courseId);
-    navigateWithTransition("/study-session")();
+    navigateWithTransition(`/study?courseId=${courseId}`)();
   };
 
   const handleContinueLearning = () => {
-    navigateWithTransition("/lesson")();
+    navigateWithTransition(`/study?lessonId=${course?.upcomingLessonId}`)();
+  };
+
+  const handleReviewCourse = () => {
+    if (!courseId) {
+      return;
+    }
+
+    navigateWithTransition(`/review?courseId=${courseId}`)();
   };
 
   const handleViewCertificate = () => {
@@ -101,9 +110,10 @@ const CoursePage: React.FC<ICoursePage> = () => {
   const courseDescription = (course as unknown as { description?: string })
     ?.description;
 
-  const chapters = course?.chapters ?? [];
+  const chapters = (course as Course)?.chapters ?? [];
 
   const isEnrolled = course?.enrolled ?? false;
+  const hasUpcomingLesson = Boolean(course?.upcomingLessonId);
 
   return (
     <>
@@ -182,7 +192,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
                   {t("courses.startCourse")}
                 </LargeButton>
               )}
-              {isEnrolled && (
+              {isEnrolled && hasUpcomingLesson && (
                 <LargeButton
                   variant="contained"
                   color="primary"
@@ -191,6 +201,17 @@ const CoursePage: React.FC<ICoursePage> = () => {
                   fullWidth
                 >
                   {t("courses.continueLearning")}
+                </LargeButton>
+              )}
+              {isEnrolled && !hasUpcomingLesson && (
+                <LargeButton
+                  variant="contained"
+                  color="primary"
+                  onClick={handleReviewCourse}
+                  data-test="review-course-button"
+                  fullWidth
+                >
+                  {t("courses.reviewCourse") || "Review course"}
                 </LargeButton>
               )}
             </Stack>

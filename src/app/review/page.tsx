@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
 
 import StudyPreview from "../(home)/components/StudyPreview/StudyPreview";
-import ReviewSession from "./components/ReviewSession";
+import ReviewCourseStudySession from "./components/ReviewCourseStudySession";
 
 export interface IReviewPage {}
 
@@ -33,9 +33,21 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     setSelectedCourseId(queryCourseId);
   }, [searchParams]);
 
-  const { studyPlan, isLoading: isStudyPlanLoading } = StudyPlanAPI.useStudyPlan();
+  const { studyPlan, isLoading: isStudyPlanLoading } =
+    StudyPlanAPI.useStudyPlan();
 
   const upcomingReviewCourse = studyPlan?.upcomingReviewCourse;
+  const queryCourseId = searchParams.get("courseId") ?? undefined;
+
+  useEffect(() => {
+    if (isStudyPlanLoading) {
+      return;
+    }
+
+    if (!upcomingReviewCourse && !queryCourseId) {
+      router.replace("/", { scroll: false });
+    }
+  }, [isStudyPlanLoading, upcomingReviewCourse, queryCourseId, router]);
 
   const handleStartReview = () => {
     if (!upcomingReviewCourse?.id) {
@@ -51,7 +63,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
   return (
     <PageRoot data-test="review-page">
       {selectedCourseId ? (
-        <ReviewSession courseId={selectedCourseId} />
+        <ReviewCourseStudySession courseId={selectedCourseId} />
       ) : (
         <ContentContainer width="small" justifyContent="flex-start">
           <Stack
@@ -77,7 +89,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
                     color="text.secondary"
                     align="center"
                   >
-                    Reviews give you 2x the XP!
+                    {t("review.reviewXpInfo") ?? "Reviews give you 2x the XP!"}
                   </Typography>
 
                   <LargeButton
@@ -95,7 +107,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
                     onClick={navigateWithTransition("/")}
                     data-test="skip-review-button"
                   >
-                    Skip for today
+                    {t("review.skipForToday") ?? "Skip for today"}
                   </LargeButton>
                 </Stack>
               </>

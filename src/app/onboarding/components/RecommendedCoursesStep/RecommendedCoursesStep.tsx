@@ -12,10 +12,10 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import type { Course } from "infrastructure/api/courses/Courses";
+import type { CourseDTO } from "infrastructure/api/courses/Courses";
 
 export interface IRecommendedCoursesStepProps {
-  courses: Course[];
+  courses: CourseDTO[];
   htmlCourseId: Id | undefined;
   onCourseSelect: (courseId: Id) => void;
   onExploreAll: () => void;

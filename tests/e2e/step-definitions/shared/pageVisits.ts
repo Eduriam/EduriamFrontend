@@ -27,6 +27,26 @@ const PAGE_URLS: Record<string, string> = {
   "study-plan-page": `${BASE_URL}/study-plan`,
 };
 
+type DefinedPageEntityConfig = {
+  queryParam: string;
+  queryValue: string;
+};
+
+const DEFINED_PAGE_ENTITY_CONFIGS: Record<string, DefinedPageEntityConfig> = {
+  "study-page:lesson": {
+    queryParam: "lessonId",
+    queryValue: "test-lesson-id",
+  },
+  "study-page:course": {
+    queryParam: "courseId",
+    queryValue: "test-course-id",
+  },
+  "review-page:course": {
+    queryParam: "courseId",
+    queryValue: "test-course-id",
+  },
+};
+
 /**
  * Navigate to the onboarding page with special handling.
  * Onboarding always requires a fresh navigation to ensure init scripts run.
@@ -121,6 +141,50 @@ async function waitForPageMarker(
     });
   }
 }
+
+Given(
+  "I am on the {string} page with the {string} defined",
+  { timeout: 60 * 1000 },
+  async function (this: CustomWorld, pageName: string, entityName: string) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const baseUrl = PAGE_URLS[pageName];
+    if (!baseUrl) {
+      throw new Error(
+        `Page "${pageName}" is not a supported page name. Supported pages: ${Object.keys(
+          PAGE_URLS,
+        ).join(", ")}`,
+      );
+    }
+
+    const definedConfig =
+      DEFINED_PAGE_ENTITY_CONFIGS[`${pageName}:${entityName}`];
+    if (!definedConfig) {
+      throw new Error(
+        `Unsupported defined-page combination "${pageName}:${entityName}". Supported combinations: ${Object.keys(
+          DEFINED_PAGE_ENTITY_CONFIGS,
+        ).join(", ")}`,
+      );
+    }
+
+    await this.page.goto(
+      `${baseUrl}?${definedConfig.queryParam}=${definedConfig.queryValue}`,
+      {
+        waitUntil: "domcontentloaded",
+        timeout: 30000,
+      },
+    );
+    await this.page
+      .waitForLoadState("networkidle", { timeout: 15000 })
+      .catch(() => undefined);
+
+    await waitForPageMarker(this.page, pageName, 15000);
+  },
+);
 
 Given(
   "I am on the {string} page",

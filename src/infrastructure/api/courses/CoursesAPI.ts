@@ -5,7 +5,7 @@ import { parseQueryParams } from "util/functions/api";
 import API, { FetchHook } from "infrastructure/api/API";
 import useAPI from "infrastructure/api/hooks/useAPI";
 
-import { Course } from "./Courses";
+import { CourseDTO } from "./Courses";
 
 export interface CourseParams {
   language?: Language;
@@ -14,19 +14,19 @@ export interface CourseParams {
 const CoursesAPI = {
   URI: "courses",
 
-  async getCourse(id: Id): Promise<Course> {
+  async getCourse(id: Id): Promise<CourseDTO> {
     return API.get(`${this.URI}/${id}`);
   },
 
-  useCourse(id: Id): Modify<FetchHook<Course>, { course: Course }> {
-    const { data, ...rest } = useAPI<Course>(`${this.URI}/${id}`);
+  useCourse(id: Id): Modify<FetchHook<CourseDTO>, { course: CourseDTO }> {
+    const { data, ...rest } = useAPI<CourseDTO>(`${this.URI}/${id}`);
     return { course: data, ...rest };
   },
 
   useCourses(
     params: CourseParams = {},
-  ): Modify<FetchHook<Array<Course>>, { courses: Array<Course> }> {
-    const { data, ...rest } = useAPI<Array<Course>>(
+  ): Modify<FetchHook<Array<CourseDTO>>, { courses: Array<CourseDTO> }> {
+    const { data, ...rest } = useAPI<Array<CourseDTO>>(
       `${this.URI}?${parseQueryParams(params)}`,
     );
     return { courses: data, ...rest };

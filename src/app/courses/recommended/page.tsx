@@ -19,10 +19,10 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import type { Course } from "infrastructure/api/courses/Courses";
+import type { CourseDTO } from "infrastructure/api/courses/Courses";
 import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
 
-function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
+function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
@@ -33,7 +33,7 @@ function CourseOrLearningPathCard({
   dataTestLearningPath,
   onSelect,
 }: {
-  course: Course;
+  course: CourseDTO;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, isLearningPath: boolean) => void;

@@ -14,14 +14,14 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import type { Course } from "infrastructure/api/courses/Courses";
+import type { CourseDTO } from "infrastructure/api/courses/Courses";
 
 const DEFAULT_CATEGORY = "other";
 
 function groupCoursesByCategory(
-  courses: Course[],
-): Array<{ category: string; courses: Course[] }> {
-  const map = new Map<string, Course[]>();
+  courses: CourseDTO[],
+): Array<{ category: string; courses: CourseDTO[] }> {
+  const map = new Map<string, CourseDTO[]>();
   for (const course of courses) {
     const category = course.category ?? DEFAULT_CATEGORY;
     const list = map.get(category);
@@ -37,13 +37,13 @@ function groupCoursesByCategory(
   }));
 }
 
-function getCourseLogoVariant(course: Course): "HTML" | "JavaScript" {
+function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
 export interface IAllCoursesStepProps {
-  courses: Course[];
+  courses: CourseDTO[];
   htmlCourseId: Id | undefined;
   onCourseSelect: (courseId: Id) => void;
 }

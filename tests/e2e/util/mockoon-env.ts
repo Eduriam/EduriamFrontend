@@ -2,6 +2,12 @@ import * as http from "http";
 import * as https from "https";
 
 const DEFAULT_ADMIN_BASE_URL = "http://localhost:3001";
+const MOCKOON_DEFAULT_ENV_VARS: Record<string, string> = {
+  MOCKOON_COURSE_ENROLLED: "false",
+  MOCKOON_COURSE_CERTIFICATE: "false",
+  MOCKOON_UPCOMING_LESSON_DEFINED: "true",
+  MOCKOON_UPCOMING_REVIEW_DEFINED: "true",
+};
 
 function getMockoonAdminBaseUrl(): string {
   return process.env.MOCKOON_ADMIN_BASE_URL || DEFAULT_ADMIN_BASE_URL;
@@ -71,15 +77,6 @@ export async function setMockoonEnvVar(
   await requestJson(url, "POST", { key, value });
 }
 
-export async function setLearningPathEnrolled(
-  enrolled: boolean,
-): Promise<void> {
-  await setMockoonEnvVar(
-    "MOCKOON_LEARNING_PATH_ENROLLED",
-    enrolled ? "true" : "false",
-  );
-}
-
 export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
   await setMockoonEnvVar(
     "MOCKOON_COURSE_ENROLLED",
@@ -92,16 +89,7 @@ export async function setCourseCertificate(
 ): Promise<void> {
   await setMockoonEnvVar(
     "MOCKOON_COURSE_CERTIFICATE",
-    hasCertificate ? "test-course-certificate" : "null",
-  );
-}
-
-export async function setLearningPathCertificate(
-  hasCertificate: boolean,
-): Promise<void> {
-  await setMockoonEnvVar(
-    "MOCKOON_LEARNING_PATH_CERTIFICATE",
-    hasCertificate ? "react-developer-path-certificate" : "null",
+    hasCertificate ? "true" : "false",
   );
 }
 
@@ -121,4 +109,10 @@ export async function setUpcomingReviewDefined(
     "MOCKOON_UPCOMING_REVIEW_DEFINED",
     defined ? "true" : "false",
   );
+}
+
+export async function resetMockoonEnvVarsToDefaults(): Promise<void> {
+  for (const [key, value] of Object.entries(MOCKOON_DEFAULT_ENV_VARS)) {
+    await setMockoonEnvVar(key, value);
+  }
 }
