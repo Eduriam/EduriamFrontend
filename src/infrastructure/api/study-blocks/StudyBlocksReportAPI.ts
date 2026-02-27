@@ -3,6 +3,7 @@ import API from "infrastructure/api/API";
 export interface StudyBlockReportBody {
   problemTypeId: string;
   description: string;
+  userAnswerReport: string;
 }
 
 const StudyBlocksReportAPI = {
@@ -17,4 +18,3 @@ const StudyBlocksReportAPI = {
 };
 
 export default StudyBlocksReportAPI;
-

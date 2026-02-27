@@ -4,18 +4,19 @@ import { PageRoot } from "@eduriam/ui-core";
 import {
   AtomProgressRating,
   ReportStudyBlockDialog,
+  SelectedStudyBlockData,
   StudySession,
 } from "@eduriam/ui-x";
 import { useTranslation } from "i18n/client";
 import {
+  STUDY_BLOCK_REPORT_DATA_TEST,
+  createStudyBlockReportLocalization,
+  createStudyBlockReportProblemTypeSections,
+} from "util/functions/studyBlockReportConfig";
+import {
   STUDY_SESSION_DATA_TEST,
   createStudySessionLocalization,
 } from "util/functions/studySessionConfig";
-import {
-  STUDY_BLOCK_REPORT_DATA_TEST,
-  createStudyBlockReportProblemTypeSections,
-  createStudyBlockReportLocalization,
-} from "util/functions/studyBlockReportConfig";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -26,12 +27,6 @@ import StudySessionAPI from "infrastructure/api/user/courses/study-session/Study
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IStudyPage {}
-
-type SelectedStudyBlockData = {
-  id: Id;
-  type: "exercise" | "explanation";
-  answerState: "RIGHT" | "WRONG" | "NONE" | null;
-};
 
 const StudyPage: React.FC<IStudyPage> = () => {
   const searchParams = useSearchParams();
@@ -103,6 +98,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
             id: studyBlock.id,
             type: studyBlock.type,
             answerState: studyBlock.answerState,
+            userAnswerReport: studyBlock.userAnswerReport,
           });
           setIsReportDialogOpen(true);
         }}
@@ -122,7 +118,10 @@ const StudyPage: React.FC<IStudyPage> = () => {
 
           await StudyBlocksReportAPI.reportStudyBlock(
             selectedStudyBlockData.id,
-            payload,
+            {
+              ...payload,
+              userAnswerReport: selectedStudyBlockData.userAnswerReport,
+            },
           );
         }}
         problemTypeSections={reportProblemTypeSections}
