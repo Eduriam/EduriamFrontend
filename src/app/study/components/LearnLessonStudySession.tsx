@@ -1,8 +1,8 @@
 "use client";
 
-import StudySessionContainer from "components/organisms/StudySessionContainer/StudySessionContainer";
-
 import { useRouter } from "next/navigation";
+
+import StudySessionContainer from "components/organisms/StudySessionContainer/StudySessionContainer";
 
 import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
 
@@ -27,7 +27,8 @@ const LearnLessonStudySession: React.FC<ILearnLessonStudySession> = ({
     <StudySessionContainer
       studySession={studySession}
       lessonId={lessonId}
-      onExit={() => router.push("/")}
+      onQuit={() => router.back()}
+      onExit={() => router.replace("/review")}
     />
   );
 };

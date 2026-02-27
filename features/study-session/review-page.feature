@@ -88,8 +88,6 @@ Feature: Review page
     Then I should see the "correct-answer" drawer
     When I click on the "continue-button" button
     Then I should see the "study-stats-section" section
-    When I click on the "continue-button" button
-    Then I should be redirected to the "home-page" page
 
   Scenario: Skip review with no course defined
     Given I am on the "review-page" page

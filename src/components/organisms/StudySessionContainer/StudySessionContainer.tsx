@@ -28,6 +28,7 @@ export interface IStudySessionContainer {
   studySession: StudySessionDTO;
   lessonId?: Id;
   courseId?: Id;
+  onQuit: () => void;
   onExit: () => void;
 }
 
@@ -35,6 +36,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
   studySession,
   lessonId,
   courseId,
+  onQuit,
   onExit,
 }) => {
   const { user } = useAuth();
@@ -76,6 +78,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
       <StudySession
         studySession={studySession}
         onFinish={handleFinish}
+        onQuit={onQuit}
         onExit={onExit}
         onReportStudyBlockClick={(studyBlock) => {
           setSelectedStudyBlockData({

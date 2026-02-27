@@ -1,8 +1,8 @@
 "use client";
 
-import StudySessionContainer from "components/organisms/StudySessionContainer/StudySessionContainer";
-
 import { useRouter } from "next/navigation";
+
+import StudySessionContainer from "components/organisms/StudySessionContainer/StudySessionContainer";
 
 import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
 
@@ -23,11 +23,14 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
     return null;
   }
 
+  const handleQuitOrExit = () => router.back();
+
   return (
     <StudySessionContainer
       studySession={studySession}
       courseId={courseId}
-      onExit={() => router.push("/")}
+      onQuit={handleQuitOrExit}
+      onExit={handleQuitOrExit}
     />
   );
 };
