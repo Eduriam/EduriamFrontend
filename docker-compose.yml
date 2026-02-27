@@ -8,6 +8,7 @@ services:
       - "./mock/netlify/functions/datafile.json:/data/datafile.json:ro"
     environment:
       - MOCKOON_COURSE_ENROLLED=false
+      - MOCKOON_STUDY_SESSON_VARIANT=default
     command:
       [
         "start",

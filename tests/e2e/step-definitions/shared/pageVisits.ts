@@ -205,11 +205,14 @@ Given(
       );
     }
 
+    const resolvedUrl =
+      pageName === "study-page" ? `${url}?lessonId=test-lesson-id` : url;
+
     // Navigate to the page
     if (pageName === "onboarding-page") {
       await navigateToOnboardingPage(this.page);
     } else {
-      await navigateToStandardPage(this.page, url);
+      await navigateToStandardPage(this.page, resolvedUrl);
     }
 
     // Wait for the page marker element

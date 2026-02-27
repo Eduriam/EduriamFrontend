@@ -2,6 +2,27 @@ import { Then, When } from "@cucumber/cucumber";
 
 import { CustomWorld } from "../../support/world";
 
+const exerciseConfig = {
+  multipleChoiceExercise: {
+    testId: "multiple-choice-exercise",
+    correctAnswerButtonTestId: "multiple-choice-exercise-correct-answer-button",
+    incorrectAnswerButtonTestId:
+      "multiple-choice-exercise-incorrect-answer-button",
+    fallbackCorrectOptionIndex: 0,
+    fallbackIncorrectOptionIndex: 1,
+  },
+  codeExercise: {
+    testId: "code-exercise",
+    fillInCodeTextFieldTestId: "code-exercise-fill-in-code-text-field",
+    correctAnswer: "SELECT id, name FROM users;",
+    incorrectAnswer: "SELECT id name FROM users",
+  },
+} as const;
+
+type ExerciseTestId =
+  | (typeof exerciseConfig.multipleChoiceExercise)["testId"]
+  | (typeof exerciseConfig.codeExercise)["testId"];
+
 function ensurePage(world: CustomWorld) {
   if (!world.page) {
     throw new Error("Page is not initialized.");
@@ -10,24 +31,125 @@ function ensurePage(world: CustomWorld) {
   return world.page;
 }
 
-interface ExerciseConfig {
-  sectionTestId: string;
-  correctAnswerTestId?: string;
-  incorrectAnswerTestId?: string;
+function getExercise(page: ReturnType<typeof ensurePage>, exerciseTestId: string) {
+  return page.locator(`[data-test="${exerciseTestId}"]`).first();
 }
 
-function getExerciseConfig(exerciseTestId: string): ExerciseConfig {
+function throwUnsupportedExerciseType(exerciseTestId: string): never {
+  throw new Error(
+    `Unsupported exercise test id: "${exerciseTestId}". Add mapping in studySession.ts.`,
+  );
+}
+
+function parseExerciseTestId(exerciseTestId: string): ExerciseTestId {
   switch (exerciseTestId) {
-    case "multiple-choice-exercise":
-      return {
-        sectionTestId: "multiple-choice-exercise",
-        correctAnswerTestId: "multiple-choice-exercise-correct-answer-button",
-        incorrectAnswerTestId: "multiple-choice-exercise-incorrect-answer-button",
-      };
+    case exerciseConfig.multipleChoiceExercise.testId:
+    case exerciseConfig.codeExercise.testId:
+      return exerciseTestId;
     default:
-      throw new Error(
-        `Unsupported exercise test id: "${exerciseTestId}". Add mapping in studySession.ts.`,
-      );
+      throwUnsupportedExerciseType(exerciseTestId);
+  }
+}
+
+async function fillMultipleChoiceExerciseCorrectly(
+  page: ReturnType<typeof ensurePage>,
+): Promise<void> {
+  const config = exerciseConfig.multipleChoiceExercise;
+  const exercise = getExercise(page, config.testId);
+
+  const preferredByDataTest = exercise
+    .locator(`[data-test="${config.correctAnswerButtonTestId}"]`)
+    .first();
+  if ((await preferredByDataTest.count()) > 0) {
+    await preferredByDataTest.click();
+    return;
+  }
+
+  const options = exercise.locator("button");
+  const optionCount = await options.count();
+  if (optionCount > config.fallbackCorrectOptionIndex) {
+    await options.nth(config.fallbackCorrectOptionIndex).click();
+    return;
+  }
+
+  await options.first().click();
+}
+
+async function fillMultipleChoiceExerciseIncorrectly(
+  page: ReturnType<typeof ensurePage>,
+): Promise<void> {
+  const config = exerciseConfig.multipleChoiceExercise;
+  const exercise = getExercise(page, config.testId);
+
+  const preferredByDataTest = exercise
+    .locator(`[data-test="${config.incorrectAnswerButtonTestId}"]`)
+    .first();
+  if ((await preferredByDataTest.count()) > 0) {
+    await preferredByDataTest.click();
+    return;
+  }
+
+  const options = exercise.locator("button");
+  const optionCount = await options.count();
+  if (optionCount > config.fallbackIncorrectOptionIndex) {
+    await options.nth(config.fallbackIncorrectOptionIndex).click();
+    return;
+  }
+
+  await options.first().click();
+}
+
+async function fillCodeExerciseCorrectly(
+  page: ReturnType<typeof ensurePage>,
+): Promise<void> {
+  const config = exerciseConfig.codeExercise;
+  const exercise = getExercise(page, config.testId);
+  await exercise
+    .locator(`[data-test="${config.fillInCodeTextFieldTestId}"]`)
+    .first()
+    .fill(config.correctAnswer);
+}
+
+async function fillCodeExerciseIncorrectly(
+  page: ReturnType<typeof ensurePage>,
+): Promise<void> {
+  const config = exerciseConfig.codeExercise;
+  const exercise = getExercise(page, config.testId);
+  await exercise
+    .locator(`[data-test="${config.fillInCodeTextFieldTestId}"]`)
+    .first()
+    .fill(config.incorrectAnswer);
+}
+
+async function answerExerciseCorrectly(
+  page: ReturnType<typeof ensurePage>,
+  exerciseTestId: ExerciseTestId,
+): Promise<void> {
+  switch (exerciseTestId) {
+    case exerciseConfig.multipleChoiceExercise.testId:
+      await fillMultipleChoiceExerciseCorrectly(page);
+      return;
+    case exerciseConfig.codeExercise.testId:
+      await fillCodeExerciseCorrectly(page);
+      return;
+    default:
+      throwUnsupportedExerciseType(exerciseTestId);
+  }
+}
+
+async function answerExerciseIncorrectly(
+  page: ReturnType<typeof ensurePage>,
+  exerciseTestId: ExerciseTestId,
+): Promise<void> {
+  switch (exerciseTestId) {
+    case exerciseConfig.multipleChoiceExercise.testId:
+      await fillMultipleChoiceExerciseIncorrectly(page);
+      return;
+    case exerciseConfig.codeExercise.testId:
+      await fillCodeExerciseIncorrectly(page);
+      return;
+    default:
+      throwUnsupportedExerciseType(exerciseTestId);
   }
 }
 
@@ -59,27 +181,7 @@ When(
   "I answer the {string} exercise correctly",
   async function (this: CustomWorld, exerciseTestId: string) {
     const page = ensurePage(this);
-    const config = getExerciseConfig(exerciseTestId);
-    const exercise = page.locator(`[data-test="${config.sectionTestId}"]`).first();
-
-    if (config.correctAnswerTestId) {
-      const preferredByDataTest = exercise
-        .locator(`[data-test="${config.correctAnswerTestId}"]`)
-        .first();
-      if ((await preferredByDataTest.count()) > 0) {
-        await preferredByDataTest.click();
-        return;
-      }
-    }
-
-    const preferredByText = exercise.locator("button").filter({ hasText: /^blue$/i }).first();
-
-    if ((await preferredByText.count()) > 0) {
-      await preferredByText.click();
-      return;
-    }
-
-    await exercise.locator("button").first().click();
+    await answerExerciseCorrectly(page, parseExerciseTestId(exerciseTestId));
   },
 );
 
@@ -87,33 +189,6 @@ When(
   "I answer the {string} exercise incorrectly",
   async function (this: CustomWorld, exerciseTestId: string) {
     const page = ensurePage(this);
-    const config = getExerciseConfig(exerciseTestId);
-    const exercise = page.locator(`[data-test="${config.sectionTestId}"]`).first();
-
-    if (config.incorrectAnswerTestId) {
-      const preferredByDataTest = exercise
-        .locator(`[data-test="${config.incorrectAnswerTestId}"]`)
-        .first();
-      if ((await preferredByDataTest.count()) > 0) {
-        await preferredByDataTest.click();
-        return;
-      }
-    }
-
-    const preferredByText = exercise.locator("button").filter({ hasText: /^green$/i }).first();
-
-    if ((await preferredByText.count()) > 0) {
-      await preferredByText.click();
-      return;
-    }
-
-    const options = exercise.locator("button");
-    const count = await options.count();
-    if (count > 1) {
-      await options.nth(1).click();
-      return;
-    }
-
-    await options.first().click();
+    await answerExerciseIncorrectly(page, parseExerciseTestId(exerciseTestId));
   },
 );

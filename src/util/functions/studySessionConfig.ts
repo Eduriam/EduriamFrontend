@@ -22,6 +22,13 @@ export const STUDY_SESSION_DATA_TEST: StudySessionDataTest = {
       correctAnswerButton: "multiple-choice-exercise-correct-answer-button",
       incorrectAnswerButton: "multiple-choice-exercise-incorrect-answer-button",
     },
+    codeExercise: {
+      section: "code-exercise",
+      resultSection: "code-editor-result-section",
+      fillInCode: {
+        textField: "code-exercise-fill-in-code-text-field",
+      },
+    },
   },
   studySessionDrawer: {
     correctAnswerDrawer: "correct-answer",

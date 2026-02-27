@@ -14,6 +14,47 @@
       "endpoint": "users/me/study-sessions",
       "responses": [
         {
+          "uuid": "fd54c300-4e8d-4b03-8b5b-1eb5f81a3a22",
+          "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"code-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-columns\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"Use commas between selected columns and include FROM with the target table name.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"code-editor-1\",\n          \"type\": \"CODE_EXERCISE\",\n          \"assignmentTitle\": \"Write a SQL query\",\n          \"assignmentDescription\": \"Select the id and name columns from the users table.\",\n          \"tabs\": [\n            {\n              \"id\": \"query-editor\",\n              \"label\": \"Editor\",\n              \"type\": \"fillInCode\",\n              \"defaultValue\": \"\",\n              \"correctAnswer\": \"SELECT id, name FROM users;\",\n              \"language\": \"sql\"\n            },\n            {\n              \"id\": \"query-result\",\n              \"label\": \"Result\",\n              \"type\": \"table\",\n              \"rows\": [\n                [\n                  \"id\",\n                  \"name\"\n                ],\n                [\n                  \"1\",\n                  \"Alice\"\n                ],\n                [\n                  \"2\",\n                  \"Bob\"\n                ]\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Lesson study session (code exercise)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "lessonId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "query",
+              "modifier": "mode",
+              "value": "learn",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_STUDY_SESSON_VARIANT",
+              "value": "code-exercise",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
           "uuid": "14d0c597-e449-4ac3-b2b3-f17861ff34ac",
           "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"learn-explanation-1\",\n      \"type\": \"explanation\",\n      \"atomId\": \"atom-explanation-1\",\n      \"scenes\": [\n        {\n          \"id\": \"scene-1\",\n          \"duration\": 5000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" This\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" is\",\n                \"startMs\": 280,\n                \"endMs\": 450,\n                \"timestampMs\": 365,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" the\",\n                \"startMs\": 450,\n                \"endMs\": 650,\n                \"timestampMs\": 550,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" explanation\",\n                \"startMs\": 650,\n                \"endMs\": 1200,\n                \"timestampMs\": 925,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" block.\",\n                \"startMs\": 1200,\n                \"endMs\": 1700,\n                \"timestampMs\": 1450,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-1\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg1\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#0ea5e9\"\n                },\n                {\n                  \"id\": \"ph1\",\n                  \"type\": \"PAGE_HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Explanation\"\n                },\n                {\n                  \"id\": \"ps1\",\n                  \"type\": \"PAGE_SUBHEADER\",\n                  \"startTime\": 800,\n                  \"text\": \"Key concepts in this lesson\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"id\": \"scene-2\",\n          \"duration\": 8000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" Here\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" are\",\n                \"startMs\": 280,\n                \"endMs\": 480,\n                \"timestampMs\": 380,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" more\",\n                \"startMs\": 480,\n                \"endMs\": 760,\n                \"timestampMs\": 620,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" details\",\n                \"startMs\": 760,\n                \"endMs\": 1180,\n                \"timestampMs\": 970,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" in\",\n                \"startMs\": 1180,\n                \"endMs\": 1340,\n                \"timestampMs\": 1260,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" scene\",\n                \"startMs\": 1340,\n                \"endMs\": 1680,\n                \"timestampMs\": 1510,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" two.\",\n                \"startMs\": 1680,\n                \"endMs\": 2150,\n                \"timestampMs\": 1915,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-2\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg2\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#e5e5e5\"\n                },\n                {\n                  \"id\": \"h1\",\n                  \"type\": \"HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Scene 2\",\n                  \"position\": \"CENTER\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"learn-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,

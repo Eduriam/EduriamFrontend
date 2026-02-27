@@ -3,9 +3,9 @@ Feature: Code Editor Exercise
   
   Background:
     Given I am logged in
-    And I am on the "study-page" page
-    And The lesson is defined
-    And the lesson contains a code exercise # This should be a separate response in Mockoon api based on the env variable
+    And I am on the "study-page" page with the "lesson" defined
+    # This should be a separate response in Mockoon api based on the env variable
+    And the lesson contains a code exercise 
 
   Scenario: User completes the code exercise correctly
     Then I should see the "code-exercise" exercise
@@ -18,7 +18,7 @@ Feature: Code Editor Exercise
 
    Scenario: User completes the code exercise incorrectly
     Then I should see the "code-exercise" exercise
-    When I answer the "code-exercise" exercise correctly
+    When I answer the "code-exercise" exercise incorrectly
     And I click on the "check-answer-button" button
     Then I should see the "incorrect-answer" drawer
     And I should see the "show-explanation-button" button
