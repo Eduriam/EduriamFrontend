@@ -4,7 +4,6 @@ Feature: Code Editor Exercise
   Background:
     Given I am logged in
     And I am on the "study-page" page with the "lesson" defined
-    # This should be a separate response in Mockoon api based on the env variable
     And the lesson contains a code exercise 
 
   Scenario: User completes the code exercise correctly

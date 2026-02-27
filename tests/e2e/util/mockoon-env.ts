@@ -2,14 +2,11 @@ import * as http from "http";
 import * as https from "https";
 
 const DEFAULT_ADMIN_BASE_URL = "http://localhost:3001";
-const MOCKOON_DEFAULT_ENV_VARS: Record<string, string> = {
+const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_COURSE_ENROLLED: "false",
   MOCKOON_COURSE_CERTIFICATE: "false",
   MOCKOON_UPCOMING_LESSON_DEFINED: "true",
   MOCKOON_UPCOMING_REVIEW_DEFINED: "true",
-  MOCKOON_STUDY_SESSON_VARIANT: "default",
-};
-const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_STUDY_SESSON_VARIANT: "default",
 };
 
@@ -71,16 +68,6 @@ function requestJson(
   });
 }
 
-export async function setMockoonEnvVar(
-  key: string,
-  value: string,
-): Promise<void> {
-  const baseUrl = new URL(getMockoonAdminBaseUrl());
-  const url = new URL("/mockoon-admin/env-vars", baseUrl);
-
-  await requestJson(url, "POST", { key, value });
-}
-
 export async function setMockoonGlobalVar(
   key: string,
   value: string,
@@ -92,7 +79,7 @@ export async function setMockoonGlobalVar(
 }
 
 export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
-  await setMockoonEnvVar(
+  await setMockoonGlobalVar(
     "MOCKOON_COURSE_ENROLLED",
     enrolled ? "true" : "false",
   );
@@ -101,7 +88,7 @@ export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
 export async function setCourseCertificate(
   hasCertificate: boolean,
 ): Promise<void> {
-  await setMockoonEnvVar(
+  await setMockoonGlobalVar(
     "MOCKOON_COURSE_CERTIFICATE",
     hasCertificate ? "true" : "false",
   );
@@ -110,7 +97,7 @@ export async function setCourseCertificate(
 export async function setUpcomingLessonDefined(
   defined: boolean,
 ): Promise<void> {
-  await setMockoonEnvVar(
+  await setMockoonGlobalVar(
     "MOCKOON_UPCOMING_LESSON_DEFINED",
     defined ? "true" : "false",
   );
@@ -119,24 +106,17 @@ export async function setUpcomingLessonDefined(
 export async function setUpcomingReviewDefined(
   defined: boolean,
 ): Promise<void> {
-  await setMockoonEnvVar(
+  await setMockoonGlobalVar(
     "MOCKOON_UPCOMING_REVIEW_DEFINED",
     defined ? "true" : "false",
   );
 }
 
 export async function setStudySessionVariant(variant: string): Promise<void> {
-  await Promise.all([
-    setMockoonEnvVar("MOCKOON_STUDY_SESSON_VARIANT", variant),
-    setMockoonGlobalVar("MOCKOON_STUDY_SESSON_VARIANT", variant),
-  ]);
+  await setMockoonGlobalVar("MOCKOON_STUDY_SESSON_VARIANT", variant);
 }
 
-export async function resetMockoonEnvVarsToDefaults(): Promise<void> {
-  for (const [key, value] of Object.entries(MOCKOON_DEFAULT_ENV_VARS)) {
-    await setMockoonEnvVar(key, value);
-  }
-
+export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {
   for (const [key, value] of Object.entries(MOCKOON_DEFAULT_GLOBAL_VARS)) {
     await setMockoonGlobalVar(key, value);
   }
