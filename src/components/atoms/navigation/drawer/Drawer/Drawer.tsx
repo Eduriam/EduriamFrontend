@@ -107,7 +107,7 @@ const Drawer: React.FC<IDrawer> = ({ open, onClose }) => {
                   <Link
                     href={
                       item.premium && user?.role !== "PREMIUM_USER"
-                        ? "/subscription"
+                        ? "/premium"
                         : item.path
                     }
                     style={{ width: "100%" }}

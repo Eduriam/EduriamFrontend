@@ -31,7 +31,11 @@ import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+
 export interface ILearningPathPage {}
+
+
 
 const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { t } = useTranslation("common");
@@ -46,8 +50,22 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
 
+  const isPremiumUser = user?.role === "PREMIUM_USER";
+
+  const shouldRedirectToPremiumBecauseNoEnergy =
+    user && !isPremiumUser && (user.energy ?? 0) <= 0;
+
+  const redirectToPremiumForNoEnergy = () => {
+    navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
+  };
+
   const handleStartLearningPath = async () => {
     if (!learningPathId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
       return;
     }
 
@@ -60,6 +78,11 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
       return;
     }
 
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
+      return;
+    }
+
     navigateWithTransition(
       `/study?lessonId=${learningPath.upcomingLessonId}`,
     )();
@@ -67,6 +90,11 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
   const handleReviewLearningPath = () => {
     if (!learningPathId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
       return;
     }
 
@@ -86,7 +114,6 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const courses = (learningPath as LearningPath)?.courses ?? [];
   const isEnrolled = learningPath?.enrolled ?? false;
   const hasUpcomingLesson = Boolean(learningPath?.upcomingLessonId);
-  const isPremiumUser = user?.role === "PREMIUM_USER";
   const hasCertificate = learningPath?.userCertificate !== null;
 
   const handleViewCertificate = () => {
@@ -96,7 +123,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
     // Non-premium users are redirected to the premium benefits page.
     if (!isPremiumUser) {
-      navigateWithTransition("/subscription")();
+      navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.certificateLocked))();
       return;
     }
 
@@ -292,3 +319,5 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 };
 
 export default LearningPathPage;
+
+

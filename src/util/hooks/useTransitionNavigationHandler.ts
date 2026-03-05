@@ -9,16 +9,24 @@ import { useRouter } from "next/navigation";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import useAuth from "infrastructure/services/AuthProvider";
+
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+
 type TransitionDirection = "forward" | "back";
 
 export type TransitionNavigationOptions = {
   direction?: TransitionDirection;
 };
 
+
+
 const useTransitionNavigationHandler = () => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const router = useRouter();
   const transitionRouter = useTransitionRouter();
+  const { user } = useAuth();
+
   const setTransitionDirection = useCallback(
     (direction: TransitionDirection) => {
       document.documentElement.dataset.transitionDirection = direction;
@@ -26,30 +34,50 @@ const useTransitionNavigationHandler = () => {
     [],
   );
 
+  const resolveNavigationPath = useCallback(
+    (path: string): string => {
+      const isStudyOrReviewPath =
+        /^\/study($|[/?])/.test(path) || /^\/review($|[/?])/.test(path);
+      const isPremiumUser = user?.role === "PREMIUM_USER";
+      const hasNoEnergy = (user?.energy ?? 0) <= 0;
+
+      if (user && isStudyOrReviewPath && !isPremiumUser && hasNoEnergy) {
+        return getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft);
+      }
+
+      return path;
+    },
+    [user],
+  );
+
   const push = useCallback(
     (path: string) => {
+      const resolvedPath = resolveNavigationPath(path);
+
       if (mobile) {
         setTransitionDirection("forward");
-        transitionRouter.push(path);
+        transitionRouter.push(resolvedPath);
         return;
       }
 
-      router.push(path);
+      router.push(resolvedPath);
     },
-    [mobile, router, setTransitionDirection, transitionRouter],
+    [mobile, resolveNavigationPath, router, setTransitionDirection, transitionRouter],
   );
 
   const back = useCallback(
     (path: string) => {
+      const resolvedPath = resolveNavigationPath(path);
+
       if (mobile) {
         setTransitionDirection("back");
-        transitionRouter.push(path);
+        transitionRouter.push(resolvedPath);
         return;
       }
 
-      router.push(path);
+      router.push(resolvedPath);
     },
-    [mobile, router, setTransitionDirection, transitionRouter],
+    [mobile, resolveNavigationPath, router, setTransitionDirection, transitionRouter],
   );
 
   return useCallback(
@@ -66,3 +94,6 @@ const useTransitionNavigationHandler = () => {
 };
 
 export default useTransitionNavigationHandler;
+
+
+

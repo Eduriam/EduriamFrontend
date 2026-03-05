@@ -113,7 +113,7 @@ export const other: DrawerItem[] = [
   {
     label: "navigation.premium",
     icon: "premium",
-    path: "/subscription",
+    path: "/premium",
   },
   {
     label: "navigation.settings",

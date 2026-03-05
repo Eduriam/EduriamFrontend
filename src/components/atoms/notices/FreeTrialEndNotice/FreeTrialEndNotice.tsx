@@ -28,7 +28,7 @@ const FreeTrialEndNotice: React.FC<IFreeTrialEndNotice> = ({ notice }) => {
       primaryButton={{
         onClick: () => {
           deleteNotice(notice.id);
-          router.push("/subscription");
+          router.push("/premium");
         },
         text: t("notices.extendSubscription"),
       }}

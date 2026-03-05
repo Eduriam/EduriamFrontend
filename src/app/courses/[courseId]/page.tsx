@@ -29,7 +29,11 @@ import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+
 export interface ICoursePage {}
+
+
 
 const CoursePage: React.FC<ICoursePage> = () => {
   const { t } = useTranslation("common");
@@ -47,8 +51,20 @@ const CoursePage: React.FC<ICoursePage> = () => {
   const isPremiumUser = user?.role === "PREMIUM_USER";
   const hasCertificate = course?.userCertificate !== null;
 
+  const shouldRedirectToPremiumBecauseNoEnergy =
+    user && !isPremiumUser && (user.energy ?? 0) <= 0;
+
+  const redirectToPremiumForNoEnergy = () => {
+    navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
+  };
+
   const handleStartCourse = async () => {
     if (!courseId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
       return;
     }
 
@@ -57,11 +73,21 @@ const CoursePage: React.FC<ICoursePage> = () => {
   };
 
   const handleContinueLearning = () => {
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
+      return;
+    }
+
     navigateWithTransition(`/study?lessonId=${course?.upcomingLessonId}`)();
   };
 
   const handleReviewCourse = () => {
     if (!courseId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      redirectToPremiumForNoEnergy();
       return;
     }
 
@@ -75,7 +101,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
     // Non-premium users are redirected to the premium benefits page.
     if (!isPremiumUser) {
-      navigateWithTransition("/subscription")();
+      navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.certificateLocked))();
       return;
     }
 
@@ -88,8 +114,6 @@ const CoursePage: React.FC<ICoursePage> = () => {
         return;
       }
     }
-
-    console.log("redirecting to locked drawer");
 
     // Premium users without an available certificate see the locked drawer.
     setIsCertificateDrawerOpen(true);
@@ -278,3 +302,5 @@ const CoursePage: React.FC<ICoursePage> = () => {
 };
 
 export default CoursePage;
+
+

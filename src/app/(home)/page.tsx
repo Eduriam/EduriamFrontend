@@ -6,6 +6,7 @@ import {
   PageRoot,
   Tabs,
 } from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -260,7 +261,9 @@ const HomePage: React.FC<IHomePage> = () => {
         }
         onUnlockUnlimited={() => {
           setEnergyDrawerOpen(false);
-          navigateWithTransition("/premium");
+          navigateWithTransition(
+            getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft),
+          )();
         }}
         data-test="energy-drawer"
         data-test-unlock="unlock-unlimited-energy-button"

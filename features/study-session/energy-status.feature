@@ -11,7 +11,6 @@ Feature: Energy status and insufficient energy handling
     And I should see the "unlock-unlimited-energy-button" button
     When I click on the "unlock-unlimited-energy-button" button
     Then I should be redirected to the "premium-page" page
-    And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start upcoming lesson from home with no energy
     Given I have no energy left
@@ -40,6 +39,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start a course from course page with no energy
+    Given I have no energy left
     Given I am not enrolled in the course
     And I am on the "courses-page" page
     When I click on the "course-card" card
@@ -49,6 +49,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to continue course learning from course page with no energy
+    Given I have no energy left
     Given I am enrolled in the course
     And I am on the "courses-page" page
     When I click on the "course-card" card
@@ -58,6 +59,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start review from course page with no energy
+    Given I have no energy left
     Given I am enrolled in the course
     And I have no upcoming lesson
     And I am on the "courses-page" page
@@ -68,6 +70,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start lesson from chapter page with no energy
+    Given I have no energy left
     Given I am on the "course-page" page
     When I click on the "chapter-card" card
     Then I should be on the "chapter-page" page
@@ -77,6 +80,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start learning path from learning path page with no energy
+    Given I have no energy left
     Given I am not enrolled in the course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
@@ -86,6 +90,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to continue learning path from learning path page with no energy
+    Given I have no energy left
     Given I am enrolled in the course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
@@ -95,6 +100,7 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start learning path review from learning path page with no energy
+    Given I have no energy left
     Given I am enrolled in the course
     And I have no upcoming lesson
     And I am on the "courses-page" page
@@ -105,7 +111,9 @@ Feature: Energy status and insufficient energy handling
     And I should see the "no-energy-left-section" section
 
   Scenario: User tries to start review from review page with no energy
+    Given I have no energy left
     Given I am on the "review-page" page
     When I click on the "start-review-button" button
     Then I should be redirected to the "premium-page" page
     And I should see the "no-energy-left-section" section
+

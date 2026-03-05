@@ -12,17 +12,23 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
+import useAuth from "infrastructure/services/AuthProvider";
+
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 
 import StudyPreview from "../(home)/components/StudyPreview/StudyPreview";
 import ReviewCourseStudySession from "./components/ReviewCourseStudySession";
 
 export interface IReviewPage {}
 
+
+
 const ReviewPage: React.FC<IReviewPage> = () => {
   const { t } = useTranslation("common");
   const searchParams = useSearchParams();
   const router = useRouter();
   const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
 
   const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>(
     () => searchParams.get("courseId") ?? undefined,
@@ -51,6 +57,14 @@ const ReviewPage: React.FC<IReviewPage> = () => {
 
   const handleStartReview = () => {
     if (!upcomingReviewCourse?.id) {
+      return;
+    }
+
+    const hasNoEnergy = (user?.energy ?? 0) <= 0;
+    const isPremiumUser = user?.role === "PREMIUM_USER";
+
+    if (user && !isPremiumUser && hasNoEnergy) {
+      router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), { scroll: false });
       return;
     }
 
@@ -120,3 +134,5 @@ const ReviewPage: React.FC<IReviewPage> = () => {
 };
 
 export default ReviewPage;
+
+

@@ -34,7 +34,7 @@ const FreeTrialOfferNotice: React.FC<IFreeTrialOfferNotice> = ({ notice }) => {
         onClick: async () => {
           await SubscriptionAPI.startFreeTrial();
           deleteNotice(notice.id);
-          router.push("/subscription");
+          router.push("/premium");
         },
         text: t("notices.tryForFree"),
       }}
