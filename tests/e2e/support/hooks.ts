@@ -21,6 +21,7 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     role: "USER",
     streak: 0,
     balance: 0,
+    energy: 40,
     accountInitialized: false,
     lastSessionDate: null,
     activeSubscription: null,
@@ -56,3 +57,4 @@ After(async function (this: CustomWorld) {
     await this.closeBrowser();
   }
 });
+

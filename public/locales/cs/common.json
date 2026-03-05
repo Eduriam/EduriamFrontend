@@ -180,9 +180,7 @@
     "buy": "Koupit",
     "equip": "Zapnout",
     "unequip": "Vypnout",
-    "categories": [
-      "Profilové obrázky"
-    ],
+    "categories": ["Profilové obrázky"],
     "bought": "koupeno",
     "equipped": "zapnuto"
   },
@@ -382,6 +380,27 @@
     "thankYou": "Děkujeme!",
     "subscriptionActivated": "Vaše předplatné bylo aktivováno!"
   },
+  "premium": {
+    "header": "Postupujte rychleji s Premium účtem!",
+    "subtitles": {
+      "default": "Premium uživatelé postupují 4x rychleji",
+      "noEnergyLeft": "Získejte neomezené učení a další výhody.",
+      "certificateLocked": "Získejte certifikáty a další výhody."
+    },
+    "table": {
+      "benefits": "Výhody",
+      "free": "Zdarma",
+      "premium": "Premium"
+    },
+    "benefits": {
+      "dailyLearning": "Denní učení",
+      "unlimitedLearning": "Neomezené učení",
+      "noAds": "Žádné reklamy",
+      "smartReviews": "Chytré opakování",
+      "certificates": "Certifikáty"
+    },
+    "subscribeNow": "Získat Premium"
+  },
   "subscription": {
     "subscriptionHeader": "Získejte premium!",
     "valuePropositions": [
@@ -403,11 +422,7 @@
   },
   "search": {
     "title": "Vyhledávání",
-    "categories": [
-      "Uživatelé",
-      "Lekce",
-      "Slovíčka"
-    ],
+    "categories": ["Uživatelé", "Lekce", "Slovíčka"],
     "noWordsFound": "Nebyla nalezena žádná slovíčka.",
     "noLessonsFound": "Nebyly nalezeny žádné lekce.",
     "noUsersFound": "Nebyli nalezeni žádní uživatelé."

@@ -155,7 +155,7 @@ const LessonOverview: React.FC<ILessonOverview> = ({ lessonId, courseId }) => {
             <BottomFab
               header={t("studying.premiumStudying")}
               icon="lock"
-              onClick={() => router.push(`/subscription`)}
+              onClick={() => router.push(`/premium`)}
             />
           ) : (
             <BottomFab

@@ -18,7 +18,7 @@ Given("I am logged in", async function (this: CustomWorld) {
     role: "USER",
     streak: 0,
     balance: 0,
-    energy: 0,
+    energy: 40,
     equippedStreakFreezes: 0,
     accountInitialized: true,
     lastSessionDate: null,
@@ -72,7 +72,7 @@ Given("I am logged in as corrector", async function (this: CustomWorld) {
     role: "CORRECTOR",
     streak: 0,
     balance: 0,
-    energy: 0,
+    energy: 40,
     equippedStreakFreezes: 0,
     accountInitialized: true,
     lastSessionDate: null,
@@ -127,7 +127,7 @@ Given(
       role: "USER",
       streak: 0,
       balance: 0,
-      energy: 0,
+      energy: 40,
       equippedStreakFreezes: 0,
       accountInitialized: true,
       lastSessionDate: null,
@@ -184,6 +184,7 @@ Given(
       role: "USER",
       streak: 0,
       balance: 0,
+      energy: 40,
       accountInitialized: true,
       lastSessionDate: null,
       activeSubscription: null,
@@ -245,6 +246,7 @@ Given(
       role: "USER",
       streak: 0,
       balance: 0,
+      energy: 40,
       accountInitialized: false,
       lastSessionDate: null,
       activeSubscription: null,
@@ -370,3 +372,35 @@ Given("I am not logged in", async function (this: CustomWorld) {
     localStorage.removeItem("user");
   });
 });
+
+Given("I have no energy left", async function (this: CustomWorld) {
+  if (!this.page) {
+    throw new Error(
+      "Page is not initialized. Make sure browser is initialized.",
+    );
+  }
+
+  const setNoEnergyInitScript = () => {
+    const userRaw = localStorage.getItem("user");
+
+    if (!userRaw) {
+      return;
+    }
+
+    try {
+      const parsedUser = JSON.parse(userRaw);
+      const user = { ...parsedUser, energy: 0 };
+      localStorage.setItem("user", JSON.stringify(user));
+    } catch {
+      // Intentionally ignored, scenarios can still rely on default auth fixture energy.
+    }
+  };
+
+  if (this.context) {
+    await this.context.addInitScript(setNoEnergyInitScript);
+  }
+
+  await this.page.addInitScript(setNoEnergyInitScript);
+});
+
+
