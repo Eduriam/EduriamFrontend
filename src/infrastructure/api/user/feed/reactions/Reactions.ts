@@ -5,11 +5,8 @@ export interface Reaction {
 }
 
 export type ReactionId =
-  | "light_bulb"
-  | "brain"
+  | "confetti"
+  | "heart"
   | "muscle"
-  | "meat"
-  | "skull"
-  | "bullseye"
-  | "thumbs_up"
-  | "heart_eyes";
+  | "clappingHands"
+  | "sunglasses";

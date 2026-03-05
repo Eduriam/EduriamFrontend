@@ -1,8 +1,6 @@
 import { IFeed } from "./page";
 
-const base: IFeed = {
-  sampleTextProp: "Hello world!",
-};
+const base: IFeed = {};
 
 export const mockFeedProps = {
   base,

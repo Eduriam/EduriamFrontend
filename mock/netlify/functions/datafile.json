@@ -1,5 +1,5 @@
 {
-  "uuid": "f2dcb7f7-db3c-475b-8535-7f22a522be17",
+  "uuid": "876a6f0a-9a8b-48cf-8c2f-6be6afa77346",
   "lastMigration": 33,
   "name": "Eduriam API",
   "endpointPrefix": "api",
@@ -8,13 +8,13 @@
   "hostname": "127.0.0.1",
   "routes": [
     {
-      "uuid": "5adc6171-64ce-4a75-b32d-3bf7d318b5ea",
+      "uuid": "e2748d73-e8ca-494a-ad47-390158fc04fa",
       "documentation": "",
       "method": "get",
       "endpoint": "users/me/study-sessions",
       "responses": [
         {
-          "uuid": "fd54c300-4e8d-4b03-8b5b-1eb5f81a3a22",
+          "uuid": "4ad5ab6f-0ab8-4c6d-86a5-17f31727d496",
           "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"code-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-columns\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"Use commas between selected columns and include FROM with the target table name.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"code-editor-1\",\n          \"type\": \"CODE_EXERCISE\",\n          \"assignmentTitle\": \"Write a SQL query\",\n          \"assignmentDescription\": \"Select the id and name columns from the users table.\",\n          \"tabs\": [\n            {\n              \"id\": \"query-editor\",\n              \"label\": \"Editor\",\n              \"type\": \"fillInCode\",\n              \"defaultValue\": \"\",\n              \"correctAnswer\": \"SELECT id, name FROM users;\",\n              \"language\": \"sql\"\n            },\n            {\n              \"id\": \"query-result\",\n              \"label\": \"Result\",\n              \"type\": \"table\",\n              \"rows\": [\n                [\n                  \"id\",\n                  \"name\"\n                ],\n                [\n                  \"1\",\n                  \"Alice\"\n                ],\n                [\n                  \"2\",\n                  \"Bob\"\n                ]\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -55,7 +55,7 @@
           "callbacks": []
         },
         {
-          "uuid": "14d0c597-e449-4ac3-b2b3-f17861ff34ac",
+          "uuid": "69c4ac7e-ec8e-4b8d-bde4-c50cec431bdd",
           "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"learn-explanation-1\",\n      \"type\": \"explanation\",\n      \"atomId\": \"atom-explanation-1\",\n      \"scenes\": [\n        {\n          \"id\": \"scene-1\",\n          \"duration\": 5000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" This\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" is\",\n                \"startMs\": 280,\n                \"endMs\": 450,\n                \"timestampMs\": 365,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" the\",\n                \"startMs\": 450,\n                \"endMs\": 650,\n                \"timestampMs\": 550,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" explanation\",\n                \"startMs\": 650,\n                \"endMs\": 1200,\n                \"timestampMs\": 925,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" block.\",\n                \"startMs\": 1200,\n                \"endMs\": 1700,\n                \"timestampMs\": 1450,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-1\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg1\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#0ea5e9\"\n                },\n                {\n                  \"id\": \"ph1\",\n                  \"type\": \"PAGE_HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Explanation\"\n                },\n                {\n                  \"id\": \"ps1\",\n                  \"type\": \"PAGE_SUBHEADER\",\n                  \"startTime\": 800,\n                  \"text\": \"Key concepts in this lesson\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"id\": \"scene-2\",\n          \"duration\": 8000,\n          \"audio\": {\n            \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n            \"captions\": [\n              {\n                \"text\": \" Here\",\n                \"startMs\": 0,\n                \"endMs\": 280,\n                \"timestampMs\": 140,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" are\",\n                \"startMs\": 280,\n                \"endMs\": 480,\n                \"timestampMs\": 380,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" more\",\n                \"startMs\": 480,\n                \"endMs\": 760,\n                \"timestampMs\": 620,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" details\",\n                \"startMs\": 760,\n                \"endMs\": 1180,\n                \"timestampMs\": 970,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" in\",\n                \"startMs\": 1180,\n                \"endMs\": 1340,\n                \"timestampMs\": 1260,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" scene\",\n                \"startMs\": 1340,\n                \"endMs\": 1680,\n                \"timestampMs\": 1510,\n                \"confidence\": null\n              },\n              {\n                \"text\": \" two.\",\n                \"startMs\": 1680,\n                \"endMs\": 2150,\n                \"timestampMs\": 1915,\n                \"confidence\": null\n              }\n            ]\n          },\n          \"slides\": [\n            {\n              \"id\": \"slide-2\",\n              \"type\": \"RAW\",\n              \"components\": [\n                {\n                  \"id\": \"bg2\",\n                  \"type\": \"BACKGROUND_COLOR\",\n                  \"startTime\": 0,\n                  \"color\": \"#e5e5e5\"\n                },\n                {\n                  \"id\": \"h1\",\n                  \"type\": \"HEADER\",\n                  \"startTime\": 0,\n                  \"text\": \"Scene 2\",\n                  \"position\": \"CENTER\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"learn-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"learn\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -89,7 +89,7 @@
           "callbacks": []
         },
         {
-          "uuid": "d5f0c802-0ea5-4b8b-b18e-b2ba5fdbaa79",
+          "uuid": "c1139fb2-a125-4fe0-b28b-b10cf8504d11",
           "body": "{\n  \"studyBlocks\": [\n    {\n      \"id\": \"review-exercise-1\",\n      \"type\": \"exercise\",\n      \"atomId\": \"sql-select-all\",\n      \"mode\": \"review\",\n      \"answerExplanation\": {\n        \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n      },\n      \"components\": [\n        {\n          \"id\": \"mc-asterisk\",\n          \"type\": \"MULTIPLE_CHOICE\",\n          \"question\": \"In SELECT *, what does the asterisk mean?\",\n          \"options\": [\n            {\n              \"id\": \"all-cols\",\n              \"text\": \"All columns from the table\"\n            },\n            {\n              \"id\": \"multiply\",\n              \"text\": \"Multiplication\"\n            },\n            {\n              \"id\": \"first-col\",\n              \"text\": \"Only the first column\"\n            }\n          ],\n          \"correctOptionId\": \"all-cols\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -129,13 +129,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "f547b322-3bf8-44a3-8cc4-8c9d6e6e9e35",
+      "uuid": "60e3d0be-74eb-4b88-af9c-f9e29fc76bf3",
       "documentation": "",
       "method": "post",
       "endpoint": "users/me/study-sessions",
       "responses": [
         {
-          "uuid": "fca7d87f-7274-4ae8-8e89-0600617cd6b5",
+          "uuid": "7718a6f4-4f4f-4dff-a4f6-f2a44d1c8a63",
           "body": "{\n  \"ok\": true,\n  \"reward\": 20\n}",
           "latency": 0,
           "statusCode": 200,
@@ -160,13 +160,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "1c8e5f18-5abc-4b9f-a02f-2b6fa4ad9b45",
+      "uuid": "b367f1bb-e033-4935-be62-120bb35a541e",
       "documentation": "",
       "method": "post",
       "endpoint": "study-blocks/:id/report",
       "responses": [
         {
-          "uuid": "95a329f6-0cb7-4bc8-b422-39e0074f9da7",
+          "uuid": "8ef8ee63-c8d6-4f12-9225-bc5ae34e8f2f",
           "body": "{\n  \"ok\": true\n}",
           "latency": 0,
           "statusCode": 200,
@@ -191,13 +191,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "babbcc78-5386-4799-9b12-be84a7c3b64f",
+      "uuid": "882e6794-d5ac-471d-9e46-4e6c095f7ab9",
       "documentation": "",
       "method": "get",
       "endpoint": "users/:userId/followers",
       "responses": [
         {
-          "uuid": "37908b7a-ed69-4d75-840f-a3a2c59954b9",
+          "uuid": "ca35fee0-8cc5-4494-9b61-083b07186ce9",
           "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -222,13 +222,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "dd67d4aa-9c2e-4572-bb50-9026c11e1ccc",
+      "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e",
       "documentation": "",
       "method": "get",
       "endpoint": "users/:userId/following",
       "responses": [
         {
-          "uuid": "6dd4f897-0d11-49e0-8070-8b49a29b7763",
+          "uuid": "f264c388-1395-46a9-828c-1d6a4f5c02c2",
           "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -253,13 +253,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0d5b8cf2-99c6-4e8b-ac0a-9fdfc49aa1c6",
+      "uuid": "df7c052b-be1d-4b1f-9cdb-87653d9e0fb3",
       "documentation": "",
       "method": "post",
       "endpoint": "signup",
       "responses": [
         {
-          "uuid": "27582b09-2a4d-432d-ae3e-e11e252e7805",
+          "uuid": "a9a1ef5c-5323-45e7-ba77-f6da53716db0",
           "body": "{\n  \"error\":\"USERNAME_TAKEN\"\n}",
           "latency": 0,
           "statusCode": 400,
@@ -286,7 +286,7 @@
           "callbacks": []
         },
         {
-          "uuid": "553e7375-13d7-4d66-bb63-3f38ddfa905d",
+          "uuid": "f8f84592-519b-490c-8e69-228093cc8905",
           "body": "{\r\n   \"error\":\"EMAIL_ADDDRESS_TAKEN\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -313,7 +313,7 @@
           "callbacks": []
         },
         {
-          "uuid": "79909054-a05a-4188-bbb7-c9efd00a2d44",
+          "uuid": "3b4e5587-d078-43cd-a7cc-c9356bd85115",
           "body": "{\r\n   \"error\":\"PASSWORD_TOO_SHORT\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -340,7 +340,7 @@
           "callbacks": []
         },
         {
-          "uuid": "de713e36-c509-4f64-8bcd-e8da2c1bebc2",
+          "uuid": "54bca47b-e374-45e0-96b2-1443748d6295",
           "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -367,7 +367,7 @@
           "callbacks": []
         },
         {
-          "uuid": "4ca79c85-c0f8-4fa3-b5fa-e5c54c8b55b3",
+          "uuid": "99b17acf-23f8-4c01-9a5e-01f3571e9cf2",
           "body": "{\r\n   \"error\":\"INVALID_USERNAME\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -394,7 +394,7 @@
           "callbacks": []
         },
         {
-          "uuid": "1e75a1e6-d8da-45be-bf3c-e3c60441212f",
+          "uuid": "6eb7c6a7-be2a-48e4-a990-1b6ad4c826f1",
           "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{body 'username'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":0,\r\n      \"balance\":0,\r\n      \"energy\":0,\r\n      \"equippedStreakFreezes\":0,\r\n      \"accountInitialized\":false,\r\n      \"lastSessionDate\":null,\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":null\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -440,7 +440,7 @@
           "callbacks": []
         },
         {
-          "uuid": "93505e82-0371-49e8-b48e-42e5386e22e1",
+          "uuid": "01ca20f7-427a-4025-ac3d-5d435a2ffbcb",
           "body": "{\n  \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\n  \"refreshToken\": \"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\n  \"user\": {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"username\": \"{{body 'username'}}\",\n    \"role\": \"PREMIUM_USER\",\n    \"streak\": 0,\n    \"balance\": 0,\n    \"accountInitialized\": false,\n    \"lastSessionDate\": null,\n    \"activeSubscription\": {\n      \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n      \"status\": \"ACTIVE\"\n    },\n    \"selectedCourse\": null\n  }\n}",
           "latency": 0,
           "statusCode": 200,
@@ -492,13 +492,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "e1e27090-230c-4676-9cc0-2a95313687f1",
+      "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
       "documentation": "",
       "method": "post",
       "endpoint": "login",
       "responses": [
         {
-          "uuid": "fd8506e8-92f9-4fe5-8e61-eff1317085e1",
+          "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
           "body": "{\n  \"error\":\"WRONG_EMAIL_OR_PASSWORD\"\n}",
           "latency": 0,
           "statusCode": 400,
@@ -525,7 +525,7 @@
           "callbacks": []
         },
         {
-          "uuid": "a8df4829-60bd-4145-bbb6-2329d871942a",
+          "uuid": "04d274ae-9e16-407a-8767-464f7cae1849",
           "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"PREMIUM_USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":{{faker 'number.int' min=0 max=20}},\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":{\r\n         \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\r\n         \"status\":\"ACTIVE\"\r\n      },\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -564,7 +564,7 @@
           "callbacks": []
         },
         {
-          "uuid": "a49ecc8c-9034-460c-9a09-5e67ab0cf1d6",
+          "uuid": "2cceea97-6b17-42aa-be0d-3abc4ce6eff5",
           "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":{{faker 'number.int' min=0 max=20}},\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"lastSessionDate\":\"{{faker 'date.recent'}}\",\r\n      \"activeSubscription\":null,\r\n      \"selectedCourse\":{\r\n         \"id\":\"{{faker 'string.uuid'}}\",\r\n         \"name\":\"English Course\",\r\n         \"language1\":\"cs\",\r\n         \"language2\":\"en\"\r\n      }\r\n   }\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -609,13 +609,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "019d0ac2-46d7-40f8-8bff-3a965f3ac2f7",
+      "uuid": "2d27dc7c-f8f7-4d23-bb62-83ff75d4a3ac",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/lessons",
       "responses": [
         {
-          "uuid": "80a06f21-cdc0-4163-966a-3299786cd35a",
+          "uuid": "da108b04-28c6-4093-ace3-5324445c7e46",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Colors\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Numbers and counting\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Greetings and introductions\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Basic vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Family members\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Common objects in the house\"\r\n  }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -649,7 +649,7 @@
           "callbacks": []
         },
         {
-          "uuid": "d515e0ec-53d7-4534-a746-05e28c652988",
+          "uuid": "01e8c824-3ce5-482a-9364-0893178bfabe",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Daily routines\"\n  },\n  {\n    \"id\": \"UTD53e6HxK\",\n    \"name\": \"Fruits\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Weather and seasons\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Transportation vocabulary\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Hobbies and interests\"\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Describing people's appearance and personality\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -683,7 +683,7 @@
           "callbacks": []
         },
         {
-          "uuid": "ab121895-bd2c-42cd-88be-09c39250a952",
+          "uuid": "9968c4ea-cc5a-408a-8b74-7381f73b6d74",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Jobs and occupations\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Health and wellness\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Technology vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Travel and tourism\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Education and studying\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Expressing opinions and preferences\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -717,7 +717,7 @@
           "callbacks": []
         },
         {
-          "uuid": "f15339cb-6094-4111-bf51-b65086166074",
+          "uuid": "8d00facc-6d95-4403-b737-f1e5258f4393",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Cultural differences and customs\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Current events and news vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced food and cooking terms\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Literature and reading vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Art and entertainment\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Environmental issues vocabulary\"\r\n  }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -751,7 +751,7 @@
           "callbacks": []
         },
         {
-          "uuid": "2be839e7-5730-4758-a4aa-8df9b97d2cfe",
+          "uuid": "b1ea5ab2-4901-4f19-9988-e05dcc811fd7",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Business English vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced idiomatic expressions\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Legal terminology\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Political vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Philosophical concepts\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced scientific terms\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -785,7 +785,7 @@
           "callbacks": []
         },
         {
-          "uuid": "7bc684e7-5eb2-4198-860a-1f862611a2e4",
+          "uuid": "be078a4a-b2e0-48d6-8c31-ce5fb05bc3d1",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced academic vocabulary\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Professional jargon and terminology\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced literary analysis terms\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Cultural and sociological discourse\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Complex philosophical discussions\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Cutting-edge scientific vocabulary\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -819,7 +819,7 @@
           "callbacks": []
         },
         {
-          "uuid": "ca23172b-2163-48d8-8042-53d9287a674d",
+          "uuid": "4b7a50e7-2619-4cb8-8bc1-010775fe7325",
           "body": "[\n  {\n    \"id\": \"UTD53e6HxK\",\n    \"name\": \"Fruits (Ovoce)\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -853,7 +853,7 @@
           "callbacks": []
         },
         {
-          "uuid": "001615a8-b9d8-4e6c-abf6-806404663b0f",
+          "uuid": "7ccad96d-0ccd-4b89-99ca-9d1a08dbdc64",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
@@ -880,7 +880,7 @@
           "callbacks": []
         },
         {
-          "uuid": "b668fa6e-3484-4179-be2d-5d21debf932f",
+          "uuid": "83ddea38-59da-4ad9-8bef-9ab493e4280f",
           "body": "[\n  {{#repeat 10}}\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"{{faker 'lorem.words' 4}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
@@ -914,7 +914,7 @@
           "callbacks": []
         },
         {
-          "uuid": "210a0a28-74d8-4da0-9e1c-187262aa2335",
+          "uuid": "eae915b4-61b9-499e-91d9-f8c81e396a72",
           "body": "[\n  {{#repeat 10}}\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"{{faker 'lorem.words' 4}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
@@ -941,7 +941,7 @@
           "callbacks": []
         },
         {
-          "uuid": "03e14a05-a30d-4068-8479-5632d1172d25",
+          "uuid": "63131456-d815-4b4b-95c8-211a5efbebf5",
           "body": "[\n  {{#repeat 10}}\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"{{faker 'lorem.words' 4}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
@@ -968,7 +968,7 @@
           "callbacks": []
         },
         {
-          "uuid": "95cc914b-32f2-44e8-8061-a218aaddf15a",
+          "uuid": "a3bb2753-1844-44e7-a948-04fff89092fb",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
@@ -993,13 +993,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "adc9df98-61ab-469a-8b49-a1cb0cc4621a",
+      "uuid": "4e4014f0-1db8-4e4b-a0e2-423fdb236669",
       "documentation": "",
       "method": "get",
       "endpoint": "user/shop-items",
       "responses": [
         {
-          "uuid": "fd48ecf4-29ad-4755-8c3c-60a273a11f00",
+          "uuid": "e5dd2ad1-0681-44cf-bd7d-3953b7d960c4",
           "body": "[\r\n   {{#repeat 9}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.word'}}\",\r\n      \"price\": {{faker 'number.int' 999}},\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"categoryId\": \"avatars\",\r\n      \"bought\": {{faker 'datatype.boolean'}},\r\n      \"equipped\": false\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1032,13 +1032,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0210cc39-ca45-4883-9b8a-326a16468bea",
+      "uuid": "48188b91-a654-48ce-9360-3bd7f95dac6a",
       "documentation": "",
       "method": "put",
       "endpoint": "user/shop-items/:itemId/buy",
       "responses": [
         {
-          "uuid": "c9843be0-824c-4cf8-b883-6e0bc7e6cc98",
+          "uuid": "9f49fe70-f330-4383-92fd-fb82c14c3e10",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -1057,7 +1057,7 @@
           "callbacks": []
         },
         {
-          "uuid": "89a187f9-4f73-44dc-aaff-774e523155e9",
+          "uuid": "c89229a6-9933-48e0-813d-bf1087db45ee",
           "body": "{\r\n  \"error\":\"NOT_ENOUGH_MONEY\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -1082,13 +1082,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "56d4892e-61d2-45f1-9620-ed02157abd66",
+      "uuid": "f65eb8be-3d96-484e-9ae1-029d53646521",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/vocabulary",
       "responses": [
         {
-          "uuid": "fe45c870-1898-4585-bd1b-084c1a79fdec",
+          "uuid": "f75ff794-7f00-456e-83df-20fbe7407fa4",
           "body": "[\r\n   {{#repeat 10}}\r\n   {\r\n      \"id\": \"{{faker 'string.uuid'}}\",\r\n      \"nameL1\":\"{{faker 'lorem.word'}}\",\r\n      \"nameL2\":\"{{faker 'word.noun'}}\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1115,7 +1115,7 @@
           "callbacks": []
         },
         {
-          "uuid": "b2d78ded-843f-4339-b534-23c63c3fa261",
+          "uuid": "d1a92472-d3a0-4024-b6c1-5a00ab64f0de",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"bambus\",\n    \"nameL2\": \"bamboo\",\n    \"imageUrl\":\"https://picsum.photos/id/844/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1149,7 +1149,7 @@
           "callbacks": []
         },
         {
-          "uuid": "9eed5acf-ce32-4c51-a127-035d5452c674",
+          "uuid": "15f65211-76da-43bf-8dfa-e3c59887a7fb",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"oceán\",\n    \"nameL2\": \"ocean\",\n    \"imageUrl\":\"https://picsum.photos/id/970/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1183,7 +1183,7 @@
           "callbacks": []
         },
         {
-          "uuid": "3a1da1c7-b818-4b23-b6d0-bdf80b9fa0ac",
+          "uuid": "e0ca3d07-4fab-4476-aece-d993ec3a64cb",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"medúza\",\n    \"nameL2\": \"jellyfish\",\n    \"imageUrl\":\"https://picsum.photos/id/881/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1230,13 +1230,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "e63f7cba-95e4-45fb-96fc-db16f97e6056",
+      "uuid": "e913e190-73ed-4df3-ad2b-c8673b548bfd",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/lessons/:lessonId",
       "responses": [
         {
-          "uuid": "28500dfc-5fd0-47c5-a89a-647321c2766c",
+          "uuid": "27c63c65-766b-442b-a8db-b0b3d1aa0f0d",
           "body": "{\r\n   \"name\": \"{{faker 'lorem.words' 4}}\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"{{faker 'lorem.paragraph' 10}}\",\r\n   \"type\": \"SPEAKING\",\r\n   \"level\": \"a1\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1255,7 +1255,7 @@
           "callbacks": []
         },
         {
-          "uuid": "e57eeb7c-0a64-450a-a763-8d41b61efda7",
+          "uuid": "ced3138a-2a6e-4357-bf51-b0c896f6bbd0",
           "body": "{\r\n   \"name\": \"{{faker 'lorem.words' 4}}\",\r\n   \"videoId\":\"Tyq0oivryDQ\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"{{faker 'lorem.paragraph' 10}}\",\r\n   \"type\": \"PRONUNCIATION\",\r\n   \"level\": \"a1\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1274,7 +1274,7 @@
           "callbacks": []
         },
         {
-          "uuid": "b2dae7a7-3ee0-442d-9660-5bc5f51f7eea",
+          "uuid": "d3bb19eb-6a53-492d-984e-1371eed6927a",
           "body": "{\r\n   \"name\": \"Fruits\",\r\n   \"id\": \"UTD53e6HxK\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"V této lekci se zaměříme na ovoce. Prozkoumáme různé druhy ovoce a naučíme se anglická slova pro každý druh, jako jsou jablka, hrušky, banány a další. V lekci se také naučíte rozlišovat jednotná a množná čísla spojená s jednotlivými slovíčky.\",\r\n   \"type\": \"VOCABULARY\",\r\n   \"level\": \"a1\",\r\n   \"items\":[\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"jahoda\",\r\n         \"nameL2\":\"strawberry\",\r\n         \"imageUrl\":\"https://picsum.photos/id/493/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/strawberry.mp3\"\r\n      },\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"pomeranč\",\r\n         \"nameL2\":\"orange\",\r\n         \"imageUrl\":\"https://picsum.photos/id/517/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/orange.mp3\"\r\n      },\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"víno\",\r\n         \"nameL2\":\"grapes\",\r\n         \"imageUrl\":\"https://picsum.photos/id/674/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/grapes.mp3\"\r\n      }\r\n   ]\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1301,7 +1301,7 @@
           "callbacks": []
         },
         {
-          "uuid": "043c28fd-a55b-45fd-8cab-b1bd383ff2a9",
+          "uuid": "0db0bd37-4290-44c7-b997-49062d79815f",
           "body": "{\r\n   \"name\": \"Fruits\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"V této lekci se zaměříme na ovoce. Prozkoumáme různé druhy ovoce a naučíme se anglická slova pro každý druh, jako jsou jablka, hrušky, banány a další. V lekci se také naučíte rozlišovat jednotná a množná čísla spojená s jednotlivými slovíčky.\",\r\n   \"type\": \"VOCABULARY\",\r\n   \"level\": \"a1\",\r\n   \"items\":[\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"jahoda\",\r\n         \"nameL2\":\"strawberry\",\r\n         \"imageUrl\":\"https://picsum.photos/id/493/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/strawberry.mp3\"\r\n      },\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"pomeranč\",\r\n         \"nameL2\":\"orange\",\r\n         \"imageUrl\":\"https://picsum.photos/id/517/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/orange.mp3\"\r\n      },\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"nameL1\":\"víno\",\r\n         \"nameL2\":\"grapes\",\r\n         \"imageUrl\":\"https://picsum.photos/id/674/512/512\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/grapes.mp3\"\r\n      }\r\n   ]\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1320,7 +1320,7 @@
           "callbacks": []
         },
         {
-          "uuid": "625668f6-997c-48ec-bad4-f508132ff67e",
+          "uuid": "ebe42126-ac58-4fd6-8575-d847a8e8f05e",
           "body": "{\r\n   \"name\": \"{{faker 'lorem.words' 4}}\",\r\n   \"videoId\":\"Tyq0oivryDQ\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"{{faker 'lorem.paragraph' 10}}\",\r\n   \"type\": \"GRAMMAR\",\r\n   \"level\": \"c1\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1339,7 +1339,7 @@
           "callbacks": []
         },
         {
-          "uuid": "2859be8f-d9a9-4cf9-8c63-9f951d8e70b7",
+          "uuid": "08ec866c-73bc-4c12-92ed-5b1bcfea3493",
           "body": "{\r\n   \"name\": \"{{faker 'lorem.words' 4}}\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"{{faker 'lorem.paragraph' 10}}\",\r\n   \"type\": \"LISTENING\",\r\n   \"level\": \"a1\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1358,7 +1358,7 @@
           "callbacks": []
         },
         {
-          "uuid": "015ccd58-dabe-4d5e-bb9f-db26da836402",
+          "uuid": "978be402-d5a2-4b06-ba4e-e780905a5813",
           "body": "{\r\n   \"name\": \"{{faker 'lorem.words' 4}}\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":true,\r\n   \"visible\":true,\r\n   \"description\":\"{{faker 'lorem.paragraph' 10}}\",\r\n   \"type\": \"READING\",\r\n   \"level\": \"a1\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1383,13 +1383,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "1fabb6c7-2563-448f-b6c8-2107b5418fad",
+      "uuid": "5f6b22a5-a365-4b97-99da-21a692a1dace",
       "documentation": "",
       "method": "patch",
       "endpoint": "user/courses/:courseId/lessons/:lessonId",
       "responses": [
         {
-          "uuid": "0b047f87-21f3-4f30-97d8-f128be5fcea4",
+          "uuid": "902bd305-15c1-44ae-bf2a-4bb4e5b6fdec",
           "body": "{{body}}",
           "latency": 0,
           "statusCode": 200,
@@ -1414,13 +1414,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "ff5024a0-9e0f-40cf-a412-816872278039",
+      "uuid": "6c39c7f2-2fa1-4f41-8aa1-48e6294b8580",
       "documentation": "",
       "method": "get",
       "endpoint": "courses/:courseId/article-categories",
       "responses": [
         {
-          "uuid": "9b75f888-0418-42b6-bd5a-a5ac7f620c28",
+          "uuid": "e8619743-d593-441a-a46a-894c9ed5c858",
           "body": "[\r\n   {{#repeat 7}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.word'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1445,13 +1445,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "f96cfd53-fcdf-4b0d-9ed1-fb2c98ab70fa",
+      "uuid": "6fb26e2d-6d83-4948-8be8-37268e7cfc52",
       "documentation": "",
       "method": "get",
       "endpoint": "courses/:courseId/articles",
       "responses": [
         {
-          "uuid": "a1023c56-b3f8-4f39-bad1-bd665398925a",
+          "uuid": "781bdc71-45e0-4316-8838-55ef24c68b43",
           "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.words' 5}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1484,13 +1484,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "5f5e084d-e8f3-4886-9f6e-8d13ca9c432b",
+      "uuid": "9a001fda-9690-4262-835d-1126ec2d6402",
       "documentation": "",
       "method": "get",
       "endpoint": "courses/:courseId/articles/:id",
       "responses": [
         {
-          "uuid": "d7504ca6-7e16-4162-92cf-85d69c55bcc5",
+          "uuid": "1b76306e-dcd4-4666-b054-e46bf8517907",
           "body": "{\r\n   \"id\":\"{{faker 'string.uuid'}}\",\r\n   \"name\":\"{{faker 'lorem.words' 5}}\",\r\n   \"text\":\"{{faker 'lorem.paragraph' 20}}\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1515,13 +1515,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "066fd575-b642-4419-b629-b3bfb320db6b",
+      "uuid": "6bf6a300-495c-4287-91ca-53d8080e6cae",
       "documentation": "",
       "method": "patch",
       "endpoint": "user/courses/:courseId/vocabulary/:itemId",
       "responses": [
         {
-          "uuid": "6326bce3-33ff-46d1-9e90-04cdb168c45a",
+          "uuid": "6e7a17c3-3676-4efa-bf58-e78f11ece6c4",
           "body": "{}",
           "latency": 5000,
           "statusCode": 200,
@@ -1546,13 +1546,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "e1127a65-92ed-4f6e-abd5-f74c88c056ee",
+      "uuid": "74fca8c1-94a8-48b8-bba6-44ed69bb473d",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/vocabulary/:itemId",
       "responses": [
         {
-          "uuid": "b36912cc-ced3-4bbf-ba70-b34f8391550a",
+          "uuid": "52c767ec-bca2-4c26-9c20-74c025c310f7",
           "body": "{\r\n   \"nameL1\":\"ananas\",\r\n   \"nameL2\":\"pineapple\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":{{faker 'datatype.boolean'}},\r\n   \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n   \"audioUrl\":\"https://mocks.linguino.org/pineapple.mp3\",\r\n   \"description\":\"A tropical fruit with a spiky outer skin and sweet, juicy yellow flesh.\",\r\n   \"examples\":[\r\n      {{#repeat 3}}\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"textL1\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"textL2\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n      }\r\n      {{/repeat}}\r\n   ]\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1571,7 +1571,7 @@
           "callbacks": []
         },
         {
-          "uuid": "552ee56f-6e97-420e-8bd4-606832ac435c",
+          "uuid": "13a2c48f-11f0-443e-8a75-054cc52b290a",
           "body": "{\r\n   \"nameL1\":\"jablko\",\r\n   \"nameL2\":\"apple\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":{{faker 'datatype.boolean'}},\r\n   \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n   \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\",\r\n   \"description\":\"{{faker 'lorem.paragraph'}}\",\r\n   \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n   \"examples\":[\r\n      {{#repeat 3}}\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"textL1\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"textL2\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n      }\r\n      {{/repeat}}\r\n   ]\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1596,13 +1596,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "4636a632-ccc3-484d-93de-6a6dd60dd5eb",
+      "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336",
       "documentation": "",
       "method": "get",
       "endpoint": "user/subscription",
       "responses": [
         {
-          "uuid": "bac04574-3091-40f6-bd56-339b5677cf58",
+          "uuid": "96c8cdd7-cc66-4023-8594-a05b3d177598",
           "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": \"PAID\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -1627,13 +1627,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "a5494f11-1b74-4678-8c46-1615cbadd438",
+      "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/subscription",
       "responses": [
         {
-          "uuid": "58b6ec70-94db-418a-8ac6-df06182623a6",
+          "uuid": "0789e6a4-bcea-4097-aa37-e727e4fe69ce",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -1658,14 +1658,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "3f68c84f-fdc5-4ad5-95a2-bc9f6b3060f5",
+      "uuid": "a2bf16fb-e93c-48f2-a897-b1c4bff293b0",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/achievements",
       "responses": [
         {
-          "uuid": "44229da4-11d1-4a7a-a7b8-77f1210940dd",
+          "uuid": "b56a8931-129c-4692-b3c0-566f4f9f100f",
           "body": "[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1689,14 +1689,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "7721520c-ee20-4f8c-b928-2d1f8def17eb",
+      "uuid": "da675e05-6e88-42cc-9803-8e4944836559",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/achievements/:id/collect-reward",
       "responses": [
         {
-          "uuid": "9043fff7-5f9e-4ad1-a9fa-4d59db65ce72",
+          "uuid": "4d91a0d3-f3eb-47a7-936b-ad730a71dac3",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -1720,14 +1720,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "969e74fa-7cdf-4ffa-83de-6b7878f23693",
+      "uuid": "822df224-1412-47cf-bdfd-1a4b52e8f39e",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/active-challenges",
       "responses": [
         {
-          "uuid": "c244526c-3d24-4d23-9519-03292dfed865",
+          "uuid": "58e1861c-bae9-4d07-b2a6-a14ce11bb7a9",
           "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"title\":\"{{faker 'lorem.words' 3}}\",\r\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\r\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"collectedReward\":false\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -1751,14 +1751,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "73e9d9da-6a2b-4d67-8380-c4d69dcf58c8",
+      "uuid": "81ef9ff4-595d-46c1-8d08-f8219938e329",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/active-challenges/:id/collect-reward",
       "responses": [
         {
-          "uuid": "a7179738-de3e-4b48-9b28-fa1db1adb712",
+          "uuid": "c5c43dbd-2939-4d92-8f14-df8a31a3ec20",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -1782,32 +1782,24 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "5770c301-1d81-45a9-a3e7-79655824e405",
+      "uuid": "3c4adc43-658a-4aef-aeb0-a56c6228c72e",
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/feed",
+      "endpoint": "users/me/feed",
       "responses": [
         {
-          "uuid": "f94dd5d3-c68d-47c5-9561-31312456feb6",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"video\",\r\n      \"videoId\":\"Tyq0oivryDQ\",\r\n      \"title\":\"{{faker 'lorem.sentence' 8}}\"\r\n   },\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"article\",\r\n      \"link\":\"https://example.com\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"title\":\"{{faker 'lorem.sentence' 8}}\"\r\n   },\r\n   {{#repeat 3}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"message\",\r\n      \"author\":\"{{faker 'person.fullName'}}\",\r\n      \"authorAvatarUrl\":\"{{faker 'internet.avatar'}}\",\r\n      \"message\":\"{{oneOf (array 'reached_level_10' 'reached_level_50' 'reached_level_100')}}\",\r\n      \"publishedAt\":\"{{faker 'date.recent'}}\",\r\n      \"seenByUser\":true,\r\n      \"reactions\":[\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'muscle' 'heart_eyes')}}\"\r\n         },\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'light_bulb' 'brain')}}\"\r\n         }\r\n      ]\r\n   },\r\n   {{/repeat}}\r\n]",
+          "uuid": "15b09ed5-08cf-4c8e-b9a3-c3bdf76f2494",
+          "body": "[\r\n   {{#repeat 8}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"author\":\"{{faker 'person.fullName'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"brown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"mediumBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      },\r\n      \"message\":\"{{oneOf (array 'reached_level_10' 'reached_level_50' 'reached_level_100')}}\",\r\n      \"publishedAt\":\"{{faker 'date.recent'}}\",\r\n      \"reactions\":[\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'confetti' 'heart' 'muscle' 'clappingHands' 'sunglasses')}}\"\r\n         },\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'confetti' 'heart' 'muscle' 'clappingHands' 'sunglasses')}}\"\r\n         }\r\n      ]\r\n   }{{#unless @last}},{{/unless}}\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
-          "label": "page != null",
+          "label": "",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "page",
-              "value": "",
-              "invert": true,
-              "operator": "null"
-            }
-          ],
+          "rules": [],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
@@ -1821,14 +1813,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "b13149c6-4820-4fb3-981e-bf258f60b8c2",
+      "uuid": "a6a360c5-6def-4ddb-a729-b71cb716a320",
       "type": "http",
       "documentation": "",
       "method": "delete",
-      "endpoint": "user/feed/:feedItemId/reactions/:reactionId",
+      "endpoint": "users/me/feed/:feedItemId/reactions/:reactionId",
       "responses": [
         {
-          "uuid": "9dfcab7d-3f01-4aa2-a707-5c138a53a0db",
+          "uuid": "b6c02e46-7eb9-47b4-b165-15d1c6fe538a",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -1852,14 +1844,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "5e013488-6019-47b5-aa84-afb9c28a917c",
+      "uuid": "dc008a74-caa7-4ca0-b77e-e25fbae90187",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "reset-password",
       "responses": [
         {
-          "uuid": "af01cd0a-fa15-488b-8a8f-ec3f21221343",
+          "uuid": "a62dd0fe-72e2-47bc-9015-6c73b23c9d3e",
           "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -1886,7 +1878,7 @@
           "callbacks": []
         },
         {
-          "uuid": "d8c78003-8d54-4118-a45f-d189cd6c9ed7",
+          "uuid": "490de962-6d54-4f7a-8c13-85dde7309cba",
           "body": "",
           "latency": 0,
           "statusCode": 200,
@@ -1918,14 +1910,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "c91a2c33-e715-4650-97b9-382487729371",
+      "uuid": "ae22ab21-d796-41ae-928a-8fc3ca27ba5c",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "change-password",
       "responses": [
         {
-          "uuid": "b61e1376-10c0-4f05-bd75-a7e5af97ff5c",
+          "uuid": "d5b52c05-02a2-4159-a886-0f8a4945d23b",
           "body": "",
           "latency": 0,
           "statusCode": 200,
@@ -1971,14 +1963,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0334897b-a8ca-4c1e-9ab5-e56637e2b1e8",
+      "uuid": "e3101882-78cd-4ced-b5c4-f5c8104af205",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "courses",
       "responses": [
         {
-          "uuid": "fa8f3dc2-42cf-43e8-b9c5-30f1a1d50817",
+          "uuid": "e73768e1-bd62-4593-8e2b-c95d99a19a86",
           "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"angular-developer-path\",\n    \"language\": \"en\",\n    \"name\": \"Angular Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"vue-developer-path\",\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"frontend-developer-path\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"learning-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": \"git\",\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"docker\",\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"apis\",\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"sql\",\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"nosql\",\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"typescript\",\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true\n  },\n  {\n    \"id\": \"react-developer-path\",\n    \"language\": \"en\",\n    \"name\": \"React Developer Path\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"userProgress\": 0,\n    \"enrolled\": false\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2005,7 +1997,7 @@
           "callbacks": []
         },
         {
-          "uuid": "01605faf-2fa7-41d9-ba01-f096cac21af5",
+          "uuid": "89be40cd-477b-4222-9df6-3a301147fa7d",
           "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"language\":\"en\",\r\n      \"name\":\"English\",\r\n      \"category\":\"languages\",\r\n      \"logoId\":\"html\",\r\n      \"type\":\"course\"\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2037,14 +2029,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "a351a506-733f-4c23-b136-221dd4158d18",
+      "uuid": "4988e6de-2353-438d-b767-6bfa863fffa5",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "courses/:courseId",
       "responses": [
         {
-          "uuid": "2e3f7870-8210-4394-b81f-81c3faca6d8d",
+          "uuid": "6ff3634d-7f2b-49f1-9920-386ff719b85d",
           "body": "{\n  \"id\": \"react-developer-path\",\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}\"lesson-test-id\"{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}\"test-course-certificate\"{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": \"html\",\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"javascript\",\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": \"react-developer\",\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2071,7 +2063,7 @@
           "callbacks": []
         },
         {
-          "uuid": "de0d8315-aa85-4938-9442-5699e514a54c",
+          "uuid": "998c40c5-f318-4b34-9c6a-027a1c82ceba",
           "body": "{\n  \"id\": \"test-course\",\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": \"course\",\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}\"lesson-test-id\"{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}\"test-course-certificate\"{{else}}null{{/if}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": \"html\",\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": \"css\",\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": \"intro-chapter\",\n      \"name\": \"Introduction\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": \"intermediate-chapter\",\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\": \"advanced-chapter\",\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2095,14 +2087,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "b50268a7-2735-4327-9cab-f0aa13d54e20",
+      "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId",
       "responses": [
         {
-          "uuid": "1dc66926-3b76-42fa-bede-f0f575dfc70f",
+          "uuid": "ec1e84f7-af09-4521-b1b9-e2130cf044e4",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -2126,14 +2118,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "7e9a4d77-5b5e-4c2e-8f1e-bc7a1b2c3d4e",
+      "uuid": "17bb1805-eed8-4205-9b12-b5f5e977e259",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "certificate/:certificateId",
       "responses": [
         {
-          "uuid": "3a4b5c6d-7e8f-9012-a3b4-c5d6e7f89012",
+          "uuid": "414d5d41-2ee5-47da-af76-faab526daea5",
           "body": "{\n  \"id\": \"{{urlParam 'certificateId'}}\",\n  \"userName\": \"Pepa Okurka\",\n  \"courseName\": \"JavaScript Basics\",\n  \"completedAt\": \"July 23, 2026\",\n  \"signatoryName\": \"Bořivoj Ježek\",\n  \"signatoryTitle\": \"CEO of Company\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2157,14 +2149,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "299ad045-0e48-4bc9-a637-03dd4166895c",
+      "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses",
       "responses": [
         {
-          "uuid": "42a5df02-d66e-4454-ad35-a9b97c02ef57",
+          "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
           "body": "[\n  {\n    \"id\": \"test-course-learn\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"studyMode\": \"learn\"\n  },\n  {\n    \"id\": \"test-course-paused\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"studyMode\": \"paused\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2188,14 +2180,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "59d34ac2-d64f-470c-9c65-6c60005b8f09",
+      "uuid": "6302d919-26dc-4058-900c-1f1ae5fb5498",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "courses/:courseId/chapters/:chapterId",
       "responses": [
         {
-          "uuid": "f5ce15e8-ab46-4e5a-b8d6-54ab45e85e2c",
+          "uuid": "9a46cee9-221a-4467-9466-98678c0c36ba",
           "body": "{\n  \"id\": \"chapter-1\",\n  \"name\": \"Basics of JavaScript\",\n  \"sections\": [\n    {\n      \"id\": \"section-1\",\n      \"name\": \"Advanced functions\",\n      \"lessons\": [\n        {\n          \"id\": \"lesson-1\",\n          \"name\": \"Basic variables\",\n          \"completed\": true\n        },\n        {\n          \"id\": \"lesson-2\",\n          \"name\": \"Let variable\",\n          \"active\": true\n        },\n        {\n          \"id\": \"lesson-3\",\n          \"name\": \"Const variable\"\n        }\n      ]\n    },\n    {\n      \"id\": \"section-2\",\n      \"name\": \"TypeScript Types\",\n      \"lessons\": [\n        {\n          \"id\": \"lesson-4\",\n          \"name\": \"Record\"\n        },\n        {\n          \"id\": \"lesson-5\",\n          \"name\": \"Basics of JavaScript\"\n        },\n        {\n          \"id\": \"lesson-6\",\n          \"name\": \"Advanced JavaScript\"\n        }\n      ]\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2219,14 +2211,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0666e90c-f178-4007-9948-9ef640061991",
+      "uuid": "b7e9a5c2-894c-4e13-82af-12d1bdbc076e",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "user/courses/:courseId/lessons",
       "responses": [
         {
-          "uuid": "f9a13b09-9d23-47ac-b2c4-b1fe4c3f7a2a",
+          "uuid": "ddd32ec4-5cac-4019-9f15-910642b1264b",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -2250,14 +2242,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0a748afd-89c3-4ce7-b30e-9c47ee125a20",
+      "uuid": "e3102437-d3eb-4d70-9395-f9ec37ae1ae5",
       "type": "http",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/courses/:courseId/lessons/:lessonId",
       "responses": [
         {
-          "uuid": "f5c1ec22-76a1-48dd-a47e-29ead177bf32",
+          "uuid": "fdbae306-4868-4c5e-ab11-4bad1d015bc8",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -2281,14 +2273,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "0a78fb60-ceb6-4587-87d4-a0d9f315805f",
+      "uuid": "45af24d1-9f4f-4454-bb1f-070b31b62d05",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "users/:userId",
       "responses": [
         {
-          "uuid": "c6a82f0e-9f07-45fd-82dd-81cc7de983b2",
+          "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
           "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"level\": {{faker 'number.int' min=0 max=100}},\n  \"profileImageUrl\":\"{{faker 'internet.avatar'}}\",\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"learningStats\": [\n    {\n      \"date\": \"2023-06-12T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-11T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-10T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-09T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-08T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-07T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-06T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    }\n  ],\n  \"achievements\":[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2312,14 +2304,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "97cb06c8-1d80-4585-bc3d-1d07b24ba654",
+      "uuid": "85411a4d-3fcf-404f-b8d5-9ee69f8bb5c8",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/topics",
       "responses": [
         {
-          "uuid": "21d2b4a9-f2dc-4666-bcc3-19eff6012fef",
+          "uuid": "33b4aa07-9b48-4d55-95f5-141da9bc25e6",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Kultura\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Škola\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Práce\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Cestování\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Rodina\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Jídlo\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Historie\",\n    \"enabled\": true\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2346,7 +2338,7 @@
           "callbacks": []
         },
         {
-          "uuid": "7f63c452-94b2-405d-9496-5b89f0b6f86c",
+          "uuid": "6bb2cd6c-42a6-4298-8a3f-c58c999861e3",
           "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro manažery\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro doktory\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro ajťáky\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro piloty\",\n    \"enabled\": false\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2378,14 +2370,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "d80a9aa3-83ef-441a-9390-c3b5e6be008f",
+      "uuid": "82817d44-4204-465b-9796-7ed0ef28af8c",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/topics/:topicId",
       "responses": [
         {
-          "uuid": "b1b46eaa-5afd-4717-9d6f-4647d14d4d94",
+          "uuid": "59a361c6-3a0e-4cad-a09a-ae45f39b49bf",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -2409,14 +2401,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "d6eaff35-a0a2-4061-a4cd-b0c29f7c00f4",
+      "uuid": "84d83306-3778-463b-9998-c1cff76843a0",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/settings",
       "responses": [
         {
-          "uuid": "4e551301-0149-43a4-934b-10a66a1236da",
+          "uuid": "d4d718f9-31dd-400b-a7bd-1881d9a0337f",
           "body": "{\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"email\":\"{{faker 'internet.email'}}\",\n  \"dailyGoal\": 600000\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2440,14 +2432,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "182f7c26-aa4d-4f41-881f-9553af26e32f",
+      "uuid": "dbff8a53-d881-4a09-9a6f-b19651efed72",
       "type": "http",
       "documentation": "",
       "method": "patch",
       "endpoint": "user/settings",
       "responses": [
         {
-          "uuid": "db447c94-d185-47ee-a487-f782ba93385c",
+          "uuid": "9ed09469-e340-4e28-a8f8-6d5e4faddcb2",
           "body": "{\n  \"name\": \"{{body 'name'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"dailyGoal\": {{body 'dailyGoal'}}\n}",
           "latency": 0,
           "statusCode": 200,
@@ -2466,7 +2458,7 @@
           "callbacks": []
         },
         {
-          "uuid": "8dbe9239-6c3b-4cfd-afcc-f0d8c6227baa",
+          "uuid": "a78d7d92-0ee9-4d75-8416-1470c96fe3be",
           "body": "{\r\n   \"error\":\"USERNAME_TAKEN\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -2485,7 +2477,7 @@
           "callbacks": []
         },
         {
-          "uuid": "833e33fa-429a-4e6f-b8fc-5d92d10017e0",
+          "uuid": "8f62dfbc-f9c7-46b0-b51c-ac9eddcb8b3e",
           "body": "{\r\n   \"error\":\"EMAIL_ADDDRESS_TAKEN\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -2504,7 +2496,7 @@
           "callbacks": []
         },
         {
-          "uuid": "e0afed06-5fd7-46db-bf56-b146406f6737",
+          "uuid": "ff91545d-0044-4524-8577-001182ec91e9",
           "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
           "latency": 0,
           "statusCode": 400,
@@ -2528,14 +2520,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "bf6ac875-6fe0-4441-9ebb-c31d93efd9d4",
+      "uuid": "95802a78-05a2-434c-a533-a46d1d93b121",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/recommended-courses",
       "responses": [
         {
-          "uuid": "98a314ff-5e2c-445e-bf3f-a6a0200db591",
+          "uuid": "0f4ad0ec-2611-4617-8b07-8ea2276b8e28",
           "body": "[\n  {\n    \"id\": \"html\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"react-developer\",\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\"\n  },\n  {\n    \"id\": \"javascript\",\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"css\",\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": \"frontend-developer\",\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"learning-path\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2559,14 +2551,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "97547eea-f244-4ce6-a69e-125588e56a03",
+      "uuid": "21a68375-f61f-40d2-8f7c-776b699c9087",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/notices",
       "responses": [
         {
-          "uuid": "705ca200-36ce-4b2d-bbf4-2ff03f86dfe5",
+          "uuid": "5350fa39-ddd0-446c-a92b-61cf860a3af4",
           "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"ACHIEVEMENT\",\r\n      \"name\":\"Moudrý vševěd\",\r\n      \"description\":\"Nauč se aspoň 50 gramatických lekcí.\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2585,7 +2577,7 @@
           "callbacks": []
         },
         {
-          "uuid": "a6aba221-663b-4735-9387-51cc49a95ad0",
+          "uuid": "d9928bae-e4d3-45b4-bfe0-2f2a009ff091",
           "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FREE_TRIAL_OFFER\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2604,7 +2596,7 @@
           "callbacks": []
         },
         {
-          "uuid": "cb0f5e07-161b-489f-8fc0-d861f5c82286",
+          "uuid": "7f57cb5d-df44-4cba-a2ce-45883487ecab",
           "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FREE_TRIAL_END\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2623,7 +2615,7 @@
           "callbacks": []
         },
         {
-          "uuid": "dcebc281-39ff-4f10-9b43-b506ac2304bd",
+          "uuid": "6724293e-ad59-4dbc-8a88-b2f2d83b16bb",
           "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"surveyId\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"RATING_SURVEY\",\r\n      \"question\":\"Jaká je pravděpodobnost, že byste aplikaci doporučili přátelům/kolegům?\",\r\n      \"answerLabel1\":\"Nízká\",\r\n      \"answerLabel2\":\"Vysoká\",\r\n      \"maxPoints\":5\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2642,7 +2634,7 @@
           "callbacks": []
         },
         {
-          "uuid": "03c4c5c0-8a96-4bb3-85ee-c4ae45c900c3",
+          "uuid": "a05d76f9-c503-4eb5-8681-818d676897ea",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
@@ -2666,14 +2658,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "b348f9f8-2cd5-4e48-83f3-9beb8ae57d69",
+      "uuid": "1cda3def-72a9-4f11-b377-986b57b1dd98",
       "type": "http",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/notices/:noticeId",
       "responses": [
         {
-          "uuid": "44aba5db-6446-4ba6-b7b0-125c4e9ab2d4",
+          "uuid": "ed2ffb84-794e-43a3-89f8-668977236356",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -2697,14 +2689,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "2138b529-f427-4333-ad4f-92d711bc9a35",
+      "uuid": "a185137e-1fde-416c-ae4f-be2b13c19ae0",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user/courses/:courseId/study-map",
       "responses": [
         {
-          "uuid": "8a9f6aad-8b33-4af7-b1f7-ea31f057d1ee",
+          "uuid": "75da9fd0-2e75-4472-b1e2-44ccd25845fe",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Simple Present\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\",\r\n    \"isActive\": true\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Basic Activities\",\r\n    \"icon\": \"directions_run\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Short Conversations\",\r\n    \"icon\": \"hearing\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Basic Sounds\",\r\n    \"icon\": \"hearing_disabled\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Self & Family\",\r\n    \"icon\": \"people\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Simple Texts\",\r\n    \"icon\": \"menu_book\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2745,7 +2737,7 @@
           "callbacks": []
         },
         {
-          "uuid": "0d4c0d67-53af-4001-a1cb-fc839a6d5d5d",
+          "uuid": "24816e95-f1b0-4e0c-85ba-73675b7c28c7",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Past vs. Present\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Daily Life\",\r\n    \"icon\": \"directions_run\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Short Dialogues\",\r\n    \"icon\": \"hearing\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Correct Sounds\",\r\n    \"icon\": \"hearing_disabled\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Opinions & Experiences\",\r\n    \"icon\": \"people\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Simple Stories\",\r\n    \"icon\": \"menu_book\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2786,7 +2778,7 @@
           "callbacks": []
         },
         {
-          "uuid": "40e8c745-7a66-4d7a-b613-a35475d95139",
+          "uuid": "2b85724a-8369-45e1-8497-054126215f23",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Conditionals\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Work & Study\",\r\n    \"icon\": \"school\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Longer Talks\",\r\n    \"icon\": \"hearing\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Intonation\",\r\n    \"icon\": \"hearing_disabled\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Debates\",\r\n    \"icon\": \"forum\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Articles\",\r\n    \"icon\": \"article\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2827,7 +2819,7 @@
           "callbacks": []
         },
         {
-          "uuid": "b302920b-5e05-449b-b17c-51f6a29c3e31",
+          "uuid": "4c1dcb04-0fd9-4b6e-a9e0-7bd551a33679",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Subjunctive\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Professional Jargon\",\r\n    \"icon\": \"work\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Podcasts\",\r\n    \"icon\": \"headset\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Accents\",\r\n    \"icon\": \"hearing_disabled\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Public Speaking\",\r\n    \"icon\": \"record_voice_over\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Literary Works\",\r\n    \"icon\": \"book\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2868,7 +2860,7 @@
           "callbacks": []
         },
         {
-          "uuid": "45867a92-3ea7-4783-8ac3-c472cdcc2a2a",
+          "uuid": "1326e17b-c327-4397-af3f-713e5c272547",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced Structures\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced Vocabulary\",\r\n    \"icon\": \"school\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Academic Talks\",\r\n    \"icon\": \"forum\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced Conversations\",\r\n    \"icon\": \"record_voice_over\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Professional Debates\",\r\n    \"icon\": \"forum\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Scholarly Works\",\r\n    \"icon\": \"book\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2909,7 +2901,7 @@
           "callbacks": []
         },
         {
-          "uuid": "93a8928f-8707-4ae0-b589-03c33b81c5f6",
+          "uuid": "8a8b1d31-7328-4e97-a2b5-bd35610b2e1a",
           "body": "[\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Advanced Grammar\",\r\n    \"icon\": \"schedule\",\r\n    \"type\": \"GRAMMAR\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Expert Jargon\",\r\n    \"icon\": \"work\",\r\n    \"type\": \"VOCABULARY\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Conferences\",\r\n    \"icon\": \"group_work\",\r\n    \"type\": \"LISTENING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Public Speaking\",\r\n    \"icon\": \"record_voice_over\",\r\n    \"type\": \"PRONUNCIATION\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Work Discussions\",\r\n    \"icon\": \"forum\",\r\n    \"type\": \"SPEAKING\"\r\n  },\r\n  {\r\n    \"id\": \"{{faker 'string.uuid'}}\",\r\n    \"name\": \"Complex Texts\",\r\n    \"icon\": \"book\",\r\n    \"type\": \"READING\"\r\n  }\r\n]\r\n",
           "latency": 0,
           "statusCode": 200,
@@ -2950,7 +2942,7 @@
           "callbacks": []
         },
         {
-          "uuid": "16e573e5-1b18-4e39-b762-a2c22baf5181",
+          "uuid": "09e7c742-313a-4d1c-9665-2d1668b502c7",
           "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Basic Grammar\",\n    \"icon\": \"schedule\",\n    \"type\": \"GRAMMAR\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Animals\",\n    \"icon\": \"pets\",\n    \"type\": \"VOCABULARY\",\n    \"isActive\": true\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"At a restaurant\",\n    \"icon\": \"restaurant\",\n    \"type\": \"LISTENING\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Basic Sounds\",\n    \"icon\": \"music_note\",\n    \"type\": \"PRONUNCIATION\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"At an airport\",\n    \"icon\": \"flight\",\n    \"type\": \"SPEAKING\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Back in time\",\n    \"icon\": \"history\",\n    \"type\": \"READING\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -2991,7 +2983,7 @@
           "callbacks": []
         },
         {
-          "uuid": "c9dd29fe-8d1a-4da8-90f0-37c5ede66541",
+          "uuid": "eea237dc-cf4e-463b-9858-159902a3f837",
           "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"schedule\",\n    \"type\": \"GRAMMAR\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"pets\",\n    \"type\": \"VOCABULARY\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"restaurant\",\n    \"type\": \"LISTENING\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"music_note\",\n    \"type\": \"PRONUNCIATION\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"flight\",\n    \"type\": \"SPEAKING\"\n  },\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"name\": \"Lorem ipsum\",\n    \"icon\": \"history\",\n    \"type\": \"READING\"\n  }\n]",
           "latency": 0,
           "statusCode": 200,
@@ -3037,13 +3029,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "3cfe92b2-37a0-483e-b048-e69d6650a75b",
+      "uuid": "7746912a-27a7-4f97-84ce-994a863e5dc8",
       "documentation": "",
       "method": "post",
       "endpoint": "user/subscription",
       "responses": [
         {
-          "uuid": "af454ae0-cf8a-41fe-a9db-ea2204370363",
+          "uuid": "2735657b-2799-4d31-93cb-52cbb146e777",
           "body": "{\n  \"error\": \"MOCK_NOT_SUPPORTED\"\n}",
           "latency": 0,
           "statusCode": 501,
@@ -3068,14 +3060,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "ec5d4349-1597-4af3-b029-a737b5aa8524",
+      "uuid": "2885308c-493e-42c4-a61d-8d2eb0cd55bd",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "users",
       "responses": [
         {
-          "uuid": "00d0fc4f-1773-49df-a130-86046a8a8f8e",
+          "uuid": "7e473f0c-7ef3-450a-b714-6b43deef94e4",
           "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"Pepa Okurka\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName' 'Pepa' 'Okurka'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -3102,7 +3094,7 @@
           "callbacks": []
         },
         {
-          "uuid": "1401a441-6321-446b-af87-1548745005be",
+          "uuid": "7e5e630a-2292-42b6-95c1-8ddca7f4d3a8",
           "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
@@ -3126,14 +3118,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "1a900ba7-4dee-4942-9516-373141c3f0c7",
+      "uuid": "806ea649-2309-46bc-9995-b59112e0564b",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "refresh-token",
       "responses": [
         {
-          "uuid": "3e161152-2941-4053-9e22-cd4ad246a53f",
+          "uuid": "4d9be633-4941-4552-8b6d-41584078675b",
           "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\"\r\n}",
           "latency": 0,
           "statusCode": 200,
@@ -3157,14 +3149,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "d468c34e-25ff-4a2a-9fd8-874a7c04ec1b",
+      "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "user",
       "responses": [
         {
-          "uuid": "6f8eeef6-717f-43fa-9b66-4b21d29ce172",
+          "uuid": "648ebde8-8278-4c24-b292-d464e098aabd",
           "body": "{\n  \"id\":\"test-user\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  },\n  \"selectedCourse\":{\n     \"id\":\"{{faker 'string.uuid'}}\",\n     \"name\":\"English Course\",\n     \"language\":\"en\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
@@ -3183,7 +3175,7 @@
           "callbacks": []
         },
         {
-          "uuid": "0c55444e-6227-44d2-877a-deaa274c15fa",
+          "uuid": "5467062b-5141-412d-96d0-ed5c8b63dd70",
           "body": "{\n  \"id\": \"{{faker 'string.uuid'}}\",\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"role\": \"USER\",\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"energy\": {{faker 'number.int' min=0 max=20}},\n  \"equippedStreakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\": null,\n  \"selectedCourse\": {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Angličtina\",\n    \"language\": \"en\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
@@ -3207,14 +3199,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "3e062246-0033-40b7-becd-40bd3acffee4",
+      "uuid": "d53d0f9c-9d03-4468-b8a8-ff8ba489518e",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "user/account-setup",
       "responses": [
         {
-          "uuid": "85b90360-f944-4d99-99e6-a73320834565",
+          "uuid": "4dae2c6c-78ad-4e02-b451-1216e13f8660",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3238,14 +3230,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "804fdb1e-4463-429f-90cc-8ada0f0d45a9",
+      "uuid": "6121a74c-1207-407f-8d54-38b12aa93cf3",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/lessons/:lessonId/feedback",
       "responses": [
         {
-          "uuid": "ddd00027-003a-4b0c-a7e3-203da30e168f",
+          "uuid": "2efc3762-2b22-4260-8d3a-de3123f5d8cd",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3269,14 +3261,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "e0e8c631-fd9b-4808-9bf7-1b8817e54bed",
+      "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/following/:userId",
       "responses": [
         {
-          "uuid": "84b52fd0-f968-4e81-a634-b2f48ba3e913",
+          "uuid": "aa466512-25bd-4ec7-87ad-9eecd3844813",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3300,14 +3292,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "7b5c7136-9168-43cd-aafb-b213c8bfe658",
+      "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95",
       "type": "http",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/following/:userId",
       "responses": [
         {
-          "uuid": "dedd433a-ce4a-43fa-aa37-5d44c7aabd4c",
+          "uuid": "2a321f56-4b04-4b09-928a-615f7dcd0b55",
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
@@ -3331,14 +3323,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "4de28c3b-1ccf-4a8e-82b3-c7cb04257348",
+      "uuid": "907ffe34-1655-48af-b05a-30529c34d071",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/shop-items/:itemId/equip",
       "responses": [
         {
-          "uuid": "7887c45b-3682-44e6-a4d9-70a1e8b4835d",
+          "uuid": "064bee4b-259b-4d86-846b-4d65be22ad86",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3362,14 +3354,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "53a86cd1-9343-48a3-8e63-a6c1181b1374",
+      "uuid": "5d38e027-9944-478a-b024-71bdfa8d72c5",
       "type": "http",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/shop-items/:itemId/equip",
       "responses": [
         {
-          "uuid": "b5874c1f-4b7b-4850-aed3-e23d9fa19ffe",
+          "uuid": "631c0e8b-cac7-4393-b22b-43ad71e27824",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3393,14 +3385,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "ebff78fc-a042-48f6-aaba-113e483a7470",
+      "uuid": "021018c5-71b2-4f34-9a74-758e4a4b179b",
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "user/feed/:feedItemId/reactions/:reactionId",
+      "endpoint": "users/me/feed/:feedItemId/reactions/:reactionId",
       "responses": [
         {
-          "uuid": "fde11931-5891-4664-a2ec-2b27409de9b4",
+          "uuid": "54a80038-18fd-4ff7-9d5a-62b137e10802",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3424,14 +3416,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "47593b1b-fa8f-4492-a53d-12eb76ffbd3e",
+      "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/select-course",
       "responses": [
         {
-          "uuid": "7e2708b7-d7f4-46a7-a0d3-33536f0816d9",
+          "uuid": "5597e355-79e5-4c4a-82d8-a117e55f4872",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3455,14 +3447,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "3c0b377c-8186-4f4f-b808-4e22cb6a5da1",
+      "uuid": "935689f4-aaaf-4eaf-96fa-3b33115e75ea",
       "type": "http",
       "documentation": "",
       "method": "delete",
       "endpoint": "user/courses/:courseId/topics/:topicId",
       "responses": [
         {
-          "uuid": "f50630a2-922b-4dfd-a716-781158849df4",
+          "uuid": "09a49a25-74af-46b8-9c14-b28a00ed4f8b",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3486,14 +3478,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "8e45fdc1-b353-44bf-9102-eae7dc343925",
+      "uuid": "e02d91b0-91e2-4e0f-a40f-5559cd041f89",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/study-map",
       "responses": [
         {
-          "uuid": "386be7dd-a2b9-4e7f-b67e-9606220f263f",
+          "uuid": "fdc8f11f-9855-4605-8551-88f0a4e8a7e1",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3517,14 +3509,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "dd96954d-2f2f-4bb3-8ee0-fe417bf3eb94",
+      "uuid": "e779e53e-8771-4ec2-b5cc-dad4c1772b3f",
       "type": "http",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/study-map/active/:lessonId",
       "responses": [
         {
-          "uuid": "1f15fe3f-9d2b-4d02-adf8-b38a1f0210be",
+          "uuid": "7313d396-260a-4f6f-b1a2-290ad1e7ff4e",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3548,13 +3540,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "c62341a8-86cf-48e8-9460-6873b81fe57b",
+      "uuid": "44349528-61fc-4f62-8b75-77526696744c",
       "documentation": "",
       "method": "put",
       "endpoint": "user/courses/:courseId/lessons/:lessonId",
       "responses": [
         {
-          "uuid": "44705a82-d0e3-4375-a5d3-ea789a48b560",
+          "uuid": "d045d77d-f4c5-4100-910d-28a37a3a0755",
           "body": "{{body}}",
           "latency": 0,
           "statusCode": 200,
@@ -3579,14 +3571,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "869ba6ba-3232-4187-b5da-5ae385270a6a",
+      "uuid": "0af10595-e759-4b11-843b-8f56ee0eb8fa",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "user/subscription/trial",
       "responses": [
         {
-          "uuid": "7a9b6599-2e50-4cd1-ad82-dee2b2f49ae9",
+          "uuid": "e0db3ba5-9549-49ec-a8d0-5b0f33a39e60",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3605,7 +3597,7 @@
           "callbacks": []
         },
         {
-          "uuid": "cec21065-e879-42fc-9f45-91c04d359d09",
+          "uuid": "304b76d9-53de-425d-9308-f388c073a4e9",
           "body": "{\n  \"error\": \"You are not eligible for a trial period anymore.\"\n}",
           "latency": 0,
           "statusCode": 400,
@@ -3629,14 +3621,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "07e86276-4049-4b46-a24c-24772767c630",
+      "uuid": "9e9d59f8-b1a7-45a5-9725-964c73c6308a",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "change-email",
       "responses": [
         {
-          "uuid": "68aefef1-84f1-4a9e-8913-73ea656342f3",
+          "uuid": "e3084c79-1858-4e6c-8ff2-83b007ccdde1",
           "body": "",
           "latency": 0,
           "statusCode": 200,
@@ -3668,14 +3660,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "d9a16b34-ff71-4cb9-83bc-9c026ec169c4",
+      "uuid": "050e4243-cfc2-4fb1-a9ee-f4e42bd67855",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "change-email-confirm",
       "responses": [
         {
-          "uuid": "1a6dc4c8-242f-4bbe-bcb5-1b5f0daa870f",
+          "uuid": "24cce66a-fe0c-41be-8eff-31a63336f8c0",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3699,14 +3691,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "c578e931-305f-4cdc-8062-6ad9191fe978",
+      "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2",
       "type": "http",
       "documentation": "",
       "method": "patch",
       "endpoint": "user/courses/:courseId",
       "responses": [
         {
-          "uuid": "b5fcfda0-d21c-427d-913a-1225f3b241e8",
+          "uuid": "49b33a7c-d3b1-4e46-913b-9c728fb73b38",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3730,14 +3722,14 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "73b30876-f484-42a2-99ef-1a6b04a5f136",
+      "uuid": "5869020b-3a12-4ec1-acfb-57f2c1b939a4",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "users/me/study-plan",
       "responses": [
         {
-          "uuid": "3e098a6a-126e-4571-ad32-43de5112716b",
+          "uuid": "10c1192a-ed8e-44d4-bc5f-158b4ef6fcbe",
           "body": "{\n  \"upcomingLearnLesson\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}{\"id\":\"test-lesson-id\",\"title\":\"HTML basics\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}},\n  \"upcomingReviewCourse\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_REVIEW_DEFINED' null 'true') 'true')}}{\"id\":\"test-course-id\",\"title\":\"Fullstack Developer\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}}\n\n}",
           "latency": 0,
           "statusCode": 200,
@@ -3761,13 +3753,13 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "1b5a1842-1cfd-461f-a1b1-7b42002f9d9e",
+      "uuid": "9673fae7-1e27-407b-af07-68bb09517b38",
       "documentation": "",
       "method": "get",
       "endpoint": "users/me/leaderboard",
       "responses": [
         {
-          "uuid": "56dac8bc-153e-4aa4-84f1-d1673270f679",
+          "uuid": "9fe12697-9df8-48a9-a44d-b80d3e4987d3",
           "body": "{\n  \"currentLeague\": \"gold\",\n  \"timeLeft\": \"PT6H30M\",\n  \"zones\": {\n    \"promotionZoneEndIndex\": 5,\n    \"demotionZoneStartIndex\": 15\n  },\n  \"users\": {{#if (eq (getGlobalVar 'MOCKOON_LEADERBOARD_STARTED' null 'true') 'true')}}[\n  {\n    \"id\": \"user-1\",\n    \"rank\": 1,\n    \"name\": \"Ava Lane\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 212\n  },\n  {\n    \"id\": \"user-2\",\n    \"rank\": 2,\n    \"name\": \"Liam Frost\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 204\n  },\n  {\n    \"id\": \"user-3\",\n    \"rank\": 3,\n    \"name\": \"Noah Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 196\n  },\n  {\n    \"id\": \"user-4\",\n    \"rank\": 4,\n    \"name\": \"Mia Cole\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 188\n  },\n  {\n    \"id\": \"user-5\",\n    \"rank\": 5,\n    \"name\": \"Leo Finch\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 180\n  },\n  {\n    \"id\": \"user-6\",\n    \"rank\": 6,\n    \"name\": \"Ella Park\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 172\n  },\n  {\n    \"id\": \"user-7\",\n    \"rank\": 7,\n    \"name\": \"Ethan Moss\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 164\n  },\n  {\n    \"id\": \"user-8\",\n    \"rank\": 8,\n    \"name\": \"Olivia Hart\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 156\n  },\n  {\n    \"id\": \"user-9\",\n    \"rank\": 9,\n    \"name\": \"Lucas Stone\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 148\n  },\n  {\n    \"id\": \"user-10\",\n    \"rank\": 10,\n    \"name\": \"Emma Ford\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 140\n  },\n  {\n    \"id\": \"user-11\",\n    \"rank\": 11,\n    \"name\": \"Mason Bell\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 132\n  },\n  {\n    \"id\": \"user-12\",\n    \"rank\": 12,\n    \"name\": \"Sophia Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 124\n  },\n  {\n    \"id\": \"test-user\",\n    \"rank\": 13,\n    \"name\": \"User Name\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 116\n  },\n  {\n    \"id\": \"user-14\",\n    \"rank\": 14,\n    \"name\": \"Henry Lake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 108\n  },\n  {\n    \"id\": \"user-15\",\n    \"rank\": 15,\n    \"name\": \"Amelia Pike\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 100\n  },\n  {\n    \"id\": \"user-16\",\n    \"rank\": 16,\n    \"name\": \"Jack Hill\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 92\n  },\n  {\n    \"id\": \"user-17\",\n    \"rank\": 17,\n    \"name\": \"Isla West\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 84\n  },\n  {\n    \"id\": \"user-18\",\n    \"rank\": 18,\n    \"name\": \"Daniel Grove\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 76\n  },\n  {\n    \"id\": \"user-19\",\n    \"rank\": 19,\n    \"name\": \"Grace Mills\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 68\n  },\n  {\n    \"id\": \"user-20\",\n    \"rank\": 20,\n    \"name\": \"Owen Blake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 60\n  }\n]{{else}}[]{{/if}},\n  \"hasStartedWeek\": {{#if (eq (getGlobalVar 'MOCKOON_LEADERBOARD_STARTED' null 'true') 'true')}}true{{else}}false{{/if}}\n}",
           "latency": 0,
           "statusCode": 200,
@@ -3838,621 +3830,621 @@
   "data": [],
   "folders": [
     {
-      "uuid": "1fcf8eaa-b8a3-4792-b38a-1bd4871af4cc",
+      "uuid": "b0107feb-16c1-4900-a3d4-77596a330a78",
       "name": "achievements",
       "children": [
         {
           "type": "route",
-          "uuid": "3f68c84f-fdc5-4ad5-95a2-bc9f6b3060f5"
+          "uuid": "a2bf16fb-e93c-48f2-a897-b1c4bff293b0"
         },
         {
           "type": "route",
-          "uuid": "7721520c-ee20-4f8c-b928-2d1f8def17eb"
+          "uuid": "da675e05-6e88-42cc-9803-8e4944836559"
         }
       ]
     },
     {
-      "uuid": "cc75b619-a676-4f93-a075-e410ac87a5af",
+      "uuid": "6622204b-1008-4c54-b3a2-f133e898d22a",
       "name": "challenges",
       "children": [
         {
           "type": "route",
-          "uuid": "969e74fa-7cdf-4ffa-83de-6b7878f23693"
+          "uuid": "822df224-1412-47cf-bdfd-1a4b52e8f39e"
         },
         {
           "type": "route",
-          "uuid": "73e9d9da-6a2b-4d67-8380-c4d69dcf58c8"
+          "uuid": "81ef9ff4-595d-46c1-8d08-f8219938e329"
         }
       ]
     },
     {
-      "uuid": "86705580-f82f-49ef-bae9-4d926b772d06",
+      "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b",
       "name": "feed",
       "children": [
         {
           "type": "route",
-          "uuid": "5770c301-1d81-45a9-a3e7-79655824e405"
+          "uuid": "3c4adc43-658a-4aef-aeb0-a56c6228c72e"
         },
         {
           "type": "folder",
-          "uuid": "a75b561d-5391-4ab3-aeb1-e5faff9c9538"
+          "uuid": "2ae123a9-6cd0-42a5-907d-201751437f81"
         }
       ]
     },
     {
-      "uuid": "f028ed77-707e-4271-85fc-be52749fa6b0",
+      "uuid": "f47fa8ed-1f75-4eec-9786-6d0490df2d8e",
       "name": "courses",
       "children": [
         {
           "type": "route",
-          "uuid": "0334897b-a8ca-4c1e-9ab5-e56637e2b1e8"
+          "uuid": "e3101882-78cd-4ced-b5c4-f5c8104af205"
         },
         {
           "type": "route",
-          "uuid": "a351a506-733f-4c23-b136-221dd4158d18"
+          "uuid": "4988e6de-2353-438d-b767-6bfa863fffa5"
         },
         {
           "type": "folder",
-          "uuid": "c175d768-1edc-4446-98c8-1c61038b4560"
+          "uuid": "a1111de6-a71c-4f9e-b593-b84cb9c42bef"
         },
         {
           "type": "folder",
-          "uuid": "4171b0cb-c2bd-4f79-8f8a-5d3dbea5723f"
+          "uuid": "95afbf34-dbac-4464-b7bd-7c35b0dbe40c"
         },
         {
           "type": "folder",
-          "uuid": "be1d6062-c369-4b99-ae47-190bd619d6b4"
+          "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d"
         }
       ]
     },
     {
-      "uuid": "c30cef28-0d09-451f-932d-300cd41e478b",
+      "uuid": "c6bcf31d-ef65-4f3a-88aa-a948fbecb2ff",
       "name": "users",
       "children": [
         {
           "type": "route",
-          "uuid": "ec5d4349-1597-4af3-b029-a737b5aa8524"
+          "uuid": "2885308c-493e-42c4-a61d-8d2eb0cd55bd"
         },
         {
           "type": "route",
-          "uuid": "0a78fb60-ceb6-4587-87d4-a0d9f315805f"
+          "uuid": "45af24d1-9f4f-4454-bb1f-070b31b62d05"
         },
         {
           "type": "folder",
-          "uuid": "a7c41b57-4b1e-48e4-83da-22fb0ec75046"
+          "uuid": "6fa85af4-cbcf-4f00-9aed-ef0bf463d1a3"
         },
         {
           "type": "folder",
-          "uuid": "7626bc00-af0e-4b55-8540-dabf6e86adcb"
+          "uuid": "80ac5cfc-3c1c-4c55-ac5a-4b65f74acae6"
         },
         {
           "type": "folder",
-          "uuid": "21254458-c0bb-4064-851e-aa06a6986d3d"
+          "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37"
         }
       ]
     },
     {
-      "uuid": "4ebd996b-8e4f-4881-bba1-f27f7575ff96",
+      "uuid": "c49a295d-6711-470d-bd5e-84bbe6714d71",
       "name": "survey-answers",
       "children": []
     },
     {
-      "uuid": "24568455-5440-4b5f-a1e0-5613e3df40a0",
+      "uuid": "15c23dbc-3e43-4234-88e8-2e268b908e94",
       "name": "lessons",
       "children": [
         {
           "type": "route",
-          "uuid": "019d0ac2-46d7-40f8-8bff-3a965f3ac2f7"
+          "uuid": "2d27dc7c-f8f7-4d23-bb62-83ff75d4a3ac"
         },
         {
           "type": "route",
-          "uuid": "0666e90c-f178-4007-9948-9ef640061991"
+          "uuid": "b7e9a5c2-894c-4e13-82af-12d1bdbc076e"
         },
         {
           "type": "route",
-          "uuid": "e63f7cba-95e4-45fb-96fc-db16f97e6056"
+          "uuid": "e913e190-73ed-4df3-ad2b-c8673b548bfd"
         },
         {
           "type": "route",
-          "uuid": "1fabb6c7-2563-448f-b6c8-2107b5418fad"
+          "uuid": "5f6b22a5-a365-4b97-99da-21a692a1dace"
         },
         {
           "type": "route",
-          "uuid": "c62341a8-86cf-48e8-9460-6873b81fe57b"
+          "uuid": "44349528-61fc-4f62-8b75-77526696744c"
         },
         {
           "type": "route",
-          "uuid": "0a748afd-89c3-4ce7-b30e-9c47ee125a20"
+          "uuid": "e3102437-d3eb-4d70-9395-f9ec37ae1ae5"
         },
         {
           "type": "folder",
-          "uuid": "8762e881-7517-4169-8c71-40a46273ac44"
+          "uuid": "7d399ab0-3f14-4a2f-857d-dfa6b7a3cf0c"
         }
       ]
     },
     {
-      "uuid": "23fbaf25-12d5-4bb2-91ef-e6458108795e",
+      "uuid": "99cec565-ccc2-4dad-8419-ca04695886ec",
       "name": "vocabulary",
       "children": [
         {
           "type": "route",
-          "uuid": "56d4892e-61d2-45f1-9620-ed02157abd66"
+          "uuid": "f65eb8be-3d96-484e-9ae1-029d53646521"
         },
         {
           "type": "route",
-          "uuid": "e1127a65-92ed-4f6e-abd5-f74c88c056ee"
+          "uuid": "74fca8c1-94a8-48b8-bba6-44ed69bb473d"
         },
         {
           "type": "route",
-          "uuid": "066fd575-b642-4419-b629-b3bfb320db6b"
+          "uuid": "6bf6a300-495c-4287-91ca-53d8080e6cae"
         }
       ]
     },
     {
-      "uuid": "11af222a-e81b-4062-8377-53fab3166394",
+      "uuid": "d8a5607a-e0ba-4abc-ae23-ce47f0a0ff74",
       "name": "topics",
       "children": [
         {
           "type": "route",
-          "uuid": "97cb06c8-1d80-4585-bc3d-1d07b24ba654"
+          "uuid": "85411a4d-3fcf-404f-b8d5-9ee69f8bb5c8"
         },
         {
           "type": "route",
-          "uuid": "d80a9aa3-83ef-441a-9390-c3b5e6be008f"
+          "uuid": "82817d44-4204-465b-9796-7ed0ef28af8c"
         },
         {
           "type": "route",
-          "uuid": "3c0b377c-8186-4f4f-b808-4e22cb6a5da1"
+          "uuid": "935689f4-aaaf-4eaf-96fa-3b33115e75ea"
         }
       ]
     },
     {
-      "uuid": "08ab0228-8d4d-485f-89aa-86c490949643",
+      "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa",
       "name": "settings",
       "children": [
         {
           "type": "route",
-          "uuid": "d6eaff35-a0a2-4061-a4cd-b0c29f7c00f4"
+          "uuid": "84d83306-3778-463b-9998-c1cff76843a0"
         },
         {
           "type": "route",
-          "uuid": "182f7c26-aa4d-4f41-881f-9553af26e32f"
+          "uuid": "dbff8a53-d881-4a09-9a6f-b19651efed72"
         }
       ]
     },
     {
-      "uuid": "4171b0cb-c2bd-4f79-8f8a-5d3dbea5723f",
+      "uuid": "95afbf34-dbac-4464-b7bd-7c35b0dbe40c",
       "name": "articles",
       "children": [
         {
           "type": "route",
-          "uuid": "f96cfd53-fcdf-4b0d-9ed1-fb2c98ab70fa"
+          "uuid": "6fb26e2d-6d83-4948-8be8-37268e7cfc52"
         },
         {
           "type": "route",
-          "uuid": "5f5e084d-e8f3-4886-9f6e-8d13ca9c432b"
+          "uuid": "9a001fda-9690-4262-835d-1126ec2d6402"
         }
       ]
     },
     {
-      "uuid": "c175d768-1edc-4446-98c8-1c61038b4560",
+      "uuid": "a1111de6-a71c-4f9e-b593-b84cb9c42bef",
       "name": "article-categories",
       "children": [
         {
           "type": "route",
-          "uuid": "ff5024a0-9e0f-40cf-a412-816872278039"
+          "uuid": "6c39c7f2-2fa1-4f41-8aa1-48e6294b8580"
         }
       ]
     },
     {
-      "uuid": "3eaa0abd-45f8-42dc-83e8-078fcd4ba267",
+      "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08",
       "name": "subscription",
       "children": [
         {
           "type": "route",
-          "uuid": "4636a632-ccc3-484d-93de-6a6dd60dd5eb"
+          "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336"
         },
         {
           "type": "route",
-          "uuid": "a5494f11-1b74-4678-8c46-1615cbadd438"
+          "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9"
         },
         {
           "type": "route",
-          "uuid": "3cfe92b2-37a0-483e-b048-e69d6650a75b"
+          "uuid": "7746912a-27a7-4f97-84ce-994a863e5dc8"
         },
         {
           "type": "route",
-          "uuid": "869ba6ba-3232-4187-b5da-5ae385270a6a"
+          "uuid": "0af10595-e759-4b11-843b-8f56ee0eb8fa"
         }
       ]
     },
     {
-      "uuid": "a7c41b57-4b1e-48e4-83da-22fb0ec75046",
+      "uuid": "6fa85af4-cbcf-4f00-9aed-ef0bf463d1a3",
       "name": "following",
       "children": [
         {
           "type": "route",
-          "uuid": "dd67d4aa-9c2e-4572-bb50-9026c11e1ccc"
+          "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e"
         }
       ]
     },
     {
-      "uuid": "7626bc00-af0e-4b55-8540-dabf6e86adcb",
+      "uuid": "80ac5cfc-3c1c-4c55-ac5a-4b65f74acae6",
       "name": "followers",
       "children": [
         {
           "type": "route",
-          "uuid": "babbcc78-5386-4799-9b12-be84a7c3b64f"
+          "uuid": "882e6794-d5ac-471d-9e46-4e6c095f7ab9"
         }
       ]
     },
     {
-      "uuid": "87d9e222-6c13-4a5f-9ea1-dfeb82dbbff0",
+      "uuid": "acdea90d-2d12-42ad-9438-48a1a5808f85",
       "name": "shop-items",
       "children": [
         {
           "type": "route",
-          "uuid": "adc9df98-61ab-469a-8b49-a1cb0cc4621a"
+          "uuid": "4e4014f0-1db8-4e4b-a0e2-423fdb236669"
         },
         {
           "type": "route",
-          "uuid": "0210cc39-ca45-4883-9b8a-326a16468bea"
+          "uuid": "48188b91-a654-48ce-9360-3bd7f95dac6a"
         },
         {
           "type": "route",
-          "uuid": "4de28c3b-1ccf-4a8e-82b3-c7cb04257348"
+          "uuid": "907ffe34-1655-48af-b05a-30529c34d071"
         },
         {
           "type": "route",
-          "uuid": "53a86cd1-9343-48a3-8e63-a6c1181b1374"
+          "uuid": "5d38e027-9944-478a-b024-71bdfa8d72c5"
         }
       ]
     },
     {
-      "uuid": "b03ad8b4-ebef-44f6-bded-a3a654cd8aae",
+      "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086",
       "name": "reset-password",
       "children": [
         {
           "type": "route",
-          "uuid": "5e013488-6019-47b5-aa84-afb9c28a917c"
+          "uuid": "dc008a74-caa7-4ca0-b77e-e25fbae90187"
         }
       ]
     },
     {
-      "uuid": "978de4e3-05c9-4288-a1cf-7c914f0f4e7c",
+      "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2",
       "name": "change-password",
       "children": [
         {
           "type": "route",
-          "uuid": "c91a2c33-e715-4650-97b9-382487729371"
+          "uuid": "ae22ab21-d796-41ae-928a-8fc3ca27ba5c"
         }
       ]
     },
     {
-      "uuid": "7d6b2f74-c6a9-468d-8ad1-898c6971b730",
+      "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27",
       "name": "login",
       "children": [
         {
           "type": "route",
-          "uuid": "e1e27090-230c-4676-9cc0-2a95313687f1"
+          "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2"
         }
       ]
     },
     {
-      "uuid": "1919606d-7cfd-4ce7-adcb-8d9aa5aae927",
+      "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04",
       "name": "signup",
       "children": [
         {
           "type": "route",
-          "uuid": "0d5b8cf2-99c6-4e8b-ac0a-9fdfc49aa1c6"
+          "uuid": "df7c052b-be1d-4b1f-9cdb-87653d9e0fb3"
         }
       ]
     },
     {
-      "uuid": "8f81a625-6b81-4659-b73f-e737d0b2e88f",
+      "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a",
       "name": "notices",
       "children": [
         {
           "type": "route",
-          "uuid": "97547eea-f244-4ce6-a69e-125588e56a03"
+          "uuid": "21a68375-f61f-40d2-8f7c-776b699c9087"
         },
         {
           "type": "route",
-          "uuid": "b348f9f8-2cd5-4e48-83f3-9beb8ae57d69"
+          "uuid": "1cda3def-72a9-4f11-b377-986b57b1dd98"
         }
       ]
     },
     {
-      "uuid": "5a2ffd26-f157-4b19-ba95-860db4b39484",
+      "uuid": "db6b612f-60da-498f-990f-bd4e8e19b3ea",
       "name": "study-map",
       "children": [
         {
           "type": "route",
-          "uuid": "2138b529-f427-4333-ad4f-92d711bc9a35"
+          "uuid": "a185137e-1fde-416c-ae4f-be2b13c19ae0"
         },
         {
           "type": "route",
-          "uuid": "8e45fdc1-b353-44bf-9102-eae7dc343925"
+          "uuid": "e02d91b0-91e2-4e0f-a40f-5559cd041f89"
         },
         {
           "type": "folder",
-          "uuid": "c2490766-23ff-4a2a-ad68-fe70372b2746"
+          "uuid": "f197752d-9f43-4223-a79f-a7b55ff21923"
         }
       ]
     },
     {
-      "uuid": "1f1eb26d-a595-47bf-bc76-10852cd15743",
+      "uuid": "9c827333-65eb-492a-a8ac-5c3fb9df318b",
       "name": "user",
       "children": [
         {
           "type": "route",
-          "uuid": "d468c34e-25ff-4a2a-9fd8-874a7c04ec1b"
+          "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752"
         },
         {
           "type": "folder",
-          "uuid": "8f81a625-6b81-4659-b73f-e737d0b2e88f"
+          "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a"
         },
         {
           "type": "folder",
-          "uuid": "4ebd996b-8e4f-4881-bba1-f27f7575ff96"
+          "uuid": "c49a295d-6711-470d-bd5e-84bbe6714d71"
         },
         {
           "type": "folder",
-          "uuid": "cc75b619-a676-4f93-a075-e410ac87a5af"
+          "uuid": "6622204b-1008-4c54-b3a2-f133e898d22a"
         },
         {
           "type": "folder",
-          "uuid": "1fcf8eaa-b8a3-4792-b38a-1bd4871af4cc"
+          "uuid": "b0107feb-16c1-4900-a3d4-77596a330a78"
         },
         {
           "type": "folder",
-          "uuid": "564c9a7b-c85a-4c49-8da6-5039a67a225a"
+          "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f"
         },
         {
           "type": "folder",
-          "uuid": "3ccb669b-7c05-4e68-aa1c-abba5304404c"
+          "uuid": "de246f00-7ef6-4507-96b4-b3685fe8f4c0"
         },
         {
           "type": "folder",
-          "uuid": "200b8433-2033-4341-b281-42dff331cecc"
+          "uuid": "e247bd52-8ca0-4096-836b-7f210530a827"
         },
         {
           "type": "folder",
-          "uuid": "87d9e222-6c13-4a5f-9ea1-dfeb82dbbff0"
+          "uuid": "acdea90d-2d12-42ad-9438-48a1a5808f85"
         },
         {
           "type": "folder",
-          "uuid": "08ab0228-8d4d-485f-89aa-86c490949643"
+          "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa"
         },
         {
           "type": "folder",
-          "uuid": "3eaa0abd-45f8-42dc-83e8-078fcd4ba267"
+          "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
         },
         {
           "type": "folder",
-          "uuid": "86705580-f82f-49ef-bae9-4d926b772d06"
+          "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b"
         },
         {
           "type": "folder",
-          "uuid": "e11ae7b6-8422-4399-88cf-4c1a482b93dc"
+          "uuid": "f920e467-0bc7-4410-a15e-538eee401287"
         }
       ]
     },
     {
-      "uuid": "77ce5ee6-b4ef-40aa-9472-c8600770f4ac",
+      "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847",
       "name": "refresh-token",
       "children": [
         {
           "type": "route",
-          "uuid": "1a900ba7-4dee-4942-9516-373141c3f0c7"
+          "uuid": "806ea649-2309-46bc-9995-b59112e0564b"
         }
       ]
     },
     {
-      "uuid": "564c9a7b-c85a-4c49-8da6-5039a67a225a",
+      "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f",
       "name": "account-setup",
       "children": [
         {
           "type": "route",
-          "uuid": "3e062246-0033-40b7-becd-40bd3acffee4"
+          "uuid": "d53d0f9c-9d03-4468-b8a8-ff8ba489518e"
         }
       ]
     },
     {
-      "uuid": "3ccb669b-7c05-4e68-aa1c-abba5304404c",
+      "uuid": "de246f00-7ef6-4507-96b4-b3685fe8f4c0",
       "name": "courses",
       "children": [
         {
           "type": "route",
-          "uuid": "299ad045-0e48-4bc9-a637-03dd4166895c"
+          "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093"
         },
         {
           "type": "route",
-          "uuid": "c578e931-305f-4cdc-8062-6ad9191fe978"
+          "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2"
         },
         {
           "type": "route",
-          "uuid": "b50268a7-2735-4327-9cab-f0aa13d54e20"
+          "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8"
         },
         {
           "type": "route",
-          "uuid": "47593b1b-fa8f-4492-a53d-12eb76ffbd3e"
+          "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9"
         },
         {
           "type": "folder",
-          "uuid": "24568455-5440-4b5f-a1e0-5613e3df40a0"
+          "uuid": "15c23dbc-3e43-4234-88e8-2e268b908e94"
         },
         {
           "type": "folder",
-          "uuid": "23fbaf25-12d5-4bb2-91ef-e6458108795e"
+          "uuid": "99cec565-ccc2-4dad-8419-ca04695886ec"
         },
         {
           "type": "folder",
-          "uuid": "11af222a-e81b-4062-8377-53fab3166394"
+          "uuid": "d8a5607a-e0ba-4abc-ae23-ce47f0a0ff74"
         },
         {
           "type": "folder",
-          "uuid": "5a2ffd26-f157-4b19-ba95-860db4b39484"
+          "uuid": "db6b612f-60da-498f-990f-bd4e8e19b3ea"
         }
       ]
     },
     {
-      "uuid": "8762e881-7517-4169-8c71-40a46273ac44",
+      "uuid": "7d399ab0-3f14-4a2f-857d-dfa6b7a3cf0c",
       "name": "feedback",
       "children": [
         {
           "type": "route",
-          "uuid": "804fdb1e-4463-429f-90cc-8ada0f0d45a9"
+          "uuid": "6121a74c-1207-407f-8d54-38b12aa93cf3"
         }
       ]
     },
     {
-      "uuid": "200b8433-2033-4341-b281-42dff331cecc",
+      "uuid": "e247bd52-8ca0-4096-836b-7f210530a827",
       "name": "following",
       "children": [
         {
           "type": "route",
-          "uuid": "e0e8c631-fd9b-4808-9bf7-1b8817e54bed"
+          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
         },
         {
           "type": "route",
-          "uuid": "7b5c7136-9168-43cd-aafb-b213c8bfe658"
+          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
         }
       ]
     },
     {
-      "uuid": "a75b561d-5391-4ab3-aeb1-e5faff9c9538",
+      "uuid": "2ae123a9-6cd0-42a5-907d-201751437f81",
       "name": "reactions",
       "children": [
         {
           "type": "route",
-          "uuid": "ebff78fc-a042-48f6-aaba-113e483a7470"
+          "uuid": "021018c5-71b2-4f34-9a74-758e4a4b179b"
         },
         {
           "type": "route",
-          "uuid": "b13149c6-4820-4fb3-981e-bf258f60b8c2"
+          "uuid": "a6a360c5-6def-4ddb-a729-b71cb716a320"
         }
       ]
     },
     {
-      "uuid": "c2490766-23ff-4a2a-ad68-fe70372b2746",
+      "uuid": "f197752d-9f43-4223-a79f-a7b55ff21923",
       "name": "active",
       "children": [
         {
           "type": "route",
-          "uuid": "dd96954d-2f2f-4bb3-8ee0-fe417bf3eb94"
+          "uuid": "e779e53e-8771-4ec2-b5cc-dad4c1772b3f"
         }
       ]
     },
     {
-      "uuid": "9c369aaa-220e-4ee4-a506-472386dacfbd",
+      "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41",
       "name": "change-email",
       "children": [
         {
           "type": "route",
-          "uuid": "07e86276-4049-4b46-a24c-24772767c630"
+          "uuid": "9e9d59f8-b1a7-45a5-9725-964c73c6308a"
         }
       ]
     },
     {
-      "uuid": "66c883fb-a96e-4708-9e70-35e0e5035dec",
+      "uuid": "ed428752-0203-4289-b380-d945e8ff0a31",
       "name": "change-email-confirm",
       "children": [
         {
           "type": "route",
-          "uuid": "d9a16b34-ff71-4cb9-83bc-9c026ec169c4"
+          "uuid": "050e4243-cfc2-4fb1-a9ee-f4e42bd67855"
         }
       ]
     },
     {
-      "uuid": "e11ae7b6-8422-4399-88cf-4c1a482b93dc",
+      "uuid": "f920e467-0bc7-4410-a15e-538eee401287",
       "name": "recommended-courses",
       "children": [
         {
           "type": "route",
-          "uuid": "bf6ac875-6fe0-4441-9ebb-c31d93efd9d4"
+          "uuid": "95802a78-05a2-434c-a533-a46d1d93b121"
         }
       ]
     },
     {
-      "uuid": "be1d6062-c369-4b99-ae47-190bd619d6b4",
+      "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d",
       "name": "chapters",
       "children": [
         {
           "type": "route",
-          "uuid": "59d34ac2-d64f-470c-9c65-6c60005b8f09"
+          "uuid": "6302d919-26dc-4058-900c-1f1ae5fb5498"
         }
       ]
     },
     {
-      "uuid": "bca60b53-1e5f-46cc-bde0-7e968b4306c3",
+      "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632",
       "name": "certificate",
       "children": [
         {
           "type": "route",
-          "uuid": "7e9a4d77-5b5e-4c2e-8f1e-bc7a1b2c3d4e"
+          "uuid": "17bb1805-eed8-4205-9b12-b5f5e977e259"
         }
       ]
     },
     {
-      "uuid": "1a7920fa-2755-433b-b028-f32ea886416a",
+      "uuid": "3d3dc421-69b3-4e91-96fa-edcde6d6c37f",
       "name": "study-plan",
       "children": [
         {
           "type": "route",
-          "uuid": "73b30876-f484-42a2-99ef-1a6b04a5f136"
+          "uuid": "5869020b-3a12-4ec1-acfb-57f2c1b939a4"
         }
       ]
     },
     {
-      "uuid": "363ddfe8-7de4-4441-81ee-8f03aeb54308",
+      "uuid": "b4268f8a-099c-41ee-bd66-47ddf27ed4a4",
       "name": "study-sessions",
       "children": [
         {
           "type": "route",
-          "uuid": "5adc6171-64ce-4a75-b32d-3bf7d318b5ea"
+          "uuid": "e2748d73-e8ca-494a-ad47-390158fc04fa"
         },
         {
           "type": "route",
-          "uuid": "f547b322-3bf8-44a3-8cc4-8c9d6e6e9e35"
+          "uuid": "60e3d0be-74eb-4b88-af9c-f9e29fc76bf3"
         }
       ]
     },
     {
-      "uuid": "21254458-c0bb-4064-851e-aa06a6986d3d",
+      "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37",
       "name": "me",
       "children": [
         {
           "type": "folder",
-          "uuid": "363ddfe8-7de4-4441-81ee-8f03aeb54308"
+          "uuid": "b4268f8a-099c-41ee-bd66-47ddf27ed4a4"
         },
         {
           "type": "folder",
-          "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
+          "uuid": "3d3dc421-69b3-4e91-96fa-edcde6d6c37f"
         },
         {
           "type": "folder",
-          "uuid": "539f09c3-dac2-4600-847f-52d4a335dd54"
+          "uuid": "0c3a7810-22e1-47f8-be43-46fed3a0ad1c"
         }
       ]
     },
     {
-      "uuid": "1e444254-6500-4de5-8628-1f751ab1b77d",
+      "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81",
       "name": "study-blocks",
       "children": [
         {
           "type": "route",
-          "uuid": "1c8e5f18-5abc-4b9f-a02f-2b6fa4ad9b45"
+          "uuid": "b367f1bb-e033-4935-be62-120bb35a541e"
         }
       ]
     },
     {
-      "uuid": "539f09c3-dac2-4600-847f-52d4a335dd54",
+      "uuid": "0c3a7810-22e1-47f8-be43-46fed3a0ad1c",
       "name": "leaderboard",
       "children": [
         {
           "type": "route",
-          "uuid": "1b5a1842-1cfd-461f-a1b1-7b42002f9d9e"
+          "uuid": "9673fae7-1e27-407b-af07-68bb09517b38"
         }
       ]
     }
@@ -4460,51 +4452,51 @@
   "rootChildren": [
     {
       "type": "folder",
-      "uuid": "1f1eb26d-a595-47bf-bc76-10852cd15743"
+      "uuid": "9c827333-65eb-492a-a8ac-5c3fb9df318b"
     },
     {
       "type": "folder",
-      "uuid": "c30cef28-0d09-451f-932d-300cd41e478b"
+      "uuid": "c6bcf31d-ef65-4f3a-88aa-a948fbecb2ff"
     },
     {
       "type": "folder",
-      "uuid": "f028ed77-707e-4271-85fc-be52749fa6b0"
+      "uuid": "f47fa8ed-1f75-4eec-9786-6d0490df2d8e"
     },
     {
       "type": "folder",
-      "uuid": "b03ad8b4-ebef-44f6-bded-a3a654cd8aae"
+      "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086"
     },
     {
       "type": "folder",
-      "uuid": "978de4e3-05c9-4288-a1cf-7c914f0f4e7c"
+      "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2"
     },
     {
       "type": "folder",
-      "uuid": "9c369aaa-220e-4ee4-a506-472386dacfbd"
+      "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41"
     },
     {
       "type": "folder",
-      "uuid": "66c883fb-a96e-4708-9e70-35e0e5035dec"
+      "uuid": "ed428752-0203-4289-b380-d945e8ff0a31"
     },
     {
       "type": "folder",
-      "uuid": "7d6b2f74-c6a9-468d-8ad1-898c6971b730"
+      "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27"
     },
     {
       "type": "folder",
-      "uuid": "1919606d-7cfd-4ce7-adcb-8d9aa5aae927"
+      "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04"
     },
     {
       "type": "folder",
-      "uuid": "77ce5ee6-b4ef-40aa-9472-c8600770f4ac"
+      "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847"
     },
     {
       "type": "folder",
-      "uuid": "bca60b53-1e5f-46cc-bde0-7e968b4306c3"
+      "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632"
     },
     {
       "type": "folder",
-      "uuid": "1e444254-6500-4de5-8628-1f751ab1b77d"
+      "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81"
     }
   ],
   "callbacks": [

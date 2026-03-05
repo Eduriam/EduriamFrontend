@@ -3,7 +3,6 @@ const config = {
     "/change-email-request",
     "/challenges",
     "/favorites",
-    "/feed",
     "/lessons",
     "/lessons-create",
     "/manage-subscription",

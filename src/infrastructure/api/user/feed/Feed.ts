@@ -1,35 +1,17 @@
+import { AvatarDefinition } from "components/avatar/Avatar";
+
 import { Reaction } from "./reactions/Reactions";
 
-export type FeedItem = FeedArticle | FeedVideo | FeedMessage;
-
-export interface FeedArticle {
-  id: Id;
-  seenByUser?: boolean;
-  title: string;
-  imageUrl: string;
-  link: string;
-  publishedAt: Date;
-  type: "article";
-}
-
-export interface FeedVideo {
-  id: Id;
-  seenByUser?: boolean;
-  title: string;
-  videoId: Id;
-  publishedAt: Date;
-  type: "video";
-}
+export type FeedItem = FeedMessage;
 
 export interface FeedMessage {
   id: Id;
   seenByUser?: boolean;
   author: string;
+  avatarDefinition: AvatarDefinition;
   message: MessageType;
-  authorAvatarUrl: string;
   reactions: Array<Reaction>;
   publishedAt: Date;
-  type: "message";
 }
 
 export type MessageType =
