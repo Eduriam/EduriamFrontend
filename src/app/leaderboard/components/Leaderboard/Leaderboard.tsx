@@ -6,11 +6,10 @@ import Stack from "@mui/material/Stack";
 import type { AvatarDefinition } from "components/avatar/Avatar";
 
 import LeaderboardListItem from "../LeaderboardListItem/LeaderboardListItem";
-import LeaderboardZoneDivider, {
-  type LeaderboardZoneVariant,
-} from "../LeaderboardZoneDivider/LeaderboardZoneDivider";
+import LeaderboardZoneDivider from "../LeaderboardZoneDivider/LeaderboardZoneDivider";
 
 export interface LeaderboardUser {
+  id: string;
   rank: number;
   name: string;
   avatarDefinition: AvatarDefinition;
@@ -28,6 +27,10 @@ export interface ILeaderboard {
   promotionLabel: string;
   neutralLabel: string;
   demotionLabel: string;
+  /** User id for highlighted row */
+  currentUserId?: string;
+  /** Optional data-test id for highlighted user row */
+  currentUserDataTest?: string;
 }
 
 const Leaderboard: React.FC<ILeaderboard> = ({
@@ -37,49 +40,58 @@ const Leaderboard: React.FC<ILeaderboard> = ({
   promotionLabel,
   neutralLabel,
   demotionLabel,
+  currentUserId,
+  currentUserDataTest,
 }) => {
   const promotionUsers = users.slice(0, promotionEndIndex);
   const neutralUsers = users.slice(promotionEndIndex, neutralEndIndex);
   const demotionUsers = users.slice(neutralEndIndex);
 
-  const renderZone = (
-    zoneUsers: LeaderboardUser[],
-    dividerLabel: string,
-    dividerVariant: LeaderboardZoneVariant,
-  ) => {
+  const renderUsers = (zoneUsers: LeaderboardUser[]) => {
     if (zoneUsers.length === 0) {
       return null;
     }
+
     return (
-      <Box key={dividerVariant}>
-        <LeaderboardZoneDivider label={dividerLabel} variant={dividerVariant} />
-        <Stack component="ul" sx={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {zoneUsers.map((user) => (
-            <Box component="li" key={user.rank}>
+      <Stack component="ul" sx={{ listStyle: "none", p: 0, m: 0 }}>
+        {zoneUsers.map((user) => {
+          const active = user.id === currentUserId;
+
+          return (
+            <Box component="li" key={user.id}>
               <LeaderboardListItem
                 rank={user.rank}
                 name={user.name}
                 avatarDefinition={user.avatarDefinition}
                 xp={user.xp}
+                active={active}
+                data-test={active ? currentUserDataTest : undefined}
               />
             </Box>
-          ))}
-        </Stack>
-      </Box>
+          );
+        })}
+      </Stack>
     );
   };
 
+  const demotionDividerLabel = demotionLabel || neutralLabel;
+
   return (
     <Box component="section" sx={{ width: "100%" }}>
-      {promotionUsers.length > 0 && (
-        <>{renderZone(promotionUsers, promotionLabel, "promotion")}</>
+      {renderUsers(promotionUsers)}
+
+      {promotionLabel && neutralUsers.length > 0 && (
+        <LeaderboardZoneDivider label={promotionLabel} variant="promotion" />
       )}
-      {neutralUsers.length > 0 && (
-        <>{renderZone(neutralUsers, neutralLabel, "neutral")}</>
+      {renderUsers(neutralUsers)}
+
+      {demotionDividerLabel && demotionUsers.length > 0 && (
+        <LeaderboardZoneDivider
+          label={demotionDividerLabel}
+          variant={demotionLabel ? "demotion" : "neutral"}
+        />
       )}
-      {demotionUsers.length > 0 && (
-        <>{renderZone(demotionUsers, demotionLabel, "demotion")}</>
-      )}
+      {renderUsers(demotionUsers)}
     </Box>
   );
 };

@@ -25,6 +25,7 @@ const PAGE_URLS: Record<string, string> = {
   "certificate-page": `${BASE_URL}/certificates/test-course-certificate`,
   "premium-page": `${BASE_URL}/subscription`,
   "study-plan-page": `${BASE_URL}/study-plan`,
+  "leaderboard-page": `${BASE_URL}/leaderboard`,
 };
 
 type DefinedPageEntityConfig = {
@@ -69,7 +70,7 @@ async function navigateToOnboardingPage(
 
   if (page.url().includes("/welcome")) {
     throw new Error(
-      "Landed on /welcome instead of /onboarding — auth may have failed (e.g. getCurrentUser rejected). Check that test user is in localStorage.",
+      "Landed on /welcome instead of /onboarding - auth may have failed (e.g. getCurrentUser rejected). Check that test user is in localStorage.",
     );
   }
 }

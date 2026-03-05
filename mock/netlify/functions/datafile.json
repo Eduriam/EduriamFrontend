@@ -3165,7 +3165,7 @@
       "responses": [
         {
           "uuid": "6f8eeef6-717f-43fa-9b66-4b21d29ce172",
-          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  },\n  \"selectedCourse\":{\n     \"id\":\"{{faker 'string.uuid'}}\",\n     \"name\":\"English Course\",\n     \"language\":\"en\"\n  }\n}",
+          "body": "{\n  \"id\":\"test-user\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"lastSessionDate\":\"{{faker 'date.recent'}}\",\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  },\n  \"selectedCourse\":{\n     \"id\":\"{{faker 'string.uuid'}}\",\n     \"name\":\"English Course\",\n     \"language\":\"en\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -3757,6 +3757,37 @@
         }
       ],
       "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1b5a1842-1cfd-461f-a1b1-7b42002f9d9e",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/leaderboard",
+      "responses": [
+        {
+          "uuid": "56dac8bc-153e-4aa4-84f1-d1673270f679",
+          "body": "{\n  \"currentLeague\": \"gold\",\n  \"timeLeft\": \"PT6H30M\",\n  \"zones\": {\n    \"promotionZoneEndIndex\": 5,\n    \"demotionZoneStartIndex\": 15\n  },\n  \"users\": {{#if (eq (getGlobalVar 'MOCKOON_LEADERBOARD_STARTED' null 'true') 'true')}}[\n  {\n    \"id\": \"user-1\",\n    \"rank\": 1,\n    \"name\": \"Ava Lane\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 212\n  },\n  {\n    \"id\": \"user-2\",\n    \"rank\": 2,\n    \"name\": \"Liam Frost\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 204\n  },\n  {\n    \"id\": \"user-3\",\n    \"rank\": 3,\n    \"name\": \"Noah Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 196\n  },\n  {\n    \"id\": \"user-4\",\n    \"rank\": 4,\n    \"name\": \"Mia Cole\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 188\n  },\n  {\n    \"id\": \"user-5\",\n    \"rank\": 5,\n    \"name\": \"Leo Finch\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 180\n  },\n  {\n    \"id\": \"user-6\",\n    \"rank\": 6,\n    \"name\": \"Ella Park\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 172\n  },\n  {\n    \"id\": \"user-7\",\n    \"rank\": 7,\n    \"name\": \"Ethan Moss\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 164\n  },\n  {\n    \"id\": \"user-8\",\n    \"rank\": 8,\n    \"name\": \"Olivia Hart\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 156\n  },\n  {\n    \"id\": \"user-9\",\n    \"rank\": 9,\n    \"name\": \"Lucas Stone\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 148\n  },\n  {\n    \"id\": \"user-10\",\n    \"rank\": 10,\n    \"name\": \"Emma Ford\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 140\n  },\n  {\n    \"id\": \"user-11\",\n    \"rank\": 11,\n    \"name\": \"Mason Bell\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 132\n  },\n  {\n    \"id\": \"user-12\",\n    \"rank\": 12,\n    \"name\": \"Sophia Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 124\n  },\n  {\n    \"id\": \"test-user\",\n    \"rank\": 13,\n    \"name\": \"User Name\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 116\n  },\n  {\n    \"id\": \"user-14\",\n    \"rank\": 14,\n    \"name\": \"Henry Lake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 108\n  },\n  {\n    \"id\": \"user-15\",\n    \"rank\": 15,\n    \"name\": \"Amelia Pike\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 100\n  },\n  {\n    \"id\": \"user-16\",\n    \"rank\": 16,\n    \"name\": \"Jack Hill\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 92\n  },\n  {\n    \"id\": \"user-17\",\n    \"rank\": 17,\n    \"name\": \"Isla West\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 84\n  },\n  {\n    \"id\": \"user-18\",\n    \"rank\": 18,\n    \"name\": \"Daniel Grove\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 76\n  },\n  {\n    \"id\": \"user-19\",\n    \"rank\": 19,\n    \"name\": \"Grace Mills\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 68\n  },\n  {\n    \"id\": \"user-20\",\n    \"rank\": 20,\n    \"name\": \"Owen Blake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 60\n  }\n]{{else}}[]{{/if}},\n  \"hasStartedWeek\": {{#if (eq (getGlobalVar 'MOCKOON_LEADERBOARD_STARTED' null 'true') 'true')}}true{{else}}false{{/if}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
       "streamingMode": null,
       "streamingInterval": 0
     }
@@ -4398,6 +4429,10 @@
         {
           "type": "folder",
           "uuid": "1a7920fa-2755-433b-b028-f32ea886416a"
+        },
+        {
+          "type": "folder",
+          "uuid": "539f09c3-dac2-4600-847f-52d4a335dd54"
         }
       ]
     },
@@ -4408,6 +4443,16 @@
         {
           "type": "route",
           "uuid": "1c8e5f18-5abc-4b9f-a02f-2b6fa4ad9b45"
+        }
+      ]
+    },
+    {
+      "uuid": "539f09c3-dac2-4600-847f-52d4a335dd54",
+      "name": "leaderboard",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1b5a1842-1cfd-461f-a1b1-7b42002f9d9e"
         }
       ]
     }

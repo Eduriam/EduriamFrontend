@@ -1,16 +1,17 @@
-﻿{
+{
+  "404": {
+    "header": "Stránka nebyla nalezena",
+    "backToHome": "Zpět na hlavní stránku"
+  },
   "project-name": "Linguino",
   "loading": "Načítání...",
-
   "open-menu": "Otevřít menu",
   "user-avatar-circle-tooltip": "Hurá! Splnili jste svůj denní cíl!",
   "login": "Přihlášení",
   "signup": "Registrace",
-
   "menu": "Menu",
   "groups": "Skupiny",
   "categories": "Kategorie",
-
   "studying": {
     "study": "Učit se",
     "studyLesson": "Učit se lekci",
@@ -21,10 +22,8 @@
     "grammar": "Gramatika",
     "reading": "Čtení",
     "listening": "Poslech",
-
     "premiumStudying": "Učení zamknuto"
   },
-
   "exercise": {
     "right": "Správně!",
     "wrong": "Špatně!",
@@ -35,16 +34,12 @@
     "check": "Zkontrolovat",
     "continue": "Pokračovat",
     "topic": "Téma",
-
     "newVocabulary": "Nové slovíčko!",
     "iKnowWord": "Toto slovíčko už umím!",
-
     "newGrammar": "Nová gramatika!",
     "iKnowGrammar": "Tuto gramatiku už umím!",
-
     "explanationTitle": "Vysvětlení"
   },
-
   "reportStudyBlock": {
     "header": "Nahlásit problém",
     "problemTypePlaceholder": "Vyberte typ problému",
@@ -75,7 +70,6 @@
       }
     }
   },
-
   "exercises": {
     "multipleChoice": {
       "assignmentTitle": "Vyber správnou odpověď"
@@ -114,7 +108,6 @@
       "assignmentTitle": "Spoj odpovídající dvojice!"
     }
   },
-
   "studySessionStats": {
     "title": "Učení dokončeno!",
     "xpGained": "XP bodů",
@@ -122,7 +115,6 @@
     "successRate": "úspěšnost",
     "newConcepts": "konceptů"
   },
-
   "other": {
     "other": "Ostatní",
     "subscription": "Předplatné",
@@ -135,11 +127,9 @@
     "readLess": "Zobrazit méně",
     "submit": "Odeslat"
   },
-
   "calendar": {
     "calendar": "Kalendář"
   },
-
   "navigation": {
     "home": "Domů",
     "shop": "Obchod",
@@ -147,7 +137,6 @@
     "feed": "Novinky",
     "profile": "Profil",
     "premium": "Premium",
-
     "levels": "Úrovně",
     "lessons": "Lekce",
     "favorites": "Oblíbené",
@@ -160,23 +149,17 @@
     "bugReport": "Nahlášení chyby",
     "settings": "Nastavení",
     "logout": "Odhlásit",
-
     "followers": "Sledující",
     "following": "Sleduje",
-
     "continue": "Pokračovat",
     "open": "Otevřít",
-
     "topicSelection": "Výběr témat kurzu",
     "manageSubscription": "Spravovat předplatné",
-
     "noCollectionsCreated": "Zatím nemáte žádné vlastní balíčky slovíček."
   },
-
   "accountSetup": {
     "selectCourse": "Vybrat kurz"
   },
-
   "levels": [
     "Začátečník",
     "Pokročilý začátečník",
@@ -185,7 +168,6 @@
     "Velmi pokročilý",
     "Expert"
   ],
-
   "lessons": {
     "speaking": "Lekce mluvení",
     "pronunciation": "Lekce výslovnosti",
@@ -194,21 +176,20 @@
     "reading": "Lekce čtení",
     "listening": "Lekce poslechu"
   },
-
   "shop": {
     "buy": "Koupit",
     "equip": "Zapnout",
     "unequip": "Vypnout",
-    "categories": ["Profilové obrázky"],
+    "categories": [
+      "Profilové obrázky"
+    ],
     "bought": "koupeno",
     "equipped": "zapnuto"
   },
-
   "feedback": {
     "header": "Našli jste chybu? Něco vám nevyhovuje? Máte nápad na zlepšení? Dejte nám vědět! Každou zprávu si čteme :)",
     "thanks": "Děkujeme za zpětnou vazbu!"
   },
-
   "home": {
     "learnTab": "Učení",
     "reviewTab": "Opakování",
@@ -222,12 +203,10 @@
     "allLessonsReviewedTitle": "Všechny lekce zopakovány!",
     "allLessonsReviewedSubtitle": "Vrať se později."
   },
-
   "review": {
     "reviewXpInfo": "Opakování ti dá 2x více XP!",
     "skipForToday": "Pro dnešek přeskočit"
   },
-
   "manageSubscription": {
     "current": "Momentální předplatné",
     "nextPayment": "Další platba",
@@ -260,11 +239,9 @@
       "paid": "zaplaceno"
     }
   },
-
   "challenges": {
     "monthlyChallenge": "Měsíční výzva"
   },
-
   "courses": {
     "recommended": "Doporučené kurzy",
     "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz",
@@ -314,7 +291,6 @@
     "manageCourses": "Spravovat kurzy",
     "close": "Zavřít"
   },
-
   "leaderboard": {
     "league": "Liga",
     "leagues": {
@@ -328,24 +304,22 @@
       "sapphire": "Safírová",
       "diamond": "Diamantová",
       "mythic": "Mýtická"
-    }
+    },
+    "notStartedMessage": "Dokončete jakoukoli lekci nebo opakování pro připojení do ligy",
+    "title": "Žebříček"
   },
-
   "achievements": {
     "achievements": "Ocenění",
     "collectReward": "Sebrat odměnu"
   },
-
   "feed": {
     "earlier": "dříve",
-
     "messages": {
       "reached_level_10": "Dosáhnul úrovně 10!",
       "reached_level_50": "Dosáhnul úrovně 50!",
       "reached_level_100": "Dosáhnul úrovně 100!"
     }
   },
-
   "userLessons": {
     "vocabulary": "Slovíčka",
     "lessonName": "Název balíčku",
@@ -356,14 +330,11 @@
     "removeLesson": "Odstranit balíček",
     "removeDialogText": "Opravdu chcete smazat balíček? Tato akce se nedá vrátit.",
     "emptyLesson": "V balíčku zatím nejsou žádná slovíčka.",
-
     "addVocabulary": "Přidat slovíčka",
     "searchVocabulary": "Vyhledat slovíčka",
     "noWordsFound": "Nebyla nalezena žádná slovíčka",
-
     "wordAdded": "Slovíčko přidáno"
   },
-
   "userActions": {
     "delete": "Smazat",
     "cancel": "Zrušit",
@@ -371,49 +342,34 @@
     "create": "Vytvořit",
     "continue": "Pokračovat"
   },
-
   "userProfile": {
     "level": "Úroveň",
     "followers": "Sledující",
     "following": "Sleduje",
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
-
     "stats": "Statistiky",
-
     "streak": "Denní řada"
   },
-
   "topics": {
     "main": "Hlavní témata",
     "extra": "Další témata"
   },
-
   "notices": {
     "achievementGet": "Dosáhli jste úspěchu!",
     "freeTrialEnded": "Zkušební období předplatného skončilo",
     "extendSubscription": "Prodloužit předplatné",
     "continueWithFreeAccount": "Pokračovat s plánem zdarma",
-
     "rewardGet": "Získali jste odměnu!",
     "coins": "penízků",
-
     "advertisementNote": "Díky reklamám můžeme poskytovat aplikaci zdarma.",
-
     "studySessionEnded": "Dobrá práce! Učení dokončeno.",
     "rightAnswers": "Správné odpovědi",
     "wrongAnswers": "Špatné odpovědi",
-
     "freeTrialOfferHeader": "Vyzkoušejte premium na 14 dní zdarma!",
     "tryForFree": "Vyzkoušet zdarma",
     "declineFreeTrialOffer": "Nemám zájem"
   },
-
-  "404": {
-    "header": "Stránka nebyla nalezena",
-    "backToHome": "Zpět na hlavní stránku"
-  },
-
   "payment": {
     "monthlySubscription": "Měsíční předplatné",
     "buySubscription": "Koupit předplatné",
@@ -422,12 +378,10 @@
     "subscriptionDisclaimer": "Částka vám bude automaticky naúčtována jednou za měsíc počínaje dneškem. Předplatné můžete kdykoliv zrušit v nastavení.",
     "iWantToReceiveInvoice": "Chci dostat fakturu"
   },
-
   "subscribed": {
     "thankYou": "Děkujeme!",
     "subscriptionActivated": "Vaše předplatné bylo aktivováno!"
   },
-
   "subscription": {
     "subscriptionHeader": "Získejte premium!",
     "valuePropositions": [
@@ -437,7 +391,6 @@
       "Žádné reklamy při učení"
     ],
     "getSubscription": "Získat premium",
-
     "subscribedHeader": "Váš premium účet",
     "subscribedFeaturesHeader": "Můžete naplno využívat tyto funkce",
     "subscribedFeatures": [
@@ -448,18 +401,19 @@
     ],
     "manageSubscription": "Spravovat předplatné"
   },
-
   "search": {
     "title": "Vyhledávání",
-    "categories": ["Uživatelé", "Lekce", "Slovíčka"],
+    "categories": [
+      "Uživatelé",
+      "Lekce",
+      "Slovíčka"
+    ],
     "noWordsFound": "Nebyla nalezena žádná slovíčka.",
     "noLessonsFound": "Nebyly nalezeny žádné lekce.",
     "noUsersFound": "Nebyli nalezeni žádní uživatelé."
   },
-
   "freeTrialEndNotice": {
     "title": "Prodlužte si předplatné a užívejte si tyto výhody",
-
     "advancedVocabulary": "Učte se pokročilá slovíčka",
     "customVocabulary": "Vytvářejte vlastní balíčky slovíček",
     "advancedExercises": "Dělejte pokročilé lekce",

@@ -1,14 +1,17 @@
 "use client";
 
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import ArrowDropUpRoundedIcon from "@mui/icons-material/ArrowDropUpRounded";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 export type LeaderboardZoneVariant = "promotion" | "neutral" | "demotion";
 
 export interface ILeaderboardZoneDivider {
-  /** Optional label shown above or beside the divider (e.g. "Promotion zone") */
+  /** Optional label shown for zone divider (e.g. "Promotion zone") */
   label: string;
-  /** Zone variant for optional styling (promotion = positive, demotion = negative) */
+  /** Zone variant for styling */
   variant: LeaderboardZoneVariant;
 }
 
@@ -16,37 +19,37 @@ const LeaderboardZoneDivider: React.FC<ILeaderboardZoneDivider> = ({
   label,
   variant,
 }) => {
-  const labelColor =
+  if (!label) {
+    return null;
+  }
+
+  const color =
     variant === "promotion"
-      ? "success.main"
+      ? "#00B800"
       : variant === "demotion"
         ? "error.main"
         : "text.secondary";
+
+  const ZoneIcon =
+    variant === "demotion" ? ArrowDropDownRoundedIcon : ArrowDropUpRoundedIcon;
 
   return (
     <Box
       component="section"
       sx={{
+        width: "100%",
         display: "flex",
-        flexDirection: "column",
-        gap: 1,
-        paddingY: 2,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 0.5,
+        py: 1,
       }}
     >
-      {label && (
-        <Typography variant="subtitle2" color={labelColor}>
-          {label}
-        </Typography>
-      )}
-      <Box
-        component="hr"
-        sx={{
-          border: "none",
-          borderTop: 1,
-          borderColor: "divider",
-          margin: 0,
-        }}
-      />
+      <ZoneIcon sx={{ color, fontSize: 24 }} />
+      <Typography variant="body1" sx={{ color, textTransform: "uppercase" }}>
+        {label}
+      </Typography>
+      <ZoneIcon sx={{ color, fontSize: 24 }} />
     </Box>
   );
 };

@@ -8,6 +8,7 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_UPCOMING_LESSON_DEFINED: "true",
   MOCKOON_UPCOMING_REVIEW_DEFINED: "true",
   MOCKOON_STUDY_SESSON_VARIANT: "default",
+  MOCKOON_LEADERBOARD_STARTED: "true",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -41,7 +42,7 @@ function requestJson(
       if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
         // Drain response to avoid holding onto the stream.
         res.on("data", () => {
-          // Intentionally empty – data is ignored.
+          // Intentionally empty - data is ignored.
         });
         res.on("end", () => resolve());
       } else {
@@ -114,6 +115,13 @@ export async function setUpcomingReviewDefined(
 
 export async function setStudySessionVariant(variant: string): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_STUDY_SESSON_VARIANT", variant);
+}
+
+export async function setLeaderboardStarted(started: boolean): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_LEADERBOARD_STARTED",
+    started ? "true" : "false",
+  );
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {

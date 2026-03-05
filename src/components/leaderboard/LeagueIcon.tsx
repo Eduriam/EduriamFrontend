@@ -1,18 +1,18 @@
 import Box from "@mui/material/Box";
 
 export type LeagueIconVariant =
-  | "Empty"
-  | "Locked"
-  | "Iron"
-  | "Bronze"
-  | "Silver"
-  | "Gold"
-  | "Platinum"
-  | "Emerald"
-  | "Ruby"
-  | "Sapphire"
-  | "Diamond"
-  | "Mythic";
+  | "empty"
+  | "locked"
+  | "iron"
+  | "bronze"
+  | "silver"
+  | "gold"
+  | "platinum"
+  | "emerald"
+  | "ruby"
+  | "sapphire"
+  | "diamond"
+  | "mythic";
 
 export type LeagueIconSize = "small" | "medium" | "large";
 
@@ -32,18 +32,18 @@ export interface LeagueIconProps {
 }
 
 const variantToSrc: Record<LeagueIconVariant, string> = {
-  Empty: "/images/leaderboard/empty.svg",
-  Locked: "/images/leaderboard/locked.svg",
-  Iron: "/images/leaderboard/iron.svg",
-  Bronze: "/images/leaderboard/bronze.svg",
-  Silver: "/images/leaderboard/silver.svg",
-  Gold: "/images/leaderboard/gold.svg",
-  Platinum: "/images/leaderboard/platinum.svg",
-  Emerald: "/images/leaderboard/emerald.svg",
-  Ruby: "/images/leaderboard/ruby.svg",
-  Sapphire: "/images/leaderboard/sapphire.svg",
-  Diamond: "/images/leaderboard/diamond.svg",
-  Mythic: "/images/leaderboard/mythic.svg",
+  empty: "/images/leaderboard/empty.svg",
+  locked: "/images/leaderboard/locked.svg",
+  iron: "/images/leaderboard/iron.svg",
+  bronze: "/images/leaderboard/bronze.svg",
+  silver: "/images/leaderboard/silver.svg",
+  gold: "/images/leaderboard/gold.svg",
+  platinum: "/images/leaderboard/platinum.svg",
+  emerald: "/images/leaderboard/emerald.svg",
+  ruby: "/images/leaderboard/ruby.svg",
+  sapphire: "/images/leaderboard/sapphire.svg",
+  diamond: "/images/leaderboard/diamond.svg",
+  mythic: "/images/leaderboard/mythic.svg",
 };
 
 const sizeToPixels: Record<LeagueIconSize, number> = {

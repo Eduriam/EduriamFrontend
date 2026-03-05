@@ -6,6 +6,7 @@
 - Keep implementations responsive.
 - Use Figma MCP for Figma-based tasks.
 - Place image assets in `public/images`.
+- Always use and define localized texts in `public/locales` instead of hard coding texts.
 
 ## Implementation guidelines
 
