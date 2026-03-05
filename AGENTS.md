@@ -33,3 +33,7 @@
 - Put top navigation bars in the page file.
 - Use reusable nav bars first (`BackNavigationBar`, `ProgressNavbar`, `BasicNavigationBar`).
 - Use `useTransitionNavigationHandler()` for route transitions.
+
+### Mock API conventions
+
+- Use global variables and mockoon endpoint rules to modify the API responses dynamically during testing
