@@ -1,19 +1,18 @@
 "use client";
 
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
-import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+import { useParams, useRouter } from "next/navigation";
 
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
-import type { AvatarDefinition } from "components/avatar/Avatar";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
@@ -22,33 +21,45 @@ import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
 
-import { shopCategories } from "./shopCategories";
+import { shopCategories } from "../shopCategories";
 
-export interface IShopPage {}
-
-const STREAK_FREEZE_IDS = ["streak-freeze-1", "streak-freeze-2"];
-
-const ShopPage: React.FC<IShopPage> = () => {
+const ShopCategoryPage: React.FC = () => {
   const { t } = useTranslation("common");
   const { t: tError } = useTranslation("error-codes");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { user, mutateUser } = useAuth();
+  const router = useRouter();
+  const params = useParams();
   const { setError } = useErrorHandler();
+  const { user, mutateUser } = useAuth();
   const { shopItems = [], mutate } = ShopItemsAPI.useShopItems();
 
   const [selectedItemId, setSelectedItemId] = useState<Id | null>(null);
 
-  const streakFreezeItems = useMemo(
+  const categoryParam = params?.category;
+  const categoryId =
+    typeof categoryParam === "string"
+      ? categoryParam
+      : categoryParam?.[0] || "";
+
+  const category = shopCategories.find((entry) => entry.id === categoryId);
+
+  useEffect(() => {
+    if (!category) {
+      router.replace("/shop");
+    }
+  }, [category, router]);
+
+  const categoryItems = useMemo(
     () =>
-      STREAK_FREEZE_IDS.map((id) =>
-        shopItems.find((item) => item.id === id),
-      ).filter((item): item is NonNullable<typeof item> => Boolean(item)),
-    [shopItems],
+      shopItems
+        .filter((item) => item.categoryId === categoryId)
+        .sort((a, b) => a.price - b.price),
+    [categoryId, shopItems],
   );
 
   const selectedItem = useMemo(
-    () => shopItems.find((item) => item.id === selectedItemId),
-    [selectedItemId, shopItems],
+    () => categoryItems.find((item) => item.id === selectedItemId),
+    [categoryItems, selectedItemId],
   );
 
   const selectedItemLocked =
@@ -65,18 +76,6 @@ const ShopPage: React.FC<IShopPage> = () => {
           ),
         })
       : undefined;
-
-  const previewAvatarByCategory = useMemo(() => {
-    const entries = new Map<string, Partial<AvatarDefinition>>();
-
-    shopItems.forEach((item) => {
-      if (item.image.type === "avatar" && !entries.has(item.categoryId)) {
-        entries.set(item.categoryId, item.image.avatar);
-      }
-    });
-
-    return entries;
-  }, [shopItems]);
 
   const handleBuy = async () => {
     if (!selectedItem) {
@@ -111,50 +110,47 @@ const ShopPage: React.FC<IShopPage> = () => {
     setSelectedItemId(null);
   };
 
+  if (!category) {
+    return null;
+  }
+
   return (
-    <PageRoot data-test="shop-page">
+    <PageRoot data-test="shop-category-page">
       <ShopNavbar
         leftButton={{
-          icon: "close",
-          onClick: navigateWithTransition(user?.id ? `/users/${user.id}` : "/", {
+          icon: "chevronLeft",
+          onClick: navigateWithTransition("/shop", {
             direction: "back",
           }),
         }}
         balance={user?.balance ?? 0}
       />
 
-      <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Stack spacing={3} width="100%">
-          <Typography variant="h6">{t("shop.streakFreezeTitle")}</Typography>
-          <Typography variant="body1" color="text.secondary">
-            {t("shop.streakFreezeDescription")}
-          </Typography>
+      <ContentContainer width="small" justifyContent="flex-start" spacing={8}>
+        <Typography variant="h5">{t(category.nameKey)}</Typography>
 
-          <Stack direction="row" spacing={1.5}>
-            {streakFreezeItems.map((item) => (
+        <Stack
+          direction="row"
+          spacing={1.5}
+          flexWrap="wrap"
+          useFlexGap
+          data-test="shop-items-category-section"
+        >
+          {categoryItems.map((item) => {
+            const locked = !!item.achievementLock && item.bought !== true;
+
+            return (
               <ShopItem
                 key={item.id}
                 item={item}
-                locked={!!item.achievementLock && item.bought !== true}
+                locked={locked}
+                data-test={
+                  locked ? "locked-shop-item-button" : "shop-item-button"
+                }
                 onClick={() => setSelectedItemId(item.id)}
               />
-            ))}
-          </Stack>
-        </Stack>
-
-        <Stack spacing={3} width="100%" data-test="shop-item-categories">
-          <Typography variant="h5">{t("shop.characterTitle")}</Typography>
-
-          {shopCategories.map((category) => (
-            <Stack key={category.id} spacing={1.5}>
-              <Typography variant="h6">{t(category.nameKey)}</Typography>
-              <ShopCategory
-                avatar={previewAvatarByCategory.get(category.id)}
-                onClick={navigateWithTransition(`/shop/${category.id}`)}
-                data-test="shop-item-category"
-              />
-            </Stack>
-          ))}
+            );
+          })}
         </Stack>
       </ContentContainer>
 
@@ -171,4 +167,4 @@ const ShopPage: React.FC<IShopPage> = () => {
   );
 };
 
-export default ShopPage;
+export default ShopCategoryPage;

@@ -993,95 +993,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "4e4014f0-1db8-4e4b-a0e2-423fdb236669",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/shop-items",
-      "responses": [
-        {
-          "uuid": "e5dd2ad1-0681-44cf-bd7d-3953b7d960c4",
-          "body": "[\r\n   {{#repeat 9}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.word'}}\",\r\n      \"price\": {{faker 'number.int' 999}},\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"categoryId\": \"avatars\",\r\n      \"bought\": {{faker 'datatype.boolean'}},\r\n      \"equipped\": false\r\n   }\r\n   {{/repeat}}\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Example Response: categoryId=avatars",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "categoryId",
-              "value": "avatars",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "48188b91-a654-48ce-9360-3bd7f95dac6a",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "user/shop-items/:itemId/buy",
-      "responses": [
-        {
-          "uuid": "9f49fe70-f330-4383-92fd-fb82c14c3e10",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "c89229a6-9933-48e0-813d-bf1087db45ee",
-          "body": "{\r\n  \"error\":\"NOT_ENOUGH_MONEY\"\r\n}",
-          "latency": 0,
-          "statusCode": 400,
-          "label": "Example Response: Not enough money",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "f65eb8be-3d96-484e-9ae1-029d53646521",
       "documentation": "",
       "method": "get",
@@ -3323,68 +3234,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "907ffe34-1655-48af-b05a-30529c34d071",
-      "type": "http",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "user/shop-items/:itemId/equip",
-      "responses": [
-        {
-          "uuid": "064bee4b-259b-4d86-846b-4d65be22ad86",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "5d38e027-9944-478a-b024-71bdfa8d72c5",
-      "type": "http",
-      "documentation": "",
-      "method": "delete",
-      "endpoint": "user/shop-items/:itemId/equip",
-      "responses": [
-        {
-          "uuid": "631c0e8b-cac7-4393-b22b-43ad71e27824",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "021018c5-71b2-4f34-9a74-758e4a4b179b",
       "type": "http",
       "documentation": "",
@@ -3782,6 +3631,87 @@
       "type": "http",
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "70fcba65-862b-4e4e-9a2e-7639c707f47b",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/shop-items",
+      "responses": [
+        {
+          "uuid": "741e7071-814c-4f8b-bf0a-272ce8df1f8e",
+          "body": "[\n  {\n    \"id\": \"streak-freeze-1\",\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"streak-freeze-2\",\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"hair-1\",\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}900{{else}}9000{{/if}},\n    \"categoryId\": \"hair\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_1\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"hair-2\",\n    \"name\": \"Hair 2\",\n    \"price\": 900,\n    \"categoryId\": \"hair\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_2\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}{\"achievementId\":\"streak_master\"}{{else}}null{{/if}}\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Default shop items",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1671166d-608d-4267-ba20-12f5aa15d849",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "users/me/shop-items/:itemId",
+      "responses": [
+        {
+          "uuid": "98471b2a-005a-441d-a5d3-3de74399ed1d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Item patched",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "14757a15-1af0-4ee7-b24f-8d8b4cc7f3e8",
+          "body": "{\n  \"error\":\"NOT_ENOUGH_MONEY\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Example Response: Not enough money",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "proxyMode": false,
@@ -3920,6 +3850,10 @@
         {
           "type": "folder",
           "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37"
+        },
+        {
+          "type": "folder",
+          "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc"
         }
       ]
     },
@@ -4079,28 +4013,6 @@
       ]
     },
     {
-      "uuid": "acdea90d-2d12-42ad-9438-48a1a5808f85",
-      "name": "shop-items",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "4e4014f0-1db8-4e4b-a0e2-423fdb236669"
-        },
-        {
-          "type": "route",
-          "uuid": "48188b91-a654-48ce-9360-3bd7f95dac6a"
-        },
-        {
-          "type": "route",
-          "uuid": "907ffe34-1655-48af-b05a-30529c34d071"
-        },
-        {
-          "type": "route",
-          "uuid": "5d38e027-9944-478a-b024-71bdfa8d72c5"
-        }
-      ]
-    },
-    {
       "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086",
       "name": "reset-password",
       "children": [
@@ -4207,10 +4119,6 @@
         {
           "type": "folder",
           "uuid": "e247bd52-8ca0-4096-836b-7f210530a827"
-        },
-        {
-          "type": "folder",
-          "uuid": "acdea90d-2d12-42ad-9438-48a1a5808f85"
         },
         {
           "type": "folder",
@@ -4445,6 +4353,20 @@
         {
           "type": "route",
           "uuid": "9673fae7-1e27-407b-af07-68bb09517b38"
+        }
+      ]
+    },
+    {
+      "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc",
+      "name": "shop-items",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "70fcba65-862b-4e4e-9a2e-7639c707f47b"
+        },
+        {
+          "type": "route",
+          "uuid": "1671166d-608d-4267-ba20-12f5aa15d849"
         }
       ]
     }

@@ -26,6 +26,8 @@ const PAGE_URLS: Record<string, string> = {
   "premium-page": `${BASE_URL}/premium`,
   "study-plan-page": `${BASE_URL}/study-plan`,
   "leaderboard-page": `${BASE_URL}/leaderboard`,
+  "shop-page": `${BASE_URL}/shop`,
+  "shop-category-page": `${BASE_URL}/shop/hair`,
 };
 
 type DefinedPageEntityConfig = {

@@ -7,7 +7,6 @@ const config = {
     "/lessons-create",
     "/manage-subscription",
     "/settings",
-    "/shop",
     "/topic-selection",
     /^\/help(\/|$)/,
     /^\/lesson-items(\/|$)/,
@@ -42,13 +41,6 @@ const config = {
     {
       id: "5",
       name: "levels.5",
-    },
-  ],
-
-  shopCategories: [
-    {
-      id: "avatars",
-      name: "shop.categories.0",
     },
   ],
 };

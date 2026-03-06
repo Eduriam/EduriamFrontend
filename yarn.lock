@@ -1896,25 +1896,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.52":
-  version: 0.6.52
-  resolution: "@eduriam/ui-core@npm:0.6.52::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.52%2F48607213d7feb4858824281861ba0225729118d8"
+"@eduriam/ui-core@npm:^0.6.56":
+  version: 0.6.56
+  resolution: "@eduriam/ui-core@npm:0.6.56::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.56%2F729ef3aa1c12f43e6071c58b28031fbb8726d18e"
+  dependencies:
+    mermaid: "npm:^11.12.0"
   peerDependencies:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/b3d13f202f1f12362c334e687a9f6b7e8a74da3f84a36d4cb0e244ffc7a01a9cb4770927e30b04ca3b9b82c7ad51130169cf0aba9beae44c33fca24ccaa4f10f
+  checksum: 10c0/a496e3b8f2e1f17cfa625fac3cfcaf05a8ca9e5f80b8757b8f8b7bf11b6c7e9bc016d78bec8f0a6956532559eb6246b42463de129912f6974c4e2bf92cee9ea9
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.74":
-  version: 0.2.74
-  resolution: "@eduriam/ui-x@npm:0.2.74::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.74%2Fbebf9505dbf36b70f267c55ce7b491e41fc8c0ab"
+"@eduriam/ui-x@npm:^0.2.79":
+  version: 0.2.79
+  resolution: "@eduriam/ui-x@npm:0.2.79::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.79%2F12ee64f672997e3c179e3c977adf816def5f064a"
   dependencies:
-    "@eduriam/ui-core": "npm:^0.6.52"
+    "@eduriam/ui-core": "npm:^0.6.56"
     "@remotion/captions": "npm:^4.0.353"
+    "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
     canvas-confetti: "npm:^1.9.3"
     dompurify: "npm:^3.3.1"
@@ -1932,7 +1935,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/a4388e48025c0f5d0bcba0c019db883adf168132515cc92a30428c40a1e5d0886143130e17ea1ea9eebc8513acd2b7b5722d8e5d3121b7cb5053fdb8691ebbf3
+  checksum: 10c0/a841b2f1b21cee2f585afcad9a8d7f77b7d84c55bc2d7e85d3485eeb33f2cc65b1c6af4709bae702614a549b65ca69e43d2f5e66bc3b31cd31f2ab8ad081ac61
   languageName: node
   linkType: hard
 
@@ -4258,6 +4261,18 @@ __metadata:
   version: 4.0.428
   resolution: "@remotion/captions@npm:4.0.428"
   checksum: 10c0/5188227fd946f29b6ad631eff1d290954241e5c65948dfdf39107b31fe9a3e8284716e8125dcf95780ae97b194d622f8abe431ad9eaed3f3d2f5ad7603254761
+  languageName: node
+  linkType: hard
+
+"@remotion/gif@npm:^4.0.353":
+  version: 4.0.434
+  resolution: "@remotion/gif@npm:4.0.434"
+  dependencies:
+    remotion: "npm:4.0.434"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/687036c40fe9c2e4d1039e0bda3c3661ed6203a6415632e8785a1be4073fe8f6a8cd38d59d6ae0460764cc05b941327a36f0c2f2733754eee602d6e1153eb57d
   languageName: node
   linkType: hard
 
@@ -14079,8 +14094,8 @@ __metadata:
     "@commitlint/cli": "npm:^17.1.2"
     "@commitlint/config-conventional": "npm:^17.1.0"
     "@cucumber/cucumber": "npm:^10.3.1"
-    "@eduriam/ui-core": "npm:^0.6.52"
-    "@eduriam/ui-x": "npm:^0.2.74"
+    "@eduriam/ui-core": "npm:^0.6.56"
+    "@eduriam/ui-x": "npm:^0.2.79"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
@@ -17379,6 +17394,16 @@ __metadata:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
   checksum: 10c0/86fe70bc750b514a89654bcce5724f053818f984a89cac7a59b76bb2df2ec379e9566576d95900138fe04d95184677701a18a860a454431922ad271985e711a8
+  languageName: node
+  linkType: hard
+
+"remotion@npm:4.0.434":
+  version: 4.0.434
+  resolution: "remotion@npm:4.0.434"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/ae422c3ebd4e865ee279e5bd4d025334a95f9c52d16003111003403080dd29c3456681e20255394a7247715923043cd21c9a7d68970e631f369e29093a1babbf
   languageName: node
   linkType: hard
 

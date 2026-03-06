@@ -178,11 +178,15 @@
   },
   "shop": {
     "buy": "Koupit",
-    "equip": "Zapnout",
-    "unequip": "Vypnout",
-    "categories": ["Profilové obrázky"],
-    "bought": "koupeno",
-    "equipped": "zapnuto"
+    "categories": {
+      "hair": "Vlasy"
+    },
+    "locked": "Zamčeno",
+    "close": "Zavřít",
+    "streakFreezeTitle": "Zmražení streaku",
+    "streakFreezeDescription": "Chraň svou denní sadu, i když jeden den vynecháš učení.",
+    "characterTitle": "Postava",
+    "unlockRequirement": "Získej ocenění {{achievementName}} pro odemčení položky."
   },
   "feedback": {
     "header": "Našli jste chybu? Něco vám nevyhovuje? Máte nápad na zlepšení? Dejte nám vědět! Každou zprávu si čteme :)",
@@ -308,7 +312,11 @@
   },
   "achievements": {
     "achievements": "Ocenění",
-    "collectReward": "Sebrat odměnu"
+    "collectReward": "Sebrat odměnu",
+    "achievementsById": {
+      "streak_master": "Streak Master",
+      "first_100_xp": "Prvnich 100 XP"
+    }
   },
   "feed": {
     "earlier": "dříve",
