@@ -3850,10 +3850,6 @@
         {
           "type": "folder",
           "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37"
-        },
-        {
-          "type": "folder",
-          "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc"
         }
       ]
     },
@@ -4333,6 +4329,10 @@
         {
           "type": "folder",
           "uuid": "0c3a7810-22e1-47f8-be43-46fed3a0ad1c"
+        },
+        {
+          "type": "folder",
+          "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc"
         }
       ]
     },
