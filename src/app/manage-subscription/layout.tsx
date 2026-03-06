@@ -1,6 +1,5 @@
 "use client";
 
-import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
 
 export interface ILayout {
@@ -8,11 +7,7 @@ export interface ILayout {
 }
 
 const Layout: React.FC<ILayout> = ({ children }) => {
-  return (
-    <ProtectedRoute>
-      <ContentContainer>{children}</ContentContainer>
-    </ProtectedRoute>
-  );
+  return <ProtectedRoute>{children}</ProtectedRoute>;
 };
 
 export default Layout;

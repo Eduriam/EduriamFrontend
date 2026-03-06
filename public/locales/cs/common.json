@@ -214,6 +214,7 @@
     "nextPayment": "Další platba",
     "cancel": "Odhlásit předplatné",
     "whyUnsubscribe": "Proč rušíte předplatné?",
+    "whyUnsubscribeTitle": "Proč rušíte Premium?",
     "continue": "Pokračovat",
     "unsubscribeReasons": [
       "Stačí mi účet zdarma",
@@ -223,6 +224,8 @@
     ],
     "keep": "Ponechání premium",
     "keepPremium": "Ponechat premium",
+    "confirmCancellationTitle": "Opravdu chcete předplatné zrušit?",
+    "cancellationWarning": "Znovu se vám začnou zobrazovat reklamy a ztratíte přístup k neomezeným lekcím.",
     "confirmCancellation": "Potvrdit zrušení",
     "youWontHaveAccessToThese": "Po zrušení ztratíte přístup k těmto funkcím",
     "premiumFeatures": [

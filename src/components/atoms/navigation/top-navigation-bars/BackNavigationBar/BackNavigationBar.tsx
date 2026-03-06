@@ -19,7 +19,7 @@ const BackNavigationBar: React.FC<IBackNavigationBar & AppBarProps> = ({
     <BasicNavbar
       header={header ? t(`navigation.${header}`) : undefined}
       leftButton={{
-        icon: "chevronLeft",
+        icon: "arrowLeft",
         onClick: () => {
           router.back();
         },
