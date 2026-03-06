@@ -214,6 +214,7 @@
     "nextPayment": "Další platba",
     "cancel": "Odhlásit předplatné",
     "whyUnsubscribe": "Proč rušíte předplatné?",
+    "whyUnsubscribeTitle": "Proč rušíte Premium?",
     "continue": "Pokračovat",
     "unsubscribeReasons": [
       "Stačí mi účet zdarma",
@@ -223,6 +224,8 @@
     ],
     "keep": "Ponechání premium",
     "keepPremium": "Ponechat premium",
+    "confirmCancellationTitle": "Opravdu chcete předplatné zrušit?",
+    "cancellationWarning": "Znovu se vám začnou zobrazovat reklamy a ztratíte přístup k neomezeným lekcím.",
     "confirmCancellation": "Potvrdit zrušení",
     "youWontHaveAccessToThese": "Po zrušení ztratíte přístup k těmto funkcím",
     "premiumFeatures": [
@@ -418,6 +421,8 @@
   },
   "premium": {
     "header": "Postupujte rychleji s Premium účtem!",
+    "premiumUserHeader": "Učíte se s Premium!",
+    "premiumUserSubtitle": "Teď si můžete užívat všechny tyto výhody.",
     "subtitles": {
       "default": "Premium uživatelé postupují 4x rychleji",
       "noEnergyLeft": "Získejte neomezené učení a další výhody.",
@@ -435,7 +440,8 @@
       "smartReviews": "Chytré opakování",
       "certificates": "Certifikáty"
     },
-    "subscribeNow": "Získat Premium"
+    "subscribeNow": "Získat Premium",
+    "manageSubscription": "Spravovat předplatné"
   },
   "subscription": {
     "subscriptionHeader": "Získejte premium!",

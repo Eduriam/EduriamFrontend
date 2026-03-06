@@ -16,6 +16,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import useAuth from "infrastructure/services/AuthProvider";
+
 import { PREMIUM_MESSAGES, type PremiumMessageValue } from "./premiumMessages";
 
 export interface IPremiumPage {}
@@ -78,6 +80,8 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useAuth();
+  const isPremiumUser = user?.role === "PREMIUM_USER";
 
   const [message, setMessage] = useState<PremiumMessageValue>(() => {
     const messageFromQuery = searchParams.get(PREMIUM_MESSAGES.queryParam);
@@ -139,14 +143,16 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
           <Stack spacing={8}>
             <Stack spacing={4} alignItems="center">
               <Typography variant="h3" align="center">
-                {t("premium.header")}
+                {isPremiumUser
+                  ? t("premium.premiumUserHeader")
+                  : t("premium.header")}
               </Typography>
               <Typography
                 variant="subtitle1"
                 align="center"
                 data-test={subtitleDataTest}
               >
-                {subtitle}
+                {isPremiumUser ? t("premium.premiumUserSubtitle") : subtitle}
               </Typography>
             </Stack>
 
@@ -303,10 +309,19 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
 
           <LargeButton
             fullWidth
-            onClick={() => router.push("/payment")}
-            data-test="subscribe-now-button"
+            variant={isPremiumUser ? "text" : "contained"}
+            onClick={() =>
+              router.push(isPremiumUser ? "/manage-subscription" : "/payment")
+            }
+            data-test={
+              isPremiumUser
+                ? "manage-subscription-button"
+                : "subscribe-now-button"
+            }
           >
-            {t("premium.subscribeNow")}
+            {isPremiumUser
+              ? t("premium.manageSubscription")
+              : t("premium.subscribeNow")}
           </LargeButton>
         </ContentContainer>
       </Box>

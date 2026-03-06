@@ -78,8 +78,6 @@ const Navigation: React.FC<INavigation> = () => {
         return <DrawerContainer child={{ component: LessonsNavigationBar }} />;
       case "/shop":
         return <DrawerContainer child={{ component: ShopNavigationBar }} />;
-      case "/manage-subscription":
-        return <BackNavigationBar header="manageSubscription" />;
       case "/lessons-create":
         return <BackNavigationBar />;
       case "/favorites":
