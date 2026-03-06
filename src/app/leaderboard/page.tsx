@@ -67,8 +67,9 @@ const LeaderboardPage: React.FC = () => {
     ? `${currentLeagueName} ${t("leaderboard.league")}`
     : "Leagues";
 
-  const promotionZoneEndIndex = leaderboard?.zones?.promotionZoneEndIndex;
-  const demotionZoneStartIndex = leaderboard?.zones?.demotionZoneStartIndex;
+  const promotionZoneEndIndex = leaderboard?.zones?.promotionZoneEndIndex ?? 0;
+  const demotionZoneStartIndex =
+    leaderboard?.zones?.demotionZoneStartIndex ?? users.length;
 
   return (
     <PageRoot data-test="leaderboard-page">

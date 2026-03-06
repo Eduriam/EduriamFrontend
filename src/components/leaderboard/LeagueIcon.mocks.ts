@@ -1,7 +1,7 @@
 import type { LeagueIconProps } from "./LeagueIcon";
 
 const base: LeagueIconProps = {
-  variant: "Gold",
+  variant: "gold",
   size: "medium",
 };
 
