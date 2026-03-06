@@ -2192,7 +2192,7 @@
       "responses": [
         {
           "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
-          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"level\": {{faker 'number.int' min=0 max=100}},\n  \"profileImageUrl\":\"{{faker 'internet.avatar'}}\",\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"learningStats\": [\n    {\n      \"date\": \"2023-06-12T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-11T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-10T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-09T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-08T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-07T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-06T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    }\n  ],\n  \"achievements\":[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"level\": {{faker 'number.int' min=0 max=100}},\n  \"profileImageUrl\":\"{{faker 'internet.avatar'}}\",\n  \"avatarDefinition\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"learningStats\": [\n    {\n      \"date\": \"2023-06-12T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-11T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-10T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-09T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-08T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-07T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-06T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    }\n  ],\n  \"achievements\":[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2316,11 +2316,11 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/settings",
+      "endpoint": "users/me/settings",
       "responses": [
         {
           "uuid": "d4d718f9-31dd-400b-a7bd-1881d9a0337f",
-          "body": "{\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"email\":\"{{faker 'internet.email'}}\",\n  \"dailyGoal\": 600000\n}",
+          "body": "{\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"email\":\"{{faker 'internet.email'}}\",\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2347,11 +2347,11 @@
       "type": "http",
       "documentation": "",
       "method": "patch",
-      "endpoint": "user/settings",
+      "endpoint": "users/me/settings",
       "responses": [
         {
           "uuid": "9ed09469-e340-4e28-a8f8-6d5e4faddcb2",
-          "body": "{\n  \"name\": \"{{body 'name'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"dailyGoal\": {{body 'dailyGoal'}}\n}",
+          "body": "{\n  \"name\": \"{{body 'name'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -3640,7 +3640,7 @@
       "responses": [
         {
           "uuid": "741e7071-814c-4f8b-bf0a-272ce8df1f8e",
-          "body": "[\n  {\n    \"id\": \"streak-freeze-1\",\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"streak-freeze-2\",\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"hair-1\",\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}900{{else}}9000{{/if}},\n    \"categoryId\": \"hair\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_1\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"hair-2\",\n    \"name\": \"Hair 2\",\n    \"price\": 900,\n    \"categoryId\": \"hair\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_2\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}{\"achievementId\":\"streak_master\"}{{else}}null{{/if}}\n  }\n]",
+          "body": "[\n  {\n    \"id\": \"streak-freeze-1\",\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"streak-freeze-2\",\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"hair-1\",\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}900{{else}}9000{{/if}},\n    \"categoryId\": \"hair\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_1\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"hair-2\",\n    \"name\": \"Hair 2\",\n    \"price\": 900,\n    \"categoryId\": \"hair\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_2\",\n        \"hairColor\": \"darkBrown\"\n      }\n    },\n    \"achievementLock\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}{\"achievementId\":\"streak_master\"}{{else}}null{{/if}}\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Default shop items",
@@ -4118,10 +4118,6 @@
         },
         {
           "type": "folder",
-          "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa"
-        },
-        {
-          "type": "folder",
           "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
         },
         {
@@ -4333,6 +4329,10 @@
         {
           "type": "folder",
           "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc"
+        },
+        {
+          "type": "folder",
+          "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa"
         }
       ]
     },

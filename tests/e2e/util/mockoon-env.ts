@@ -11,6 +11,7 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_LEADERBOARD_STARTED: "true",
   MOCKOON_SHOP_ENOUGH_MONEY: "true",
   MOCKOON_SHOP_LOCKED_ITEM: "false",
+  MOCKOON_AVATAR_ITEMS_PURCHASED: "false",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -135,6 +136,15 @@ export async function setShopEnoughMoney(hasEnoughMoney: boolean): Promise<void>
 
 export async function setShopLockedItem(locked: boolean): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_SHOP_LOCKED_ITEM", locked ? "true" : "false");
+}
+
+export async function setAvatarItemsPurchased(
+  purchased: boolean,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_AVATAR_ITEMS_PURCHASED",
+    purchased ? "true" : "false",
+  );
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {

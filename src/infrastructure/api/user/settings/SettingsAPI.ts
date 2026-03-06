@@ -9,7 +9,7 @@ import { Settings } from "./Settings";
 export interface SettingsParams {}
 
 const SettingsAPI = {
-  URI: "user/settings",
+  URI: "users/me/settings",
 
   useSettings(
     params: SettingsParams = {},

@@ -359,6 +359,32 @@
     "stats": "Statistiky",
     "streak": "Denní řada"
   },
+  "avatarEditor": {
+    "title": "Avatar",
+    "editAvatar": "Upravit avatar",
+    "fields": {
+      "default": "Položky",
+      "hair": "Vlasy",
+      "hairColor": "Barva vlasů",
+      "eyes": "Oči",
+      "eyeColor": "Barva očí",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "beardColor": "Barva vousů",
+      "accessories": "Doplňky",
+      "glassesColor": "Barva brylí",
+      "headwear": "Pokrývka hlavy",
+      "clothing": "Oblečení",
+      "skinColor": "Barva pleti",
+      "backgroundColor": "Pozadí"
+    },
+    "leave": {
+      "title": "Opustit editor avatara?",
+      "description": "Nevyulozene zmeny budou ztraceny.",
+      "keepEditing": "Pokracovat v upravach",
+      "discardChanges": "Zahodit zmeny"
+    }
+  },
   "topics": {
     "main": "Hlavní témata",
     "extra": "Další témata"

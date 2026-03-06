@@ -28,6 +28,8 @@ const PAGE_URLS: Record<string, string> = {
   "leaderboard-page": `${BASE_URL}/leaderboard`,
   "shop-page": `${BASE_URL}/shop`,
   "shop-category-page": `${BASE_URL}/shop/hair`,
+  "edit-avatar-page": `${BASE_URL}/edit-avatar`,
+  "user-page": `${BASE_URL}/users/test-user`,
 };
 
 type DefinedPageEntityConfig = {

@@ -1,3 +1,5 @@
+import type { AvatarDefinition } from "components/avatar/Avatar";
+
 export interface CoursePreferences {
   codingExperience?: string;
   areaOfInterest?: string;
@@ -10,6 +12,7 @@ export interface Settings {
   email: string;
   dailyGoal: DailyGoal;
   coursePreferences?: CoursePreferences;
+  avatarDefinition?: AvatarDefinition;
 }
 
 export type DailyGoal = number;

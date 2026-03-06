@@ -1,4 +1,5 @@
 import { Achievement } from "infrastructure/api/user/achievements/Achievements";
+import type { AvatarDefinition } from "components/avatar/Avatar";
 
 export interface UserProfile {
   id: Id;
@@ -7,6 +8,7 @@ export interface UserProfile {
   level: number;
   name: string;
   profileImageUrl: string;
+  avatarDefinition?: AvatarDefinition;
   isFollowed: boolean;
   username: string;
   learningStats: Array<LearningDataPoint>;
