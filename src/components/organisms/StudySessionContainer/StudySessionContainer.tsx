@@ -2,7 +2,7 @@
 
 import {
   AtomProgressRating,
-  ReportStudyBlockDialog,
+  ReportDialog,
   SelectedStudyBlockData,
   StudySession,
   StudySessionDTO,
@@ -92,7 +92,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
         localization={localization}
         dataTest={STUDY_SESSION_DATA_TEST}
       />
-      <ReportStudyBlockDialog
+      <ReportDialog
         open={isReportDialogOpen}
         onClose={() => {
           setIsReportDialogOpen(false);
@@ -103,10 +103,13 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
             return;
           }
 
-          await StudyBlocksReportAPI.reportStudyBlock(selectedStudyBlockData.id, {
-            ...payload,
-            userAnswerReport: selectedStudyBlockData.userAnswerReport,
-          });
+          await StudyBlocksReportAPI.reportStudyBlock(
+            selectedStudyBlockData.id,
+            {
+              ...payload,
+              userAnswerReport: selectedStudyBlockData.userAnswerReport,
+            },
+          );
         }}
         problemTypeSections={reportProblemTypeSections}
         localization={reportStudyBlockLocalization}

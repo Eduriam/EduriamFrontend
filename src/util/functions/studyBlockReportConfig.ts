@@ -1,10 +1,7 @@
 import { DrawerSelectSection } from "@eduriam/ui-core";
-import {
-  ReportStudyBlockDialogDataTest,
-  ReportStudyBlockDialogLocalization,
-} from "@eduriam/ui-x";
+import { ReportDialogDataTest, ReportDialogLocalization } from "@eduriam/ui-x";
 
-export const STUDY_BLOCK_REPORT_DATA_TEST: ReportStudyBlockDialogDataTest = {
+export const STUDY_BLOCK_REPORT_DATA_TEST: ReportDialogDataTest = {
   report: {
     section: "report-study-block-section",
     problemTypeSelectButton: "problem-type-select-button",
@@ -45,12 +42,14 @@ type ProblemSectionTemplate = {
 const REPORT_PROBLEM_OPTION_TEMPLATES = {
   explanationNotUnderstood: {
     id: "explanation-not-understood",
-    labelKey: "reportStudyBlock.problemGroups.user.options.explanationNotUnderstood",
+    labelKey:
+      "reportStudyBlock.problemGroups.user.options.explanationNotUnderstood",
     dataTest: "problem-option-explanation-not-understood-button",
   },
   exerciseNotUnderstood: {
     id: "exercise-not-understood",
-    labelKey: "reportStudyBlock.problemGroups.user.options.exerciseNotUnderstood",
+    labelKey:
+      "reportStudyBlock.problemGroups.user.options.exerciseNotUnderstood",
     dataTest: "problem-option-exercise-not-understood-button",
   },
   answerShouldNotBeAccepted: {
@@ -61,12 +60,14 @@ const REPORT_PROBLEM_OPTION_TEMPLATES = {
   },
   answerShouldBeAccepted: {
     id: "answer-should-be-accepted",
-    labelKey: "reportStudyBlock.problemGroups.user.options.answerShouldBeAccepted",
+    labelKey:
+      "reportStudyBlock.problemGroups.user.options.answerShouldBeAccepted",
     dataTest: "problem-option-answer-should-be-accepted-button",
   },
   audioDoesNotSoundRight: {
     id: "audio-does-not-sound-right",
-    labelKey: "reportStudyBlock.problemGroups.user.options.audioDoesNotSoundRight",
+    labelKey:
+      "reportStudyBlock.problemGroups.user.options.audioDoesNotSoundRight",
     dataTest: "problem-option-audio-does-not-sound-right-button",
   },
   audioMissing: {
@@ -76,7 +77,8 @@ const REPORT_PROBLEM_OPTION_TEMPLATES = {
   },
   somethingElseWentWrong: {
     id: "something-else-went-wrong",
-    labelKey: "reportStudyBlock.problemGroups.user.options.somethingElseWentWrong",
+    labelKey:
+      "reportStudyBlock.problemGroups.user.options.somethingElseWentWrong",
     dataTest: "problem-option-something-else-went-wrong-button",
   },
   explanationStructureShouldBeChanged: {
@@ -99,61 +101,62 @@ const REPORT_PROBLEM_OPTION_TEMPLATES = {
   },
 } as const;
 
-const REPORT_PROBLEM_SECTION_TEMPLATES: Record<string, ProblemSectionTemplate> = {
-  explanationUser: {
-    id: "problem-type",
-    titleKey: "reportStudyBlock.problemGroups.user.title",
-    dataTest: "problem-group-section",
-    optionIds: [
-      "explanationNotUnderstood",
-      "audioDoesNotSoundRight",
-      "audioMissing",
-      "somethingElseWentWrong",
-    ],
-  },
-  exerciseCorrectAnswerUser: {
-    id: "problem-type",
-    titleKey: "reportStudyBlock.problemGroups.user.title",
-    dataTest: "problem-group-section",
-    optionIds: [
-      "exerciseNotUnderstood",
-      "answerShouldNotBeAccepted",
-      "audioDoesNotSoundRight",
-      "audioMissing",
-      "somethingElseWentWrong",
-    ],
-  },
-  exerciseWrongAnswerUser: {
-    id: "problem-type",
-    titleKey: "reportStudyBlock.problemGroups.user.title",
-    dataTest: "problem-group-section",
-    optionIds: [
-      "exerciseNotUnderstood",
-      "answerShouldBeAccepted",
-      "audioDoesNotSoundRight",
-      "audioMissing",
-      "somethingElseWentWrong",
-    ],
-  },
-  explanationCorrector: {
-    id: "reviewer-options",
-    titleKey: "reportStudyBlock.problemGroups.corrector.title",
-    dataTest: "problem-group-corrector-section",
-    optionIds: [
-      "explanationStructureShouldBeChanged",
-      "lessonStructureShouldBeChanged",
-    ],
-  },
-  exerciseCorrector: {
-    id: "reviewer-options",
-    titleKey: "reportStudyBlock.problemGroups.corrector.title",
-    dataTest: "problem-group-corrector-section",
-    optionIds: [
-      "exerciseStructureShouldBeChanged",
-      "lessonStructureShouldBeChanged",
-    ],
-  },
-};
+const REPORT_PROBLEM_SECTION_TEMPLATES: Record<string, ProblemSectionTemplate> =
+  {
+    explanationUser: {
+      id: "problem-type",
+      titleKey: "reportStudyBlock.problemGroups.user.title",
+      dataTest: "problem-group-section",
+      optionIds: [
+        "explanationNotUnderstood",
+        "audioDoesNotSoundRight",
+        "audioMissing",
+        "somethingElseWentWrong",
+      ],
+    },
+    exerciseCorrectAnswerUser: {
+      id: "problem-type",
+      titleKey: "reportStudyBlock.problemGroups.user.title",
+      dataTest: "problem-group-section",
+      optionIds: [
+        "exerciseNotUnderstood",
+        "answerShouldNotBeAccepted",
+        "audioDoesNotSoundRight",
+        "audioMissing",
+        "somethingElseWentWrong",
+      ],
+    },
+    exerciseWrongAnswerUser: {
+      id: "problem-type",
+      titleKey: "reportStudyBlock.problemGroups.user.title",
+      dataTest: "problem-group-section",
+      optionIds: [
+        "exerciseNotUnderstood",
+        "answerShouldBeAccepted",
+        "audioDoesNotSoundRight",
+        "audioMissing",
+        "somethingElseWentWrong",
+      ],
+    },
+    explanationCorrector: {
+      id: "reviewer-options",
+      titleKey: "reportStudyBlock.problemGroups.corrector.title",
+      dataTest: "problem-group-corrector-section",
+      optionIds: [
+        "explanationStructureShouldBeChanged",
+        "lessonStructureShouldBeChanged",
+      ],
+    },
+    exerciseCorrector: {
+      id: "reviewer-options",
+      titleKey: "reportStudyBlock.problemGroups.corrector.title",
+      dataTest: "problem-group-corrector-section",
+      optionIds: [
+        "exerciseStructureShouldBeChanged",
+        "lessonStructureShouldBeChanged",
+      ],
+    },
+  };
 
 const getProblemSectionTemplateIds = (
   context: StudyBlockReportProblemTypeContext,
@@ -206,7 +209,7 @@ export function createStudyBlockReportProblemTypeSections(
 
 export function createStudyBlockReportLocalization(
   t: (key: string) => string,
-): ReportStudyBlockDialogLocalization {
+): ReportDialogLocalization {
   return {
     header: t("reportStudyBlock.header"),
     problemTypePlaceholder: t("reportStudyBlock.problemTypePlaceholder"),
