@@ -124,7 +124,7 @@ const ShopPage: React.FC<IShopPage> = () => {
       />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Stack spacing={3} width="100%">
+        <Stack spacing={3} width="100%" data-test="streak-freeze-items-section">
           <Typography variant="h6">{t("shop.streakFreezeTitle")}</Typography>
           <Typography variant="body1" color="text.secondary">
             {t("shop.streakFreezeDescription")}
@@ -137,6 +137,7 @@ const ShopPage: React.FC<IShopPage> = () => {
                 item={item}
                 locked={!!item.achievementLock && item.bought !== true}
                 onClick={() => setSelectedItemId(item.id)}
+                data-test="streak-freeze-item-button"
               />
             ))}
           </Stack>
