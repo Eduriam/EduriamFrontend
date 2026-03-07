@@ -360,7 +360,10 @@
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
     "stats": "Statistiky",
-    "streak": "Denní řada"
+    "streak": "Denní řada",
+    "addFriends": "Přidat přátele",
+    "overview": "Přehled",
+    "userCourses": "Kurzy uživatele"
   },
   "avatarEditor": {
     "title": "Avatar",

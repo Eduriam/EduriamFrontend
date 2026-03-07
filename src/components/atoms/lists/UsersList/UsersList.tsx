@@ -1,13 +1,15 @@
 import { Icon } from "@eduriam/ui-core";
+import { buildShopAvatar } from "app/shop/utils/avatar";
 
 import { useRouter } from "next/navigation";
 
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+
+import Avatar from "components/avatar/Avatar";
 
 import { UserSummary } from "infrastructure/api/users/Users";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -50,11 +52,13 @@ const UsersList: React.FC<IUsersList> = ({ users, onFollow, onUnfollow }) => {
                 component="a"
                 onClick={() => router.push(`/users/${userItem.id}`)}
               >
-                {userItem.profileImageUrl && (
-                  <ListItemAvatar>
-                    <Avatar src={userItem.profileImageUrl} variant="rounded" />
-                  </ListItemAvatar>
-                )}
+                <ListItemAvatar>
+                  <Avatar
+                    definition={userItem.avatarDefinition ?? buildShopAvatar()}
+                    size={40}
+                    alt={userItem.name}
+                  />
+                </ListItemAvatar>
                 <ListItemText
                   primary={userItem.name}
                   secondary={`@${userItem.username}`}

@@ -198,7 +198,7 @@
       "responses": [
         {
           "uuid": "ca35fee0-8cc5-4494-9b61-083b07186ce9",
-          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
+          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -229,7 +229,7 @@
       "responses": [
         {
           "uuid": "f264c388-1395-46a9-828c-1d6a4f5c02c2",
-          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
+          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2192,7 +2192,7 @@
       "responses": [
         {
           "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
-          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"level\": {{faker 'number.int' min=0 max=100}},\n  \"profileImageUrl\":\"{{faker 'internet.avatar'}}\",\n  \"avatarDefinition\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"learningStats\": [\n    {\n      \"date\": \"2023-06-12T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-11T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-10T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-09T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-08T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-07T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-06T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    }\n  ],\n  \"achievements\":[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"id\":\"{{faker 'string.uuid'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"level\": {{faker 'number.int' min=0 max=100}},\n  \"league\": \"gold\",\n  \"avatarDefinition\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"learningStats\": [\n    {\n      \"date\": \"2023-06-12T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-11T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-10T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-09T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-08T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-07T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    },\n    {\n      \"date\": \"2023-06-06T14:31:38+0000\",\n      \"points\": {{faker 'number.int' min=0 max=35}}\n    }\n  ],\n  \"achievements\":[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"badgeIconName\": \"achievement-1\",\n      \"progress\": {{faker 'number.int' min=0 max=100}},\n      \"collectedReward\": false\n   },\n   {{#repeat 3}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"badgeIconName\": \"achievement-2\",\n      \"progress\": {{faker 'number.int' min=0 max=100}},\n      \"collectedReward\": false\n   }\n   {{/repeat}}\n  ],\n  \"courses\": [\n    {\n      \"id\": \"test-course-html\",\n      \"name\": \"HTML\",\n      \"type\": \"course\",\n      \"logoId\": \"html\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}}\n    },\n    {\n      \"id\": \"test-course-javascript\",\n      \"name\": \"JavaScript\",\n      \"type\": \"course\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}}\n    },\n    {\n      \"id\": \"test-learning-path-web\",\n      \"name\": \"HTML Developer\",\n      \"type\": \"learning-path\",\n      \"logoId\": \"html\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}}\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -3176,7 +3176,7 @@
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "user/following/:userId",
+      "endpoint": "users/:id/following/:userId",
       "responses": [
         {
           "uuid": "aa466512-25bd-4ec7-87ad-9eecd3844813",
@@ -3207,7 +3207,7 @@
       "type": "http",
       "documentation": "",
       "method": "delete",
-      "endpoint": "user/following/:userId",
+      "endpoint": "users/:id/following/:userId",
       "responses": [
         {
           "uuid": "2a321f56-4b04-4b09-928a-615f7dcd0b55",
@@ -3995,6 +3995,14 @@
         {
           "type": "route",
           "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e"
+        },
+        {
+          "type": "route",
+          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
+        },
+        {
+          "type": "route",
+          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
         }
       ]
     },
@@ -4114,15 +4122,7 @@
         },
         {
           "type": "folder",
-          "uuid": "e247bd52-8ca0-4096-836b-7f210530a827"
-        },
-        {
-          "type": "folder",
           "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
-        },
-        {
-          "type": "folder",
-          "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b"
         },
         {
           "type": "folder",
@@ -4195,20 +4195,6 @@
         {
           "type": "route",
           "uuid": "6121a74c-1207-407f-8d54-38b12aa93cf3"
-        }
-      ]
-    },
-    {
-      "uuid": "e247bd52-8ca0-4096-836b-7f210530a827",
-      "name": "following",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
-        },
-        {
-          "type": "route",
-          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
         }
       ]
     },
@@ -4333,6 +4319,10 @@
         {
           "type": "folder",
           "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa"
+        },
+        {
+          "type": "folder",
+          "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b"
         }
       ]
     },

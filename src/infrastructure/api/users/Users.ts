@@ -6,25 +6,47 @@ export interface UserProfile {
   followers: number;
   following: number;
   level: number;
+  league:
+    | "iron"
+    | "bronze"
+    | "silver"
+    | "gold"
+    | "platinum"
+    | "emerald"
+    | "ruby"
+    | "sapphire"
+    | "diamond"
+    | "mythic"
+    | "locked";
   name: string;
-  profileImageUrl: string;
   avatarDefinition?: AvatarDefinition;
   isFollowed: boolean;
   username: string;
   learningStats: Array<LearningDataPoint>;
   streak: number;
   achievements: Array<ProfileAchievement>;
+  courses: Array<ProfileCourse>;
 }
 
 export type UserSummary = Pick<
   UserProfile,
-  "id" | "name" | "username" | "profileImageUrl" | "isFollowed"
+  "id" | "name" | "username" | "avatarDefinition" | "isFollowed"
 >;
 
 export type ProfileAchievement = Pick<
   Achievement,
-  "id" | "title" | "description" | "imageUrl" | "progress"
->;
+  "id" | "title" | "description" | "progress" | "collectedReward"
+> & {
+  badgeIconName: "achievement-1" | "achievement-2";
+};
+
+export interface ProfileCourse {
+  id: Id;
+  name: string;
+  type: "course" | "learning-path";
+  logoId?: string;
+  userProgress?: number;
+}
 
 export interface LearningDataPoint {
   date: string;
