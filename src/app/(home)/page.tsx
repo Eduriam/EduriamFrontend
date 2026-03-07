@@ -16,6 +16,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -66,15 +68,20 @@ const HomePage: React.FC<IHomePage> = () => {
 
   return (
     <PageRoot data-test="home-page">
-      <HomepageNavbar
-        streak={streak}
-        coins={coins}
-        energy={energy}
-        onStudyPlanClick={navigateWithTransition("/study-plan")}
-        onStreakClick={() => setStreakDrawerOpen(true)}
-        onCoinsClick={navigateWithTransition("/shop")}
-        onEnergyClick={() => setEnergyDrawerOpen(true)}
-        data-test-study-plan-button="study-plan-button"
+      <PageNavigation
+        topNavigation={
+          <HomepageNavbar
+            streak={streak}
+            coins={coins}
+            energy={energy}
+            onStudyPlanClick={navigateWithTransition("/study-plan")}
+            onStreakClick={() => setStreakDrawerOpen(true)}
+            onCoinsClick={navigateWithTransition("/shop")}
+            onEnergyClick={() => setEnergyDrawerOpen(true)}
+            data-test-study-plan-button="study-plan-button"
+          />
+        }
+        mainNavigation="show"
       />
 
       <ContentContainer
