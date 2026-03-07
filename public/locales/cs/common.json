@@ -467,6 +467,7 @@
   },
   "search": {
     "title": "Vyhledávání",
+    "nameOrUsername": "Jméno nebo uživatelské jméno",
     "categories": ["Uživatelé", "Lekce", "Slovíčka"],
     "noWordsFound": "Nebyla nalezena žádná slovíčka.",
     "noLessonsFound": "Nebyly nalezeny žádné lekce.",

@@ -3,11 +3,9 @@
 import {
   BasicNavbar,
   ContentContainer,
-  Icon,
   PageRoot,
   Tabs,
 } from "@eduriam/ui-core";
-import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -15,13 +13,7 @@ import { useMemo, useState } from "react";
 
 import { useSearchParams } from "next/navigation";
 
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-
-import Avatar from "components/avatar/Avatar";
+import UserList from "components/atoms/lists/UserList/UserList";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
@@ -166,61 +158,18 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
           variant="fullWidth"
         />
 
-        <Box sx={{ width: "100%", mt: 1 }}>
-          {items.map((item, index) => (
-            <Box key={item.id}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                sx={{ py: 1, px: 0.5 }}
-              >
-                <Stack
-                  direction="row"
-                  spacing={1.5}
-                  alignItems="center"
-                  sx={{
-                    minWidth: 0,
-                    flexGrow: 1,
-                    cursor: "pointer",
-                  }}
-                  onClick={navigateWithTransition(`/users/${item.id}`)}
-                >
-                  <Avatar
-                    definition={buildShopAvatar(item.avatarDefinition)}
-                    size={64}
-                    alt={item.name}
-                  />
-                  <Box sx={{ minWidth: 0 }}>
-                    <Typography variant="body1" noWrap>
-                      {item.name}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" noWrap>
-                      @{item.username}
-                    </Typography>
-                  </Box>
-                </Stack>
-
-                {item.id !== user?.id && (
-                  <IconButton
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      if (value === "followers") {
-                        updateFollower(item.id, !item.isFollowed);
-                      } else {
-                        updateFollowing(item.id, !item.isFollowed);
-                      }
-                    }}
-                  >
-                    <Icon name={item.isFollowed ? "unfollow" : "follow"} />
-                  </IconButton>
-                )}
-              </Stack>
-
-              {index < items.length - 1 && <Divider />}
-            </Box>
-          ))}
-        </Box>
+        <UserList
+          items={items}
+          currentUserId={user?.id}
+          onUserClick={(userId) => navigateWithTransition(`/users/${userId}`)()}
+          onFollowToggle={(itemId, isFollowed) => {
+            if (value === "followers") {
+              updateFollower(itemId, isFollowed);
+            } else {
+              updateFollowing(itemId, isFollowed);
+            }
+          }}
+        />
       </ContentContainer>
     </PageRoot>
   );

@@ -2979,7 +2979,7 @@
       "responses": [
         {
           "uuid": "7e473f0c-7ef3-450a-b714-6b43deef94e4",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"Pepa Okurka\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName' 'Pepa' 'Okurka'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n]",
+          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"Pepa Okurka\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName' 'Pepa' 'Okurka'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response: searchName=\"Pepa Okurka\"",
@@ -3006,7 +3006,7 @@
         },
         {
           "uuid": "7e5e630a-2292-42b6-95c1-8ddca7f4d3a8",
-          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"profileImageUrl\":\"{{faker 'internet.avatar'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
+          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n   {{/repeat}}\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
