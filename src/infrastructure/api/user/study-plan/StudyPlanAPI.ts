@@ -1,7 +1,7 @@
 import { Modify } from "domain/models/utils/modify";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { StudyPlanOverview } from "./StudyPlan";
 
@@ -12,7 +12,7 @@ const StudyPlanAPI = {
     FetchHook<StudyPlanOverview>,
     { studyPlan: StudyPlanOverview | undefined }
   > {
-    const { data, ...rest } = useAPI<StudyPlanOverview>(this.URI);
+    const { data, ...rest } = useAuthenticatedAPI<StudyPlanOverview>(this.URI);
 
     return {
       studyPlan: data,
@@ -26,3 +26,5 @@ const StudyPlanAPI = {
 };
 
 export default StudyPlanAPI;
+
+

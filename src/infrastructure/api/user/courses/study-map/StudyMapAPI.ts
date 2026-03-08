@@ -2,7 +2,7 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { StudyMap } from "./StudyMap";
 
@@ -19,7 +19,7 @@ const StudyMapAPI = {
     courseId: Id,
     params: StudyMapParams,
   ): Modify<FetchHook<StudyMap>, { studyMap: StudyMap }> {
-    const { data, ...rest } = useAPI<StudyMap>(
+    const { data, ...rest } = useAuthenticatedAPI<StudyMap>(
       `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { studyMap: data, ...rest };
@@ -31,3 +31,5 @@ const StudyMapAPI = {
 };
 
 export default StudyMapAPI;
+
+

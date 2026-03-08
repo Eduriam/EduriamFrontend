@@ -2,7 +2,7 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { LessonItem, LessonItemSummary } from "./LessonItems";
 
@@ -18,7 +18,7 @@ const LessonItemsAPI = {
     courseId: Id,
     id: Id,
   ): Modify<FetchHook<LessonItem>, { lessonItem: LessonItem }> {
-    const { data, ...rest } = useAPI<LessonItem>(`${this.URI(courseId)}/${id}`);
+    const { data, ...rest } = useAuthenticatedAPI<LessonItem>(`${this.URI(courseId)}/${id}`);
     return { lessonItem: data, ...rest };
   },
 
@@ -29,7 +29,7 @@ const LessonItemsAPI = {
     FetchHook<Array<LessonItemSummary>>,
     { lessonItems: Array<LessonItemSummary> }
   > {
-    const { data, ...rest } = useAPI<Array<LessonItemSummary>>(
+    const { data, ...rest } = useAuthenticatedAPI<Array<LessonItemSummary>>(
       `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { lessonItems: data, ...rest };
@@ -44,3 +44,5 @@ const LessonItemsAPI = {
 };
 
 export default LessonItemsAPI;
+
+

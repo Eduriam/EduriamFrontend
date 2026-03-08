@@ -1,7 +1,7 @@
 import { Modify } from "domain/models/utils/modify";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { CreateSubscriptionResponseDTO, Subscription } from "./Subscriptions";
 
@@ -14,7 +14,7 @@ const SubscriptionAPI = {
     FetchHook<Subscription>,
     { subscription: Subscription }
   > {
-    const { data, ...rest } = useAPI<Subscription>(`${this.URI}`);
+    const { data, ...rest } = useAuthenticatedAPI<Subscription>(`${this.URI}`);
     return { subscription: data, ...rest };
   },
 
@@ -34,3 +34,5 @@ const SubscriptionAPI = {
 };
 
 export default SubscriptionAPI;
+
+

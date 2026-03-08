@@ -2,7 +2,7 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { Achievement } from "./Achievements";
 
@@ -17,7 +17,7 @@ const AchievementsAPI = {
     FetchHook<Array<Achievement>>,
     { achievements: Array<Achievement> }
   > {
-    const { data, ...rest } = useAPI<Array<Achievement>>(
+    const { data, ...rest } = useAuthenticatedAPI<Array<Achievement>>(
       `${this.URI}?${parseQueryParams(params)}`,
     );
     return { achievements: data, ...rest };
@@ -29,3 +29,5 @@ const AchievementsAPI = {
 };
 
 export default AchievementsAPI;
+
+

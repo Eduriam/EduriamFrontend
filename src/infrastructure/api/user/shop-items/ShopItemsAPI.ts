@@ -1,7 +1,7 @@
 import { Modify } from "domain/models/utils/modify";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { ShopItem } from "./ShopItems";
 
@@ -12,7 +12,7 @@ const ShopItemsAPI = {
     FetchHook<Array<ShopItem>>,
     { shopItems: Array<ShopItem> }
   > {
-    const { data, ...rest } = useAPI<Array<ShopItem>>(this.URI);
+    const { data, ...rest } = useAuthenticatedAPI<Array<ShopItem>>(this.URI);
     return { shopItems: data, ...rest };
   },
 
@@ -25,3 +25,5 @@ const ShopItemsAPI = {
 };
 
 export default ShopItemsAPI;
+
+

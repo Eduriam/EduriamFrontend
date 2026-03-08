@@ -4,7 +4,7 @@ import { parseQueryParams } from "util/functions/api";
 import { LanguageLevel } from "components/molecules/forms/SelectLevelForm/config";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import {
   Lesson,
@@ -28,7 +28,7 @@ const LessonsAPI = {
     courseId: Id,
     lessonId: Id,
   ): Modify<FetchHook<Lesson>, { lesson: Lesson }> {
-    const { data, ...rest } = useAPI<Lesson>(
+    const { data, ...rest } = useAuthenticatedAPI<Lesson>(
       `${this.URI(courseId)}/${lessonId}`,
     );
     return { lesson: data, ...rest };
@@ -38,7 +38,7 @@ const LessonsAPI = {
     courseId: Id,
     params: LessonParams = {},
   ): Modify<FetchHook<Array<Lesson>>, { lessons: Array<Lesson> }> {
-    const { data, ...rest } = useAPI<Array<Lesson>>(
+    const { data, ...rest } = useAuthenticatedAPI<Array<Lesson>>(
       `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { lessons: data, ...rest };
@@ -68,3 +68,5 @@ const LessonsAPI = {
 };
 
 export default LessonsAPI;
+
+

@@ -4,7 +4,7 @@ import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
 
-import useAPI from "../../../hooks/useAPI";
+import useAuthenticatedAPI from "../../../hooks/useAuthenticatedAPI";
 
 export interface StudySessionParams {
   lessonId?: Id;
@@ -27,7 +27,7 @@ const StudySessionAPI = {
     const queryParams = parseQueryParams(params);
     const uri =
       queryParams.length > 0 ? `${this.URI}?${queryParams}` : this.URI;
-    const { data, ...rest } = useAPI<StudySessionDTO>(uri);
+    const { data, ...rest } = useAuthenticatedAPI<StudySessionDTO>(uri);
 
     return {
       studySession: data,
@@ -41,3 +41,5 @@ const StudySessionAPI = {
 };
 
 export default StudySessionAPI;
+
+

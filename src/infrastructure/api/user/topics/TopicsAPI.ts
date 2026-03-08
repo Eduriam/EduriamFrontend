@@ -2,7 +2,7 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { Topic } from "./Topics";
 
@@ -17,7 +17,7 @@ const TopicsAPI = {
     courseId: Id,
     params: TopicParams = {},
   ): Modify<FetchHook<Array<Topic>>, { topics: Array<Topic> }> {
-    const { data, ...rest } = useAPI<Array<Topic>>(
+    const { data, ...rest } = useAuthenticatedAPI<Array<Topic>>(
       `${this.URI(courseId)}?${parseQueryParams(params)}`,
     );
     return { topics: data, ...rest };
@@ -33,3 +33,5 @@ const TopicsAPI = {
 };
 
 export default TopicsAPI;
+
+
