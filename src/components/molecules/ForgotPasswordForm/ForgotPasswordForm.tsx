@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 import errorCodes from "infrastructure/api/error-codes";
 import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
@@ -66,27 +65,20 @@ const ForgotPasswordForm: React.FC<IForgotPasswordForm> = ({ onEmailSent }) => {
           <TextField
             id="email"
             type="email"
-            label={t("auth.email")}
-            displayLabel={false}
             placeholder={t("auth.email")}
             error={errors.email !== undefined || invalidEmail}
+            helperText={
+              errors.email?.type === "required"
+                ? t("error.field-is-required")
+                : errors.email?.type === "pattern" || invalidEmail
+                  ? t("error.invalid-email-address")
+                  : undefined
+            }
             {...emailField}
             inputRef={emailRef}
             fullWidth
             autoComplete="email"
           />
-          {(errors.email || invalidEmail) && (
-            <Typography
-              variant="caption"
-              color="error"
-              sx={{ textAlign: "left" }}
-            >
-              {errors.email?.type === "required"
-                ? t("error.field-is-required")
-                : (errors.email?.type === "pattern" || invalidEmail) &&
-                  t("error.invalid-email-address")}
-            </Typography>
-          )}
         </Stack>
         <Box>
           <LargeButton

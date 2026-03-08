@@ -86,10 +86,15 @@ const SignupForm: React.FC<ISignupForm> = () => {
             render={({ field }) => (
               <Stack data-test="signup-username-field">
                 <TextField
-                  displayLabel={false}
                   id="username"
                   type="text"
                   placeholder={t("auth.username")}
+                  error={
+                    errors.username !== undefined ||
+                    authErrors?.includes(errorCodes.usernameTaken) ||
+                    authErrors?.includes(errorCodes.invalidUsername)
+                  }
+                  helperText={usernameHelperText || undefined}
                   fullWidth
                   autoComplete="username"
                   inputProps={{ "aria-label": t("auth.username") }}
@@ -100,18 +105,6 @@ const SignupForm: React.FC<ISignupForm> = () => {
               </Stack>
             )}
           />
-          {usernameHelperText ? (
-            <FormHelperText
-              error={
-                errors.username !== undefined ||
-                authErrors?.includes(errorCodes.usernameTaken) ||
-                authErrors?.includes(errorCodes.invalidUsername)
-              }
-              sx={{ mt: 0, textAlign: "left" }}
-            >
-              {usernameHelperText}
-            </FormHelperText>
-          ) : null}
           <Controller
             name="email"
             control={control}
@@ -119,10 +112,15 @@ const SignupForm: React.FC<ISignupForm> = () => {
             render={({ field }) => (
               <Stack data-test="signup-email-field">
                 <TextField
-                  displayLabel={false}
                   id="email"
                   type="email"
                   placeholder={t("auth.email")}
+                  error={
+                    errors.email !== undefined ||
+                    authErrors?.includes(errorCodes.emailAddressTaken) ||
+                    authErrors?.includes(errorCodes.invalidEmailAddress)
+                  }
+                  helperText={emailHelperText || undefined}
                   fullWidth
                   autoComplete="email"
                   inputProps={{ "aria-label": t("auth.email") }}
@@ -133,18 +131,6 @@ const SignupForm: React.FC<ISignupForm> = () => {
               </Stack>
             )}
           />
-          {emailHelperText ? (
-            <FormHelperText
-              error={
-                errors.email !== undefined ||
-                authErrors?.includes(errorCodes.emailAddressTaken) ||
-                authErrors?.includes(errorCodes.invalidEmailAddress)
-              }
-              sx={{ mt: 0, textAlign: "left" }}
-            >
-              {emailHelperText}
-            </FormHelperText>
-          ) : null}
           <Controller
             name="password"
             control={control}
@@ -152,10 +138,14 @@ const SignupForm: React.FC<ISignupForm> = () => {
             render={({ field }) => (
               <Stack data-test="signup-password-field">
                 <TextField
-                  displayLabel={false}
                   id="password"
                   type="password"
                   placeholder={t("auth.password")}
+                  error={
+                    errors.password !== undefined ||
+                    authErrors?.includes(errorCodes.passwordTooShort)
+                  }
+                  helperText={passwordHelperText || undefined}
                   fullWidth
                   autoComplete="new-password"
                   inputProps={{ "aria-label": t("auth.password") }}
@@ -166,17 +156,6 @@ const SignupForm: React.FC<ISignupForm> = () => {
               </Stack>
             )}
           />
-          {passwordHelperText ? (
-            <FormHelperText
-              error={
-                errors.password !== undefined ||
-                authErrors?.includes(errorCodes.passwordTooShort)
-              }
-              sx={{ mt: 0, textAlign: "left" }}
-            >
-              {passwordHelperText}
-            </FormHelperText>
-          ) : null}
           <FormControlLabel
             control={<Checkbox {...register("checked", { required: true })} />}
             sx={{ alignItems: "center" }}

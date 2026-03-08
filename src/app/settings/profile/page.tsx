@@ -1,16 +1,19 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import {
+  BasicNavbar,
+  ContentContainer,
+  LargeButton,
+  PageRoot,
+  TextField,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect, useMemo, useState } from "react";
 
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 
@@ -114,114 +117,117 @@ const SettingsProfilePage: React.FC = () => {
         width="small"
         justifyContent="flex-start"
         paddingTop="none"
+        spacing={10}
       >
-        <Stack spacing={3} width="100%">
+        <Stack spacing={6}>
           <Stack spacing={1} alignItems="center">
-            <Stack data-test="settings-profile-avatar">
+            <Stack
+              data-test="settings-profile-avatar"
+              role="button"
+              tabIndex={0}
+              onClick={navigateWithTransition("/edit-avatar")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  navigateWithTransition("/edit-avatar")();
+                }
+              }}
+              sx={{ cursor: "pointer" }}
+            >
               <Avatar
                 definition={settings?.avatarDefinition ?? {}}
                 size={100}
               />
             </Stack>
-            <Button
+            <LargeButton
               variant="text"
               onClick={navigateWithTransition("/edit-avatar")}
               data-test="settings-profile-change-avatar-button"
             >
               {t("settings.profile.changeAvatar")}
-            </Button>
+            </LargeButton>
           </Stack>
 
-          <Stack spacing={2}>
-            <Stack spacing={1}>
-              <Typography variant="subtitle1">
-                {t("settings.profile.name")}
-              </Typography>
-              <TextField
-                value={draft.name}
-                onChange={(event) =>
-                  setDraft((currentDraft) => ({
-                    ...currentDraft,
-                    name: event.target.value,
-                  }))
-                }
-                inputProps={{ "data-test": "settings-profile-name-field" }}
-              />
-            </Stack>
+          <TextField
+            label={t("settings.profile.name")}
+            value={draft.name}
+            onChange={(event) =>
+              setDraft((currentDraft) => ({
+                ...currentDraft,
+                name: event.target.value,
+              }))
+            }
+            inputProps={{ "data-test": "settings-profile-name-field" }}
+            fullWidth
+          />
 
-            <Stack spacing={1}>
-              <Typography variant="subtitle1">
-                {t("settings.profile.username")}
-              </Typography>
-              <TextField
-                value={draft.username}
-                error={errors.includes(errorCodes.usernameTaken)}
-                helperText={
-                  errors.includes(errorCodes.usernameTaken)
-                    ? t("settings.profile.usernameTaken")
-                    : undefined
-                }
-                onChange={(event) =>
-                  setDraft((currentDraft) => ({
-                    ...currentDraft,
-                    username: event.target.value,
-                  }))
-                }
-                onFocus={() =>
-                  setErrors((currentErrors) =>
-                    currentErrors.filter(
-                      (code) => code !== errorCodes.usernameTaken,
-                    ),
-                  )
-                }
-                inputProps={{ "data-test": "settings-profile-username-field" }}
-              />
-            </Stack>
+          <TextField
+            label={t("settings.profile.username")}
+            value={draft.username}
+            error={errors.includes(errorCodes.usernameTaken)}
+            helperText={
+              errors.includes(errorCodes.usernameTaken)
+                ? t("settings.profile.usernameTaken")
+                : undefined
+            }
+            onChange={(event) =>
+              setDraft((currentDraft) => ({
+                ...currentDraft,
+                username: event.target.value,
+              }))
+            }
+            onFocus={() =>
+              setErrors((currentErrors) =>
+                currentErrors.filter(
+                  (code) => code !== errorCodes.usernameTaken,
+                ),
+              )
+            }
+            inputProps={{ "data-test": "settings-profile-username-field" }}
+            fullWidth
+          />
 
-            <Stack spacing={1}>
-              <Typography variant="subtitle1">
-                {t("settings.profile.email")}
-              </Typography>
-              <TextField
-                type="email"
-                value={draft.email}
-                error={errors.includes(errorCodes.emailAddressTaken)}
-                helperText={
-                  errors.includes(errorCodes.emailAddressTaken)
-                    ? t("settings.profile.emailTaken")
-                    : undefined
-                }
-                onChange={(event) =>
-                  setDraft((currentDraft) => ({
-                    ...currentDraft,
-                    email: event.target.value,
-                  }))
-                }
-                onFocus={() =>
-                  setErrors((currentErrors) =>
-                    currentErrors.filter(
-                      (code) => code !== errorCodes.emailAddressTaken,
-                    ),
-                  )
-                }
-                inputProps={{ "data-test": "settings-profile-email-field" }}
-              />
-            </Stack>
-          </Stack>
-
-          <Button
-            variant="outlined"
-            onClick={async () => {
-              await ResetPasswordAPI.resetPassword({ email: draft.email });
-              enqueueSnackbar(t("settings.profile.passwordResetSent"), {
-                variant: "success",
-              });
-            }}
-            data-test="settings-profile-change-password-button"
-          >
-            {t("settings.profile.changePassword")}
-          </Button>
+          <TextField
+            label={t("settings.profile.email")}
+            type="email"
+            value={draft.email}
+            error={errors.includes(errorCodes.emailAddressTaken)}
+            helperText={
+              errors.includes(errorCodes.emailAddressTaken)
+                ? t("settings.profile.emailTaken")
+                : undefined
+            }
+            onChange={(event) =>
+              setDraft((currentDraft) => ({
+                ...currentDraft,
+                email: event.target.value,
+              }))
+            }
+            onFocus={() =>
+              setErrors((currentErrors) =>
+                currentErrors.filter(
+                  (code) => code !== errorCodes.emailAddressTaken,
+                ),
+              )
+            }
+            inputProps={{ "data-test": "settings-profile-email-field" }}
+            fullWidth
+          />
         </Stack>
+
+        <LargeButton
+          variant="outlined"
+          onClick={async () => {
+            await ResetPasswordAPI.resetPassword({ email: draft.email });
+            enqueueSnackbar(t("settings.profile.passwordResetSent"), {
+              variant: "success",
+            });
+          }}
+          data-test="settings-profile-change-password-button"
+          fullWidth
+        >
+          {t("settings.profile.changePassword")}
+        </LargeButton>
       </ContentContainer>
     </PageRoot>
   );

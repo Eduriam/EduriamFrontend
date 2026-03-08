@@ -68,10 +68,15 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
                 <TextField
                   id="email"
                   type="email"
-                  label={t("auth.email")}
-                  displayLabel={false}
                   placeholder={t("auth.email")}
                   error={errors.email !== undefined}
+                  helperText={
+                    errors.email?.type === "required"
+                      ? t("error.field-is-required")
+                      : errors.email?.type === "pattern"
+                        ? t("error.invalid-email-address")
+                        : undefined
+                  }
                   fullWidth
                   autoComplete="email"
                   inputProps={{ "aria-label": t("auth.email") }}
@@ -82,18 +87,6 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
               </Box>
             )}
           />
-          {errors.email && (
-            <Typography
-              variant="caption"
-              color="error"
-              sx={{ textAlign: "left" }}
-            >
-              {errors.email?.type === "required"
-                ? t("error.field-is-required")
-                : errors.email?.type === "pattern" &&
-                  t("error.invalid-email-address")}
-            </Typography>
-          )}
           <Controller
             name="password"
             control={control}
@@ -103,10 +96,13 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
                 <TextField
                   id="password"
                   type="password"
-                  label={t("auth.password")}
-                  displayLabel={false}
                   placeholder={t("auth.password")}
                   error={errors.password !== undefined}
+                  helperText={
+                    errors.password?.type === "required"
+                      ? t("error.field-is-required")
+                      : undefined
+                  }
                   fullWidth
                   autoComplete="new-password"
                   inputProps={{ "aria-label": t("auth.password") }}
@@ -117,16 +113,6 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
               </Box>
             )}
           />
-          {errors.password && (
-            <Typography
-              variant="caption"
-              color="error"
-              sx={{ textAlign: "left" }}
-            >
-              {errors.password?.type === "required" &&
-                t("error.field-is-required")}
-            </Typography>
-          )}
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Link
               href="/forgot-password"

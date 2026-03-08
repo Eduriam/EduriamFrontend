@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 import ChangePasswordAPI from "infrastructure/api/change-password/ChangePasswordAPI";
 
@@ -74,50 +73,36 @@ const ChangePasswordForm: React.FC<IChangePasswordForm> = ({
           <TextField
             id="password"
             type="password"
-            label={t("changePassword.newPassword")}
-            displayLabel={false}
             placeholder={t("changePassword.newPassword")}
             error={errors.password !== undefined}
+            helperText={
+              errors.password?.type === "required"
+                ? t("error.field-is-required")
+                : errors.password?.type === "minLength"
+                  ? t("error.password-too-short")
+                  : undefined
+            }
             {...passwordField}
             inputRef={passwordRef}
             fullWidth
             autoComplete="new-password"
           />
-          {errors.password && (
-            <Typography
-              variant="caption"
-              color="error"
-              sx={{ textAlign: "left" }}
-            >
-              {errors.password?.type === "required"
-                ? t("error.field-is-required")
-                : errors.password?.type === "minLength" &&
-                  t("error.password-too-short")}
-            </Typography>
-          )}
           <TextField
             id="reenterPassword"
             type="password"
-            label={t("changePassword.reenterPassword")}
-            displayLabel={false}
             placeholder={t("changePassword.reenterPassword")}
             error={errors.reenterPassword !== undefined}
+            helperText={
+              errors.reenterPassword?.type === "required"
+                ? t("error.field-is-required")
+                : errors.reenterPassword?.type === "matches"
+                  ? t("error.passwords-dont-match")
+                  : undefined
+            }
             {...reenterPasswordField}
             inputRef={reenterPasswordRef}
             fullWidth
           />
-          {errors.reenterPassword && (
-            <Typography
-              variant="caption"
-              color="error"
-              sx={{ textAlign: "left" }}
-            >
-              {errors.reenterPassword?.type === "required"
-                ? t("error.field-is-required")
-                : errors.reenterPassword?.type === "matches" &&
-                  t("error.passwords-dont-match")}
-            </Typography>
-          )}
         </Stack>
         <Box>
           <LargeButton
