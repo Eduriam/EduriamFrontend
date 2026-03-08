@@ -9,7 +9,7 @@ import { UserCourse } from "./UserCourses";
 export interface CourseParams {}
 
 const UserCoursesAPI = {
-  URI: "user/courses",
+  URI: "users/me/courses",
 
   useUserCourses(
     params: CourseParams = {},
@@ -33,6 +33,10 @@ const UserCoursesAPI = {
 
   async selectCourse(courseId: Id): Promise<void> {
     return API.put(`${this.URI}/${courseId}/select-course`, {});
+  },
+
+  async removeCourse(courseId: Id): Promise<void> {
+    await API.delete(`${this.URI}/${courseId}`);
   },
 };
 

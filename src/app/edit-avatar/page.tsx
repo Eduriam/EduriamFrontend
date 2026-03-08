@@ -19,7 +19,6 @@ import Avatar, { type AvatarDefinition } from "components/avatar/Avatar";
 import { optimisticMutationOption } from "infrastructure/api/API";
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
@@ -36,8 +35,6 @@ export interface IEditAvatarPage {}
 const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { user } = useAuth();
-  const userPagePath = user?.id ? `/users/${user.id}` : "/";
 
   const { settings, mutate } = SettingsAPI.useSettings();
   const { shopItems = [] } = ShopItemsAPI.useShopItems();
@@ -78,7 +75,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
     serializeAvatar(baseAvatar) !== serializeAvatar(draftAvatar);
 
   const navigateBack = () => {
-    navigateWithTransition(userPagePath, { direction: "back" })();
+    navigateWithTransition("/settings/profile", { direction: "back" })();
   };
 
   const handleLeave = () => {
@@ -97,6 +94,14 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
         name: "",
         email: "",
         dailyGoal: 0,
+        themeMode: "system",
+        notificationPreferences: {
+          dailyPractice: true,
+          streakFreezeUsed: false,
+          leaderboardStatus: false,
+          newFollower: true,
+          friendActivity: false,
+        },
       }),
       avatarDefinition: draftAvatar,
     };

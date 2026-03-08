@@ -30,6 +30,9 @@ const PAGE_URLS: Record<string, string> = {
   "shop-category-page": `${BASE_URL}/shop/hair`,
   "edit-avatar-page": `${BASE_URL}/edit-avatar`,
   "user-page": `${BASE_URL}/users/test-user`,
+  "settings-page": `${BASE_URL}/settings`,
+  "preferences-page": `${BASE_URL}/settings/preferences`,
+  "notification-settings-page": `${BASE_URL}/settings/notifications`,
 };
 
 type DefinedPageEntityConfig = {

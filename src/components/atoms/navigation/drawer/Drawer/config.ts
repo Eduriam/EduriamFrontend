@@ -108,7 +108,7 @@ export const other: DrawerItem[] = [
   {
     label: "navigation.help",
     icon: "help",
-    path: "/help",
+    path: "/settings/help",
   },
   {
     label: "navigation.premium",

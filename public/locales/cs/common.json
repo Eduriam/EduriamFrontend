@@ -479,5 +479,116 @@
     "customVocabulary": "Vytvářejte vlastní balíčky slovíček",
     "advancedExercises": "Dělejte pokročilé lekce",
     "noAds": "Žádné reklamy při učení"
+  },
+  "settings": {
+    "title": "Nastavení",
+    "saved": "Nastavení uloženo.",
+    "generalError": "Nepodařilo se uložit nastavení.",
+    "items": {
+      "profile": "Profil",
+      "preferences": "Předvolby",
+      "notifications": "Oznámení",
+      "courses": "Kurzy",
+      "help": "Nápověda",
+      "reportAProblem": "Nahlásit problém",
+      "logOut": "Odhlásit se",
+      "legal": "Právní informace"
+    },
+    "profile": {
+      "changeAvatar": "Změnit avatar",
+      "name": "Jméno",
+      "username": "Uživatelské jméno",
+      "email": "Email",
+      "changePassword": "Změnit heslo",
+      "passwordResetSent": "Email pro změnu hesla byl odeslán.",
+      "usernameTaken": "Toto uživatelské jméno je už obsazeno.",
+      "emailTaken": "Tato e-mailová adresa je už obsazena."
+    },
+    "preferences": {
+      "darkTheme": "Tmavý režim",
+      "themeModes": {
+        "system": "Systémové výchozí",
+        "dark": "Zapnuto",
+        "light": "Vypnuto"
+      }
+    },
+    "notifications": {
+      "sections": {
+        "learningReminders": "Připomenutí učení",
+        "leaderboards": "Žebříčky",
+        "followers": "Sledující"
+      },
+      "items": {
+        "dailyPractice": "Každodenní trénink",
+        "streakFreezeUsed": "Použití ochrany streaku",
+        "leaderboardStatus": "Stav žebříčku",
+        "newFollower": "Nový sledující",
+        "friendActivity": "Aktivita přátel"
+      }
+    },
+    "courses": {
+      "removed": "Kurz byl odebrán.",
+      "removeTitle": "Opravdu chcete odebrat kurz?",
+      "removeDescription": "Odebráním kurzu přijdete o veškerý postup a tuto akci nelze vrátit.",
+      "remove": "Odebrat kurz"
+    },
+    "help": {
+      "notFoundTitle": "Článek nenalezen",
+      "notFoundDescription": "Požadovaný článek nebyl nalezen.",
+      "sections": {
+        "usingEduriam": "Používání Eduriam",
+        "accountManagement": "Správa účtu",
+        "subscriptionAndPayments": "Předplatné a platby"
+      },
+      "articles": {
+        "whatIsAStreak": {
+          "title": "Co je to streak?",
+          "body": "Streak je počet po sobě jdoucích dní, kdy jste splnili denní cíl učení."
+        },
+        "whatAreLeaguesAndLeaderboards": {
+          "title": "Co jsou ligy a žebříčky?",
+          "body": "Ligy a žebříčky porovnávají aktivitu uživatelů v týdnu podle získaného XP."
+        },
+        "howDoIResetCourseProgress": {
+          "title": "Jak resetuji postup v kurzu?",
+          "body": "Pokud potřebujete resetovat postup, kontaktujte podporu přímo z aplikace."
+        },
+        "howDoIChangeAccountDetails": {
+          "title": "Jak změním údaje účtu (e-mail, heslo, atd.)?",
+          "body": "Údaje účtu upravíte v sekci Profil. Změnu hesla provedete přes tlačítko Změnit heslo."
+        },
+        "howDoIDeleteMyAccount": {
+          "title": "Jak mohu smazat svůj účet?",
+          "body": "Pro smazání účtu kontaktujte podporu a ověřte vlastnictví účtu."
+        },
+        "whatIsEduriamPremium": {
+          "title": "Co je Eduriam Premium a jak se přihlásit?",
+          "body": "Premium odemyká pokročilé funkce. Předplatné můžete aktivovat na stránce Premium."
+        },
+        "howCanICancelEduriamPremiumSubscription": {
+          "title": "Jak zruším Eduriam Premium předplatné?",
+          "body": "Předplatné můžete kdykoliv zrušit v sekci Správa předplatného v nastavení."
+        }
+      }
+    },
+    "legal": {
+      "termsTitle": "Podmínky použití",
+      "privacyTitle": "Zásady ochrany osobních údajů",
+      "termsBody": "Toto je zástupný text podmínek použití. Bude nahrazen finální právní verzí.",
+      "privacyBody": "Toto je zástupný text zásady ochrany osobních údajů. Bude nahrazen finální právní verzí."
+    },
+    "report": {
+      "header": "Nahlásit problém",
+      "problemType": "Typ problému",
+      "problemTypePlaceholder": "Vyberte typ problému",
+      "descriptionPlaceholder": "Popište problém",
+      "submit": "Odeslat",
+      "thankYouTitle": "Děkuji za nahlášení",
+      "thankYouDescription": "Vaše hlášení jsme přijali.",
+      "problemTypes": {
+        "bugReport": "Nahlásit chybu",
+        "improvementSuggestion": "Návrh na zlepšení"
+      }
+    }
   }
 }

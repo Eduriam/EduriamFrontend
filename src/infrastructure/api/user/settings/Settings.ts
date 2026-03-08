@@ -6,6 +6,16 @@ export interface CoursePreferences {
   userGoal?: string;
 }
 
+export type ThemeMode = "dark" | "light" | "system";
+
+export interface NotificationPreferences {
+  dailyPractice: boolean;
+  streakFreezeUsed: boolean;
+  leaderboardStatus: boolean;
+  newFollower: boolean;
+  friendActivity: boolean;
+}
+
 export interface Settings {
   username: string;
   name: string;
@@ -13,6 +23,8 @@ export interface Settings {
   dailyGoal: DailyGoal;
   coursePreferences?: CoursePreferences;
   avatarDefinition?: AvatarDefinition;
+  themeMode: ThemeMode;
+  notificationPreferences: NotificationPreferences;
 }
 
 export type DailyGoal = number;

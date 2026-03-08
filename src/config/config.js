@@ -6,7 +6,6 @@ const config = {
     "/lessons",
     "/lessons-create",
     "/topic-selection",
-    /^\/help(\/|$)/,
     /^\/lesson-items(\/|$)/,
     /^\/lessons(\/|$)/,
   ]),

@@ -163,7 +163,7 @@
       "uuid": "b367f1bb-e033-4935-be62-120bb35a541e",
       "documentation": "",
       "method": "post",
-      "endpoint": "study-blocks/:id/report",
+      "endpoint": "reports",
       "responses": [
         {
           "uuid": "8ef8ee63-c8d6-4f12-9225-bc5ae34e8f2f",
@@ -2002,7 +2002,7 @@
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "user/courses/:courseId",
+      "endpoint": "users/me/courses/:courseId",
       "responses": [
         {
           "uuid": "ec1e84f7-af09-4521-b1b9-e2130cf044e4",
@@ -2064,7 +2064,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/courses",
+      "endpoint": "users/me/courses",
       "responses": [
         {
           "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
@@ -2320,7 +2320,7 @@
       "responses": [
         {
           "uuid": "d4d718f9-31dd-400b-a7bd-1881d9a0337f",
-          "body": "{\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"email\":\"{{faker 'internet.email'}}\",\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "body": "{\n  \"name\":\"Test User\",\n  \"username\":\"test-user\",\n  \"email\":\"test@example.com\",\n  \"themeMode\": \"light\",\n  \"notificationPreferences\": {\n    \"dailyPractice\": true,\n    \"streakFreezeUsed\": false,\n    \"leaderboardStatus\": false,\n    \"newFollower\": true,\n    \"friendActivity\": false\n  },\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2351,7 +2351,7 @@
       "responses": [
         {
           "uuid": "9ed09469-e340-4e28-a8f8-6d5e4faddcb2",
-          "body": "{\n  \"name\": \"{{body 'name'}}\",\n  \"username\": \"{{body 'username'}}\",\n  \"email\": \"{{body 'email'}}\",\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "body": "{\n  \"name\": \"{{#if (body 'name')}}{{body 'name'}}{{else}}Test User{{/if}}\",\n  \"username\": \"{{#if (body 'username')}}{{body 'username'}}{{else}}test-user{{/if}}\",\n  \"email\": \"{{#if (body 'email')}}{{body 'email'}}{{else}}test@example.com{{/if}}\",\n  \"themeMode\": \"{{#if (body 'themeMode')}}{{body 'themeMode'}}{{else}}system{{/if}}\",\n  \"notificationPreferences\": {{#if (body 'notificationPreferences')}}{{body 'notificationPreferences'}}{{else}}{\"dailyPractice\":true,\"streakFreezeUsed\":false,\"leaderboardStatus\":false,\"newFollower\":true,\"friendActivity\":false}{{/if}},\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -3269,7 +3269,7 @@
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "user/courses/:courseId/select-course",
+      "endpoint": "users/me/courses/:courseId/select-course",
       "responses": [
         {
           "uuid": "5597e355-79e5-4c4a-82d8-a117e55f4872",
@@ -3544,7 +3544,7 @@
       "type": "http",
       "documentation": "",
       "method": "patch",
-      "endpoint": "user/courses/:courseId",
+      "endpoint": "users/me/courses/:courseId",
       "responses": [
         {
           "uuid": "49b33a7c-d3b1-4e46-913b-9c728fb73b38",
@@ -3710,6 +3710,37 @@
       ],
       "responseMode": null,
       "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/me/courses/:courseId",
+      "responses": [
+        {
+          "uuid": "88d80142-8961-4f59-881f-8960020deab5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
     }
@@ -4155,22 +4186,6 @@
       "name": "courses",
       "children": [
         {
-          "type": "route",
-          "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093"
-        },
-        {
-          "type": "route",
-          "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2"
-        },
-        {
-          "type": "route",
-          "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8"
-        },
-        {
-          "type": "route",
-          "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9"
-        },
-        {
           "type": "folder",
           "uuid": "15c23dbc-3e43-4234-88e8-2e268b908e94"
         },
@@ -4323,6 +4338,10 @@
         {
           "type": "folder",
           "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b"
+        },
+        {
+          "type": "folder",
+          "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372"
         }
       ]
     },
@@ -4357,6 +4376,28 @@
         {
           "type": "route",
           "uuid": "1671166d-608d-4267-ba20-12f5aa15d849"
+        }
+      ]
+    },
+    {
+      "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372",
+      "name": "courses",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093"
+        },
+        {
+          "type": "route",
+          "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2"
+        },
+        {
+          "type": "route",
+          "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8"
+        },
+        {
+          "type": "route",
+          "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9"
         }
       ]
     }
@@ -4409,6 +4450,10 @@
     {
       "type": "folder",
       "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81"
+    },
+    {
+      "type": "route",
+      "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900"
     }
   ],
   "callbacks": [

@@ -31,19 +31,6 @@ const Navigation: React.FC<INavigation> = () => {
     if (/\/users\/.*\/followers/.test(pathname)) {
       return <BackNavigationBar />;
     }
-    if (/^\/help\//.test(pathname)) {
-      return <BackNavigationBar header="help" />;
-    }
-    if (/^\/help/.test(pathname)) {
-      return (
-        <DrawerContainer
-          child={{
-            component: DefaultNavigationBar,
-            props: { header: t("navigation.help") },
-          }}
-        />
-      );
-    }
     if (/^\/lesson-items\//.test(pathname)) {
       if (desktop) {
         return <BackNavigationBar />;

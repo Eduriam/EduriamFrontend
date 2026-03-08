@@ -2,7 +2,7 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import API, { FetchHook } from "infrastructure/api/API";
-import useAPI from "infrastructure/api/hooks/useAPI";
+import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 
 import { Settings } from "./Settings";
 
@@ -14,7 +14,7 @@ const SettingsAPI = {
   useSettings(
     params: SettingsParams = {},
   ): Modify<FetchHook<Settings>, { settings: Settings }> {
-    const { data, ...rest } = useAPI<Settings>(
+    const { data, ...rest } = useAuthenticatedAPI<Settings>(
       `${this.URI}?${parseQueryParams(params)}`,
     );
     return { settings: data, ...rest };

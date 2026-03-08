@@ -1,161 +1,195 @@
 "use client";
 
+import {
+  BasicNavbar,
+  ContentContainer,
+  Icon,
+  PageRoot,
+} from "@eduriam/ui-core";
+import { ReportDialog } from "@eduriam/ui-x";
+import {
+  SETTINGS_REPORT_DATA_TEST,
+  createSettingsReportLocalization,
+  createSettingsReportProblemTypeSections,
+} from "app/settings/config/settingsReportConfig";
 import { useTranslation } from "i18n/client";
-import { useSnackbar } from "notistack";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 
-import { useRouter } from "next/navigation";
-
-import { Container } from "@mui/material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import BottomFab from "components/atoms/BottomFab/BottomFab";
-import AccountSettings from "components/molecules/settings/AccountSettings/AccountSettings";
-import DailyGoalSettings from "components/molecules/settings/DailyGoalSettings/DailyGoalSettings";
-
-import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
-export interface ISettingsPage {}
+type SettingsMenuItem = {
+  id: string;
+  label: string;
+  icon: ReactNode;
+  dataTest: string;
+  onClick: () => void;
+};
 
-const SettingsPage: React.FC<ISettingsPage> = () => {
-  const { t } = useTranslation("form");
-  const { user, revalidateUser } = useAuth();
-  const router = useRouter();
-  const { settings, mutate } = SettingsAPI.useSettings(user?.id);
-  const [errors, setErrors] = useState<Array<string>>([]);
-  const [change, setChange] = useState({});
-  const { enqueueSnackbar } = useSnackbar();
-  const [changePasswordEmailSent, setChangePasswordEmailSent] = useState(false);
+const SettingsPage: React.FC = () => {
+  const { t } = useTranslation("common");
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const { logout } = useAuth();
 
-  function handleSave() {
-    mutate(
-      async () => {
-        try {
-          const newSettings = await SettingsAPI.updateSettings({
-            ...change,
-          });
+  const [isReportOpen, setIsReportOpen] = useState(false);
 
-          enqueueSnackbar(t("settings.saved"), {
-            variant: "success",
-          });
+  const reportLocalization = createSettingsReportLocalization(t);
+  const reportProblemTypeSections = useMemo(
+    () => createSettingsReportProblemTypeSections(t),
+    [t],
+  );
 
-          setErrors([]);
-          setChange({});
-          revalidateUser();
-          return newSettings;
-        } catch (err) {
-          handleError(err);
-          return { ...settings, ...change };
-        }
-      },
-      optimisticMutationOption({ ...settings, ...change }),
-    );
-  }
+  const accountItems: SettingsMenuItem[] = [
+    {
+      id: "profile",
+      label: t("settings.items.profile"),
+      icon: <Icon name="account" />,
+      dataTest: "profile-settings-button",
+      onClick: navigateWithTransition("/settings/profile"),
+    },
+    {
+      id: "preferences",
+      label: t("settings.items.preferences"),
+      icon: <Icon name="preferences" />,
+      dataTest: "preferences-settings-button",
+      onClick: navigateWithTransition("/settings/preferences"),
+    },
+    {
+      id: "notifications",
+      label: t("settings.items.notifications"),
+      icon: <Icon name="notification" />,
+      dataTest: "notifications-settings-button",
+      onClick: navigateWithTransition("/settings/notifications"),
+    },
+    {
+      id: "courses",
+      label: t("settings.items.courses"),
+      icon: <Icon name="courses" />,
+      dataTest: "courses-settings-button",
+      onClick: navigateWithTransition("/settings/courses"),
+    },
+  ];
 
-  function handleError(error: unknown) {
-    switch (error) {
-      case errorCodes.usernameTaken:
-        setErrors((errors) => [...errors, errorCodes.usernameTaken]);
-        break;
-      case errorCodes.emailAddressTaken:
-        setErrors((errors) => [...errors, errorCodes.emailAddressTaken]);
-        break;
-      default:
-        enqueueSnackbar(t("general-error-message"), {
-          variant: "error",
-        });
-        break;
-    }
-  }
+  const supportItems: SettingsMenuItem[] = [
+    {
+      id: "help",
+      label: t("settings.items.help"),
+      icon: <Icon name="help" />,
+      dataTest: "help-settings-button",
+      onClick: navigateWithTransition("/settings/help"),
+    },
+    {
+      id: "report",
+      label: t("settings.items.reportAProblem"),
+      icon: <Icon name="report" />,
+      dataTest: "report-settings-button",
+      onClick: () => setIsReportOpen(true),
+    },
+  ];
 
-  function displaySaveButton() {
-    if (Object.keys(change).length !== 0) {
-      return true;
-    }
+  const otherItems: SettingsMenuItem[] = [
+    {
+      id: "logout",
+      label: t("settings.items.logOut"),
+      icon: <Icon name="logout" />,
+      dataTest: "logout-settings-button",
+      onClick: () => logout(),
+    },
+    {
+      id: "legal",
+      label: t("settings.items.legal"),
+      icon: <Icon name="legal" />,
+      dataTest: "legal-settings-button",
+      onClick: navigateWithTransition("/settings/legal"),
+    },
+  ];
 
-    return false;
-  }
+  const renderSection = (items: SettingsMenuItem[]) => (
+    <Stack spacing={5} width="100%">
+      {items.map((item) => (
+        <Box
+          key={item.id}
+          role="button"
+          tabIndex={0}
+          data-test={item.dataTest}
+          onClick={item.onClick}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              item.onClick();
+            }
+          }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            py: 1,
+            cursor: "pointer",
+          }}
+        >
+          <Box sx={{ display: "flex", color: "text.primary" }}>{item.icon}</Box>
+          <Typography variant="body1" sx={{ flex: 1 }}>
+            {item.label}
+          </Typography>
+          <ChevronRightIcon
+            sx={{
+              color: "text.secondary",
+              fontSize: 20,
+              display: { xs: "none", md: "block" },
+            }}
+          />
+        </Box>
+      ))}
+    </Stack>
+  );
 
   return (
-    <>
-      {changePasswordEmailSent === true ? (
-        <Container maxWidth="xs" sx={{ pt: 3 }}>
-          <Typography variant="h3">
-            {t("forgotPassword.passwordSent")}
-          </Typography>
-          <Typography variant="body2">
-            {t("forgotPassword.passwordSentDescription")}
-          </Typography>
-        </Container>
-      ) : (
-        <>
-          {settings && (
-            <Box
-              display="flex"
-              flexDirection="column"
-              gap={2}
-              sx={{ width: "100%", mb: 4 }}
-            >
-              <AccountSettings
-                username={settings.username}
-                name={settings.name}
-                email={settings.email}
-                onUsernameChange={(value) =>
-                  setChange({ ...change, username: value })
-                }
-                onNameChange={(value) => setChange({ ...change, name: value })}
-                onPasswordChange={() => setChangePasswordEmailSent(true)}
-                accountErrors={errors}
-              />
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <Typography variant="subtitle1">
-                  {t("settings.courseCustomization")}
-                </Typography>
-                <Button
-                  variant="outlined"
-                  onClick={() => router.push(`/topic-selection`)}
-                  sx={{ width: "50%", alignSelf: "center" }}
-                >
-                  {t("settings.customizeTopics")}
-                </Button>
-              </Box>
-              <DailyGoalSettings
-                dailyGoal={settings.dailyGoal}
-                onGoalChange={(value) =>
-                  setChange({ ...change, dailyGoal: value })
-                }
-              />
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <Typography variant="subtitle1">
-                  {t("settings.premium")}
-                </Typography>
-                <Button
-                  variant="outlined"
-                  onClick={() => router.push("/manage-subscription")}
-                  sx={{ width: "50%", alignSelf: "center" }}
-                >
-                  {t("settings.manageSubscription")}
-                </Button>
-              </Box>
-            </Box>
-          )}
+    <PageRoot data-test="settings-page">
+      <BasicNavbar
+        header={t("settings.title")}
+        leftButton={{
+          icon: "arrowLeft",
+          onClick: navigateWithTransition("/", { direction: "back" }),
+        }}
+      />
 
-          {displaySaveButton() && (
-            <BottomFab
-              header={t("userActions.save")}
-              icon="check"
-              onClick={() => handleSave()}
-            />
-          )}
-        </>
-      )}
-    </>
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        paddingTop="small"
+      >
+        <Stack spacing={8} width="100%">
+          {renderSection(accountItems)}
+          <Divider />
+          {renderSection(supportItems)}
+          <Divider />
+          {renderSection(otherItems)}
+        </Stack>
+      </ContentContainer>
+
+      <ReportDialog
+        open={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        onSubmit={async (payload) => {
+          await ReportsAPI.submitReport({
+            type: "GENERAL",
+            problemTypeId: payload.problemTypeId,
+            description: payload.description,
+          });
+        }}
+        problemTypeSections={reportProblemTypeSections}
+        localization={reportLocalization}
+        dataTest={SETTINGS_REPORT_DATA_TEST}
+      />
+    </PageRoot>
   );
 };
 

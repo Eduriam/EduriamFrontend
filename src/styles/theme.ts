@@ -1,25 +1,34 @@
-import { theme as eduriamTheme } from "@eduriam/ui-core";
+import { darkTheme, lightTheme } from "@eduriam/ui-core";
 
-type EduriamTheme = typeof eduriamTheme;
-type EduriamPalette = EduriamTheme["palette"];
-
-const theme: EduriamTheme = {
-  ...eduriamTheme,
-  palette: {
-    ...eduriamTheme.palette,
-    coin: {
-      ...(eduriamTheme.palette as EduriamPalette & {
-        coin?: { main?: string };
-      }).coin,
-      main: "#FFC850",
-    },
-    energy: {
-      ...(eduriamTheme.palette as EduriamPalette & {
-        energy?: { main?: string };
-      }).energy,
-      main: "#FFD951",
-    },
-  },
+type AppTheme = typeof darkTheme;
+type AppPalette = AppTheme["palette"] & {
+  coin?: { main?: string };
+  energy?: { main?: string };
 };
+
+function extendTheme(baseTheme: AppTheme): AppTheme {
+  const palette = baseTheme.palette as AppPalette;
+
+  return {
+    ...baseTheme,
+    palette: {
+      ...baseTheme.palette,
+      coin: {
+        ...palette.coin,
+        main: "#FFC850",
+      },
+      energy: {
+        ...palette.energy,
+        main: "#FFD951",
+      },
+    },
+  };
+}
+
+export function getAppTheme(mode: "dark" | "light") {
+  return extendTheme(mode === "light" ? lightTheme : darkTheme);
+}
+
+const theme = getAppTheme("dark");
 
 export default theme;

@@ -20,7 +20,7 @@ import {
 
 import { useMemo, useState } from "react";
 
-import StudyBlocksReportAPI from "infrastructure/api/study-blocks/StudyBlocksReportAPI";
+import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
 import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -103,13 +103,15 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
             return;
           }
 
-          await StudyBlocksReportAPI.reportStudyBlock(
-            selectedStudyBlockData.id,
-            {
-              ...payload,
+          await ReportsAPI.submitReport({
+            type: "STUDY_BLOCK",
+            problemTypeId: payload.problemTypeId,
+            description: payload.description,
+            context: {
+              studyBlockId: selectedStudyBlockData.id,
               userAnswerReport: selectedStudyBlockData.userAnswerReport,
             },
-          );
+          });
         }}
         problemTypeSections={reportProblemTypeSections}
         localization={reportStudyBlockLocalization}

@@ -11,6 +11,10 @@ import { UserPrivate } from "../api/user/User";
 import { LocalStorageManager } from "./LocalStorageManager";
 
 const AuthManager = {
+  hasIdToken(): boolean {
+    return Boolean(LocalStorageManager.getItem<string>("idToken"));
+  },
+
   logout(): void {
     this.removeAuthHeader();
     LocalStorageManager.removeItem("idToken");

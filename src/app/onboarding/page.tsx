@@ -50,7 +50,7 @@ const STEPS: OnboardingStep[] = [
 export interface IOnboardingPage {}
 
 const OnboardingPage: React.FC<IOnboardingPage> = () => {
-  const revalidateUser = useAuth().revalidateUser;
+  const { revalidateUser } = useAuth();
   const router = useRouter();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
