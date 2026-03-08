@@ -27,50 +27,49 @@ const SettingsHelpPage: React.FC = () => {
       <ContentContainer
         width="small"
         justifyContent="flex-start"
-        paddingTop="none"
+        paddingTop="small"
+        spacing={12}
       >
-        <Stack spacing={6} width="100%">
-          {SETTINGS_HELP_SECTIONS.map((section) => (
-            <Stack key={section.id} spacing={2}>
-              <Typography variant="h6">{t(section.titleKey)}</Typography>
-              <Stack spacing={1}>
-                {section.articleIds.map((articleId) => {
-                  const article = SETTINGS_HELP_ARTICLES.find(
-                    (candidateArticle) => candidateArticle.id === articleId,
-                  );
+        {SETTINGS_HELP_SECTIONS.map((section) => (
+          <Stack key={section.id} spacing={4}>
+            <Typography variant="h6">{t(section.titleKey)}</Typography>
+            <Stack spacing={4}>
+              {section.articleIds.map((articleId) => {
+                const article = SETTINGS_HELP_ARTICLES.find(
+                  (candidateArticle) => candidateArticle.id === articleId,
+                );
 
-                  if (!article) {
-                    return null;
-                  }
+                if (!article) {
+                  return null;
+                }
 
-                  return (
-                    <Box
-                      key={article.id}
-                      role="button"
-                      tabIndex={0}
-                      onClick={navigateWithTransition(
-                        `/settings/help/${article.id}`,
-                      )}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          navigateWithTransition(
-                            `/settings/help/${article.id}`,
-                          )();
-                        }
-                      }}
-                      sx={{ py: 1, cursor: "pointer" }}
-                    >
-                      <Typography variant="body1">
-                        {t(article.titleKey)}
-                      </Typography>
-                    </Box>
-                  );
-                })}
-              </Stack>
+                return (
+                  <Box
+                    key={article.id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={navigateWithTransition(
+                      `/settings/help/${article.id}`,
+                    )}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        navigateWithTransition(
+                          `/settings/help/${article.id}`,
+                        )();
+                      }
+                    }}
+                    sx={{ py: 1, cursor: "pointer" }}
+                  >
+                    <Typography variant="subtitle1">
+                      {t(article.titleKey)}
+                    </Typography>
+                  </Box>
+                );
+              })}
             </Stack>
-          ))}
-        </Stack>
+          </Stack>
+        ))}
       </ContentContainer>
     </PageRoot>
   );

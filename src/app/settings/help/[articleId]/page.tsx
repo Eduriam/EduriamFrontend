@@ -9,7 +9,6 @@ import {
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import { getSettingsHelpArticle } from "../content";
@@ -42,18 +41,15 @@ const SettingsHelpArticlePage: React.FC<ISettingsHelpArticlePage> = ({
         width="small"
         justifyContent="flex-start"
         paddingTop="none"
+        spacing={4}
       >
-        <Stack spacing={2} width="100%">
-          <Header
-            variant="section"
-            text={
-              article ? t(article.titleKey) : t("notFoundTitle")
-            }
-          />
-          <Typography variant="body1" color="text.secondary">
-            {article ? t(article.bodyKey) : t("notFoundDescription")}
-          </Typography>
-        </Stack>
+        <Header
+          variant="section"
+          text={article ? t(article.titleKey) : t("notFoundTitle")}
+        />
+        <Typography variant="body1" color="text.secondary">
+          {article ? t(article.bodyKey) : t("notFoundDescription")}
+        </Typography>
       </ContentContainer>
     </PageRoot>
   );
