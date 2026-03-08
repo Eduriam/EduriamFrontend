@@ -505,11 +505,11 @@
       "emailTaken": "Tato e-mailová adresa je už obsazena."
     },
     "preferences": {
-      "darkTheme": "Tmavý režim",
+      "mode": "Režim",
       "themeModes": {
-        "system": "Systémové výchozí",
-        "dark": "Zapnuto",
-        "light": "Vypnuto"
+        "system": "Systémový",
+        "dark": "Tmavý",
+        "light": "Světlý"
       }
     },
     "notifications": {
