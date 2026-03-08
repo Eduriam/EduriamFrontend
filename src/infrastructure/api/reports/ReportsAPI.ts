@@ -2,9 +2,12 @@ import API from "infrastructure/api/API";
 
 export type ReportType = "GENERAL" | "STUDY_BLOCK";
 
-export interface ReportContext {
-  studyBlockId?: Id;
-  userAnswerReport?: string;
+// Union type of report contexts
+export type ReportContext = ReportStudyBlockContext;
+
+export interface ReportStudyBlockContext {
+  studyBlockId: Id;
+  userAnswer: string;
 }
 
 export interface ReportPayload {

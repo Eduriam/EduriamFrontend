@@ -109,7 +109,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
             description: payload.description,
             context: {
               studyBlockId: selectedStudyBlockData.id,
-              userAnswerReport: selectedStudyBlockData.userAnswerReport,
+              userAnswer: selectedStudyBlockData.userAnswerReport ?? "",
             },
           });
         }}
