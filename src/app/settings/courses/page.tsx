@@ -1,29 +1,31 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import {
+  BasicNavbar,
+  ContentContainer,
+  Drawer,
+  IconButton,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo, useState } from "react";
 
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+
+import CourseLogo, {
+  getVariantFromLogoId,
+} from "components/courses/CourseLogo/CourseLogo";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { UserCourse } from "infrastructure/api/user/courses/UserCourses";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-
-const logoTextByLogoId: Record<string, string> = {
-  html: "HTML",
-  javascript: "JS",
-};
 
 const SettingsCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
@@ -71,60 +73,34 @@ const SettingsCoursesPage: React.FC = () => {
       <ContentContainer
         width="small"
         justifyContent="flex-start"
-        paddingTop="none"
+        paddingTop="small"
       >
-        <Stack spacing={1} width="100%">
+        <Stack spacing={3} width="100%">
           {displayedCourses.map((course, index) => (
-            <Stack key={course.id} spacing={1}>
+            <Stack key={course.id} spacing={3}>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 2,
+                  gap: 2.5,
                   py: 1,
                 }}
               >
-                <Avatar
-                  sx={{
-                    width: 48,
-                    height: 48,
-                    bgcolor: "background.paper",
-                    color: "text.primary",
-                    fontWeight: 700,
-                  }}
-                >
-                  {(
-                    (course.logoId
-                      ? logoTextByLogoId[course.logoId]
-                      : undefined) ?? course.name
-                  ).slice(0, 2)}
-                </Avatar>
-                <Typography variant="h6" sx={{ flex: 1 }}>
-                  {course.name}
-                </Typography>
-                <Box
-                  role="button"
-                  tabIndex={0}
+                <CourseLogo
+                  variant={getVariantFromLogoId(course.logoId) ?? "HTML"}
+                  size="medium"
+                />
+                <Box sx={{ minWidth: 0, flexGrow: 1 }}>
+                  <Typography variant="h6">{course.name}</Typography>
+                </Box>
+                <IconButton
+                  icon="delete"
+                  variant="text"
+                  color="textPrimary"
+                  size="medium"
                   data-test={`remove-course-${course.id}-button`}
                   onClick={() => setCourseToDelete(course)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setCourseToDelete(course);
-                    }
-                  }}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    p: 1,
-                    borderRadius: 2,
-                    cursor: "pointer",
-                    color: "error.main",
-                  }}
-                >
-                  <DeleteOutlineIcon />
-                </Box>
+                />
               </Box>
               {index < displayedCourses.length - 1 ? <Divider /> : null}
             </Stack>
@@ -133,18 +109,10 @@ const SettingsCoursesPage: React.FC = () => {
       </ContentContainer>
 
       <Drawer
-        anchor="bottom"
         open={Boolean(courseToDelete)}
         onClose={() => setCourseToDelete(null)}
-        PaperProps={{
-          sx: {
-            borderTopLeftRadius: 3,
-            borderTopRightRadius: 3,
-            p: 3,
-          },
-        }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={14}>
           <Stack spacing={2}>
             <Typography variant="h5" textAlign="center">
               {t("settings.courses.removeTitle")}
@@ -154,24 +122,26 @@ const SettingsCoursesPage: React.FC = () => {
             </Typography>
           </Stack>
 
-          <Stack spacing={2}>
-            <Button
+          <Stack spacing={2} alignItems="center">
+            <LargeButton
               variant="contained"
               onClick={() => setCourseToDelete(null)}
               data-test="cancel-remove-course-button"
             >
               {t("userActions.cancel")}
-            </Button>
-            <Button
+            </LargeButton>
+
+            <LargeButton
               variant="text"
-              color="error"
               onClick={() => {
                 void handleDeleteCourse();
               }}
               data-test="confirm-remove-course-button"
+              color="error"
+              fullWidth
             >
               {t("settings.courses.remove")}
-            </Button>
+            </LargeButton>
           </Stack>
         </Stack>
       </Drawer>
