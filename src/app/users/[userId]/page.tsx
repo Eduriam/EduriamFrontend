@@ -118,11 +118,33 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               }}
               data-test="user-avatar-section"
             >
-              <Avatar
-                definition={buildShopAvatar(userProfile.avatarDefinition)}
-                size={180}
-                alt={userProfile.name}
-              />
+              <Box
+                role={isOwnProfile ? "button" : undefined}
+                tabIndex={isOwnProfile ? 0 : undefined}
+                onClick={
+                  isOwnProfile
+                    ? navigateWithTransition("/edit-avatar")
+                    : undefined
+                }
+                onKeyDown={
+                  isOwnProfile
+                    ? (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          navigateWithTransition("/edit-avatar")();
+                        }
+                      }
+                    : undefined
+                }
+                sx={{ cursor: isOwnProfile ? "pointer" : "default" }}
+                data-test={isOwnProfile ? "edit-avatar-button" : undefined}
+              >
+                <Avatar
+                  definition={buildShopAvatar(userProfile.avatarDefinition)}
+                  size={180}
+                  alt={userProfile.name}
+                />
+              </Box>
 
               <Stack spacing={0.25} alignItems="center">
                 <Typography variant="h6">{userProfile.name}</Typography>

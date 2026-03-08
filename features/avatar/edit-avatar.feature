@@ -4,8 +4,10 @@ Feature: Edit avatar page
   Scenario: User customizes avatar and saves changes
     Given I am logged in
     And I have purchased avatar customization items
-    And I am on the "edit-avatar-page" page
-    Then I should see the "avatar-preview-section" section
+    And I am on the "user-page" page
+    And I click on the "edit-avatar-button" button
+    Then I should be redirected to the "edit-avatar-page" page
+    And I should see the "avatar-preview-section" section
     And I should see the "item-categories-section" section
     When I click on the "item-category" button
     Then I should see the "item-category-dialog" section
@@ -22,8 +24,10 @@ Feature: Edit avatar page
   Scenario: User discards avatar customization changes before saving
     Given I am logged in
     And I have purchased avatar customization items
-    And I am on the "edit-avatar-page" page
-    Then I should see the "avatar-preview-section" section
+    And I am on the "user-page" page
+    And I click on the "edit-avatar-button" button
+    Then I should be redirected to the "edit-avatar-page" page
+    And I should see the "avatar-preview-section" section
     And I should see the "item-categories-section" section
     When I click on the "item-category" button
     Then I should see the "item-category-dialog" section

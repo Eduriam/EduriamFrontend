@@ -8,9 +8,10 @@ import {
 } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect, useMemo, useState } from "react";
+
+import { useRouter } from "next/navigation";
 
 import Stack from "@mui/material/Stack";
 
@@ -34,7 +35,7 @@ export interface IEditAvatarPage {}
 
 const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const { t } = useTranslation("common");
-  const navigateWithTransition = useTransitionNavigationHandler();
+  const router = useRouter();
 
   const { settings, mutate } = SettingsAPI.useSettings();
   const { shopItems = [] } = ShopItemsAPI.useShopItems();
@@ -75,7 +76,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
     serializeAvatar(baseAvatar) !== serializeAvatar(draftAvatar);
 
   const navigateBack = () => {
-    navigateWithTransition("/settings/profile", { direction: "back" })();
+    router.back();
   };
 
   const handleLeave = () => {
