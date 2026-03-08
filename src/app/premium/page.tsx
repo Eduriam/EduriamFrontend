@@ -15,6 +15,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -42,6 +43,10 @@ const PREMIUM_BACKGROUND_GRADIENT_DESKTOP =
   "linear-gradient(165deg, rgba(255, 191, 0, 0.2) 0%, rgba(0, 0, 0, 0) 30%), linear-gradient(195deg, rgb(205, 209, 250) 0%, rgba(0, 0, 0, 0) 25%)";
 const PREMIUM_BACKGROUND_GRADIENT_MOBILE =
   "linear-gradient(165deg, rgba(255, 191, 0, 0.2) 0%, rgba(0, 0, 0, 0) 30%), linear-gradient(210deg, rgb(205, 209, 250) 0%, rgba(0, 0, 0, 0) 25%)";
+const PREMIUM_BACKGROUND_GRADIENT_DARK_DESKTOP =
+  "linear-gradient(158deg, rgba(255, 145, 77, 0.2) 0%, rgba(255, 145, 77, 0) 42%), linear-gradient(202deg, rgba(108, 125, 255, 0.2) 0%, rgba(108, 125, 255, 0) 34%)";
+const PREMIUM_BACKGROUND_GRADIENT_DARK_MOBILE =
+  "linear-gradient(164deg, rgba(255, 145, 77, 0.2) 0%, rgba(255, 145, 77, 0) 42%), linear-gradient(218deg, rgba(108, 125, 255, 0.2) 0%, rgba(108, 125, 255, 0) 34%)";
 
 const BENEFITS: BenefitItem[] = [
   {
@@ -78,6 +83,7 @@ const BENEFITS: BenefitItem[] = [
 
 const PremiumPage: React.FC<IPremiumPage> = () => {
   const { t } = useTranslation("common");
+  const theme = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
@@ -130,8 +136,14 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
       <Box
         sx={{
           backgroundImage: {
-            xs: PREMIUM_BACKGROUND_GRADIENT_MOBILE,
-            md: PREMIUM_BACKGROUND_GRADIENT_DESKTOP,
+            xs:
+              theme.palette.mode === "dark"
+                ? PREMIUM_BACKGROUND_GRADIENT_DARK_MOBILE
+                : PREMIUM_BACKGROUND_GRADIENT_MOBILE,
+            md:
+              theme.palette.mode === "dark"
+                ? PREMIUM_BACKGROUND_GRADIENT_DARK_DESKTOP
+                : PREMIUM_BACKGROUND_GRADIENT_DESKTOP,
           },
         }}
       >
@@ -263,7 +275,12 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
                   <Typography variant="body1" fontWeight={700} align="center">
                     {t("premium.table.free")}
                   </Typography>
-                  <Typography variant="body1" fontWeight={700} align="center">
+                  <Typography
+                    variant="body1"
+                    fontWeight={700}
+                    align="center"
+                    color="common.black"
+                  >
                     {t("premium.table.premium")}
                   </Typography>
                 </Box>

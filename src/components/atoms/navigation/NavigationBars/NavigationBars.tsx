@@ -5,7 +5,6 @@ import theme from "styles/theme";
 import { usePathname } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -148,8 +147,6 @@ const Navigation: React.FC<INavigation> = () => {
     <>
       {pathname && isToolbarPage(pathname) && (
         <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-
           {renderTopNavBar(pathname)}
           {renderMainNavBar(pathname)}
         </Box>

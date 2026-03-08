@@ -2320,7 +2320,7 @@
       "responses": [
         {
           "uuid": "d4d718f9-31dd-400b-a7bd-1881d9a0337f",
-          "body": "{\n  \"name\":\"Test User\",\n  \"username\":\"test-user\",\n  \"email\":\"test@example.com\",\n  \"themeMode\": \"light\",\n  \"notificationPreferences\": {\n    \"dailyPractice\": true,\n    \"streakFreezeUsed\": false,\n    \"leaderboardStatus\": false,\n    \"newFollower\": true,\n    \"friendActivity\": false\n  },\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "body": "{\n  \"name\":\"Test User\",\n  \"username\":\"test-user\",\n  \"email\":\"test@example.com\",\n  \"themeMode\": \"dark\",\n  \"notificationPreferences\": {\n    \"dailyPractice\": true,\n    \"streakFreezeUsed\": false,\n    \"leaderboardStatus\": false,\n    \"newFollower\": true,\n    \"friendActivity\": false\n  },\n  \"avatarDefinition\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

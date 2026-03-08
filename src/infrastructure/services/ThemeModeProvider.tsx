@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import { getAppTheme } from "styles/theme";
 
 import {
@@ -113,7 +114,10 @@ const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <ThemeModeContext.Provider value={contextValue}>
-      <ThemeProvider theme={activeTheme}>{children}</ThemeProvider>
+      <ThemeProvider theme={activeTheme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ThemeModeContext.Provider>
   );
 };
