@@ -16,6 +16,7 @@ import { optimisticMutationOption } from "infrastructure/api/API";
 import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
 import { UserSummary } from "infrastructure/api/users/Users";
 import UsersAPI from "infrastructure/api/users/UsersAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ISearchPagePage {}
@@ -81,12 +82,12 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
 
   return (
     <PageRoot data-test="search-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer width="small" justifyContent="flex-start" paddingTop="none">
         <SearchTextField

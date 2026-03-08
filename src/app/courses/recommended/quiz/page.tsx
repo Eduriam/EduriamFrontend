@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import AreaOfInterestStep from "app/courses/recommended/quiz/components/AreaOfInterestStep";
 import CodingExperienceStep from "app/courses/recommended/quiz/components/CodingExperienceStep";
@@ -131,7 +133,7 @@ const RecommendationQuizPage: React.FC = () => {
           minHeight: 0,
         }}
       >
-        <ProgressNavbar
+        <PageNavigation topNavigation={<ProgressNavbar
           leftButton={
             showBack
               ? {
@@ -141,7 +143,7 @@ const RecommendationQuizPage: React.FC = () => {
               : undefined
           }
           progressValue={progressValue}
-        />
+        />} mainNavigation="hidden" />
 
         <Box
           sx={{

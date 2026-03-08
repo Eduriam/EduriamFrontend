@@ -18,6 +18,7 @@ import Stack from "@mui/material/Stack";
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { ThemeMode } from "infrastructure/api/user/settings/Settings";
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { useThemeMode } from "infrastructure/services/ThemeModeProvider";
 
 const SettingsPreferencesPage: React.FC = () => {
@@ -91,13 +92,13 @@ const SettingsPreferencesPage: React.FC = () => {
 
   return (
     <PageRoot data-test="preferences-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("settings.items.preferences")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

@@ -10,6 +10,7 @@ import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Typography from "@mui/material/Typography";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { getSettingsHelpArticle } from "../content";
 
@@ -28,14 +29,14 @@ const SettingsHelpArticlePage: React.FC<ISettingsHelpArticlePage> = ({
 
   return (
     <PageRoot data-test="settings-help-article-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings/help", {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

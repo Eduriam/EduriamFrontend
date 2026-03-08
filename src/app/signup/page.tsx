@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -12,14 +14,14 @@ const SignupPage: React.FC<ISignupPage> = () => {
 
   return (
     <PageRoot data-test="signup-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "chevronLeft",
           onClick: navigateWithTransition("/welcome", {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
       <ContentContainer width="small" justifyContent="space-between">
         <SignupForm />
       </ContentContainer>

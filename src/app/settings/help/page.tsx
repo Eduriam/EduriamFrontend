@@ -7,6 +7,7 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { SETTINGS_HELP_ARTICLES, SETTINGS_HELP_SECTIONS } from "./content";
 
@@ -16,13 +17,13 @@ const SettingsHelpPage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-help-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("title")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

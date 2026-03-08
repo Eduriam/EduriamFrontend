@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import LeagueIcon from "components/leaderboard/LeagueIcon";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import LeaderboardAPI from "infrastructure/api/user/leaderboard/LeaderboardAPI";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -73,7 +74,10 @@ const LeaderboardPage: React.FC = () => {
 
   return (
     <PageRoot data-test="leaderboard-page">
-      <BasicNavbar header={navbarHeader} />
+      <PageNavigation
+        topNavigation={<BasicNavbar header={navbarHeader} />}
+        mainNavigation="show"
+      />
 
       <ContentContainer
         width="small"

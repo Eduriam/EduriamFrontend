@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { NotificationPreferences } from "infrastructure/api/user/settings/Settings";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 
 type NotificationSettingItem = {
@@ -127,13 +128,13 @@ const SettingsNotificationsPage: React.FC = () => {
 
   return (
     <PageRoot data-test="notification-settings-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("settings.items.notifications")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

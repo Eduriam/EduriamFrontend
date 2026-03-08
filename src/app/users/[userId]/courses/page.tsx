@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -41,7 +43,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
 
   return (
     <PageRoot>
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("userProfile.userCourses")}
         leftButton={{
           icon: "arrowLeft",
@@ -49,7 +51,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer width="small" justifyContent="flex-start">
         <Stack

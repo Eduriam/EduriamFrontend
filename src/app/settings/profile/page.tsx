@@ -20,6 +20,7 @@ import Avatar from "components/avatar/Avatar";
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
 import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 
 type ProfileDraft = {
@@ -96,7 +97,7 @@ const SettingsProfilePage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-profile-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("settings.items.profile")}
         leftButton={{
           icon: "close",
@@ -111,7 +112,7 @@ const SettingsProfilePage: React.FC = () => {
           },
           dataTest: "settings-profile-save-button",
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

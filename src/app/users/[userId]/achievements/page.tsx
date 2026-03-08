@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -25,7 +27,7 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => 
 
   return (
     <PageRoot>
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("achievements.achievements")}
         leftButton={{
           icon: "arrowLeft",
@@ -33,7 +35,7 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => 
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer width="small" justifyContent="flex-start">
         <Box

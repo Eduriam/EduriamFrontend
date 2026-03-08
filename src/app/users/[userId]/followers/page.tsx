@@ -21,6 +21,7 @@ import { Follower } from "infrastructure/api/users/followers/Followers";
 import FollowersAPI from "infrastructure/api/users/followers/FollowersAPI";
 import { Following } from "infrastructure/api/users/following/Following";
 import FollowingAPI from "infrastructure/api/users/following/FollowingAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IFollowersPage {
@@ -137,14 +138,14 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
 
   return (
     <PageRoot>
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition(`/users/${params.userId}`, {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

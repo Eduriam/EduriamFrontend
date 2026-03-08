@@ -7,7 +7,6 @@ import { ViewTransitions } from "next-view-transitions";
 
 import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
-import Navigation from "components/atoms/navigation/NavigationBars/NavigationBars";
 
 import { NoticeProvider } from "infrastructure/services/NoticeProvider";
 import ThemeModeProvider from "infrastructure/services/ThemeModeProvider";
@@ -38,7 +37,6 @@ export default function RootLayout({
               <AuthProvider>
                 <ThemeModeProvider>
                   <NoticeProvider>
-                    <Navigation />
                     <GoogleAnalytics />
                     <GoogleAdsense />
                     {children}

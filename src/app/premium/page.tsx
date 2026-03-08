@@ -17,6 +17,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PREMIUM_MESSAGES, type PremiumMessageValue } from "./premiumMessages";
@@ -133,6 +135,7 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
 
   return (
     <PageRoot data-test="premium-page">
+      <PageNavigation topNavigation="hidden" mainNavigation="show" />
       <Box
         sx={{
           backgroundImage: {

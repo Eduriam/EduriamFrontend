@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import {
   BasicNavbar,
   ContentContainer,
@@ -62,13 +64,13 @@ const SettingsCoursesPage: React.FC = () => {
 
   return (
     <PageRoot data-test="manage-courses-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("settings.items.courses")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

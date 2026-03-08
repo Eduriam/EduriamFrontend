@@ -23,6 +23,7 @@ import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import LeaveAvatarEditorDrawer from "./components/LeaveAvatarEditorDrawer/LeaveAvatarEditorDrawer";
 import {
   buildCategoryPreview,
@@ -118,7 +119,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
 
   return (
     <PageRoot data-test="edit-avatar-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "close",
           onClick: handleLeave,
@@ -129,7 +130,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
           onClick: handleSave,
           dataTest: "save-avatar-button",
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={6}>
         <Stack

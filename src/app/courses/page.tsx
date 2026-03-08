@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import {
   BasicNavbar,
   ContentContainer,
@@ -192,14 +194,14 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
           backgroundColor: "background.default",
         }}
       >
-        <BasicNavbar
+        <PageNavigation topNavigation={<BasicNavbar
           leftButton={{
             icon: "arrowLeft",
             onClick: navigateWithTransition("/", {
               direction: "back",
             }),
           }}
-        />
+        />} mainNavigation="hidden" />
 
         {tabs.length > 0 && (
           <Stack direction="column" width="100%" alignItems="center">

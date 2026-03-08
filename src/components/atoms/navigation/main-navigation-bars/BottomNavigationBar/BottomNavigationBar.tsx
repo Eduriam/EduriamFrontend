@@ -6,10 +6,11 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Box from "@mui/material/Box";
 
+import { primaryNavigation } from "components/navigation/config";
+
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { useTranslation } from "../../../../../i18n/client";
-import { primaryNavigation } from "../../config";
 
 export interface IBottomNavigationBar {
   pathname: string;
@@ -25,10 +26,13 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
 
   // Change selected tab if path changed
   useEffect(() => {
+    const normalizedPathname = /^\/users\/[^/]+$/.test(pathname)
+      ? "/profile"
+      : pathname;
     let newValue: boolean | number = false;
 
     for (let i = 0; i < primaryNavigation.length; i++) {
-      if (primaryNavigation[i].path === pathname) {
+      if (primaryNavigation[i].path === normalizedPathname) {
         newValue = i;
       }
     }
@@ -61,6 +65,7 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
         }}
         sx={{
           boxShadow: "0 -2px 0 0 rgba(0,0,0,0.09)",
+          backgroundColor: "background.default",
         }}
       >
         {primaryNavigation.map((item, i) => (

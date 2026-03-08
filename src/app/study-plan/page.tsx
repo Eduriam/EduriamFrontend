@@ -16,6 +16,7 @@ import Stack from "@mui/material/Stack";
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 
 import type { UserCourse } from "infrastructure/api/user/courses/UserCourses";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 
 import StudyPlanCourseCard, {
@@ -242,7 +243,7 @@ const StudyPlanPage: React.FC = () => {
   if (!lanes) {
     return (
       <PageRoot data-test="study-plan-page">
-        <BasicNavbar
+        <PageNavigation topNavigation={<BasicNavbar
           leftButton={{
             icon: "arrowLeft",
             onClick: navigateWithTransition("/", {
@@ -254,7 +255,7 @@ const StudyPlanPage: React.FC = () => {
             onClick: navigateWithTransition("/courses"),
           }}
           header="Study Plan"
-        />
+        />} mainNavigation="hidden" />
       </PageRoot>
     );
   }
@@ -269,7 +270,7 @@ const StudyPlanPage: React.FC = () => {
           backgroundColor: "background.default",
         }}
       >
-        <BasicNavbar
+        <PageNavigation topNavigation={<BasicNavbar
           leftButton={{
             icon: "chevronLeft",
             onClick: navigateWithTransition("/", {
@@ -281,7 +282,7 @@ const StudyPlanPage: React.FC = () => {
             onClick: navigateWithTransition("/courses"),
           }}
           header="Study Plan"
-        />
+        />} mainNavigation="hidden" />
       </Box>
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>

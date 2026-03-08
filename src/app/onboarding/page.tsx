@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
@@ -257,7 +259,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           minHeight: 0,
         }}
       >
-        <ProgressNavbar
+        <PageNavigation topNavigation={<ProgressNavbar
           leftButton={
             showBack
               ? {
@@ -267,7 +269,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
               : undefined
           }
           progressValue={progressValue}
-        />
+        />} mainNavigation="hidden" />
 
         <Box
           sx={{

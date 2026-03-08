@@ -21,6 +21,7 @@ import type { ShopItem as ShopItemModel } from "infrastructure/api/user/shop-ite
 import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { shopCategories } from "./shopCategories";
 
@@ -113,7 +114,7 @@ const ShopPage: React.FC<IShopPage> = () => {
 
   return (
     <PageRoot data-test="shop-page">
-      <ShopNavbar
+      <PageNavigation topNavigation={<ShopNavbar
         leftButton={{
           icon: "close",
           onClick: navigateWithTransition(user?.id ? `/users/${user.id}` : "/", {
@@ -121,7 +122,7 @@ const ShopPage: React.FC<IShopPage> = () => {
           }),
         }}
         balance={user?.balance ?? 0}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
         <Stack spacing={3} width="100%" data-test="streak-freeze-items-section">

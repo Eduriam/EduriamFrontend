@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 
 import { useParams, useRouter } from "next/navigation";
@@ -61,7 +63,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
 
   return (
     <PageRoot data-test="certificate-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "close",
           onClick: handleClose,
@@ -70,7 +72,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
           icon: "share",
           onClick: handleShare,
         }}
-      />
+      />} mainNavigation="hidden" />
       <ContentContainer
         width="medium"
         justifyContent="flex-start"

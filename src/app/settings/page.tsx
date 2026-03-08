@@ -24,6 +24,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import useAuth from "infrastructure/services/AuthProvider";
 
 type SettingsMenuItem = {
@@ -153,13 +154,13 @@ const SettingsPage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("settings.title")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

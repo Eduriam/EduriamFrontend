@@ -6,6 +6,7 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { SETTINGS_LEGAL_ARTICLES } from "./content";
 
@@ -15,13 +16,13 @@ const SettingsLegalPage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-legal-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         header={t("title")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

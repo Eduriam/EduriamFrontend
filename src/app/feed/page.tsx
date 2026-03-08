@@ -17,6 +17,7 @@ import {
   ReactionId,
 } from "infrastructure/api/user/feed/reactions/Reactions";
 import ReactionsAPI from "infrastructure/api/user/feed/reactions/ReactionsAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 export interface IFeed {}
 
@@ -114,7 +115,7 @@ const Feed: React.FC<IFeed> = () => {
 
   return (
     <PageRoot data-test="feed-page">
-      <BasicNavbar header={t("navigation.feed")} />
+      <PageNavigation topNavigation={<BasicNavbar header={t("navigation.feed")} />} mainNavigation="show" />
 
       <ContentContainer width="small" justifyContent="flex-start" paddingTop="none">
         <Stack direction="column" spacing={4} width="100%">

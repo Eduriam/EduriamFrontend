@@ -10,6 +10,7 @@ import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Typography from "@mui/material/Typography";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { getSettingsLegalArticle } from "../content";
 
@@ -28,14 +29,14 @@ const SettingsLegalArticlePage: React.FC<ISettingsLegalArticlePage> = ({
 
   return (
     <PageRoot data-test="settings-legal-article-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings/legal", {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
 
       <ContentContainer
         width="small"

@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
@@ -79,23 +80,28 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
 
   return (
     <PageRoot data-test="user-page">
-      <BasicNavbar
-        leftButton={
-          isOwnProfile
-            ? {
-                icon: "shop",
-                onClick: navigateWithTransition("/shop"),
-              }
-            : undefined
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={
+              isOwnProfile
+                ? {
+                    icon: "shop",
+                    onClick: navigateWithTransition("/shop"),
+                  }
+                : undefined
+            }
+            rightButton={
+              isOwnProfile
+                ? {
+                    icon: "settings",
+                    onClick: navigateWithTransition("/settings"),
+                  }
+                : undefined
+            }
+          />
         }
-        rightButton={
-          isOwnProfile
-            ? {
-                icon: "settings",
-                onClick: navigateWithTransition("/settings"),
-              }
-            : undefined
-        }
+        mainNavigation="show"
       />
 
       <ContentContainer

@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import {
   BasicNavbar,
   Chip,
@@ -145,7 +147,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   return (
     <>
       <PageRoot data-test="learning-path-page">
-        <BasicNavbar
+        <PageNavigation topNavigation={<BasicNavbar
           leftButton={{
             icon: "chevronLeft",
             onClick: navigateWithTransition("/courses", {
@@ -157,7 +159,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
             onClick: handleOpenDetails,
             dataTest: "information-button",
           }}
-        />
+        />} mainNavigation="hidden" />
         <ContentContainer
           width="small"
           justifyContent="flex-start"

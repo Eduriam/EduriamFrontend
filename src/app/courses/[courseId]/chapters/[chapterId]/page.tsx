@@ -1,5 +1,7 @@
 "use client";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import {
   BasicNavbar,
   ContentContainer,
@@ -55,14 +57,14 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
 
   return (
     <PageRoot data-test="chapter-page">
-      <BasicNavbar
+      <PageNavigation topNavigation={<BasicNavbar
         leftButton={{
           icon: "chevronLeft",
           onClick: navigateWithTransition(`/courses/${courseId}`, {
             direction: "back",
           }),
         }}
-      />
+      />} mainNavigation="hidden" />
       <ContentContainer
         width="small"
         justifyContent="flex-start"

@@ -25,7 +25,8 @@ const PageNavigation: React.FC<IPageNavigation> = ({
 }) => {
   const pathname = usePathname();
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
-  const shouldShowPrimaryNavigation = !!(mainNavigation === "show" && pathname);
+  const shouldShowPrimaryNavigation =
+    mainNavigation === "show" && Boolean(pathname);
 
   function renderPrimaryNavigation() {
     if (!shouldShowPrimaryNavigation) {
@@ -51,7 +52,7 @@ const PageNavigation: React.FC<IPageNavigation> = ({
           },
         }}
       />
-      {topNavigation === "none" ? null : topNavigation}
+      {topNavigation === "hidden" ? null : topNavigation}
       {renderPrimaryNavigation()}
     </>
   );

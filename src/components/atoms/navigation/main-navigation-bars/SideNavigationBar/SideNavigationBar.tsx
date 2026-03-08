@@ -6,10 +6,11 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 
+import { primaryNavigation } from "components/navigation/config";
+
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { useTranslation } from "../../../../../i18n/client";
-import { primaryNavigation } from "../../config";
 
 export interface ISideNavigationBar {
   pathname: string;
@@ -25,10 +26,13 @@ const SideNavigationBar: React.FC<ISideNavigationBar> = ({ pathname }) => {
 
   // Change selected tab if path changed
   useEffect(() => {
+    const normalizedPathname = /^\/users\/[^/]+$/.test(pathname)
+      ? "/profile"
+      : pathname;
     let newValue: boolean | number = false;
 
     for (let i = 0; i < primaryNavigation.length; i++) {
-      if (primaryNavigation[i].path === pathname) {
+      if (primaryNavigation[i].path === normalizedPathname) {
         newValue = i;
       }
     }
@@ -46,7 +50,7 @@ const SideNavigationBar: React.FC<ISideNavigationBar> = ({ pathname }) => {
         position: "fixed",
         left: 0,
         top: 0,
-        backgroundColor: "background.paper",
+        backgroundColor: "background.default",
       }}
     >
       <Tabs
