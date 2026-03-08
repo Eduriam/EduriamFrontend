@@ -10,10 +10,12 @@ Then(
       throw new Error("Page is not initialized.");
     }
 
+    const notificationSwitch = this.page
+      .locator('[data-test="notification-settings-switch-button"]')
+      .first();
+
     await expect(
-      this.page
-        .locator('[data-test="notification-settings-switch-button"]')
-        .first(),
+      notificationSwitch.locator('xpath=ancestor::*[@data-saved][1]'),
     ).toHaveAttribute("data-saved", "true");
   },
 );
