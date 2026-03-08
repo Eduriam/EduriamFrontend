@@ -1,0 +1,15 @@
+﻿{
+  "title": "Právní informace",
+  "notFoundTitle": "Článek nenalezen",
+  "notFoundDescription": "Požadovaný článek nebyl nalezen.",
+  "articles": {
+    "terms": {
+      "title": "Podmínky použití",
+      "body": "Toto je zástupný text podmínek použití. Bude nahrazen finální právní verzí."
+    },
+    "privacy": {
+      "title": "Zásady ochrany osobních údajů",
+      "body": "Toto je zástupný text zásady ochrany osobních údajů. Bude nahrazen finální právní verzí."
+    }
+  }
+}

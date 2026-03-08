@@ -5,17 +5,18 @@ import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import { SETTINGS_LEGAL_ARTICLES } from "./content";
+
 const SettingsLegalPage: React.FC = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("legal");
   const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
     <PageRoot data-test="settings-legal-page">
       <BasicNavbar
-        header={t("settings.items.legal")}
+        header={t("title")}
         leftButton={{
           icon: "arrowLeft",
           onClick: navigateWithTransition("/settings", { direction: "back" }),
@@ -25,42 +26,26 @@ const SettingsLegalPage: React.FC = () => {
       <ContentContainer
         width="small"
         justifyContent="flex-start"
-        paddingTop="none"
+        paddingTop="small"
+        spacing={8}
       >
-        <Stack spacing={1} width="100%">
+        {SETTINGS_LEGAL_ARTICLES.map((article) => (
           <Box
+            key={article.id}
             role="button"
             tabIndex={0}
-            onClick={navigateWithTransition("/settings/legal/terms")}
+            onClick={navigateWithTransition(`/settings/legal/${article.id}`)}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                navigateWithTransition("/settings/legal/terms")();
+                navigateWithTransition(`/settings/legal/${article.id}`)();
               }
             }}
             sx={{ py: 1, cursor: "pointer" }}
           >
-            <Typography variant="body1">
-              {t("settings.legal.termsTitle")}
-            </Typography>
+            <Typography variant="subtitle1">{t(article.titleKey)}</Typography>
           </Box>
-          <Box
-            role="button"
-            tabIndex={0}
-            onClick={navigateWithTransition("/settings/legal/privacy")}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                navigateWithTransition("/settings/legal/privacy")();
-              }
-            }}
-            sx={{ py: 1, cursor: "pointer" }}
-          >
-            <Typography variant="body1">
-              {t("settings.legal.privacyTitle")}
-            </Typography>
-          </Box>
-        </Stack>
+        ))}
       </ContentContainer>
     </PageRoot>
   );
