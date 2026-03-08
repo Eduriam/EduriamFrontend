@@ -514,14 +514,14 @@
     },
     "notifications": {
       "sections": {
-        "learningReminders": "Připomenutí učení",
+        "learningReminders": "Připomenutí o učení",
         "leaderboards": "Žebříčky",
         "followers": "Sledující"
       },
       "items": {
-        "dailyPractice": "Každodenní trénink",
-        "streakFreezeUsed": "Použití ochrany streaku",
-        "leaderboardStatus": "Stav žebříčku",
+        "dailyPractice": "Každodenní učení",
+        "streakFreezeUsed": "Při použití zmrazení denní řady",
+        "leaderboardStatus": "Umístění v lize",
         "newFollower": "Nový sledující",
         "friendActivity": "Aktivita přátel"
       }

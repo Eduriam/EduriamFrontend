@@ -1,6 +1,11 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import {
+  BasicNavbar,
+  ContentContainer,
+  PageRoot,
+  Switch,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -9,7 +14,6 @@ import { useMemo, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -134,17 +138,20 @@ const SettingsNotificationsPage: React.FC = () => {
       <ContentContainer
         width="small"
         justifyContent="flex-start"
-        paddingTop="none"
+        paddingTop="small"
       >
-        <Stack spacing={6} width="100%">
+        <Stack spacing={10} width="100%">
           {sections.map((section) => (
-            <Stack key={section.id} spacing={2}>
+            <Stack key={section.id} spacing={4}>
               <Typography variant="h6">{t(section.titleKey)}</Typography>
 
-              <Stack spacing={1}>
+              <Stack spacing={4}>
                 {section.items.map((item) => (
                   <Box
                     key={item.id}
+                    data-saved={
+                      lastSavedPreference === item.id ? "true" : "false"
+                    }
                     sx={{
                       display: "flex",
                       alignItems: "center",
@@ -155,11 +162,8 @@ const SettingsNotificationsPage: React.FC = () => {
                     <Typography variant="body1">{t(item.labelKey)}</Typography>
                     <Switch
                       data-test={item.dataTest}
-                      data-saved={
-                        lastSavedPreference === item.id ? "true" : "false"
-                      }
                       checked={notificationPreferences[item.id]}
-                      onChange={(_event, checked) => {
+                      onChange={(checked) => {
                         void handleToggle(item.id, checked);
                       }}
                     />
