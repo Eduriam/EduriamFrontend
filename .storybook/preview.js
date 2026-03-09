@@ -5,6 +5,7 @@ import { SnackbarProvider } from "notistack";
 import { initReactI18next } from "react-i18next";
 
 import { AppRouterContext } from "next/dist/shared/lib/app-router-context";
+import { ViewTransitions } from "next-view-transitions";
 
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 
@@ -28,7 +29,9 @@ export const decorators = [
           horizontal: "right",
         }}
       >
-        <Story />
+        <ViewTransitions>
+          <Story />
+        </ViewTransitions>
       </SnackbarProvider>
     </ThemeProvider>
   ),

@@ -28,7 +28,7 @@ export interface LeagueIconProps {
    * - medium: 64px
    * - large: 90px
    */
-  size?: LeagueIconSize;
+  size?: LeagueIconSize | number;
 }
 
 const variantToSrc: Record<LeagueIconVariant, string> = {
@@ -56,7 +56,7 @@ const LeagueIcon: React.FC<LeagueIconProps> = ({
   variant,
   size = "medium",
 }) => {
-  const dimension = sizeToPixels[size];
+  const dimension = typeof size === "number" ? size : sizeToPixels[size];
 
   return (
     <Box

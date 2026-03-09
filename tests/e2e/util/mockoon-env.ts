@@ -12,6 +12,8 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_SHOP_ENOUGH_MONEY: "true",
   MOCKOON_SHOP_LOCKED_ITEM: "false",
   MOCKOON_AVATAR_ITEMS_PURCHASED: "false",
+  MOCKOON_NOTICE_VARIANT: "empty",
+  MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD: "any",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -144,6 +146,37 @@ export async function setAvatarItemsPurchased(
   await setMockoonGlobalVar(
     "MOCKOON_AVATAR_ITEMS_PURCHASED",
     purchased ? "true" : "false",
+  );
+}
+
+export type MockoonNoticeVariant =
+  | "empty"
+  | "single-league-promoted"
+  | "single-league-demoted"
+  | "single-streak-milestone"
+  | "single-streak-lost"
+  | "single-streak-saved"
+  | "single-notifications-disabled"
+  | "single-achievement-earned"
+  | "single-chest-reward"
+  | "single-advertisement"
+  | "review-mixed"
+  | "all-types";
+
+export async function setNoticeVariant(
+  variant: MockoonNoticeVariant,
+): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_NOTICE_VARIANT", variant);
+}
+
+export type MockoonChestExpectedDoubleReward = "true" | "false" | "any";
+
+export async function setChestExpectedDoubleReward(
+  expectedValue: MockoonChestExpectedDoubleReward,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
+    expectedValue,
   );
 }
 

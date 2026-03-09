@@ -2466,21 +2466,29 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/notices",
+      "endpoint": "users/me/notices",
       "responses": [
         {
-          "uuid": "5350fa39-ddd0-446c-a92b-61cf860a3af4",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"ACHIEVEMENT\",\r\n      \"name\":\"Moudrý vševěd\",\r\n      \"description\":\"Nauč se aspoň 50 gramatických lekcí.\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\"\r\n   }\r\n]",
+          "uuid": "7103a66d-babd-4ec6-8c62-70af3dd674a4",
+          "body": "[{\"id\":\"notice-league-promoted-1\",\"type\":\"LEAGUE_PROMOTED\",\"league\":\"platinum\"}]",
           "latency": 0,
           "statusCode": 200,
-          "label": "Example Response: Achievement Notice",
+          "label": "Single: League promoted (home)",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-league-promoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -2488,18 +2496,26 @@
           "callbacks": []
         },
         {
-          "uuid": "d9928bae-e4d3-45b4-bfe0-2f2a009ff091",
-          "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FREE_TRIAL_OFFER\"\n  }\n]",
+          "uuid": "f6482fc6-d2d0-49b4-b31d-af78ac56476f",
+          "body": "[{\"id\":\"notice-league-demoted-1\",\"type\":\"LEAGUE_DEMOTED\",\"league\":\"silver\"}]",
           "latency": 0,
           "statusCode": 200,
-          "label": "Example Response: Free Trial Offer Notice",
+          "label": "Single: League demoted",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-league-demoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -2507,18 +2523,26 @@
           "callbacks": []
         },
         {
-          "uuid": "7f57cb5d-df44-4cba-a2ce-45883487ecab",
-          "body": "[\n  {\n    \"id\":\"{{faker 'string.uuid'}}\",\n    \"type\": \"FREE_TRIAL_END\"\n  }\n]",
+          "uuid": "a707a059-1c54-4653-ba84-5c3689d6ab26",
+          "body": "[{\"id\":\"notice-streak-milestone-1\",\"type\":\"STREAK_MILESTONE\",\"streakDays\":100}]",
           "latency": 0,
           "statusCode": 200,
-          "label": "Example Response: Free Trial End Notice",
+          "label": "Single: Streak milestone",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-milestone",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -2526,18 +2550,26 @@
           "callbacks": []
         },
         {
-          "uuid": "6724293e-ad59-4dbc-8a88-b2f2d83b16bb",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"surveyId\":\"{{faker 'string.uuid'}}\",\r\n      \"type\":\"RATING_SURVEY\",\r\n      \"question\":\"Jaká je pravděpodobnost, že byste aplikaci doporučili přátelům/kolegům?\",\r\n      \"answerLabel1\":\"Nízká\",\r\n      \"answerLabel2\":\"Vysoká\",\r\n      \"maxPoints\":5\r\n   }\r\n]",
+          "uuid": "cf642e64-2794-4892-bea2-f8fa69fb271e",
+          "body": "[{\"id\":\"notice-streak-lost-1\",\"type\":\"STREAK_LOST\",\"previousStreakDays\":12}]",
           "latency": 0,
           "statusCode": 200,
-          "label": "Example Response: Rating Survey Notice",
+          "label": "Single: Streak lost",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-lost",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
@@ -2545,18 +2577,207 @@
           "callbacks": []
         },
         {
-          "uuid": "a05d76f9-c503-4eb5-8681-818d676897ea",
+          "uuid": "87ecd2d0-cd46-4134-9a56-13f0b461ddc3",
+          "body": "[{\"id\":\"notice-streak-saved-1\",\"type\":\"STREAK_SAVED\",\"streakDays\":9,\"freezesLeft\":1}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak saved",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-saved",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9fb9d1d4-6950-466d-82f4-16fa29e09d5a",
+          "body": "[{\"id\":\"notice-notifications-disabled-1\",\"type\":\"NOTIFICATIONS_DISABLED\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Notifications disabled",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-notifications-disabled",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e95b52b3-d5f2-46e4-9d43-76bd634895f4",
+          "body": "[{\"id\":\"notice-achievement-earned-1\",\"type\":\"ACHIEVEMENT_EARNED\",\"title\":\"Streak Master\",\"description\":\"Udrzel(a) jste streak 100 dnu.\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Achievement earned",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-achievement-earned",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "247c4ee6-3a5d-4366-bf1d-b59565b0570e",
+          "body": "[{\"id\":\"notice-chest-reward-1\",\"type\":\"CHEST_REWARD\",\"chestId\":\"test-chest-1\",\"reward\":250}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Chest reward",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-chest-reward",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "589f3680-3df2-41ca-8970-aa6fa6177951",
+          "body": "[{\"id\":\"notice-advertisement-1\",\"type\":\"ADVERTISEMENT\",\"message\":\"Diky reklamam muzeme poskytovat aplikaci zdarma.\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Advertisement",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-advertisement",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "24ea2c7d-1875-40f4-a941-ad9ed11c814c",
+          "body": "[{\"id\":\"notice-advertisement-mixed-1\",\"type\":\"ADVERTISEMENT\",\"message\":\"Ad should be filtered out on review page.\"},{\"id\":\"notice-streak-milestone-mixed-1\",\"type\":\"STREAK_MILESTONE\",\"streakDays\":100},{\"id\":\"notice-chest-reward-mixed-1\",\"type\":\"CHEST_REWARD\",\"chestId\":\"test-chest-1\",\"reward\":250}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Review mixed notices",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "review-mixed",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3d6e2992-2e9e-4f38-9ab6-f8dfc6471c5f",
+          "body": "[{\"id\":\"notice-notifications-disabled-all-1\",\"type\":\"NOTIFICATIONS_DISABLED\"},{\"id\":\"notice-streak-milestone-all-1\",\"type\":\"STREAK_MILESTONE\",\"streakDays\":100},{\"id\":\"notice-streak-lost-all-1\",\"type\":\"STREAK_LOST\",\"previousStreakDays\":14},{\"id\":\"notice-streak-saved-all-1\",\"type\":\"STREAK_SAVED\",\"streakDays\":13,\"freezesLeft\":1},{\"id\":\"notice-league-promoted-all-1\",\"type\":\"LEAGUE_PROMOTED\",\"league\":\"gold\"},{\"id\":\"notice-league-demoted-all-1\",\"type\":\"LEAGUE_DEMOTED\",\"league\":\"silver\"},{\"id\":\"notice-achievement-earned-all-1\",\"type\":\"ACHIEVEMENT_EARNED\",\"title\":\"Champion\",\"description\":\"Ziskal(a) jste novy uspech.\"},{\"id\":\"notice-chest-reward-all-1\",\"type\":\"CHEST_REWARD\",\"chestId\":\"test-chest-1\",\"reward\":250},{\"id\":\"notice-advertisement-all-1\",\"type\":\"ADVERTISEMENT\",\"message\":\"Diky reklamam muzeme poskytovat aplikaci zdarma.\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "All notice types",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "all-types",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f9005df1-874e-4a59-b3b4-4abeed5b5cbe",
           "body": "[]",
           "latency": 0,
           "statusCode": 200,
-          "label": "Example Response: Empty Response",
+          "label": "Empty notices",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
           "rules": [],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
@@ -2573,7 +2794,7 @@
       "type": "http",
       "documentation": "",
       "method": "delete",
-      "endpoint": "user/notices/:noticeId",
+      "endpoint": "users/me/notices/:noticeId",
       "responses": [
         {
           "uuid": "ed2ffb84-794e-43a3-89f8-668977236356",
@@ -3743,6 +3964,173 @@
       "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
+    },
+    {
+      "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "users/me/chests/:id",
+      "responses": [
+        {
+          "uuid": "507d036b-7700-471f-9bc7-258d4df9eeb5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Expected double reward = true",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
+              "value": "true",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "doubleReward",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d1a464d8-245b-492b-af15-c739836a7b73",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Expected double reward = false",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
+              "value": "false",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "open",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ffcb4d37-aa36-477e-8436-550055e24eb4",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Expected double reward = any and request is true",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
+              "value": "any",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "doubleReward",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a148d036-a1f0-478d-b9c9-8c716e788ba2",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Expected double reward = any and request is false",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
+              "value": "any",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "open",
+              "value": "",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "fd6efccd-2e0e-4248-9bbf-b762bbf2811c",
+          "body": "{\"error\":\"INVALID_CHEST_OPEN_REQUEST\"}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Invalid chest-open request payload",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
     }
   ],
   "proxyMode": false,
@@ -4129,10 +4517,6 @@
         },
         {
           "type": "folder",
-          "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a"
-        },
-        {
-          "type": "folder",
           "uuid": "c49a295d-6711-470d-bd5e-84bbe6714d71"
         },
         {
@@ -4342,6 +4726,14 @@
         {
           "type": "folder",
           "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372"
+        },
+        {
+          "type": "folder",
+          "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a"
+        },
+        {
+          "type": "folder",
+          "uuid": "c4f817d1-07e9-415a-9324-41fa7b902017"
         }
       ]
     },
@@ -4398,6 +4790,20 @@
         {
           "type": "route",
           "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9"
+        },
+        {
+          "type": "route",
+          "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900"
+        }
+      ]
+    },
+    {
+      "uuid": "c4f817d1-07e9-415a-9324-41fa7b902017",
+      "name": "chests",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99"
         }
       ]
     }
@@ -4450,10 +4856,6 @@
     {
       "type": "folder",
       "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81"
-    },
-    {
-      "type": "route",
-      "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900"
     }
   ],
   "callbacks": [

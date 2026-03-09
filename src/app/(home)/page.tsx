@@ -16,6 +16,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
@@ -68,6 +69,8 @@ const HomePage: React.FC<IHomePage> = () => {
 
   return (
     <PageRoot data-test="home-page">
+      <NoticeBoard />
+
       <PageNavigation
         topNavigation={
           <HomepageNavbar
