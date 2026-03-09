@@ -9,6 +9,7 @@ import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
 
 import { NoticeProvider } from "infrastructure/services/NoticeProvider";
+import PwaServiceWorkerRegistration from "infrastructure/services/PwaServiceWorkerRegistration";
 import ThemeModeProvider from "infrastructure/services/ThemeModeProvider";
 
 import { AuthProvider } from "../infrastructure/services/AuthProvider";
@@ -23,8 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang="cs">
       <body>
+        <PwaServiceWorkerRegistration />
         <ViewTransitions>
           <SnackbarProvider
             maxSnack={3}
