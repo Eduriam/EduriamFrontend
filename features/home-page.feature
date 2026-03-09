@@ -48,3 +48,11 @@ Feature: Home page learning and review
     Then I should be on the "study-plan-page" page
     When I click on the "start-test-course-learning-button" button
     Then I should be redirected to the "study-page" page
+
+  Scenario: User sees one new notice when opening the homepage
+    Given I am logged in
+    And I have an unread "league-promoted-notice" notice
+    When I am on the "home-page" page
+    Then I should see the "league-promoted-notice" notice
+    When I click on the "continue-button" button
+    Then I should be on the "home-page" page
