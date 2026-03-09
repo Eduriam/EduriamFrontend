@@ -322,13 +322,17 @@
     }
   },
   "feed": {
-    "earlier": "dříve",
     "today": "dnes",
     "daysAgo": "před {{count}} dny",
     "messages": {
-      "reached_level_10": "Dosáhnul úrovně 10!",
-      "reached_level_50": "Dosáhnul úrovně 50!",
-      "reached_level_100": "Dosáhnul úrovně 100!"
+      "streak_milestone": "Dosáhl(a) denní řady {{streak}} dní.",
+      "achievement_earned": "Získal(a) ocenění {{achievementName}}.",
+      "league_promoted": "Postoupil(a) do ligy {{league}}.",
+      "course_completed": "Dokončil(a) kurz {{courseName}}."
+    },
+    "empty": {
+      "title": "Zatím tu nejsou žádné nové zprávy. Přidej nové přátele a sleduj jejich pokrok!",
+      "addFriends": "Přidat přátele"
     }
   },
   "userLessons": {

@@ -13,6 +13,7 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_SHOP_LOCKED_ITEM: "false",
   MOCKOON_AVATAR_ITEMS_PURCHASED: "false",
   MOCKOON_NOTICE_VARIANT: "empty",
+  MOCKOON_FEED_VARIANT: "default",
   MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD: "any",
 };
 
@@ -167,6 +168,18 @@ export async function setNoticeVariant(
   variant: MockoonNoticeVariant,
 ): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_NOTICE_VARIANT", variant);
+}
+
+export type MockoonFeedVariant =
+  | "default"
+  | "empty"
+  | "streak-milestone"
+  | "achievement-earned"
+  | "league-promoted"
+  | "course-completed";
+
+export async function setFeedVariant(variant: MockoonFeedVariant): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_FEED_VARIANT", variant);
 }
 
 export type MockoonChestExpectedDoubleReward = "true" | "false" | "any";

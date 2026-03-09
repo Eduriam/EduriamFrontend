@@ -18,7 +18,8 @@ const base: IFeedCard = {
       clothing: "shirt_1",
       backgroundColor: "lightGray",
     },
-    message: "reached_level_100",
+    message: "streak_milestone",
+    streak: 120,
     publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
     reactions: [
       {

@@ -1701,20 +1701,155 @@
       "responses": [
         {
           "uuid": "15b09ed5-08cf-4c8e-b9a3-c3bdf76f2494",
-          "body": "[\r\n   {{#repeat 8}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"author\":\"{{faker 'person.fullName'}}\",\r\n      \"avatarDefinition\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"brown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"mediumBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      },\r\n      \"message\":\"{{oneOf (array 'reached_level_10' 'reached_level_50' 'reached_level_100')}}\",\r\n      \"publishedAt\":\"{{faker 'date.recent'}}\",\r\n      \"reactions\":[\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'confetti' 'heart' 'muscle' 'clappingHands' 'sunglasses')}}\"\r\n         },\r\n         {\r\n            \"counter\":{{faker 'number.int' min=1 max=10}},\r\n            \"reactedByUser\":{{faker 'datatype.boolean'}},\r\n            \"id\":\"{{oneOf (array 'confetti' 'heart' 'muscle' 'clappingHands' 'sunglasses')}}\"\r\n         }\r\n      ]\r\n   }{{#unless @last}},{{/unless}}\r\n   {{/repeat}}\r\n]",
+          "body": "[{\"id\":\"feed-streak-milestone-1\",\"author\":\"Pepa Okurka\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"streak_milestone\",\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-achievement-earned-1\",\"author\":\"Anna Novakova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"achievement_earned\",\"achievementId\":\"streak_master\",\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-league-promoted-1\",\"author\":\"Karel Vacek\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"league_promoted\",\"league\":\"gold\",\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-course-completed-1\",\"author\":\"Eva Svobodova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"course_completed\",\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}]",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Default mixed feed",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
           "rules": [],
-          "rulesOperator": "OR",
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c8419c68-6bd6-4f42-a313-cc35696fdb9d",
+          "body": "[{\"id\":\"feed-streak-milestone-variant-1\",\"author\":\"Pepa Okurka\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"streak_milestone\",\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak milestone feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "streak-milestone",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f2fcb4f8-4f63-4f5d-bba4-7e6be1c83971",
+          "body": "[{\"id\":\"feed-achievement-earned-variant-1\",\"author\":\"Anna Novakova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"achievement_earned\",\"achievementId\":\"streak_master\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Achievement earned feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "achievement-earned",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e61ecd30-65bf-482f-b4fd-a0ea6255368a",
+          "body": "[{\"id\":\"feed-league-promoted-variant-1\",\"author\":\"Karel Vacek\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"league_promoted\",\"league\":\"gold\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: League promoted feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "league-promoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "49cb2bb9-78ec-4d45-8f62-6e2865f91f42",
+          "body": "[{\"id\":\"feed-course-completed-variant-1\",\"author\":\"Eva Svobodova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"course_completed\",\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Course completed feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "course-completed",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d20fcefe-6c62-4cc9-afd1-f7776c7cb229",
+          "body": "[]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Empty feed",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "empty",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
           "crudKey": "id",
           "callbacks": []
         }

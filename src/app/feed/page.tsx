@@ -1,7 +1,14 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import {
+  BasicNavbar,
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo } from "react";
 
@@ -23,6 +30,7 @@ export interface IFeed {}
 
 const Feed: React.FC<IFeed> = () => {
   const { t } = useTranslation("common");
+  const navigateWithTransition = useTransitionNavigationHandler();
   const { feed = [], mutate } = FeedAPI.useFeed();
 
   const sortedFeed = useMemo(
@@ -118,20 +126,36 @@ const Feed: React.FC<IFeed> = () => {
       <PageNavigation topNavigation={<BasicNavbar header={t("navigation.feed")} />} mainNavigation="show" />
 
       <ContentContainer width="small" justifyContent="flex-start" paddingTop="none">
-        <Stack direction="column" spacing={4} width="100%">
-          {sortedFeed.map((feedItem) => (
-            <FeedCard
-              key={feedItem.id}
-              feedMessage={feedItem}
-              onAddReaction={(reactionId) =>
-                handleReactionUpdate(feedItem, reactionId, true)
-              }
-              onRemoveReaction={(reactionId) =>
-                handleReactionUpdate(feedItem, reactionId, false)
-              }
-            />
-          ))}
-        </Stack>
+        {sortedFeed.length > 0 ? (
+          <Stack data-test="feed-message-list-section" direction="column" spacing={4} width="100%">
+            {sortedFeed.map((feedItem) => (
+              <FeedCard
+                key={feedItem.id}
+                feedMessage={feedItem}
+                onAddReaction={(reactionId) =>
+                  handleReactionUpdate(feedItem, reactionId, true)
+                }
+                onRemoveReaction={(reactionId) =>
+                  handleReactionUpdate(feedItem, reactionId, false)
+                }
+              />
+            ))}
+          </Stack>
+        ) : (
+          <Stack data-test="no-feed-messages-section" spacing={8} width="100%" alignItems="center" pt={16}>
+            <Stack data-test="no-feed-messages-text-section" spacing={2} alignItems="center" maxWidth={560}>
+              <Header variant="section" text={t("feed.empty.title")} align="center" />
+            </Stack>
+
+            <LargeButton
+              data-test="add-friends-button"
+              fullWidth
+              onClick={navigateWithTransition("/search")}
+            >
+              {t("feed.empty.addFriends")}
+            </LargeButton>
+          </Stack>
+        )}
       </ContentContainer>
     </PageRoot>
   );
