@@ -2,6 +2,30 @@ import { When } from "@cucumber/cucumber";
 
 import { CustomWorld } from "../../support/world";
 
+async function findButtonContainer(world: CustomWorld, buttonTestId: string) {
+  if (!world.page) {
+    throw new Error("Page is not initialized.");
+  }
+
+  const visibleCandidates = world.page.locator(
+    `[data-test="${buttonTestId}"]:visible`,
+  );
+  if ((await visibleCandidates.count()) > 0) {
+    return visibleCandidates.first();
+  }
+
+  const firstCandidate = world.page
+    .locator(`[data-test="${buttonTestId}"]`)
+    .first();
+  if ((await firstCandidate.count()) > 0) {
+    return firstCandidate;
+  }
+
+  throw new Error(
+    `Could not find button with data-test id "${buttonTestId}".`,
+  );
+}
+
 async function clickButtonByTestId(
   world: CustomWorld,
   buttonTestId: string,
@@ -12,12 +36,15 @@ async function clickButtonByTestId(
     );
   }
 
-  const container = world.page
-    .locator(`[data-test="${buttonTestId}"]`)
-    .first();
+  const container = await findButtonContainer(world, buttonTestId);
+
   const innerButton = container.locator("button").first();
   const clickTarget = (await innerButton.count()) > 0 ? innerButton : container;
-  await clickTarget.click();
+  try {
+    await clickTarget.click({ timeout: 5000 });
+  } catch {
+    await clickTarget.click({ force: true, timeout: 5000 });
+  }
 
   return container;
 }

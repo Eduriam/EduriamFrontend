@@ -357,6 +357,9 @@
     "create": "Vytvořit",
     "continue": "Pokračovat"
   },
+  "advertisementDialog": {
+    "subtitle": "Díky reklamám můžeme tuto aplikaci provozovat zdarma."
+  },
   "userProfile": {
     "level": "Úroveň",
     "followers": "Sledující",

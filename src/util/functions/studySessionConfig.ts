@@ -3,7 +3,7 @@ import {
   StudySessionLocalization,
 } from "@eduriam/ui-x";
 
-export const STUDY_SESSION_DATA_TEST: StudySessionDataTest = {
+export const STUDY_SESSION_DATA_TEST = {
   explanationBlock: {
     section: "explanation-block-section",
     continueButton: "continue-button",
@@ -47,7 +47,8 @@ export const STUDY_SESSION_DATA_TEST: StudySessionDataTest = {
     gotItButton: "got-it-button",
     section: "exercise-answer-explanation-section",
   },
-};
+  quitButton: "quit-study-session-button",
+} as StudySessionDataTest;
 
 export function createStudySessionLocalization(
   t: (key: string) => string,

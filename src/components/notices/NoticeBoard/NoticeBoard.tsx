@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 
 import AchievementEarnedNotice from "components/notices/AchievementEarnedNotice/AchievementEarnedNotice";
-import AdvertisementNotice from "components/notices/AdvertisementNotice/AdvertisementNotice";
 import ChestRewardNotice from "components/notices/ChestRewardNotice/ChestRewardNotice";
 import LeagueDemotedNotice from "components/notices/LeagueDemotedNotice/LeagueDemotedNotice";
 import LeaguePromotedNotice from "components/notices/LeaguePromotedNotice/LeaguePromotedNotice";
@@ -35,8 +34,6 @@ function renderNotice(notice: Notice) {
       return <AchievementEarnedNotice notice={notice} />;
     case "CHEST_REWARD":
       return <ChestRewardNotice notice={notice} />;
-    case "ADVERTISEMENT":
-      return <AdvertisementNotice notice={notice} />;
     default:
       return null;
   }

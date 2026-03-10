@@ -1,6 +1,5 @@
 import type {
   AchievementEarnedNotice,
-  AdvertisementNotice,
   ChestRewardNotice,
   LeagueDemotedNotice,
   LeaguePromotedNotice,
@@ -53,10 +52,4 @@ export function isAchievementEarnedNotice(
 
 export function isChestRewardNotice(notice: Notice): notice is ChestRewardNotice {
   return notice.type === "CHEST_REWARD";
-}
-
-export function isAdvertisementNotice(
-  notice: Notice,
-): notice is AdvertisementNotice {
-  return notice.type === "ADVERTISEMENT";
 }

@@ -160,7 +160,6 @@ export type MockoonNoticeVariant =
   | "single-notifications-disabled"
   | "single-achievement-earned"
   | "single-chest-reward"
-  | "single-advertisement"
   | "review-mixed"
   | "all-types";
 

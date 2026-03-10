@@ -22,4 +22,3 @@ Feature: Homepage notices
       | league-promoted-notice    |
       | league-demoted-notice     |
       | achievement-earned-notice |
-      | advertisement-notice      |

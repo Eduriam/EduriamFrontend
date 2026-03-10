@@ -47,11 +47,6 @@ export interface ChestRewardNotice extends BaseNotice {
   reward: number;
 }
 
-export interface AdvertisementNotice extends BaseNotice {
-  type: "ADVERTISEMENT";
-  message: string;
-}
-
 export type Notice =
   | NotificationsDisabledNotice
   | StreakMilestoneNotice
@@ -60,7 +55,6 @@ export type Notice =
   | LeaguePromotedNotice
   | LeagueDemotedNotice
   | AchievementEarnedNotice
-  | ChestRewardNotice
-  | AdvertisementNotice;
+  | ChestRewardNotice;
 
 export type NoticeType = Notice["type"];
