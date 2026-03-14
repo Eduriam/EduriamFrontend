@@ -54,6 +54,8 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
   onCourseSelect,
 }) => {
   const { t: tForm } = useTranslation("form");
+  const { t: tCommon } = useTranslation("common");
+  const premiumLabel = tCommon("courses.premiumLabel");
 
   const groups = groupCoursesByCategory(courses);
   const firstCategory = groups[0]?.category ?? DEFAULT_CATEGORY;
@@ -144,12 +146,16 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
                         <LearningPathCard
                           title={course.name}
                           icon={icon}
+                          premium={Boolean(course.premium)}
+                          premiumLabel={premiumLabel}
                           onClick={() => onCourseSelect(course.id)}
                         />
                       ) : (
                         <CourseCard
                           title={course.name}
                           icon={icon}
+                          premium={Boolean(course.premium)}
+                          premiumLabel={premiumLabel}
                           onClick={() => onCourseSelect(course.id)}
                         />
                       )}

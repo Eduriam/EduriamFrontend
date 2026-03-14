@@ -118,6 +118,14 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
       return t("premium.subtitles.certificateLocked");
     }
 
+    if (message === PREMIUM_MESSAGES.courseLocked) {
+      return t("premium.subtitles.courseLocked");
+    }
+
+    if (message === PREMIUM_MESSAGES.learningPathLocked) {
+      return t("premium.subtitles.learningPathLocked");
+    }
+
     return t("premium.subtitles.default");
   }, [message, t]);
 
@@ -128,6 +136,14 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
 
     if (message === PREMIUM_MESSAGES.certificateLocked) {
       return "certificate-locked-section";
+    }
+
+    if (message === PREMIUM_MESSAGES.courseLocked) {
+      return "course-locked-section";
+    }
+
+    if (message === PREMIUM_MESSAGES.learningPathLocked) {
+      return "learning-path-locked-section";
     }
 
     return "premium-default-message-section";

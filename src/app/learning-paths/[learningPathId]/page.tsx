@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   Chip,
@@ -11,6 +9,7 @@ import {
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -27,17 +26,14 @@ import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDe
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { LearningPath } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
-import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
-
 export interface ILearningPathPage {}
-
-
 
 const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { t } = useTranslation("common");
@@ -53,16 +49,29 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
 
   const isPremiumUser = user?.role === "PREMIUM_USER";
+  const premiumLabel = t("courses.premiumLabel");
 
   const shouldRedirectToPremiumBecauseNoEnergy =
     user && !isPremiumUser && (user.energy ?? 0) <= 0;
+  const shouldRedirectToPremiumBecauseLearningPathLocked =
+    Boolean(learningPath?.premium) && !isPremiumUser;
 
   const redirectToPremiumForNoEnergy = () => {
     navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
   };
+  const redirectToPremiumForLearningPathLocked = () => {
+    navigateWithTransition(
+      getPremiumRoute(PREMIUM_MESSAGES.learningPathLocked),
+    )();
+  };
 
   const handleStartLearningPath = async () => {
     if (!learningPathId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseLearningPathLocked) {
+      redirectToPremiumForLearningPathLocked();
       return;
     }
 
@@ -125,7 +134,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
     // Non-premium users are redirected to the premium benefits page.
     if (!isPremiumUser) {
-      navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.certificateLocked))();
+      navigateWithTransition(
+        getPremiumRoute(PREMIUM_MESSAGES.certificateLocked),
+      )();
       return;
     }
 
@@ -147,19 +158,24 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   return (
     <>
       <PageRoot data-test="learning-path-page">
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "chevronLeft",
-            onClick: navigateWithTransition("/courses", {
-              direction: "back",
-            }),
-          }}
-          rightButton={{
-            icon: "info",
-            onClick: handleOpenDetails,
-            dataTest: "information-button",
-          }}
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "chevronLeft",
+                onClick: navigateWithTransition("/courses", {
+                  direction: "back",
+                }),
+              }}
+              rightButton={{
+                icon: "info",
+                onClick: handleOpenDetails,
+                dataTest: "information-button",
+              }}
+            />
+          }
+          mainNavigation="hidden"
+        />
         <ContentContainer
           width="small"
           justifyContent="flex-start"
@@ -173,11 +189,20 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                 justifyContent="space-between"
                 spacing={2}
               >
-                <Chip
-                  label={t("courses.learningPathLabel") || "Learning path"}
-                  color="chipBlue"
-                  variant="filled"
-                />
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <Chip
+                    label={t("courses.learningPathLabel") || "Learning path"}
+                    color="chipBlue"
+                    variant="filled"
+                  />
+                  {learningPath?.premium && (
+                    <Chip
+                      label={premiumLabel}
+                      color="chipYellow"
+                      variant="filled"
+                    />
+                  )}
+                </Stack>
                 <IconButton
                   variant="text"
                   size="medium"
@@ -292,6 +317,8 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                       />
                     }
                     enrolled={typeof course.userProgress === "number"}
+                    premium={Boolean(course.premium)}
+                    premiumLabel={premiumLabel}
                     progress={course.userProgress ?? 0}
                     onClick={navigateWithTransition(`/courses/${course.id}`)}
                     data-test="learning-path-course-card"
@@ -321,5 +348,3 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 };
 
 export default LearningPathPage;
-
-

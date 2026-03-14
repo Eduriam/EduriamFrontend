@@ -28,6 +28,10 @@ export interface IEnergyDrawerProps {
   "data-test"?: string;
   /** Optional data attribute for the unlock button (E2E tests). */
   "data-test-unlock"?: string;
+  /** Optional data attribute for premium message section (E2E tests). */
+  "data-test-premium-message"?: string;
+  /** Whether the current user is premium. */
+  isPremiumUser?: boolean;
   /**
    * Optional callback invoked when the "Unlock unlimited energy" button is clicked.
    */
@@ -49,6 +53,8 @@ const EnergyDrawer: React.FC<IEnergyDrawerProps> = ({
   progressValue,
   "data-test": dataTest,
   "data-test-unlock": dataTestUnlock,
+  "data-test-premium-message": dataTestPremiumMessage = "premium-energy-message-section",
+  isPremiumUser = false,
   onUnlockUnlimited,
 }) => {
   const { t } = useTranslation("common");
@@ -94,21 +100,24 @@ const EnergyDrawer: React.FC<IEnergyDrawerProps> = ({
               variant="subtitle1"
               align="center"
               color="text.secondary"
+              data-test={isPremiumUser ? dataTestPremiumMessage : undefined}
             >
-              {t("energy.subtitle")}
+              {isPremiumUser ? t("energy.premiumSubtitle") : t("energy.subtitle")}
             </Typography>
           </Stack>
         </Stack>
 
-        <Stack sx={{ width: "100%" }}>
-          <LargeButton
-            onClick={handleUnlockClick}
-            data-test={dataTestUnlock}
-            fullWidth
-          >
-            {t("energy.button")}
-          </LargeButton>
-        </Stack>
+        {!isPremiumUser && (
+          <Stack sx={{ width: "100%" }}>
+            <LargeButton
+              onClick={handleUnlockClick}
+              data-test={dataTestUnlock}
+              fullWidth
+            >
+              {t("energy.button")}
+            </LargeButton>
+          </Stack>
+        )}
       </Stack>
     </Drawer>
   );

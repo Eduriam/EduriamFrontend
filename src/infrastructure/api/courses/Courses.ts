@@ -11,6 +11,7 @@ export interface LearningPathCourseSummary {
   name: string;
   logoId?: string;
   userProgress?: number;
+  premium?: boolean;
 }
 
 export interface CoursePrerequisite {
@@ -41,6 +42,8 @@ interface CourseBase {
   userProgress?: number;
   /** Whether the current user is enrolled in this course. */
   enrolled?: boolean;
+  /** Whether this course or learning path is available only for premium users. */
+  premium?: boolean;
   /**
    * ID of the certificate for this course for the current user.
    * If the user has not completed the course or does not have access

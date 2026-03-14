@@ -1,4 +1,4 @@
-import { Card, ProgressBar } from "@eduriam/ui-core";
+import { Card, Chip, ProgressBar } from "@eduriam/ui-core";
 
 import type { ReactNode } from "react";
 
@@ -11,6 +11,8 @@ export interface ILearningPathCard {
   title: string;
   subtitle?: string;
   enrolled?: boolean;
+  premium?: boolean;
+  premiumLabel?: string;
   /**
    * Left icon shown on the card. Defaults to a course logo.
    */
@@ -26,6 +28,8 @@ const LearningPathCard: React.FC<ILearningPathCard> = ({
   title,
   subtitle = "Learning Path",
   enrolled = false,
+  premium = false,
+  premiumLabel = "Premium",
   progress = 40,
   icon,
   onClick,
@@ -34,7 +38,30 @@ const LearningPathCard: React.FC<ILearningPathCard> = ({
   const clampedProgress = Math.max(0, Math.min(100, progress ?? 0));
 
   return (
-    <Card onClick={onClick} variant={isClickable ? "clickable" : undefined}>
+    <Card
+      onClick={onClick}
+      variant={isClickable ? "clickable" : undefined}
+      sx={{ position: "relative" }}
+    >
+      {premium && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <Chip
+            label={premiumLabel}
+            color="chipYellow"
+            size="small"
+            variant="filled"
+          />
+        </Box>
+      )}
+
       <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
         <Box sx={{ width: "64px", height: "64px", flex: "0 0 auto" }}>
           {icon ?? <CourseLogo variant="HTML" />}

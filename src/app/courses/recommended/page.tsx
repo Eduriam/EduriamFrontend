@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   ContentContainer,
@@ -20,6 +18,7 @@ import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import type { CourseDTO } from "infrastructure/api/courses/Courses";
 import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
@@ -34,11 +33,13 @@ function CourseOrLearningPathCard({
   dataTestCourse,
   dataTestLearningPath,
   onSelect,
+  premiumLabel,
 }: {
   course: CourseDTO;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, isLearningPath: boolean) => void;
+  premiumLabel: string;
 }) {
   const icon = (
     <CourseLogo
@@ -60,6 +61,8 @@ function CourseOrLearningPathCard({
           title={course.name}
           icon={icon}
           enrolled={enrolled}
+          premium={Boolean(course.premium)}
+          premiumLabel={premiumLabel}
           progress={progress}
           onClick={handleClick}
         />
@@ -72,6 +75,8 @@ function CourseOrLearningPathCard({
         title={course.name}
         icon={icon}
         enrolled={enrolled}
+        premium={Boolean(course.premium)}
+        premiumLabel={premiumLabel}
         progress={progress}
         onClick={handleClick}
       />
@@ -85,6 +90,7 @@ const RecommendedCoursesPage: React.FC = () => {
 
   const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
   const displayRecommended = recommendedCourses ?? [];
+  const premiumLabel = t("courses.premiumLabel");
 
   const handleCourseSelect = (courseId: Id, isLearningPath: boolean) => {
     const path = isLearningPath
@@ -103,14 +109,19 @@ const RecommendedCoursesPage: React.FC = () => {
           backgroundColor: "background.default",
         }}
       >
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "arrowLeft",
-            onClick: navigateWithTransition("/courses", {
-              direction: "back",
-            }),
-          }}
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "arrowLeft",
+                onClick: navigateWithTransition("/courses", {
+                  direction: "back",
+                }),
+              }}
+            />
+          }
+          mainNavigation="hidden"
+        />
       </Box>
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
         <Stack
@@ -126,6 +137,7 @@ const RecommendedCoursesPage: React.FC = () => {
                 dataTestCourse="recommended-course-card"
                 dataTestLearningPath="recommended-learning-path-card"
                 onSelect={handleCourseSelect}
+                premiumLabel={premiumLabel}
               />
             ))}
           </Stack>

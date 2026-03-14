@@ -4,6 +4,8 @@ import * as https from "https";
 const DEFAULT_ADMIN_BASE_URL = "http://localhost:3001";
 const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_COURSE_ENROLLED: "false",
+  MOCKOON_PREMIUM_COURSE: "false",
+  MOCKOON_PREMIUM_LEARNING_PATH: "false",
   MOCKOON_COURSE_CERTIFICATE: "false",
   MOCKOON_UPCOMING_LESSON_DEFINED: "true",
   MOCKOON_UPCOMING_REVIEW_DEFINED: "true",
@@ -88,6 +90,22 @@ export async function setCourseEnrolled(enrolled: boolean): Promise<void> {
   await setMockoonGlobalVar(
     "MOCKOON_COURSE_ENROLLED",
     enrolled ? "true" : "false",
+  );
+}
+
+export async function setCoursePremium(premium: boolean): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_PREMIUM_COURSE",
+    premium ? "true" : "false",
+  );
+}
+
+export async function setLearningPathPremium(
+  premium: boolean,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_PREMIUM_LEARNING_PATH",
+    premium ? "true" : "false",
   );
 }
 

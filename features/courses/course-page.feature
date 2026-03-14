@@ -28,6 +28,15 @@ Feature: Course page and enrollment
     When I click on the "continue-learning-button" button
     Then I should be redirected to the "study-page" page
 
+  Scenario: Non-premium user tries to enroll in premium course
+    Given I am logged in
+    And the course is premium
+    And I am not enrolled in the course
+    And I am on the "course-page" page
+    When I click on the "start-course-button" button
+    Then I should be redirected to the "premium-page" page
+    And I should see the "course-locked-section" section
+
   Scenario: User navigates to manage enrolled courses
     Given I am logged in
     And I am on the "courses-page" page

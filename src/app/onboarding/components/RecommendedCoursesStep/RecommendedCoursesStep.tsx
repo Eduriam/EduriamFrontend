@@ -28,6 +28,8 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
   onExploreAll,
 }) => {
   const { t: tForm } = useTranslation("form");
+  const { t: tCommon } = useTranslation("common");
+  const premiumLabel = tCommon("premium.premium");
 
   return (
     <ContentContainer width="small" justifyContent="space-between">
@@ -64,12 +66,16 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
                   <LearningPathCard
                     title={course.name}
                     icon={icon}
+                    premium={Boolean(course.premium)}
+                    premiumLabel={premiumLabel}
                     onClick={() => onCourseSelect(course.id)}
                   />
                 ) : (
                   <CourseCard
                     title={course.name}
                     icon={icon}
+                    premium={Boolean(course.premium)}
+                    premiumLabel={premiumLabel}
                     onClick={() => onCourseSelect(course.id)}
                   />
                 )}

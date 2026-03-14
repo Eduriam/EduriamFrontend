@@ -45,6 +45,7 @@ const HomePage: React.FC<IHomePage> = () => {
 
   const { studyPlan, isLoading } = StudyPlanAPI.useStudyPlan();
 
+  const isPremiumUser = user?.role === "PREMIUM_USER";
   const streak = user?.streak ?? 0;
   const coins = user?.balance ?? 0;
   const energy = user?.energy ?? 0;
@@ -275,8 +276,10 @@ const HomePage: React.FC<IHomePage> = () => {
             getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft),
           )();
         }}
+        isPremiumUser={isPremiumUser}
         data-test="energy-drawer"
         data-test-unlock="unlock-unlimited-energy-button"
+        data-test-premium-message="premium-energy-message-section"
       />
     </PageRoot>
   );

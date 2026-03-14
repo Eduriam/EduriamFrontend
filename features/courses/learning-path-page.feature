@@ -28,6 +28,15 @@ Feature: Learning path page and enrollment
     When I click on the "continue-learning-path-button" button
     Then I should be redirected to the "study-page" page
 
+  Scenario: Non-premium user tries to enroll in premium learning path
+    Given I am logged in
+    And the learning path is premium
+    And I am not enrolled in the course
+    And I am on the "learning-path-page" page
+    When I click on the "start-learning-path-button" button
+    Then I should be redirected to the "premium-page" page
+    And I should see the "learning-path-locked-section" section
+
   Scenario: User navigates to manage enrolled learning paths
     Given I am logged in
     And I am on the "courses-page" page
@@ -37,4 +46,3 @@ Feature: Learning path page and enrollment
     Then I should see the "learning-path-details-drawer" drawer
     When I click on the "manage-courses-button" button
     Then I should be on the "manage-courses-page" page
-
