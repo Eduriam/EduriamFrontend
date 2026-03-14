@@ -10,7 +10,8 @@ Then(
     }
 
     await this.page
-      .locator(`[data-test="${sectionTestId}"]`)
+      .locator(`[data-test="${sectionTestId}"]:visible`)
+      .first()
       .waitFor({ state: "visible", timeout: 15000 });
   },
 );
@@ -23,7 +24,7 @@ Then(
     }
 
     await this.page
-      .locator(`[data-test="${buttonTestId}"]`)
+      .locator(`[data-test="${buttonTestId}"]:visible`)
       .first()
       .waitFor({ state: "visible", timeout: 15000 });
   },
@@ -37,7 +38,7 @@ Then(
     }
 
     await this.page
-      .locator(`[data-test="${fieldTestId}"]`)
+      .locator(`[data-test="${fieldTestId}"]:visible`)
       .first()
       .waitFor({ state: "visible", timeout: 15000 });
   },
@@ -51,7 +52,7 @@ Then(
     }
 
     await this.page
-      .locator(`[data-test="${drawerTestId}"]`)
+      .locator(`[data-test="${drawerTestId}"]:visible`)
       .first()
       .waitFor({ state: "visible", timeout: 15000 });
   },

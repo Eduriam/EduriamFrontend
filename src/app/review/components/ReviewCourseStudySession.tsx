@@ -27,41 +27,47 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
 }) => {
   const router = useRouter();
   const { user } = useAuth();
-  const [pendingNavigation, setPendingNavigation] = useState<
-    (() => void) | null
+  const [isAdvertisementOpen, setIsAdvertisementOpen] = useState(false);
+  const [pendingNavigationTarget, setPendingNavigationTarget] = useState<
+    "back" | null
   >(null);
   const { studySession, isLoading } = StudySessionAPI.useStudySession({
     courseId,
     mode: "review",
   });
 
+  const navigate = useCallback(() => {
+    router.back();
+  }, [router]);
+
   const runWithAdvertisement = useCallback(
-    (navigationAction: () => void) => {
+    (target: "back") => {
       if (user?.role === "PREMIUM_USER") {
-        navigationAction();
+        navigate();
         return;
       }
 
-      setPendingNavigation(() => navigationAction);
+      setPendingNavigationTarget(target);
+      setIsAdvertisementOpen(true);
     },
-    [user?.role],
+    [navigate, user?.role],
   );
 
   const handleAdvertisementContinue = useCallback(() => {
-    if (!pendingNavigation) {
+    if (!pendingNavigationTarget) {
       return;
     }
 
-    const navigationAction = pendingNavigation;
-    setPendingNavigation(null);
-    navigationAction();
-  }, [pendingNavigation]);
+    setIsAdvertisementOpen(false);
+    setPendingNavigationTarget(null);
+    navigate();
+  }, [navigate, pendingNavigationTarget]);
 
   if (isLoading || !studySession) {
     return null;
   }
 
-  const handleQuitOrExit = () => runWithAdvertisement(() => router.back());
+  const handleQuitOrExit = () => runWithAdvertisement("back");
 
   return (
     <>
@@ -73,7 +79,7 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
       />
 
       <AdvertisementDialog
-        open={Boolean(pendingNavigation)}
+        open={isAdvertisementOpen}
         onContinue={handleAdvertisementContinue}
       />
     </>

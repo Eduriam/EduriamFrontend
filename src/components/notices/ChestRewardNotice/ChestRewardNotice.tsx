@@ -5,7 +5,7 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { keyframes } from "@mui/system";
 
+import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
 import ChestsAPI from "infrastructure/api/users/me/chests/ChestsAPI";
@@ -24,6 +25,8 @@ import useNotices from "infrastructure/services/NoticeProvider";
 export interface ChestRewardNoticeProps {
   notice: ChestRewardNoticeType;
 }
+
+type ChestRewardFlowState = "idle" | "ad_open" | "double_reward_confirmed";
 
 const chestAppearKeyframes = keyframes`
   0% {
@@ -67,6 +70,7 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
   const { user } = useAuth();
   const { markNoticeAsRead } = useNotices();
   const [isLoading, setIsLoading] = useState(false);
+  const [flowState, setFlowState] = useState<ChestRewardFlowState>("idle");
   const baseBalanceRef = useRef<number>(user?.balance ?? FALLBACK_BALANCE);
 
   const initialBalance = baseBalanceRef.current;
@@ -74,11 +78,15 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
     () => Math.max(0, notice.reward),
     [notice.reward],
   );
-  const targetBalance = initialBalance + rewardAmount;
+  const doubledRewardAmount = rewardAmount * 2;
+  const singleRewardTargetBalance = initialBalance + rewardAmount;
+  const doubleRewardTargetBalance = initialBalance + doubledRewardAmount;
   const [displayedBalance, setDisplayedBalance] = useState(initialBalance);
+  const [displayedMiddleRewardAmount, setDisplayedMiddleRewardAmount] =
+    useState(rewardAmount);
 
-  useEffect(() => {
-    setDisplayedBalance(initialBalance);
+  const runBalanceAnimation = useCallback((from: number, to: number) => {
+    setDisplayedBalance(from);
 
     let animationFrameId: number | null = null;
     const timerId = window.setTimeout(() => {
@@ -89,9 +97,7 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
           1,
         );
         const easedProgress = 1 - (1 - progress) ** 3;
-        const nextValue = Math.round(
-          initialBalance + (targetBalance - initialBalance) * easedProgress,
-        );
+        const nextValue = Math.round(from + (to - from) * easedProgress);
 
         setDisplayedBalance(nextValue);
 
@@ -109,14 +115,74 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
         window.cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [initialBalance, targetBalance, notice.id]);
+  }, []);
 
-  const finalizeChestOpen = async (doubleReward: boolean) => {
+  useEffect(() => {
+    return runBalanceAnimation(initialBalance, singleRewardTargetBalance);
+  }, [initialBalance, notice.id, runBalanceAnimation, singleRewardTargetBalance]);
+
+  useEffect(() => {
+    if (flowState !== "double_reward_confirmed") {
+      return;
+    }
+
+    return runBalanceAnimation(
+      singleRewardTargetBalance,
+      doubleRewardTargetBalance,
+    );
+  }, [
+    doubleRewardTargetBalance,
+    flowState,
+    runBalanceAnimation,
+    singleRewardTargetBalance,
+  ]);
+
+  useEffect(() => {
+    if (flowState !== "double_reward_confirmed") {
+      setDisplayedMiddleRewardAmount(rewardAmount);
+      return;
+    }
+
+    let animationFrameId: number | null = null;
+    const timerId = window.setTimeout(() => {
+      const startTime = performance.now();
+      const animate = (currentTime: number) => {
+        const progress = Math.min(
+          (currentTime - startTime) / BALANCE_ANIMATION_DURATION_MS,
+          1,
+        );
+        const easedProgress = 1 - (1 - progress) ** 3;
+        const nextValue = Math.round(
+          rewardAmount + (doubledRewardAmount - rewardAmount) * easedProgress,
+        );
+
+        setDisplayedMiddleRewardAmount(nextValue);
+
+        if (progress < 1) {
+          animationFrameId = window.requestAnimationFrame(animate);
+        }
+      };
+
+      animationFrameId = window.requestAnimationFrame(animate);
+    }, BALANCE_ANIMATION_START_MS);
+
+    return () => {
+      window.clearTimeout(timerId);
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [doubledRewardAmount, flowState, rewardAmount]);
+
+  const openChest = async (doubleReward: boolean) => {
     const payload = doubleReward
       ? { open: true as const, doubleReward: true as const }
       : { open: true as const };
 
     await ChestsAPI.openChest(notice.chestId, payload);
+  };
+
+  const markAsRead = async () => {
     await markNoticeAsRead(notice.id);
   };
 
@@ -125,31 +191,52 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
       return;
     }
 
-    setIsLoading(true);
-
-    try {
-      // Todo implement AD reward service and logic
-      const rewardedSuccessfully = true;
-      await finalizeChestOpen(rewardedSuccessfully);
-    } catch {
-      await finalizeChestOpen(false);
-    } finally {
-      setIsLoading(false);
-    }
+    setFlowState("ad_open");
   };
 
-  const handleContinue = async () => {
-    if (isLoading) {
+  const handleAdvertisementContinue = async () => {
+    if (isLoading || flowState !== "ad_open") {
       return;
     }
 
     setIsLoading(true);
 
     try {
-      await finalizeChestOpen(false);
+      await openChest(true);
+      setFlowState("double_reward_confirmed");
+    } catch {
+      setFlowState("idle");
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleContinue = async () => {
+    if (isLoading || flowState === "ad_open") {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      if (flowState === "double_reward_confirmed") {
+        await markAsRead();
+      } else {
+        await openChest(false);
+        await markAsRead();
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const continueButton = {
+    onClick: () => {
+      void handleContinue();
+    },
+    text: t("userActions.continue"),
+    dataTest: "continue-button",
+    disabled: isLoading,
   };
 
   return (
@@ -201,31 +288,35 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
           </Toolbar>
         </AppBar>
       }
-      primaryButton={{
-        onClick: () => {
-          void handleDoubleReward();
-        },
-        text: t("notices.getDoubleReward"),
-        dataTest: "get-double-reward-button",
-        disabled: isLoading,
-      }}
-      secondaryButton={{
-        onClick: () => {
-          void handleContinue();
-        },
-        text: t("userActions.continue"),
-        dataTest: "continue-button",
-        disabled: isLoading,
-      }}
+      primaryButton={
+        flowState === "double_reward_confirmed"
+          ? continueButton
+          : flowState === "idle"
+            ? {
+                onClick: () => {
+                  void handleDoubleReward();
+                },
+                text: t("notices.getDoubleReward"),
+                dataTest: "get-double-reward-button",
+                disabled: isLoading,
+              }
+            : undefined
+      }
+      secondaryButton={flowState === "idle" ? continueButton : undefined}
       transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
     >
       <Stack sx={{ width: "100%" }}>
-        <Stack spacing={8} alignItems="center" sx={{ width: "100%", mt: 14 }}>
-          <Typography variant="h5" textAlign="center">
-            {t("notices.chestRewardTitle")}
-          </Typography>
+        {flowState === "double_reward_confirmed" ? (
+          <Stack
+            spacing={5}
+            alignItems="center"
+            sx={{ width: "100%", mt: 14 }}
+            data-test="double-reward-got-section"
+          >
+            <Typography variant="h5" textAlign="center">
+              {t("notices.doubleRewardGet")}
+            </Typography>
 
-          <Stack spacing={1.5} alignItems="center">
             <Box
               sx={{
                 animation: `${chestAppearKeyframes} 850ms cubic-bezier(0.21, 1.05, 0.42, 1) 100ms both`,
@@ -234,23 +325,53 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
               <Illustration name="chest" width={140} height={140} />
             </Box>
 
-            <Stack
-              direction="row"
-              spacing={1}
-              alignItems="center"
-              sx={{
-                opacity: 0,
-                animation: `${rewardAppearKeyframes} 700ms ease-out 620ms forwards`,
-              }}
-            >
+            <Stack direction="row" spacing={1} alignItems="center">
               <Illustration name="coin" width={40} height={40} />
               <Typography variant="h3" textAlign="center" lineHeight="48px">
-                {rewardAmount}
+                {displayedMiddleRewardAmount}
               </Typography>
             </Stack>
           </Stack>
-        </Stack>
+        ) : (
+          <Stack spacing={8} alignItems="center" sx={{ width: "100%", mt: 14 }}>
+            <Typography variant="h5" textAlign="center">
+              {t("notices.chestRewardTitle")}
+            </Typography>
+
+            <Stack spacing={1.5} alignItems="center">
+              <Box
+                sx={{
+                  animation: `${chestAppearKeyframes} 850ms cubic-bezier(0.21, 1.05, 0.42, 1) 100ms both`,
+                }}
+              >
+                <Illustration name="chest" width={140} height={140} />
+              </Box>
+
+              <Stack
+                direction="row"
+                spacing={1}
+                alignItems="center"
+                sx={{
+                  opacity: 0,
+                  animation: `${rewardAppearKeyframes} 700ms ease-out 620ms forwards`,
+                }}
+              >
+                <Illustration name="coin" width={40} height={40} />
+                <Typography variant="h3" textAlign="center" lineHeight="48px">
+                  {rewardAmount}
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+        )}
       </Stack>
+
+      <AdvertisementDialog
+        open={flowState === "ad_open"}
+        onContinue={() => {
+          void handleAdvertisementContinue();
+        }}
+      />
     </NoticeDialog>
   );
 };

@@ -14,7 +14,6 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_AVATAR_ITEMS_PURCHASED: "false",
   MOCKOON_NOTICE_VARIANT: "empty",
   MOCKOON_FEED_VARIANT: "default",
-  MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD: "any",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -179,17 +178,6 @@ export type MockoonFeedVariant =
 
 export async function setFeedVariant(variant: MockoonFeedVariant): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_FEED_VARIANT", variant);
-}
-
-export type MockoonChestExpectedDoubleReward = "true" | "false" | "any";
-
-export async function setChestExpectedDoubleReward(
-  expectedValue: MockoonChestExpectedDoubleReward,
-): Promise<void> {
-  await setMockoonGlobalVar(
-    "MOCKOON_CHEST_EXPECTED_DOUBLE_REWARD",
-    expectedValue,
-  );
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {

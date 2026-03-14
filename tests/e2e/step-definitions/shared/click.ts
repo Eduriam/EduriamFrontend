@@ -1,4 +1,5 @@
 import { When } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
 
 import { CustomWorld } from "../../support/world";
 
@@ -49,10 +50,22 @@ async function clickButtonByTestId(
 
   const innerButton = container.locator("button").first();
   const clickTarget = (await innerButton.count()) > 0 ? innerButton : container;
+  await clickTarget.scrollIntoViewIfNeeded();
+  await expect(clickTarget).toBeVisible({ timeout: 10000 });
+  await expect(clickTarget).toBeEnabled({ timeout: 10000 });
   try {
-    await clickTarget.click({ timeout: 5000 });
-  } catch {
-    await clickTarget.click({ force: true, timeout: 5000 });
+    await clickTarget.click({ timeout: 10000 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const isPointerInterceptError = message.includes(
+      "intercepts pointer events",
+    );
+
+    if (!isPointerInterceptError) {
+      throw error;
+    }
+
+    await clickTarget.click({ force: true, timeout: 10000 });
   }
 
   return container;

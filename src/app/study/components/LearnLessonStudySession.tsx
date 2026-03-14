@@ -27,35 +27,50 @@ const LearnLessonStudySession: React.FC<ILearnLessonStudySession> = ({
 }) => {
   const router = useRouter();
   const { user } = useAuth();
-  const [pendingNavigation, setPendingNavigation] = useState<
-    (() => void) | null
+  const [isAdvertisementOpen, setIsAdvertisementOpen] = useState(false);
+  const [pendingNavigationTarget, setPendingNavigationTarget] = useState<
+    "back" | "review" | null
   >(null);
   const { studySession, isLoading } = StudySessionAPI.useStudySession({
     lessonId,
     mode: "learn",
   });
 
-  const runWithAdvertisement = useCallback(
-    (navigationAction: () => void) => {
-      if (user?.role === "PREMIUM_USER") {
-        navigationAction();
+  const navigate = useCallback(
+    (target: "back" | "review") => {
+      if (target === "review") {
+        router.replace("/review");
         return;
       }
 
-      setPendingNavigation(() => navigationAction);
+      router.back();
     },
-    [user?.role],
+    [router],
+  );
+
+  const runWithAdvertisement = useCallback(
+    (target: "back" | "review") => {
+      if (user?.role === "PREMIUM_USER") {
+        navigate(target);
+        return;
+      }
+
+      setPendingNavigationTarget(target);
+      setIsAdvertisementOpen(true);
+    },
+    [navigate, user?.role],
   );
 
   const handleAdvertisementContinue = useCallback(() => {
-    if (!pendingNavigation) {
+    if (!pendingNavigationTarget) {
       return;
     }
 
-    const navigationAction = pendingNavigation;
-    setPendingNavigation(null);
-    navigationAction();
-  }, [pendingNavigation]);
+    const target = pendingNavigationTarget;
+    setIsAdvertisementOpen(false);
+    setPendingNavigationTarget(null);
+    navigate(target);
+  }, [navigate, pendingNavigationTarget]);
 
   if (isLoading || !studySession) {
     return null;
@@ -66,12 +81,12 @@ const LearnLessonStudySession: React.FC<ILearnLessonStudySession> = ({
       <StudySessionContainer
         studySession={studySession}
         lessonId={lessonId}
-        onQuit={() => runWithAdvertisement(() => router.back())}
-        onExit={() => runWithAdvertisement(() => router.replace("/review"))}
+        onQuit={() => runWithAdvertisement("back")}
+        onExit={() => runWithAdvertisement("review")}
       />
 
       <AdvertisementDialog
-        open={Boolean(pendingNavigation)}
+        open={isAdvertisementOpen}
         onContinue={handleAdvertisementContinue}
       />
     </>
