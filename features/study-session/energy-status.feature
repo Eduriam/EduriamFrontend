@@ -12,6 +12,14 @@ Feature: Energy status and insufficient energy handling
     When I click on the "unlock-unlimited-energy-button" button
     Then I should be redirected to the "premium-page" page
 
+  Scenario: Premium user opens energy status and sees unlimited energy message
+    Given I am a premium user
+    And I am on the "home-page" page
+    When I click on the "energy-section" button
+    Then I should see the "energy-drawer" drawer
+    And I should see the "premium-energy-message-section" section
+    And I should not see the "unlock-unlimited-energy-button" button
+
   Scenario: User tries to start upcoming lesson from home with no energy
     Given I have no energy left
     And I have an upcoming lesson

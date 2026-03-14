@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   ContentContainer,
@@ -24,6 +22,7 @@ import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import type { CourseDTO } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
@@ -62,11 +61,13 @@ function CourseOrLearningPathCard({
   dataTestCourse,
   dataTestLearningPath,
   onSelect,
+  premiumLabel,
 }: {
   course: CourseDTO;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, kind: CourseCardKind) => void;
+  premiumLabel: string;
 }) {
   const icon = (
     <CourseLogo
@@ -90,6 +91,8 @@ function CourseOrLearningPathCard({
           title={course.name}
           icon={icon}
           enrolled={enrolled}
+          premium={course.premium}
+          premiumLabel={premiumLabel}
           progress={progress}
           onClick={handleClick}
         />
@@ -102,6 +105,8 @@ function CourseOrLearningPathCard({
         title={course.name}
         icon={icon}
         enrolled={enrolled}
+        premium={course.premium}
+        premiumLabel={premiumLabel}
         progress={progress}
         onClick={handleClick}
       />
@@ -175,6 +180,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
       value: category,
     })),
   ];
+  const premiumLabel = t("courses.premiumLabel") || "Premium";
 
   const handleCourseSelect = (courseId: Id, kind: CourseCardKind) => {
     const path =
@@ -194,14 +200,19 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
           backgroundColor: "background.default",
         }}
       >
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "arrowLeft",
-            onClick: navigateWithTransition("/", {
-              direction: "back",
-            }),
-          }}
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "arrowLeft",
+                onClick: navigateWithTransition("/", {
+                  direction: "back",
+                }),
+              }}
+            />
+          }
+          mainNavigation="hidden"
+        />
 
         {tabs.length > 0 && (
           <Stack direction="column" width="100%" alignItems="center">
@@ -216,7 +227,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
         )}
       </Box>
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Box data-test="courses-section" sx={{ width: "100%" }}>
+        <Stack data-test="courses-section" sx={{ width: "100%" }} spacing={10}>
           <Stack
             spacing={3}
             data-test="recommended-courses-section"
@@ -248,6 +259,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
                   dataTestCourse="course-card"
                   dataTestLearningPath="learning-path-card"
                   onSelect={handleCourseSelect}
+                  premiumLabel={premiumLabel}
                 />
               ))}
             </Stack>
@@ -276,13 +288,14 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
                       dataTestCourse="course-card"
                       dataTestLearningPath="learning-path-card"
                       onSelect={handleCourseSelect}
+                      premiumLabel={premiumLabel}
                     />
                   ))}
                 </Stack>
               </Stack>
             ))}
           </Stack>
-        </Box>
+        </Stack>
       </ContentContainer>
     </PageRoot>
   );

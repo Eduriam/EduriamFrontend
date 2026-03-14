@@ -22,3 +22,8 @@ export const Enrolled = Template.bind({});
 Enrolled.args = {
   ...mockCourseCardProps.enrolled,
 } as ICourseCard;
+
+export const Premium = Template.bind({});
+Premium.args = {
+  ...mockCourseCardProps.premium,
+} as ICourseCard;

@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   Chip,
@@ -11,6 +9,7 @@ import {
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -25,17 +24,14 @@ import CertificateLockedDrawer from "components/courses/CertificateLockedDrawer/
 import ChapterCard from "components/courses/ChapterCard/ChapterCard";
 import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDetailsDrawer";
 import CourseLogo from "components/courses/CourseLogo/CourseLogo";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { Course } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
-import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
-
 export interface ICoursePage {}
-
-
 
 const CoursePage: React.FC<ICoursePage> = () => {
   const { t } = useTranslation("common");
@@ -52,16 +48,27 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const isPremiumUser = user?.role === "PREMIUM_USER";
   const hasCertificate = course?.userCertificate !== null;
+  const premiumLabel = t("courses.premiumLabel");
 
   const shouldRedirectToPremiumBecauseNoEnergy =
     user && !isPremiumUser && (user.energy ?? 0) <= 0;
+  const shouldRedirectToPremiumBecauseCourseLocked =
+    Boolean(course?.premium) && !isPremiumUser;
 
   const redirectToPremiumForNoEnergy = () => {
     navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
   };
+  const redirectToPremiumForCourseLocked = () => {
+    navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.courseLocked))();
+  };
 
   const handleStartCourse = async () => {
     if (!courseId) {
+      return;
+    }
+
+    if (shouldRedirectToPremiumBecauseCourseLocked) {
+      redirectToPremiumForCourseLocked();
       return;
     }
 
@@ -103,7 +110,9 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
     // Non-premium users are redirected to the premium benefits page.
     if (!isPremiumUser) {
-      navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.certificateLocked))();
+      navigateWithTransition(
+        getPremiumRoute(PREMIUM_MESSAGES.certificateLocked),
+      )();
       return;
     }
 
@@ -144,19 +153,24 @@ const CoursePage: React.FC<ICoursePage> = () => {
   return (
     <>
       <PageRoot data-test="course-page">
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "chevronLeft",
-            onClick: navigateWithTransition("/courses", {
-              direction: "back",
-            }),
-          }}
-          rightButton={{
-            icon: "info",
-            onClick: handleOpenDetails,
-            dataTest: "information-button",
-          }}
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "chevronLeft",
+                onClick: navigateWithTransition("/courses", {
+                  direction: "back",
+                }),
+              }}
+              rightButton={{
+                icon: "info",
+                onClick: handleOpenDetails,
+                dataTest: "information-button",
+              }}
+            />
+          }
+          mainNavigation="hidden"
+        />
         <ContentContainer
           width="small"
           justifyContent="flex-start"
@@ -170,11 +184,20 @@ const CoursePage: React.FC<ICoursePage> = () => {
                 justifyContent="space-between"
                 spacing={2}
               >
-                <Chip
-                  label={t("courses.courseLabel") || "Course"}
-                  color="chipBlue"
-                  variant="filled"
-                />
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <Chip
+                    label={t("courses.courseLabel") || "Course"}
+                    color="chipBlue"
+                    variant="filled"
+                  />
+                  {course?.premium && (
+                    <Chip
+                      label={premiumLabel}
+                      color="chipYellow"
+                      variant="filled"
+                    />
+                  )}
+                </Stack>
                 <IconButton
                   variant="text"
                   size="medium"
@@ -304,5 +327,3 @@ const CoursePage: React.FC<ICoursePage> = () => {
 };
 
 export default CoursePage;
-
-

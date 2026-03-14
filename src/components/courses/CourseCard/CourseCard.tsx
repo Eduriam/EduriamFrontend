@@ -1,4 +1,4 @@
-import { Card, ProgressBar } from "@eduriam/ui-core";
+import { Card, Chip, ProgressBar } from "@eduriam/ui-core";
 
 import type { ReactNode } from "react";
 
@@ -10,6 +10,8 @@ import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 export interface ICourseCard {
   title: string;
   enrolled?: boolean;
+  premium?: boolean;
+  premiumLabel?: string;
   /**
    * Progress in percent (0-100). Only displayed when `enrolled` is true.
    */
@@ -24,6 +26,8 @@ export interface ICourseCard {
 const CourseCard: React.FC<ICourseCard> = ({
   title,
   enrolled = false,
+  premium = false,
+  premiumLabel = "Premium",
   progress = 40,
   icon,
   onClick,
@@ -31,7 +35,30 @@ const CourseCard: React.FC<ICourseCard> = ({
   const isClickable = Boolean(onClick);
 
   return (
-    <Card onClick={onClick} variant={isClickable ? "clickable" : undefined}>
+    <Card
+      onClick={onClick}
+      variant={isClickable ? "clickable" : undefined}
+      sx={{ position: "relative" }}
+    >
+      {premium && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <Chip
+            label={premiumLabel}
+            color="chipYellow"
+            size="small"
+            variant="filled"
+          />
+        </Box>
+      )}
+
       <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
         <Box sx={{ width: "64px", height: "64px", flex: "0 0 auto" }}>
           {icon ?? <CourseLogo variant="JavaScript" />}

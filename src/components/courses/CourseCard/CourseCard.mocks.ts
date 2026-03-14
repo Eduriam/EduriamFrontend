@@ -15,7 +15,16 @@ const enrolled: ICourseCard = {
   onClick: action("onClick"),
 };
 
+const premium: ICourseCard = {
+  title: "JavaScript",
+  enrolled: true,
+  premium: true,
+  progress: 40,
+  onClick: action("onClick"),
+};
+
 export const mockCourseCardProps = {
   base,
   enrolled,
+  premium,
 };

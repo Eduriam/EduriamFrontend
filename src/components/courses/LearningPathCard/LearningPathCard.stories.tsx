@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof LearningPathCard> = (args) => (
 
 export const Default = Template.bind({});
 export const Enrolled = Template.bind({});
+export const Premium = Template.bind({});
 
 Default.args = {
   ...mockLearningPathCardProps.default,
@@ -22,4 +23,8 @@ Default.args = {
 
 Enrolled.args = {
   ...mockLearningPathCardProps.enrolled,
+} as ILearningPathCard;
+
+Premium.args = {
+  ...mockLearningPathCardProps.premium,
 } as ILearningPathCard;

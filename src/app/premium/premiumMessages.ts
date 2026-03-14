@@ -3,6 +3,8 @@ export const PREMIUM_MESSAGES = {
   default: "default",
   noEnergyLeft: "no-energy-left",
   certificateLocked: "certificate-locked",
+  courseLocked: "course-locked",
+  learningPathLocked: "learning-path-locked",
 } as const;
 
 export type PremiumMessageValue =

@@ -252,6 +252,7 @@
     "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz",
     "courseLabel": "Kurz",
     "learningPathLabel": "Learning path",
+    "premiumLabel": "Premium",
     "startCourse": "Začít kurz",
     "reviewCourse": "Zopakovat látku",
     "reviewLearningPath": "Zopakovat látku",
@@ -275,6 +276,7 @@
     "title": "Energie",
     "pointsLeft": "Zbývá vám dnes {{pointsLeft}} bodů energie",
     "subtitle": "Energii můžete využít na učení.",
+    "premiumSubtitle": "S Premium účtem si můžete využívat neomezenou energii a učení.",
     "button": "Odemknout neomezenou energii"
   },
   "streakDrawer": {
@@ -444,13 +446,16 @@
     "subscriptionActivated": "Vaše předplatné bylo aktivováno!"
   },
   "premium": {
+    "premium": "Premium",
     "header": "Postupujte rychleji s Premium účtem!",
     "premiumUserHeader": "Učíte se s Premium!",
     "premiumUserSubtitle": "Teď si můžete užívat všechny tyto výhody.",
     "subtitles": {
       "default": "Premium uživatelé postupují 4x rychleji",
       "noEnergyLeft": "Získejte neomezené učení a další výhody.",
-      "certificateLocked": "Získejte certifikáty a další výhody."
+      "certificateLocked": "Získejte certifikáty a další výhody.",
+      "courseLocked": "Odemkněte všechny kurzy a další výhody.",
+      "learningPathLocked": "Odemkněte všechny kariérní cesty a další výhody."
     },
     "table": {
       "benefits": "Výhody",
