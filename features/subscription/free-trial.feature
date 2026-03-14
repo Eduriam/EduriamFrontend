@@ -6,14 +6,13 @@ Feature: Free trial subscription
     And I am on the "home-page" page
     Given I have an unread "free-trial-notice" notice
     Then I should see the "free-trial-notice-section" section
-    And I should see the "try-subscription-button" button
-    When I click on the "try-subscription-button" button
-    Then I should see the "premium-benefits-section" section
+    And I should see the "premium-benefits-section" section
     And I should see the "start-free-trial-button" button
     When I click on the "start-free-trial-button" button
-    Then I should see the "free-trial-reminder-info-section" section
-    And I should see the "confirm-start-free-trial-button" button
-    When I click on the "confirm-start-free-trial-button" button
+    Then I should be on the "free-trial-page" page
+    And I should see the "free-trial-reminder-info-section" section
+    And I should see the "start-free-trial-button" button
+    When I click on the "start-free-trial-button" button
     Then I should see the "subscription-payment-form-section" section
     And I should see the "card-number-field" field
     And I should see the "card-expiry-field" field
@@ -31,9 +30,10 @@ Feature: Free trial subscription
     Then I should be on the "premium-page" page
     And I should see the "start-free-trial-button" button
     When I click on the "start-free-trial-button" button
-    Then I should see the "free-trial-reminder-info-section" section
-    And I should see the "confirm-start-free-trial-button" button
-    When I click on the "confirm-start-free-trial-button" button
+    Then I should be on the "free-trial-page" page
+    And I should see the "free-trial-reminder-info-section" section
+    And I should see the "start-free-trial-button" button
+    When I click on the "start-free-trial-button" button
     Then I should see the "subscription-payment-form-section" section
     And I should see the "card-number-field" field
     And I should see the "card-expiry-field" field
