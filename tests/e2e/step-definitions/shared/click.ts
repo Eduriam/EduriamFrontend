@@ -7,16 +7,25 @@ async function findButtonContainer(world: CustomWorld, buttonTestId: string) {
     throw new Error("Page is not initialized.");
   }
 
+  const selector = `[data-test="${buttonTestId}"]`;
+  await world.page.waitForSelector(selector, {
+    state: "attached",
+    timeout: 15000,
+  });
+  await world.page
+    .locator(`${selector}:visible`)
+    .first()
+    .waitFor({ state: "visible", timeout: 5000 })
+    .catch(() => undefined);
+
   const visibleCandidates = world.page.locator(
-    `[data-test="${buttonTestId}"]:visible`,
+    `${selector}:visible`,
   );
   if ((await visibleCandidates.count()) > 0) {
     return visibleCandidates.first();
   }
 
-  const firstCandidate = world.page
-    .locator(`[data-test="${buttonTestId}"]`)
-    .first();
+  const firstCandidate = world.page.locator(selector).first();
   if ((await firstCandidate.count()) > 0) {
     return firstCandidate;
   }

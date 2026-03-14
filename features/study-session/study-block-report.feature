@@ -37,6 +37,7 @@ Feature: Study block report
     Then I should see the "explanation-block-section" section
     When I wait for the explanation to finish
     Then I should see the "multiple-choice-exercise" exercise
+    And I should see the "previous-study-block-button" button
     When I click on the "previous-study-block-button" button
     Then I should see the "explanation-block-section" section
     And I should see the "report-study-block-button" button
