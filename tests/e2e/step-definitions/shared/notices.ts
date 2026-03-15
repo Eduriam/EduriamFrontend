@@ -16,6 +16,8 @@ const NOTICE_VARIANTS_BY_TEST_ID: Record<string, MockoonNoticeVariant> = {
   "league-demoted-notice": "single-league-demoted",
   "achievement-earned-notice": "single-achievement-earned",
   "chest-reward-notice": "single-chest-reward",
+  "free-trial-notice": "single-free-trial",
+  "free-trial-end-notice": "single-free-trial-end",
 };
 
 const ALL_NOTICE_TEST_IDS = Object.keys(NOTICE_VARIANTS_BY_TEST_ID);

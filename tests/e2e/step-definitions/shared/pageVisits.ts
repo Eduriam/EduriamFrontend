@@ -24,6 +24,7 @@ const PAGE_URLS: Record<string, string> = {
   "learning-path-page": `${BASE_URL}/learning-paths/react-developer-path`,
   "certificate-page": `${BASE_URL}/certificates/test-course-certificate`,
   "premium-page": `${BASE_URL}/premium`,
+  "free-trial-page": `${BASE_URL}/free-trial`,
   "study-plan-page": `${BASE_URL}/study-plan`,
   "leaderboard-page": `${BASE_URL}/leaderboard`,
   "feed-page": `${BASE_URL}/feed`,
@@ -299,3 +300,4 @@ Then(
     expect(element).toBeTruthy();
   },
 );
+

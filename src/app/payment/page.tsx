@@ -6,6 +6,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { BasicNavbar, ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 
@@ -14,10 +15,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
 import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -33,6 +38,7 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();
+  const theme = useTheme();
   const [needInvoice, setNeedInvoice] = useState(false);
 
   useEffect(() => {
@@ -47,6 +53,15 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
       variant: "error",
     });
   }
+
+  const handleClose = () => {
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
+
+    router.push("/premium");
+  };
 
   // Documentation source: https://stripe.com/docs/payments/accept-a-payment-deferred?platform=web&type=subscription
   async function handleSubscribe() {
@@ -87,49 +102,64 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
   }
 
   return (
-    <Box
-      sx={{ width: "100%" }}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      gap={4}
-    >
-      <Box display="flex" flexDirection="column" alignItems="center">
-        <Typography variant="h6">{t("payment.monthlySubscription")}</Typography>
-        <Typography variant="h5">{`${t("payment.perMonth", {
-          val: PLAN_PRICING_OPTIONS.amount / 100,
-        })}`}</Typography>
-      </Box>
+    <PageRoot data-test="payment-page">
+      <PageNavigation
+        topNavigation={<BasicNavbar
+          background="transparent"
+          leftButton={{
+            icon: "close",
+            onClick: handleClose,
+            dataTest: "close-payment-button",
+          }}
+        />}
+        mainNavigation="hidden"
+      />
+      <Box
+        sx={{
+          minHeight: "100dvh",
+          backgroundImage: getPremiumBackgroundGradient(theme.palette.mode),
+        }}
+      >
 
-      <Box sx={{ width: "100%" }}>
-        <PaymentElement />
-        <Typography
-          variant="caption"
-          sx={{ mt: 1, color: "#6d6e78", lineHeight: 1.45, display: "block" }}
-        >
-          {t("payment.subscriptionDisclaimer")}
-        </Typography>
-      </Box>
+        <ContentContainer width="small" justifyContent="space-between" spacing={4}>
+          <Stack spacing={4} sx={{ width: "100%", pt: { xs: 10, md: 12 } }}>
+            <Stack spacing={0.5} alignItems="center">
+              <Typography variant="h6">{t("payment.monthlySubscription")}</Typography>
+              <Typography variant="h5">{`${t("payment.perMonth", {
+                val: PLAN_PRICING_OPTIONS.amount / 100,
+              })}`}</Typography>
+            </Stack>
 
-      <Box sx={{ width: "100%" }}>
-        <FormControlLabel
-          label={t("payment.iWantToReceiveInvoice")}
-          control={
-            <Checkbox
-              checked={needInvoice}
-              onChange={(e) => setNeedInvoice(e.target.checked)}
-            />
-          }
-        />
-        {needInvoice && <AddressElement options={{ mode: "billing" }} />}
-      </Box>
+            <Box sx={{ width: "100%" }} data-test="subscription-payment-form-section">
+              <PaymentElement />
+              <Typography
+                variant="caption"
+                sx={{ mt: 1, color: "text.secondary", lineHeight: 1.45, display: "block" }}
+              >
+                {t("payment.subscriptionDisclaimer")}
+              </Typography>
+            </Box>
 
-      <Box>
-        <Button onClick={handleSubscribe} variant="contained" size="large">
-          {t("payment.buySubscription")}
-        </Button>
+            <Box sx={{ width: "100%" }}>
+              <FormControlLabel
+                label={t("payment.iWantToReceiveInvoice")}
+                control={
+                  <Checkbox
+                    checked={needInvoice}
+                    onChange={(event) => setNeedInvoice(event.target.checked)}
+                  />
+                }
+              />
+              {needInvoice && <AddressElement options={{ mode: "billing" }} />}
+            </Box>
+          </Stack>
+
+          <LargeButton fullWidth onClick={() => void handleSubscribe()} data-test="subscribe-now-button">
+            {t("payment.buySubscription")}
+          </LargeButton>
+        </ContentContainer>
       </Box>
-    </Box>
+    </PageRoot>
   );
 };
 

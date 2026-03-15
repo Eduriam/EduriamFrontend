@@ -1510,7 +1510,7 @@
       "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/subscription",
+      "endpoint": "users/me/subscriptions",
       "responses": [
         {
           "uuid": "96c8cdd7-cc66-4023-8594-a05b3d177598",
@@ -1541,7 +1541,7 @@
       "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9",
       "documentation": "",
       "method": "delete",
-      "endpoint": "user/subscription",
+      "endpoint": "users/me/subscriptions",
       "responses": [
         {
           "uuid": "0789e6a4-bcea-4097-aa37-e727e4fe69ce",
@@ -2820,6 +2820,60 @@
           "callbacks": []
         },
         {
+          "uuid": "2bb8f232-24d4-4e5d-82f2-d4a6e48de0dd",
+          "body": "[{\"id\":\"notice-free-trial-1\",\"type\":\"FREE_TRIAL\"}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Free trial",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-free-trial",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4eea4ab7-4ae6-4479-a4e5-f7f74ab4f0cf",
+          "body": "[{\"id\":\"notice-free-trial-end-1\",\"type\":\"FREE_TRIAL_END\",\"daysLeft\":3}]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Free trial end",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-free-trial-end",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
           "uuid": "24ea2c7d-1875-40f4-a941-ad9ed11c814c",
           "body": "[{\"id\":\"notice-streak-milestone-mixed-1\",\"type\":\"STREAK_MILESTONE\",\"streakDays\":100},{\"id\":\"notice-chest-reward-mixed-1\",\"type\":\"CHEST_REWARD\",\"chestId\":\"test-chest-1\",\"reward\":250}]",
           "latency": 0,
@@ -3272,7 +3326,7 @@
       "uuid": "7746912a-27a7-4f97-84ce-994a863e5dc8",
       "documentation": "",
       "method": "post",
-      "endpoint": "user/subscription",
+      "endpoint": "users/me/subscriptions",
       "responses": [
         {
           "uuid": "2735657b-2799-4d31-93cb-52cbb146e777",
@@ -3753,7 +3807,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user/subscription/trial",
+      "endpoint": "users/me/subscriptions/trial",
       "responses": [
         {
           "uuid": "e0db3ba5-9549-49ec-a8d0-5b0f33a39e60",
@@ -4359,7 +4413,7 @@
     },
     {
       "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08",
-      "name": "subscription",
+      "name": "subscriptions",
       "children": [
         {
           "type": "route",
@@ -4506,10 +4560,6 @@
         {
           "type": "folder",
           "uuid": "de246f00-7ef6-4507-96b4-b3685fe8f4c0"
-        },
-        {
-          "type": "folder",
-          "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
         },
         {
           "type": "folder",
@@ -4706,6 +4756,10 @@
         {
           "type": "folder",
           "uuid": "c4f817d1-07e9-415a-9324-41fa7b902017"
+        },
+        {
+          "type": "folder",
+          "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
         }
       ]
     },

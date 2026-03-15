@@ -3,8 +3,8 @@ Feature: Free trial subscription
 
   Scenario: User activates free trial from home page
     Given I am logged in
-    And I am on the "home-page" page
     Given I have an unread "free-trial-notice" notice
+    And I am on the "home-page" page
     Then I should see the "free-trial-notice-section" section
     And I should see the "premium-benefits-section" section
     And I should see the "start-free-trial-button" button
@@ -27,6 +27,7 @@ Feature: Free trial subscription
 
   Scenario: User activates free trial from premium page
     Given I am logged in
+    And I am on the "premium-page" page
     Then I should be on the "premium-page" page
     And I should see the "start-free-trial-button" button
     When I click on the "start-free-trial-button" button

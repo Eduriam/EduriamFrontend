@@ -21,6 +21,8 @@ Feature: Homepage notices
       | league-promoted-notice    |
       | league-demoted-notice     |
       | achievement-earned-notice |
+      | free-trial-notice       |
+      | free-trial-end-notice   |
 
   Scenario: User opens chest with a doubled reward after watching an ad
     Given I have an unread "chest-reward-notice" notice
@@ -37,3 +39,4 @@ Feature: Homepage notices
     When I click on the "continue-button" button
     Then I should be on the "home-page" page
     And I should not see the "chest-reward-notice" notice
+

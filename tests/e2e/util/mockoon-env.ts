@@ -177,6 +177,8 @@ export type MockoonNoticeVariant =
   | "single-notifications-disabled"
   | "single-achievement-earned"
   | "single-chest-reward"
+  | "single-free-trial"
+  | "single-free-trial-end"
   | "review-mixed"
   | "all-types";
 
@@ -203,3 +205,4 @@ export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {
     await setMockoonGlobalVar(key, value);
   }
 }
+

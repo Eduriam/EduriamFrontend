@@ -1,6 +1,8 @@
 import type {
   AchievementEarnedNotice,
   ChestRewardNotice,
+  FreeTrialEndNotice,
+  FreeTrialNotice,
   LeagueDemotedNotice,
   LeaguePromotedNotice,
   Notice,
@@ -52,4 +54,14 @@ export function isAchievementEarnedNotice(
 
 export function isChestRewardNotice(notice: Notice): notice is ChestRewardNotice {
   return notice.type === "CHEST_REWARD";
+}
+
+export function isFreeTrialNotice(notice: Notice): notice is FreeTrialNotice {
+  return notice.type === "FREE_TRIAL";
+}
+
+export function isFreeTrialEndNotice(
+  notice: Notice,
+): notice is FreeTrialEndNotice {
+  return notice.type === "FREE_TRIAL_END";
 }

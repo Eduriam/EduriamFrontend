@@ -1,4 +1,4 @@
-import { Illustration } from "@eduriam/ui-core";
+import AchievementBadge from "app/users/[userId]/components/AchievementBadge/AchievementBadge";
 import { useTranslation } from "i18n/client";
 
 import Stack from "@mui/material/Stack";
@@ -36,7 +36,7 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
           {t("notices.achievementEarned")}
         </Typography>
 
-        <Illustration name="achievement_1" width={200} height={200} />
+        <AchievementBadge badgeIconName={notice.badgeIconName} />
 
         <Stack spacing={1} alignItems="center" sx={{ width: "100%" }}>
           <Typography variant="h6" textAlign="center">
@@ -57,5 +57,3 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
 };
 
 export default AchievementEarnedNotice;
-
-

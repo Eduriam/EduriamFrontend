@@ -8,7 +8,7 @@ import {
 
 import { type ReactNode } from "react";
 
-import { Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 import KeyPress from "components/atoms/KeyPress/KeyPress";
 
@@ -27,6 +27,7 @@ export interface NoticeDialogProps {
   primaryButton?: NoticeDialogButton;
   secondaryButton?: NoticeDialogButton;
   transitionDuration?: unknown;
+  backgroundImage?: string;
 }
 
 const NoticeDialog: React.FC<NoticeDialogProps> = ({
@@ -35,55 +36,58 @@ const NoticeDialog: React.FC<NoticeDialogProps> = ({
   "data-test": dataTest,
   primaryButton,
   secondaryButton,
+  backgroundImage,
 }) => {
   return (
     <CoreFullscreenDialog open onClose={() => undefined} dataTest={dataTest}>
-      {navbar}
+      <Stack sx={{ height: "100dvh", minHeight: "100vh", backgroundImage }}>
+        {navbar}
 
-      <ContentContainer
-        width="small"
-        justifyContent="space-between"
-        paddingTop="medium"
-      >
-        <KeyPress onPress={() => primaryButton?.onClick?.()} keys={["Enter"]} />
+        <ContentContainer
+          width="small"
+          justifyContent="space-between"
+          paddingTop="medium"
+        >
+          <KeyPress onPress={() => primaryButton?.onClick?.()} keys={["Enter"]} />
 
-        {children}
+          {children}
 
-        <Stack spacing={2}>
-          {primaryButton ? (
-            <LargeButton
-              fullWidth
-              disabled={primaryButton.disabled}
-              onClick={() => primaryButton.onClick?.()}
-              endIcon={
-                primaryButton.icon ? (
-                  <Icon name={primaryButton.icon} />
-                ) : undefined
-              }
-              data-test={primaryButton.dataTest}
-            >
-              {primaryButton.text}
-            </LargeButton>
-          ) : null}
+          <Stack spacing={2}>
+            {primaryButton ? (
+              <LargeButton
+                fullWidth
+                disabled={primaryButton.disabled}
+                onClick={() => primaryButton.onClick?.()}
+                endIcon={
+                  primaryButton.icon ? (
+                    <Icon name={primaryButton.icon} />
+                  ) : undefined
+                }
+                data-test={primaryButton.dataTest}
+              >
+                {primaryButton.text}
+              </LargeButton>
+            ) : null}
 
-          {secondaryButton ? (
-            <LargeButton
-              variant="text"
-              fullWidth
-              disabled={secondaryButton.disabled}
-              onClick={() => secondaryButton.onClick?.()}
-              endIcon={
-                secondaryButton.icon ? (
-                  <Icon name={secondaryButton.icon} />
-                ) : undefined
-              }
-              data-test={secondaryButton.dataTest}
-            >
-              {secondaryButton.text}
-            </LargeButton>
-          ) : null}
-        </Stack>
-      </ContentContainer>
+            {secondaryButton ? (
+              <LargeButton
+                variant="text"
+                fullWidth
+                disabled={secondaryButton.disabled}
+                onClick={() => secondaryButton.onClick?.()}
+                endIcon={
+                  secondaryButton.icon ? (
+                    <Icon name={secondaryButton.icon} />
+                  ) : undefined
+                }
+                data-test={secondaryButton.dataTest}
+              >
+                {secondaryButton.text}
+              </LargeButton>
+            ) : null}
+          </Stack>
+        </ContentContainer>
+      </Stack>
     </CoreFullscreenDialog>
   );
 };

@@ -22,7 +22,17 @@ import SubscriptionAPI from "infrastructure/api/user/subscriptions/Subscriptions
 
 export interface ISubscriptionOverview {}
 
-const UNSUBSCRIBE_REASON_INDICES = [0, 1, 2, 3] as const;
+type UnsubscribeReasonConfig = {
+  id: string;
+  translationIndex: number;
+};
+
+const UNSUBSCRIBE_REASONS: UnsubscribeReasonConfig[] = [
+  { id: "free-account-option", translationIndex: 0 },
+  { id: "too-expensive-option", translationIndex: 1 },
+  { id: "dont-use-premium-option", translationIndex: 2 },
+  { id: "other-option", translationIndex: 3 },
+];
 
 const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
   const [selectedReasonId, setSelectedReasonId] = useState<string | undefined>();
@@ -34,12 +44,17 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
 
   const unsubscribeOptions: LargeRadioButtonOption[] = useMemo(
     () =>
-      UNSUBSCRIBE_REASON_INDICES.map((index) => ({
-        id: String(index),
-        text: t(`manageSubscription.unsubscribeReasons.${index}`),
-        "data-test": `unsubscribe-reason-${index}`,
+      UNSUBSCRIBE_REASONS.map((reason) => ({
+        id: reason.id,
+        text: t(`manageSubscription.unsubscribeReasons.${reason.translationIndex}`),
+        "data-test": reason.id,
       })),
     [t],
+  );
+
+  const selectedReason = useMemo(
+    () => UNSUBSCRIBE_REASONS.find((reason) => reason.id === selectedReasonId),
+    [selectedReasonId],
   );
 
   const nextPaymentDate = useMemo(() => {
@@ -67,8 +82,10 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
     mutate(
       SubscriptionAPI.cancelSubscription({
         unsubscribeReason:
-          selectedReasonId !== undefined
-            ? t(`manageSubscription.unsubscribeReasons.${selectedReasonId}`)
+          selectedReason !== undefined
+            ? t(
+                `manageSubscription.unsubscribeReasons.${selectedReason.translationIndex}`,
+              )
             : "",
       }),
       optimisticMutationOption(data),
@@ -126,6 +143,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                 pt: 9,
                 pb: 2,
               }}
+              data-test="subscription-cancel-reason-section"
             >
               <Stack spacing={6}>
                 <Typography variant="h5" align="center">
@@ -141,7 +159,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
               <LargeButton
                 onClick={() => setPage(2)}
                 disabled={selectedReasonId === undefined}
-                data-test="continue-cancellation-flow-button"
+                data-test="continue-button"
               >
                 {t("manageSubscription.continue")}
               </LargeButton>
@@ -155,6 +173,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                 pt: 11,
                 pb: 2,
               }}
+              data-test="confirm-cancel-subscription-section"
             >
               <Stack spacing={8} alignItems="center">
                 <Illustration name="sadFace" width={128} height={128} />
@@ -183,7 +202,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                     setPage(3);
                     handleUnsubscribe();
                   }}
-                  data-test="confirm-cancellation-button"
+                  data-test="cancel-subscription-confirm-button"
                 >
                   {t("manageSubscription.confirmCancellation")}
                 </LargeButton>
@@ -198,12 +217,16 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                 pt: 9,
                 pb: 2,
               }}
+              data-test="subscription-canceled-section"
             >
               <Typography variant="h5" align="center">
                 {t("manageSubscription.successfullyUnsubscibed")}
               </Typography>
 
-              <LargeButton onClick={navigateWithTransition("/")}>
+              <LargeButton
+                onClick={navigateWithTransition("/")}
+                data-test="continue-button"
+              >
                 {t("navigation.continue")}
               </LargeButton>
             </Stack>

@@ -39,12 +39,22 @@ export interface AchievementEarnedNotice extends BaseNotice {
   type: "ACHIEVEMENT_EARNED";
   title: string;
   description: string;
+  badgeIconName: "achievement-1" | "achievement-2";
 }
 
 export interface ChestRewardNotice extends BaseNotice {
   type: "CHEST_REWARD";
   chestId: Id;
   reward: number;
+}
+
+export interface FreeTrialNotice extends BaseNotice {
+  type: "FREE_TRIAL";
+}
+
+export interface FreeTrialEndNotice extends BaseNotice {
+  type: "FREE_TRIAL_END";
+  daysLeft?: number;
 }
 
 export type Notice =
@@ -55,6 +65,8 @@ export type Notice =
   | LeaguePromotedNotice
   | LeagueDemotedNotice
   | AchievementEarnedNotice
-  | ChestRewardNotice;
+  | ChestRewardNotice
+  | FreeTrialNotice
+  | FreeTrialEndNotice;
 
 export type NoticeType = Notice["type"];

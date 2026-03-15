@@ -410,7 +410,7 @@
     "extendSubscription": "Prodloužit předplatné",
     "continueWithFreeAccount": "Pokračovat s plánem zdarma",
     "rewardGet": "Získali jste odměnu!",
-    "doubleRewardGet": "Z\u00edskali jste dvojn\u00e1sobnou odm\u011bnu!",
+    "doubleRewardGet": "Získali jste dvojnásobnou odměnu!",
     "coins": "penízků",
     "advertisementNote": "Díky reklamám můžeme poskytovat aplikaci zdarma.",
     "studySessionEnded": "Dobrá práce! Učení dokončeno.",
@@ -469,6 +469,7 @@
       "smartReviews": "Chytré opakování",
       "certificates": "Certifikáty"
     },
+    "startFreeTrial": "Spustit zkušební verzi zdarma",
     "subscribeNow": "Získat Premium",
     "manageSubscription": "Spravovat předplatné"
   },
@@ -498,6 +499,21 @@
     "noWordsFound": "Nebyla nalezena žádná slovíčka.",
     "noLessonsFound": "Nebyly nalezeny žádné lekce.",
     "noUsersFound": "Nebyli nalezeni žádní uživatelé."
+  },
+  "freeTrial": {
+    "startButton": "Spustit zkušební verzi zdarma",
+    "reminderTitle": "Upozorníme vás 2 dny před koncem zkušební verze.",
+    "reminderSubtitle": "Snadné zrušení, bez poplatků.",
+    "paymentTitle": "Fakturační údaje",
+    "paymentDisclaimerPrefix": "Dnes vám bude naúčtováno",
+    "paymentDisclaimerToday": "{{val, currency(USD)}}",
+    "paymentDisclaimerSuffix": ".",
+    "paymentDisclaimerAfterTrial": "Po 7 denní zkušební verzi vám bude účtováno {{val, currency(USD)}}/měsíc.",
+    "cardNumberPlaceholder": "Číslo karty",
+    "cardExpiryPlaceholder": "MM/RR",
+    "cardCvvPlaceholder": "CVC",
+    "activatedTitle": "Váše zkušební verze byla aktivována!",
+    "endNoticeReminder": "Připomenutí: váše zkušební verze Premium skončí za {{days}} dní."
   },
   "freeTrialEndNotice": {
     "title": "Prodlužte si předplatné a užívejte si tyto výhody",

@@ -8,7 +8,7 @@ import { CreateSubscriptionResponseDTO, Subscription } from "./Subscriptions";
 export interface SubscriptionParams {}
 
 const SubscriptionAPI = {
-  URI: "user/subscription",
+  URI: "users/me/subscriptions",
 
   useSubscription(): Modify<
     FetchHook<Subscription>,
