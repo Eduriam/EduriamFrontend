@@ -1,22 +1,25 @@
 "use client";
 
 import {
-  AddressElement,
+  BasicNavbar,
+  ContentContainer,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
+import {
+  type Appearance,
   PaymentElement,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import { BasicNavbar, ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
@@ -39,13 +42,60 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
-  const [needInvoice, setNeedInvoice] = useState(false);
+  const paymentElementStyle = useMemo<Appearance>(
+    () => ({
+      variables: {
+        colorPrimary: theme.palette.primary.main,
+        colorDanger: theme.palette.error.main,
+        fontFamily: theme.typography.fontFamily,
+      },
+      rules: {
+        ".Label": {
+          color: theme.palette.text.primary,
+        },
+        ".Input": {
+          backgroundColor: "transparent",
+          border: `1px solid ${theme.palette.divider}`,
+          borderRadius: "8px",
+          boxShadow: "none",
+          color: theme.palette.text.primary,
+          fontSize: "16px",
+          padding: "16px",
+        },
+        ".Input::placeholder": {
+          color: theme.palette.text.secondary,
+        },
+        ".Input:focus": {
+          border: `1px solid ${theme.palette.primary.main}`,
+          boxShadow: "none",
+        },
+        ".Input--invalid": {
+          border: `1px solid ${theme.palette.error.main}`,
+          boxShadow: "none",
+        },
+      },
+    }),
+    [
+      theme.palette.divider,
+      theme.palette.error.main,
+      theme.palette.primary.main,
+      theme.palette.text.primary,
+      theme.palette.text.secondary,
+      theme.typography.fontFamily,
+    ],
+  );
 
   useEffect(() => {
     if (router && user?.activeSubscription) {
       router.push("/manage-subscription");
     }
   }, [user, router]);
+
+  useEffect(() => {
+    elements?.update({
+      appearance: paymentElementStyle,
+    });
+  }, [elements, paymentElementStyle]);
 
   function handleError(message?: string) {
     console.error(message);
@@ -103,62 +153,64 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
 
   return (
     <PageRoot data-test="payment-page">
-      <PageNavigation
-        topNavigation={<BasicNavbar
-          background="transparent"
-          leftButton={{
-            icon: "close",
-            onClick: handleClose,
-            dataTest: "close-payment-button",
-          }}
-        />}
-        mainNavigation="hidden"
-      />
-      <Box
+      <Stack
         sx={{
           minHeight: "100dvh",
           backgroundImage: getPremiumBackgroundGradient(theme.palette.mode),
         }}
       >
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              background="transparent"
+              leftButton={{
+                icon: "close",
+                onClick: handleClose,
+                dataTest: "close-payment-button",
+              }}
+            />
+          }
+          mainNavigation="hidden"
+        />
 
-        <ContentContainer width="small" justifyContent="space-between" spacing={4}>
-          <Stack spacing={4} sx={{ width: "100%", pt: { xs: 10, md: 12 } }}>
-            <Stack spacing={0.5} alignItems="center">
-              <Typography variant="h6">{t("payment.monthlySubscription")}</Typography>
-              <Typography variant="h5">{`${t("payment.perMonth", {
-                val: PLAN_PRICING_OPTIONS.amount / 100,
-              })}`}</Typography>
+        <ContentContainer
+          width="small"
+          justifyContent="space-between"
+          spacing={4}
+        >
+          <Stack spacing={8} sx={{ width: "100%" }}>
+            <Stack spacing={3}>
+              <Typography variant="h4">
+                {t("payment.monthlySubscription")}
+              </Typography>
+              <Typography variant="body1">
+                {t("payment.eduriamPremium")}
+                {": "}
+                <Typography component="span" variant="body1" fontWeight={600}>
+                  {`${t("payment.perMonth", {
+                    val: PLAN_PRICING_OPTIONS.amount / 100,
+                  })}`}
+                </Typography>
+              </Typography>
             </Stack>
 
-            <Box sx={{ width: "100%" }} data-test="subscription-payment-form-section">
+            <Box
+              sx={{ width: "100%" }}
+              data-test="subscription-payment-form-section"
+            >
               <PaymentElement />
-              <Typography
-                variant="caption"
-                sx={{ mt: 1, color: "text.secondary", lineHeight: 1.45, display: "block" }}
-              >
-                {t("payment.subscriptionDisclaimer")}
-              </Typography>
-            </Box>
-
-            <Box sx={{ width: "100%" }}>
-              <FormControlLabel
-                label={t("payment.iWantToReceiveInvoice")}
-                control={
-                  <Checkbox
-                    checked={needInvoice}
-                    onChange={(event) => setNeedInvoice(event.target.checked)}
-                  />
-                }
-              />
-              {needInvoice && <AddressElement options={{ mode: "billing" }} />}
             </Box>
           </Stack>
 
-          <LargeButton fullWidth onClick={() => void handleSubscribe()} data-test="subscribe-now-button">
+          <LargeButton
+            fullWidth
+            onClick={() => void handleSubscribe()}
+            data-test="subscribe-now-button"
+          >
             {t("payment.buySubscription")}
           </LargeButton>
         </ContentContainer>
-      </Box>
+      </Stack>
     </PageRoot>
   );
 };

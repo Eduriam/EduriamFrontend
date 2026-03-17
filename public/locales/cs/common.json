@@ -434,7 +434,8 @@
     "advertisement": "Reklama"
   },
   "payment": {
-    "monthlySubscription": "Měsíční předplatné",
+    "monthlySubscription": "Fakturační údaje",
+    "eduriamPremium": "Eduriam Premium",
     "buySubscription": "Koupit předplatné",
     "generalPaymentErrorMessage": "Při ověření karty došlo k chybě. Zkuste to prosím znovu později.",
     "perMonth": "{{val, currency(USD)}} za měsíc",
