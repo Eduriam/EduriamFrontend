@@ -9,15 +9,16 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import SearchTextField from "./components/SearchTextField/SearchTextField";
+import UserList from "components/atoms/UserList/UserList";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import UserList from "components/atoms/lists/UserList/UserList";
 import { optimisticMutationOption } from "infrastructure/api/API";
 import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
 import { UserSummary } from "infrastructure/api/users/Users";
 import UsersAPI from "infrastructure/api/users/UsersAPI";
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import useAuth from "infrastructure/services/AuthProvider";
+
+import SearchTextField from "./components/SearchTextField/SearchTextField";
 
 export interface ISearchPagePage {}
 
@@ -66,30 +67,36 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
       userItem.id === targetUserId ? { ...userItem, isFollowed } : userItem,
     );
 
-    mutate(
-      async () => {
-        if (isFollowed) {
-          await UserFollowingAPI.followUser(user.id, targetUserId);
-        } else {
-          await UserFollowingAPI.unfollowUser(user.id, targetUserId);
-        }
+    mutate(async () => {
+      if (isFollowed) {
+        await UserFollowingAPI.followUser(user.id, targetUserId);
+      } else {
+        await UserFollowingAPI.unfollowUser(user.id, targetUserId);
+      }
 
-        return nextUsers;
-      },
-      optimisticMutationOption(nextUsers),
-    );
+      return nextUsers;
+    }, optimisticMutationOption(nextUsers));
   };
 
   return (
     <PageRoot data-test="search-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/", { direction: "back" }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "arrowLeft",
+              onClick: navigateWithTransition("/", { direction: "back" }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
-      <ContentContainer width="small" justifyContent="flex-start" paddingTop="none">
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        paddingTop="none"
+      >
         <SearchTextField
           placeholder={t("search.nameOrUsername")}
           value={searchPrompt}
@@ -105,7 +112,9 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
             <UserList
               items={userResults}
               currentUserId={user?.id}
-              onUserClick={(userId) => navigateWithTransition(`/users/${userId}`)()}
+              onUserClick={(userId) =>
+                navigateWithTransition(`/users/${userId}`)()
+              }
               onFollowToggle={handleFollowChange}
             />
           )}
