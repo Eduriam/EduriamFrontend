@@ -8,7 +8,7 @@ import {
   skinColors,
 } from "components/avatar/avatarColors";
 
-import type { ShopItem } from "infrastructure/api/user/shop-items/ShopItems";
+import type { ShopItem } from "infrastructure/api/users/me/shop-items/ShopItems";
 
 export type AvatarEditableField = keyof AvatarDefinition;
 
@@ -91,21 +91,22 @@ export const AVATAR_EDITOR_CATEGORY_CONFIG: AvatarEditorCategoryConfig[] = [
   },
 ];
 
-export const AVATAR_FIELD_LABELS: Partial<Record<AvatarEditableField, string>> = {
-  hair: "avatarEditor.fields.hair",
-  hairColor: "avatarEditor.fields.hairColor",
-  eyes: "avatarEditor.fields.eyes",
-  eyeColor: "avatarEditor.fields.eyeColor",
-  expression: "avatarEditor.fields.expression",
-  beard: "avatarEditor.fields.beard",
-  beardColor: "avatarEditor.fields.beardColor",
-  accessories: "avatarEditor.fields.accessories",
-  glassesColor: "avatarEditor.fields.glassesColor",
-  headwear: "avatarEditor.fields.headwear",
-  clothing: "avatarEditor.fields.clothing",
-  skinColor: "avatarEditor.fields.skinColor",
-  backgroundColor: "avatarEditor.fields.backgroundColor",
-};
+export const AVATAR_FIELD_LABELS: Partial<Record<AvatarEditableField, string>> =
+  {
+    hair: "avatarEditor.fields.hair",
+    hairColor: "avatarEditor.fields.hairColor",
+    eyes: "avatarEditor.fields.eyes",
+    eyeColor: "avatarEditor.fields.eyeColor",
+    expression: "avatarEditor.fields.expression",
+    beard: "avatarEditor.fields.beard",
+    beardColor: "avatarEditor.fields.beardColor",
+    accessories: "avatarEditor.fields.accessories",
+    glassesColor: "avatarEditor.fields.glassesColor",
+    headwear: "avatarEditor.fields.headwear",
+    clothing: "avatarEditor.fields.clothing",
+    skinColor: "avatarEditor.fields.skinColor",
+    backgroundColor: "avatarEditor.fields.backgroundColor",
+  };
 
 const AVATAR_FIELD_OPTIONS: Partial<
   Record<AvatarEditableField, readonly string[]>
@@ -132,7 +133,9 @@ const AVATAR_FIELD_OPTIONS: Partial<
   skinColor: Object.keys(skinColors) as NonNullable<
     AvatarDefinition["skinColor"]
   >[],
-  eyeColor: Object.keys(eyeColors) as NonNullable<AvatarDefinition["eyeColor"]>[],
+  eyeColor: Object.keys(eyeColors) as NonNullable<
+    AvatarDefinition["eyeColor"]
+  >[],
   hairColor: Object.keys(hairColors) as NonNullable<
     AvatarDefinition["hairColor"]
   >[],

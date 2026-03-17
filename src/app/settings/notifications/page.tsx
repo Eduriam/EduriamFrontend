@@ -16,10 +16,11 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { optimisticMutationOption } from "infrastructure/api/API";
-import type { NotificationPreferences } from "infrastructure/api/user/settings/Settings";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import type { NotificationPreferences } from "infrastructure/api/users/me/settings/Settings";
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 
 type NotificationSettingItem = {
   id: keyof NotificationPreferences;
@@ -128,13 +129,20 @@ const SettingsNotificationsPage: React.FC = () => {
 
   return (
     <PageRoot data-test="notification-settings-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("settings.items.notifications")}
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/settings", { direction: "back" }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            header={t("settings.items.notifications")}
+            leftButton={{
+              icon: "arrowLeft",
+              onClick: navigateWithTransition("/settings", {
+                direction: "back",
+              }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer
         width="small"

@@ -21,7 +21,7 @@ import LearningPathCard from "components/courses/LearningPathCard/LearningPathCa
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import type { CourseDTO } from "infrastructure/api/courses/Courses";
-import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
+import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 
 function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";

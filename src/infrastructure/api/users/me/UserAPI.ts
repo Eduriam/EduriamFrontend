@@ -5,7 +5,7 @@ import { UserPrivate } from "./User";
 export interface UserParams {}
 
 const UserAPI = {
-  URI: "user",
+  URI: "users/me",
 
   async getUser(): Promise<UserPrivate> {
     return API.get(`${this.URI}`);

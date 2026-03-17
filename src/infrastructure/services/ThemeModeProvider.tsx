@@ -1,7 +1,5 @@
 "use client";
 
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import { getAppTheme } from "styles/theme";
 
 import {
@@ -13,8 +11,11 @@ import {
   useState,
 } from "react";
 
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
-import type { ThemeMode } from "infrastructure/api/user/settings/Settings";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+
+import type { ThemeMode } from "infrastructure/api/users/me/settings/Settings";
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 
 import useAuth from "./AuthProvider";
 
@@ -52,7 +53,8 @@ const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
     updateSystemPreference();
     mediaQuery.addEventListener("change", updateSystemPreference);
 
-    return () => mediaQuery.removeEventListener("change", updateSystemPreference);
+    return () =>
+      mediaQuery.removeEventListener("change", updateSystemPreference);
   }, []);
 
   useEffect(() => {

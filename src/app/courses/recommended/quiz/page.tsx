@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import AreaOfInterestStep from "app/courses/recommended/quiz/components/AreaOfInterestStep";
 import CodingExperienceStep from "app/courses/recommended/quiz/components/CodingExperienceStep";
@@ -15,7 +13,9 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 
 import QuizFinishedStep from "./components/QuizFinishedStep";
 
@@ -133,17 +133,22 @@ const RecommendationQuizPage: React.FC = () => {
           minHeight: 0,
         }}
       >
-        <PageNavigation topNavigation={<ProgressNavbar
-          leftButton={
-            showBack
-              ? {
-                  icon: "chevronLeft",
-                  onClick: handleBack,
-                }
-              : undefined
+        <PageNavigation
+          topNavigation={
+            <ProgressNavbar
+              leftButton={
+                showBack
+                  ? {
+                      icon: "chevronLeft",
+                      onClick: handleBack,
+                    }
+                  : undefined
+              }
+              progressValue={progressValue}
+            />
           }
-          progressValue={progressValue}
-        />} mainNavigation="hidden" />
+          mainNavigation="hidden"
+        />
 
         <Box
           sx={{

@@ -1,4 +1,3 @@
-import { Achievement } from "infrastructure/api/user/achievements/Achievements";
 import type { AvatarDefinition } from "components/avatar/Avatar";
 
 export interface UserProfile {
@@ -33,11 +32,13 @@ export type UserSummary = Pick<
   "id" | "name" | "username" | "avatarDefinition" | "isFollowed"
 >;
 
-export type ProfileAchievement = Pick<
-  Achievement,
-  "id" | "title" | "description" | "progress" | "collectedReward"
-> & {
+export type ProfileAchievement = {
   badgeIconName: "achievement-1" | "achievement-2";
+  collectedReward: boolean;
+  progress: number;
+  description?: string;
+  id: Id;
+  title: string;
 };
 
 export interface ProfileCourse {

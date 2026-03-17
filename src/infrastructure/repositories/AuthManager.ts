@@ -9,7 +9,7 @@ import RefreshTokenAPI from "infrastructure/api/user-auth/refresh-token/RefreshT
 import { SignupRequestBody } from "infrastructure/api/user-auth/signup/Signup";
 import SignupAPI from "infrastructure/api/user-auth/signup/SignupAPI";
 
-import { UserPrivate } from "../api/user/User";
+import { UserPrivate } from "../api/users/me/User";
 import { LocalStorageManager } from "./LocalStorageManager";
 
 const AuthManager = {

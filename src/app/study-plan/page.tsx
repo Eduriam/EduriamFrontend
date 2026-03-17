@@ -14,10 +14,10 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
-
-import type { UserCourse } from "infrastructure/api/user/courses/UserCourses";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+
+import type { UserCourse } from "infrastructure/api/users/me/courses/UserCourses";
+import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 
 import StudyPlanCourseCard, {
   type IStudyPlanCourseCard,
@@ -243,19 +243,24 @@ const StudyPlanPage: React.FC = () => {
   if (!lanes) {
     return (
       <PageRoot data-test="study-plan-page">
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "arrowLeft",
-            onClick: navigateWithTransition("/", {
-              direction: "back",
-            }),
-          }}
-          rightButton={{
-            icon: "add",
-            onClick: navigateWithTransition("/courses"),
-          }}
-          header="Study Plan"
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "arrowLeft",
+                onClick: navigateWithTransition("/", {
+                  direction: "back",
+                }),
+              }}
+              rightButton={{
+                icon: "add",
+                onClick: navigateWithTransition("/courses"),
+              }}
+              header="Study Plan"
+            />
+          }
+          mainNavigation="hidden"
+        />
       </PageRoot>
     );
   }
@@ -270,19 +275,24 @@ const StudyPlanPage: React.FC = () => {
           backgroundColor: "background.default",
         }}
       >
-        <PageNavigation topNavigation={<BasicNavbar
-          leftButton={{
-            icon: "chevronLeft",
-            onClick: navigateWithTransition("/", {
-              direction: "back",
-            }),
-          }}
-          rightButton={{
-            icon: "add",
-            onClick: navigateWithTransition("/courses"),
-          }}
-          header="Study Plan"
-        />} mainNavigation="hidden" />
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              leftButton={{
+                icon: "chevronLeft",
+                onClick: navigateWithTransition("/", {
+                  direction: "back",
+                }),
+              }}
+              rightButton={{
+                icon: "add",
+                onClick: navigateWithTransition("/courses"),
+              }}
+              header="Study Plan"
+            />
+          }
+          mainNavigation="hidden"
+        />
       </Box>
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>

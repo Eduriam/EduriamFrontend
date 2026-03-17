@@ -26,7 +26,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import type { CourseDTO } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
-import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
+import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 
 const DEFAULT_CATEGORY = "other";
 

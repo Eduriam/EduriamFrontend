@@ -1,7 +1,6 @@
 import { AvatarDefinition } from "components/avatar/Avatar";
 
 import { LeaderboardLeague } from "../leaderboard/Leaderboard";
-
 import { Reaction } from "./reactions/Reactions";
 
 export type FeedItem = FeedMessage;

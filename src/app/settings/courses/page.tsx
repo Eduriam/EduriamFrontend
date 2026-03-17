@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   ContentContainer,
@@ -24,10 +22,11 @@ import Typography from "@mui/material/Typography";
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import type { UserCourse } from "infrastructure/api/user/courses/UserCourses";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import type { UserCourse } from "infrastructure/api/users/me/courses/UserCourses";
+import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 
 const SettingsCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
@@ -64,13 +63,20 @@ const SettingsCoursesPage: React.FC = () => {
 
   return (
     <PageRoot data-test="manage-courses-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("settings.items.courses")}
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/settings", { direction: "back" }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            header={t("settings.items.courses")}
+            leftButton={{
+              icon: "arrowLeft",
+              onClick: navigateWithTransition("/settings", {
+                direction: "back",
+              }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer
         width="small"

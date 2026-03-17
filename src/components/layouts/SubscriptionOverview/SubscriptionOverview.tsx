@@ -17,8 +17,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { Subscription } from "infrastructure/api/user/subscriptions/Subscriptions";
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+import { Subscription } from "infrastructure/api/users/me/subscriptions/Subscriptions";
+import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
 
 export interface ISubscriptionOverview {}
 
@@ -35,7 +35,9 @@ const UNSUBSCRIBE_REASONS: UnsubscribeReasonConfig[] = [
 ];
 
 const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
-  const [selectedReasonId, setSelectedReasonId] = useState<string | undefined>();
+  const [selectedReasonId, setSelectedReasonId] = useState<
+    string | undefined
+  >();
   const { t } = useTranslation("common");
   const [page, setPage] = useState(0);
   const navigateWithTransition = useTransitionNavigationHandler();
@@ -46,7 +48,9 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
     () =>
       UNSUBSCRIBE_REASONS.map((reason) => ({
         id: reason.id,
-        text: t(`manageSubscription.unsubscribeReasons.${reason.translationIndex}`),
+        text: t(
+          `manageSubscription.unsubscribeReasons.${reason.translationIndex}`,
+        ),
         "data-test": reason.id,
       })),
     [t],

@@ -16,10 +16,10 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
-import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
+import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import EnergyDrawer from "./components/EnergyDrawer/EnergyDrawer";

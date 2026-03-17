@@ -10,8 +10,11 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 
-import { FeedMessage, MessageType } from "infrastructure/api/user/feed/Feed";
-import { ReactionId } from "infrastructure/api/user/feed/reactions/Reactions";
+import {
+  FeedMessage,
+  MessageType,
+} from "infrastructure/api/users/me/feed/Feed";
+import { ReactionId } from "infrastructure/api/users/me/feed/reactions/Reactions";
 
 export interface IFeedCard {
   feedMessage: FeedMessage;
@@ -127,9 +130,7 @@ const FeedCard: React.FC<IFeedCard> = ({
   return (
     <Box data-test={`${messageTestId}-feed-message-section`}>
       <Card paddingX="medium" paddingY="medium">
-        <Box
-          sx={{ display: "flex", flexDirection: "column", gap: 3 }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Avatar
               definition={feedMessage.avatarDefinition}
@@ -138,7 +139,12 @@ const FeedCard: React.FC<IFeedCard> = ({
             />
 
             <Box
-              sx={{ display: "flex", flexDirection: "column", gap: 0.5, flex: 1 }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 0.5,
+                flex: 1,
+              }}
             >
               <Box
                 sx={{

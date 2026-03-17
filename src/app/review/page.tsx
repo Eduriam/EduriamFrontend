@@ -1,6 +1,7 @@
 "use client";
 
 import { ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -12,10 +13,9 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
-import StudyPlanAPI from "infrastructure/api/user/study-plan/StudyPlanAPI";
-import useAuth from "infrastructure/services/AuthProvider";
 
-import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import StudyPreview from "../(home)/components/StudyPreview/StudyPreview";
 import ReviewCourseStudySession from "./components/ReviewCourseStudySession";
@@ -69,7 +69,9 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     const isPremiumUser = user?.role === "PREMIUM_USER";
 
     if (user && !isPremiumUser && hasNoEnergy) {
-      router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), { scroll: false });
+      router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), {
+        scroll: false,
+      });
       return;
     }
 
@@ -141,5 +143,3 @@ const ReviewPage: React.FC<IReviewPage> = () => {
 };
 
 export default ReviewPage;
-
-

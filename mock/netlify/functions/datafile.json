@@ -844,235 +844,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "f65eb8be-3d96-484e-9ae1-029d53646521",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/courses/:courseId/vocabulary",
-      "responses": [
-        {
-          "uuid": "f75ff794-7f00-456e-83df-20fbe7407fa4",
-          "body": "[\r\n   {{#repeat 10}}\r\n   {\r\n      \"id\": \"{{faker 'string.uuid'}}\",\r\n      \"nameL1\":\"{{faker 'lorem.word'}}\",\r\n      \"nameL2\":\"{{faker 'word.noun'}}\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n   }\r\n   {{/repeat}}\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "favorite=true",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "favorite",
-              "value": "true",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "d1a92472-d3a0-4024-b6c1-5a00ab64f0de",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"bambus\",\n    \"nameL2\": \"bamboo\",\n    \"imageUrl\":\"https://picsum.photos/id/844/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "searchName=bamboo OR bambus",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "b(?:a(?:m(?:b(?:u(?:s)?)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            },
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "b(?:a(?:m(?:b(?:o(?:o)?)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "15f65211-76da-43bf-8dfa-e3c59887a7fb",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"oceán\",\n    \"nameL2\": \"ocean\",\n    \"imageUrl\":\"https://picsum.photos/id/970/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "searchName=ocean OR oceán",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "o(?:c(?:e(?:a(?:n)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            },
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "o(?:c(?:e(?:á(?:n)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "e0ca3d07-4fab-4476-aece-d993ec3a64cb",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"nameL1\": \"medúza\",\n    \"nameL2\": \"jellyfish\",\n    \"imageUrl\":\"https://picsum.photos/id/881/512/512\",\n    \"audioUrl\": \"https://mocks.linguino.org/audio-short.mp3\"\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "searchName=medúza OR jellyfish",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "j(?:e(?:l(?:l(?:y(?:f(?:i(?:s(?:h)?)?)?)?)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            },
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "m(?:e(?:d(?:ú(?:z(?:a)?)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            },
-            {
-              "target": "query",
-              "modifier": "searchName",
-              "value": "m(?:e(?:d(?:ů(?:z(?:a)?)?)?)?)?",
-              "invert": false,
-              "operator": "regex"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "6bf6a300-495c-4287-91ca-53d8080e6cae",
-      "documentation": "",
-      "method": "patch",
-      "endpoint": "user/courses/:courseId/vocabulary/:itemId",
-      "responses": [
-        {
-          "uuid": "6e7a17c3-3676-4efa-bf58-e78f11ece6c4",
-          "body": "{}",
-          "latency": 5000,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "74fca8c1-94a8-48b8-bba6-44ed69bb473d",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/courses/:courseId/vocabulary/:itemId",
-      "responses": [
-        {
-          "uuid": "52c767ec-bca2-4c26-9c20-74c025c310f7",
-          "body": "{\r\n   \"nameL1\":\"ananas\",\r\n   \"nameL2\":\"pineapple\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":{{faker 'datatype.boolean'}},\r\n   \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n   \"audioUrl\":\"https://mocks.linguino.org/pineapple.mp3\",\r\n   \"description\":\"A tropical fruit with a spiky outer skin and sweet, juicy yellow flesh.\",\r\n   \"examples\":[\r\n      {{#repeat 3}}\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"textL1\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"textL2\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n      }\r\n      {{/repeat}}\r\n   ]\r\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Lesson Item",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "13a2c48f-11f0-443e-8a75-054cc52b290a",
-          "body": "{\r\n   \"nameL1\":\"jablko\",\r\n   \"nameL2\":\"apple\",\r\n   \"id\": \"{{faker 'string.uuid'}}\",\r\n   \"favorite\":{{faker 'datatype.boolean'}},\r\n   \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n   \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\",\r\n   \"description\":\"{{faker 'lorem.paragraph'}}\",\r\n   \"imageUrl\": \"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n   \"examples\":[\r\n      {{#repeat 3}}\r\n      {\r\n         \"id\": \"{{faker 'string.uuid'}}\",\r\n         \"textL1\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"textL2\":\"{{faker 'lorem.sentence' 7}}\",\r\n         \"audioUrl\":\"https://mocks.linguino.org/audio-short.mp3\"\r\n      }\r\n      {{/repeat}}\r\n   ]\r\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Lesson Item: Background Image",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336",
       "documentation": "",
       "method": "get",
@@ -1131,130 +902,6 @@
       ],
       "responseMode": null,
       "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "a2bf16fb-e93c-48f2-a897-b1c4bff293b0",
-      "type": "http",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/achievements",
-      "responses": [
-        {
-          "uuid": "b56a8931-129c-4692-b3c0-566f4f9f100f",
-          "body": "[\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   },\n   {{#repeat 2}}\n   {\n      \"id\":\"{{faker 'string.uuid'}}\",\n      \"title\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\n      \"collectedReward\":false\n   }\n   {{/repeat}}\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "da675e05-6e88-42cc-9803-8e4944836559",
-      "type": "http",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "user/achievements/:id/collect-reward",
-      "responses": [
-        {
-          "uuid": "4d91a0d3-f3eb-47a7-936b-ad730a71dac3",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "822df224-1412-47cf-bdfd-1a4b52e8f39e",
-      "type": "http",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/active-challenges",
-      "responses": [
-        {
-          "uuid": "58e1861c-bae9-4d07-b2a6-a14ce11bb7a9",
-          "body": "[\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"title\":\"{{faker 'lorem.words' 3}}\",\r\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\r\n      \"dateToReview\":\"{{faker 'date.recent'}}\",\r\n      \"imageUrl\":\"{{faker 'image.urlPicsumPhotos' height=512 width=512}}\",\r\n      \"collectedReward\":false\r\n   }\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "81ef9ff4-595d-46c1-8d08-f8219938e329",
-      "type": "http",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "user/active-challenges/:id/collect-reward",
-      "responses": [
-        {
-          "uuid": "c5c43dbd-2939-4d92-8f14-df8a31a3ec20",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
       "streamingMode": null,
       "streamingInterval": 0
     },
@@ -1854,103 +1501,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "85411a4d-3fcf-404f-b8d5-9ee69f8bb5c8",
-      "type": "http",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "user/courses/:courseId/topics",
-      "responses": [
-        {
-          "uuid": "33b4aa07-9b48-4d55-95f5-141da9bc25e6",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Kultura\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Škola\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Práce\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Cestování\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Rodina\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Jídlo\",\n    \"enabled\": true\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Historie\",\n    \"enabled\": true\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "category=main",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "category",
-              "value": "main",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
-          "uuid": "6bb2cd6c-42a6-4298-8a3f-c58c999861e3",
-          "body": "[\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro manažery\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro doktory\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro ajťáky\",\n    \"enabled\": false\n  },\n  {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"name\": \"Slovní zásoba pro piloty\",\n    \"enabled\": false\n  }\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "category=extra",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "category",
-              "value": "extra",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "82817d44-4204-465b-9796-7ed0ef28af8c",
-      "type": "http",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "user/courses/:courseId/topics/:topicId",
-      "responses": [
-        {
-          "uuid": "59a361c6-3a0e-4cad-a09a-ae45f39b49bf",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "84d83306-3778-463b-9998-c1cff76843a0",
       "type": "http",
       "documentation": "",
@@ -2074,7 +1624,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user/recommended-courses",
+      "endpoint": "users/me/recommended-courses",
       "responses": [
         {
           "uuid": "0f4ad0ec-2611-4617-8b07-8ea2276b8e28",
@@ -2611,7 +2161,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "user",
+      "endpoint": "users/me",
       "responses": [
         {
           "uuid": "648ebde8-8278-4c24-b292-d464e098aabd",
@@ -2661,7 +2211,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user/account-setup",
+      "endpoint": "users/me/account-setup",
       "responses": [
         {
           "uuid": "4dae2c6c-78ad-4e02-b451-1216e13f8660",
@@ -2692,7 +2242,7 @@
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "users/:id/following/:userId",
+      "endpoint": "users/me/following/:userId",
       "responses": [
         {
           "uuid": "aa466512-25bd-4ec7-87ad-9eecd3844813",
@@ -2723,7 +2273,7 @@
       "type": "http",
       "documentation": "",
       "method": "delete",
-      "endpoint": "users/:id/following/:userId",
+      "endpoint": "users/me/following/:userId",
       "responses": [
         {
           "uuid": "2a321f56-4b04-4b09-928a-615f7dcd0b55",
@@ -2789,37 +2339,6 @@
       "responses": [
         {
           "uuid": "5597e355-79e5-4c4a-82d8-a117e55f4872",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "935689f4-aaaf-4eaf-96fa-3b33115e75ea",
-      "type": "http",
-      "documentation": "",
-      "method": "delete",
-      "endpoint": "user/courses/:courseId/topics/:topicId",
-      "responses": [
-        {
-          "uuid": "09a49a25-74af-46b8-9c14-b28a00ed4f8b",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -3245,34 +2764,6 @@
   "data": [],
   "folders": [
     {
-      "uuid": "b0107feb-16c1-4900-a3d4-77596a330a78",
-      "name": "achievements",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "a2bf16fb-e93c-48f2-a897-b1c4bff293b0"
-        },
-        {
-          "type": "route",
-          "uuid": "da675e05-6e88-42cc-9803-8e4944836559"
-        }
-      ]
-    },
-    {
-      "uuid": "6622204b-1008-4c54-b3a2-f133e898d22a",
-      "name": "challenges",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "822df224-1412-47cf-bdfd-1a4b52e8f39e"
-        },
-        {
-          "type": "route",
-          "uuid": "81ef9ff4-595d-46c1-8d08-f8219938e329"
-        }
-      ]
-    },
-    {
       "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b",
       "name": "feed",
       "children": [
@@ -3331,47 +2822,6 @@
       ]
     },
     {
-      "uuid": "c49a295d-6711-470d-bd5e-84bbe6714d71",
-      "name": "survey-answers",
-      "children": []
-    },
-    {
-      "uuid": "99cec565-ccc2-4dad-8419-ca04695886ec",
-      "name": "vocabulary",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "f65eb8be-3d96-484e-9ae1-029d53646521"
-        },
-        {
-          "type": "route",
-          "uuid": "74fca8c1-94a8-48b8-bba6-44ed69bb473d"
-        },
-        {
-          "type": "route",
-          "uuid": "6bf6a300-495c-4287-91ca-53d8080e6cae"
-        }
-      ]
-    },
-    {
-      "uuid": "d8a5607a-e0ba-4abc-ae23-ce47f0a0ff74",
-      "name": "topics",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "85411a4d-3fcf-404f-b8d5-9ee69f8bb5c8"
-        },
-        {
-          "type": "route",
-          "uuid": "82817d44-4204-465b-9796-7ed0ef28af8c"
-        },
-        {
-          "type": "route",
-          "uuid": "935689f4-aaaf-4eaf-96fa-3b33115e75ea"
-        }
-      ]
-    },
-    {
       "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa",
       "name": "settings",
       "children": [
@@ -3414,14 +2864,6 @@
         {
           "type": "route",
           "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e"
-        },
-        {
-          "type": "route",
-          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
-        },
-        {
-          "type": "route",
-          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
         }
       ]
     },
@@ -3490,40 +2932,6 @@
       ]
     },
     {
-      "uuid": "9c827333-65eb-492a-a8ac-5c3fb9df318b",
-      "name": "user",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752"
-        },
-        {
-          "type": "folder",
-          "uuid": "c49a295d-6711-470d-bd5e-84bbe6714d71"
-        },
-        {
-          "type": "folder",
-          "uuid": "6622204b-1008-4c54-b3a2-f133e898d22a"
-        },
-        {
-          "type": "folder",
-          "uuid": "b0107feb-16c1-4900-a3d4-77596a330a78"
-        },
-        {
-          "type": "folder",
-          "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f"
-        },
-        {
-          "type": "folder",
-          "uuid": "de246f00-7ef6-4507-96b4-b3685fe8f4c0"
-        },
-        {
-          "type": "folder",
-          "uuid": "f920e467-0bc7-4410-a15e-538eee401287"
-        }
-      ]
-    },
-    {
       "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847",
       "name": "refresh-token",
       "children": [
@@ -3540,20 +2948,6 @@
         {
           "type": "route",
           "uuid": "d53d0f9c-9d03-4468-b8a8-ff8ba489518e"
-        }
-      ]
-    },
-    {
-      "uuid": "de246f00-7ef6-4507-96b4-b3685fe8f4c0",
-      "name": "courses",
-      "children": [
-        {
-          "type": "folder",
-          "uuid": "99cec565-ccc2-4dad-8419-ca04695886ec"
-        },
-        {
-          "type": "folder",
-          "uuid": "d8a5607a-e0ba-4abc-ae23-ce47f0a0ff74"
         }
       ]
     },
@@ -3688,6 +3082,22 @@
         {
           "type": "folder",
           "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
+        },
+        {
+          "type": "folder",
+          "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f"
+        },
+        {
+          "type": "folder",
+          "uuid": "f920e467-0bc7-4410-a15e-538eee401287"
+        },
+        {
+          "type": "folder",
+          "uuid": "e77179f4-f5a7-48a8-b095-5a4c099db7c6"
+        },
+        {
+          "type": "route",
+          "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752"
         }
       ]
     },
@@ -3822,13 +3232,23 @@
           "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04"
         }
       ]
+    },
+    {
+      "uuid": "e77179f4-f5a7-48a8-b095-5a4c099db7c6",
+      "name": "following",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
+        },
+        {
+          "type": "route",
+          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
+        }
+      ]
     }
   ],
   "rootChildren": [
-    {
-      "type": "folder",
-      "uuid": "9c827333-65eb-492a-a8ac-5c3fb9df318b"
-    },
     {
       "type": "folder",
       "uuid": "c6bcf31d-ef65-4f3a-88aa-a948fbecb2ff"

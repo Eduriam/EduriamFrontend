@@ -18,8 +18,8 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import type { ShopItem as ShopItemModel } from "infrastructure/api/user/shop-items/ShopItems";
-import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
+import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
+import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
 

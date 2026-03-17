@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
@@ -12,11 +10,13 @@ import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
-import AccountSetupAPI from "infrastructure/api/user/account-setup/AccountSetupAPI";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
-import RecommendedCoursesAPI from "infrastructure/api/user/courses/recommended-courses/RecommendedCoursesAPI";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import AccountSetupAPI from "infrastructure/api/users/me/account-setup/AccountSetupAPI";
+import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
+import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import AreaOfInterestStep from "../courses/recommended/quiz/components/AreaOfInterestStep";
@@ -261,17 +261,22 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           minHeight: 0,
         }}
       >
-        <PageNavigation topNavigation={<ProgressNavbar
-          leftButton={
-            showBack
-              ? {
-                  icon: "chevronLeft",
-                  onClick: handleBack,
-                }
-              : undefined
+        <PageNavigation
+          topNavigation={
+            <ProgressNavbar
+              leftButton={
+                showBack
+                  ? {
+                      icon: "chevronLeft",
+                      onClick: handleBack,
+                    }
+                  : undefined
+              }
+              progressValue={progressValue}
+            />
           }
-          progressValue={progressValue}
-        />} mainNavigation="hidden" />
+          mainNavigation="hidden"
+        />
 
         <Box
           sx={{

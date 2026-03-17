@@ -1,5 +1,5 @@
 import API from "infrastructure/api/API";
-import { UserPrivate } from "infrastructure/api/user/User";
+import { UserPrivate } from "infrastructure/api/users/me/User";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 

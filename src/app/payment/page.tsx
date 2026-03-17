@@ -23,7 +23,7 @@ import PaymentForm from "components/molecules/forms/PaymentForm/PaymentForm";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PAYMENT_SUCCESS_URL, PLAN_PRICING_OPTIONS } from "./config";

@@ -5,7 +5,7 @@ import { AccountSetup } from "./AccountSetup";
 export interface AccountSetupParams {}
 
 const AccountSetupAPI = {
-  URI: "user/account-setup",
+  URI: "users/me/account-setup",
 
   async setupAccount(accountSetup: AccountSetup): Promise<void> {
     return API.post(`${this.URI}`, accountSetup);

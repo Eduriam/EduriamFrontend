@@ -16,8 +16,8 @@ import {
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/api/external-auth/ExternalAuth";
-import { UserPrivate } from "infrastructure/api/user/User";
-import UserAPI from "infrastructure/api/user/UserAPI";
+import { UserPrivate } from "infrastructure/api/users/me/User";
+import UserAPI from "infrastructure/api/users/me/UserAPI";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
 import { setLanguage, useTranslation } from "../../i18n/client";

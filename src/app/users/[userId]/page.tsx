@@ -21,8 +21,8 @@ import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
 import UsersAPI from "infrastructure/api/users/UsersAPI";
+import UserFollowingAPI from "infrastructure/api/users/me/following/UserFollowingAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import AchievementBadge from "./components/AchievementBadge/AchievementBadge";
@@ -67,9 +67,9 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
     mutate(
       async () => {
         if (isFollowed) {
-          await UserFollowingAPI.followUser(user.id, params.userId);
+          await UserFollowingAPI.followUser(params.userId);
         } else {
-          await UserFollowingAPI.unfollowUser(user.id, params.userId);
+          await UserFollowingAPI.unfollowUser(params.userId);
         }
 
         return { ...userProfile, isFollowed };

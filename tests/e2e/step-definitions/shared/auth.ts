@@ -1,6 +1,6 @@
 import { Given, When } from "@cucumber/cucumber";
 
-import { UserPrivate } from "infrastructure/api/user/User";
+import { UserPrivate } from "infrastructure/api/users/me/User";
 
 import { CustomWorld } from "../../support/world";
 import { setGoogleAuthVariant } from "../../util/mockoon-env";
@@ -427,19 +427,13 @@ Given("I have no energy left", async function (this: CustomWorld) {
   await this.page.addInitScript(setNoEnergyInitScript);
 });
 
-Given(
-  "No user account is linked to the Google account",
-  async function () {
-    await setGoogleAuthVariant("login-account-not-found");
-  },
-);
+Given("No user account is linked to the Google account", async function () {
+  await setGoogleAuthVariant("login-account-not-found");
+});
 
-Given(
-  "A user account already exists for the Google email",
-  async function () {
-    await setGoogleAuthVariant("signup-account-exists");
-  },
-);
+Given("A user account already exists for the Google email", async function () {
+  await setGoogleAuthVariant("signup-account-exists");
+});
 
 When(
   "I complete Google authentication successfully",
@@ -453,7 +447,8 @@ When(
     const source = await this.page.evaluate(() =>
       sessionStorage.getItem("googleAuthSource"),
     );
-    const code = source === "signup" ? "google-signup-code" : "google-login-code";
+    const code =
+      source === "signup" ? "google-signup-code" : "google-login-code";
 
     await navigateToGoogleCallback(this, `/login/callback?code=${code}`);
   },
@@ -468,5 +463,3 @@ When("I cancel Google authentication", async function (this: CustomWorld) {
 
   await navigateToGoogleCallback(this, "/login/callback?error=access_denied");
 });
-
-

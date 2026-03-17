@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 
-import type { ShopItem as ShopItemModel } from "infrastructure/api/user/shop-items/ShopItems";
+import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
 
 export interface IShopItem {
   item: ShopItemModel;

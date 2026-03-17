@@ -4,7 +4,7 @@ import errorCodes from "infrastructure/api/error-codes";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
-import { UserPrivate } from "../user/User";
+import { UserPrivate } from "../users/me/User";
 import {
   GoogleAuthorizeResponseBody,
   GoogleCodeExchangeRequestBody,
@@ -28,7 +28,9 @@ const ExternalAuthAPI = {
     return authorizationUrl;
   },
 
-  async authorizeCode(data: GoogleCodeExchangeRequestBody): Promise<UserPrivate> {
+  async authorizeCode(
+    data: GoogleCodeExchangeRequestBody,
+  ): Promise<UserPrivate> {
     try {
       return await this.exchangeCode(CODE_AUTHORIZE_URI, data);
     } catch (error) {
@@ -52,7 +54,10 @@ const ExternalAuthAPI = {
 
     AuthManager.setAuthHeader(authPayload.idToken);
     LocalStorageManager.setItem<string>("idToken", authPayload.idToken);
-    LocalStorageManager.setItem<string>("refreshToken", authPayload.refreshToken);
+    LocalStorageManager.setItem<string>(
+      "refreshToken",
+      authPayload.refreshToken,
+    );
     LocalStorageManager.setItem<UserPrivate>("user", authPayload.user);
 
     return authPayload.user;
@@ -135,7 +140,9 @@ function getCodeExchangeResponsePayload(
   return null;
 }
 
-function isAuthResponseBody(data: unknown): data is GoogleCodeExchangeResponseBody {
+function isAuthResponseBody(
+  data: unknown,
+): data is GoogleCodeExchangeResponseBody {
   return (
     isRecord(data) &&
     typeof data.idToken === "string" &&

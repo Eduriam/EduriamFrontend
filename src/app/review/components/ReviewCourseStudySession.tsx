@@ -2,13 +2,13 @@
 
 import { useCallback, useState } from "react";
 
-import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import type { IStudySessionContainer } from "components/organisms/StudySessionContainer/StudySessionContainer";
 
-import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
+import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IReviewCourseStudySession {
@@ -16,7 +16,8 @@ export interface IReviewCourseStudySession {
 }
 
 const StudySessionContainer = dynamic<IStudySessionContainer>(
-  () => import("components/organisms/StudySessionContainer/StudySessionContainer"),
+  () =>
+    import("components/organisms/StudySessionContainer/StudySessionContainer"),
   {
     ssr: false,
   },

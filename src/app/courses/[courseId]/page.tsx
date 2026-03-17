@@ -28,7 +28,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { Course } from "infrastructure/api/courses/Courses";
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
-import UserCoursesAPI from "infrastructure/api/user/courses/UserCoursesAPI";
+import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface ICoursePage {}

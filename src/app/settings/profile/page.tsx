@@ -21,7 +21,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
 import ResetPasswordAPI from "infrastructure/api/user-auth/reset-password/ResetPasswordAPI";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 
 type ProfileDraft = {
   name: string;

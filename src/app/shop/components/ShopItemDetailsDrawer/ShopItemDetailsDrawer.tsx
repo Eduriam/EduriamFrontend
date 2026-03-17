@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 
-import type { ShopItem } from "infrastructure/api/user/shop-items/ShopItems";
+import type { ShopItem } from "infrastructure/api/users/me/shop-items/ShopItems";
 
 export interface IShopItemDetailsDrawer {
   open: boolean;

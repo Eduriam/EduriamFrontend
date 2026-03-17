@@ -1,4 +1,4 @@
-import { Course } from "../courses/Courses";
+import { Course } from "../../courses/Courses";
 import { Subscription } from "./subscriptions/Subscriptions";
 
 export interface UserPrivate {

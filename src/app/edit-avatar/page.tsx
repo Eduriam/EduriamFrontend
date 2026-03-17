@@ -16,19 +16,19 @@ import { useRouter } from "next/navigation";
 import Stack from "@mui/material/Stack";
 
 import Avatar, { type AvatarDefinition } from "components/avatar/Avatar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
-import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
+import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import LeaveAvatarEditorDrawer from "./components/LeaveAvatarEditorDrawer/LeaveAvatarEditorDrawer";
 import {
+  type AvatarCategory,
   buildCategoryPreview,
   collectAvatarCategories,
-  type AvatarCategory,
   serializeAvatar,
 } from "./components/avatarEditorTypes";
 
@@ -119,18 +119,23 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
 
   return (
     <PageRoot data-test="edit-avatar-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "close",
-          onClick: handleLeave,
-          dataTest: "leave-button",
-        }}
-        rightButton={{
-          text: t("userActions.save").toUpperCase(),
-          onClick: handleSave,
-          dataTest: "save-avatar-button",
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "close",
+              onClick: handleLeave,
+              dataTest: "leave-button",
+            }}
+            rightButton={{
+              text: t("userActions.save").toUpperCase(),
+              onClick: handleSave,
+              dataTest: "save-avatar-button",
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={6}>
         <Stack

@@ -14,17 +14,18 @@ import { useMemo } from "react";
 
 import Stack from "@mui/material/Stack";
 
-import FeedCard from "./components/FeedCard/FeedCard";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { FeedItem, FeedMessage } from "infrastructure/api/user/feed/Feed";
-import FeedAPI from "infrastructure/api/user/feed/FeedAPI";
+import { FeedItem, FeedMessage } from "infrastructure/api/users/me/feed/Feed";
+import FeedAPI from "infrastructure/api/users/me/feed/FeedAPI";
 import {
   Reaction,
   ReactionId,
-} from "infrastructure/api/user/feed/reactions/Reactions";
-import ReactionsAPI from "infrastructure/api/user/feed/reactions/ReactionsAPI";
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+} from "infrastructure/api/users/me/feed/reactions/Reactions";
+import ReactionsAPI from "infrastructure/api/users/me/feed/reactions/ReactionsAPI";
+
+import FeedCard from "./components/FeedCard/FeedCard";
 
 export interface IFeed {}
 
@@ -100,7 +101,11 @@ const Feed: React.FC<IFeed> = () => {
     reactionId: ReactionId,
     reacted: boolean,
   ) {
-    const reactions = updateReactionArray(feedItem.reactions, reactionId, reacted);
+    const reactions = updateReactionArray(
+      feedItem.reactions,
+      reactionId,
+      reacted,
+    );
 
     const newFeed = feed.map((item) => {
       if (item.id === feedItem.id) {
@@ -123,11 +128,23 @@ const Feed: React.FC<IFeed> = () => {
 
   return (
     <PageRoot data-test="feed-page">
-      <PageNavigation topNavigation={<BasicNavbar header={t("navigation.feed")} />} mainNavigation="show" />
+      <PageNavigation
+        topNavigation={<BasicNavbar header={t("navigation.feed")} />}
+        mainNavigation="show"
+      />
 
-      <ContentContainer width="small" justifyContent="flex-start" paddingTop="none">
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        paddingTop="none"
+      >
         {sortedFeed.length > 0 ? (
-          <Stack data-test="feed-message-list-section" direction="column" spacing={4} width="100%">
+          <Stack
+            data-test="feed-message-list-section"
+            direction="column"
+            spacing={4}
+            width="100%"
+          >
             {sortedFeed.map((feedItem) => (
               <FeedCard
                 key={feedItem.id}
@@ -142,9 +159,24 @@ const Feed: React.FC<IFeed> = () => {
             ))}
           </Stack>
         ) : (
-          <Stack data-test="no-feed-messages-section" spacing={8} width="100%" alignItems="center" pt={16}>
-            <Stack data-test="no-feed-messages-text-section" spacing={2} alignItems="center" maxWidth={560}>
-              <Header variant="section" text={t("feed.empty.title")} align="center" />
+          <Stack
+            data-test="no-feed-messages-section"
+            spacing={8}
+            width="100%"
+            alignItems="center"
+            pt={16}
+          >
+            <Stack
+              data-test="no-feed-messages-text-section"
+              spacing={2}
+              alignItems="center"
+              maxWidth={560}
+            >
+              <Header
+                variant="section"
+                text={t("feed.empty.title")}
+                align="center"
+              />
             </Stack>
 
             <LargeButton

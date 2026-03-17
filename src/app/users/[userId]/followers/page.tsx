@@ -17,11 +17,11 @@ import UserList from "components/atoms/UserList/UserList";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import UserFollowingAPI from "infrastructure/api/user/following/UserFollowingAPI";
 import { Follower } from "infrastructure/api/users/followers/Followers";
 import FollowersAPI from "infrastructure/api/users/followers/FollowersAPI";
 import { Following } from "infrastructure/api/users/following/Following";
 import FollowingAPI from "infrastructure/api/users/following/FollowingAPI";
+import UserFollowingAPI from "infrastructure/api/users/me/following/UserFollowingAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IFollowersPage {
@@ -107,9 +107,9 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
 
     mutateFollowers(async () => {
       if (isFollowed) {
-        await UserFollowingAPI.followUser(user.id, itemId);
+        await UserFollowingAPI.followUser(itemId);
       } else {
-        await UserFollowingAPI.unfollowUser(user.id, itemId);
+        await UserFollowingAPI.unfollowUser(itemId);
       }
 
       return nextFollowers;
@@ -127,9 +127,9 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
 
     mutateFollowing(async () => {
       if (isFollowed) {
-        await UserFollowingAPI.followUser(user.id, itemId);
+        await UserFollowingAPI.followUser(itemId);
       } else {
-        await UserFollowingAPI.unfollowUser(user.id, itemId);
+        await UserFollowingAPI.unfollowUser(itemId);
       }
 
       return nextFollowing;

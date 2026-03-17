@@ -1,6 +1,6 @@
 import { After, Before } from "@cucumber/cucumber";
 
-import { UserPrivate } from "infrastructure/api/user/User";
+import { UserPrivate } from "infrastructure/api/users/me/User";
 
 import { createJwt } from "../step-definitions/util/jwt";
 import { resetMockoonGlobalVarsToDefaults } from "../util/mockoon-env";
@@ -57,4 +57,3 @@ After(async function (this: CustomWorld) {
     await this.closeBrowser();
   }
 });
-

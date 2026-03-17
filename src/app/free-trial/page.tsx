@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
-import SubscriptionAPI from "infrastructure/api/user/subscriptions/SubscriptionsAPI";
+import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import FreeTrialActivatedStep from "./components/FreeTrialActivatedStep/FreeTrialActivatedStep";

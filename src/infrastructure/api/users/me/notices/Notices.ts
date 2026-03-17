@@ -1,4 +1,4 @@
-import type { LeaderboardLeague } from "infrastructure/api/user/leaderboard/Leaderboard";
+import type { LeaderboardLeague } from "infrastructure/api/users/me/leaderboard/Leaderboard";
 
 export interface BaseNotice {
   id: Id;

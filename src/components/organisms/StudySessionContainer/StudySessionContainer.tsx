@@ -21,7 +21,7 @@ import {
 import { useMemo, useState } from "react";
 
 import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
-import StudySessionAPI from "infrastructure/api/user/courses/study-session/StudySessionAPI";
+import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IStudySessionContainer {

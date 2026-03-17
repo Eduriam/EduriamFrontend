@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import LeagueIcon from "components/leaderboard/LeagueIcon";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import LeaderboardAPI from "infrastructure/api/user/leaderboard/LeaderboardAPI";
+import LeaderboardAPI from "infrastructure/api/users/me/leaderboard/LeaderboardAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import LeaderboardComponent from "./components/Leaderboard/Leaderboard";
