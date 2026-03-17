@@ -9,6 +9,7 @@ import {
 import { type ReactNode } from "react";
 
 import Stack from "@mui/material/Stack";
+import type { ResponsiveStyleValue } from "@mui/system";
 
 import KeyPress from "components/atoms/KeyPress/KeyPress";
 
@@ -27,7 +28,7 @@ export interface NoticeDialogProps {
   primaryButton?: NoticeDialogButton;
   secondaryButton?: NoticeDialogButton;
   transitionDuration?: unknown;
-  backgroundImage?: string;
+  backgroundImage?: ResponsiveStyleValue<string>;
 }
 
 const NoticeDialog: React.FC<NoticeDialogProps> = ({
@@ -93,3 +94,4 @@ const NoticeDialog: React.FC<NoticeDialogProps> = ({
 };
 
 export default NoticeDialog;
+
