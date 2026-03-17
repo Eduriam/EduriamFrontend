@@ -14,6 +14,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import type { AvatarDefinition } from "components/avatar/Avatar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
@@ -21,7 +22,6 @@ import type { ShopItem as ShopItemModel } from "infrastructure/api/user/shop-ite
 import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { shopCategories } from "./shopCategories";
 
@@ -114,15 +114,23 @@ const ShopPage: React.FC<IShopPage> = () => {
 
   return (
     <PageRoot data-test="shop-page">
-      <PageNavigation topNavigation={<ShopNavbar
-        leftButton={{
-          icon: "close",
-          onClick: navigateWithTransition(user?.id ? `/users/${user.id}` : "/", {
-            direction: "back",
-          }),
-        }}
-        balance={user?.balance ?? 0}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <ShopNavbar
+            leftButton={{
+              icon: "close",
+              onClick: navigateWithTransition(
+                user?.id ? `/users/${user.id}` : "/",
+                {
+                  direction: "back",
+                },
+              ),
+            }}
+            balance={user?.balance ?? 0}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
         <Stack spacing={3} width="100%" data-test="streak-freeze-items-section">
@@ -147,16 +155,20 @@ const ShopPage: React.FC<IShopPage> = () => {
         <Stack spacing={3} width="100%" data-test="shop-item-categories">
           <Typography variant="h5">{t("shop.characterTitle")}</Typography>
 
-          {shopCategories.map((category) => (
-            <Stack key={category.id} spacing={1.5}>
-              <Typography variant="h6">{t(category.nameKey)}</Typography>
-              <ShopCategory
-                avatar={previewAvatarByCategory.get(category.id)}
-                onClick={navigateWithTransition(`/shop/${category.id}`)}
-                data-test="shop-item-category"
-              />
-            </Stack>
-          ))}
+          <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+            {shopCategories.map((category) => (
+              <Stack key={category.id} spacing={1}>
+                <Typography variant="body1" color="text.secondary">
+                  {t(category.nameKey)}
+                </Typography>
+                <ShopCategory
+                  avatar={previewAvatarByCategory.get(category.id)}
+                  onClick={navigateWithTransition(`/shop/${category.id}`)}
+                  data-test="shop-item-category"
+                />
+              </Stack>
+            ))}
+          </Stack>
         </Stack>
       </ContentContainer>
 

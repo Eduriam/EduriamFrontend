@@ -56,7 +56,10 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
 
         <Stack spacing={2} alignItems="center" sx={{ width: "100%" }}>
           {item.image.type === "avatar" ? (
-            <Avatar definition={buildShopAvatar(item.image.avatar)} size={72} />
+            <Avatar
+              definition={buildShopAvatar(item.image.avatar)}
+              size={160}
+            />
           ) : (
             <Illustration
               name={
@@ -64,8 +67,8 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
                   typeof Illustration
                 >["name"]
               }
-              width={72}
-              height={72}
+              width={160}
+              height={160}
             />
           )}
 

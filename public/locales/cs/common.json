@@ -179,7 +179,13 @@
   "shop": {
     "buy": "Koupit",
     "categories": {
-      "hair": "Vlasy"
+      "hair": "Vlasy",
+      "eyes": "Oči",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "accessories": "Doplňky",
+      "headwear": "Čepice",
+      "clothing": "Oblečení"
     },
     "locked": "Zamčeno",
     "close": "Zavřít",
@@ -210,6 +216,7 @@
     "skipForToday": "Pro dnešek přeskočit"
   },
   "manageSubscription": {
+    "title": "Spravovat předplatné",
     "current": "Momentální předplatné",
     "nextPayment": "Další platba",
     "cancel": "Odhlásit předplatné",
@@ -388,7 +395,7 @@
       "beardColor": "Barva vousů",
       "accessories": "Doplňky",
       "glassesColor": "Barva brylí",
-      "headwear": "Pokrývka hlavy",
+      "headwear": "Čepice",
       "clothing": "Oblečení",
       "skinColor": "Barva pleti",
       "backgroundColor": "Pozadí"
