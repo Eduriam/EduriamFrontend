@@ -34,6 +34,14 @@ export default function AuthDecorator(Story: Story) {
     login: () => console.log("login"),
     logout: () => console.log("logout"),
     signUp: () => console.log("signup"),
+    startGoogleAuth: () => Promise.resolve(),
+    authorizeGoogleCode: async () => {
+      if (!mock.user) {
+        throw new Error("Mock user is not defined.");
+      }
+
+      return mock.user;
+    },
     mutateUser: () => console.log("mutateUser"),
     revalidateUser: () => console.log("revalidateUser"),
   };

@@ -1,5 +1,6 @@
 import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import type { MouseEvent } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -9,9 +10,15 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import { useSearchParams } from "next/navigation";
+
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
+import {
+  GOOGLE_AUTH_ERROR_QUERY_PARAM,
+  GOOGLE_AUTH_ERRORS,
+} from "infrastructure/api/external-auth/ExternalAuth";
 import useAuth from "infrastructure/services/AuthProvider";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
@@ -31,8 +38,14 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<InputTypes>();
-  const { login, loading, errors: authErrors } = useAuth();
+  const { login, loading, errors: authErrors, startGoogleAuth } = useAuth();
   const { t } = useTranslation("form");
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const searchParams = useSearchParams();
+  const googleError = searchParams?.get(GOOGLE_AUTH_ERROR_QUERY_PARAM);
+  const showGoogleAccountNotFound =
+    googleError === GOOGLE_AUTH_ERRORS.accountNotFound;
+
   const onSubmit = (data: { email: string; password: string }) => {
     login(data.email, data.password);
   };
@@ -44,6 +57,10 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
 
     event.preventDefault();
     onForgotPasswordClick();
+  };
+
+  const handleGoogleLogin = () => {
+    void startGoogleAuth("login");
   };
 
   return (
@@ -141,9 +158,33 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
           >
             {t("auth.login")}
           </LargeButton>
-          <GoogleSignupButton width="100%" />
+          <GoogleSignupButton
+            width="100%"
+            text={t("auth.continue-with-google")}
+            onClick={handleGoogleLogin}
+            disabled={loading}
+            dataTest="login-google-button"
+          />
         </Stack>
       </Stack>
+      {showGoogleAccountNotFound && (
+        <Stack
+          spacing={4}
+          sx={{ mt: 6, width: "100%" }}
+          data-test="login-google-account-not-found-section"
+        >
+          <Typography variant="body1" sx={{ color: "#989898" }}>
+            {t("auth.google-login-account-not-found")}
+          </Typography>
+          <LargeButton
+            variant="outlined"
+            onClick={navigateWithTransition("/signup")}
+            data-test="login-google-signup-button"
+          >
+            {t("auth.google-login-signup-button")}
+          </LargeButton>
+        </Stack>
+      )}
       <Box sx={{ display: "flex", justifyContent: "center", gap: "4px" }}>
         <Typography variant="body1" sx={{ color: "#989898" }}>
           {t("auth.dont-have-account")}

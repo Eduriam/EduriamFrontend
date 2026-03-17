@@ -16,7 +16,12 @@
     "have-an-account": "Máte účet? Přihlaste se",
     "dont-have-account": "Nemáte účet? Zaregistrujte se",
     "here": "zde",
-    "forgot-password": "Zapomněli jste heslo?"
+    "forgot-password": "Zapomněli jste heslo?",
+    "continue-with-google": "Pokracovat s Googlem",
+    "google-login-account-not-found": "K tomuto Google účtu není připojen žádný účet. Vytvořte si nový účet pomocí registrace.",
+    "google-login-signup-button": "Vytvořit účet",
+    "google-signup-account-exists": "Účet s tímto emailem již existuje. Přihlaste se do existujícího účtu.",
+    "google-signup-login-button": "Prihlasit se"
   },
 
   "error": {

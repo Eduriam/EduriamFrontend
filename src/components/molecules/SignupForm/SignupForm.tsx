@@ -1,8 +1,11 @@
 import { Header, LargeButton, Link, TextField } from "@eduriam/ui-core";
 import config from "config/config";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { Controller, useForm } from "react-hook-form";
+
+import { useSearchParams } from "next/navigation";
 
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -13,6 +16,10 @@ import Typography from "@mui/material/Typography";
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
+import {
+  GOOGLE_AUTH_ERROR_QUERY_PARAM,
+  GOOGLE_AUTH_ERRORS,
+} from "infrastructure/api/external-auth/ExternalAuth";
 import useAuth from "infrastructure/services/AuthProvider";
 
 export const EMAIL_REGEX = /\S+@\S+\.\S+/;
@@ -33,8 +40,13 @@ const SignupForm: React.FC<ISignupForm> = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<InputTypes>();
-  const { signUp, loading, errors: authErrors } = useAuth();
+  const { signUp, loading, errors: authErrors, startGoogleAuth } = useAuth();
   const { t } = useTranslation("form");
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const searchParams = useSearchParams();
+  const googleError = searchParams?.get(GOOGLE_AUTH_ERROR_QUERY_PARAM);
+  const showGoogleAccountExists =
+    googleError === GOOGLE_AUTH_ERRORS.accountExists;
 
   const onSubmit = (data: {
     username: string;
@@ -42,6 +54,10 @@ const SignupForm: React.FC<ISignupForm> = () => {
     password: string;
   }) => {
     signUp(data.username, data.email, data.password);
+  };
+
+  const handleGoogleSignup = () => {
+    void startGoogleAuth("signup");
   };
 
   const usernameHelperText =
@@ -203,9 +219,33 @@ const SignupForm: React.FC<ISignupForm> = () => {
           >
             {t("auth.signup")}
           </LargeButton>
-          <GoogleSignupButton width="100%" />
+          <GoogleSignupButton
+            width="100%"
+            text={t("auth.continue-with-google")}
+            onClick={handleGoogleSignup}
+            disabled={loading}
+            dataTest="signup-google-button"
+          />
         </Stack>
       </Stack>
+      {showGoogleAccountExists && (
+        <Stack
+          spacing={4}
+          sx={{ mt: 6, width: "100%" }}
+          data-test="signup-google-account-exists-section"
+        >
+          <Typography variant="body1" sx={{ color: "#989898" }}>
+            {t("auth.google-signup-account-exists")}
+          </Typography>
+          <LargeButton
+            variant="outlined"
+            onClick={navigateWithTransition("/login")}
+            data-test="signup-existing-account-login-button"
+          >
+            {t("auth.google-signup-login-button")}
+          </LargeButton>
+        </Stack>
+      )}
       <Stack direction="row" justifyContent="center" sx={{ gap: 1 }}>
         <Typography variant="body1" sx={{ color: "#989898" }}>
           {t("auth.have-an-account")}

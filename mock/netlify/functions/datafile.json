@@ -609,6 +609,241 @@
       "streamingInterval": 0
     },
     {
+      "uuid": "1a2daa85-e896-42de-b946-d6678ffafdcf",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "external-auth/google/authorize",
+      "responses": [
+        {
+          "uuid": "75c1971c-618a-4c23-926a-34bdb047ca5f",
+          "body": "{\"data\":{\"authorizationUrl\":\"#mock-google-auth\"}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google authorize URL",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6b697b69-0b10-4f0e-b5ba-483d749e4fde",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "external-auth/google/callback",
+      "responses": [
+        {
+          "uuid": "d29b2f65-d571-413a-8dc2-2cbdd17df518",
+          "body": "{\"ok\":true}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google callback mock",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "authorize",
+      "responses": [
+        {
+          "uuid": "b97503ff-a54c-4fd1-9ce8-93f49300e827",
+          "body": "{\"error\":\"GOOGLE_ACCOUNT_NOT_FOUND\"}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Google login unlinked account",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-login-code",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_GOOGLE_AUTH_VARIANT",
+              "value": "login-account-not-found",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0117a43a-cd92-4688-9dab-11b02a84c914",
+          "body": "{\"error\":\"GOOGLE_ACCOUNT_EXISTS\"}",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "Google signup existing account",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signup-code",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_GOOGLE_AUTH_VARIANT",
+              "value": "signup-account-exists",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "1be65fc7-dc18-4271-8ad1-feea6bb83df2",
+          "body": "{\"idToken\":\"mock-google-login-id-token\",\"refreshToken\":\"mock-google-login-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"lastSessionDate\":null,\"activeSubscription\":null,\"selectedCourse\":{\"id\":\"test-course\",\"name\":\"Test course\",\"language\":\"en-US\"},\"lastViewedStudyMapLevel\":0}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google login success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-login-code",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "305d2706-cc91-4dc4-86a4-1bd30798a010",
+          "body": "{\"idToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":false,\"lastSessionDate\":null,\"activeSubscription\":null,\"selectedCourse\":null,\"lastViewedStudyMapLevel\":0}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google signup success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signup-code",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b87e0653-3fd5-4697-9f12-9d2907345ef9",
+          "body": "{\"error\":\"EXTERNAL_AUTH_ERROR\"}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid Google authorization code",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
       "uuid": "2d27dc7c-f8f7-4d23-bb62-83ff75d4a3ac",
       "documentation": "",
       "method": "get",
@@ -4765,7 +5000,7 @@
     },
     {
       "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81",
-      "name": "study-blocks",
+      "name": "reports",
       "children": [
         {
           "type": "route",
@@ -4832,6 +5067,34 @@
           "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99"
         }
       ]
+    },
+    {
+      "uuid": "477728a4-d3fc-4027-a504-be8aa5f245ed",
+      "name": "external-auth",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "2e52a304-c9d5-4efc-b756-efeb77ae8b1a"
+        }
+      ]
+    },
+    {
+      "uuid": "2e52a304-c9d5-4efc-b756-efeb77ae8b1a",
+      "name": "google",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1a2daa85-e896-42de-b946-d6678ffafdcf"
+        },
+        {
+          "type": "route",
+          "uuid": "6b697b69-0b10-4f0e-b5ba-483d749e4fde"
+        },
+        {
+          "type": "route",
+          "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6"
+        }
+      ]
     }
   ],
   "rootChildren": [
@@ -4882,6 +5145,10 @@
     {
       "type": "folder",
       "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81"
+    },
+    {
+      "type": "folder",
+      "uuid": "477728a4-d3fc-4027-a504-be8aa5f245ed"
     }
   ],
   "callbacks": [

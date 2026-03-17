@@ -16,6 +16,7 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_AVATAR_ITEMS_PURCHASED: "false",
   MOCKOON_NOTICE_VARIANT: "empty",
   MOCKOON_FEED_VARIANT: "default",
+  MOCKOON_GOOGLE_AUTH_VARIANT: "default",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -198,6 +199,17 @@ export type MockoonFeedVariant =
 
 export async function setFeedVariant(variant: MockoonFeedVariant): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_FEED_VARIANT", variant);
+}
+
+export type MockoonGoogleAuthVariant =
+  | "default"
+  | "login-account-not-found"
+  | "signup-account-exists";
+
+export async function setGoogleAuthVariant(
+  variant: MockoonGoogleAuthVariant,
+): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_GOOGLE_AUTH_VARIANT", variant);
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {

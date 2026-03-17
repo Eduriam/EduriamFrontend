@@ -12,6 +12,10 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 
 import errorCodes from "infrastructure/api/error-codes";
+import {
+  GOOGLE_AUTH_SOURCE_STORAGE_KEY,
+  GoogleAuthSource,
+} from "infrastructure/api/external-auth/ExternalAuth";
 import { UserPrivate } from "infrastructure/api/user/User";
 import UserAPI from "infrastructure/api/user/UserAPI";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
@@ -25,6 +29,8 @@ export interface AuthContextType {
   errors?: string[];
   login: (email: string, password: string) => void;
   signUp: (username: string, email: string, password: string) => void;
+  startGoogleAuth: (source: GoogleAuthSource) => Promise<void>;
+  authorizeGoogleCode: (code: string) => Promise<UserPrivate>;
   logout: () => void;
   mutateUser: (userChange: Partial<UserPrivate>) => void;
   revalidateUser: () => void;
@@ -111,6 +117,44 @@ export function AuthProvider({
       .finally(() => setLoading(false));
   }
 
+  async function startGoogleAuth(source: GoogleAuthSource): Promise<void> {
+    setLoading(true);
+    setError(() => []);
+
+    try {
+      sessionStorage.setItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY, source);
+      const authorizationUrl = await AuthManager.getGoogleAuthorizationUrl();
+      window.location.assign(authorizationUrl);
+    } catch (errorCode) {
+      sessionStorage.removeItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
+      handleError(
+        typeof errorCode === "string"
+          ? errorCode
+          : errorCodes.externalAuthError,
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function authorizeGoogleCode(code: string): Promise<UserPrivate> {
+    setLoading(true);
+    setError(() => []);
+
+    try {
+      const authorizedUser = await AuthManager.authorizeGoogleCode({ code });
+      setUser(authorizedUser);
+
+      return authorizedUser;
+    } catch (errorCode) {
+      throw typeof errorCode === "string"
+        ? errorCode
+        : errorCodes.externalAuthError;
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function logout() {
     setLoading(true);
     setError(() => []);
@@ -171,6 +215,8 @@ export function AuthProvider({
       errors,
       login,
       signUp,
+      startGoogleAuth,
+      authorizeGoogleCode,
       logout,
       mutateUser,
       revalidateUser,

@@ -10,6 +10,7 @@ export interface IGoogleSignupButton {
   onClick?: () => void;
   disabled?: boolean;
   width?: number | string;
+  dataTest?: string;
 }
 
 const GoogleSignupButton: React.FC<IGoogleSignupButton> = ({
@@ -17,11 +18,14 @@ const GoogleSignupButton: React.FC<IGoogleSignupButton> = ({
   onClick,
   disabled = false,
   width = 357,
+  dataTest,
 }) => {
   return (
     <ButtonBase
+      type="button"
       onClick={onClick}
       disabled={disabled}
+      data-test={dataTest}
       sx={{
         width,
         height: 48,

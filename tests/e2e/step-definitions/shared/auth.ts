@@ -1,9 +1,33 @@
-import { Given } from "@cucumber/cucumber";
+import { Given, When } from "@cucumber/cucumber";
 
 import { UserPrivate } from "infrastructure/api/user/User";
 
 import { CustomWorld } from "../../support/world";
+import { setGoogleAuthVariant } from "../../util/mockoon-env";
 import { createJwt } from "../util/jwt";
+
+async function navigateToGoogleCallback(
+  world: CustomWorld,
+  callbackPath: string,
+): Promise<void> {
+  if (!world.page) {
+    throw new Error(
+      "Page is not initialized. Make sure browser is initialized.",
+    );
+  }
+
+  try {
+    await world.page.goto(callbackPath, {
+      waitUntil: "commit",
+      timeout: 30000,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (!message.includes("ERR_ABORTED")) {
+      throw error;
+    }
+  }
+}
 
 Given("I am logged in", async function (this: CustomWorld) {
   if (!this.page) {
@@ -401,6 +425,48 @@ Given("I have no energy left", async function (this: CustomWorld) {
   }
 
   await this.page.addInitScript(setNoEnergyInitScript);
+});
+
+Given(
+  "No user account is linked to the Google account",
+  async function () {
+    await setGoogleAuthVariant("login-account-not-found");
+  },
+);
+
+Given(
+  "A user account already exists for the Google email",
+  async function () {
+    await setGoogleAuthVariant("signup-account-exists");
+  },
+);
+
+When(
+  "I complete Google authentication successfully",
+  async function (this: CustomWorld) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const source = await this.page.evaluate(() =>
+      sessionStorage.getItem("googleAuthSource"),
+    );
+    const code = source === "signup" ? "google-signup-code" : "google-login-code";
+
+    await navigateToGoogleCallback(this, `/login/callback?code=${code}`);
+  },
+);
+
+When("I cancel Google authentication", async function (this: CustomWorld) {
+  if (!this.page) {
+    throw new Error(
+      "Page is not initialized. Make sure browser is initialized.",
+    );
+  }
+
+  await navigateToGoogleCallback(this, "/login/callback?error=access_denied");
 });
 
 
