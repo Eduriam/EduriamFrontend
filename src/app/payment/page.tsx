@@ -6,16 +6,11 @@ import {
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
-import {
-  type Appearance,
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -24,6 +19,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
+import PaymentForm from "components/molecules/forms/PaymentForm/PaymentForm";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
@@ -42,60 +38,12 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
-  const paymentElementStyle = useMemo<Appearance>(
-    () => ({
-      variables: {
-        colorPrimary: theme.palette.primary.main,
-        colorDanger: theme.palette.error.main,
-        fontFamily: theme.typography.fontFamily,
-      },
-      rules: {
-        ".Label": {
-          color: theme.palette.text.primary,
-        },
-        ".Input": {
-          backgroundColor: "transparent",
-          border: `1px solid ${theme.palette.divider}`,
-          borderRadius: "8px",
-          boxShadow: "none",
-          color: theme.palette.text.primary,
-          fontSize: "16px",
-          padding: "16px",
-        },
-        ".Input::placeholder": {
-          color: theme.palette.text.secondary,
-        },
-        ".Input:focus": {
-          border: `1px solid ${theme.palette.primary.main}`,
-          boxShadow: "none",
-        },
-        ".Input--invalid": {
-          border: `1px solid ${theme.palette.error.main}`,
-          boxShadow: "none",
-        },
-      },
-    }),
-    [
-      theme.palette.divider,
-      theme.palette.error.main,
-      theme.palette.primary.main,
-      theme.palette.text.primary,
-      theme.palette.text.secondary,
-      theme.typography.fontFamily,
-    ],
-  );
 
   useEffect(() => {
     if (router && user?.activeSubscription) {
       router.push("/manage-subscription");
     }
   }, [user, router]);
-
-  useEffect(() => {
-    elements?.update({
-      appearance: paymentElementStyle,
-    });
-  }, [elements, paymentElementStyle]);
 
   function handleError(message?: string) {
     console.error(message);
@@ -198,7 +146,7 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
               sx={{ width: "100%" }}
               data-test="subscription-payment-form-section"
             >
-              <PaymentElement />
+              <PaymentForm />
             </Box>
           </Stack>
 

@@ -107,7 +107,6 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
         {step === "payment" ? (
           <FreeTrialPaymentStep
             canConfirm={canConfirmFreeTrial}
-            onFormValidityChange={() => undefined}
             onConfirm={() => {
               void handleConfirmFreeTrial();
             }}
