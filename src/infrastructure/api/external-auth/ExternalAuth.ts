@@ -1,4 +1,4 @@
-import { LoginResponseBody } from "../login/Login";
+import { LoginResponseBody } from "../user-auth/login/Login";
 
 export type GoogleAuthSource = "login" | "signup";
 

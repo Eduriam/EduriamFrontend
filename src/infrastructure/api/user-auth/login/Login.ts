@@ -1,4 +1,4 @@
-import { UserPrivate } from "../user/User";
+import { UserPrivate } from "infrastructure/api/user/User";
 
 export interface LoginRequestBody {
   email: string;

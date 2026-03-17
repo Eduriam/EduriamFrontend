@@ -5,7 +5,7 @@ import { ResetPasswordRequestBody } from "./ResetPassword";
 export interface ResetPasswordParams {}
 
 const ResetPasswordAPI = {
-  URI: "reset-password",
+  URI: "user-auth/reset-password",
 
   async resetPassword(data: ResetPasswordRequestBody): Promise<void> {
     return API.post(`${this.URI}`, data);

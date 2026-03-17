@@ -3,11 +3,11 @@ import jwtDecode from "jwt-decode";
 
 import { GoogleCodeExchangeRequestBody } from "infrastructure/api/external-auth/ExternalAuth";
 import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
-import { LoginRequestBody } from "infrastructure/api/login/Login";
-import LoginAPI from "infrastructure/api/login/LoginAPI";
-import RefreshTokenAPI from "infrastructure/api/refresh-token/RefreshTokenAPI";
-import { SignupRequestBody } from "infrastructure/api/signup/Signup";
-import SignupAPI from "infrastructure/api/signup/SignupAPI";
+import { LoginRequestBody } from "infrastructure/api/user-auth/login/Login";
+import LoginAPI from "infrastructure/api/user-auth/login/LoginAPI";
+import RefreshTokenAPI from "infrastructure/api/user-auth/refresh-token/RefreshTokenAPI";
+import { SignupRequestBody } from "infrastructure/api/user-auth/signup/Signup";
+import SignupAPI from "infrastructure/api/user-auth/signup/SignupAPI";
 
 import { UserPrivate } from "../api/user/User";
 import { LocalStorageManager } from "./LocalStorageManager";

@@ -8,7 +8,7 @@ import {
 export interface RefreshTokenParams {}
 
 const RefreshTokenAPI = {
-  URI: "refresh-token",
+  URI: "user-auth/refresh-token",
 
   async refreshIdToken(
     data: RefreshTokenRequestBody,

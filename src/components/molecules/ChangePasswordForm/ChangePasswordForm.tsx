@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import ChangePasswordAPI from "infrastructure/api/change-password/ChangePasswordAPI";
+import ChangePasswordAPI from "infrastructure/api/user-auth/change-password/ChangePasswordAPI";
 
 interface InputTypes {
   password: string;

@@ -16,11 +16,11 @@ import { useEffect, useMemo, useState } from "react";
 import Stack from "@mui/material/Stack";
 
 import Avatar from "components/avatar/Avatar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import ResetPasswordAPI from "infrastructure/api/user-auth/reset-password/ResetPasswordAPI";
 import SettingsAPI from "infrastructure/api/user/settings/SettingsAPI";
 
 type ProfileDraft = {
@@ -97,22 +97,29 @@ const SettingsProfilePage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-profile-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("settings.items.profile")}
-        leftButton={{
-          icon: "close",
-          onClick: navigateWithTransition("/settings", { direction: "back" }),
-        }}
-        rightButton={{
-          text: t("userActions.save").toUpperCase(),
-          onClick: () => {
-            if (hasUnsavedChanges) {
-              void handleSave();
-            }
-          },
-          dataTest: "settings-profile-save-button",
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            header={t("settings.items.profile")}
+            leftButton={{
+              icon: "close",
+              onClick: navigateWithTransition("/settings", {
+                direction: "back",
+              }),
+            }}
+            rightButton={{
+              text: t("userActions.save").toUpperCase(),
+              onClick: () => {
+                if (hasUnsavedChanges) {
+                  void handleSave();
+                }
+              },
+              dataTest: "settings-profile-save-button",
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer
         width="small"

@@ -14,8 +14,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import ChangeEmailAPI from "infrastructure/api/change-email/ChangeEmailAPI";
 import errorCodes from "infrastructure/api/error-codes";
+import ChangeEmailAPI from "infrastructure/api/user-auth/change-email/ChangeEmailAPI";
 
 import { EMAIL_REGEX } from "../SignupForm/SignupForm";
 

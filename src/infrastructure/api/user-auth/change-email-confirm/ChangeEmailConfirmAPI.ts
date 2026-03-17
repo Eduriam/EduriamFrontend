@@ -5,7 +5,7 @@ import { ChangeEmailConfirmRequestBody } from "./ChangeEmailConfirm";
 export interface ChangeEmailConfirmParams {}
 
 const ChangeEmailConfirmAPI = {
-  URI: "change-email-confirm",
+  URI: "user-auth/change-email-confirm",
 
   async confirmEmailChange(data: ChangeEmailConfirmRequestBody): Promise<void> {
     return API.post(`${this.URI}`, data);

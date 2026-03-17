@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/reset-password/ResetPasswordAPI";
+import ResetPasswordAPI from "infrastructure/api/user-auth/reset-password/ResetPasswordAPI";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 

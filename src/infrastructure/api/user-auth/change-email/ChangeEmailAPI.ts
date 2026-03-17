@@ -5,7 +5,7 @@ import { ChangeEmailRequestBody } from "./ChangeEmail";
 export interface ChangeEmailParams {}
 
 const ChangeEmailAPI = {
-  URI: "change-email",
+  URI: "user-auth/change-email",
 
   async changeEmail(data: ChangeEmailRequestBody): Promise<void> {
     return API.post(`${this.URI}`, data);

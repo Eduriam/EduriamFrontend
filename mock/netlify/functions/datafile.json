@@ -495,7 +495,7 @@
       "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
       "documentation": "",
       "method": "post",
-      "endpoint": "login",
+      "endpoint": "user-auth/login",
       "responses": [
         {
           "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
@@ -1561,7 +1561,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "reset-password",
+      "endpoint": "user-auth/reset-password",
       "responses": [
         {
           "uuid": "a62dd0fe-72e2-47bc-9015-6c73b23c9d3e",
@@ -1627,7 +1627,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "change-password",
+      "endpoint": "user-auth/change-password",
       "responses": [
         {
           "uuid": "d5b52c05-02a2-4159-a886-0f8a4945d23b",
@@ -1835,7 +1835,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "certificate/:certificateId",
+      "endpoint": "certificates/:certificateId",
       "responses": [
         {
           "uuid": "414d5d41-2ee5-47da-af76-faab526daea5",
@@ -2681,7 +2681,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "refresh-token",
+      "endpoint": "user-auth/refresh-token",
       "responses": [
         {
           "uuid": "4d9be633-4941-4552-8b6d-41584078675b",
@@ -2998,7 +2998,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "change-email",
+      "endpoint": "user-auth/change-email",
       "responses": [
         {
           "uuid": "e3084c79-1858-4e6c-8ff2-83b007ccdde1",
@@ -3037,7 +3037,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "change-email-confirm",
+      "endpoint": "user-auth/change-email-confirm",
       "responses": [
         {
           "uuid": "24cce66a-fe0c-41be-8eff-31a63336f8c0",
@@ -3746,7 +3746,7 @@
     },
     {
       "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632",
-      "name": "certificate",
+      "name": "certificates",
       "children": [
         {
           "type": "route",
@@ -3921,6 +3921,40 @@
           "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6"
         }
       ]
+    },
+    {
+      "uuid": "187cec26-ec89-4119-b64f-43d5260fc7a0",
+      "name": "user-auth",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41"
+        },
+        {
+          "type": "folder",
+          "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2"
+        },
+        {
+          "type": "folder",
+          "uuid": "ed428752-0203-4289-b380-d945e8ff0a31"
+        },
+        {
+          "type": "folder",
+          "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086"
+        },
+        {
+          "type": "folder",
+          "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847"
+        },
+        {
+          "type": "folder",
+          "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27"
+        },
+        {
+          "type": "folder",
+          "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04"
+        }
+      ]
     }
   ],
   "rootChildren": [
@@ -3938,34 +3972,6 @@
     },
     {
       "type": "folder",
-      "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086"
-    },
-    {
-      "type": "folder",
-      "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2"
-    },
-    {
-      "type": "folder",
-      "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41"
-    },
-    {
-      "type": "folder",
-      "uuid": "ed428752-0203-4289-b380-d945e8ff0a31"
-    },
-    {
-      "type": "folder",
-      "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27"
-    },
-    {
-      "type": "folder",
-      "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04"
-    },
-    {
-      "type": "folder",
-      "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847"
-    },
-    {
-      "type": "folder",
       "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632"
     },
     {
@@ -3975,6 +3981,10 @@
     {
       "type": "folder",
       "uuid": "477728a4-d3fc-4027-a504-be8aa5f245ed"
+    },
+    {
+      "type": "folder",
+      "uuid": "187cec26-ec89-4119-b64f-43d5260fc7a0"
     }
   ],
   "callbacks": [

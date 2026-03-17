@@ -1,14 +1,14 @@
 import API from "infrastructure/api/API";
+import { UserPrivate } from "infrastructure/api/user/User";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
-import { UserPrivate } from "../user/User";
 import { SignupRequestBody, SignupResponseBody } from "./Signup";
 
 export interface SignupParams {}
 
 const SignupAPI = {
-  URI: "signup",
+  URI: "user-auth/signup",
 
   async signUp(data: SignupRequestBody): Promise<UserPrivate> {
     return API.post(`${this.URI}`, data).then((resData: SignupResponseBody) => {

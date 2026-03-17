@@ -18,7 +18,7 @@ export interface CertificateDTO {
 }
 
 const CertificatesAPI = {
-  URI: "certificate",
+  URI: "certificates",
 
   async getCertificate(id: Id): Promise<CertificateDTO> {
     return API.get(`${this.URI}/${id}`);
@@ -33,4 +33,3 @@ const CertificatesAPI = {
 };
 
 export default CertificatesAPI;
-

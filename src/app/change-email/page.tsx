@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import ChangeEmailConfirmAPI from "infrastructure/api/change-email-confirm/ChangeEmailConfirmAPI";
+import ChangeEmailConfirmAPI from "infrastructure/api/user-auth/change-email-confirm/ChangeEmailConfirmAPI";
 
 export interface IChangeEmailPage {}
 
