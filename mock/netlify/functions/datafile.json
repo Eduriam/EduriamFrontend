@@ -4046,7 +4046,7 @@
       "responses": [
         {
           "uuid": "e0db3ba5-9549-49ec-a8d0-5b0f33a39e60",
-          "body": "{}",
+          "body": "{\n  \"type\": \"setup\",\n  \"clientSecret\": null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

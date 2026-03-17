@@ -28,7 +28,7 @@ const SubscriptionAPI = {
     return API.delete(`${this.URI}`, { data: value });
   },
 
-  async startFreeTrial(): Promise<void> {
+  async startFreeTrial(): Promise<CreateSubscriptionResponseDTO> {
     return API.post(`${this.URI}/trial`, {});
   },
 };

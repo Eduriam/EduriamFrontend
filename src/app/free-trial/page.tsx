@@ -1,6 +1,7 @@
 "use client";
 
 import { BasicNavbar, PageRoot } from "@eduriam/ui-core";
+import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 
@@ -28,6 +29,8 @@ type FreeTrialStep = "reminder" | "payment" | "activated";
 const TRIAL_DURATION_DAYS = 7;
 
 const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
+  const stripe = useStripe();
+  const elements = useElements();
   const { t } = useTranslation("common");
   const theme = useTheme();
   const router = useRouter();
@@ -38,6 +41,13 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
   const [isActivating, setIsActivating] = useState(false);
 
   const canConfirmFreeTrial = useMemo(() => !isActivating, [isActivating]);
+
+  function handleError(message?: string) {
+    console.error(message);
+    enqueueSnackbar(t("payment.generalPaymentErrorMessage"), {
+      variant: "error",
+    });
+  }
 
   const handleClose = () => {
     if (window.history.length > 1) {
@@ -56,7 +66,32 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
     setIsActivating(true);
 
     try {
-      await SubscriptionAPI.startFreeTrial();
+      const { type, clientSecret } = await SubscriptionAPI.startFreeTrial();
+      if (clientSecret) {
+        if (!stripe || !elements) {
+          return;
+        }
+
+        const { error: submitError } = await elements.submit();
+        if (submitError) {
+          handleError(submitError.message);
+          return;
+        }
+
+        const confirmIntent =
+          type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
+
+        const { error: intentError } = await confirmIntent({
+          elements,
+          clientSecret,
+          redirect: "if_required",
+        });
+
+        if (intentError) {
+          handleError(intentError.message);
+          return;
+        }
+      }
 
       mutateUser({
         role: "PREMIUM_USER",
@@ -69,10 +104,8 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
       });
 
       setStep("activated");
-    } catch {
-      enqueueSnackbar(t("payment.generalPaymentErrorMessage"), {
-        variant: "error",
-      });
+    } catch (error) {
+      handleError(typeof error === "string" ? error : undefined);
     } finally {
       setIsActivating(false);
     }

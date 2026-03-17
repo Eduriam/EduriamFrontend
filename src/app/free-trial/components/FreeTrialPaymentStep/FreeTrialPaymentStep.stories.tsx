@@ -15,6 +15,5 @@ export const Base = Template.bind({});
 
 Base.args = {
   canConfirm: false,
-  onFormValidityChange: () => undefined,
   onConfirm: () => undefined,
 };
