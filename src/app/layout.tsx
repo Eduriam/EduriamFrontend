@@ -5,7 +5,7 @@ import { SnackbarProvider } from "notistack";
 
 import { ViewTransitions } from "next-view-transitions";
 
-import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
+import GoogleAdsense from "components/advertisement/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
 
 import { NoticeProvider } from "infrastructure/services/NoticeProvider";
