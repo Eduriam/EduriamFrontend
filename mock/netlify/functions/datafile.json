@@ -992,107 +992,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "6c39c7f2-2fa1-4f41-8aa1-48e6294b8580",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "courses/:courseId/article-categories",
-      "responses": [
-        {
-          "uuid": "e8619743-d593-441a-a46a-894c9ed5c858",
-          "body": "[\r\n   {{#repeat 7}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.word'}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "6fb26e2d-6d83-4948-8be8-37268e7cfc52",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "courses/:courseId/articles",
-      "responses": [
-        {
-          "uuid": "781bdc71-45e0-4316-8838-55ef24c68b43",
-          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"name\":\"{{faker 'lorem.words' 5}}\"\r\n   }\r\n   {{/repeat}}\r\n]",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "categoryId != null",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "query",
-              "modifier": "categoryId",
-              "value": "",
-              "invert": true,
-              "operator": "null"
-            }
-          ],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
-      "uuid": "9a001fda-9690-4262-835d-1126ec2d6402",
-      "documentation": "",
-      "method": "get",
-      "endpoint": "courses/:courseId/articles/:id",
-      "responses": [
-        {
-          "uuid": "1b76306e-dcd4-4666-b054-e46bf8517907",
-          "body": "{\r\n   \"id\":\"{{faker 'string.uuid'}}\",\r\n   \"name\":\"{{faker 'lorem.words' 5}}\",\r\n   \"text\":\"{{faker 'lorem.paragraph' 20}}\"\r\n}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "filePath": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "databucketID": "",
-          "bodyType": "INLINE",
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "type": "http",
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "6bf6a300-495c-4287-91ca-53d8080e6cae",
       "documentation": "",
       "method": "patch",
@@ -3401,14 +3300,6 @@
         },
         {
           "type": "folder",
-          "uuid": "a1111de6-a71c-4f9e-b593-b84cb9c42bef"
-        },
-        {
-          "type": "folder",
-          "uuid": "95afbf34-dbac-4464-b7bd-7c35b0dbe40c"
-        },
-        {
-          "type": "folder",
           "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d"
         }
       ]
@@ -3491,30 +3382,6 @@
         {
           "type": "route",
           "uuid": "dbff8a53-d881-4a09-9a6f-b19651efed72"
-        }
-      ]
-    },
-    {
-      "uuid": "95afbf34-dbac-4464-b7bd-7c35b0dbe40c",
-      "name": "articles",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "6fb26e2d-6d83-4948-8be8-37268e7cfc52"
-        },
-        {
-          "type": "route",
-          "uuid": "9a001fda-9690-4262-835d-1126ec2d6402"
-        }
-      ]
-    },
-    {
-      "uuid": "a1111de6-a71c-4f9e-b593-b84cb9c42bef",
-      "name": "article-categories",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "6c39c7f2-2fa1-4f41-8aa1-48e6294b8580"
         }
       ]
     },
