@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import {
   BasicNavbar,
   ContentContainer,
@@ -19,6 +17,7 @@ import Stack from "@mui/material/Stack";
 
 import LessonListItem from "components/courses/LessonListItem/LessonListItem";
 import SectionCard from "components/courses/SectionCard/SectionCard";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import ChaptersAPI from "infrastructure/api/courses/chapters/ChaptersAPI";
 
@@ -57,14 +56,19 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
 
   return (
     <PageRoot data-test="chapter-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "chevronLeft",
-          onClick: navigateWithTransition(`/courses/${courseId}`, {
-            direction: "back",
-          }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "chevronLeft",
+              onClick: navigateWithTransition(`/courses/${courseId}`, {
+                direction: "back",
+              }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
       <ContentContainer
         width="small"
         justifyContent="flex-start"
@@ -112,7 +116,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
                             key={lesson.id}
                             title={lesson.name}
                             status={
-                              lesson.active
+                              lesson.upcoming
                                 ? "active"
                                 : lesson.completed
                                   ? "completed"

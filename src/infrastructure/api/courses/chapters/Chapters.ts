@@ -4,7 +4,7 @@ export interface ChapterLesson {
   /** Whether the lesson is completed by the current user. */
   completed?: boolean;
   /** Whether the lesson is the current active lesson. */
-  active?: boolean;
+  upcoming?: boolean;
 }
 
 export interface ChapterSection {
@@ -18,4 +18,3 @@ export interface CourseChapter {
   name: string;
   sections: Array<ChapterSection>;
 }
-
