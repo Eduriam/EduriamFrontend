@@ -8,7 +8,6 @@ import {
 } from "@eduriam/ui-core";
 
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -45,15 +44,19 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
   return (
     <AppBar
       position="static"
-      sx={{
-        backgroundColor: "background.default",
+      color="transparent"
+      elevation={0}
+      enableColorOnDark
+      sx={(theme) => ({
+        backgroundColor: `${theme.palette.background.default} !important`,
+        backgroundImage: "none",
         boxShadow: "none",
-      }}
+      })}
     >
       <Toolbar
         sx={(theme) => ({
           display: "flex",
-          justifyContent: { xs: "flex-end", md: "space-between" },
+          justifyContent: "flex-end",
           minHeight: { xs: 56 },
           px: MOBILE_PADDING_X,
           [theme.breakpoints.up("sm")]: {
@@ -64,28 +67,14 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
           width: "100%",
         })}
       >
-        {/* Logo + project name: desktop only */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            alignItems: "center",
-            gap: 1.5,
-          }}
-        >
-          <Illustration name="eduriam-logo" width={32} height={32} />
-          <Typography variant="h6" fontWeight="medium" component="span">
-            Eduriam
-          </Typography>
-        </Box>
-
         {/* Streak, coins, energy, study plan: aligned to the right */}
         <Stack
           direction="row"
           alignItems="center"
           spacing={{ xs: 0, md: 4 }}
           sx={{
-            justifyContent: { xs: "space-between", md: "flex-start" },
-            width: { xs: "100%", md: "auto" },
+            justifyContent: "flex-end",
+            width: "auto",
           }}
         >
           {/* Streak */}

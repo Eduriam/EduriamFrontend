@@ -131,6 +131,7 @@
     "calendar": "Kalendář"
   },
   "navigation": {
+    "eduriamTitle": "Eduriam",
     "home": "Domů",
     "shop": "Obchod",
     "challenges": "Výzvy",
@@ -144,6 +145,7 @@
     "myLessons": "Moje balíčky slovíček",
     "myCourses": "Moje kurzy",
     "courses": "Kurzy",
+    "studyPlan": "Studijní plán",
     "search": "Vyhledávání",
     "help": "Nápověda",
     "bugReport": "Nahlášení chyby",
@@ -402,9 +404,9 @@
     },
     "leave": {
       "title": "Opustit editor avatara?",
-      "description": "Nevyulozene zmeny budou ztraceny.",
-      "keepEditing": "Pokracovat v upravach",
-      "discardChanges": "Zahodit zmeny"
+      "description": "Neuložené změny budou ztraceny.",
+      "keepEditing": "Pokračovat v úpravách",
+      "discardChanges": "Zahodit změny"
     }
   },
   "topics": {

@@ -16,7 +16,7 @@ import SideNavigationBar from "../../atoms/navigation/main-navigation-bars/SideN
 
 export interface IPageNavigation {
   topNavigation: ReactNode | "hidden";
-  mainNavigation: "show" | "hidden";
+  mainNavigation: "show" | "hidden" | "desktopOnly";
 }
 
 const PageNavigation: React.FC<IPageNavigation> = ({
@@ -25,19 +25,22 @@ const PageNavigation: React.FC<IPageNavigation> = ({
 }) => {
   const pathname = usePathname();
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
-  const shouldShowPrimaryNavigation =
-    mainNavigation === "show" && Boolean(pathname);
+  const hasPathname = Boolean(pathname);
+  const shouldShowSideNavigation =
+    hasPathname && desktop && mainNavigation !== "hidden";
+  const shouldShowBottomNavigation =
+    hasPathname && !desktop && mainNavigation === "show";
 
   function renderPrimaryNavigation() {
-    if (!shouldShowPrimaryNavigation) {
-      return null;
+    if (shouldShowSideNavigation) {
+      return <SideNavigationBar pathname={pathname} />;
     }
 
-    return desktop ? (
-      <SideNavigationBar pathname={pathname} />
-    ) : (
-      <BottomNavigationBar pathname={pathname} />
-    );
+    if (shouldShowBottomNavigation) {
+      return <BottomNavigationBar pathname={pathname} />;
+    }
+
+    return null;
   }
 
   return (
@@ -45,10 +48,9 @@ const PageNavigation: React.FC<IPageNavigation> = ({
       <GlobalStyles
         styles={{
           body: {
-            paddingBottom:
-              shouldShowPrimaryNavigation && !desktop
-                ? `${BOTTOM_NAV_BAR_HEIGHT}px`
-                : undefined,
+            paddingBottom: shouldShowBottomNavigation
+              ? `${BOTTOM_NAV_BAR_HEIGHT}px`
+              : undefined,
           },
         }}
       />
