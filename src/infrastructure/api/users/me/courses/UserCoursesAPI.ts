@@ -31,15 +31,9 @@ const UserCoursesAPI = {
     return API.put(`${this.URI}/${courseId}`, {});
   },
 
-  async selectCourse(courseId: Id): Promise<void> {
-    return API.put(`${this.URI}/${courseId}/select-course`, {});
-  },
-
   async removeCourse(courseId: Id): Promise<void> {
     await API.delete(`${this.URI}/${courseId}`);
   },
 };
 
 export default UserCoursesAPI;
-
-

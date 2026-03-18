@@ -2331,37 +2331,6 @@
       "streamingInterval": 0
     },
     {
-      "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9",
-      "type": "http",
-      "documentation": "",
-      "method": "put",
-      "endpoint": "users/me/courses/:courseId/select-course",
-      "responses": [
-        {
-          "uuid": "5597e355-79e5-4c4a-82d8-a117e55f4872",
-          "body": "{}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": true,
-          "crudKey": "id",
-          "callbacks": []
-        }
-      ],
-      "responseMode": null,
-      "streamingMode": null,
-      "streamingInterval": 0
-    },
-    {
       "uuid": "0af10595-e759-4b11-843b-8f56ee0eb8fa",
       "type": "http",
       "documentation": "",
@@ -3150,10 +3119,6 @@
         {
           "type": "route",
           "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8"
-        },
-        {
-          "type": "route",
-          "uuid": "00fc8a6d-ba11-4dfe-965a-650ead752da9"
         },
         {
           "type": "route",

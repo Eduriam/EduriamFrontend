@@ -140,7 +140,6 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     try {
       await AccountSetupAPI.setupAccount({ dailyGoal: dailyGoalValue });
       await UserCoursesAPI.enrollInCourse(selectedCourseId);
-      await UserCoursesAPI.selectCourse(selectedCourseId);
       transitionStep(() => setStep("complete"), "forward", step);
     } catch {
       transitionStep(() => setStep("complete"), "forward", step);
