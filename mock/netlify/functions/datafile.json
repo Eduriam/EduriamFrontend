@@ -256,7 +256,7 @@
       "uuid": "df7c052b-be1d-4b1f-9cdb-87653d9e0fb3",
       "documentation": "",
       "method": "post",
-      "endpoint": "signup",
+      "endpoint": "user-auth/signup",
       "responses": [
         {
           "uuid": "a9a1ef5c-5323-45e7-ba77-f6da53716db0",

@@ -193,12 +193,15 @@ export function AuthProvider({
   }
 
   function mutateUser(userChange: Partial<UserPrivate>) {
-    if (user) {
-      const newUser = { ...user, ...userChange };
-
-      setUser(newUser);
-      LocalStorageManager.setItem<UserPrivate>("user", newUser);
+    const currentUser = user ?? LocalStorageManager.getItem<UserPrivate>("user");
+    if (!currentUser) {
+      return;
     }
+
+    const newUser = { ...currentUser, ...userChange };
+
+    setUser(newUser);
+    LocalStorageManager.setItem<UserPrivate>("user", newUser);
   }
 
   async function revalidateUser() {

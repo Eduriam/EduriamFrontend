@@ -5,8 +5,6 @@ import theme from "styles/theme";
 
 import { useState } from "react";
 
-import { useRouter } from "next/navigation";
-
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -52,8 +50,7 @@ const STEPS: OnboardingStep[] = [
 export interface IOnboardingPage {}
 
 const OnboardingPage: React.FC<IOnboardingPage> = () => {
-  const { revalidateUser } = useAuth();
-  const router = useRouter();
+  const { mutateUser } = useAuth();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
   const [codingExperience, setCodingExperience] = useState<string | null>(null);
@@ -238,9 +235,9 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     return null;
   };
 
-  const handleStartLearning = async () => {
-    await revalidateUser();
-    router.push("/");
+  const handleStartLearning = () => {
+    // Route transition is handled by onboarding layout once user becomes initialized.
+    mutateUser({ accountInitialized: true });
   };
 
   const canContinue =
