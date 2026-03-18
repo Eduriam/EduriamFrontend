@@ -62,7 +62,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 
   const { recommendedCourses: recommendedFromApi } =
     RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesAPI.useCourses({});
+  const { courses } = CoursesAPI.useCourses();
   const recommendedCourses = (recommendedFromApi ?? [])
     .filter((course) => !course.premium)
     .slice(0, 3);

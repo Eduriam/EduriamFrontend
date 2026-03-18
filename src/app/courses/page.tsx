@@ -124,7 +124,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesAPI.useCourses({});
+  const { courses } = CoursesAPI.useCourses();
 
   const displayRecommended = (recommendedCourses ?? []).slice(0, 2);
   const displayAllCourses = courses ?? [];
@@ -302,4 +302,3 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
 };
 
 export default CoursesPage;
-

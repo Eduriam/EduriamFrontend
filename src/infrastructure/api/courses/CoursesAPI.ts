@@ -1,4 +1,3 @@
-import { Language } from "domain/models/types/languages";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
@@ -7,9 +6,7 @@ import useAPI from "infrastructure/api/hooks/useAPI";
 
 import { CourseDTO } from "./Courses";
 
-export interface CourseParams {
-  language?: Language;
-}
+export interface CourseParams {}
 
 const CoursesAPI = {
   URI: "courses",
