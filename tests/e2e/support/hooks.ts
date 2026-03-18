@@ -23,10 +23,7 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     balance: 0,
     energy: 40,
     accountInitialized: false,
-    lastSessionDate: null,
     activeSubscription: null,
-    selectedCourse: null,
-    lastViewedStudyMapLevel: 0,
   } as unknown as UserPrivate;
   const idToken = createJwt(60 * 60);
   const refreshToken = "test-refresh-token";

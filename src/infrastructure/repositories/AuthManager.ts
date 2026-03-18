@@ -80,19 +80,12 @@ const AuthManager = {
       this.logout();
     }
 
-    let user = LocalStorageManager.getItem<UserPrivate>("user");
+    const user = LocalStorageManager.getItem<UserPrivate>("user");
     if (user === null) {
       return Promise.reject("No user found.");
-    } else {
-      const studyMapLevel = LocalStorageManager.getItem<number>(
-        "lastViewedStudyMapLevel",
-      );
-      if (studyMapLevel !== null) {
-        user = { ...user, lastViewedStudyMapLevel: studyMapLevel };
-      }
-
-      return user;
     }
+
+    return user;
   },
 
   setAuthHeader(idToken: string): void {

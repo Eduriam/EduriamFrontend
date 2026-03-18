@@ -45,14 +45,7 @@ Given("I am logged in", async function (this: CustomWorld) {
     energy: 40,
     equippedStreakFreezes: 0,
     accountInitialized: true,
-    lastSessionDate: null,
     activeSubscription: null,
-    selectedCourse: {
-      id: "test-course",
-      name: "Test course",
-      language: "en-US",
-    },
-    lastViewedStudyMapLevel: 0,
   };
 
   const idToken = createJwt(60 * 60);
@@ -99,14 +92,7 @@ Given("I am logged in as corrector", async function (this: CustomWorld) {
     energy: 40,
     equippedStreakFreezes: 0,
     accountInitialized: true,
-    lastSessionDate: null,
     activeSubscription: null,
-    selectedCourse: {
-      id: "test-course",
-      name: "Test course",
-      language: "en-US",
-    },
-    lastViewedStudyMapLevel: 0,
   } as unknown as UserPrivate;
 
   const idToken = createJwt(60 * 60);
@@ -154,14 +140,7 @@ Given(
       energy: 40,
       equippedStreakFreezes: 0,
       accountInitialized: true,
-      lastSessionDate: null,
       activeSubscription: null,
-      selectedCourse: {
-        id: "html",
-        name: "HTML",
-        language: "en-US",
-      },
-      lastViewedStudyMapLevel: 0,
     };
 
     const idToken = createJwt(60 * 60);
@@ -210,14 +189,7 @@ Given(
       balance: 0,
       energy: 40,
       accountInitialized: true,
-      lastSessionDate: null,
       activeSubscription: null,
-      selectedCourse: {
-        id: "test-course",
-        name: "Test course",
-        language: "en-US",
-      },
-      lastViewedStudyMapLevel: 0,
       // Extra field used only by the app runtime to mark the enrolled learning path.
       // It is intentionally not part of the UserPrivate TypeScript type.
       selectedLearningPath: { id: "react-developer-path" },
@@ -272,10 +244,7 @@ Given(
       balance: 0,
       energy: 40,
       accountInitialized: false,
-      lastSessionDate: null,
       activeSubscription: null,
-      selectedCourse: null,
-      lastViewedStudyMapLevel: 0,
     } as unknown as UserPrivate;
 
     const idToken = createJwt(60 * 60);
@@ -338,17 +307,10 @@ Given("I am a premium user", async function (this: CustomWorld) {
     streak: 0,
     balance: 0,
     accountInitialized: true,
-    lastSessionDate: null,
     activeSubscription: {
       id: "test-subscription",
       validUntil: new Date().toISOString(),
     },
-    selectedCourse: {
-      id: "test-course",
-      name: "Test course",
-      language: "en-US",
-    },
-    lastViewedStudyMapLevel: 0,
   } as unknown as UserPrivate;
 
   const idToken = createJwt(60 * 60);

@@ -11,17 +11,10 @@ export default function AuthDecorator(Story: Story) {
     user: {
       id: "123",
       role: "PREMIUM_USER",
-      selectedCourse: {
-        id: "abcd",
-        name: "Czech course",
-        language: "cs",
-      },
       username: "pepaokurka",
       balance: 999,
       energy: 12,
       equippedStreakFreezes: 0,
-      lastSessionDate: new Date(),
-      lastViewedStudyMapLevel: 2,
       streak: 114,
       accountInitialized: true,
       activeSubscription: {

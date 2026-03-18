@@ -72,9 +72,9 @@ export function AuthProvider({
     setLoading(true);
 
     AuthManager.getCurrentUser()
-      .then(async (user) => {
+      .then((user) => {
         setUser(user);
-        setLanguage(user.selectedCourse?.language);
+        setLanguage();
       })
       .catch(() => {
         setLanguage();
@@ -193,7 +193,8 @@ export function AuthProvider({
   }
 
   function mutateUser(userChange: Partial<UserPrivate>) {
-    const currentUser = user ?? LocalStorageManager.getItem<UserPrivate>("user");
+    const currentUser =
+      user ?? LocalStorageManager.getItem<UserPrivate>("user");
     if (!currentUser) {
       return;
     }
