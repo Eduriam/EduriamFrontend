@@ -17,7 +17,7 @@ import Stack from "@mui/material/Stack";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { FeedItem, FeedMessage } from "infrastructure/api/users/me/feed/Feed";
+import { FeedMessage } from "infrastructure/api/users/me/feed/Feed";
 import FeedAPI from "infrastructure/api/users/me/feed/FeedAPI";
 import {
   Reaction,
@@ -123,7 +123,7 @@ const Feed: React.FC<IFeed> = () => {
       }
 
       return newFeed;
-    }, optimisticMutationOption<Array<FeedItem>>(newFeed));
+    }, optimisticMutationOption<Array<FeedMessage>>(newFeed));
   }
 
   return (
