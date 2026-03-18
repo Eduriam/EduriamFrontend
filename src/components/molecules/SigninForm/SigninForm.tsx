@@ -5,19 +5,19 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 import type { MouseEvent } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import { useSearchParams } from "next/navigation";
+
 import Box from "@mui/material/Box";
 import FormHelperText from "@mui/material/FormHelperText";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { useSearchParams } from "next/navigation";
-
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
 import {
-  GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_ERRORS,
+  GOOGLE_AUTH_ERROR_QUERY_PARAM,
 } from "infrastructure/api/external-auth/ExternalAuth";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -28,17 +28,17 @@ interface InputTypes {
   password: string;
 }
 
-export interface ILoginForm {
+export interface ISigninForm {
   onForgotPasswordClick?: () => void;
 }
 
-const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
+const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<InputTypes>();
-  const { login, loading, errors: authErrors, startGoogleAuth } = useAuth();
+  const { signin, loading, errors: authErrors, startGoogleAuth } = useAuth();
   const { t } = useTranslation("form");
   const navigateWithTransition = useTransitionNavigationHandler();
   const searchParams = useSearchParams();
@@ -47,7 +47,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
     googleError === GOOGLE_AUTH_ERRORS.accountNotFound;
 
   const onSubmit = (data: { email: string; password: string }) => {
-    login(data.email, data.password);
+    signin(data.email, data.password);
   };
 
   const handleForgotPasswordClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -59,19 +59,19 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
     onForgotPasswordClick();
   };
 
-  const handleGoogleLogin = () => {
-    void startGoogleAuth("login");
+  const handleGoogleSignin = () => {
+    void startGoogleAuth("signin");
   };
 
   return (
     <>
-      <Header variant="title" text={t("auth.login-header")} align="center" />
+      <Header variant="title" text={t("auth.signin-header")} align="center" />
       <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
         <Stack
           direction="column"
           justifyContent="center"
           component="form"
-          id="login-form"
+          id="signin-form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
           sx={{ width: "100%", gap: "16px" }}
@@ -81,7 +81,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
             control={control}
             rules={{ required: true, pattern: EMAIL_REGEX }}
             render={({ field }) => (
-              <Box data-test="login-email-field">
+              <Box data-test="signin-email-field">
                 <TextField
                   id="email"
                   type="email"
@@ -109,7 +109,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <Box data-test="login-password-field">
+              <Box data-test="signin-password-field">
                 <TextField
                   id="password"
                   type="password"
@@ -154,16 +154,16 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
             variant="contained"
             disabled={loading || Object.keys(errors).length !== 0}
             fullWidth
-            data-test="login-submit-button"
+            data-test="signin-submit-button"
           >
-            {t("auth.login")}
+            {t("auth.signin")}
           </LargeButton>
           <GoogleSignupButton
             width="100%"
             text={t("auth.continue-with-google")}
-            onClick={handleGoogleLogin}
+            onClick={handleGoogleSignin}
             disabled={loading}
-            dataTest="login-google-button"
+            dataTest="signin-google-button"
           />
         </Stack>
       </Stack>
@@ -171,17 +171,17 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
         <Stack
           spacing={4}
           sx={{ mt: 6, width: "100%" }}
-          data-test="login-google-account-not-found-section"
+          data-test="signin-google-account-not-found-section"
         >
           <Typography variant="body1" sx={{ color: "#989898" }}>
-            {t("auth.google-login-account-not-found")}
+            {t("auth.google-signin-account-not-found")}
           </Typography>
           <LargeButton
             variant="outlined"
             onClick={navigateWithTransition("/signup")}
-            data-test="login-google-signup-button"
+            data-test="signin-google-signup-button"
           >
-            {t("auth.google-login-signup-button")}
+            {t("auth.google-signin-signup-button")}
           </LargeButton>
         </Stack>
       )}
@@ -195,4 +195,4 @@ const LoginForm: React.FC<ILoginForm> = ({ onForgotPasswordClick }) => {
   );
 };
 
-export default LoginForm;
+export default SigninForm;

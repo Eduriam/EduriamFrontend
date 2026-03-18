@@ -101,9 +101,7 @@ export async function setCoursePremium(premium: boolean): Promise<void> {
   );
 }
 
-export async function setLearningPathPremium(
-  premium: boolean,
-): Promise<void> {
+export async function setLearningPathPremium(premium: boolean): Promise<void> {
   await setMockoonGlobalVar(
     "MOCKOON_PREMIUM_LEARNING_PATH",
     premium ? "true" : "false",
@@ -148,7 +146,9 @@ export async function setLeaderboardStarted(started: boolean): Promise<void> {
   );
 }
 
-export async function setShopEnoughMoney(hasEnoughMoney: boolean): Promise<void> {
+export async function setShopEnoughMoney(
+  hasEnoughMoney: boolean,
+): Promise<void> {
   await setMockoonGlobalVar(
     "MOCKOON_SHOP_ENOUGH_MONEY",
     hasEnoughMoney ? "true" : "false",
@@ -156,7 +156,10 @@ export async function setShopEnoughMoney(hasEnoughMoney: boolean): Promise<void>
 }
 
 export async function setShopLockedItem(locked: boolean): Promise<void> {
-  await setMockoonGlobalVar("MOCKOON_SHOP_LOCKED_ITEM", locked ? "true" : "false");
+  await setMockoonGlobalVar(
+    "MOCKOON_SHOP_LOCKED_ITEM",
+    locked ? "true" : "false",
+  );
 }
 
 export async function setAvatarItemsPurchased(
@@ -197,13 +200,15 @@ export type MockoonFeedVariant =
   | "league-promoted"
   | "course-completed";
 
-export async function setFeedVariant(variant: MockoonFeedVariant): Promise<void> {
+export async function setFeedVariant(
+  variant: MockoonFeedVariant,
+): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_FEED_VARIANT", variant);
 }
 
 export type MockoonGoogleAuthVariant =
   | "default"
-  | "login-account-not-found"
+  | "signin-account-not-found"
   | "signup-account-exists";
 
 export async function setGoogleAuthVariant(
@@ -217,4 +222,3 @@ export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {
     await setMockoonGlobalVar(key, value);
   }
 }
-

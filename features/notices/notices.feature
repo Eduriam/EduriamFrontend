@@ -2,7 +2,7 @@
 Feature: Homepage notices
 
   Background:
-    Given I am logged in
+    Given I am signed in
 
   Scenario Outline: User sees and dismisses a homepage notice
     Given I have an unread "<noticeTestId>" notice

@@ -1,11 +1,11 @@
 import { UserPrivate } from "infrastructure/api/users/me/User";
 
-export interface LoginRequestBody {
+export interface SigninRequestBody {
   email: string;
   password: string;
 }
 
-export interface LoginResponseBody {
+export interface SigninResponseBody {
   idToken: Id;
   refreshToken: Id;
   user: UserPrivate;

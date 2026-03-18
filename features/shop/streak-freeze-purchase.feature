@@ -2,7 +2,7 @@
 Feature: Shop streak freeze purchase
 
   Scenario: User purchases a streak freeze item in the shop
-    Given I am logged in
+    Given I am signed in
     And I have enough virtual currency
     And I have an unlocked item that is not purchased yet
     And I am on the "shop-page" page

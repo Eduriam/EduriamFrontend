@@ -7,11 +7,11 @@ import useAuth from "infrastructure/services/AuthProvider";
 export interface ILogoutPage {}
 
 const LogoutPage: React.FC<ILogoutPage> = () => {
-  const { logout } = useAuth();
+  const { signout } = useAuth();
   const router = useRouter();
 
-  logout();
-  router.push("/login");
+  signout();
+  router.push("/signin");
 
   return <></>;
 };

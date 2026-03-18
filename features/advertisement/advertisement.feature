@@ -2,7 +2,7 @@
 Feature: UC-35 Advertisement after finishing learning or review
 
   Background:
-    Given I am logged in
+    Given I am signed in
 
   Scenario: User completes learning and continues after fullscreen advertisement
     Given I am on the "study-page" page with the "lesson" defined

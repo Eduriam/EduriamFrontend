@@ -2,7 +2,7 @@
 Feature: Code Editor Exercise
   
   Background:
-    Given I am logged in
+    Given I am signed in
     And I am on the "study-page" page with the "lesson" defined
     And the lesson contains a code exercise 
 

@@ -11,19 +11,19 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import errorCodes from "infrastructure/api/error-codes";
 import {
-  GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_ERRORS,
+  GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/api/external-auth/ExternalAuth";
 import useAuth from "infrastructure/services/AuthProvider";
 
 const GOOGLE_AUTH_PAGE_BY_SOURCE: Record<GoogleAuthSource, string> = {
-  login: "/login",
+  signin: "/signin",
   signup: "/signup",
 };
 
-const LoginCallbackPage: React.FC = () => {
+const SigninCallbackPage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t } = useTranslation("common");
@@ -63,7 +63,7 @@ const LoginCallbackPage: React.FC = () => {
   }, [authorizeGoogleCode, code, error, router]);
 
   return (
-    <PageRoot data-test="login-callback-page">
+    <PageRoot data-test="signin-callback-page">
       <ContentContainer width="small" justifyContent="center" spacing={8}>
         <Header variant="title" text={t("loading")} align="center" />
         <CircularProgress color="inherit" />
@@ -74,12 +74,15 @@ const LoginCallbackPage: React.FC = () => {
 
 function getSourceFromSession(): GoogleAuthSource {
   const source = sessionStorage.getItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
-  return source === "signup" ? "signup" : "login";
+  return source === "signup" ? "signup" : "signin";
 }
 
-function resolveGoogleErrorPath(errorCode: unknown, fallbackPath: string): string {
+function resolveGoogleErrorPath(
+  errorCode: unknown,
+  fallbackPath: string,
+): string {
   if (errorCode === errorCodes.googleAccountNotFound) {
-    return `/login?${GOOGLE_AUTH_ERROR_QUERY_PARAM}=${GOOGLE_AUTH_ERRORS.accountNotFound}`;
+    return `/signin?${GOOGLE_AUTH_ERROR_QUERY_PARAM}=${GOOGLE_AUTH_ERRORS.accountNotFound}`;
   }
 
   if (errorCode === errorCodes.googleAccountExists) {
@@ -89,4 +92,4 @@ function resolveGoogleErrorPath(errorCode: unknown, fallbackPath: string): strin
   return fallbackPath;
 }
 
-export default LoginCallbackPage;
+export default SigninCallbackPage;

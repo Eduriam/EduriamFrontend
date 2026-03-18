@@ -7,7 +7,7 @@
   "loading": "Načítání...",
   "open-menu": "Otevřít menu",
   "user-avatar-circle-tooltip": "Hurá! Splnili jste svůj denní cíl!",
-  "login": "Přihlášení",
+  "signin": "Přihlášení",
   "signup": "Registrace",
   "menu": "Menu",
   "groups": "Skupiny",
@@ -122,7 +122,7 @@
     "news": "Novinky",
     "settings": "Nastavení",
     "my-profile": "Můj profil",
-    "logout": "Odhlásit",
+    "signout": "Odhlásit",
     "readMore": "Zobrazit více",
     "readLess": "Zobrazit méně",
     "submit": "Odeslat"
@@ -150,7 +150,7 @@
     "help": "Nápověda",
     "bugReport": "Nahlášení chyby",
     "settings": "Nastavení",
-    "logout": "Odhlásit",
+    "signout": "Odhlásit",
     "followers": "Sledující",
     "following": "Sleduje",
     "continue": "Pokračovat",
@@ -545,7 +545,7 @@
       "courses": "Kurzy",
       "help": "Nápověda",
       "reportAProblem": "Nahlásit problém",
-      "logOut": "Odhlásit se",
+      "signout": "Odhlásit se",
       "legal": "Právní informace"
     },
     "profile": {

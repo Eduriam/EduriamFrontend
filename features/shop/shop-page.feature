@@ -3,7 +3,7 @@ Feature: Shop page
 
   Scenario: User purchases an unlocked shop item
     # Shop page 
-    Given I am logged in
+    Given I am signed in
     And I have enough virtual currency
     And I have an unlocked item that is not purchased yet
     And I am on the "shop-page" page
@@ -23,7 +23,7 @@ Feature: Shop page
 
   Scenario: User clicks on an item but does not have enough virtual currency
     # Shop page 
-    Given I am logged in
+    Given I am signed in
     And I do not have enough virtual currency
     And I have an unlocked item that is not purchased yet
     And I am on the "shop-page" page
@@ -40,7 +40,7 @@ Feature: Shop page
 
   Scenario: User selects a locked shop item
     # Shop page
-    Given I am logged in
+    Given I am signed in
     And I have a locked shop item
     And I am on the "shop-page" page
     Then I should see the "shop-item-categories" section

@@ -82,11 +82,11 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               Continue
             </LargeButton>
             <LargeButton
-              data-test="login-button"
+              data-test="signin-button"
               variant="outlined"
               color="primary"
               fullWidth
-              onClick={navigateWithTransition("/login")}
+              onClick={navigateWithTransition("/signin")}
             >
               Sign In
             </LargeButton>

@@ -7,7 +7,7 @@ const icons: Record<string, string> = {
   help: "help_outline_outlined",
   settings: "settings_outlined",
   premium: "offline_bolt_outlined",
-  logout: "logout",
+  signout: "signout",
 
   vocabulary: "extension",
   grammar: "category",

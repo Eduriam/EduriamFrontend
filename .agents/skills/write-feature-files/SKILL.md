@@ -27,7 +27,7 @@ description: Create or update Gherkin feature files and related step-definition 
 
 - Use `data-test` attributes for referenced UI elements.
 - Use `"<element-name>-<element-type>"` naming, for example:
-  - `login-page`
+  - `signin-page`
   - `submit-button`
   - `email-field`
   - `signup-link`
@@ -36,7 +36,7 @@ description: Create or update Gherkin feature files and related step-definition 
 ## Step-definition mapping
 
 - Match step file names to feature file names.
-- Example: `features/auth/login.feature` -> `tests/e2e/step-definitions/auth/login.steps.ts`.
+- Example: `features/auth/signin.feature` -> `tests/e2e/step-definitions/auth/signin.steps.ts`.
 
 ## Mockoon environment variables
 

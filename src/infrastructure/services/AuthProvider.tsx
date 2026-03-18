@@ -27,11 +27,11 @@ export interface AuthContextType {
   user?: UserPrivate;
   loading: boolean;
   errors?: string[];
-  login: (email: string, password: string) => void;
+  signin: (email: string, password: string) => void;
   signUp: (username: string, email: string, password: string) => void;
   startGoogleAuth: (source: GoogleAuthSource) => Promise<void>;
   authorizeGoogleCode: (code: string) => Promise<UserPrivate>;
-  logout: () => void;
+  signout: () => void;
   mutateUser: (userChange: Partial<UserPrivate>) => void;
   revalidateUser: () => void;
 }
@@ -85,11 +85,11 @@ export function AuthProvider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  function login(email: string, password: string) {
+  function signin(email: string, password: string) {
     setLoading(true);
     setError(() => []);
 
-    AuthManager.login({ email, password })
+    AuthManager.signin({ email, password })
       .then((user) => {
         setUser(user);
         router.push("/");
@@ -155,13 +155,13 @@ export function AuthProvider({
     }
   }
 
-  function logout() {
+  function signout() {
     setLoading(true);
     setError(() => []);
-    AuthManager.logout();
+    AuthManager.signout();
     setUser(undefined);
     setLoading(false);
-    router.push("/login");
+    router.push("/signin");
   }
 
   function handleError(error: string) {
@@ -217,11 +217,11 @@ export function AuthProvider({
       user,
       loading,
       errors,
-      login,
+      signin,
       signUp,
       startGoogleAuth,
       authorizeGoogleCode,
-      logout,
+      signout,
       mutateUser,
       revalidateUser,
     }),

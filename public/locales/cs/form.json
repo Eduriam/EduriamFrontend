@@ -1,9 +1,9 @@
 {
   "auth": {
-    "login-header": "Přihlášení",
+    "signin-header": "Přihlášení",
     "signup-header": "Registrace",
     "signup": "Registrovat",
-    "login": "Přihlásit",
+    "signin": "Přihlásit",
     "username": "Uživatelské jméno",
     "email": "Emailová adresa",
     "password": "Heslo",
@@ -18,10 +18,10 @@
     "here": "zde",
     "forgot-password": "Zapomněli jste heslo?",
     "continue-with-google": "Pokracovat s Googlem",
-    "google-login-account-not-found": "K tomuto Google účtu není připojen žádný účet. Vytvořte si nový účet pomocí registrace.",
-    "google-login-signup-button": "Vytvořit účet",
+    "google-signin-account-not-found": "K tomuto Google účtu není připojen žádný účet. Vytvořte si nový účet pomocí registrace.",
+    "google-signin-signup-button": "Vytvořit účet",
     "google-signup-account-exists": "Účet s tímto emailem již existuje. Přihlaste se do existujícího účtu.",
-    "google-signup-login-button": "Prihlasit se"
+    "google-signup-signin-button": "Prihlasit se"
   },
 
   "error": {
@@ -51,7 +51,7 @@
     "changePassword": "Změnit heslo",
     "passwordChanged": "Heslo změněno",
     "passwordChangedDescription": "Nyní se můžete přihlásit novým heslem.",
-    "login": "Přihlásit se",
+    "signin": "Přihlásit se",
     "invalidLink": "Neplatný odkaz",
     "invalidLinkDescription": "Odkaz pro změnu hesla je neplatný nebo vypršel."
   },
@@ -67,7 +67,7 @@
 
     "emailChanged": "Email byl změněn!",
     "emailChangedDescription": "Nyní je s vaším účtem spojen nový email.",
-    "login": "Přihlásit se",
+    "signin": "Přihlásit se",
     "invalidData": "Neplatné údaje. Zkuste si změnit email znovu.",
     "backToSettings": "Zpět do nastavení"
   },

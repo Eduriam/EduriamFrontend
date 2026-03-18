@@ -1,6 +1,6 @@
-import { LoginResponseBody } from "../user-auth/login/Login";
+import { SigninResponseBody } from "../user-auth/signin/Signin";
 
-export type GoogleAuthSource = "login" | "signup";
+export type GoogleAuthSource = "signin" | "signup";
 
 export interface GoogleAuthorizeResponseBody {
   data?: unknown;
@@ -12,7 +12,7 @@ export interface GoogleCodeExchangeRequestBody {
   code: string;
 }
 
-export type GoogleCodeExchangeResponseBody = LoginResponseBody;
+export type GoogleCodeExchangeResponseBody = SigninResponseBody;
 
 export const GOOGLE_AUTH_SOURCE_STORAGE_KEY = "googleAuthSource";
 

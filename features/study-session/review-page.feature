@@ -2,7 +2,7 @@
 Feature: Review page
 
   Background:
-    Given I am logged in
+    Given I am signed in
 
   Scenario: User completes lesson review successfully
     Given I am on the "review-page" page with the "course" defined

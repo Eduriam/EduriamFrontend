@@ -29,7 +29,7 @@ async function navigateToGoogleCallback(
   }
 }
 
-Given("I am logged in", async function (this: CustomWorld) {
+Given("I am signed in", async function (this: CustomWorld) {
   if (!this.page) {
     throw new Error(
       "Page is not initialized. Make sure browser is initialized.",
@@ -76,7 +76,7 @@ Given("I am logged in", async function (this: CustomWorld) {
   await this.page.addInitScript(initScript, { user, idToken, refreshToken });
 });
 
-Given("I am logged in as corrector", async function (this: CustomWorld) {
+Given("I am signed in as corrector", async function (this: CustomWorld) {
   if (!this.page) {
     throw new Error(
       "Page is not initialized. Make sure browser is initialized.",
@@ -123,7 +123,7 @@ Given("I am logged in as corrector", async function (this: CustomWorld) {
 });
 
 Given(
-  "I am logged in and enrolled the course",
+  "I am signed in and enrolled the course",
   async function (this: CustomWorld) {
     if (!this.page) {
       throw new Error(
@@ -173,7 +173,7 @@ Given(
 );
 
 Given(
-  "I am logged in and enrolled in the learning path",
+  "I am signed in and enrolled in the learning path",
   async function (this: CustomWorld) {
     if (!this.page) {
       throw new Error(
@@ -228,7 +228,7 @@ Given(
 );
 
 Given(
-  "I am logged in and I am not enrolled in any course",
+  "I am signed in and I am not enrolled in any course",
   async function (this: CustomWorld) {
     if (!this.page || !this.context) {
       throw new Error(
@@ -344,14 +344,14 @@ Given("I am a premium user", async function (this: CustomWorld) {
   });
 });
 
-Given("I am not logged in", async function (this: CustomWorld) {
+Given("I am not signed in", async function (this: CustomWorld) {
   if (!this.page) {
     throw new Error(
       "Page is not initialized. Make sure browser is initialized.",
     );
   }
 
-  // Clear any existing auth data so the app treats the user as logged out.
+  // Clear any existing auth data so the app treats the user as signed out.
   await this.page.addInitScript(() => {
     localStorage.removeItem("idToken");
     localStorage.removeItem("refreshToken");
@@ -390,7 +390,7 @@ Given("I have no energy left", async function (this: CustomWorld) {
 });
 
 Given("No user account is linked to the Google account", async function () {
-  await setGoogleAuthVariant("login-account-not-found");
+  await setGoogleAuthVariant("signin-account-not-found");
 });
 
 Given("A user account already exists for the Google email", async function () {
@@ -410,9 +410,9 @@ When(
       sessionStorage.getItem("googleAuthSource"),
     );
     const code =
-      source === "signup" ? "google-signup-code" : "google-login-code";
+      source === "signup" ? "google-signup-code" : "google-signin-code";
 
-    await navigateToGoogleCallback(this, `/login/callback?code=${code}`);
+    await navigateToGoogleCallback(this, `/signin/callback?code=${code}`);
   },
 );
 
@@ -423,5 +423,5 @@ When("I cancel Google authentication", async function (this: CustomWorld) {
     );
   }
 
-  await navigateToGoogleCallback(this, "/login/callback?error=access_denied");
+  await navigateToGoogleCallback(this, "/signin/callback?error=access_denied");
 });

@@ -2,7 +2,7 @@
 Feature: Learning path page and enrollment
 
   Scenario: User sees learning path description and course overview
-    Given I am logged in
+    Given I am signed in
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page
@@ -10,7 +10,7 @@ Feature: Learning path page and enrollment
     And I should see the "learning-path-courses-list-section" section
 
   Scenario: User enrolls in learning path and is taken to first lesson of the first course
-    Given I am logged in
+    Given I am signed in
     And I am not enrolled in the course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
@@ -19,7 +19,7 @@ Feature: Learning path page and enrollment
     Then I should be redirected to the "study-page" page
 
   Scenario: User continues learning in learning path and is taken to next lesson
-    Given I am logged in
+    Given I am signed in
     And I am enrolled in the course
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
@@ -29,7 +29,7 @@ Feature: Learning path page and enrollment
     Then I should be redirected to the "study-page" page
 
   Scenario: Non-premium user tries to enroll in premium learning path
-    Given I am logged in
+    Given I am signed in
     And the learning path is premium
     And I am not enrolled in the course
     And I am on the "learning-path-page" page
@@ -38,7 +38,7 @@ Feature: Learning path page and enrollment
     And I should see the "learning-path-locked-section" section
 
   Scenario: User navigates to manage enrolled learning paths
-    Given I am logged in
+    Given I am signed in
     And I am on the "courses-page" page
     When I click on the "learning-path-card" card
     Then I should be on the "learning-path-page" page

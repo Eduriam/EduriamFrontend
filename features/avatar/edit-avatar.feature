@@ -2,7 +2,7 @@
 Feature: Edit avatar page
 
   Scenario: User customizes avatar and saves changes
-    Given I am logged in
+    Given I am signed in
     And I have purchased avatar customization items
     And I am on the "user-page" page
     And I click on the "edit-avatar-button" button
@@ -22,7 +22,7 @@ Feature: Edit avatar page
     Then I should be redirected to the "user-page" page
 
   Scenario: User discards avatar customization changes before saving
-    Given I am logged in
+    Given I am signed in
     And I have purchased avatar customization items
     And I am on the "user-page" page
     And I click on the "edit-avatar-button" button

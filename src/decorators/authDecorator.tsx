@@ -24,8 +24,8 @@ export default function AuthDecorator(Story: Story) {
         ), // One week from now
       },
     },
-    login: () => console.log("login"),
-    logout: () => console.log("logout"),
+    signin: () => console.log("signin"),
+    signout: () => console.log("signout"),
     signUp: () => console.log("signup"),
     startGoogleAuth: () => Promise.resolve(),
     authorizeGoogleCode: async () => {

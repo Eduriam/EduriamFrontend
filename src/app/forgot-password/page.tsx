@@ -1,7 +1,5 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { BasicNavbar, Header, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -13,6 +11,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import ForgotPasswordForm from "components/molecules/ForgotPasswordForm/ForgotPasswordForm";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 export interface IForgotPasswordPage {}
 
@@ -23,14 +22,19 @@ const ForgotPasswordPage: React.FC<IForgotPasswordPage> = () => {
 
   return (
     <PageRoot>
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "chevronLeft",
-          onClick: navigateWithTransition("/login", {
-            direction: "back",
-          }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "chevronLeft",
+              onClick: navigateWithTransition("/signin", {
+                direction: "back",
+              }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
       <Container
         maxWidth="xs"
         sx={{

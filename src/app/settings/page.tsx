@@ -23,8 +23,9 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
 type SettingsMenuItem = {
@@ -38,7 +39,7 @@ type SettingsMenuItem = {
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { logout } = useAuth();
+  const { signout } = useAuth();
 
   const [isReportOpen, setIsReportOpen] = useState(false);
 
@@ -98,11 +99,11 @@ const SettingsPage: React.FC = () => {
 
   const otherItems: SettingsMenuItem[] = [
     {
-      id: "logout",
-      label: t("settings.items.logOut"),
+      id: "signout",
+      label: t("settings.items.signout"),
       icon: <Icon name="logout" />,
-      dataTest: "logout-settings-button",
-      onClick: () => logout(),
+      dataTest: "signout-settings-button",
+      onClick: () => signout(),
     },
     {
       id: "legal",
@@ -154,13 +155,18 @@ const SettingsPage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("settings.title")}
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/", { direction: "back" }),
-        }}
-      />} mainNavigation="desktopOnly" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            header={t("settings.title")}
+            leftButton={{
+              icon: "arrowLeft",
+              onClick: navigateWithTransition("/", { direction: "back" }),
+            }}
+          />
+        }
+        mainNavigation="desktopOnly"
+      />
 
       <ContentContainer
         width="small"
@@ -195,4 +201,3 @@ const SettingsPage: React.FC = () => {
 };
 
 export default SettingsPage;
-

@@ -2,7 +2,7 @@
 Feature: Course completion certificate
 
   Scenario: Premium user who completed course views certificate
-    Given I am logged in
+    Given I am signed in
     And I am a premium user
     And I have the course certificate
     And I am on the "courses-page" page
@@ -14,7 +14,7 @@ Feature: Course completion certificate
     And I should see the "certificate-section" section
 
   Scenario: Premium user who has not completed course cannot view certificate
-    Given I am logged in
+    Given I am signed in
     And I am a premium user
     And I do not have the course certificate
     And I am on the "courses-page" page
@@ -26,7 +26,7 @@ Feature: Course completion certificate
     Then I should be on the "course-page" page
 
   Scenario: Non-premium user is redirected to premium benefits when requesting certificate
-    Given I am logged in
+    Given I am signed in
     And I am on the "courses-page" page
     When I click on the "course-card" card
     Then I should be on the "course-page" page
@@ -34,6 +34,6 @@ Feature: Course completion certificate
     Then I should be redirected to the "premium-page" page
 
   Scenario: Certificate is publicly viewable
-    Given I am not logged in
+    Given I am not signed in
     And I am on the "certificate-page" page
     Then I should see the "certificate-section" section

@@ -2,7 +2,7 @@
 Feature: Feed page progress updates from followed users
 
   Background:
-    Given I am logged in
+    Given I am signed in
 
   Scenario Outline: User sees each supported type of progress update
     Given I have a "<messageVariant>" progress feed message from a followed user

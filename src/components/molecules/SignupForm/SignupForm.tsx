@@ -17,8 +17,8 @@ import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignup
 
 import errorCodes from "infrastructure/api/error-codes";
 import {
-  GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_ERRORS,
+  GOOGLE_AUTH_ERROR_QUERY_PARAM,
 } from "infrastructure/api/external-auth/ExternalAuth";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -239,10 +239,10 @@ const SignupForm: React.FC<ISignupForm> = () => {
           </Typography>
           <LargeButton
             variant="outlined"
-            onClick={navigateWithTransition("/login")}
-            data-test="signup-existing-account-login-button"
+            onClick={navigateWithTransition("/signin")}
+            data-test="signup-existing-account-signin-button"
           >
-            {t("auth.google-signup-login-button")}
+            {t("auth.google-signup-signin-button")}
           </LargeButton>
         </Stack>
       )}
@@ -250,7 +250,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
         <Typography variant="body1" sx={{ color: "#989898" }}>
           {t("auth.have-an-account")}
         </Typography>
-        <Link href="/login" text={t("auth.here")} />
+        <Link href="/signin" text={t("auth.here")} />
       </Stack>
     </>
   );

@@ -3,9 +3,9 @@ import jwtDecode from "jwt-decode";
 
 import { GoogleCodeExchangeRequestBody } from "infrastructure/api/external-auth/ExternalAuth";
 import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
-import { LoginRequestBody } from "infrastructure/api/user-auth/login/Login";
-import LoginAPI from "infrastructure/api/user-auth/login/LoginAPI";
 import RefreshTokenAPI from "infrastructure/api/user-auth/refresh-token/RefreshTokenAPI";
+import { SigninRequestBody } from "infrastructure/api/user-auth/signin/Signin";
+import SigninAPI from "infrastructure/api/user-auth/signin/SigninAPI";
 import { SignupRequestBody } from "infrastructure/api/user-auth/signup/Signup";
 import SignupAPI from "infrastructure/api/user-auth/signup/SignupAPI";
 
@@ -17,15 +17,15 @@ const AuthManager = {
     return Boolean(LocalStorageManager.getItem<string>("idToken"));
   },
 
-  logout(): void {
+  signout(): void {
     this.removeAuthHeader();
     LocalStorageManager.removeItem("idToken");
     LocalStorageManager.removeItem("refreshToken");
     LocalStorageManager.removeItem("user");
   },
 
-  async login(data: LoginRequestBody): Promise<UserPrivate> {
-    return LoginAPI.login(data);
+  async signin(data: SigninRequestBody): Promise<UserPrivate> {
+    return SigninAPI.signin(data);
   },
 
   async signUp(data: SignupRequestBody): Promise<UserPrivate> {
@@ -46,8 +46,8 @@ const AuthManager = {
     const refreshToken = LocalStorageManager.getItem<string>("refreshToken");
 
     if (refreshToken === null) {
-      // Refresh token doesn't exist, user needs to log in again
-      this.logout();
+      // Refresh token doesn't exist, user needs to sign in again
+      this.signout();
       return;
     }
 
@@ -60,8 +60,8 @@ const AuthManager = {
         LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
       })
       .catch(() => {
-        // Refresh token is expired, user needs to log in again
-        this.logout();
+        // Refresh token is expired, user needs to sign in again
+        this.signout();
       });
   },
 
@@ -77,7 +77,7 @@ const AuthManager = {
         this.setAuthHeader(token);
       }
     } else {
-      this.logout();
+      this.signout();
     }
 
     const user = LocalStorageManager.getItem<UserPrivate>("user");

@@ -64,10 +64,10 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
 
               <Button
                 variant="contained"
-                onClick={() => router.push("/logout")}
+                onClick={() => router.push("/signout")}
                 sx={{ justifySelf: "center" }}
               >
-                {t("changeEmail.login")}
+                {t("changeEmail.signin")}
               </Button>
             </Box>
           ) : (

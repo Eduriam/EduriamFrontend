@@ -55,10 +55,10 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
               </Box>
               <LargeButton
                 variant="contained"
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/signin")}
                 fullWidth
               >
-                {t("changePassword.login")}
+                {t("changePassword.signin")}
               </LargeButton>
             </Box>
           </>
@@ -94,10 +94,10 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
               </Box>
               <LargeButton
                 variant="contained"
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/signin")}
                 fullWidth
               >
-                {t("changePassword.login")}
+                {t("changePassword.signin")}
               </LargeButton>
             </Box>
           </>

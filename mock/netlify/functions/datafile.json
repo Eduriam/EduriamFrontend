@@ -495,7 +495,7 @@
       "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/login",
+      "endpoint": "user-auth/signin",
       "responses": [
         {
           "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
@@ -691,7 +691,7 @@
           "body": "{\"error\":\"GOOGLE_ACCOUNT_NOT_FOUND\"}",
           "latency": 0,
           "statusCode": 404,
-          "label": "Google login unlinked account",
+          "label": "Google signin unlinked account",
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
@@ -699,14 +699,14 @@
             {
               "target": "body",
               "modifier": "code",
-              "value": "google-login-code",
+              "value": "google-signin-code",
               "invert": false,
               "operator": "equals"
             },
             {
               "target": "global_var",
               "modifier": "MOCKOON_GOOGLE_AUTH_VARIANT",
-              "value": "login-account-not-found",
+              "value": "signin-account-not-found",
               "invert": false,
               "operator": "equals"
             }
@@ -756,10 +756,10 @@
         },
         {
           "uuid": "1be65fc7-dc18-4271-8ad1-feea6bb83df2",
-          "body": "{\"idToken\":\"mock-google-login-id-token\",\"refreshToken\":\"mock-google-login-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"activeSubscription\":null}}",
+          "body": "{\"idToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"activeSubscription\":null}}",
           "latency": 0,
           "statusCode": 200,
-          "label": "Google login success",
+          "label": "Google signin success",
           "headers": [
             {
               "key": "Content-Type",
@@ -772,7 +772,7 @@
             {
               "target": "body",
               "modifier": "code",
-              "value": "google-login-code",
+              "value": "google-signin-code",
               "invert": false,
               "operator": "equals"
             }
@@ -2899,7 +2899,7 @@
     },
     {
       "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27",
-      "name": "login",
+      "name": "signin",
       "children": [
         {
           "type": "route",

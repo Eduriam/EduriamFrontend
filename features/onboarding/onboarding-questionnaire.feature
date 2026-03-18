@@ -2,7 +2,7 @@
 Feature: Onboarding questionnaire and recommendations
 
   Scenario: User completes onboarding with a recommended course
-    Given I am logged in and I am not enrolled in any course
+    Given I am signed in and I am not enrolled in any course
     And I am on the "onboarding-page" page
     Then I should see the "coding-experience-section" section
     When I select "beginner-option" option in the "coding-experience-radio-group" radio group
@@ -25,7 +25,7 @@ Feature: Onboarding questionnaire and recommendations
     Then I should be on the "home-page" page
 
   Scenario: User completes onboarding and chooses a course from all courses
-    Given I am logged in and I am not enrolled in any course
+    Given I am signed in and I am not enrolled in any course
     And I am on the "onboarding-page" page
     Then I should see the "coding-experience-section" section
     When I select "beginner-option" option in the "coding-experience-radio-group" radio group

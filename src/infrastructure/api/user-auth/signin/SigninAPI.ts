@@ -3,15 +3,15 @@ import { UserPrivate } from "infrastructure/api/users/me/User";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
-import { LoginRequestBody, LoginResponseBody } from "./Login";
+import { SigninRequestBody, SigninResponseBody } from "./Signin";
 
-export interface LoginParams {}
+export interface SigninParams {}
 
-const LoginAPI = {
-  URI: "user-auth/login",
+const SigninAPI = {
+  URI: "user-auth/signin",
 
-  async login(data: LoginRequestBody): Promise<UserPrivate> {
-    return API.post(`${this.URI}`, data).then((resData: LoginResponseBody) => {
+  async signin(data: SigninRequestBody): Promise<UserPrivate> {
+    return API.post(`${this.URI}`, data).then((resData: SigninResponseBody) => {
       AuthManager.setAuthHeader(resData.idToken);
       LocalStorageManager.setItem<string>("idToken", resData.idToken);
       LocalStorageManager.setItem<string>("refreshToken", resData.refreshToken);
@@ -22,4 +22,4 @@ const LoginAPI = {
   },
 };
 
-export default LoginAPI;
+export default SigninAPI;

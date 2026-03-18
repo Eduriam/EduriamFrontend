@@ -14,7 +14,7 @@ Feature: Signup with Google
     And I complete Google authentication successfully
     Then I should remain on the "signup-page" page
     And I should see the "signup-google-account-exists-section" section
-    And I should see the "signup-existing-account-login-button" button
+    And I should see the "signup-existing-account-signin-button" button
 
   Scenario: User cancels Google signup
     Given I am on the "signup-page" page

@@ -2,7 +2,7 @@
 Feature: Chapter page
 
   Scenario: User opens chapter from course page and starts a lesson
-    Given I am logged in
+    Given I am signed in
     And I am on the "course-page" page
     When I click on the "chapter-card" card
     Then I should be on the "chapter-page" page

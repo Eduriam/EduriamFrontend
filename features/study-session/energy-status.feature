@@ -2,7 +2,7 @@
 Feature: Energy status and insufficient energy handling
 
   Background:
-    Given I am logged in
+    Given I am signed in
 
   Scenario: User opens energy status and sees the premium unlock option
     Given I am on the "home-page" page

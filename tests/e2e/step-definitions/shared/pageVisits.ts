@@ -8,7 +8,7 @@ const BASE_URL = `http://localhost:${FRONTEND_PORT}`;
 
 const PAGE_URLS: Record<string, string> = {
   "home-page": `${BASE_URL}/`,
-  "login-page": `${BASE_URL}/login`,
+  "signin-page": `${BASE_URL}/signin`,
   "signup-page": `${BASE_URL}/signup`,
   "welcome-page": `${BASE_URL}/welcome`,
   "account-setup-page": `${BASE_URL}/account-setup`,
@@ -300,4 +300,3 @@ Then(
     expect(element).toBeTruthy();
   },
 );
-

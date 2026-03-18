@@ -2,7 +2,7 @@
 Feature: Browse recommended courses and learning paths and update recommendations
 
   Scenario: User opens recommendations page and a recommended course
-    Given I am logged in
+    Given I am signed in
     And I am on the "courses-page" page
     Then I should see the "courses-section" section
     When I click on the "all-recommendations-button" button
@@ -12,7 +12,7 @@ Feature: Browse recommended courses and learning paths and update recommendation
     Then I should be on the "course-page" page
 
   Scenario: User opens recommendations page and a recommended learning path
-    Given I am logged in
+    Given I am signed in
     And I am on the "courses-page" page
     Then I should see the "courses-section" section
     And I should see the "recommended-courses-section" section
@@ -23,7 +23,7 @@ Feature: Browse recommended courses and learning paths and update recommendation
     Then I should be on the "learning-path-page" page
 
   Scenario: User updates preferences in the recommendation questionnaire
-    Given I am logged in
+    Given I am signed in
     And I am on the "recommendations-page" page
     When I click on the "retake-recommendation-quiz-button" button
     Then I should be on the "recommendation-quiz-page" page

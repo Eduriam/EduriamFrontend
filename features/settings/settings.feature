@@ -2,7 +2,7 @@
 Feature: Settings
 
   Scenario: User changes notification settings
-    Given I am logged in
+    Given I am signed in
     And I am on the "settings-page" page
     Then I should see the "notifications-settings-button" button
     When I click on the "notifications-settings-button" button
@@ -12,7 +12,7 @@ Feature: Settings
     Then The notification settings should be saved
 
   Scenario: User changes theme to dark
-    Given I am logged in
+    Given I am signed in
     And I am on the "settings-page" page
     Then I should see the "preferences-settings-button" button
     When I click on the "preferences-settings-button" button
