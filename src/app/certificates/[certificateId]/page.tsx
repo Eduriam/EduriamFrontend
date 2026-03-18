@@ -1,10 +1,10 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 
 import { useParams, useRouter } from "next/navigation";
+
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import CertificatesAPI from "infrastructure/api/certificates/CertificatesAPI";
 
@@ -63,16 +63,21 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
 
   return (
     <PageRoot data-test="certificate-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "close",
-          onClick: handleClose,
-        }}
-        rightButton={{
-          icon: "share",
-          onClick: handleShare,
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "close",
+              onClick: handleClose,
+            }}
+            rightButton={{
+              icon: "share",
+              onClick: handleShare,
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
       <ContentContainer
         width="medium"
         justifyContent="flex-start"
@@ -82,8 +87,6 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
           userName={certificate?.userName ?? ""}
           courseName={certificate?.courseName ?? ""}
           completedAt={certificate?.completedAt ?? ""}
-          signatoryName={certificate?.signatoryName}
-          signatoryTitle={certificate?.signatoryTitle}
           data-test="certificate-section"
         />
       </ContentContainer>

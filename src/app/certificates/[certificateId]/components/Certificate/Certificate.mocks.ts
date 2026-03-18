@@ -4,6 +4,4 @@ export const mockCertificateProps: ICertificate = {
   userName: "Pepa Okurka",
   courseName: "JavaScript Basics",
   completedAt: "July 23, 2026",
-  signatoryName: "Bořivoj Ježek",
-  signatoryTitle: "CEO of Company",
 };

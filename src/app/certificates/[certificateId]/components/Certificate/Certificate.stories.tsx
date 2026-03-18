@@ -19,14 +19,6 @@ export default {
       control: "text",
       description: "Date when the course was completed",
     },
-    signatoryName: {
-      control: "text",
-      description: "Name of the signatory",
-    },
-    signatoryTitle: {
-      control: "text",
-      description: "Title/role of the signatory",
-    },
   },
 } as ComponentMeta<typeof Certificate>;
 
@@ -38,12 +30,4 @@ export const Default = Template.bind({});
 
 Default.args = {
   ...mockCertificateProps,
-} as ICertificate;
-
-export const WithoutSignatory = Template.bind({});
-
-WithoutSignatory.args = {
-  ...mockCertificateProps,
-  signatoryName: undefined,
-  signatoryTitle: undefined,
 } as ICertificate;

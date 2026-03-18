@@ -11,10 +11,6 @@ export interface CertificateDTO {
   courseName: string;
   /** Date when the course or learning path was completed (formatted string). */
   completedAt: string;
-  /** Name of the signatory (e.g. CEO). */
-  signatoryName?: string;
-  /** Title/role of the signatory (e.g. "CEO of Company"). */
-  signatoryTitle?: string;
 }
 
 const CertificatesAPI = {

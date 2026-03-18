@@ -14,10 +14,6 @@ export interface ICertificate {
   courseName: string;
   /** Date when the course was completed (formatted string, e.g. "July 23, 2026"). */
   completedAt: string;
-  /** Name of the signatory (e.g. CEO). */
-  signatoryName?: string;
-  /** Title/role of the signatory (e.g. "CEO of Company"). */
-  signatoryTitle?: string;
   /** Optional data attribute for E2E tests. */
   "data-test"?: string;
 }
@@ -26,8 +22,6 @@ const Certificate: React.FC<ICertificate> = ({
   userName,
   courseName,
   completedAt,
-  signatoryName,
-  signatoryTitle,
   "data-test": dataTest,
 }) => {
   const { t } = useTranslation("common");
@@ -105,17 +99,13 @@ const Certificate: React.FC<ICertificate> = ({
           </Box>
 
           <Stack spacing={0} alignItems="center">
-            {signatoryName !== undefined && signatoryName !== null && (
-              <Typography variant="body1" align="center" color="text.secondary">
-                {signatoryName}
-              </Typography>
-            )}
+            <Typography variant="body1" align="center" color="text.secondary">
+              {t("certificate.signatoryName")}
+            </Typography>
 
-            {signatoryTitle !== undefined && signatoryTitle !== null && (
-              <Typography variant="body1" align="center" color="text.secondary">
-                {signatoryTitle}
-              </Typography>
-            )}
+            <Typography variant="body1" align="center" color="text.secondary">
+              {t("certificate.signatoryTitle")}
+            </Typography>
           </Stack>
         </Stack>
       </Stack>
