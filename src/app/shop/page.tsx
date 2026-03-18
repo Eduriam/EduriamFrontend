@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
@@ -129,7 +129,7 @@ const ShopPage: React.FC<IShopPage> = () => {
             balance={user?.balance ?? 0}
           />
         }
-        mainNavigation="hidden"
+        mainNavigation="desktopOnly"
       />
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
@@ -186,3 +186,4 @@ const ShopPage: React.FC<IShopPage> = () => {
 };
 
 export default ShopPage;
+

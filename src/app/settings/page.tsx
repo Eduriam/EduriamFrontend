@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   BasicNavbar,
@@ -160,7 +160,7 @@ const SettingsPage: React.FC = () => {
           icon: "arrowLeft",
           onClick: navigateWithTransition("/", { direction: "back" }),
         }}
-      />} mainNavigation="hidden" />
+      />} mainNavigation="desktopOnly" />
 
       <ContentContainer
         width="small"
@@ -195,3 +195,4 @@ const SettingsPage: React.FC = () => {
 };
 
 export default SettingsPage;
+

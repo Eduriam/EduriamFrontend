@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   BasicNavbar,
@@ -211,7 +211,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
               }}
             />
           }
-          mainNavigation="hidden"
+          mainNavigation="desktopOnly"
         />
 
         {tabs.length > 0 && (
@@ -302,3 +302,4 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
 };
 
 export default CoursesPage;
+

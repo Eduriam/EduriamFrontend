@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   BasicNavbar,
@@ -259,7 +259,7 @@ const StudyPlanPage: React.FC = () => {
               header="Study Plan"
             />
           }
-          mainNavigation="hidden"
+          mainNavigation="desktopOnly"
         />
       </PageRoot>
     );
@@ -291,7 +291,7 @@ const StudyPlanPage: React.FC = () => {
               header="Study Plan"
             />
           }
-          mainNavigation="hidden"
+          mainNavigation="desktopOnly"
         />
       </Box>
 
@@ -313,3 +313,4 @@ const StudyPlanPage: React.FC = () => {
 };
 
 export default StudyPlanPage;
+
