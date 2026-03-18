@@ -21,7 +21,6 @@ export interface UserProfile {
   avatarDefinition?: AvatarDefinition;
   isFollowed: boolean;
   username: string;
-  learningStats: Array<LearningDataPoint>;
   streak: number;
   achievements: Array<ProfileAchievement>;
   courses: Array<ProfileCourse>;
@@ -34,8 +33,10 @@ export type UserSummary = Pick<
 
 export type ProfileAchievement = {
   badgeIconName: "achievement-1" | "achievement-2";
-  collectedReward: boolean;
-  progress: number;
+  userProgress: {
+    value: number;
+    goal: number;
+  };
   description?: string;
   id: Id;
   title: string;
@@ -47,9 +48,4 @@ export interface ProfileCourse {
   type: "course" | "learning-path";
   logoId?: string;
   userProgress?: number;
-}
-
-export interface LearningDataPoint {
-  date: string;
-  points: number;
 }

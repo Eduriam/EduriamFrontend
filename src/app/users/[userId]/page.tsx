@@ -260,9 +260,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                 key={achievement.id}
                 badgeIconName={achievement.badgeIconName}
                 name={achievement.title}
-                completed={
-                  achievement.progress >= 100 || achievement.collectedReward
-                }
+                completed={achievement.userProgress.value >= achievement.userProgress.goal}
               />
             ))}
           </Stack>

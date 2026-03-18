@@ -55,7 +55,7 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => 
               badgeIconName={achievement.badgeIconName}
               name={achievement.title}
               showText
-              completed={achievement.progress >= 100 || achievement.collectedReward}
+              completed={achievement.userProgress.value >= achievement.userProgress.goal}
             />
           ))}
         </Box>
