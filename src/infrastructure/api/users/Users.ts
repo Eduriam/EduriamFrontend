@@ -1,22 +1,13 @@
 import type { AvatarDefinition } from "components/avatar/Avatar";
 
+import { LeaderboardLeague } from "./me/leaderboard/Leaderboard";
+
 export interface UserProfile {
   id: Id;
   followers: number;
   following: number;
   level: number;
-  league:
-    | "iron"
-    | "bronze"
-    | "silver"
-    | "gold"
-    | "platinum"
-    | "emerald"
-    | "ruby"
-    | "sapphire"
-    | "diamond"
-    | "mythic"
-    | "locked";
+  league: LeaderboardLeague;
   name: string;
   avatarDefinition?: AvatarDefinition;
   isFollowed: boolean;

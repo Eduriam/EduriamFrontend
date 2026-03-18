@@ -1,6 +1,6 @@
 import type { LeaderboardLeague } from "infrastructure/api/users/me/leaderboard/Leaderboard";
 
-export const LEAGUE_ORDER: Exclude<LeaderboardLeague, "locked">[] = [
+export const LEAGUE_ORDER: LeaderboardLeague[] = [
   "iron",
   "bronze",
   "silver",
@@ -15,11 +15,13 @@ export const LEAGUE_ORDER: Exclude<LeaderboardLeague, "locked">[] = [
 
 const DISPLAY_SLOT_OFFSETS = [-2, -1, 0, 1, 2] as const;
 
-export function getLeagueDisplayConfig(currentLeague: LeaderboardLeague): {
-  visibleLeagues: LeaderboardLeague[];
+export function getLeagueDisplayConfig(
+  currentLeague: LeaderboardLeague | "locked",
+): {
+  visibleLeagues: (LeaderboardLeague | "locked")[];
   highlightedLeagueIndex: number;
 } {
-  const fallbackCurrentLeague: Exclude<LeaderboardLeague, "locked"> =
+  const fallbackCurrentLeague: LeaderboardLeague =
     currentLeague === "locked" ? "iron" : currentLeague;
 
   const currentIndex = LEAGUE_ORDER.indexOf(fallbackCurrentLeague);

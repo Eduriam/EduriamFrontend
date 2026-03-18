@@ -10,16 +10,13 @@ export type LeaderboardLeague =
   | "ruby"
   | "sapphire"
   | "diamond"
-  | "mythic"
-  | "locked";
-
-export interface LeaderboardAvatarDefinition extends AvatarDefinition {}
+  | "mythic";
 
 export interface LeaderboardEntry {
   id: string;
   rank: number;
   name: string;
-  avatarDefinition: LeaderboardAvatarDefinition;
+  avatarDefinition: AvatarDefinition;
   xp: number;
 }
 
