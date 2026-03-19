@@ -1,5 +1,5 @@
-# Use Node.js 18 LTS as base image
-FROM node:18-alpine
+# Use Node.js 24 LTS as base image
+FROM node:24-alpine
 
 # Install Yarn 4.x
 RUN corepack enable && corepack prepare yarn@4.9.3 --activate
