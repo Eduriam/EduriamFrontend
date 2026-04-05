@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
 
 import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
@@ -14,9 +16,11 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   const { user } = useAuth();
   const router = useRouter();
 
-  if (user?.accountInitialized === true) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (user?.accountInitialized === true) {
+      router.replace("/");
+    }
+  }, [user?.accountInitialized, router]);
 
   return <ProtectedRoute>{children}</ProtectedRoute>;
 };

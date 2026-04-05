@@ -155,6 +155,12 @@ Given(
       idToken: string;
       refreshToken: string;
     }) => {
+      // Seed the initial unactioned onboarding auth state once per scenario.
+      // This must not overwrite onboarding completion updates on later navigations.
+      if (localStorage.getItem("user")) {
+        return;
+      }
+
       localStorage.setItem("idToken", JSON.stringify(idToken));
       localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
       localStorage.setItem("user", JSON.stringify(user));
@@ -207,6 +213,11 @@ Given(
       idToken: string;
       refreshToken: string;
     }) => {
+      // Seed onboarding start state once and avoid overwriting post-completion updates.
+      if (localStorage.getItem("user")) {
+        return;
+      }
+
       localStorage.setItem("idToken", JSON.stringify(idToken));
       localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
       localStorage.setItem("user", JSON.stringify(user));

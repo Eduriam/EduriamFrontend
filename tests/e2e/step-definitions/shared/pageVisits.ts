@@ -241,11 +241,40 @@ Then(
       );
     }
 
-    const element = await this.page.waitForSelector(`[data-test="${pageName}"]`, {
-      timeout: 15000,
-    });
-    expect(element).toBeTruthy();
-    return !!element;
+    try {
+      const element = await this.page.waitForSelector(
+        `[data-test="${pageName}"]`,
+        {
+          timeout: 15000,
+        },
+      );
+      expect(element).toBeTruthy();
+      return !!element;
+    } catch (error) {
+      const debug = await this.page.evaluate(() => {
+        const storedUser = window.localStorage.getItem("user");
+        const testMarkers = Array.from(
+          document.querySelectorAll("[data-test]"),
+        )
+          .map((element) => element.getAttribute("data-test"))
+          .filter((value): value is string => Boolean(value))
+          .slice(0, 20);
+
+        return {
+          url: window.location.href,
+          storedUser,
+          testMarkers,
+        };
+      });
+
+      throw new Error(
+        `Expected "${pageName}" marker not found. URL="${debug.url}" user=${debug.storedUser} markers=${JSON.stringify(
+          debug.testMarkers,
+        )} original=${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      );
+    }
   },
 );
 

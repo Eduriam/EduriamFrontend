@@ -36,6 +36,12 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     idToken: string;
     refreshToken: string;
   }) => {
+    // Seed onboarding auth state only when storage is empty.
+    // Do not overwrite in-scenario updates (e.g. onboarding completion).
+    if (localStorage.getItem("user")) {
+      return;
+    }
+
     localStorage.setItem("idToken", JSON.stringify(idToken));
     localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
     localStorage.setItem("user", JSON.stringify(user));

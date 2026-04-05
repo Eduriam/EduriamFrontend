@@ -9,7 +9,6 @@ import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useRouter } from "next/navigation";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -54,7 +53,6 @@ export interface IOnboardingPage {}
 
 const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const { mutateUser } = useAuth();
-  const router = useRouter();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
   const [codingExperience, setCodingExperience] = useState<string | null>(null);
@@ -240,7 +238,6 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 
   const handleStartLearning = () => {
     mutateUser({ accountInitialized: true });
-    router.replace("/");
   };
 
   const canContinue =
