@@ -32,6 +32,12 @@
       }
     },
     {
+      "files": ["src/infrastructure/api/generated/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
       "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
       "rules": {
         // example of overriding a rule
