@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import API from "infrastructure/api/API";
 
 import type { OpenChestPayload } from "./Chests";
@@ -14,3 +15,4 @@ const ChestsAPI = {
 };
 
 export default ChestsAPI;
+

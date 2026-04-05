@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import API from "infrastructure/api/API";
 
 export type ReportType = "GENERAL" | "STUDY_BLOCK";
@@ -26,3 +27,4 @@ const ReportsAPI = {
 };
 
 export default ReportsAPI;
+

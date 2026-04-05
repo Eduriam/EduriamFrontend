@@ -20,5 +20,5 @@ League.args = {
   promotionLabel: "Promotion zone",
   neutralLabel: "",
   demotionLabel: "Demotion zone",
-  currentUserId: "user-3",
+  currentUserId: 3,
 } as ILeaderboard;

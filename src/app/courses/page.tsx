@@ -1,4 +1,6 @@
-﻿"use client";
+"use client";
+
+import type { Id } from "domain/models/types/core";
 
 import {
   BasicNavbar,
@@ -302,3 +304,4 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
 };
 
 export default CoursesPage;
+

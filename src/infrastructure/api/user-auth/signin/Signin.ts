@@ -6,7 +6,7 @@ export interface SigninRequestBody {
 }
 
 export interface SigninResponseBody {
-  idToken: Id;
-  refreshToken: Id;
+  idToken: string;
+  refreshToken: string;
   user: UserPrivate;
 }

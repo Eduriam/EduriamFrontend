@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -125,3 +127,4 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
 };
 
 export default SearchPagePage;
+

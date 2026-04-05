@@ -14,15 +14,15 @@ const PAGE_URLS: Record<string, string> = {
   "account-setup-page": `${BASE_URL}/account-setup`,
   "onboarding-page": `${BASE_URL}/onboarding`,
   "courses-page": `${BASE_URL}/courses`,
-  "course-page": `${BASE_URL}/courses/test-course`,
+  "course-page": `${BASE_URL}/courses/1001`,
   "recommendations-page": `${BASE_URL}/courses/recommended`,
   "recommendation-quiz-page": `${BASE_URL}/courses/recommended/quiz`,
   "study-page": `${BASE_URL}/study`,
   "review-page": `${BASE_URL}/review`,
   "lesson-page": `${BASE_URL}/lesson`,
   "manage-courses-page": `${BASE_URL}/settings/courses`,
-  "learning-path-page": `${BASE_URL}/learning-paths/react-developer-path`,
-  "certificate-page": `${BASE_URL}/certificates/test-course-certificate`,
+  "learning-path-page": `${BASE_URL}/learning-paths/2001`,
+  "certificate-page": `${BASE_URL}/certificates/3001`,
   "premium-page": `${BASE_URL}/premium`,
   "free-trial-page": `${BASE_URL}/free-trial`,
   "study-plan-page": `${BASE_URL}/study-plan`,
@@ -32,7 +32,7 @@ const PAGE_URLS: Record<string, string> = {
   "shop-page": `${BASE_URL}/shop`,
   "shop-category-page": `${BASE_URL}/shop/hair`,
   "edit-avatar-page": `${BASE_URL}/edit-avatar`,
-  "user-page": `${BASE_URL}/users/test-user`,
+  "user-page": `${BASE_URL}/users/1001`,
   "settings-page": `${BASE_URL}/settings`,
   "preferences-page": `${BASE_URL}/settings/preferences`,
   "notification-settings-page": `${BASE_URL}/settings/notifications`,
@@ -40,21 +40,21 @@ const PAGE_URLS: Record<string, string> = {
 
 type DefinedPageEntityConfig = {
   queryParam: string;
-  queryValue: string;
+  queryValue: number;
 };
 
 const DEFINED_PAGE_ENTITY_CONFIGS: Record<string, DefinedPageEntityConfig> = {
   "study-page:lesson": {
     queryParam: "lessonId",
-    queryValue: "test-lesson-id",
+    queryValue: 4001,
   },
   "study-page:course": {
     queryParam: "courseId",
-    queryValue: "test-course-id",
+    queryValue: 1001,
   },
   "review-page:course": {
     queryParam: "courseId",
-    queryValue: "test-course-id",
+    queryValue: 1001,
   },
 };
 
@@ -217,7 +217,7 @@ Given(
     }
 
     const resolvedUrl =
-      pageName === "study-page" ? `${url}?lessonId=test-lesson-id` : url;
+      pageName === "study-page" ? `${url}?lessonId=4001` : url;
 
     // Navigate to the page
     if (pageName === "onboarding-page") {
@@ -241,14 +241,10 @@ Then(
       );
     }
 
-    const element = await this.page.waitForSelector(
-      `[data-test="${pageName}"]`,
-      {
-        timeout: 15000,
-      },
-    );
+    const element = await this.page.waitForSelector(`[data-test="${pageName}"]`, {
+      timeout: 15000,
+    });
     expect(element).toBeTruthy();
-
     return !!element;
   },
 );
@@ -300,3 +296,4 @@ Then(
     expect(element).toBeTruthy();
   },
 );
+

@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { Chip, Drawer, LargeButton, Paragraph } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
@@ -114,3 +116,4 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
 };
 
 export default CourseDetailsDrawer;
+

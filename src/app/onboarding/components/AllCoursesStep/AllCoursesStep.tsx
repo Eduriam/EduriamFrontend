@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { ContentContainer, Header, Tabs } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
@@ -172,3 +174,4 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
 };
 
 export default AllCoursesStep;
+

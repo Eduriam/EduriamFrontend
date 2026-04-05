@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
 import theme from "styles/theme";
 
@@ -7,6 +9,7 @@ import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useRouter } from "next/navigation";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -51,6 +54,7 @@ export interface IOnboardingPage {}
 
 const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const { mutateUser } = useAuth();
+  const router = useRouter();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
   const [codingExperience, setCodingExperience] = useState<string | null>(null);
@@ -68,7 +72,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     .slice(0, 3);
   const allCourses = (courses ?? []).filter((course) => !course.premium);
   const htmlCourseId = allCourses.find(
-    (c) => c.name?.toLowerCase().includes("html") || c.id === "html",
+    (c) => c.name?.toLowerCase().includes("html"),
   )?.id;
   const displayCourses = showAllCourses ? allCourses : recommendedCourses;
 
@@ -235,8 +239,8 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   };
 
   const handleStartLearning = () => {
-    // Route transition is handled by onboarding layout once user becomes initialized.
     mutateUser({ accountInitialized: true });
+    router.replace("/");
   };
 
   const canContinue =
@@ -345,3 +349,4 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 };
 
 export default OnboardingPage;
+

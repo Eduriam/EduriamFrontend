@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import {
   ReactNode,
   createContext,
@@ -86,3 +87,4 @@ export default function useNotices(): NoticeContextType {
 
   return context;
 }
+

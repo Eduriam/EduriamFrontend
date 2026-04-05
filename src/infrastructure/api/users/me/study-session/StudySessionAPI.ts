@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { AtomProgressRating, StudySessionDTO } from "@eduriam/ui-x";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
@@ -41,5 +42,6 @@ const StudySessionAPI = {
 };
 
 export default StudySessionAPI;
+
 
 

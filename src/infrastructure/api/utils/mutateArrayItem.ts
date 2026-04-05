@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { KeyedMutator } from "swr";
 
 import { optimisticMutationOption } from "../API";
@@ -32,3 +33,4 @@ export default function mutateArrayItem<T>(
     ),
   );
 }
+

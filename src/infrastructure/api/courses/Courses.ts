@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { Language } from "domain/models/types/languages";
 
 export interface CourseChapterSummary {
@@ -59,3 +60,4 @@ interface CourseBase {
   /** Next lesson ID to continue learning in this course. */
   upcomingLessonId?: Id;
 }
+

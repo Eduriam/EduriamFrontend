@@ -4,7 +4,10 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 
@@ -19,11 +22,20 @@ export interface IUsersAchievementsPage {
 }
 
 const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => {
-  const { userProfile } = UsersAPI.useUser(params.userId);
+  const router = useRouter();
+  const userId = parseRequiredId(params.userId);
+  const safeUserId = userId ?? 0;
+  const { userProfile } = UsersAPI.useUser(safeUserId);
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
 
   const achievements = userProfile?.achievements ?? [];
+
+  useEffect(() => {
+    if (userId === null) {
+      router.replace("/");
+    }
+  }, [router, userId]);
 
   return (
     <PageRoot>
@@ -31,7 +43,7 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => 
         header={t("achievements.achievements")}
         leftButton={{
           icon: "arrowLeft",
-          onClick: navigateWithTransition(`/users/${params.userId}`, {
+          onClick: navigateWithTransition(`/users/${safeUserId}`, {
             direction: "back",
           }),
         }}

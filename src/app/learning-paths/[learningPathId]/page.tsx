@@ -11,11 +11,12 @@ import {
 } from "@eduriam/ui-core";
 import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
+import { parseId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { Box, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -38,12 +39,19 @@ export interface ILearningPathPage {}
 const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
+  const router = useRouter();
   const { user } = useAuth();
 
-  const params = useParams<{ learningPathId: Id }>();
-  const learningPathId = params.learningPathId ?? "";
+  const params = useParams();
+  const learningPathId = parseId(params?.learningPathId);
 
-  const { course: learningPath } = CoursesAPI.useCourse(learningPathId);
+  const { course: learningPath } = CoursesAPI.useCourse(learningPathId ?? 0);
+
+  useEffect(() => {
+    if (learningPathId === undefined) {
+      router.replace("/courses");
+    }
+  }, [learningPathId, router]);
 
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
@@ -125,7 +133,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const courses = (learningPath as LearningPath)?.courses ?? [];
   const isEnrolled = learningPath?.enrolled ?? false;
   const hasUpcomingLesson = Boolean(learningPath?.upcomingLessonId);
-  const hasCertificate = learningPath?.userCertificate !== null;
+  const hasCertificate =
+    learningPath?.userCertificate !== null &&
+    learningPath?.userCertificate !== undefined;
 
   const handleViewCertificate = () => {
     if (!learningPathId) {
@@ -142,10 +152,8 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
     // Premium users with a certificate go directly to the certificate page.
     if (hasCertificate) {
-      const certificateId =
-        learningPath?.userCertificate ??
-        ("react-developer-path-certificate" as Id);
-      if (certificateId) {
+      const certificateId = learningPath?.userCertificate;
+      if (certificateId !== null && certificateId !== undefined) {
         navigateWithTransition(`/certificates/${certificateId}`)();
         return;
       }

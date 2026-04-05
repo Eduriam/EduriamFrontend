@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
@@ -31,3 +32,4 @@ const UsersAPI = {
 };
 
 export default UsersAPI;
+

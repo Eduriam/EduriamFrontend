@@ -1,3 +1,5 @@
+import type { Id } from "domain/models/types/core";
+
 export interface ChapterLesson {
   id: Id;
   name: string;
@@ -18,3 +20,4 @@ export interface CourseChapter {
   name: string;
   sections: Array<ChapterSection>;
 }
+

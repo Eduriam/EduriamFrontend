@@ -37,7 +37,7 @@ Given("I am signed in", async function (this: CustomWorld) {
   }
 
   const user: UserPrivate = {
-    id: "test-user",
+    id: 1001,
     username: "Test user",
     role: "USER",
     streak: 0,
@@ -84,7 +84,7 @@ Given("I am signed in as corrector", async function (this: CustomWorld) {
   }
 
   const user = {
-    id: "test-corrector",
+    id: 1002,
     username: "Test corrector",
     role: "CORRECTOR",
     streak: 0,
@@ -132,7 +132,7 @@ Given(
     }
 
     const user: UserPrivate = {
-      id: "test-user",
+      id: 1001,
       username: "Test user",
       role: "USER",
       streak: 0,
@@ -182,7 +182,7 @@ Given(
     }
 
     const user = {
-      id: "test-user",
+      id: 1001,
       username: "Test user",
       role: "USER",
       streak: 0,
@@ -192,7 +192,7 @@ Given(
       activeSubscription: null,
       // Extra field used only by the app runtime to mark the enrolled learning path.
       // It is intentionally not part of the UserPrivate TypeScript type.
-      selectedLearningPath: { id: "react-developer-path" },
+      selectedLearningPath: { id: 2001 },
     } as unknown as UserPrivate;
 
     const idToken = createJwt(60 * 60);
@@ -237,7 +237,7 @@ Given(
     }
 
     const user = {
-      id: "test-user",
+      id: 1001,
       username: "Test user",
       role: "USER",
       streak: 0,
@@ -301,7 +301,7 @@ Given("I am a premium user", async function (this: CustomWorld) {
   }
 
   const user = {
-    id: "test-user",
+    id: 1001,
     username: "Test user",
     role: "PREMIUM_USER",
     streak: 0,
@@ -425,3 +425,4 @@ When("I cancel Google authentication", async function (this: CustomWorld) {
 
   await navigateToGoogleCallback(this, "/signin/callback?error=access_denied");
 });
+

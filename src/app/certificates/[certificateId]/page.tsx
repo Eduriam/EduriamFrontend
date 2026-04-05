@@ -1,8 +1,10 @@
 "use client";
 
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import { parseId } from "util/functions/api";
 
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -14,10 +16,16 @@ export interface ICertificatePage {}
 
 const CertificatePage: React.FC<ICertificatePage> = () => {
   const router = useRouter();
-  const params = useParams<{ certificateId: Id }>();
-  const certificateId = params.certificateId ?? "";
+  const params = useParams();
+  const certificateId = parseId(params?.certificateId);
 
-  const { certificate } = CertificatesAPI.useCertificate(certificateId);
+  const { certificate } = CertificatesAPI.useCertificate(certificateId ?? 0);
+
+  useEffect(() => {
+    if (certificateId === undefined) {
+      router.replace("/courses");
+    }
+  }, [certificateId, router]);
 
   const handleClose = () => {
     // Prefer going back in history when possible; fall back to courses list.

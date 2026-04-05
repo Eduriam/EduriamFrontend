@@ -1,5 +1,6 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";

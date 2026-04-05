@@ -1905,9 +1905,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.68":
-  version: 0.6.68
-  resolution: "@eduriam/ui-core@npm:0.6.68::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.68%2Ff628d10b8631e1cea9df04dedc297e580337a7bf"
+"@eduriam/ui-core@npm:^0.6.70":
+  version: 0.6.70
+  resolution: "@eduriam/ui-core@npm:0.6.70::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.70%2Fb29d2ebcc58be259f90564764f55f10d477fe69c"
   dependencies:
     mermaid: "npm:^11.12.0"
   peerDependencies:
@@ -1916,15 +1916,15 @@ __metadata:
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/e2641bf38ad909d44b08b315b930bdf43bda23d5f533c646d2d00dfdd29aa2611ceef584249c8b11fd573b6dd8dbc2baa96d8b504b83d5312119f555e8f2e4dc
+  checksum: 10c0/845ff313ebac671b167e4224d73c6a439efe15fe5ceb4e87ab7c2d89d2d43f694d48ac0724c5781f416553eced79dcaf2408ddbfcfb2c8f7cd103e244adc5b08
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.92":
-  version: 0.2.92
-  resolution: "@eduriam/ui-x@npm:0.2.92::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.92%2Ff725bd163d971311aab72ede2eca4aba9da41a05"
+"@eduriam/ui-x@npm:^0.2.94":
+  version: 0.2.94
+  resolution: "@eduriam/ui-x@npm:0.2.94::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.94%2F593acbe72e96d319a3e67eda8bc1f442c6c7ccf4"
   dependencies:
-    "@eduriam/ui-core": "npm:^0.6.68"
+    "@eduriam/ui-core": "npm:^0.6.70"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
@@ -1944,7 +1944,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/992dd5a058a6b02c145a5fb66b844e52a3e4131daa31a19c13636217798828a6c7e8980ef4c217334e15b87d024f9f80f7977288e82bccfc71db44a186211338
+  checksum: 10c0/49a73449f40441d42b6b285492db1abb315f4add92948a43a9da027e11de9864db4d6e1810bcf50e2c542b5b2a45ba1d3d37e7a31676e2b884254a1d9715d2e0
   languageName: node
   linkType: hard
 
@@ -14895,8 +14895,8 @@ __metadata:
     "@commitlint/cli": "npm:^17.1.2"
     "@commitlint/config-conventional": "npm:^17.1.0"
     "@cucumber/cucumber": "npm:^10.3.1"
-    "@eduriam/ui-core": "npm:^0.6.68"
-    "@eduriam/ui-x": "npm:^0.2.92"
+    "@eduriam/ui-core": "npm:^0.6.70"
+    "@eduriam/ui-x": "npm:^0.2.94"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"

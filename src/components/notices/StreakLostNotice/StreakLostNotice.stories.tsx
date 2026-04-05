@@ -15,8 +15,9 @@ export const Base = Template.bind({});
 
 Base.args = {
   notice: {
-    id: "notice-1",
+    id: 1,
     type: "STREAK_LOST",
     previousStreakDays: 47,
   },
 } as StreakLostNoticeProps;
+

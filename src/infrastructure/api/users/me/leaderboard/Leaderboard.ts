@@ -1,3 +1,5 @@
+import { Id } from "domain/models/types/core";
+
 import { AvatarDefinition } from "components/avatar/Avatar";
 
 export type LeaderboardLeague =
@@ -13,7 +15,7 @@ export type LeaderboardLeague =
   | "mythic";
 
 export interface LeaderboardEntry {
-  id: string;
+  id: Id;
   rank: number;
   name: string;
   avatarDefinition: AvatarDefinition;

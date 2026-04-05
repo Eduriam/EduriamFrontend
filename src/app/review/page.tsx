@@ -2,7 +2,9 @@
 
 import { ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
 import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+import { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
+import { parseId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect, useState } from "react";
@@ -34,13 +36,14 @@ const ReviewPage: React.FC<IReviewPage> = () => {
   const router = useRouter();
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user } = useAuth();
+  const queryCourseIdRaw = searchParams.get("courseId");
 
-  const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>(
-    () => searchParams.get("courseId") ?? undefined,
+  const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>(() =>
+    parseId(queryCourseIdRaw),
   );
 
   useEffect(() => {
-    const queryCourseId = searchParams.get("courseId") ?? undefined;
+    const queryCourseId = parseId(searchParams.get("courseId"));
     setSelectedCourseId(queryCourseId);
   }, [searchParams]);
 
@@ -48,9 +51,14 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     StudyPlanAPI.useStudyPlan();
 
   const upcomingReviewCourse = studyPlan?.upcomingReviewCourse;
-  const queryCourseId = searchParams.get("courseId") ?? undefined;
+  const queryCourseId = parseId(queryCourseIdRaw);
 
   useEffect(() => {
+    if (queryCourseIdRaw && queryCourseId === undefined) {
+      router.replace("/", { scroll: false });
+      return;
+    }
+
     if (isStudyPlanLoading) {
       return;
     }
@@ -58,10 +66,21 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     if (!upcomingReviewCourse && !queryCourseId) {
       router.replace("/", { scroll: false });
     }
-  }, [isStudyPlanLoading, upcomingReviewCourse, queryCourseId, router]);
+  }, [
+    isStudyPlanLoading,
+    queryCourseId,
+    queryCourseIdRaw,
+    router,
+    upcomingReviewCourse,
+  ]);
 
   const handleStartReview = () => {
     if (!upcomingReviewCourse?.id) {
+      return;
+    }
+
+    const upcomingReviewCourseId = parseId(upcomingReviewCourse.id);
+    if (upcomingReviewCourseId === undefined) {
       return;
     }
 
@@ -75,8 +94,8 @@ const ReviewPage: React.FC<IReviewPage> = () => {
       return;
     }
 
-    setSelectedCourseId(upcomingReviewCourse.id);
-    router.replace(`/review?courseId=${upcomingReviewCourse.id}`, {
+    setSelectedCourseId(upcomingReviewCourseId);
+    router.replace(`/review?courseId=${upcomingReviewCourseId}`, {
       scroll: false,
     });
   };

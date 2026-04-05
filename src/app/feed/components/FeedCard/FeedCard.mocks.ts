@@ -6,7 +6,7 @@ const base: IFeedCard = {
   onAddReaction: action("onAddReaction"),
   onRemoveReaction: action("onRemoveReaction"),
   feedMessage: {
-    id: "feed-message-id",
+    id: 1,
     author: "Pepa Okurka",
     avatarDefinition: {
       skinColor: "light",

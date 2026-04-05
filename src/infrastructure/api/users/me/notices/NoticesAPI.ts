@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import API from "infrastructure/api/API";
 
 import type { Notice } from "./Notices";
@@ -15,3 +16,4 @@ const NoticesAPI = {
 };
 
 export default NoticesAPI;
+

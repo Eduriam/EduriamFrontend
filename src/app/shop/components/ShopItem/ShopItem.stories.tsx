@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import ShopItem, { type IShopItem } from "./ShopItem";
 
 const baseItem = {
-  id: "shop-item-1",
+  id: 1,
   name: "Hair 1",
   price: 900,
   categoryId: "hair",

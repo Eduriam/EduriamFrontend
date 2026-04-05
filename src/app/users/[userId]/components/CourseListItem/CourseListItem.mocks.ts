@@ -1,7 +1,7 @@
 import { ICourseListItem } from "./CourseListItem";
 
 const base: ICourseListItem = {
-  courseId: "test-course-javascript",
+  courseId: 201,
   title: "JavaScript",
   progress: 40,
   variant: "course",
@@ -9,7 +9,7 @@ const base: ICourseListItem = {
 };
 
 const learningPath: ICourseListItem = {
-  courseId: "test-learning-path-web",
+  courseId: 202,
   title: "HTML Developer",
   progress: 40,
   variant: "learning-path",
@@ -20,3 +20,4 @@ export const mockCourseListItemProps = {
   base,
   learningPath,
 };
+

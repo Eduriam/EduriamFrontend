@@ -1,3 +1,5 @@
+import { Id } from "domain/models/types/core";
+
 import type { AvatarDefinition } from "components/avatar/Avatar";
 
 export type ShopItemImage =
@@ -18,7 +20,7 @@ export interface ShopItem {
   id: Id;
   name: string;
   price: number;
-  categoryId: Id;
+  categoryId: string;
   bought: boolean;
   image: ShopItemImage;
   achievementLock?: ShopItemAchievementLock;

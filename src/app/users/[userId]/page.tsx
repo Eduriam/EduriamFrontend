@@ -9,7 +9,10 @@ import {
 } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
+import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -50,26 +53,35 @@ function resolveCourseLogoVariant(
 }
 
 const UsersPage: React.FC<IUsersPage> = ({ params }) => {
-  const { userProfile, mutate } = UsersAPI.useUser(params.userId);
+  const router = useRouter();
+  const userId = parseRequiredId(params.userId);
+  const safeUserId = userId ?? 0;
+  const { userProfile, mutate } = UsersAPI.useUser(safeUserId);
   const { user } = useAuth();
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
 
-  const isOwnProfile = user?.id === params.userId;
+  const isOwnProfile = userId !== null && user?.id === userId;
   const achievements = userProfile?.achievements ?? [];
   const courses = userProfile?.courses ?? [];
 
+  useEffect(() => {
+    if (userId === null) {
+      router.replace("/");
+    }
+  }, [router, userId]);
+
   const handleFollowChange = (isFollowed: boolean) => {
-    if (!userProfile || !user?.id) {
+    if (!userProfile || !user?.id || userId === null) {
       return;
     }
 
     mutate(
       async () => {
         if (isFollowed) {
-          await UserFollowingAPI.followUser(params.userId);
+          await UserFollowingAPI.followUser(userId);
         } else {
-          await UserFollowingAPI.unfollowUser(params.userId);
+          await UserFollowingAPI.unfollowUser(userId);
         }
 
         return { ...userProfile, isFollowed };
@@ -164,7 +176,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                   component="button"
                   type="button"
                   onClick={navigateWithTransition(
-                    `/users/${params.userId}/followers`,
+                    `/users/${safeUserId}/followers`,
                   )}
                   sx={{
                     cursor: "pointer",
@@ -181,7 +193,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                   component="button"
                   type="button"
                   onClick={navigateWithTransition(
-                    `/users/${params.userId}/followers?val=following`,
+                    `/users/${safeUserId}/followers?val=following`,
                   )}
                   sx={{
                     cursor: "pointer",
@@ -248,7 +260,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               variant="text"
               color="textPrimary"
               onClick={navigateWithTransition(
-                `/users/${params.userId}/achievements`,
+                `/users/${safeUserId}/achievements`,
               )}
               data-test="show-all-achievements-button"
             />
@@ -281,7 +293,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               variant="text"
               color="textPrimary"
               onClick={navigateWithTransition(
-                `/users/${params.userId}/courses`,
+                `/users/${safeUserId}/courses`,
               )}
               data-test="show-all-enrolled-courses-button"
             />

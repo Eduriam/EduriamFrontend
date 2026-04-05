@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { Subscription } from "./subscriptions/Subscriptions";
 
 export interface UserPrivate {
@@ -13,3 +14,4 @@ export interface UserPrivate {
 }
 
 export type UserRole = "USER" | "PREMIUM_USER";
+

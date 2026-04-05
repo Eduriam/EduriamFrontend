@@ -6,11 +6,13 @@ import {
   Header,
   PageRoot,
 } from "@eduriam/ui-core";
+import { Id } from "domain/models/types/core";
+import { parseId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -25,12 +27,21 @@ export interface ICourseChapterPage {}
 
 const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
+  const router = useRouter();
 
-  const params = useParams<{ courseId: Id; chapterId: Id }>();
-  const courseId = params.courseId ?? "";
-  const chapterId = params.chapterId ?? "";
+  const params = useParams();
+  const courseId = parseId(params?.courseId);
+  const chapterId = parseId(params?.chapterId);
+  const safeCourseId = courseId ?? 0;
+  const safeChapterId = chapterId ?? 0;
 
-  const { chapter } = ChaptersAPI.useChapter(courseId, chapterId);
+  const { chapter } = ChaptersAPI.useChapter(safeCourseId, safeChapterId);
+
+  useEffect(() => {
+    if (courseId === undefined || chapterId === undefined) {
+      router.replace("/courses");
+    }
+  }, [chapterId, courseId, router]);
 
   const sections = useMemo(() => chapter?.sections ?? [], [chapter?.sections]);
 
@@ -61,7 +72,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
           <BasicNavbar
             leftButton={{
               icon: "chevronLeft",
-              onClick: navigateWithTransition(`/courses/${courseId}`, {
+              onClick: navigateWithTransition(`/courses/${safeCourseId}`, {
                 direction: "back",
               }),
             }}

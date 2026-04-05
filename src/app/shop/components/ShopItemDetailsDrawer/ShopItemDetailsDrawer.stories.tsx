@@ -5,7 +5,7 @@ import ShopItemDetailsDrawer, {
 } from "./ShopItemDetailsDrawer";
 
 const item = {
-  id: "hair-2",
+  id: 2,
   name: "Hair 2",
   price: 900,
   categoryId: "hair",

@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
@@ -97,3 +99,4 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
 };
 
 export default RecommendedCoursesStep;
+

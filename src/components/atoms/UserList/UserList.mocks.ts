@@ -3,12 +3,12 @@ import { action } from "@storybook/addon-actions";
 import { IUserList } from "./UserList";
 
 const base: IUserList = {
-  currentUserId: "current-user-id",
+  currentUserId: 100,
   onUserClick: action("onUserClick"),
   onFollowToggle: action("onFollowToggle"),
   items: [
     {
-      id: "user-1",
+      id: 101,
       name: "User Name",
       username: "username",
       isFollowed: true,
@@ -24,7 +24,7 @@ const base: IUserList = {
       },
     },
     {
-      id: "user-2",
+      id: 102,
       name: "Another User",
       username: "another_username",
       isFollowed: false,
@@ -45,4 +45,5 @@ const base: IUserList = {
 export const mockUserListProps = {
   base,
 };
+
 

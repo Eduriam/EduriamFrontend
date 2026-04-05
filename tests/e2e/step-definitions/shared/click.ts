@@ -46,29 +46,38 @@ async function clickButtonByTestId(
     );
   }
 
-  const container = await findButtonContainer(world, buttonTestId);
+  let lastError: unknown;
 
-  const innerButton = container.locator("button").first();
-  const clickTarget = (await innerButton.count()) > 0 ? innerButton : container;
-  await clickTarget.scrollIntoViewIfNeeded();
-  await expect(clickTarget).toBeVisible({ timeout: 10000 });
-  await expect(clickTarget).toBeEnabled({ timeout: 10000 });
-  try {
-    await clickTarget.click({ timeout: 10000 });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    const isPointerInterceptError = message.includes(
-      "intercepts pointer events",
-    );
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const container = await findButtonContainer(world, buttonTestId);
+    const innerButton = container.locator("button").first();
+    const clickTarget =
+      (await innerButton.count()) > 0 ? innerButton : container;
 
-    if (!isPointerInterceptError) {
-      throw error;
+    try {
+      await expect(clickTarget).toBeVisible({ timeout: 10000 });
+      await expect(clickTarget).toBeEnabled({ timeout: 10000 });
+      await clickTarget.click({ timeout: 10000 });
+      return container;
+    } catch (error) {
+      lastError = error;
+      const message = error instanceof Error ? error.message : String(error);
+      const isRetriable =
+        message.includes("intercepts pointer events") ||
+        message.includes("not attached to the DOM") ||
+        message.includes("element is not stable");
+
+      if (!isRetriable || attempt === 2) {
+        if (message.includes("intercepts pointer events")) {
+          await clickTarget.click({ force: true, timeout: 10000 });
+          return container;
+        }
+        throw error;
+      }
     }
-
-    await clickTarget.click({ force: true, timeout: 10000 });
   }
 
-  return container;
+  throw lastError;
 }
 
 When(

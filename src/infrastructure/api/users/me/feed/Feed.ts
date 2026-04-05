@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { AvatarDefinition } from "components/avatar/Avatar";
 
 import { LeaderboardLeague } from "../leaderboard/Leaderboard";
@@ -43,3 +44,4 @@ export type MessageType =
   | "achievement_earned"
   | "league_promoted"
   | "course_completed";
+

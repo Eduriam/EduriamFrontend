@@ -6,6 +6,7 @@ import {
   Header,
   PageRoot,
 } from "@eduriam/ui-core";
+import { Id } from "domain/models/types/core";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import React from "react";
@@ -30,7 +31,7 @@ interface StudyPlanCourse
     IStudyPlanCourseCard,
     "title" | "logoVariant" | "data-test-learn-button"
   > {
-  id: string;
+  id: Id;
   /**
    * Optional data-test attribute for E2E tests.
    */
@@ -52,18 +53,20 @@ function toLogoVariant(
 }
 
 function mapCourseToStudyPlanCourse(course: UserCourse): StudyPlanCourse {
+  const courseId = course.id;
+
   return {
     id: course.id,
     title: course.name,
     logoVariant: toLogoVariant(course),
     dataTest:
-      course.id === "test-course-learn"
+      courseId === 1001
         ? "test-course-learn-card"
-        : course.id === "test-course-paused"
+        : courseId === 1002
           ? "test-course-paused-card"
           : undefined,
     "data-test-learn-button":
-      course.id === "test-course-learn"
+      courseId === 1001
         ? "start-test-course-learning-button"
         : undefined,
   };
@@ -117,11 +120,11 @@ const StudyPlanPage: React.FC = () => {
     React.useState<StudyPlanLaneId | null>(null);
 
   const [dragging, setDragging] = React.useState<{
-    courseId: string;
+    courseId: Id;
     fromLane: StudyPlanLaneId;
   } | null>(null);
 
-  const handleDragStart = (laneId: StudyPlanLaneId, courseId: string) => {
+  const handleDragStart = (laneId: StudyPlanLaneId, courseId: Id) => {
     setDragging({ courseId, fromLane: laneId });
   };
 
@@ -313,4 +316,3 @@ const StudyPlanPage: React.FC = () => {
 };
 
 export default StudyPlanPage;
-

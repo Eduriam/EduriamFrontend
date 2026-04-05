@@ -9,7 +9,7 @@ export default function AuthDecorator(Story: Story) {
   const mock: AuthContextType = {
     loading: false,
     user: {
-      id: "123",
+      id: 123,
       role: "PREMIUM_USER",
       username: "pepaokurka",
       balance: 999,

@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import type { AvatarDefinition } from "components/avatar/Avatar";
 
 import { LeaderboardLeague } from "./me/leaderboard/Leaderboard";
@@ -40,3 +41,4 @@ export interface ProfileCourse {
   logoId?: string;
   userProgress?: number;
 }
+

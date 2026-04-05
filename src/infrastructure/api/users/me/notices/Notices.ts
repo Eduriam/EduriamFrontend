@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import type { LeaderboardLeague } from "infrastructure/api/users/me/leaderboard/Leaderboard";
 
 export interface BaseNotice {
@@ -70,3 +71,4 @@ export type Notice =
   | FreeTrialEndNotice;
 
 export type NoticeType = Notice["type"];
+

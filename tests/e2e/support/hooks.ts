@@ -16,7 +16,7 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     return;
   }
   const user = {
-    id: "test-user",
+    id: 1001,
     username: "Test user",
     role: "USER",
     streak: 0,
@@ -54,3 +54,4 @@ After(async function (this: CustomWorld) {
     await this.closeBrowser();
   }
 });
+

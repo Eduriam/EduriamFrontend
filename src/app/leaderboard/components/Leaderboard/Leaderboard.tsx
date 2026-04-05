@@ -1,5 +1,7 @@
 "use client";
 
+import { Id } from "domain/models/types/core";
+
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
@@ -9,7 +11,7 @@ import LeaderboardListItem from "../LeaderboardListItem/LeaderboardListItem";
 import LeaderboardZoneDivider from "../LeaderboardZoneDivider/LeaderboardZoneDivider";
 
 export interface LeaderboardUser {
-  id: string;
+  id: Id;
   rank: number;
   name: string;
   avatarDefinition: AvatarDefinition;
@@ -28,7 +30,7 @@ export interface ILeaderboard {
   neutralLabel: string;
   demotionLabel: string;
   /** User id for highlighted row */
-  currentUserId?: string;
+  currentUserId?: Id;
   /** Optional data-test id for highlighted user row */
   currentUserDataTest?: string;
 }

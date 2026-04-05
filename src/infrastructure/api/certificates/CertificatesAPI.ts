@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import { Modify } from "domain/models/utils/modify";
 
 import API, { FetchHook } from "infrastructure/api/API";
@@ -29,3 +30,4 @@ const CertificatesAPI = {
 };
 
 export default CertificatesAPI;
+

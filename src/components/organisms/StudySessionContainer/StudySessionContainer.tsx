@@ -7,6 +7,7 @@ import {
   StudySession,
   StudySessionDTO,
 } from "@eduriam/ui-x";
+import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import {
   STUDY_BLOCK_REPORT_DATA_TEST,

@@ -5,7 +5,7 @@ import { setStudySessionVariant } from "../../util/mockoon-env";
 
 const FRONTEND_PORT = process.env.TEST_FRONTEND_PORT || "3000";
 const BASE_URL = `http://localhost:${FRONTEND_PORT}`;
-const LESSON_ID = "test-lesson-id";
+const LESSON_ID = "4001";
 
 async function navigateToStudyPageWithDefinedLesson(
   world: CustomWorld,

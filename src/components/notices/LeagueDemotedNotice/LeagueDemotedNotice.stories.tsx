@@ -17,8 +17,9 @@ export const Base = Template.bind({});
 
 Base.args = {
   notice: {
-    id: "notice-1",
+    id: 1,
     type: "LEAGUE_DEMOTED",
     league: "emerald",
   },
 } as LeagueDemotedNoticeProps;
+

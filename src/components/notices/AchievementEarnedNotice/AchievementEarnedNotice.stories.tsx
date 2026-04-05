@@ -17,9 +17,10 @@ export const Base = Template.bind({});
 
 Base.args = {
   notice: {
-    id: "notice-1",
+    id: 1,
     type: "ACHIEVEMENT_EARNED",
     title: "Skvělý student",
     description: "Dokončil jsi 100 lekcí.",
+    badgeIconName: "achievement-1",
   },
 } as AchievementEarnedNoticeProps;

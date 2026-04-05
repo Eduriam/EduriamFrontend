@@ -5,6 +5,7 @@ import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
+import { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -42,7 +43,7 @@ const ShopPage: React.FC<IShopPage> = () => {
   const streakFreezeItems = useMemo(
     () =>
       STREAK_FREEZE_IDS.map((id) =>
-        shopItems.find((item) => item.id === id),
+        shopItems.find((item) => String(item.id) === id),
       ).filter((item): item is NonNullable<typeof item> => Boolean(item)),
     [shopItems],
   );
@@ -186,4 +187,3 @@ const ShopPage: React.FC<IShopPage> = () => {
 };
 
 export default ShopPage;
-

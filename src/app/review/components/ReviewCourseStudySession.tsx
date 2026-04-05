@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { useCallback, useState } from "react";
 
 import dynamic from "next/dynamic";
@@ -88,3 +90,4 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
 };
 
 export default ReviewCourseStudySession;
+

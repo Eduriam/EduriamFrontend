@@ -7,7 +7,7 @@ export interface SignupRequestBody {
 }
 
 export interface SignupResponseBody {
-  idToken: Id;
-  refreshToken: Id;
+  idToken: string;
+  refreshToken: string;
   user: UserPrivate;
 }

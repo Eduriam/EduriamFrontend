@@ -144,7 +144,7 @@ const LeaderboardPage: React.FC = () => {
                     promotionLabel="Promotion Zone"
                     neutralLabel=""
                     demotionLabel="Demotion Zone"
-                    currentUserId={user?.id}
+                    currentUserId={user?.id ?? undefined}
                     currentUserDataTest="current-user-leaderboard-section"
                   />
                 </Box>

@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import { Icon } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
 
@@ -84,4 +86,5 @@ const UserList: React.FC<IUserList> = ({
 };
 
 export default UserList;
+
 

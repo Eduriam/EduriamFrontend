@@ -4,7 +4,10 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { Stack } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -35,11 +38,20 @@ function resolveCourseLogoVariant(
 }
 
 const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
-  const { userProfile } = UsersAPI.useUser(params.userId);
+  const router = useRouter();
+  const userId = parseRequiredId(params.userId);
+  const safeUserId = userId ?? 0;
+  const { userProfile } = UsersAPI.useUser(safeUserId);
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
 
   const courses = userProfile?.courses ?? [];
+
+  useEffect(() => {
+    if (userId === null) {
+      router.replace("/");
+    }
+  }, [router, userId]);
 
   return (
     <PageRoot>
@@ -47,7 +59,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
         header={t("userProfile.userCourses")}
         leftButton={{
           icon: "arrowLeft",
-          onClick: navigateWithTransition(`/users/${params.userId}`, {
+          onClick: navigateWithTransition(`/users/${safeUserId}`, {
             direction: "back",
           }),
         }}

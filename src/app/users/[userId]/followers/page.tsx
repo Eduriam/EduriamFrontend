@@ -1,5 +1,6 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
 import {
   BasicNavbar,
   ContentContainer,
@@ -7,11 +8,12 @@ import {
   Tabs,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import UserList from "components/atoms/UserList/UserList";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
@@ -58,10 +60,13 @@ function normalizeUserList<T>(data: unknown): Array<T> {
 }
 
 const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
   const { user } = useAuth();
+  const userId = parseRequiredId(params.userId);
+  const safeUserId = userId ?? 0;
 
   function getInitialState(): "followers" | "following" {
     switch (searchParams?.get("val")) {
@@ -78,11 +83,17 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
     getInitialState,
   );
   const { followers, mutate: mutateFollowers } = FollowersAPI.useFollowers(
-    params.userId,
+    safeUserId,
   );
   const { following, mutate: mutateFollowing } = FollowingAPI.useFollowing(
-    params.userId,
+    safeUserId,
   );
+
+  useEffect(() => {
+    if (userId === null) {
+      router.replace("/");
+    }
+  }, [router, userId]);
 
   const tabs = useMemo(
     () => [
@@ -143,7 +154,7 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
           <BasicNavbar
             leftButton={{
               icon: "arrowLeft",
-              onClick: navigateWithTransition(`/users/${params.userId}`, {
+              onClick: navigateWithTransition(`/users/${safeUserId}`, {
                 direction: "back",
               }),
             }}

@@ -4,12 +4,12 @@ import type { ICourseDetailsDrawer, PrerequisiteItem } from "./CourseDetailsDraw
 
 const defaultPrerequisites: PrerequisiteItem[] = [
   {
-    courseId: "html-beginner",
+    courseId: 101,
     courseName: "HTML Beginner",
     completed: true,
   },
   {
-    courseId: "css-advanced",
+    courseId: 102,
     courseName: "CSS Advanced",
     completed: false,
   },
@@ -27,3 +27,4 @@ export const mockCourseDetailsDrawerProps: ICourseDetailsDrawer = {
   prerequisites: defaultPrerequisites,
   description: defaultDescription,
 };
+

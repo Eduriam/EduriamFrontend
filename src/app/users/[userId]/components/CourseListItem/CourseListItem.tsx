@@ -1,5 +1,6 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
 import { ProgressBar } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";

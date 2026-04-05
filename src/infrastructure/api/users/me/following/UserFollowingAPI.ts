@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import API from "infrastructure/api/API";
 
 export interface FollowingParams {}
@@ -15,3 +16,4 @@ const UserFollowingAPI = {
 };
 
 export default UserFollowingAPI;
+

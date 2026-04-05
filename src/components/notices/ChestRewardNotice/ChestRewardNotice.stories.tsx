@@ -15,9 +15,11 @@ export const Base = Template.bind({});
 
 Base.args = {
   notice: {
-    id: "notice-1",
+    id: 1,
     type: "CHEST_REWARD",
-    chestId: "chest-1",
+    chestId: 1,
     reward: 10,
   },
 } as ChestRewardNoticeProps;
+
+

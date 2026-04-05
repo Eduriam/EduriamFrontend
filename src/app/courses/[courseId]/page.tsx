@@ -11,11 +11,12 @@ import {
 } from "@eduriam/ui-core";
 import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { useTranslation } from "i18n/client";
+import { parseId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { Box, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -36,18 +37,26 @@ export interface ICoursePage {}
 const CoursePage: React.FC<ICoursePage> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
+  const router = useRouter();
   const { user } = useAuth();
 
-  const params = useParams<{ courseId: Id }>();
-  const courseId = params.courseId ?? "";
+  const params = useParams();
+  const courseId = parseId(params?.courseId);
 
-  const { course } = CoursesAPI.useCourse(courseId);
+  const { course } = CoursesAPI.useCourse(courseId ?? 0);
+
+  useEffect(() => {
+    if (courseId === undefined) {
+      router.replace("/courses");
+    }
+  }, [courseId, router]);
 
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
 
   const isPremiumUser = user?.role === "PREMIUM_USER";
-  const hasCertificate = course?.userCertificate !== null;
+  const hasCertificate =
+    course?.userCertificate !== null && course?.userCertificate !== undefined;
   const premiumLabel = t("courses.premiumLabel");
 
   const shouldRedirectToPremiumBecauseNoEnergy =
@@ -118,9 +127,8 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
     // Premium users with a certificate go directly to the certificate page.
     if (hasCertificate) {
-      const certificateId =
-        course?.userCertificate ?? ("test-course-certificate" as Id);
-      if (certificateId) {
+      const certificateId = course?.userCertificate;
+      if (certificateId !== null && certificateId !== undefined) {
         navigateWithTransition(`/certificates/${certificateId}`)();
         return;
       }

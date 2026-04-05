@@ -1,7 +1,8 @@
 "use client";
 
 import { PageRoot } from "@eduriam/ui-core";
-import LearnLessonStudySession from "./components/LearnLessonStudySession";
+import { Id } from "domain/models/types/core";
+import { parseId } from "util/functions/api";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -9,20 +10,22 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 
+import LearnLessonStudySession from "./components/LearnLessonStudySession";
+
 export interface IStudyPage {}
 const StudyPage: React.FC<IStudyPage> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const lessonIdParam = searchParams.get("lessonId") ?? undefined;
-  const courseIdParam = searchParams.get("courseId") ?? undefined;
+  const lessonIdRaw = searchParams.get("lessonId");
+  const courseIdRaw = searchParams.get("courseId");
+  const lessonIdParam = parseId(lessonIdRaw);
+  const courseIdParam = parseId(courseIdRaw);
   const shouldRedirectToHomeOnInitialLoad = useRef(
     !lessonIdParam && !courseIdParam,
   );
-  const [lessonId, setLessonId] = useState<Id | undefined>(
-    () => lessonIdParam,
-  );
-  const [isResolvingCourseLesson, setIsResolvingCourseLesson] = useState(
-    () => Boolean(courseIdParam && !lessonIdParam),
+  const [lessonId, setLessonId] = useState<Id | undefined>(() => lessonIdParam);
+  const [isResolvingCourseLesson, setIsResolvingCourseLesson] = useState(() =>
+    Boolean(courseIdParam && !lessonIdParam),
   );
 
   useEffect(() => {
@@ -34,7 +37,17 @@ const StudyPage: React.FC<IStudyPage> = () => {
   useEffect(() => {
     let isCancelled = false;
 
-    if (lessonIdParam) {
+    if (lessonIdRaw && lessonIdParam === undefined) {
+      router.replace("/", { scroll: false });
+      return;
+    }
+
+    if (courseIdRaw && courseIdParam === undefined) {
+      router.replace("/", { scroll: false });
+      return;
+    }
+
+    if (lessonIdParam !== undefined) {
       setLessonId(lessonIdParam);
       setIsResolvingCourseLesson(false);
       router.replace("/study", {
@@ -43,7 +56,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
       return;
     }
 
-    if (!courseIdParam) {
+    if (courseIdParam === undefined) {
       setIsResolvingCourseLesson(false);
       return;
     }
@@ -53,12 +66,15 @@ const StudyPage: React.FC<IStudyPage> = () => {
     const resolveUpcomingLessonId = async () => {
       try {
         const course = await CoursesAPI.getCourse(courseIdParam);
+        const resolvedLessonId = parseId(course.upcomingLessonId);
         if (!isCancelled) {
-          setLessonId(course.upcomingLessonId);
+          setLessonId(resolvedLessonId);
           setIsResolvingCourseLesson(false);
-          router.replace("/study", {
-            scroll: false,
-          });
+          if (resolvedLessonId === undefined) {
+            router.replace("/", { scroll: false });
+            return;
+          }
+          router.replace("/study", { scroll: false });
         }
       } catch {
         if (!isCancelled) {
@@ -73,7 +89,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
     return () => {
       isCancelled = true;
     };
-  }, [courseIdParam, lessonIdParam, router]);
+  }, [courseIdParam, courseIdRaw, lessonIdParam, lessonIdRaw, router]);
 
   if (isResolvingCourseLesson) {
     return null;

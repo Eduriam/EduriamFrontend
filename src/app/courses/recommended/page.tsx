@@ -1,5 +1,7 @@
 "use client";
 
+import type { Id } from "domain/models/types/core";
+
 import {
   BasicNavbar,
   ContentContainer,
@@ -160,3 +162,4 @@ const RecommendedCoursesPage: React.FC = () => {
 };
 
 export default RecommendedCoursesPage;
+

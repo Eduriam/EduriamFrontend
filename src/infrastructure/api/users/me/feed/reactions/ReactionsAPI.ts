@@ -1,3 +1,4 @@
+import type { Id } from "domain/models/types/core";
 import API from "infrastructure/api/API";
 
 import { ReactionId } from "./Reactions";
@@ -17,3 +18,4 @@ const ReactionsAPI = {
 };
 
 export default ReactionsAPI;
+
