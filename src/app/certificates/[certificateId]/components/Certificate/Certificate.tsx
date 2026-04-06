@@ -12,8 +12,8 @@ export interface ICertificate {
   userName: string;
   /** Name of the completed course. */
   courseName: string;
-  /** Date when the course was completed (formatted string, e.g. "July 23, 2026"). */
-  completedAt: string;
+  /** Certificate issuance date (formatted string, e.g. "July 23, 2026"). */
+  createdAt: string;
   /** Optional data attribute for E2E tests. */
   "data-test"?: string;
 }
@@ -21,7 +21,7 @@ export interface ICertificate {
 const Certificate: React.FC<ICertificate> = ({
   userName,
   courseName,
-  completedAt,
+  createdAt,
   "data-test": dataTest,
 }) => {
   const { t } = useTranslation("common");
@@ -77,7 +77,7 @@ const Certificate: React.FC<ICertificate> = ({
             <Header variant="section" text={courseName} align="center" />
 
             <Typography variant="body1" align="center" color="text.secondary">
-              {completedAt}
+              {createdAt}
             </Typography>
           </Stack>
         </Stack>

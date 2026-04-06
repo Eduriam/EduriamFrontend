@@ -15,9 +15,9 @@ export default {
       control: "text",
       description: "Name of the completed course",
     },
-    completedAt: {
+    createdAt: {
       control: "text",
-      description: "Date when the course was completed",
+      description: "Certificate issuance date",
     },
   },
 } as ComponentMeta<typeof Certificate>;

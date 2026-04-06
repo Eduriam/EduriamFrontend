@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import CertificatesAPI from "infrastructure/api/certificates/CertificatesAPI";
+import { CertificatesService } from "infrastructure/services/certificates/CertificatesService";
 
 import Certificate from "./components/Certificate/Certificate";
 
@@ -19,7 +19,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
   const params = useParams();
   const certificateId = parseId(params?.certificateId);
 
-  const { certificate } = CertificatesAPI.useCertificate(certificateId ?? 0);
+  const { certificate } = CertificatesService.useCertificate(certificateId ?? 0);
 
   useEffect(() => {
     if (certificateId === undefined) {
@@ -94,7 +94,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
         <Certificate
           userName={certificate?.userName ?? ""}
           courseName={certificate?.courseName ?? ""}
-          completedAt={certificate?.completedAt ?? ""}
+          createdAt={certificate?.createdAt ?? ""}
           data-test="certificate-section"
         />
       </ContentContainer>
