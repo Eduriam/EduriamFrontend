@@ -1,5 +1,5 @@
 import type { Id } from "domain/models/types/core";
-import type { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 
 import { LeaderboardLeague } from "./me/leaderboard/Leaderboard";
 
@@ -10,7 +10,7 @@ export interface UserProfile {
   level: number;
   league: LeaderboardLeague;
   name: string;
-  avatarDefinition?: AvatarDefinition;
+  avatarDefinition?: AvatarModel;
   isFollowed: boolean;
   username: string;
   streak: number;

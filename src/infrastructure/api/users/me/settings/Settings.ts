@@ -1,4 +1,4 @@
-import type { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 
 export interface Settings {
   username: string;
@@ -6,7 +6,7 @@ export interface Settings {
   email: string;
   dailyGoal: DailyGoal;
   coursePreferences?: CoursePreferences;
-  avatarDefinition?: AvatarDefinition;
+  avatarDefinition?: AvatarModel;
   themeMode: ThemeMode;
   notificationPreferences: NotificationPreferences;
 }

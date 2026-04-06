@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { AvatarHair } from "infrastructure/api/generated/models";
+
 import ShopItem, { type IShopItem } from "./ShopItem";
 
 const baseItem = {
@@ -11,7 +13,7 @@ const baseItem = {
   image: {
     type: "avatar",
     avatar: {
-      hair: "hair_2",
+      hair: AvatarHair.Hair2,
     },
   } as const,
 };

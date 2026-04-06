@@ -1,5 +1,16 @@
 import { action } from "@storybook/addon-actions";
 
+import {
+  AvatarBackgroundColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarSkinColor,
+} from "infrastructure/api/generated/models";
+
 import { IFeedCard } from "./FeedCard";
 
 const base: IFeedCard = {
@@ -9,14 +20,14 @@ const base: IFeedCard = {
     id: 1,
     author: "Pepa Okurka",
     avatarDefinition: {
-      skinColor: "light",
-      eyes: "eyes_1",
-      eyeColor: "brown",
-      expression: "expression_1",
-      hair: "hair_1",
-      hairColor: "mediumBrown",
-      clothing: "shirt_1",
-      backgroundColor: "lightGray",
+      skinColor: AvatarSkinColor.Light,
+      eyes: AvatarEyes.Eyes1,
+      eyeColor: AvatarEyeColor.Brown,
+      expression: AvatarExpression.Expression1,
+      hair: AvatarHair.Hair1,
+      hairColor: AvatarHairColor.MediumBrown,
+      clothing: AvatarClothing.Shirt1,
+      backgroundColor: AvatarBackgroundColor.LightGray,
     },
     message: "streak_milestone",
     streak: 120,

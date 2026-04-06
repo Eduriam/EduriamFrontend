@@ -19,12 +19,10 @@ import UserList from "components/atoms/UserList/UserList";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { Follower } from "infrastructure/api/users/followers/Followers";
-import FollowersAPI from "infrastructure/api/users/followers/FollowersAPI";
-import { Following } from "infrastructure/api/users/following/Following";
-import FollowingAPI from "infrastructure/api/users/following/FollowingAPI";
-import UserFollowingAPI from "infrastructure/api/users/me/following/UserFollowingAPI";
+import type { GetFollowerModel } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
+import { UserService } from "infrastructure/services/users/UserService";
+import { UsersService } from "infrastructure/services/users/UsersService";
 
 export interface IFollowersPage {
   params: {
@@ -82,10 +80,10 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
   const [value, setValue] = useState<"followers" | "following">(
     getInitialState,
   );
-  const { followers, mutate: mutateFollowers } = FollowersAPI.useFollowers(
+  const { followers, mutate: mutateFollowers } = UsersService.useFollowers(
     safeUserId,
   );
-  const { following, mutate: mutateFollowing } = FollowingAPI.useFollowing(
+  const { following, mutate: mutateFollowing } = UsersService.useFollowing(
     safeUserId,
   );
 
@@ -103,8 +101,8 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
     [t],
   );
 
-  const followerItems = normalizeUserList<Follower>(followers);
-  const followingItems = normalizeUserList<Following>(following);
+  const followerItems = normalizeUserList<GetFollowerModel>(followers);
+  const followingItems = normalizeUserList<GetFollowerModel>(following);
   const items = value === "followers" ? followerItems : followingItems;
 
   const updateFollower = (itemId: Id, isFollowed: boolean) => {
@@ -118,13 +116,13 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
 
     mutateFollowers(async () => {
       if (isFollowed) {
-        await UserFollowingAPI.followUser(itemId);
+        await UserService.followUser(itemId);
       } else {
-        await UserFollowingAPI.unfollowUser(itemId);
+        await UserService.unfollowUser(itemId);
       }
 
       return nextFollowers;
-    }, optimisticMutationOption<Array<Follower>>(nextFollowers));
+    }, optimisticMutationOption<Array<GetFollowerModel>>(nextFollowers));
   };
 
   const updateFollowing = (itemId: Id, isFollowed: boolean) => {
@@ -138,13 +136,13 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
 
     mutateFollowing(async () => {
       if (isFollowed) {
-        await UserFollowingAPI.followUser(itemId);
+        await UserService.followUser(itemId);
       } else {
-        await UserFollowingAPI.unfollowUser(itemId);
+        await UserService.unfollowUser(itemId);
       }
 
       return nextFollowing;
-    }, optimisticMutationOption<Array<Following>>(nextFollowing));
+    }, optimisticMutationOption<Array<GetFollowerModel>>(nextFollowing));
   };
 
   return (

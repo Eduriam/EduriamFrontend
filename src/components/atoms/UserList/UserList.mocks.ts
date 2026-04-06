@@ -1,5 +1,16 @@
 import { action } from "@storybook/addon-actions";
 
+import {
+  AvatarBackgroundColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarSkinColor,
+} from "infrastructure/api/generated/models";
+
 import { IUserList } from "./UserList";
 
 const base: IUserList = {
@@ -13,14 +24,14 @@ const base: IUserList = {
       username: "username",
       isFollowed: true,
       avatarDefinition: {
-        skinColor: "light",
-        eyes: "eyes_1",
-        eyeColor: "darkBrown",
-        expression: "expression_1",
-        hair: "hair_1",
-        hairColor: "darkBrown",
-        clothing: "shirt_1",
-        backgroundColor: "lightGray",
+        skinColor: AvatarSkinColor.Light,
+        eyes: AvatarEyes.Eyes1,
+        eyeColor: AvatarEyeColor.DarkBrown,
+        expression: AvatarExpression.Expression1,
+        hair: AvatarHair.Hair1,
+        hairColor: AvatarHairColor.DarkBrown,
+        clothing: AvatarClothing.Shirt1,
+        backgroundColor: AvatarBackgroundColor.LightGray,
       },
     },
     {
@@ -29,14 +40,14 @@ const base: IUserList = {
       username: "another_username",
       isFollowed: false,
       avatarDefinition: {
-        skinColor: "light",
-        eyes: "eyes_1",
-        eyeColor: "darkBrown",
-        expression: "expression_1",
-        hair: "hair_1",
-        hairColor: "darkBrown",
-        clothing: "shirt_1",
-        backgroundColor: "lightGray",
+        skinColor: AvatarSkinColor.Light,
+        eyes: AvatarEyes.Eyes1,
+        eyeColor: AvatarEyeColor.DarkBrown,
+        expression: AvatarExpression.Expression1,
+        hair: AvatarHair.Hair1,
+        hairColor: AvatarHairColor.DarkBrown,
+        clothing: AvatarClothing.Shirt1,
+        backgroundColor: AvatarBackgroundColor.LightGray,
       },
     },
   ],

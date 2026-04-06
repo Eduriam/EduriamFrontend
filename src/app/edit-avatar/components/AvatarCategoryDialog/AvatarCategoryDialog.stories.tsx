@@ -2,6 +2,11 @@ import type { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import { buildShopAvatar } from "app/shop/utils/avatar";
 
+import {
+  AvatarHair,
+  AvatarHairColor,
+} from "infrastructure/api/generated/models";
+
 import AvatarCategoryDialog, {
   type IAvatarCategoryDialog,
 } from "./AvatarCategoryDialog";
@@ -25,9 +30,12 @@ Open.args = {
     labelKey: "avatarEditor.fields.hair",
     itemField: "hair",
     colorField: "hairColor",
-    itemValues: ["hair_1", "hair_2"],
-    colorValues: ["darkBrown", "blond"],
+    itemValues: [AvatarHair.Hair1, AvatarHair.Hair2],
+    colorValues: [AvatarHairColor.DarkBrown, AvatarHairColor.Blond],
   },
-  draftAvatar: buildShopAvatar({ hair: "hair_1", hairColor: "darkBrown" }),
+  draftAvatar: buildShopAvatar({
+    hair: AvatarHair.Hair1,
+    hairColor: AvatarHairColor.DarkBrown,
+  }),
   onSelectOption: () => undefined,
 } as IAvatarCategoryDialog;

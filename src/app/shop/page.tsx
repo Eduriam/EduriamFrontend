@@ -14,11 +14,11 @@ import { useMemo, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import type { AvatarDefinition } from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
 import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -69,7 +69,7 @@ const ShopPage: React.FC<IShopPage> = () => {
       : undefined;
 
   const previewAvatarByCategory = useMemo(() => {
-    const entries = new Map<string, Partial<AvatarDefinition>>();
+    const entries = new Map<string, Partial<AvatarModel>>();
 
     shopItems.forEach((item) => {
       if (item.image.type === "avatar" && !entries.has(item.categoryId)) {

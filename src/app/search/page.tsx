@@ -15,10 +15,9 @@ import UserList from "components/atoms/UserList/UserList";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { UserSummary } from "infrastructure/api/users/Users";
-import UsersAPI from "infrastructure/api/users/UsersAPI";
-import UserFollowingAPI from "infrastructure/api/users/me/following/UserFollowingAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { UserService } from "infrastructure/services/users/UserService";
+import { UserSummary, UsersService } from "infrastructure/services/users/UsersService";
 
 import SearchTextField from "./components/SearchTextField/SearchTextField";
 
@@ -54,7 +53,7 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
   const [searchPrompt, setSearchPrompt] = useState("");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user } = useAuth();
-  const { users, mutate } = UsersAPI.useUsers({
+  const { users, mutate } = UsersService.useUsers({
     searchName: searchPrompt.toLowerCase(),
   });
 
@@ -71,9 +70,9 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
 
     mutate(async () => {
       if (isFollowed) {
-        await UserFollowingAPI.followUser(targetUserId);
+        await UserService.followUser(targetUserId);
       } else {
-        await UserFollowingAPI.unfollowUser(targetUserId);
+        await UserService.unfollowUser(targetUserId);
       }
 
       return nextUsers;

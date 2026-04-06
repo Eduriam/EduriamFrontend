@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 
-import UsersAPI from "infrastructure/api/users/UsersAPI";
+import { UsersService } from "infrastructure/services/users/UsersService";
 
 import AchievementBadge from "../components/AchievementBadge/AchievementBadge";
 
@@ -25,7 +25,7 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({ params }) => 
   const router = useRouter();
   const userId = parseRequiredId(params.userId);
   const safeUserId = userId ?? 0;
-  const { userProfile } = UsersAPI.useUser(safeUserId);
+  const { userProfile } = UsersService.useUser(safeUserId);
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
 

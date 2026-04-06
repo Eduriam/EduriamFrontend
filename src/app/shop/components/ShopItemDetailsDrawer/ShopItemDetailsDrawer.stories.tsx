@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { AvatarHair } from "infrastructure/api/generated/models";
+
 import ShopItemDetailsDrawer, {
   type IShopItemDetailsDrawer,
 } from "./ShopItemDetailsDrawer";
@@ -13,7 +15,7 @@ const item = {
   image: {
     type: "avatar",
     avatar: {
-      hair: "hair_2",
+      hair: AvatarHair.Hair2,
     },
   } as const,
 };

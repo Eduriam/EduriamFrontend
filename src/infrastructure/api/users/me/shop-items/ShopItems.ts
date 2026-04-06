@@ -1,6 +1,6 @@
 import { Id } from "domain/models/types/core";
 
-import type { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 
 export type ShopItemImage =
   | {
@@ -9,7 +9,7 @@ export type ShopItemImage =
     }
   | {
       type: "avatar";
-      avatar: Partial<AvatarDefinition>;
+      avatar: Partial<AvatarModel>;
     };
 
 export interface ShopItemAchievementLock {

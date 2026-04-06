@@ -2,6 +2,23 @@
 
 import Box from "@mui/material/Box";
 
+import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  type AvatarModel,
+  AvatarSkinColor,
+} from "infrastructure/api/generated/models";
+
 import type {
   BackgroundColorKey,
   BeardColorKey,
@@ -31,11 +48,7 @@ export type BeardKey = "beard_1" | "beard_2" | "none";
 export type HeadwearKey = "hat_1" | "hat_2" | "none";
 export type ClothingKey = "shirt_1" | "shirt_2";
 
-/**
- * Full avatar definition.
- * Each layer can be optionally set; missing layers are omitted from rendering.
- */
-export interface AvatarDefinition {
+interface LegacyAvatarDefinition {
   skinColor?: SkinColorKey;
   eyes?: EyesKey;
   eyeColor?: EyeColorKey;
@@ -51,6 +64,13 @@ export interface AvatarDefinition {
   backgroundColor?: BackgroundColorKey;
 }
 
+/**
+ * Avatar definition sourced from generated OpenAPI model.
+ * Legacy string shape stays supported during migration.
+ * TODO: remove legacy definition if possible
+ */
+export type AvatarDefinition = AvatarModel | LegacyAvatarDefinition;
+
 export interface AvatarProps {
   definition: AvatarDefinition;
   size?: number | "small" | "medium" | "large";
@@ -64,6 +84,115 @@ const sizeToPixels: Record<string, number> = {
 };
 
 const AVATAR_BASE = "/images/avatar";
+
+const skinColorMap: Record<number, SkinColorKey> = {
+  [AvatarSkinColor.Light]: "light",
+  [AvatarSkinColor.Fair]: "fair",
+  [AvatarSkinColor.LightMedium]: "lightMedium",
+  [AvatarSkinColor.Medium]: "medium",
+  [AvatarSkinColor.Olive]: "olive",
+  [AvatarSkinColor.Dark]: "dark",
+  [AvatarSkinColor.DeepDark]: "deepDark",
+};
+
+const eyesMap: Record<number, EyesKey> = {
+  [AvatarEyes.Eyes1]: "eyes_1",
+  [AvatarEyes.Eyes2]: "eyes_2",
+};
+
+const eyeColorMap: Record<number, EyeColorKey> = {
+  [AvatarEyeColor.DarkBrown]: "darkBrown",
+  [AvatarEyeColor.Brown]: "brown",
+  [AvatarEyeColor.Blue]: "blue",
+  [AvatarEyeColor.Green]: "green",
+  [AvatarEyeColor.Hazel]: "hazel",
+  [AvatarEyeColor.White]: "white",
+};
+
+const expressionMap: Record<number, ExpressionKey> = {
+  [AvatarExpression.Expression1]: "expression_1",
+  [AvatarExpression.Expression2]: "expression_2",
+};
+
+const hairMap: Record<number, HairKey> = {
+  [AvatarHair.Hair1]: "hair_1",
+  [AvatarHair.Hair2]: "hair_2",
+  [AvatarHair.None]: "none",
+};
+
+const hairColorMap: Record<number, HairColorKey> = {
+  [AvatarHairColor.Black]: "black",
+  [AvatarHairColor.DarkBrown]: "darkBrown",
+  [AvatarHairColor.MediumBrown]: "mediumBrown",
+  [AvatarHairColor.LightBrown]: "lightBrown",
+  [AvatarHairColor.Blond]: "blond",
+  [AvatarHairColor.Gray]: "gray",
+  [AvatarHairColor.White]: "white",
+  [AvatarHairColor.Red]: "red",
+};
+
+const accessoriesMap: Record<number, AccessoriesKey> = {
+  [AvatarAccessories.Glasses1]: "glasses_1",
+  [AvatarAccessories.None]: "none",
+};
+
+const glassesColorMap: Record<number, GlassesColorKey> = {
+  [AvatarGlassesColor.Black]: "black",
+  [AvatarGlassesColor.DarkGray]: "darkGray",
+  [AvatarGlassesColor.Brown]: "brown",
+  [AvatarGlassesColor.Navy]: "navy",
+};
+
+const beardMap: Record<number, BeardKey> = {
+  [AvatarBeard.Beard1]: "beard_1",
+  [AvatarBeard.Beard2]: "beard_2",
+  [AvatarBeard.None]: "none",
+};
+
+const beardColorMap: Record<number, BeardColorKey> = {
+  [AvatarBeardColor.Black]: "black",
+  [AvatarBeardColor.DarkBrown]: "darkBrown",
+  [AvatarBeardColor.MediumBrown]: "mediumBrown",
+  [AvatarBeardColor.Blond]: "blond",
+  [AvatarBeardColor.Gray]: "gray",
+  [AvatarBeardColor.White]: "white",
+};
+
+const headwearMap: Record<number, HeadwearKey> = {
+  [AvatarHeadwear.Hat1]: "hat_1",
+  [AvatarHeadwear.Hat2]: "hat_2",
+  [AvatarHeadwear.None]: "none",
+};
+
+const clothingMap: Record<number, ClothingKey> = {
+  [AvatarClothing.Shirt1]: "shirt_1",
+  [AvatarClothing.Shirt2]: "shirt_2",
+};
+
+const backgroundColorMap: Record<number, BackgroundColorKey> = {
+  [AvatarBackgroundColor.LightGray]: "lightGray",
+  [AvatarBackgroundColor.PastelCyan]: "pastelCyan",
+  [AvatarBackgroundColor.PastelOrange]: "pastelOrange",
+  [AvatarBackgroundColor.PastelPurple]: "pastelPurple",
+  [AvatarBackgroundColor.PastelGreen]: "pastelGreen",
+  [AvatarBackgroundColor.PastelPeach]: "pastelPeach",
+};
+
+function toMappedValue<T extends string>(
+  value: unknown,
+  map: Record<number, T>,
+): T | undefined {
+  if (typeof value === "number") {
+    return map[value];
+  }
+
+  // Keep compatibility with legacy string payloads while model migration is ongoing.
+  if (typeof value === "string") {
+    return value as T;
+  }
+
+  return undefined;
+}
 
 function getLayerPath(layerName: string, option: string): string {
   if (option === "none") {
@@ -136,8 +265,25 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const pixels = typeof size === "number" ? size : (sizeToPixels[size] ?? 64);
 
-  const bgColor = definition.backgroundColor
-    ? backgroundColors[definition.backgroundColor]
+  const backgroundColor = toMappedValue(
+    definition.backgroundColor,
+    backgroundColorMap,
+  );
+  const skinColor = toMappedValue(definition.skinColor, skinColorMap);
+  const eyes = toMappedValue(definition.eyes, eyesMap);
+  const eyeColor = toMappedValue(definition.eyeColor, eyeColorMap);
+  const expression = toMappedValue(definition.expression, expressionMap);
+  const hair = toMappedValue(definition.hair, hairMap);
+  const hairColor = toMappedValue(definition.hairColor, hairColorMap);
+  const accessories = toMappedValue(definition.accessories, accessoriesMap);
+  const glassesColor = toMappedValue(definition.glassesColor, glassesColorMap);
+  const beard = toMappedValue(definition.beard, beardMap);
+  const beardColor = toMappedValue(definition.beardColor, beardColorMap);
+  const headwear = toMappedValue(definition.headwear, headwearMap);
+  const clothing = toMappedValue(definition.clothing, clothingMap);
+
+  const bgColor = backgroundColor
+    ? backgroundColors[backgroundColor]
     : undefined;
 
   const layers: Array<{
@@ -156,106 +302,96 @@ const Avatar: React.FC<AvatarProps> = ({
   }
 
   // 2. Hair back (behind body)
-  if (definition.hair && definition.hair !== "none") {
-    const hairBackPath = getLayerPath("hair_back", definition.hair);
+  if (hair && hair !== "none") {
+    const hairBackPath = getLayerPath("hair_back", hair);
     if (hairBackPath) {
       layers.push({
         path: hairBackPath,
-        color: definition.hairColor
-          ? hairColors[definition.hairColor]
-          : undefined,
+        color: hairColor ? hairColors[hairColor] : undefined,
         key: "hair_back",
       });
     }
   }
 
   // 3. Body
-  if (definition.skinColor) {
+  if (skinColor) {
     const path = getLayerPath("body", "default");
     if (path) {
       layers.push({
         path,
-        color: definition.skinColor
-          ? skinColors[definition.skinColor]
-          : undefined,
+        color: skinColors[skinColor],
         key: "body",
       });
     }
   }
 
   // 4. Eyes
-  if (definition.eyes) {
-    const path = getLayerPath("eyes", definition.eyes);
+  if (eyes) {
+    const path = getLayerPath("eyes", eyes);
     if (path) {
       layers.push({
         path,
-        color: definition.eyeColor ? eyeColors[definition.eyeColor] : undefined,
+        color: eyeColor ? eyeColors[eyeColor] : undefined,
         key: "eyes",
       });
     }
   }
 
   // 5. Expression
-  if (definition.expression) {
-    const path = getLayerPath("expression", definition.expression);
+  if (expression) {
+    const path = getLayerPath("expression", expression);
     if (path) {
       layers.push({ path, key: "expression" });
     }
   }
 
   // 6. Accessories (glasses)
-  if (definition.accessories && definition.accessories !== "none") {
-    const path = getLayerPath("accessories", definition.accessories);
+  if (accessories && accessories !== "none") {
+    const path = getLayerPath("accessories", accessories);
     if (path) {
       layers.push({
         path,
-        color: definition.glassesColor
-          ? glassesColors[definition.glassesColor]
-          : undefined,
+        color: glassesColor ? glassesColors[glassesColor] : undefined,
         key: "accessories",
       });
     }
   }
 
   // 7. Beard
-  if (definition.beard && definition.beard !== "none") {
-    const path = getLayerPath("beard", definition.beard);
+  if (beard && beard !== "none") {
+    const path = getLayerPath("beard", beard);
     if (path) {
       layers.push({
         path,
-        color: definition.beardColor
-          ? beardColors[definition.beardColor]
-          : undefined,
+        color: beardColor ? beardColors[beardColor] : undefined,
         key: "beard",
       });
     }
   }
 
   // 8. Hair front (in front of beard, before headwear)
-  if (definition.hair && definition.hair !== "none") {
-    const hairFrontPath = getLayerPath("hair_front", definition.hair);
+  if (hair && hair !== "none") {
+    const hairFrontPath = getLayerPath("hair_front", hair);
     if (hairFrontPath) {
       layers.push({
         path: hairFrontPath,
-        color: definition.hairColor
-          ? hairColors[definition.hairColor]
-          : undefined,
+        color: hairColor ? hairColors[hairColor] : undefined,
         key: "hair_front",
       });
     }
   }
 
   // 9. Headwear
-  if (definition.headwear && definition.headwear !== "none") {
-    const path = getLayerPath("headwear", definition.headwear);
+  if (headwear && headwear !== "none") {
+    const path = getLayerPath("headwear", headwear);
     if (path) {
       layers.push({ path, key: "headwear" });
     }
   }
 
   // 10. Clothing
-  if (definition.clothing) {
-    const path = getLayerPath("clothing", definition.clothing);
+  if (clothing) {
+    const path = getLayerPath("clothing", clothing);
     if (path) {
       layers.push({ path, key: "clothing" });
     }

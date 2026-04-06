@@ -1,19 +1,29 @@
-import type { AvatarDefinition } from "components/avatar/Avatar";
+import {
+  AvatarBackgroundColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarSkinColor,
+  type AvatarModel,
+} from "infrastructure/api/generated/models";
 
-export const DEFAULT_SHOP_AVATAR: AvatarDefinition = {
-  skinColor: "light",
-  eyes: "eyes_1",
-  eyeColor: "darkBrown",
-  expression: "expression_1",
-  hair: "hair_1",
-  hairColor: "darkBrown",
-  clothing: "shirt_1",
-  backgroundColor: "lightGray",
+export const DEFAULT_SHOP_AVATAR: AvatarModel = {
+  skinColor: AvatarSkinColor.Light,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.DarkBrown,
+  expression: AvatarExpression.Expression1,
+  hair: AvatarHair.Hair1,
+  hairColor: AvatarHairColor.DarkBrown,
+  clothing: AvatarClothing.Shirt1,
+  backgroundColor: AvatarBackgroundColor.LightGray,
 };
 
 export function buildShopAvatar(
-  partial?: Partial<AvatarDefinition>,
-): AvatarDefinition {
+  partial?: Partial<AvatarModel> | null,
+): AvatarModel {
   return {
     ...DEFAULT_SHOP_AVATAR,
     ...(partial ?? {}),

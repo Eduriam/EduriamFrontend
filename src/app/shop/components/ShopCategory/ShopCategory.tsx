@@ -5,11 +5,11 @@ import { buildShopAvatar } from "app/shop/utils/avatar";
 
 import Box from "@mui/material/Box";
 
-import type { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 import Avatar from "components/avatar/Avatar";
 
 export interface IShopCategory {
-  avatar?: Partial<AvatarDefinition>;
+  avatar?: Partial<AvatarModel>;
   onClick?: () => void;
   "data-test"?: string;
 }

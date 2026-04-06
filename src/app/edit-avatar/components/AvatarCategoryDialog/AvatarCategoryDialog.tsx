@@ -27,7 +27,7 @@ export interface IAvatarCategoryDialog {
   onBack: () => void;
   category?: AvatarCategory;
   draftAvatar: AvatarDefinition;
-  onSelectOption: (field: keyof AvatarDefinition, value: string) => void;
+  onSelectOption: (field: keyof AvatarDefinition, value: number) => void;
 }
 
 const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
@@ -84,7 +84,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
                     selected={isSelected}
                     onClick={() => onSelectOption(field, value)}
                     data-avatar-field={field}
-                    data-avatar-value={value}
+                    data-avatar-value={String(value)}
                     data-test={
                       isSelected
                         ? "equipped-item-button"
@@ -131,7 +131,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
                       selected={isSelected}
                       onClick={() => onSelectOption(field, value)}
                       data-avatar-field={field}
-                      data-avatar-value={value}
+                      data-avatar-value={String(value)}
                       data-test={
                         isSelected
                           ? "equipped-item-button"

@@ -1,6 +1,6 @@
 import { Id } from "domain/models/types/core";
 
-import { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 
 export type LeaderboardLeague =
   | "iron"
@@ -18,7 +18,7 @@ export interface LeaderboardEntry {
   id: Id;
   rank: number;
   name: string;
-  avatarDefinition: AvatarDefinition;
+  avatarDefinition: AvatarModel;
   xp: number;
 }
 

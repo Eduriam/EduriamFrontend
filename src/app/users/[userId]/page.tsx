@@ -24,9 +24,9 @@ import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import UsersAPI from "infrastructure/api/users/UsersAPI";
-import UserFollowingAPI from "infrastructure/api/users/me/following/UserFollowingAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { UserService } from "infrastructure/services/users/UserService";
+import { UsersService } from "infrastructure/services/users/UsersService";
 
 import AchievementBadge from "./components/AchievementBadge/AchievementBadge";
 import CourseListItem from "./components/CourseListItem/CourseListItem";
@@ -56,7 +56,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
   const router = useRouter();
   const userId = parseRequiredId(params.userId);
   const safeUserId = userId ?? 0;
-  const { userProfile, mutate } = UsersAPI.useUser(safeUserId);
+  const { userProfile, mutate } = UsersService.useUser(safeUserId);
   const { user } = useAuth();
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
@@ -79,9 +79,9 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
     mutate(
       async () => {
         if (isFollowed) {
-          await UserFollowingAPI.followUser(userId);
+          await UserService.followUser(userId);
         } else {
-          await UserFollowingAPI.unfollowUser(userId);
+          await UserService.unfollowUser(userId);
         }
 
         return { ...userProfile, isFollowed };

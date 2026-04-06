@@ -13,10 +13,29 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 
-import { UserSummary } from "infrastructure/api/users/Users";
+import type {
+  AvatarModel,
+  GetFollowerModel,
+  GetUserSimpleModel,
+} from "infrastructure/api/generated/models";
+import type { UserSummary } from "infrastructure/services/users/UsersService";
+
+type UserListItem = UserSummary | GetUserSimpleModel | GetFollowerModel;
+
+function resolveAvatar(item: UserListItem): AvatarModel | null | undefined {
+  if ("avatar" in item) {
+    return item.avatar;
+  }
+
+  if ("avatarDefinition" in item) {
+    return item.avatarDefinition;
+  }
+
+  return undefined;
+}
 
 export interface IUserList {
-  items: Array<UserSummary>;
+  items: Array<UserListItem>;
   currentUserId?: Id;
   onUserClick: (userId: Id) => void;
   onFollowToggle?: (userId: Id, isFollowed: boolean) => void;
@@ -52,7 +71,7 @@ const UserList: React.FC<IUserList> = ({
               onClick={() => onUserClick(item.id)}
             >
               <Avatar
-                definition={buildShopAvatar(item.avatarDefinition)}
+                definition={buildShopAvatar(resolveAvatar(item))}
                 size={64}
                 alt={item.name}
               />

@@ -1,5 +1,5 @@
 import type { Id } from "domain/models/types/core";
-import { AvatarDefinition } from "components/avatar/Avatar";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 
 import { LeaderboardLeague } from "../leaderboard/Leaderboard";
 import { Reaction } from "./reactions/Reactions";
@@ -8,7 +8,7 @@ interface FeedMessageBase {
   id: Id;
   seenByUser?: boolean;
   author: string;
-  avatarDefinition: AvatarDefinition;
+  avatarDefinition: AvatarModel;
   reactions: Array<Reaction>;
   publishedAt: Date;
 }

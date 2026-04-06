@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
 
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 
-import UsersAPI from "infrastructure/api/users/UsersAPI";
+import { UsersService } from "infrastructure/services/users/UsersService";
 
 import CourseListItem from "../components/CourseListItem/CourseListItem";
 
@@ -41,7 +41,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
   const router = useRouter();
   const userId = parseRequiredId(params.userId);
   const safeUserId = userId ?? 0;
-  const { userProfile } = UsersAPI.useUser(safeUserId);
+  const { userProfile } = UsersService.useUser(safeUserId);
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
 

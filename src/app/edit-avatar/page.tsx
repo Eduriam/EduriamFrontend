@@ -15,10 +15,11 @@ import { useRouter } from "next/navigation";
 
 import Stack from "@mui/material/Stack";
 
-import Avatar, { type AvatarDefinition } from "components/avatar/Avatar";
+import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
 
@@ -41,10 +42,8 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const { settings, mutate } = SettingsAPI.useSettings();
   const { shopItems = [] } = ShopItemsAPI.useShopItems();
 
-  const [baseAvatar, setBaseAvatar] =
-    useState<AvatarDefinition>(buildShopAvatar());
-  const [draftAvatar, setDraftAvatar] =
-    useState<AvatarDefinition>(buildShopAvatar());
+  const [baseAvatar, setBaseAvatar] = useState<AvatarModel>(buildShopAvatar());
+  const [draftAvatar, setDraftAvatar] = useState<AvatarModel>(buildShopAvatar());
   const [activeCategory, setActiveCategory] = useState<AvatarCategory | null>(
     null,
   );
