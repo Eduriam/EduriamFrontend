@@ -23,3 +23,22 @@ Feature: Settings
     And I should see the "appearance-mode-dark-option-button" button
     When I click on the "appearance-mode-dark-option-button" button
     Then The theme should be changed to dark
+
+  Scenario: User changes email in profile settings
+    Given I am signed in
+    And I am on the "settings-page" page
+    When I click on the "profile-settings-button" button
+    Then I should see the "settings-profile-save-button" button
+    When I enter "new.email@example.com" in the "settings-profile-email-field" field
+    And I click on the "settings-profile-save-button" button
+    Then The profile password reset email snackbar should be shown
+    And The settings saved snackbar should not be shown
+
+  Scenario: User changes name in profile settings
+    Given I am signed in
+    And I am on the "settings-page" page
+    When I click on the "profile-settings-button" button
+    Then I should see the "settings-profile-save-button" button
+    When I enter "Updated Test Name" in the "settings-profile-name-field" field
+    And I click on the "settings-profile-save-button" button
+    Then The settings saved snackbar should be shown

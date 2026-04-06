@@ -20,8 +20,9 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
+import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
 type ProfileDraft = {
   name: string;
@@ -69,6 +70,30 @@ const SettingsProfilePage: React.FC = () => {
 
   const handleSave = async () => {
     if (!settings || !hasUnsavedChanges) {
+      return;
+    }
+
+    const isEmailChanged = draft.email !== settings.email;
+
+    if (isEmailChanged) {
+      try {
+        await ChangeEmailService.changeEmail({ newEmail: draft.email });
+        enqueueSnackbar(t("settings.profile.passwordResetSent"), {
+          variant: "success",
+        });
+        setErrors([]);
+        setDraft({
+          name: settings.name,
+          username: settings.username,
+          email: settings.email,
+        });
+      } catch (error) {
+        if (error === errorCodes.emailAddressTaken) {
+          setErrors([errorCodes.emailAddressTaken]);
+        } else {
+          enqueueSnackbar(t("settings.generalError"), { variant: "error" });
+        }
+      }
       return;
     }
 
@@ -156,71 +181,74 @@ const SettingsProfilePage: React.FC = () => {
             </LargeButton>
           </Stack>
 
-          <TextField
-            label={t("settings.profile.name")}
-            value={draft.name}
-            onChange={(event) =>
-              setDraft((currentDraft) => ({
-                ...currentDraft,
-                name: event.target.value,
-              }))
-            }
-            inputProps={{ "data-test": "settings-profile-name-field" }}
-            fullWidth
-          />
+          <Stack data-test="settings-profile-name-field">
+            <TextField
+              label={t("settings.profile.name")}
+              value={draft.name}
+              onChange={(event) =>
+                setDraft((currentDraft) => ({
+                  ...currentDraft,
+                  name: event.target.value,
+                }))
+              }
+              fullWidth
+            />
+          </Stack>
 
-          <TextField
-            label={t("settings.profile.username")}
-            value={draft.username}
-            error={errors.includes(errorCodes.usernameTaken)}
-            helperText={
-              errors.includes(errorCodes.usernameTaken)
-                ? t("settings.profile.usernameTaken")
-                : undefined
-            }
-            onChange={(event) =>
-              setDraft((currentDraft) => ({
-                ...currentDraft,
-                username: event.target.value,
-              }))
-            }
-            onFocus={() =>
-              setErrors((currentErrors) =>
-                currentErrors.filter(
-                  (code) => code !== errorCodes.usernameTaken,
-                ),
-              )
-            }
-            inputProps={{ "data-test": "settings-profile-username-field" }}
-            fullWidth
-          />
+          <Stack data-test="settings-profile-username-field">
+            <TextField
+              label={t("settings.profile.username")}
+              value={draft.username}
+              error={errors.includes(errorCodes.usernameTaken)}
+              helperText={
+                errors.includes(errorCodes.usernameTaken)
+                  ? t("settings.profile.usernameTaken")
+                  : undefined
+              }
+              onChange={(event) =>
+                setDraft((currentDraft) => ({
+                  ...currentDraft,
+                  username: event.target.value,
+                }))
+              }
+              onFocus={() =>
+                setErrors((currentErrors) =>
+                  currentErrors.filter(
+                    (code) => code !== errorCodes.usernameTaken,
+                  ),
+                )
+              }
+              fullWidth
+            />
+          </Stack>
 
-          <TextField
-            label={t("settings.profile.email")}
-            type="email"
-            value={draft.email}
-            error={errors.includes(errorCodes.emailAddressTaken)}
-            helperText={
-              errors.includes(errorCodes.emailAddressTaken)
-                ? t("settings.profile.emailTaken")
-                : undefined
-            }
-            onChange={(event) =>
-              setDraft((currentDraft) => ({
-                ...currentDraft,
-                email: event.target.value,
-              }))
-            }
-            onFocus={() =>
-              setErrors((currentErrors) =>
-                currentErrors.filter(
-                  (code) => code !== errorCodes.emailAddressTaken,
-                ),
-              )
-            }
-            inputProps={{ "data-test": "settings-profile-email-field" }}
-            fullWidth
-          />
+          <Stack data-test="settings-profile-email-field">
+            <TextField
+              label={t("settings.profile.email")}
+              type="email"
+              value={draft.email}
+              error={errors.includes(errorCodes.emailAddressTaken)}
+              helperText={
+                errors.includes(errorCodes.emailAddressTaken)
+                  ? t("settings.profile.emailTaken")
+                  : undefined
+              }
+              onChange={(event) =>
+                setDraft((currentDraft) => ({
+                  ...currentDraft,
+                  email: event.target.value,
+                }))
+              }
+              onFocus={() =>
+                setErrors((currentErrors) =>
+                  currentErrors.filter(
+                    (code) => code !== errorCodes.emailAddressTaken,
+                  ),
+                )
+              }
+              fullWidth
+            />
+          </Stack>
         </Stack>
 
         <LargeButton
