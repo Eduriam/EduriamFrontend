@@ -9,5 +9,5 @@ export type ShopIllustrationKind =
   (typeof ShopIllustrationKind)[keyof typeof ShopIllustrationKind];
 
 export const ShopIllustrationKind = {
-  NUMBER_0: 0,
+  StreakFreeze: 0,
 } as const;

@@ -7,6 +7,5 @@
 
 export interface RegistrationConfirmModel {
   userId: number;
-  /** @minLength 1 */
   confirmationToken: string;
 }

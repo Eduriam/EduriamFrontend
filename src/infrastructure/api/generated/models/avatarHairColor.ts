@@ -9,12 +9,12 @@ export type AvatarHairColor =
   (typeof AvatarHairColor)[keyof typeof AvatarHairColor];
 
 export const AvatarHairColor = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
-  NUMBER_6: 6,
-  NUMBER_7: 7,
+  Black: 0,
+  DarkBrown: 1,
+  MediumBrown: 2,
+  LightBrown: 3,
+  Blond: 4,
+  Gray: 5,
+  White: 6,
+  Red: 7,
 } as const;

@@ -20,6 +20,7 @@ import type {
   RefreshTokenRespModel,
   RegisterUserModel,
   RegistrationConfirmModel,
+  ResendEmailConfirmationModel,
   ResetPasswordModel,
 } from "../models";
 
@@ -27,16 +28,26 @@ export const getAuth = (axiosInstance: AxiosInstance = axios) => {
   const postApiAuthSignup = (
     registerUserModel: RegisterUserModel,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<void>> => {
+  ): Promise<AxiosResponse<AuthResponseModel | void>> => {
     return axiosInstance.post(`/api/auth/signup`, registerUserModel, options);
   };
   const postApiAuthSignupConfirm = (
     registrationConfirmModel: RegistrationConfirmModel,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<void>> => {
+  ): Promise<AxiosResponse<AuthResponseModel | void>> => {
     return axiosInstance.post(
       `/api/auth/signup-confirm`,
       registrationConfirmModel,
+      options,
+    );
+  };
+  const postApiAuthSignupResendConfirmation = (
+    resendEmailConfirmationModel: ResendEmailConfirmationModel,
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<void>> => {
+    return axiosInstance.post(
+      `/api/auth/signup-resend-confirmation`,
+      resendEmailConfirmationModel,
       options,
     );
   };
@@ -123,6 +134,7 @@ export const getAuth = (axiosInstance: AxiosInstance = axios) => {
   return {
     postApiAuthSignup,
     postApiAuthSignupConfirm,
+    postApiAuthSignupResendConfirmation,
     postApiAuthSignin,
     postApiAuthResetPassword,
     postApiAuthResetPasswordConfirm,
@@ -134,8 +146,10 @@ export const getAuth = (axiosInstance: AxiosInstance = axios) => {
     postApiAuthExternalGoogleToken,
   };
 };
-export type PostApiAuthSignupResult = AxiosResponse<void>;
-export type PostApiAuthSignupConfirmResult = AxiosResponse<void>;
+export type PostApiAuthSignupResult = AxiosResponse<AuthResponseModel | void>;
+export type PostApiAuthSignupConfirmResult =
+  AxiosResponse<AuthResponseModel | void>;
+export type PostApiAuthSignupResendConfirmationResult = AxiosResponse<void>;
 export type PostApiAuthSigninResult = AxiosResponse<AuthResponseModel | void>;
 export type PostApiAuthResetPasswordResult = AxiosResponse<void>;
 export type PostApiAuthResetPasswordConfirmResult = AxiosResponse<void>;

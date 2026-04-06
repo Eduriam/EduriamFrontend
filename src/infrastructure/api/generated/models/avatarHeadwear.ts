@@ -9,7 +9,7 @@ export type AvatarHeadwear =
   (typeof AvatarHeadwear)[keyof typeof AvatarHeadwear];
 
 export const AvatarHeadwear = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  Hat1: 0,
+  Hat2: 1,
+  None: 2,
 } as const;

@@ -9,9 +9,9 @@ export type LeaderboardLeague =
   (typeof LeaderboardLeague)[keyof typeof LeaderboardLeague];
 
 export const LeaderboardLeague = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
+  Bronze: 0,
+  Silver: 1,
+  Gold: 2,
+  Platinum: 3,
+  Diamond: 4,
 } as const;

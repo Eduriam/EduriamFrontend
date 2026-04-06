@@ -8,6 +8,6 @@
 export type ReportType = (typeof ReportType)[keyof typeof ReportType];
 
 export const ReportType = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  General: 0,
+  StudyBlock: 1,
 } as const;

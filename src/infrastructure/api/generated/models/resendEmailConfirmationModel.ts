@@ -5,9 +5,6 @@
  * OpenAPI spec version: v1
  */
 
-export interface CertificateModel {
-  id: number;
-  userName: string;
-  courseName: string;
-  createdAt: string;
+export interface ResendEmailConfirmationModel {
+  email: string;
 }

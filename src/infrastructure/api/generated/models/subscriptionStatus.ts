@@ -9,13 +9,13 @@ export type SubscriptionStatus =
   (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus];
 
 export const SubscriptionStatus = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
-  NUMBER_6: 6,
-  NUMBER_7: 7,
-  NUMBER_8: 8,
+  Trialing: 0,
+  Incomplete: 1,
+  IncompleteExpired: 2,
+  Active: 3,
+  PastDue: 4,
+  Canceled: 5,
+  ScheduledToCancel: 6,
+  Unpaid: 7,
+  Paused: 8,
 } as const;

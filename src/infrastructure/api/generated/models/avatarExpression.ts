@@ -9,6 +9,6 @@ export type AvatarExpression =
   (typeof AvatarExpression)[keyof typeof AvatarExpression];
 
 export const AvatarExpression = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Expression1: 0,
+  Expression2: 1,
 } as const;

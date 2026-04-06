@@ -9,16 +9,16 @@ export type ReportProblemType =
   (typeof ReportProblemType)[keyof typeof ReportProblemType];
 
 export const ReportProblemType = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
-  NUMBER_6: 6,
-  NUMBER_7: 7,
-  NUMBER_8: 8,
-  NUMBER_9: 9,
-  NUMBER_10: 10,
-  NUMBER_11: 11,
+  ExplanationNotUnderstood: 0,
+  ExerciseNotUnderstood: 1,
+  AnswerShouldNotBeAccepted: 2,
+  AnswerShouldBeAccepted: 3,
+  AudioDoesNotSoundRight: 4,
+  AudioMissing: 5,
+  SomethingElseWentWrong: 6,
+  ExplanationStructureShouldBeChanged: 7,
+  ExerciseStructureShouldBeChanged: 8,
+  LessonStructureShouldBeChanged: 9,
+  BugReport: 10,
+  ImprovementSuggestion: 11,
 } as const;

@@ -83,6 +83,7 @@ export * from "./registerUserModel";
 export * from "./registrationConfirmModel";
 export * from "./reportProblemType";
 export * from "./reportType";
+export * from "./resendEmailConfirmationModel";
 export * from "./resetPasswordModel";
 export * from "./shopAvatarSubset";
 export * from "./shopIllustrationKind";

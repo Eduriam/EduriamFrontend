@@ -10,17 +10,12 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import type { GetLessonModel } from "../models";
 
 export const getLesson = (axiosInstance: AxiosInstance = axios) => {
-  const getApiLessonLessonIdInCourseCourseId = (
+  const getApiLessonLessonId = (
     lessonId: number,
-    courseId: number,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<GetLessonModel | void>> => {
-    return axiosInstance.get(
-      `/api/lesson/${lessonId}/in-course/${courseId}`,
-      options,
-    );
+    return axiosInstance.get(`/api/lesson/${lessonId}`, options);
   };
-  return { getApiLessonLessonIdInCourseCourseId };
+  return { getApiLessonLessonId };
 };
-export type GetApiLessonLessonIdInCourseCourseIdResult =
-  AxiosResponse<GetLessonModel | void>;
+export type GetApiLessonLessonIdResult = AxiosResponse<GetLessonModel | void>;

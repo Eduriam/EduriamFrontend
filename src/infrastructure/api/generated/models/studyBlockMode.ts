@@ -9,6 +9,6 @@ export type StudyBlockMode =
   (typeof StudyBlockMode)[keyof typeof StudyBlockMode];
 
 export const StudyBlockMode = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Learn: 0,
+  Review: 1,
 } as const;

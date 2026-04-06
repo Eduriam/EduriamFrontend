@@ -8,7 +8,7 @@
 export type AvatarHair = (typeof AvatarHair)[keyof typeof AvatarHair];
 
 export const AvatarHair = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  Hair1: 0,
+  Hair2: 1,
+  None: 2,
 } as const;

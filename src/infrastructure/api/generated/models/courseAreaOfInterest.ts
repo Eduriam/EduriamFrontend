@@ -9,8 +9,8 @@ export type CourseAreaOfInterest =
   (typeof CourseAreaOfInterest)[keyof typeof CourseAreaOfInterest];
 
 export const CourseAreaOfInterest = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
+  Frontend: 0,
+  Backend: 1,
+  Fullstack: 2,
+  Other: 3,
 } as const;

@@ -9,6 +9,6 @@ export type AvatarAccessories =
   (typeof AvatarAccessories)[keyof typeof AvatarAccessories];
 
 export const AvatarAccessories = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Glasses1: 0,
+  None: 1,
 } as const;

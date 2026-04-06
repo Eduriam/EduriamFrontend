@@ -9,6 +9,6 @@ export type AvatarClothing =
   (typeof AvatarClothing)[keyof typeof AvatarClothing];
 
 export const AvatarClothing = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Shirt1: 0,
+  Shirt2: 1,
 } as const;

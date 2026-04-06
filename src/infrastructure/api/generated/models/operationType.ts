@@ -8,11 +8,11 @@
 export type OperationType = (typeof OperationType)[keyof typeof OperationType];
 
 export const OperationType = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
-  NUMBER_6: 6,
+  Add: 0,
+  Remove: 1,
+  Replace: 2,
+  Move: 3,
+  Copy: 4,
+  Test: 5,
+  Invalid: 6,
 } as const;

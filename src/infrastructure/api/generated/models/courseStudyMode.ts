@@ -9,7 +9,7 @@ export type CourseStudyMode =
   (typeof CourseStudyMode)[keyof typeof CourseStudyMode];
 
 export const CourseStudyMode = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  Learn: 0,
+  Review: 1,
+  Paused: 2,
 } as const;

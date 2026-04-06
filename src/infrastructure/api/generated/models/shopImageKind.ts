@@ -8,6 +8,6 @@
 export type ShopImageKind = (typeof ShopImageKind)[keyof typeof ShopImageKind];
 
 export const ShopImageKind = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Illustration: 0,
+  Avatar: 1,
 } as const;

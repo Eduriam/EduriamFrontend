@@ -8,5 +8,5 @@
 export type ShopItemType = (typeof ShopItemType)[keyof typeof ShopItemType];
 
 export const ShopItemType = {
-  NUMBER_0: 0,
+  StreakFreeze: 0,
 } as const;

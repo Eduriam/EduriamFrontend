@@ -9,11 +9,11 @@ export type AvatarSkinColor =
   (typeof AvatarSkinColor)[keyof typeof AvatarSkinColor];
 
 export const AvatarSkinColor = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
-  NUMBER_6: 6,
+  Light: 0,
+  Fair: 1,
+  LightMedium: 2,
+  Medium: 3,
+  Olive: 4,
+  Dark: 5,
+  DeepDark: 6,
 } as const;

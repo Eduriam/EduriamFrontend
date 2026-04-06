@@ -8,7 +8,7 @@
 export type ThemeMode = (typeof ThemeMode)[keyof typeof ThemeMode];
 
 export const ThemeMode = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  System: 0,
+  Light: 1,
+  Dark: 2,
 } as const;

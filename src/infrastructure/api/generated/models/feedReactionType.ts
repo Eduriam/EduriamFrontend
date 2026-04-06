@@ -9,9 +9,9 @@ export type FeedReactionType =
   (typeof FeedReactionType)[keyof typeof FeedReactionType];
 
 export const FeedReactionType = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
+  Confetti: 0,
+  Heart: 1,
+  Muscle: 2,
+  ClappingHands: 3,
+  Sunglasses: 4,
 } as const;

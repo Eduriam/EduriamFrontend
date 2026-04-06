@@ -9,10 +9,10 @@ export type AvatarBeardColor =
   (typeof AvatarBeardColor)[keyof typeof AvatarBeardColor];
 
 export const AvatarBeardColor = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
-  NUMBER_4: 4,
-  NUMBER_5: 5,
+  Black: 0,
+  DarkBrown: 1,
+  MediumBrown: 2,
+  Blond: 3,
+  Gray: 4,
+  White: 5,
 } as const;

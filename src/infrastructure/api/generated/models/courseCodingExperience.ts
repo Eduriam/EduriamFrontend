@@ -9,7 +9,7 @@ export type CourseCodingExperience =
   (typeof CourseCodingExperience)[keyof typeof CourseCodingExperience];
 
 export const CourseCodingExperience = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
+  Beginner: 0,
+  Intermediate: 1,
+  Advanced: 2,
 } as const;

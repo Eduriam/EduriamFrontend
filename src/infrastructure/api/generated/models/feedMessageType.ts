@@ -9,8 +9,8 @@ export type FeedMessageType =
   (typeof FeedMessageType)[keyof typeof FeedMessageType];
 
 export const FeedMessageType = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
-  NUMBER_2: 2,
-  NUMBER_3: 3,
+  StreakMilestone: 0,
+  AchievementEarned: 1,
+  LeaguePromoted: 2,
+  CourseCompleted: 3,
 } as const;

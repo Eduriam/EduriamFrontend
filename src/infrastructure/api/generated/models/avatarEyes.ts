@@ -8,6 +8,6 @@
 export type AvatarEyes = (typeof AvatarEyes)[keyof typeof AvatarEyes];
 
 export const AvatarEyes = {
-  NUMBER_0: 0,
-  NUMBER_1: 1,
+  Eyes1: 0,
+  Eyes2: 1,
 } as const;
