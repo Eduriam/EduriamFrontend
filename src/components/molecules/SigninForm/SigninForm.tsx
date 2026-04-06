@@ -18,7 +18,7 @@ import errorCodes from "infrastructure/api/error-codes";
 import {
   GOOGLE_AUTH_ERRORS,
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
-} from "infrastructure/api/external-auth/ExternalAuth";
+} from "infrastructure/services/auth/GoogleAuthService";
 import useAuth from "infrastructure/services/AuthProvider";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;

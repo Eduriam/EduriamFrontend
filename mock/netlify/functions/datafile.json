@@ -620,11 +620,11 @@
       "uuid": "1a2daa85-e896-42de-b946-d6678ffafdcf",
       "documentation": "",
       "method": "get",
-      "endpoint": "external-auth/google/authorize",
+      "endpoint": "auth/external/google/login",
       "responses": [
         {
           "uuid": "75c1971c-618a-4c23-926a-34bdb047ca5f",
-          "body": "{\"data\":{\"authorizationUrl\":\"#mock-google-auth\"}}",
+          "body": "{\"authorizationUrl\":\"#mock-google-auth\"}",
           "latency": 0,
           "statusCode": 200,
           "label": "Google authorize URL",
@@ -656,7 +656,7 @@
       "uuid": "6b697b69-0b10-4f0e-b5ba-483d749e4fde",
       "documentation": "",
       "method": "get",
-      "endpoint": "external-auth/google/callback",
+      "endpoint": "auth/external/google/callback",
       "responses": [
         {
           "uuid": "d29b2f65-d571-413a-8dc2-2cbdd17df518",
@@ -692,7 +692,7 @@
       "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6",
       "documentation": "",
       "method": "post",
-      "endpoint": "authorize",
+      "endpoint": "auth/external/google/token",
       "responses": [
         {
           "uuid": "b97503ff-a54c-4fd1-9ce8-93f49300e827",
@@ -764,7 +764,7 @@
         },
         {
           "uuid": "1be65fc7-dc18-4271-8ad1-feea6bb83df2",
-          "body": "{\"idToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\": 0,\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"activeSubscription\":null}}",
+          "body": "{\"accessToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\"}",
           "latency": 0,
           "statusCode": 200,
           "label": "Google signin success",
@@ -796,7 +796,7 @@
         },
         {
           "uuid": "305d2706-cc91-4dc4-86a4-1bd30798a010",
-          "body": "{\"idToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\": 0,\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":false,\"activeSubscription\":null}}",
+          "body": "{\"accessToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\"}",
           "latency": 0,
           "statusCode": 200,
           "label": "Google signup success",

@@ -15,7 +15,7 @@ import errorCodes from "infrastructure/api/error-codes";
 import {
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
-} from "infrastructure/api/external-auth/ExternalAuth";
+} from "infrastructure/services/auth/GoogleAuthService";
 import type { GetUserModel } from "infrastructure/api/generated/models";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { UserService } from "infrastructure/services/users/UserService";
@@ -30,7 +30,10 @@ export interface AuthContextType {
   signin: (email: string, password: string) => void;
   signUp: (username: string, email: string, password: string) => void;
   startGoogleAuth: (source: GoogleAuthSource) => Promise<void>;
-  authorizeGoogleCode: (code: string) => Promise<GetUserModel>;
+  authorizeGoogleCode: (
+    code: string,
+    source?: GoogleAuthSource,
+  ) => Promise<GetUserModel>;
   signout: () => void;
   mutateUser: (userChange: Partial<GetUserModel>) => void;
   revalidateUser: () => void;
@@ -137,15 +140,24 @@ export function AuthProvider({
     }
   }
 
-  async function authorizeGoogleCode(code: string): Promise<GetUserModel> {
+  async function authorizeGoogleCode(
+    code: string,
+    source?: GoogleAuthSource,
+  ): Promise<GetUserModel> {
     setLoading(true);
     setError(() => []);
 
     try {
       const authorizedUser = await AuthManager.authorizeGoogleCode({ code });
-      setUser(authorizedUser);
+      const resolvedUser =
+        source === "signup"
+          ? { ...authorizedUser, accountInitialized: false }
+          : authorizedUser;
 
-      return authorizedUser;
+      setUser(resolvedUser);
+      LocalStorageManager.setItem<GetUserModel>("user", resolvedUser);
+
+      return resolvedUser;
     } catch (errorCode) {
       throw typeof errorCode === "string"
         ? errorCode

@@ -15,7 +15,7 @@ import {
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
-} from "infrastructure/api/external-auth/ExternalAuth";
+} from "infrastructure/services/auth/GoogleAuthService";
 import useAuth from "infrastructure/services/AuthProvider";
 
 const GOOGLE_AUTH_PAGE_BY_SOURCE: Record<GoogleAuthSource, string> = {
@@ -50,9 +50,9 @@ const SigninCallbackPage: React.FC = () => {
       }
 
       try {
-        const user = await authorizeGoogleCode(code);
+        await authorizeGoogleCode(code, source);
         sessionStorage.removeItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
-        router.replace(user.accountInitialized ? "/" : "/onboarding");
+        router.replace(source === "signup" ? "/onboarding" : "/");
       } catch (errorCode) {
         sessionStorage.removeItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
         router.replace(resolveGoogleErrorPath(errorCode, sourcePath));

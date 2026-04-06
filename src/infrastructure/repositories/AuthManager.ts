@@ -1,11 +1,13 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
-import {
-  GoogleCodeExchangeRequestBody,
-} from "infrastructure/api/external-auth/ExternalAuth";
-import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
-import type { GetUserModel, LoginUserModel, RegisterUserModel } from "infrastructure/api/generated/models";
+import type {
+  AuthCodeExchangeModel,
+  GetUserModel,
+  LoginUserModel,
+  RegisterUserModel,
+} from "infrastructure/api/generated/models";
+import { GoogleAuthService } from "infrastructure/services/auth/GoogleAuthService";
 import { RefreshTokenService } from "infrastructure/services/auth/RefreshTokenService";
 import { SigninService } from "infrastructure/services/auth/SigninService";
 import { SignupService } from "infrastructure/services/auth/SignupService";
@@ -34,13 +36,13 @@ const AuthManager = {
   },
 
   async getGoogleAuthorizationUrl(): Promise<string> {
-    return ExternalAuthAPI.getGoogleAuthorizationUrl();
+    return GoogleAuthService.getGoogleAuthorizationUrl();
   },
 
   async authorizeGoogleCode(
-    data: GoogleCodeExchangeRequestBody,
+    data: AuthCodeExchangeModel,
   ): Promise<GetUserModel> {
-    return ExternalAuthAPI.authorizeCode(data);
+    return GoogleAuthService.authorizeCode(data);
   },
 
   async refreshIdToken(): Promise<void> {
