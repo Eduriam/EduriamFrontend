@@ -13,11 +13,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
-import AccountSetupAPI from "infrastructure/api/users/me/account-setup/AccountSetupAPI";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { AccountSetupService } from "infrastructure/services/users/AccountSetupService";
 
 import AreaOfInterestStep from "../courses/recommended/quiz/components/AreaOfInterestStep";
 import CodingExperienceStep from "../courses/recommended/quiz/components/CodingExperienceStep";
@@ -140,7 +140,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
       return;
     }
     try {
-      await AccountSetupAPI.setupAccount({ dailyGoal: dailyGoalValue });
+      await AccountSetupService.setupAccount({ dailyGoal: dailyGoalValue });
       await UserCoursesAPI.enrollInCourse(selectedCourseId);
       transitionStep(() => setStep("complete"), "forward", step);
     } catch {
