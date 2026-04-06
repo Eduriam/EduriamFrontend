@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { SnackbarProvider } from "notistack";
 
 import { ViewTransitions } from "next-view-transitions";
@@ -8,6 +7,7 @@ import { ViewTransitions } from "next-view-transitions";
 import GoogleAdsense from "components/advertisement/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
 
+import { configureAxios } from "infrastructure/api/configureAxios";
 import { NoticeProvider } from "infrastructure/services/NoticeProvider";
 import PwaServiceWorkerRegistration from "infrastructure/services/PwaServiceWorkerRegistration";
 import ThemeModeProvider from "infrastructure/services/ThemeModeProvider";
@@ -16,7 +16,7 @@ import { AuthProvider } from "../infrastructure/services/AuthProvider";
 import { ErrorHandler } from "../infrastructure/services/ErrorHandler";
 import "../styles/globals.css";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+configureAxios();
 
 export default function RootLayout({
   children,

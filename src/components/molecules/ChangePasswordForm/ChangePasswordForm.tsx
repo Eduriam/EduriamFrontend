@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import ChangePasswordAPI from "infrastructure/api/user-auth/change-password/ChangePasswordAPI";
+import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
 interface InputTypes {
   password: string;
@@ -14,13 +14,13 @@ interface InputTypes {
 }
 
 export interface IChangePasswordForm {
-  email: string;
+  userId: number;
   resetToken: string;
   onPasswordChanged: () => void;
 }
 
 const ChangePasswordForm: React.FC<IChangePasswordForm> = ({
-  email,
+  userId,
   resetToken,
   onPasswordChanged,
 }) => {
@@ -46,10 +46,10 @@ const ChangePasswordForm: React.FC<IChangePasswordForm> = ({
   const { t } = useTranslation("form");
 
   const onSubmit = (data: { password: string }) => {
-    ChangePasswordAPI.changePassword({
+    ResetPasswordService.confirmResetPassword({
       password: data.password,
       resetToken,
-      email,
+      userId,
     }).then(() => {
       onPasswordChanged();
     });
@@ -110,7 +110,7 @@ const ChangePasswordForm: React.FC<IChangePasswordForm> = ({
             variant="contained"
             disabled={
               Object.keys(errors).length !== 0 ||
-              email === undefined ||
+              Number.isNaN(userId) ||
               resetToken === undefined
             }
             fullWidth

@@ -8,7 +8,7 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -26,7 +26,20 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
 
   const searchParams = useSearchParams();
   const resetToken = searchParams?.get("resetToken");
-  const email = searchParams?.get("email");
+  const userIdParam = searchParams?.get("userId");
+
+  const userId = useMemo(() => {
+    if (!userIdParam) {
+      return null;
+    }
+
+    const parsedUserId = Number(userIdParam);
+    if (Number.isNaN(parsedUserId)) {
+      return null;
+    }
+
+    return parsedUserId;
+  }, [userIdParam]);
 
   return (
     <PageRoot>
@@ -62,12 +75,12 @@ const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
               </LargeButton>
             </Box>
           </>
-        ) : resetToken && email ? (
+        ) : resetToken && userId !== null ? (
           <>
             <ChangePasswordForm
               onPasswordChanged={() => setPasswordChanged(true)}
               resetToken={resetToken}
-              email={email}
+              userId={userId}
             />
           </>
         ) : (

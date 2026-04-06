@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 
 import errorCodes from "infrastructure/api/error-codes";
-import ChangeEmailAPI from "infrastructure/api/user-auth/change-email/ChangeEmailAPI";
+import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 
 import { EMAIL_REGEX } from "../SignupForm/SignupForm";
 
@@ -43,8 +43,7 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
 
   const onSubmit = async (data: { email: string }) => {
     try {
-      // Zavolání API
-      await ChangeEmailAPI.changeEmail({ newEmail: data.email });
+      await ChangeEmailService.changeEmail({ newEmail: data.email });
       setSentEmail(data.email);
 
       onEmailSent();

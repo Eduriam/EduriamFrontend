@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/user-auth/reset-password/ResetPasswordAPI";
+import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
@@ -36,7 +36,7 @@ const ForgotPasswordForm: React.FC<IForgotPasswordForm> = ({ onEmailSent }) => {
   const emailValue = watch("email");
 
   const onSubmit = (data: { email: string }) => {
-    ResetPasswordAPI.resetPassword(data)
+    ResetPasswordService.resetPassword(data)
       .catch((err) => {
         if (err === errorCodes.invalidEmailAddress) {
           setInvalidEmail(true);

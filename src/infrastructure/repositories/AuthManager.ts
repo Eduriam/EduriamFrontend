@@ -1,12 +1,13 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
-import { GoogleCodeExchangeRequestBody } from "infrastructure/api/external-auth/ExternalAuth";
+import {
+  GoogleCodeExchangeRequestBody,
+} from "infrastructure/api/external-auth/ExternalAuth";
 import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
-import type { RegisterUserModel } from "infrastructure/api/generated/models";
-import RefreshTokenAPI from "infrastructure/api/user-auth/refresh-token/RefreshTokenAPI";
-import { SigninRequestBody } from "infrastructure/api/user-auth/signin/Signin";
-import SigninAPI from "infrastructure/api/user-auth/signin/SigninAPI";
+import type { LoginUserModel, RegisterUserModel } from "infrastructure/api/generated/models";
+import { RefreshTokenService } from "infrastructure/services/auth/RefreshTokenService";
+import { SigninService } from "infrastructure/services/auth/SigninService";
 import { SignupService } from "infrastructure/services/auth/SignupService";
 
 import { UserPrivate } from "../api/users/me/User";
@@ -24,8 +25,8 @@ const AuthManager = {
     LocalStorageManager.removeItem("user");
   },
 
-  async signin(data: SigninRequestBody): Promise<UserPrivate> {
-    return SigninAPI.signin(data);
+  async signin(data: LoginUserModel): Promise<UserPrivate> {
+    return SigninService.signin(data);
   },
 
   async signUp(data: RegisterUserModel): Promise<UserPrivate> {
@@ -51,12 +52,12 @@ const AuthManager = {
       return;
     }
 
-    return RefreshTokenAPI.refreshIdToken({
-      token: refreshToken,
+    return RefreshTokenService.refreshIdToken({
+      refreshToken,
     })
       .then((res) => {
-        this.setAuthHeader(res.idToken);
-        LocalStorageManager.setItem<string>("idToken", res.idToken);
+        this.setAuthHeader(res.accessToken);
+        LocalStorageManager.setItem<string>("idToken", res.accessToken);
         LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
       })
       .catch(() => {

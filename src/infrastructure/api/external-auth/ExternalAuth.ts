@@ -1,4 +1,4 @@
-import { SigninResponseBody } from "../user-auth/signin/Signin";
+import type { UserPrivate } from "../users/me/User";
 
 export type GoogleAuthSource = "signin" | "signup";
 
@@ -12,7 +12,11 @@ export interface GoogleCodeExchangeRequestBody {
   code: string;
 }
 
-export type GoogleCodeExchangeResponseBody = SigninResponseBody;
+export interface GoogleCodeExchangeResponseBody {
+  idToken: string;
+  refreshToken: string;
+  user: UserPrivate;
+}
 
 export const GOOGLE_AUTH_SOURCE_STORAGE_KEY = "googleAuthSource";
 

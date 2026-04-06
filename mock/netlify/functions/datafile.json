@@ -143,8 +143,16 @@
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "userId",
+              "value": "^[0-9]+$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
@@ -495,7 +503,7 @@
       "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/signin",
+      "endpoint": "auth/signin",
       "responses": [
         {
           "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
@@ -526,7 +534,7 @@
         },
         {
           "uuid": "a8df4829-60bd-4145-bbb6-2329d871942a",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"PREMIUM_USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":0,\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"activeSubscription\":{\r\n         \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\r\n         \"status\":\"ACTIVE\"\r\n      }\r\n   }\r\n}",
+          "body": "{\n  \"accessToken\": \"mock-signin-premium-access-token\",\n  \"refreshToken\": \"mock-signin-premium-refresh-token\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -565,7 +573,7 @@
         },
         {
           "uuid": "2cceea97-6b17-42aa-be0d-3abc4ce6eff5",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\",\r\n   \"user\":{\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"role\":\"USER\",\r\n      \"streak\":{{faker 'number.int' min=0 max=999}},\r\n      \"balance\":{{faker 'number.int' min=0 max=999}},\r\n      \"energy\":{{faker 'number.int' min=0 max=20}},\r\n      \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\r\n      \"accountInitialized\":true,\r\n      \"activeSubscription\":null\r\n   }\r\n}",
+          "body": "{\n  \"accessToken\": \"mock-signin-free-access-token\",\n  \"refreshToken\": \"mock-signin-free-refresh-token\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",
@@ -1107,7 +1115,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/reset-password",
+      "endpoint": "auth/reset-password",
       "responses": [
         {
           "uuid": "a62dd0fe-72e2-47bc-9015-6c73b23c9d3e",
@@ -1173,7 +1181,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/change-password",
+      "endpoint": "auth/reset-password-confirm",
       "responses": [
         {
           "uuid": "d5b52c05-02a2-4159-a886-0f8a4945d23b",
@@ -1196,7 +1204,7 @@
             },
             {
               "target": "body",
-              "modifier": "email",
+              "modifier": "userId",
               "value": "",
               "invert": true,
               "operator": "null"
@@ -1474,7 +1482,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "users/:userId",
+      "endpoint": "users/:userId([0-9]+)",
       "responses": [
         {
           "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
@@ -2130,11 +2138,11 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/refresh-token",
+      "endpoint": "auth/refresh-token",
       "responses": [
         {
           "uuid": "4d9be633-4941-4552-8b6d-41584078675b",
-          "body": "{\r\n   \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFkMWIxOWYwZjU4ZTJjOWE5Njc3M2M5MmNmODA0NDEwMTc5NzEzMjMiLCJ0eXAiOiJKV1QifQ.eyJzdWJzY3JpcHRpb25FbmQiOm51bGwsInRyaWFsRW5kIjoxNjYwNzQ5MDMxMDI5LCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFuZHVsaW5vLWI0YjVlIiwiYXVkIjoicGFuZHVsaW5vLWI0YjVlIiwiYXV0aF90aW1lIjoxNjYwMTQ0MjMxLCJ1c2VyX2lkIjoiMFFpU3dNY2NaRGR5SVRUWFdzRXBFdEE3dTB6MiIsInN1YiI6IjBRaVN3TWNjWkRkeUlUVFhXc0VwRXRBN3UwejIiLCJpYXQiOjE2NjAxNDQyMzEsImV4cCI6MTY2MDE0NzgzMSwiZW1haWwiOiJ0ZXN0b3ZhY2l1Y2V0QHBhbmR1bGluby5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdG92YWNpdWNldEBwYW5kdWxpbm8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.Eql1X5b0fHl1FgaaU9oy1ETfNMHT4ELXY2_NW0_gjgyPBvE1qT5VeylvrRf5eMG7MZzR0_lo-4RCUUbcXV_fRSDYWQ_3KDnVmUJ4PYZnG0MJ8vV53z5D3c02w-QmKu5E9L7UbtzSMvVMXTrfxLnpp3HwuRcJSL3wINu58FmZJVhqoP4DaeBiwb1I75yhIjO41b8X5o0PRMdh5QLHCt3cq45AF9aL79Ym4hzd0MuT8wkEYZINReIqbJvhvAeV8u_C_EcXvglyqoj6WNTQXfy1hG7QKoSGhm2USaMjPMI6ucS3SXwi619gqmW779ZWeTNC9HB-h5cvg4p79qOYQFq0Yg\",\r\n   \"refreshToken\":\"AOEOulbunQ2EpRNvIxvNXhlyRkulm9gC_wlI_W20YXhbhE9IvUIL2wQTe17v3gqETe5jbEpu8i72nFp86kB6GtZKD4RIOxYC_T3h1IDZrH9Z4YaR0Q4ymzlItmXebItWnuHzm7ifg_IwnUGt3weR2hXDLuklXuNtr7-xdxCLDlYiKW02i3J74-IubjxcnO5qXYQ1SGlKVkF4p6BjFkdQTMu7bb7_tSnTaA\"\r\n}",
+          "body": "{\n  \"accessToken\": \"mock-refresh-access-token\",\n  \"refreshToken\": \"mock-refresh-token\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2143,8 +2151,16 @@
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "refreshToken",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,
@@ -2412,7 +2428,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/change-email",
+      "endpoint": "auth/change-email",
       "responses": [
         {
           "uuid": "e3084c79-1858-4e6c-8ff2-83b007ccdde1",
@@ -2451,7 +2467,7 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "user-auth/change-email-confirm",
+      "endpoint": "auth/change-email-confirm",
       "responses": [
         {
           "uuid": "24cce66a-fe0c-41be-8eff-31a63336f8c0",
@@ -2464,8 +2480,30 @@
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [],
-          "rulesOperator": "OR",
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "token",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "newEmail",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true,

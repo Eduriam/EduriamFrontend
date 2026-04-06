@@ -20,7 +20,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import ResetPasswordAPI from "infrastructure/api/user-auth/reset-password/ResetPasswordAPI";
+import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 
 type ProfileDraft = {
@@ -226,7 +226,7 @@ const SettingsProfilePage: React.FC = () => {
         <LargeButton
           variant="outlined"
           onClick={async () => {
-            await ResetPasswordAPI.resetPassword({ email: draft.email });
+            await ResetPasswordService.resetPassword({ email: draft.email });
             enqueueSnackbar(t("settings.profile.passwordResetSent"), {
               variant: "success",
             });
