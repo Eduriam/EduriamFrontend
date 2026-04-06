@@ -764,7 +764,7 @@
         },
         {
           "uuid": "1be65fc7-dc18-4271-8ad1-feea6bb83df2",
-          "body": "{\"idToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"activeSubscription\":null}}",
+          "body": "{\"idToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\": 0,\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":true,\"activeSubscription\":null}}",
           "latency": 0,
           "statusCode": 200,
           "label": "Google signin success",
@@ -796,7 +796,7 @@
         },
         {
           "uuid": "305d2706-cc91-4dc4-86a4-1bd30798a010",
-          "body": "{\"idToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\":\"USER\",\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":false,\"activeSubscription\":null}}",
+          "body": "{\"idToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\",\"user\":{\"id\":\"{{faker 'string.uuid'}}\",\"username\":\"{{faker 'internet.userName'}}\",\"role\": 0,\"streak\":0,\"balance\":0,\"energy\":40,\"equippedStreakFreezes\":0,\"accountInitialized\":false,\"activeSubscription\":null}}",
           "latency": 0,
           "statusCode": 200,
           "label": "Google signup success",
@@ -2181,7 +2181,7 @@
       "responses": [
         {
           "uuid": "f1f47b4f-4ea9-4b8a-9858-f8eb7cc19a2d",
-          "body": "{\n  \"id\": 1001,\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"name\": \"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\": null,\n  \"streak\": 0,\n  \"balance\": 0,\n  \"lastSessionDate\": null,\n  \"role\": \"USER\",\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": false,\n  \"activeSubscription\": null,\n  \"avatar\": null\n}",
+          "body": "{\n  \"id\": 1001,\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"name\": \"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\": null,\n  \"streak\": 0,\n  \"balance\": 0,\n  \"lastSessionDate\": null,\n  \"role\": 0,\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": false,\n  \"activeSubscription\": null,\n  \"avatar\": null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (signup onboarding user)",
@@ -2208,7 +2208,7 @@
         },
         {
           "uuid": "648ebde8-8278-4c24-b292-d464e098aabd",
-          "body": "{\n  \"id\": 1001,\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"lastSessionDate\":null,\n  \"role\":\"PREMIUM_USER\",\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"activeSubscription\":{\n     \"periodStart\":\"{{faker 'date.recent'}}\",\n     \"periodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":3\n  },\n  \"avatar\":null\n}",
+          "body": "{\n  \"id\": 1001,\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"lastSessionDate\":null,\n  \"role\": 1,\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"activeSubscription\":{\n     \"periodStart\":\"{{faker 'date.recent'}}\",\n     \"periodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":3\n  },\n  \"avatar\":null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -2227,7 +2227,7 @@
         },
         {
           "uuid": "0c55444e-6227-44d2-877a-deaa274c15fa",
-          "body": "{\n  \"id\": 1001,\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"lastSessionDate\":null,\n  \"role\": \"USER\",\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"activeSubscription\": null,\n  \"avatar\":null\n}",
+          "body": "{\n  \"id\": 1001,\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"lastSessionDate\":null,\n  \"role\": 0,\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"activeSubscription\": null,\n  \"avatar\":null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",

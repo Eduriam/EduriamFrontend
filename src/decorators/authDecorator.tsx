@@ -1,6 +1,6 @@
 import { Story } from "@storybook/react";
 
-import { SubscriptionStatus } from "../infrastructure/api/generated/models";
+import { SubscriptionStatus, UserRole } from "../infrastructure/api/generated/models";
 import {
   AuthContext,
   AuthContextType,
@@ -11,12 +11,15 @@ export default function AuthDecorator(Story: Story) {
     loading: false,
     user: {
       id: 123,
-      role: "PREMIUM_USER",
       username: "pepaokurka",
+      name: "Pepa Okurka",
+      profileImageUrl: null,
+      streak: 114,
       balance: 999,
+      lastSessionDate: null,
+      role: UserRole.PremiumUser,
       energy: 12,
       streakFreezes: 0,
-      streak: 114,
       accountInitialized: true,
       activeSubscription: {
         status: SubscriptionStatus.Active,
@@ -25,6 +28,7 @@ export default function AuthDecorator(Story: Story) {
           new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
         ).toISOString(), // One week from now
       },
+      avatar: null,
     },
     signin: () => console.log("signin"),
     signout: () => console.log("signout"),

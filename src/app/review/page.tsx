@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -85,7 +86,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     }
 
     const hasNoEnergy = (user?.energy ?? 0) <= 0;
-    const isPremiumUser = user?.role === "PREMIUM_USER";
+    const isPremiumUser = user?.role === UserRole.PremiumUser;
 
     if (user && !isPremiumUser && hasNoEnergy) {
       router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), {

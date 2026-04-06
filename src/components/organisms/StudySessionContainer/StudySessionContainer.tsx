@@ -21,7 +21,7 @@ import {
 
 import { useMemo, useState } from "react";
 
-import { ReportType } from "infrastructure/api/generated/models";
+import { ReportType, UserRole } from "infrastructure/api/generated/models";
 import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
@@ -56,7 +56,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
   const reportStudyBlockLocalization = createStudyBlockReportLocalization(t);
 
   const reportProblemTypeSections = useMemo(() => {
-    const isCorrector = (user?.role as string) === "CORRECTOR";
+    const isCorrector = user?.role === UserRole.Admin;
 
     return createStudyBlockReportProblemTypeSections(t, {
       studyBlockType: selectedStudyBlockData?.type ?? "explanation",

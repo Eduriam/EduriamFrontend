@@ -1,10 +1,10 @@
 import axios, { AxiosError } from "axios";
 
 import errorCodes from "infrastructure/api/error-codes";
+import type { GetUserModel } from "infrastructure/api/generated/models";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 
-import { UserPrivate } from "../users/me/User";
 import {
   GoogleAuthorizeResponseBody,
   GoogleCodeExchangeRequestBody,
@@ -30,7 +30,7 @@ const ExternalAuthAPI = {
 
   async authorizeCode(
     data: GoogleCodeExchangeRequestBody,
-  ): Promise<UserPrivate> {
+  ): Promise<GetUserModel> {
     try {
       return await this.exchangeCode(CODE_AUTHORIZE_URI, data);
     } catch (error) {
@@ -41,7 +41,7 @@ const ExternalAuthAPI = {
   async exchangeCode(
     endpoint: string,
     data: GoogleCodeExchangeRequestBody,
-  ): Promise<UserPrivate> {
+  ): Promise<GetUserModel> {
     const response = await axios.post<GoogleCodeExchangeResponseBody>(
       endpoint,
       data,
@@ -58,7 +58,7 @@ const ExternalAuthAPI = {
       "refreshToken",
       authPayload.refreshToken,
     );
-    LocalStorageManager.setItem<UserPrivate>("user", authPayload.user);
+    LocalStorageManager.setItem<GetUserModel>("user", authPayload.user);
 
     return authPayload.user;
   },

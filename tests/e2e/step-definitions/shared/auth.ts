@@ -1,6 +1,10 @@
 import { Given, When } from "@cucumber/cucumber";
 
-import { UserPrivate } from "infrastructure/api/users/me/User";
+import {
+  SubscriptionStatus,
+  UserRole,
+  type GetUserModel,
+} from "../../../../src/infrastructure/api/generated/models";
 
 import { CustomWorld } from "../../support/world";
 import { setGoogleAuthVariant } from "../../util/mockoon-env";
@@ -36,10 +40,11 @@ Given("I am signed in", async function (this: CustomWorld) {
     );
   }
 
-  const user: UserPrivate = {
+  const user: GetUserModel = {
     id: 1001,
     username: "Test user",
-    role: "USER",
+    name: "Test user",
+    role: UserRole.User,
     streak: 0,
     balance: 0,
     energy: 40,
@@ -56,7 +61,7 @@ Given("I am signed in", async function (this: CustomWorld) {
     idToken,
     refreshToken,
   }: {
-    user: UserPrivate;
+    user: GetUserModel;
     idToken: string;
     refreshToken: string;
   }) => {
@@ -83,17 +88,18 @@ Given("I am signed in as corrector", async function (this: CustomWorld) {
     );
   }
 
-  const user = {
+  const user: GetUserModel = {
     id: 1002,
     username: "Test corrector",
-    role: "CORRECTOR",
+    name: "Test corrector",
+    role: UserRole.Admin,
     streak: 0,
     balance: 0,
     energy: 40,
-    equippedStreakFreezes: 0,
+    streakFreezes: 0,
     accountInitialized: true,
     activeSubscription: null,
-  } as unknown as UserPrivate;
+  };
 
   const idToken = createJwt(60 * 60);
   const refreshToken = "test-refresh-token";
@@ -103,7 +109,7 @@ Given("I am signed in as corrector", async function (this: CustomWorld) {
     idToken,
     refreshToken,
   }: {
-    user: UserPrivate;
+    user: GetUserModel;
     idToken: string;
     refreshToken: string;
   }) => {
@@ -131,10 +137,11 @@ Given(
       );
     }
 
-    const user: UserPrivate = {
+    const user: GetUserModel = {
       id: 1001,
       username: "Test user",
-      role: "USER",
+      name: "Test user",
+      role: UserRole.User,
       streak: 0,
       balance: 0,
       energy: 40,
@@ -151,7 +158,7 @@ Given(
       idToken,
       refreshToken,
     }: {
-      user: UserPrivate;
+      user: GetUserModel;
       idToken: string;
       refreshToken: string;
     }) => {
@@ -187,19 +194,25 @@ Given(
       );
     }
 
-    const user = {
+    type EnrolledLearningPathUser = GetUserModel & {
+      selectedLearningPath: { id: number };
+    };
+
+    const user: EnrolledLearningPathUser = {
       id: 1001,
       username: "Test user",
-      role: "USER",
+      name: "Test user",
+      role: UserRole.User,
       streak: 0,
       balance: 0,
       energy: 40,
+      streakFreezes: 0,
       accountInitialized: true,
       activeSubscription: null,
       // Extra field used only by the app runtime to mark the enrolled learning path.
-      // It is intentionally not part of the UserPrivate TypeScript type.
+      // It is intentionally not part of the GetUserModel TypeScript type.
       selectedLearningPath: { id: 2001 },
-    } as unknown as UserPrivate;
+    };
 
     const idToken = createJwt(60 * 60);
     const refreshToken = "test-refresh-token";
@@ -209,7 +222,7 @@ Given(
       idToken,
       refreshToken,
     }: {
-      user: UserPrivate;
+      user: EnrolledLearningPathUser;
       idToken: string;
       refreshToken: string;
     }) => {
@@ -247,16 +260,18 @@ Given(
       );
     }
 
-    const user = {
+    const user: GetUserModel = {
       id: 1001,
       username: "Test user",
-      role: "USER",
+      name: "Test user",
+      role: UserRole.User,
       streak: 0,
       balance: 0,
       energy: 40,
+      streakFreezes: 0,
       accountInitialized: false,
       activeSubscription: null,
-    } as unknown as UserPrivate;
+    };
 
     const idToken = createJwt(60 * 60);
     const refreshToken = "test-refresh-token";
@@ -266,7 +281,7 @@ Given(
       idToken,
       refreshToken,
     }: {
-      user: UserPrivate;
+      user: GetUserModel;
       idToken: string;
       refreshToken: string;
     }) => {
@@ -316,19 +331,22 @@ Given("I am a premium user", async function (this: CustomWorld) {
     );
   }
 
-  const user = {
+  const user: GetUserModel = {
     id: 1001,
     username: "Test user",
-    role: "PREMIUM_USER",
+    name: "Test user",
+    role: UserRole.PremiumUser,
     streak: 0,
     balance: 0,
+    energy: 40,
+    streakFreezes: 0,
     accountInitialized: true,
     activeSubscription: {
-      status: 3,
+      status: SubscriptionStatus.Active,
       periodStart: new Date().toISOString(),
       periodEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     },
-  } as unknown as UserPrivate;
+  };
 
   const idToken = createJwt(60 * 60);
   const refreshToken = "test-refresh-token";
@@ -338,7 +356,7 @@ Given("I am a premium user", async function (this: CustomWorld) {
     idToken,
     refreshToken,
   }: {
-    user: UserPrivate;
+    user: GetUserModel;
     idToken: string;
     refreshToken: string;
   }) => {

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
@@ -18,8 +19,6 @@ type TransitionDirection = "forward" | "back";
 export type TransitionNavigationOptions = {
   direction?: TransitionDirection;
 };
-
-
 
 const useTransitionNavigationHandler = () => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -38,7 +37,7 @@ const useTransitionNavigationHandler = () => {
     (path: string): string => {
       const isStudyOrReviewPath =
         /^\/study($|[/?])/.test(path) || /^\/review($|[/?])/.test(path);
-      const isPremiumUser = user?.role === "PREMIUM_USER";
+      const isPremiumUser = user?.role === UserRole.PremiumUser;
       const hasNoEnergy = (user?.energy ?? 0) <= 0;
 
       if (user && isStudyOrReviewPath && !isPremiumUser && hasNoEnergy) {
@@ -62,7 +61,13 @@ const useTransitionNavigationHandler = () => {
 
       router.push(resolvedPath);
     },
-    [mobile, resolveNavigationPath, router, setTransitionDirection, transitionRouter],
+    [
+      mobile,
+      resolveNavigationPath,
+      router,
+      setTransitionDirection,
+      transitionRouter,
+    ],
   );
 
   const back = useCallback(
@@ -77,7 +82,13 @@ const useTransitionNavigationHandler = () => {
 
       router.push(resolvedPath);
     },
-    [mobile, resolveNavigationPath, router, setTransitionDirection, transitionRouter],
+    [
+      mobile,
+      resolveNavigationPath,
+      router,
+      setTransitionDirection,
+      transitionRouter,
+    ],
   );
 
   return useCallback(
@@ -94,6 +105,3 @@ const useTransitionNavigationHandler = () => {
 };
 
 export default useTransitionNavigationHandler;
-
-
-

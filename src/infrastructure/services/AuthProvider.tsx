@@ -16,7 +16,7 @@ import {
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/api/external-auth/ExternalAuth";
-import { UserPrivate } from "infrastructure/api/users/me/User";
+import type { GetUserModel } from "infrastructure/api/generated/models";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { UserService } from "infrastructure/services/users/UserService";
 
@@ -24,15 +24,15 @@ import { setLanguage, useTranslation } from "../../i18n/client";
 import AuthManager from "../repositories/AuthManager";
 
 export interface AuthContextType {
-  user?: UserPrivate;
+  user?: GetUserModel;
   loading: boolean;
   errors?: string[];
   signin: (email: string, password: string) => void;
   signUp: (username: string, email: string, password: string) => void;
   startGoogleAuth: (source: GoogleAuthSource) => Promise<void>;
-  authorizeGoogleCode: (code: string) => Promise<UserPrivate>;
+  authorizeGoogleCode: (code: string) => Promise<GetUserModel>;
   signout: () => void;
-  mutateUser: (userChange: Partial<UserPrivate>) => void;
+  mutateUser: (userChange: Partial<GetUserModel>) => void;
   revalidateUser: () => void;
 }
 
@@ -46,7 +46,7 @@ export function AuthProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [user, setUser] = useState<UserPrivate>();
+  const [user, setUser] = useState<GetUserModel>();
   const [errors, setError] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
@@ -137,7 +137,7 @@ export function AuthProvider({
     }
   }
 
-  async function authorizeGoogleCode(code: string): Promise<UserPrivate> {
+  async function authorizeGoogleCode(code: string): Promise<GetUserModel> {
     setLoading(true);
     setError(() => []);
 
@@ -192,9 +192,9 @@ export function AuthProvider({
     }
   }
 
-  function mutateUser(userChange: Partial<UserPrivate>) {
+  function mutateUser(userChange: Partial<GetUserModel>) {
     const currentUser =
-      user ?? LocalStorageManager.getItem<UserPrivate>("user");
+      user ?? LocalStorageManager.getItem<GetUserModel>("user");
     if (!currentUser) {
       return;
     }
@@ -202,14 +202,14 @@ export function AuthProvider({
     const newUser = { ...currentUser, ...userChange };
 
     setUser(newUser);
-    LocalStorageManager.setItem<UserPrivate>("user", newUser);
+    LocalStorageManager.setItem<GetUserModel>("user", newUser);
   }
 
   async function revalidateUser() {
     const user = await UserService.getUser();
 
     setUser(user);
-    LocalStorageManager.setItem<UserPrivate>("user", user);
+    LocalStorageManager.setItem<GetUserModel>("user", user);
   }
 
   const memoedValue = useMemo(

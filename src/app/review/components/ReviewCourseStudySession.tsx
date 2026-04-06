@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import type { IStudySessionContainer } from "components/organisms/StudySessionContainer/StudySessionContainer";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -45,7 +46,7 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
 
   const runWithAdvertisement = useCallback(
     (target: "back") => {
-      if (user?.role === "PREMIUM_USER") {
+      if (user?.role === UserRole.PremiumUser) {
         navigate();
         return;
       }

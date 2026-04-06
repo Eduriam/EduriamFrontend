@@ -1,4 +1,4 @@
-import type { UserPrivate } from "../users/me/User";
+import type { GetUserModel } from "infrastructure/api/generated/models";
 
 export type GoogleAuthSource = "signin" | "signup";
 
@@ -15,7 +15,7 @@ export interface GoogleCodeExchangeRequestBody {
 export interface GoogleCodeExchangeResponseBody {
   idToken: string;
   refreshToken: string;
-  user: UserPrivate;
+  user: GetUserModel;
 }
 
 export const GOOGLE_AUTH_SOURCE_STORAGE_KEY = "googleAuthSource";

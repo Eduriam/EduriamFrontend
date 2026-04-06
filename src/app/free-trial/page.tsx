@@ -16,7 +16,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
 import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
-import { SubscriptionStatus } from "infrastructure/api/generated/models";
+import { SubscriptionStatus, UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import FreeTrialActivatedStep from "./components/FreeTrialActivatedStep/FreeTrialActivatedStep";
@@ -95,7 +95,7 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
       }
 
       mutateUser({
-        role: "PREMIUM_USER",
+        role: UserRole.PremiumUser,
         activeSubscription: {
           status: SubscriptionStatus.Trialing,
           periodStart: new Date().toISOString(),

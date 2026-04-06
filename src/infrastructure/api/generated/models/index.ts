@@ -106,3 +106,4 @@ export * from "./subscriptionStatus";
 export * from "./themeMode";
 export * from "./userAchievementModel";
 export * from "./userOwnedShopItemModel";
+export * from "./userRole";

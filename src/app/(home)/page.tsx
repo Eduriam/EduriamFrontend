@@ -19,6 +19,7 @@ import Typography from "@mui/material/Typography";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -45,7 +46,7 @@ const HomePage: React.FC<IHomePage> = () => {
 
   const { studyPlan, isLoading } = StudyPlanAPI.useStudyPlan();
 
-  const isPremiumUser = user?.role === "PREMIUM_USER";
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
   const streak = user?.streak ?? 0;
   const coins = user?.balance ?? 0;
   const energy = user?.energy ?? 0;

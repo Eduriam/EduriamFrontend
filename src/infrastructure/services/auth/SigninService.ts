@@ -1,6 +1,5 @@
 import { getAuth } from "infrastructure/api/generated/auth/auth";
-import type { LoginUserModel } from "infrastructure/api/generated/models";
-import type { UserPrivate } from "infrastructure/api/users/me/User";
+import type { GetUserModel, LoginUserModel } from "infrastructure/api/generated/models";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { UserService } from "infrastructure/services/users/UserService";
@@ -9,7 +8,7 @@ import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 const authClient = getAuth();
 
 export class SigninService {
-  static async signin(data: LoginUserModel): Promise<UserPrivate> {
+  static async signin(data: LoginUserModel): Promise<GetUserModel> {
     try {
       const response = await authClient.postApiAuthSignin(data);
 
@@ -25,7 +24,7 @@ export class SigninService {
       );
 
       const user = await UserService.getUser();
-      LocalStorageManager.setItem<UserPrivate>("user", user);
+      LocalStorageManager.setItem<GetUserModel>("user", user);
 
       return user;
     } catch (error) {

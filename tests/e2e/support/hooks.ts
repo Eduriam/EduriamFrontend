@@ -1,6 +1,9 @@
 import { After, Before } from "@cucumber/cucumber";
 
-import { UserPrivate } from "infrastructure/api/users/me/User";
+import {
+  UserRole,
+  type GetUserModel,
+} from "../../../src/infrastructure/api/generated/models";
 
 import { createJwt } from "../step-definitions/util/jwt";
 import {
@@ -21,13 +24,15 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
   const user = {
     id: 1001,
     username: "Test user",
-    role: "USER",
+    name: "Test user",
+    role: UserRole.User,
     streak: 0,
     balance: 0,
     energy: 40,
+    streakFreezes: 0,
     accountInitialized: false,
     activeSubscription: null,
-  } as unknown as UserPrivate;
+  } satisfies GetUserModel;
   const idToken = createJwt(60 * 60);
   const refreshToken = "test-refresh-token";
   const initScript = ({
@@ -35,7 +40,7 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     idToken,
     refreshToken,
   }: {
-    user: UserPrivate;
+    user: GetUserModel;
     idToken: string;
     refreshToken: string;
   }) => {

@@ -6,6 +6,7 @@
  */
 import type { AvatarModel } from "./avatarModel";
 import type { SubscriptionModel } from "./subscriptionModel";
+import type { UserRole } from "./userRole";
 
 export interface GetUserModel {
   id: number;
@@ -17,7 +18,7 @@ export interface GetUserModel {
   balance: number;
   /** @nullable */
   lastSessionDate?: string | null;
-  role: string;
+  role: UserRole;
   energy: number;
   streakFreezes: number;
   accountInitialized: boolean;

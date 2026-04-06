@@ -29,6 +29,7 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
@@ -58,7 +59,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const [isDetailsDrawerOpen, setIsDetailsDrawerOpen] = useState(false);
   const [isCertificateDrawerOpen, setIsCertificateDrawerOpen] = useState(false);
 
-  const isPremiumUser = user?.role === "PREMIUM_USER";
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
   const premiumLabel = t("courses.premiumLabel");
 
   const shouldRedirectToPremiumBecauseNoEnergy =

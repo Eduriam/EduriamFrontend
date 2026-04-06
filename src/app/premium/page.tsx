@@ -20,6 +20,8 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import PremiumBenefits from "components/premium/PremiumBenefits/PremiumBenefits";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
+import { UserRole } from "infrastructure/api/generated/models";
+
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PREMIUM_MESSAGES, type PremiumMessageValue } from "./premiumMessages";
@@ -32,7 +34,7 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
-  const isPremiumUser = user?.role === "PREMIUM_USER";
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
 
   const [message, setMessage] = useState<PremiumMessageValue>(() => {
     const messageFromQuery = searchParams.get(PREMIUM_MESSAGES.queryParam);

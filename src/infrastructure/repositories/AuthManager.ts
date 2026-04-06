@@ -5,12 +5,12 @@ import {
   GoogleCodeExchangeRequestBody,
 } from "infrastructure/api/external-auth/ExternalAuth";
 import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
-import type { LoginUserModel, RegisterUserModel } from "infrastructure/api/generated/models";
+import type { GetUserModel, LoginUserModel, RegisterUserModel } from "infrastructure/api/generated/models";
 import { RefreshTokenService } from "infrastructure/services/auth/RefreshTokenService";
 import { SigninService } from "infrastructure/services/auth/SigninService";
 import { SignupService } from "infrastructure/services/auth/SignupService";
 
-import { UserPrivate } from "../api/users/me/User";
+
 import { LocalStorageManager } from "./LocalStorageManager";
 
 const AuthManager = {
@@ -25,11 +25,11 @@ const AuthManager = {
     LocalStorageManager.removeItem("user");
   },
 
-  async signin(data: LoginUserModel): Promise<UserPrivate> {
+  async signin(data: LoginUserModel): Promise<GetUserModel> {
     return SigninService.signin(data);
   },
 
-  async signUp(data: RegisterUserModel): Promise<UserPrivate> {
+  async signUp(data: RegisterUserModel): Promise<GetUserModel> {
     return SignupService.signUp(data);
   },
 
@@ -39,7 +39,7 @@ const AuthManager = {
 
   async authorizeGoogleCode(
     data: GoogleCodeExchangeRequestBody,
-  ): Promise<UserPrivate> {
+  ): Promise<GetUserModel> {
     return ExternalAuthAPI.authorizeCode(data);
   },
 
@@ -66,7 +66,7 @@ const AuthManager = {
       });
   },
 
-  async getCurrentUser(): Promise<UserPrivate> {
+  async getCurrentUser(): Promise<GetUserModel> {
     const token = LocalStorageManager.getItem<string>("idToken");
 
     if (token) {
@@ -81,7 +81,7 @@ const AuthManager = {
       this.signout();
     }
 
-    const user = LocalStorageManager.getItem<UserPrivate>("user");
+    const user = LocalStorageManager.getItem<GetUserModel>("user");
     if (user === null) {
       return Promise.reject("No user found.");
     }
