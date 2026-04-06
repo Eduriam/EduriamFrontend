@@ -3,7 +3,10 @@ import { After, Before } from "@cucumber/cucumber";
 import { UserPrivate } from "infrastructure/api/users/me/User";
 
 import { createJwt } from "../step-definitions/util/jwt";
-import { resetMockoonGlobalVarsToDefaults } from "../util/mockoon-env";
+import {
+  resetMockoonGlobalVarsToDefaults,
+  setSignupAccountUninitialized,
+} from "../util/mockoon-env";
 import { CustomWorld } from "./world";
 
 Before(async function (this: CustomWorld) {
@@ -51,6 +54,10 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     idToken,
     refreshToken,
   });
+});
+
+Before({ tags: "@signup" }, async function () {
+  await setSignupAccountUninitialized(true);
 });
 
 After(async function (this: CustomWorld) {

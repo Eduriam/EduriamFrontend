@@ -106,7 +106,7 @@ export function AuthProvider({
     setLoading(true);
     setError(() => []);
 
-    AuthManager.signUp({ username, email, password })
+    AuthManager.signUp({ userName: username, email, password })
       .then((user) => {
         setUser(user);
         router.push("/");

@@ -3,11 +3,11 @@ import jwtDecode from "jwt-decode";
 
 import { GoogleCodeExchangeRequestBody } from "infrastructure/api/external-auth/ExternalAuth";
 import ExternalAuthAPI from "infrastructure/api/external-auth/ExternalAuthAPI";
+import type { RegisterUserModel } from "infrastructure/api/generated/models";
 import RefreshTokenAPI from "infrastructure/api/user-auth/refresh-token/RefreshTokenAPI";
 import { SigninRequestBody } from "infrastructure/api/user-auth/signin/Signin";
 import SigninAPI from "infrastructure/api/user-auth/signin/SigninAPI";
-import { SignupRequestBody } from "infrastructure/api/user-auth/signup/Signup";
-import SignupAPI from "infrastructure/api/user-auth/signup/SignupAPI";
+import { SignupService } from "infrastructure/services/auth/SignupService";
 
 import { UserPrivate } from "../api/users/me/User";
 import { LocalStorageManager } from "./LocalStorageManager";
@@ -28,8 +28,8 @@ const AuthManager = {
     return SigninAPI.signin(data);
   },
 
-  async signUp(data: SignupRequestBody): Promise<UserPrivate> {
-    return SignupAPI.signUp(data);
+  async signUp(data: RegisterUserModel): Promise<UserPrivate> {
+    return SignupService.signUp(data);
   },
 
   async getGoogleAuthorizationUrl(): Promise<string> {

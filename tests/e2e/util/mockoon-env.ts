@@ -17,6 +17,7 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_NOTICE_VARIANT: "empty",
   MOCKOON_FEED_VARIANT: "default",
   MOCKOON_GOOGLE_AUTH_VARIANT: "default",
+  MOCKOON_SIGNUP_ACCOUNT_UNINITIALIZED: "false",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -215,6 +216,15 @@ export async function setGoogleAuthVariant(
   variant: MockoonGoogleAuthVariant,
 ): Promise<void> {
   await setMockoonGlobalVar("MOCKOON_GOOGLE_AUTH_VARIANT", variant);
+}
+
+export async function setSignupAccountUninitialized(
+  uninitialized: boolean,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_SIGNUP_ACCOUNT_UNINITIALIZED",
+    uninitialized ? "true" : "false",
+  );
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {
