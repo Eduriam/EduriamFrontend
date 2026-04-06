@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   BasicNavbar,
@@ -25,8 +25,12 @@ import Typography from "@mui/material/Typography";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
+import { ReportType } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
+import {
+  parseReportProblemType,
+  ReportsService,
+} from "infrastructure/services/reports/ReportsService";
 
 type SettingsMenuItem = {
   id: string;
@@ -186,9 +190,9 @@ const SettingsPage: React.FC = () => {
         open={isReportOpen}
         onClose={() => setIsReportOpen(false)}
         onSubmit={async (payload) => {
-          await ReportsAPI.submitReport({
-            type: "GENERAL",
-            problemTypeId: payload.problemTypeId,
+          await ReportsService.submitReport({
+            type: ReportType.General,
+            problemTypeId: parseReportProblemType(payload.problemTypeId),
             description: payload.description,
           });
         }}

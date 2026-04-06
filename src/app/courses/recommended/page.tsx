@@ -22,8 +22,8 @@ import CourseLogo, {
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import type { CourseDTO } from "infrastructure/api/courses/Courses";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
+import { CourseDTO } from "infrastructure/services/courses/CoursesService";
 
 function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";

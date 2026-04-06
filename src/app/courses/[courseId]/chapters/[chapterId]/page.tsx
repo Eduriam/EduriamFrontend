@@ -21,7 +21,7 @@ import LessonListItem from "components/courses/LessonListItem/LessonListItem";
 import SectionCard from "components/courses/SectionCard/SectionCard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import ChaptersAPI from "infrastructure/api/courses/chapters/ChaptersAPI";
+import { ChaptersService } from "infrastructure/services/courses/ChaptersService";
 
 export interface ICourseChapterPage {}
 
@@ -35,7 +35,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
   const safeCourseId = courseId ?? 0;
   const safeChapterId = chapterId ?? 0;
 
-  const { chapter } = ChaptersAPI.useChapter(safeCourseId, safeChapterId);
+  const { chapter } = ChaptersService.useChapter(safeCourseId, safeChapterId);
 
   useEffect(() => {
     if (courseId === undefined || chapterId === undefined) {

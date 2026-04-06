@@ -27,10 +27,9 @@ import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDe
 import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import { Course } from "infrastructure/api/courses/Courses";
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { Course, CoursesService } from "infrastructure/services/courses/CoursesService";
 
 export interface ICoursePage {}
 
@@ -43,7 +42,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
   const params = useParams();
   const courseId = parseId(params?.courseId);
 
-  const { course } = CoursesAPI.useCourse(courseId ?? 0);
+  const { course } = CoursesService.useCourse(courseId ?? 0);
 
   useEffect(() => {
     if (courseId === undefined) {

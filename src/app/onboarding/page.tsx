@@ -12,11 +12,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { CoursesService } from "infrastructure/services/courses/CoursesService";
 import { AccountSetupService } from "infrastructure/services/users/AccountSetupService";
 
 import AreaOfInterestStep from "../courses/recommended/quiz/components/AreaOfInterestStep";
@@ -64,7 +64,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 
   const { recommendedCourses: recommendedFromApi } =
     RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesAPI.useCourses();
+  const { courses } = CoursesService.useCourses();
   const recommendedCourses = (recommendedFromApi ?? [])
     .filter((course) => !course.premium)
     .slice(0, 3);

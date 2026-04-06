@@ -1,8 +1,8 @@
 import { Modify } from "domain/models/utils/modify";
 
 import { FetchHook } from "infrastructure/api/API";
-import { Course } from "infrastructure/api/courses/Courses";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { Course } from "infrastructure/services/courses/CoursesService";
 
 const RecommendedCoursesAPI = {
   URI: "users/me/recommended-courses",

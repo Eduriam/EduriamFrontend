@@ -1,5 +1,6 @@
 import { DrawerSelectSection } from "@eduriam/ui-core";
 import { ReportDialogDataTest, ReportDialogLocalization } from "@eduriam/ui-x";
+import { ReportProblemType } from "infrastructure/api/generated/models";
 
 export const SETTINGS_REPORT_DATA_TEST: ReportDialogDataTest = {
   report: {
@@ -20,6 +21,11 @@ export const SETTINGS_REPORT_DATA_TEST: ReportDialogDataTest = {
 export function createSettingsReportProblemTypeSections(
   t: (key: string) => string,
 ): DrawerSelectSection[] {
+  const bugReportId = String(ReportProblemType.BugReport);
+  const improvementSuggestionId = String(
+    ReportProblemType.ImprovementSuggestion,
+  );
+
   return [
     {
       id: "problem-type",
@@ -27,12 +33,12 @@ export function createSettingsReportProblemTypeSections(
       dataTest: "settings-report-problem-type-section",
       options: [
         {
-          id: "bug-report",
+          id: bugReportId,
           label: t("settings.report.problemTypes.bugReport"),
           dataTest: "settings-report-problem-type-bug-option-button",
         },
         {
-          id: "improvement-suggestion",
+          id: improvementSuggestionId,
           label: t("settings.report.problemTypes.improvementSuggestion"),
           dataTest: "settings-report-problem-type-improvement-option-button",
         },

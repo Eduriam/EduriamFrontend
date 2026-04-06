@@ -1,5 +1,6 @@
 import { DrawerSelectSection } from "@eduriam/ui-core";
 import { ReportDialogDataTest, ReportDialogLocalization } from "@eduriam/ui-x";
+import { ReportProblemType } from "infrastructure/api/generated/models";
 
 export const STUDY_BLOCK_REPORT_DATA_TEST: ReportDialogDataTest = {
   report: {
@@ -41,60 +42,60 @@ type ProblemSectionTemplate = {
 
 const REPORT_PROBLEM_OPTION_TEMPLATES = {
   explanationNotUnderstood: {
-    id: "explanation-not-understood",
+    id: String(ReportProblemType.ExplanationNotUnderstood),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.explanationNotUnderstood",
     dataTest: "problem-option-explanation-not-understood-button",
   },
   exerciseNotUnderstood: {
-    id: "exercise-not-understood",
+    id: String(ReportProblemType.ExerciseNotUnderstood),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.exerciseNotUnderstood",
     dataTest: "problem-option-exercise-not-understood-button",
   },
   answerShouldNotBeAccepted: {
-    id: "answer-should-not-be-accepted",
+    id: String(ReportProblemType.AnswerShouldNotBeAccepted),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.answerShouldNotBeAccepted",
     dataTest: "problem-option-answer-should-not-be-accepted-button",
   },
   answerShouldBeAccepted: {
-    id: "answer-should-be-accepted",
+    id: String(ReportProblemType.AnswerShouldBeAccepted),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.answerShouldBeAccepted",
     dataTest: "problem-option-answer-should-be-accepted-button",
   },
   audioDoesNotSoundRight: {
-    id: "audio-does-not-sound-right",
+    id: String(ReportProblemType.AudioDoesNotSoundRight),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.audioDoesNotSoundRight",
     dataTest: "problem-option-audio-does-not-sound-right-button",
   },
   audioMissing: {
-    id: "audio-missing",
+    id: String(ReportProblemType.AudioMissing),
     labelKey: "reportStudyBlock.problemGroups.user.options.audioMissing",
     dataTest: "problem-option-audio-missing-button",
   },
   somethingElseWentWrong: {
-    id: "something-else-went-wrong",
+    id: String(ReportProblemType.SomethingElseWentWrong),
     labelKey:
       "reportStudyBlock.problemGroups.user.options.somethingElseWentWrong",
     dataTest: "problem-option-something-else-went-wrong-button",
   },
   explanationStructureShouldBeChanged: {
-    id: "explanation-structure-should-be-changed",
+    id: String(ReportProblemType.ExplanationStructureShouldBeChanged),
     labelKey:
       "reportStudyBlock.problemGroups.corrector.options.explanationStructureShouldBeChanged",
     dataTest: "problem-option-explanation-structure-should-be-changed-button",
   },
   exerciseStructureShouldBeChanged: {
-    id: "exercise-structure-should-be-changed",
+    id: String(ReportProblemType.ExerciseStructureShouldBeChanged),
     labelKey:
       "reportStudyBlock.problemGroups.corrector.options.exerciseStructureShouldBeChanged",
     dataTest: "problem-option-exercise-structure-should-be-changed-button",
   },
   lessonStructureShouldBeChanged: {
-    id: "lesson-structure-should-be-changed",
+    id: String(ReportProblemType.LessonStructureShouldBeChanged),
     labelKey:
       "reportStudyBlock.problemGroups.corrector.options.lessonStructureShouldBeChanged",
     dataTest: "problem-option-lesson-structure-should-be-changed-button",

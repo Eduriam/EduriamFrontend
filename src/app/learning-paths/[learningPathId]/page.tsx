@@ -29,10 +29,12 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import { LearningPath } from "infrastructure/api/courses/Courses";
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import {
+  CoursesService,
+  LearningPath,
+} from "infrastructure/services/courses/CoursesService";
 
 export interface ILearningPathPage {}
 
@@ -45,7 +47,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const params = useParams();
   const learningPathId = parseId(params?.learningPathId);
 
-  const { course: learningPath } = CoursesAPI.useCourse(learningPathId ?? 0);
+  const { course: learningPath } = CoursesService.useCourse(learningPathId ?? 0);
 
   useEffect(() => {
     if (learningPathId === undefined) {

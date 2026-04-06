@@ -1,4 +1,4 @@
-import { Course } from "infrastructure/api/courses/Courses";
+import { Course } from "infrastructure/services/courses/CoursesService";
 
 export type StudyMode = "learn" | "review" | "paused";
 

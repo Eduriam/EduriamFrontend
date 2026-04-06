@@ -16,7 +16,7 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import type { CourseDTO } from "infrastructure/api/courses/Courses";
+import { CourseDTO } from "infrastructure/services/courses/CoursesService";
 
 const DEFAULT_CATEGORY = "other";
 

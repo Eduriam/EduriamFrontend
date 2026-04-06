@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
+import { CoursesService } from "infrastructure/services/courses/CoursesService";
 
 import LearnLessonStudySession from "./components/LearnLessonStudySession";
 
@@ -65,7 +65,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
 
     const resolveUpcomingLessonId = async () => {
       try {
-        const course = await CoursesAPI.getCourse(courseIdParam);
+        const course = await CoursesService.getCourse(courseIdParam);
         const resolvedLessonId = parseId(course.upcomingLessonId);
         if (!isCancelled) {
           setLessonId(resolvedLessonId);

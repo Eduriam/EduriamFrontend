@@ -21,9 +21,13 @@ import {
 
 import { useMemo, useState } from "react";
 
-import ReportsAPI from "infrastructure/api/reports/ReportsAPI";
+import { ReportType } from "infrastructure/api/generated/models";
 import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import {
+  parseReportProblemType,
+  ReportsService,
+} from "infrastructure/services/reports/ReportsService";
 
 export interface IStudySessionContainer {
   studySession: StudySessionDTO;
@@ -104,9 +108,9 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
             return;
           }
 
-          await ReportsAPI.submitReport({
-            type: "STUDY_BLOCK",
-            problemTypeId: payload.problemTypeId,
+          await ReportsService.submitReport({
+            type: ReportType.StudyBlock,
+            problemTypeId: parseReportProblemType(payload.problemTypeId),
             description: payload.description,
             context: {
               studyBlockId: selectedStudyBlockData.id,

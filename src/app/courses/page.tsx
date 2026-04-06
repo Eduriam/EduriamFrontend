@@ -26,9 +26,11 @@ import CourseLogo, {
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import type { CourseDTO } from "infrastructure/api/courses/Courses";
-import CoursesAPI from "infrastructure/api/courses/CoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
+import {
+  CourseDTO,
+  CoursesService,
+} from "infrastructure/services/courses/CoursesService";
 
 const DEFAULT_CATEGORY = "other";
 
@@ -126,7 +128,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesAPI.useCourses();
+  const { courses } = CoursesService.useCourses();
 
   const displayRecommended = (recommendedCourses ?? []).slice(0, 2);
   const displayAllCourses = courses ?? [];
