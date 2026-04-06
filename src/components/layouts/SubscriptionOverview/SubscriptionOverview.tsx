@@ -17,7 +17,10 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { Subscription } from "infrastructure/api/users/me/subscriptions/Subscriptions";
+import {
+  GetSubscriptionModel,
+  SubscriptionStatus,
+} from "infrastructure/api/generated/models";
 import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
 
 export interface ISubscriptionOverview {}
@@ -78,9 +81,9 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
       return;
     }
 
-    const data: Subscription = {
+    const data: GetSubscriptionModel = {
       ...subscription,
-      status: "SCHEDULED_TO_CANCEL",
+      status: SubscriptionStatus.ScheduledToCancel,
     };
 
     mutate(
@@ -123,7 +126,24 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
                   />
                   <Typography variant="body1" color="text.secondary">
                     {`${t("manageSubscription.subscriptionState")}: ${t(
-                      `manageSubscription.subscriptionStates.${subscription.status.toLowerCase()}`,
+                      `manageSubscription.subscriptionStates.${(() => {
+                        switch (subscription.status) {
+                          case SubscriptionStatus.Trialing:
+                            return "trial";
+                          case SubscriptionStatus.Canceled:
+                          case SubscriptionStatus.ScheduledToCancel:
+                            return "cancelled";
+                          case SubscriptionStatus.Active:
+                          case SubscriptionStatus.PastDue:
+                          case SubscriptionStatus.Unpaid:
+                            return "paid";
+                          case SubscriptionStatus.Incomplete:
+                          case SubscriptionStatus.IncompleteExpired:
+                          case SubscriptionStatus.Paused:
+                          default:
+                            return "ordered";
+                        }
+                      })()}`,
                     )}`}
                     <br />
                     {`${t("manageSubscription.nextPayment")}: ${nextPaymentDate}`}

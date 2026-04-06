@@ -17,8 +17,8 @@ import {
   GoogleAuthSource,
 } from "infrastructure/api/external-auth/ExternalAuth";
 import { UserPrivate } from "infrastructure/api/users/me/User";
-import UserAPI from "infrastructure/api/users/me/UserAPI";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
+import { UserService } from "infrastructure/services/users/UserService";
 
 import { setLanguage, useTranslation } from "../../i18n/client";
 import AuthManager from "../repositories/AuthManager";
@@ -206,7 +206,7 @@ export function AuthProvider({
   }
 
   async function revalidateUser() {
-    const user = await UserAPI.getUser();
+    const user = await UserService.getUser();
 
     setUser(user);
     LocalStorageManager.setItem<UserPrivate>("user", user);

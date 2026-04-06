@@ -1,5 +1,6 @@
 import { Story } from "@storybook/react";
 
+import { SubscriptionStatus } from "../infrastructure/api/generated/models";
 import {
   AuthContext,
   AuthContextType,
@@ -14,14 +15,15 @@ export default function AuthDecorator(Story: Story) {
       username: "pepaokurka",
       balance: 999,
       energy: 12,
-      equippedStreakFreezes: 0,
+      streakFreezes: 0,
       streak: 114,
       accountInitialized: true,
       activeSubscription: {
-        status: "ACTIVE",
-        currentPeriodEnd: new Date(
+        status: SubscriptionStatus.Active,
+        periodStart: new Date().toISOString(),
+        periodEnd: new Date(
           new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
-        ), // One week from now
+        ).toISOString(), // One week from now
       },
     },
     signin: () => console.log("signin"),

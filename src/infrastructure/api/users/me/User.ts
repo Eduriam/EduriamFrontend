@@ -1,5 +1,6 @@
 import type { Id } from "domain/models/types/core";
-import { Subscription } from "./subscriptions/Subscriptions";
+
+import type { SubscriptionModel } from "infrastructure/api/generated/models";
 
 export interface UserPrivate {
   id: Id;
@@ -8,10 +9,9 @@ export interface UserPrivate {
   streak: number;
   balance: number;
   energy: number;
-  equippedStreakFreezes: number;
+  streakFreezes: number;
   accountInitialized: boolean;
-  activeSubscription: Subscription | null;
+  activeSubscription: SubscriptionModel | null | undefined;
 }
 
-export type UserRole = "USER" | "PREMIUM_USER";
-
+export type UserRole = "USER" | "PREMIUM_USER" | "CORRECTOR";

@@ -1,9 +1,11 @@
 import { Modify } from "domain/models/utils/modify";
 
 import API, { FetchHook } from "infrastructure/api/API";
+import type {
+  CreateSubscriptionRespModel,
+  GetSubscriptionModel,
+} from "infrastructure/api/generated/models";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
-
-import { CreateSubscriptionResponseDTO, Subscription } from "./Subscriptions";
 
 export interface SubscriptionParams {}
 
@@ -11,28 +13,28 @@ const SubscriptionAPI = {
   URI: "users/me/subscriptions",
 
   useSubscription(): Modify<
-    FetchHook<Subscription>,
-    { subscription: Subscription }
+    FetchHook<GetSubscriptionModel>,
+    { subscription: GetSubscriptionModel }
   > {
-    const { data, ...rest } = useAuthenticatedAPI<Subscription>(`${this.URI}`);
+    const { data, ...rest } = useAuthenticatedAPI<GetSubscriptionModel>(
+      `${this.URI}`,
+    );
     return { subscription: data, ...rest };
   },
 
-  async createSubscription(): Promise<CreateSubscriptionResponseDTO> {
+  async createSubscription(): Promise<CreateSubscriptionRespModel> {
     return API.post(`${this.URI}`, {});
   },
 
   async cancelSubscription(value: {
     unsubscribeReason: string;
-  }): Promise<Subscription> {
+  }): Promise<GetSubscriptionModel> {
     return API.delete(`${this.URI}`, { data: value });
   },
 
-  async startFreeTrial(): Promise<CreateSubscriptionResponseDTO> {
+  async startFreeTrial(): Promise<CreateSubscriptionRespModel> {
     return API.post(`${this.URI}/trial`, {});
   },
 };
 
 export default SubscriptionAPI;
-
-

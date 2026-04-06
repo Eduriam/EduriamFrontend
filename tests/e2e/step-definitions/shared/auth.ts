@@ -43,7 +43,7 @@ Given("I am signed in", async function (this: CustomWorld) {
     streak: 0,
     balance: 0,
     energy: 40,
-    equippedStreakFreezes: 0,
+    streakFreezes: 0,
     accountInitialized: true,
     activeSubscription: null,
   };
@@ -138,7 +138,7 @@ Given(
       streak: 0,
       balance: 0,
       energy: 40,
-      equippedStreakFreezes: 0,
+      streakFreezes: 0,
       accountInitialized: true,
       activeSubscription: null,
     };
@@ -270,6 +270,11 @@ Given(
       idToken: string;
       refreshToken: string;
     }) => {
+      // Seed onboarding state once and do not overwrite completion updates.
+      if (localStorage.getItem("user")) {
+        return;
+      }
+
       localStorage.setItem("idToken", JSON.stringify(idToken));
       localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
       localStorage.setItem("user", JSON.stringify(user));
@@ -319,8 +324,9 @@ Given("I am a premium user", async function (this: CustomWorld) {
     balance: 0,
     accountInitialized: true,
     activeSubscription: {
-      id: "test-subscription",
-      validUntil: new Date().toISOString(),
+      status: 3,
+      periodStart: new Date().toISOString(),
+      periodEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     },
   } as unknown as UserPrivate;
 
@@ -436,4 +442,3 @@ When("I cancel Google authentication", async function (this: CustomWorld) {
 
   await navigateToGoogleCallback(this, "/signin/callback?error=access_denied");
 });
-

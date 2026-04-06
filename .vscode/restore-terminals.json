@@ -45,7 +45,7 @@
       "splitTerminals": [
         {
           "name": "lint",
-          "commands": ["docker-compose up --build eduriam-frontend-lint"],
+          "commands": ["yarn lint"],
           "shouldRunCommands": false
         }
       ]
@@ -54,7 +54,7 @@
       "splitTerminals": [
         {
           "name": "build",
-          "commands": ["docker-compose up --build eduriam-frontend-build"],
+          "commands": ["yarn build"],
           "shouldRunCommands": false
         }
       ]

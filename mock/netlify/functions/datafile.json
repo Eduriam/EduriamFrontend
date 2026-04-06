@@ -2165,7 +2165,7 @@
       "responses": [
         {
           "uuid": "648ebde8-8278-4c24-b292-d464e098aabd",
-          "body": "{\n  \"id\": 1001,\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"role\":\"PREMIUM_USER\",\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"activeSubscription\":{\n     \"currentPeriodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":\"ACTIVE\"\n  }\n}",
+          "body": "{\n  \"id\": 1001,\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\":{{faker 'number.int' min=1 max=999}},\n  \"balance\":{{faker 'number.int' min=1 max=999}},\n  \"lastSessionDate\":null,\n  \"role\":\"PREMIUM_USER\",\n  \"energy\":{{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\":{{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\":true,\n  \"activeSubscription\":{\n     \"periodStart\":\"{{faker 'date.recent'}}\",\n     \"periodEnd\":\"{{faker 'date.future'}}\",\n     \"status\":3\n  },\n  \"avatar\":null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (premium user)",
@@ -2184,7 +2184,7 @@
         },
         {
           "uuid": "0c55444e-6227-44d2-877a-deaa274c15fa",
-          "body": "{\n  \"id\": \"{{faker 'string.uuid'}}\",\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"role\": \"USER\",\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"equippedStreakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"activeSubscription\": null\n}",
+          "body": "{\n  \"id\": 1001,\n  \"username\": \"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"profileImageUrl\":null,\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"balance\": {{faker 'number.int' min=0 max=999}},\n  \"lastSessionDate\":null,\n  \"role\": \"USER\",\n  \"energy\": {{faker 'number.int' min=1 max=20}},\n  \"streakFreezes\": {{faker 'number.int' min=0 max=2}},\n  \"accountInitialized\": true,\n  \"activeSubscription\": null,\n  \"avatar\":null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response (free user)",
@@ -3265,4 +3265,3 @@
     }
   ]
 }
-

@@ -49,7 +49,7 @@ const HomePage: React.FC<IHomePage> = () => {
   const streak = user?.streak ?? 0;
   const coins = user?.balance ?? 0;
   const energy = user?.energy ?? 0;
-  const equippedStreakFreezes = user?.equippedStreakFreezes ?? 0;
+  const equippedStreakFreezes = user?.streakFreezes ?? 0;
 
   const hasUpcomingLesson = !!studyPlan?.upcomingLearnLesson;
   const hasReviewContent = !!studyPlan?.upcomingReviewCourse;
