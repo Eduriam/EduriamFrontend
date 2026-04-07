@@ -21,7 +21,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { AvatarModel } from "infrastructure/api/generated/models";
 import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
-import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
+import { ShopService } from "infrastructure/services/shop/ShopService";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
@@ -40,7 +40,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const router = useRouter();
 
   const { settings, mutate } = SettingsAPI.useSettings();
-  const { shopItems = [] } = ShopItemsAPI.useShopItems();
+  const { ownedShopItems = [] } = ShopService.useOwnedShopItems();
 
   const [baseAvatar, setBaseAvatar] = useState<AvatarModel>(buildShopAvatar());
   const [draftAvatar, setDraftAvatar] = useState<AvatarModel>(buildShopAvatar());
@@ -60,11 +60,8 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   }, [settings]);
 
   const boughtAvatarItems = useMemo(
-    () =>
-      shopItems.filter(
-        (item) => item.bought === true && item.image.type === "avatar",
-      ),
-    [shopItems],
+    () => ownedShopItems.filter((item) => item.image.avatar),
+    [ownedShopItems],
   );
 
   const categories = useMemo(

@@ -10,11 +10,16 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
+import { toIllustrationName } from "app/shop/utils/shopItem";
 
-import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
+import {
+  ShopImageKind,
+  type ShopItemViewModel,
+} from "infrastructure/api/generated/models";
 
 export interface IShopItem {
-  item: ShopItemModel;
+  item: ShopItemViewModel;
+  purchased?: boolean;
   locked?: boolean;
   onClick?: () => void;
   "data-test"?: string;
@@ -25,11 +30,12 @@ const PREVIEW_SIZE = 56;
 
 const ShopItem: React.FC<IShopItem> = ({
   item,
+  purchased = false,
   locked = false,
   onClick,
   "data-test": dataTest,
 }) => {
-  const shopItemState = item.bought ? "bought" : locked ? "locked" : "default";
+  const shopItemState = purchased ? "bought" : locked ? "locked" : "default";
   const showPrice = shopItemState !== "bought";
   const priceCoinIllustration =
     shopItemState === "locked" ? "coinDisabled" : "coin";
@@ -65,19 +71,15 @@ const ShopItem: React.FC<IShopItem> = ({
       >
         <Stack alignItems="center" justifyContent="center" spacing={0.75}>
           <Box sx={{ width: PREVIEW_SIZE, height: PREVIEW_SIZE }}>
-            {item.image.type === "avatar" ? (
+            {item.image.kind === ShopImageKind.Avatar ? (
               <Avatar
-                definition={buildShopAvatar(item.image.avatar)}
+                definition={buildShopAvatar(item.image.avatar ?? {})}
                 size={PREVIEW_SIZE}
                 alt={item.name}
               />
             ) : (
               <Illustration
-                name={
-                  item.image.illustration as React.ComponentProps<
-                    typeof Illustration
-                  >["name"]
-                }
+                name={toIllustrationName(item.image.illustration?.kind)}
                 width={PREVIEW_SIZE}
                 height={PREVIEW_SIZE}
               />

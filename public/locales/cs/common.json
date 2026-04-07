@@ -180,6 +180,7 @@
   },
   "shop": {
     "buy": "Koupit",
+    "purchased": "Zakoupeno",
     "categories": {
       "hair": "Vlasy",
       "eyes": "Oči",

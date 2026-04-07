@@ -2643,11 +2643,11 @@
       "uuid": "70fcba65-862b-4e4e-9a2e-7639c707f47b",
       "documentation": "",
       "method": "get",
-      "endpoint": "users/me/shop-items",
+      "endpoint": "shop/items",
       "responses": [
         {
           "uuid": "741e7071-814c-4f8b-bf0a-272ce8df1f8e",
-          "body": "[\n  {\n    \"id\": \"streak-freeze-1\",\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"streak-freeze-2\",\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"categoryId\": \"streak-freeze\",\n    \"bought\": false,\n    \"image\": {\n      \"type\": \"illustration\",\n      \"illustration\": \"streakFreeze\"\n    }\n  },\n  {\n    \"id\": \"hair-1\",\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}300{{else}}9000{{/if}},\n    \"categoryId\": \"hair\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"hair-2\",\n    \"name\": \"Hair 2\",\n    \"price\": 300,\n    \"categoryId\": \"hair\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"hair\": \"hair_2\"\n      }\n    },\n    \"achievementLock\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}{\"achievementId\":\"streak_master\"}{{else}}null{{/if}}\n  },\n  {\n    \"id\": \"eyes-1\",\n    \"name\": \"Eyes 1\",\n    \"price\": 300,\n    \"categoryId\": \"eyes\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"eyes\": \"eyes_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"eyes-2\",\n    \"name\": \"Eyes 2\",\n    \"price\": 300,\n    \"categoryId\": \"eyes\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"eyes\": \"eyes_2\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"expression-1\",\n    \"name\": \"Expression 1\",\n    \"price\": 300,\n    \"categoryId\": \"expression\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"expression\": \"expression_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"expression-2\",\n    \"name\": \"Expression 2\",\n    \"price\": 300,\n    \"categoryId\": \"expression\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"expression\": \"expression_2\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"beard-1\",\n    \"name\": \"Beard 1\",\n    \"price\": 300,\n    \"categoryId\": \"beard\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"beard\": \"beard_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"beard-2\",\n    \"name\": \"Beard 2\",\n    \"price\": 300,\n    \"categoryId\": \"beard\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"beard\": \"beard_2\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"accessories-1\",\n    \"name\": \"Accessories 1\",\n    \"price\": 300,\n    \"categoryId\": \"accessories\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"accessories\": \"glasses_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"headwear-1\",\n    \"name\": \"Headwear 1\",\n    \"price\": 300,\n    \"categoryId\": \"headwear\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"headwear\": \"hat_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"headwear-2\",\n    \"name\": \"Headwear 2\",\n    \"price\": 300,\n    \"categoryId\": \"headwear\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"headwear\": \"hat_2\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"clothing-1\",\n    \"name\": \"Clothing 1\",\n    \"price\": 300,\n    \"categoryId\": \"clothing\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"clothing\": \"shirt_1\"\n      }\n    },\n    \"achievementLock\": null\n  },\n  {\n    \"id\": \"clothing-2\",\n    \"name\": \"Clothing 2\",\n    \"price\": 300,\n    \"categoryId\": \"clothing\",\n    \"bought\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"image\": {\n      \"type\": \"avatar\",\n      \"avatar\": {\n        \"clothing\": \"shirt_2\"\n      }\n    },\n    \"achievementLock\": null\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"streak-freeze-1\",\n      \"kind\": 0,\n      \"illustration\": { \"kind\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 99,\n    \"remainingCount\": 99\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"streak-freeze-2\",\n      \"kind\": 0,\n      \"illustration\": { \"kind\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 99,\n    \"remainingCount\": 99\n  },\n  {\n    \"id\": 101,\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}300{{else}}9000{{/if}},\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-1\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 1,\n    \"remainingCount\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}0{{else}}1{{/if}}\n  },\n  {\n    \"id\": 102,\n    \"name\": \"Hair 2\",\n    \"price\": 300,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-2\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 1 }\n    },\n    \"isLocked\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"requiredAchievementId\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}1001{{else}}null{{/if}},\n    \"maxPurchasesPerUser\": 1,\n    \"remainingCount\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}0{{else}}1{{/if}}\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Default shop items",
@@ -2673,19 +2673,27 @@
     {
       "uuid": "1671166d-608d-4267-ba20-12f5aa15d849",
       "documentation": "",
-      "method": "patch",
-      "endpoint": "users/me/shop-items/:itemId",
+      "method": "post",
+      "endpoint": "shop/items/:shopItemId/purchase",
       "responses": [
         {
           "uuid": "98471b2a-005a-441d-a5d3-3de74399ed1d",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
-          "label": "Item patched",
+          "label": "Item purchased",
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_SHOP_ENOUGH_MONEY",
+              "value": "false",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
           "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
@@ -2704,11 +2712,50 @@
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
-          "rules": [],
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_SHOP_ENOUGH_MONEY",
+              "value": "false",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
           "rulesOperator": "OR",
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2dc0aa80-7d6d-4bdf-9fc0-5f45b9286acd",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/shop-items",
+      "responses": [
+        {
+          "uuid": "d4f8757f-a8f6-4b84-90dc-623adcd7eb7f",
+          "body": "{{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}[\n  {\n    \"id\": 9001,\n    \"shopItemId\": 101,\n    \"shopItemName\": \"Hair 1\",\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-1\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 0 }\n    },\n    \"purchasedAt\": \"2026-03-01T10:00:00.000Z\",\n    \"consumedAt\": null\n  },\n  {\n    \"id\": 9002,\n    \"shopItemId\": 102,\n    \"shopItemName\": \"Hair 2\",\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-2\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 1 }\n    },\n    \"purchasedAt\": \"2026-03-01T10:01:00.000Z\",\n    \"consumedAt\": null\n  }\n]{{else}}[]{{/if}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User owned shop items",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
           "databucketID": "",
           "bodyType": "INLINE",
           "crudKey": "id",

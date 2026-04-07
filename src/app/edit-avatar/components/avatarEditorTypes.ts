@@ -23,7 +23,7 @@ import {
   AvatarHeadwear,
   AvatarSkinColor,
 } from "infrastructure/api/generated/models";
-import type { ShopItem } from "infrastructure/api/users/me/shop-items/ShopItems";
+import type { UserOwnedShopItemModel } from "infrastructure/api/generated/models";
 
 export type AvatarEditableField = keyof AvatarDefinition;
 
@@ -275,13 +275,13 @@ function applyAvatarFieldValue(
 }
 
 export function collectAvatarCategories(
-  boughtAvatarItems: ShopItem[],
+  boughtAvatarItems: UserOwnedShopItemModel[],
   currentAvatar: AvatarDefinition,
 ): AvatarCategory[] {
   const grouped = new Map<AvatarEditableField, Set<number>>();
 
   boughtAvatarItems.forEach((item) => {
-    if (item.image.type !== "avatar") {
+    if (!item.image.avatar) {
       return;
     }
     const avatarPatch = item.image.avatar;

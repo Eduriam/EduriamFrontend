@@ -5,6 +5,10 @@ import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
+import {
+  getShopItemCategoryId,
+  isShopItemPurchased,
+} from "app/shop/utils/shopItem";
 import { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -18,17 +22,17 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import type { AvatarModel } from "infrastructure/api/generated/models";
-import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
-import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
+import type {
+  AvatarModel,
+  UserOwnedShopItemModel,
+} from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
+import { ShopService } from "infrastructure/services/shop/ShopService";
 
 import { shopCategories } from "./shopCategories";
 
 export interface IShopPage {}
-
-const STREAK_FREEZE_IDS = ["streak-freeze-1", "streak-freeze-2"];
 
 const ShopPage: React.FC<IShopPage> = () => {
   const { t } = useTranslation("common");
@@ -36,15 +40,14 @@ const ShopPage: React.FC<IShopPage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user, mutateUser } = useAuth();
   const { setError } = useErrorHandler();
-  const { shopItems = [], mutate } = ShopItemsAPI.useShopItems();
+  const { shopItems = [] } = ShopService.useShopItems();
+  const { ownedShopItems = [], mutate: mutateOwnedShopItems } =
+    ShopService.useOwnedShopItems();
 
   const [selectedItemId, setSelectedItemId] = useState<Id | null>(null);
 
   const streakFreezeItems = useMemo(
-    () =>
-      STREAK_FREEZE_IDS.map((id) =>
-        shopItems.find((item) => String(item.id) === id),
-      ).filter((item): item is NonNullable<typeof item> => Boolean(item)),
+    () => shopItems.filter((item) => getShopItemCategoryId(item) === "streak-freeze"),
     [shopItems],
   );
 
@@ -53,17 +56,21 @@ const ShopPage: React.FC<IShopPage> = () => {
     [selectedItemId, shopItems],
   );
 
-  const selectedItemLocked =
-    !!selectedItem?.achievementLock && selectedItem.bought !== true;
+  const selectedItemPurchased =
+    selectedItem !== undefined
+      ? isShopItemPurchased(selectedItem, ownedShopItems)
+      : false;
+
+  const selectedItemLocked = selectedItem?.isLocked === true && !selectedItemPurchased;
 
   const canBuySelectedItem =
     !!selectedItem && (user?.balance ?? 0) >= selectedItem.price;
 
   const unlockCondition =
-    selectedItem?.achievementLock && selectedItemLocked
+    selectedItem?.requiredAchievementId && selectedItemLocked
       ? t("shop.unlockRequirement", {
           achievementName: t(
-            `achievements.achievementsById.${selectedItem.achievementLock.achievementId}`,
+            `achievements.achievementsById.${selectedItem.requiredAchievementId}`,
           ),
         })
       : undefined;
@@ -72,8 +79,14 @@ const ShopPage: React.FC<IShopPage> = () => {
     const entries = new Map<string, Partial<AvatarModel>>();
 
     shopItems.forEach((item) => {
-      if (item.image.type === "avatar" && !entries.has(item.categoryId)) {
-        entries.set(item.categoryId, item.image.avatar);
+      const categoryId = getShopItemCategoryId(item);
+      if (
+        item.image.avatar &&
+        categoryId &&
+        categoryId !== "streak-freeze" &&
+        !entries.has(categoryId)
+      ) {
+        entries.set(categoryId, item.image.avatar);
       }
     });
 
@@ -85,17 +98,19 @@ const ShopPage: React.FC<IShopPage> = () => {
       return;
     }
 
-    const updatedArray = shopItems.map((item) => {
-      if (item.id === selectedItem.id) {
-        return { ...item, bought: true };
-      }
+    const optimisticOwnedItem: UserOwnedShopItemModel = {
+      id: Date.now(),
+      shopItemId: selectedItem.id,
+      shopItemName: selectedItem.name,
+      type: selectedItem.type,
+      image: selectedItem.image,
+      purchasedAt: new Date().toISOString(),
+      consumedAt: null,
+    };
 
-      return item;
-    });
-
-    mutate(async () => {
+    mutateOwnedShopItems(async () => {
       try {
-        await ShopItemsAPI.patchShopItem(selectedItem.id, { bought: true });
+        await ShopService.purchaseShopItem(selectedItem.id);
         mutateUser({
           balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
         });
@@ -107,8 +122,11 @@ const ShopPage: React.FC<IShopPage> = () => {
         return Promise.reject(err);
       }
 
-      return updatedArray;
-    }, optimisticMutationOption<Array<ShopItemModel>>(updatedArray));
+      return [...ownedShopItems, optimisticOwnedItem];
+    }, optimisticMutationOption<Array<UserOwnedShopItemModel>>([
+      ...ownedShopItems,
+      optimisticOwnedItem,
+    ]));
 
     setSelectedItemId(null);
   };
@@ -145,7 +163,8 @@ const ShopPage: React.FC<IShopPage> = () => {
               <ShopItem
                 key={item.id}
                 item={item}
-                locked={!!item.achievementLock && item.bought !== true}
+                purchased={isShopItemPurchased(item, ownedShopItems)}
+                locked={item.isLocked && !isShopItemPurchased(item, ownedShopItems)}
                 onClick={() => setSelectedItemId(item.id)}
                 data-test="streak-freeze-item-button"
               />
@@ -177,6 +196,7 @@ const ShopPage: React.FC<IShopPage> = () => {
         open={Boolean(selectedItem)}
         onClose={() => setSelectedItemId(null)}
         item={selectedItem}
+        purchased={selectedItemPurchased}
         canBuy={canBuySelectedItem}
         locked={selectedItemLocked}
         unlockCondition={unlockCondition}

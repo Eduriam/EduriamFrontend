@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { AvatarHair } from "infrastructure/api/generated/models";
+import { AvatarHair, ShopImageKind } from "infrastructure/api/generated/models";
 
 import ShopItemDetailsDrawer, {
   type IShopItemDetailsDrawer,
@@ -10,13 +10,15 @@ const item = {
   id: 2,
   name: "Hair 2",
   price: 900,
-  categoryId: "hair",
-  bought: false,
+  isLocked: false,
+  remainingCount: 1,
   image: {
-    type: "avatar",
+    id: "hair-2",
+    kind: ShopImageKind.Avatar,
     avatar: {
       hair: AvatarHair.Hair2,
     },
+    illustration: null,
   } as const,
 };
 

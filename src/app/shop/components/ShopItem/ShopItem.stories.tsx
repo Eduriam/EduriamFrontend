@@ -1,6 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { AvatarHair } from "infrastructure/api/generated/models";
+import {
+  AvatarHair,
+  ShopIllustrationKind,
+  ShopImageKind,
+} from "infrastructure/api/generated/models";
 
 import ShopItem, { type IShopItem } from "./ShopItem";
 
@@ -8,13 +12,15 @@ const baseItem = {
   id: 1,
   name: "Hair 1",
   price: 900,
-  categoryId: "hair",
-  bought: false,
+  isLocked: false,
+  remainingCount: 1,
   image: {
-    type: "avatar",
+    id: "hair-1",
+    kind: ShopImageKind.Avatar,
     avatar: {
       hair: AvatarHair.Hair2,
     },
+    illustration: null,
   } as const,
 };
 
@@ -23,29 +29,35 @@ export default {
   component: ShopItem,
 } as ComponentMeta<typeof ShopItem>;
 
-const Template: ComponentStory<typeof ShopItem> = (args) => <ShopItem {...args} />;
+const Template: ComponentStory<typeof ShopItem> = (args) => (
+  <ShopItem {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
   item: baseItem,
+  purchased: false,
   onClick: () => undefined,
 } as IShopItem;
 
 export const Bought = Template.bind({});
 Bought.args = {
-  item: {
-    ...baseItem,
-    bought: true,
-  },
+  item: baseItem,
+  purchased: true,
 } as IShopItem;
 
 export const Locked = Template.bind({});
 Locked.args = {
   item: {
     ...baseItem,
+    type: ShopItemType.StreakFreeze,
     image: {
-      type: "illustration",
-      illustration: "fire",
+      id: "streak-freeze-1",
+      kind: ShopImageKind.Illustration,
+      avatar: null,
+      illustration: {
+        kind: ShopIllustrationKind.StreakFreeze,
+      },
     },
   },
   locked: true,

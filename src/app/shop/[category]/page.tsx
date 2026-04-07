@@ -5,6 +5,7 @@ import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
+import { getShopItemCategoryId, isShopItemPurchased } from "app/shop/utils/shopItem";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -19,10 +20,10 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import type { ShopItem as ShopItemModel } from "infrastructure/api/users/me/shop-items/ShopItems";
-import ShopItemsAPI from "infrastructure/api/users/me/shop-items/ShopItemsAPI";
+import type { UserOwnedShopItemModel } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
+import { ShopService } from "infrastructure/services/shop/ShopService";
 
 import { shopCategories } from "../shopCategories";
 
@@ -34,7 +35,9 @@ const ShopCategoryPage: React.FC = () => {
   const params = useParams();
   const { setError } = useErrorHandler();
   const { user, mutateUser } = useAuth();
-  const { shopItems = [], mutate } = ShopItemsAPI.useShopItems();
+  const { shopItems = [] } = ShopService.useShopItems();
+  const { ownedShopItems = [], mutate: mutateOwnedShopItems } =
+    ShopService.useOwnedShopItems();
 
   const [selectedItemId, setSelectedItemId] = useState<Id | null>(null);
 
@@ -55,7 +58,7 @@ const ShopCategoryPage: React.FC = () => {
   const categoryItems = useMemo(
     () =>
       shopItems
-        .filter((item) => item.categoryId === categoryId)
+        .filter((item) => getShopItemCategoryId(item) === categoryId)
         .sort((a, b) => a.price - b.price),
     [categoryId, shopItems],
   );
@@ -65,17 +68,21 @@ const ShopCategoryPage: React.FC = () => {
     [categoryItems, selectedItemId],
   );
 
-  const selectedItemLocked =
-    !!selectedItem?.achievementLock && selectedItem.bought !== true;
+  const selectedItemPurchased =
+    selectedItem !== undefined
+      ? isShopItemPurchased(selectedItem, ownedShopItems)
+      : false;
+
+  const selectedItemLocked = selectedItem?.isLocked === true && !selectedItemPurchased;
 
   const canBuySelectedItem =
     !!selectedItem && (user?.balance ?? 0) >= selectedItem.price;
 
   const unlockCondition =
-    selectedItem?.achievementLock && selectedItemLocked
+    selectedItem?.requiredAchievementId && selectedItemLocked
       ? t("shop.unlockRequirement", {
           achievementName: t(
-            `achievements.achievementsById.${selectedItem.achievementLock.achievementId}`,
+            `achievements.achievementsById.${selectedItem.requiredAchievementId}`,
           ),
         })
       : undefined;
@@ -85,17 +92,19 @@ const ShopCategoryPage: React.FC = () => {
       return;
     }
 
-    const updatedArray = shopItems.map((item) => {
-      if (item.id === selectedItem.id) {
-        return { ...item, bought: true };
-      }
+    const optimisticOwnedItem: UserOwnedShopItemModel = {
+      id: Date.now(),
+      shopItemId: selectedItem.id,
+      shopItemName: selectedItem.name,
+      type: selectedItem.type,
+      image: selectedItem.image,
+      purchasedAt: new Date().toISOString(),
+      consumedAt: null,
+    };
 
-      return item;
-    });
-
-    mutate(async () => {
+    mutateOwnedShopItems(async () => {
       try {
-        await ShopItemsAPI.patchShopItem(selectedItem.id, { bought: true });
+        await ShopService.purchaseShopItem(selectedItem.id);
         mutateUser({
           balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
         });
@@ -107,8 +116,11 @@ const ShopCategoryPage: React.FC = () => {
         return Promise.reject(err);
       }
 
-      return updatedArray;
-    }, optimisticMutationOption<Array<ShopItemModel>>(updatedArray));
+      return [...ownedShopItems, optimisticOwnedItem];
+    }, optimisticMutationOption<Array<UserOwnedShopItemModel>>([
+      ...ownedShopItems,
+      optimisticOwnedItem,
+    ]));
 
     setSelectedItemId(null);
   };
@@ -145,12 +157,14 @@ const ShopCategoryPage: React.FC = () => {
           data-test="shop-items-category-section"
         >
           {categoryItems.map((item) => {
-            const locked = !!item.achievementLock && item.bought !== true;
+            const purchased = isShopItemPurchased(item, ownedShopItems);
+            const locked = item.isLocked && !purchased;
 
             return (
               <ShopItem
                 key={item.id}
                 item={item}
+                purchased={purchased}
                 locked={locked}
                 data-test={
                   locked ? "locked-shop-item-button" : "shop-item-button"
@@ -166,6 +180,7 @@ const ShopCategoryPage: React.FC = () => {
         open={Boolean(selectedItem)}
         onClose={() => setSelectedItemId(null)}
         item={selectedItem}
+        purchased={selectedItemPurchased}
         canBuy={canBuySelectedItem}
         locked={selectedItemLocked}
         unlockCondition={unlockCondition}

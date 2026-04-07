@@ -13,13 +13,18 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
+import { toIllustrationName } from "app/shop/utils/shopItem";
 
-import type { ShopItem } from "infrastructure/api/users/me/shop-items/ShopItems";
+import {
+  ShopImageKind,
+  type ShopItemViewModel,
+} from "infrastructure/api/generated/models";
 
 export interface IShopItemDetailsDrawer {
   open: boolean;
   onClose: () => void;
-  item?: ShopItem;
+  item?: ShopItemViewModel;
+  purchased?: boolean;
   canBuy: boolean;
   locked: boolean;
   unlockCondition?: string;
@@ -31,6 +36,7 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
   open,
   onClose,
   item,
+  purchased = false,
   canBuy,
   locked,
   unlockCondition,
@@ -43,7 +49,7 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
     return null;
   }
 
-  const buyDisabled = !locked && !canBuy;
+  const buyDisabled = purchased || (!locked && !canBuy);
 
   return (
     <Drawer open={open} onClose={onClose} data-test={dataTest}>
@@ -55,18 +61,14 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
         </Stack>
 
         <Stack spacing={2} alignItems="center" sx={{ width: "100%" }}>
-          {item.image.type === "avatar" ? (
+          {item.image.kind === ShopImageKind.Avatar ? (
             <Avatar
-              definition={buildShopAvatar(item.image.avatar)}
+              definition={buildShopAvatar(item.image.avatar ?? {})}
               size={160}
             />
           ) : (
             <Illustration
-              name={
-                item.image.illustration as React.ComponentProps<
-                  typeof Illustration
-                >["name"]
-              }
+              name={toIllustrationName(item.image.illustration?.kind)}
               width={160}
               height={160}
             />
@@ -92,6 +94,10 @@ const ShopItemDetailsDrawer: React.FC<IShopItemDetailsDrawer> = ({
           {locked ? (
             <LargeButton data-test="buy-item-locked-button" disabled>
               {t("shop.locked")}
+            </LargeButton>
+          ) : purchased ? (
+            <LargeButton data-test="buy-item-purchased-button" disabled>
+              {t("shop.purchased")}
             </LargeButton>
           ) : (
             <LargeButton
