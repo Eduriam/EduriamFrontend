@@ -4,6 +4,7 @@ import {
   AvatarHair,
   ShopIllustrationKind,
   ShopImageKind,
+  ShopItemType,
 } from "infrastructure/api/generated/models";
 
 import ShopItem, { type IShopItem } from "./ShopItem";
