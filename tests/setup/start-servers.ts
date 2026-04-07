@@ -7,6 +7,12 @@ import { promisify } from "util";
 const sleep = promisify(setTimeout);
 const execAsync = promisify(exec);
 
+const stripKnownNextAbortStack = (output: string): string =>
+  output.replace(
+    /[^\r\n]*Internal error: Error: The render was aborted by the server without a reason\.\r?\n(?:\s+at .*\r?\n)+/g,
+    "",
+  );
+
 interface ServerProcess {
   process: ChildProcess;
   name: string;
@@ -277,7 +283,7 @@ async function startFrontend(): Promise<ServerProcess | null> {
 
   if (frontendProcess.stdout) {
     frontendProcess.stdout.on("data", (data) => {
-      const output = data.toString();
+      const output = stripKnownNextAbortStack(data.toString());
       frontendOutput += output;
       // Log all output for debugging
       process.stdout.write(output);
@@ -286,7 +292,7 @@ async function startFrontend(): Promise<ServerProcess | null> {
 
   if (frontendProcess.stderr) {
     frontendProcess.stderr.on("data", (data) => {
-      const output = data.toString();
+      const output = stripKnownNextAbortStack(data.toString());
       frontendError += output;
       frontendOutput += output;
       // Log all errors

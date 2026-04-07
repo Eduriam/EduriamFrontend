@@ -41,6 +41,16 @@ export class CustomWorld extends World implements CustomWorld {
 
   async closeBrowser(): Promise<void> {
     if (this.page) {
+      try {
+        // Prevent noisy server-side "render aborted" logs by ending on a stable blank page
+        // before closing the browser context between scenarios.
+        await this.page.goto("about:blank", {
+          waitUntil: "load",
+          timeout: 5000,
+        });
+      } catch {
+        // Ignore teardown navigation failures; the page may already be closing.
+      }
       await this.page.close();
     }
     if (this.context) {

@@ -18,9 +18,7 @@ async function navigateToStudyPageWithDefinedLesson(
     waitUntil: "domcontentloaded",
     timeout: 30000,
   });
-  await world.page
-    .waitForLoadState("networkidle", { timeout: 15000 })
-    .catch(() => undefined);
+  await world.page.waitForLoadState("load", { timeout: 15000 }).catch(() => undefined);
   await world.page
     .locator('[data-test="study-page"]')
     .first()

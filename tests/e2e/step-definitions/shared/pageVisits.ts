@@ -104,9 +104,7 @@ async function navigateToStandardPage(
       waitUntil: "domcontentloaded",
       timeout: 30000,
     });
-    await page
-      .waitForLoadState("networkidle", { timeout: 15000 })
-      .catch(() => undefined);
+    await page.waitForLoadState("load", { timeout: 15000 }).catch(() => undefined);
   }
 }
 
@@ -189,9 +187,7 @@ Given(
         timeout: 30000,
       },
     );
-    await this.page
-      .waitForLoadState("networkidle", { timeout: 15000 })
-      .catch(() => undefined);
+    await this.page.waitForLoadState("load", { timeout: 15000 }).catch(() => undefined);
 
     await waitForPageMarker(this.page, pageName, 15000);
   },
