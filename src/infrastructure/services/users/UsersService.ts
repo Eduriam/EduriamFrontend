@@ -36,11 +36,6 @@ export interface UserProfile {
   courses: Array<ProfileCourse>;
 }
 
-export type UserSummary = Pick<
-  UserProfile,
-  "id" | "name" | "username" | "avatarDefinition" | "isFollowed"
->;
-
 export type ProfileAchievement = {
   badgeIconName: "achievement-1" | "achievement-2";
   userProgress: {
@@ -62,14 +57,6 @@ export interface ProfileCourse {
 
 const usersClient = getUsers();
 
-const toUserSummary = (model: GetUserSimpleModel): UserSummary => ({
-  id: model.id,
-  name: model.name,
-  username: model.username,
-  avatarDefinition: model.avatarDefinition ?? undefined,
-  isFollowed: model.isFollowed,
-});
-
 const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
   id: model.id,
   followers: model.followers,
@@ -77,7 +64,7 @@ const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
   level: 0,
   league: "iron",
   name: model.name,
-  avatarDefinition: model.avatarDefinition ?? undefined,
+  avatarDefinition: model.avatar ?? undefined,
   isFollowed: model.isFollowed,
   username: model.username,
   streak: model.streak,
@@ -101,17 +88,17 @@ const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
 
 const toUserSummaryList = (
   responseData: GetUserSimpleModelPagedResult | GetUserSimpleModel[],
-): Array<UserSummary> => {
+): Array<GetUserSimpleModel> => {
   const items = Array.isArray(responseData) ? responseData : responseData.items;
-  return (items ?? []).map(toUserSummary);
+  return items ?? [];
 };
 
 const useUsersQuery = (
   params: UserParams = {},
-): Modify<FetchHook<Array<UserSummary>>, { users: Array<UserSummary> }> => {
+): Modify<FetchHook<Array<GetUserSimpleModel>>, { users: Array<GetUserSimpleModel> }> => {
   const query = parseQueryParams(params);
   const key = query ? `users?${query}` : "users";
-  const { data, ...rest } = useAPI<Array<UserSummary>>(
+  const { data, ...rest } = useAPI<Array<GetUserSimpleModel>>(
     key,
     async () => UsersService.getUsers(params),
   );
@@ -149,7 +136,7 @@ const useFollowingQuery = (
 };
 
 export const UsersService = {
-  async getUsers(params: UserParams = {}): Promise<Array<UserSummary>> {
+  async getUsers(params: UserParams = {}): Promise<Array<GetUserSimpleModel>> {
     try {
       const queryParams = {
         SearchName: params.searchName,
@@ -210,7 +197,7 @@ export const UsersService = {
 
   useUsers(
     params: UserParams = {},
-  ): Modify<FetchHook<Array<UserSummary>>, { users: Array<UserSummary> }> {
+  ): Modify<FetchHook<Array<GetUserSimpleModel>>, { users: Array<GetUserSimpleModel> }> {
     return useUsersQuery(params);
   },
 

@@ -15,9 +15,10 @@ import UserList from "components/atoms/UserList/UserList";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
+import type { GetUserSimpleModel } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import { UserService } from "infrastructure/services/users/UserService";
-import { UserSummary, UsersService } from "infrastructure/services/users/UsersService";
+import { UsersService } from "infrastructure/services/users/UsersService";
 
 import SearchTextField from "./components/SearchTextField/SearchTextField";
 
@@ -57,7 +58,7 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
     searchName: searchPrompt.toLowerCase(),
   });
 
-  const userResults = normalizeUserList<UserSummary>(users);
+  const userResults = normalizeUserList<GetUserSimpleModel>(users);
 
   const handleFollowChange = (targetUserId: Id, isFollowed: boolean) => {
     if (!user?.id) {

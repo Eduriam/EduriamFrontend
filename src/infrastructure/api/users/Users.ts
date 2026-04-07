@@ -18,11 +18,6 @@ export interface UserProfile {
   courses: Array<ProfileCourse>;
 }
 
-export type UserSummary = Pick<
-  UserProfile,
-  "id" | "name" | "username" | "avatarDefinition" | "isFollowed"
->;
-
 export type ProfileAchievement = {
   badgeIconName: "achievement-1" | "achievement-2";
   userProgress: {

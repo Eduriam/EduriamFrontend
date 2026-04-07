@@ -23,7 +23,7 @@ const base: IUserList = {
       name: "User Name",
       username: "username",
       isFollowed: true,
-      avatarDefinition: {
+      avatar: {
         skinColor: AvatarSkinColor.Light,
         eyes: AvatarEyes.Eyes1,
         eyeColor: AvatarEyeColor.DarkBrown,
@@ -39,7 +39,7 @@ const base: IUserList = {
       name: "Another User",
       username: "another_username",
       isFollowed: false,
-      avatarDefinition: {
+      avatar: {
         skinColor: AvatarSkinColor.Light,
         eyes: AvatarEyes.Eyes1,
         eyeColor: AvatarEyeColor.DarkBrown,

@@ -1,9 +1,8 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import { Icon } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
+import type { Id } from "domain/models/types/core";
 
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -14,25 +13,11 @@ import Typography from "@mui/material/Typography";
 import Avatar from "components/avatar/Avatar";
 
 import type {
-  AvatarModel,
   GetFollowerModel,
   GetUserSimpleModel,
 } from "infrastructure/api/generated/models";
-import type { UserSummary } from "infrastructure/services/users/UsersService";
 
-type UserListItem = UserSummary | GetUserSimpleModel | GetFollowerModel;
-
-function resolveAvatar(item: UserListItem): AvatarModel | null | undefined {
-  if ("avatar" in item) {
-    return item.avatar;
-  }
-
-  if ("avatarDefinition" in item) {
-    return item.avatarDefinition;
-  }
-
-  return undefined;
-}
+type UserListItem = GetUserSimpleModel | GetFollowerModel;
 
 export interface IUserList {
   items: Array<UserListItem>;
@@ -71,7 +56,7 @@ const UserList: React.FC<IUserList> = ({
               onClick={() => onUserClick(item.id)}
             >
               <Avatar
-                definition={buildShopAvatar(resolveAvatar(item))}
+                definition={buildShopAvatar(item.avatar)}
                 size={64}
                 alt={item.name}
               />
@@ -105,5 +90,3 @@ const UserList: React.FC<IUserList> = ({
 };
 
 export default UserList;
-
-
