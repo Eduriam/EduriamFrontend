@@ -4,9 +4,6 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { AvatarHair } from "./avatarHair";
 
-export interface StudyPlanUpcomingLessonModel {
-  id: number;
-  title: string;
-  thumbnailUrl: string;
-}
+export type AvatarHairNullableOptional = AvatarHair | null;

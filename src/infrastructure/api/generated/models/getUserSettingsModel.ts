@@ -14,7 +14,7 @@ export interface GetUserSettingsModel {
   username: string;
   /** @nullable */
   dailyGoal?: number | null;
-  avatarDefinition?: AvatarModel | null;
+  avatar?: AvatarModel | null;
   coursePreferences?: CoursePreferencesModel | null;
   themeMode: ThemeMode;
   notificationPreferences?: NotificationPreferencesModel | null;

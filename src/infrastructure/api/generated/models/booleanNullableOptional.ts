@@ -5,8 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-export interface StudyPlanUpcomingLessonModel {
-  id: number;
-  title: string;
-  thumbnailUrl: string;
-}
+/**
+ * @nullable
+ */
+export type BooleanNullableOptional = boolean | null;

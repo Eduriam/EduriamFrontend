@@ -12,7 +12,7 @@ export interface GetUserPublicProfileModel {
   id: number;
   name: string;
   username: string;
-  avatarDefinition?: AvatarModel | null;
+  avatar?: AvatarModel | null;
   isFollowed: boolean;
   followers: number;
   following: number;

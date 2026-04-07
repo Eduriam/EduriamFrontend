@@ -11,6 +11,7 @@ export interface GetLessonModel {
   name: string;
   /** @nullable */
   description?: string | null;
+  thumbnailUrl: string;
   /** @nullable */
   backgroundImageUrl?: string | null;
   /** @nullable */

@@ -5,10 +5,9 @@
  * OpenAPI spec version: v1
  */
 
-export interface ChapterLessonModel {
+export interface PreRequisiteModel {
   id: number;
-  name: string;
-  thumbnailUrl: string;
-  completed: boolean;
-  upcoming: boolean;
+  courseName: string;
+  /** @nullable */
+  completedAt?: string | null;
 }

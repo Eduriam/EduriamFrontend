@@ -10,6 +10,8 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import type {
   AccountSetupModel,
   CancelSubscriptionModel,
+  ChangeUserCoursePatchModel,
+  ChangeUserSettingsPatchModel,
   CreateSubscriptionRespModel,
   FeedItemResponseModelPagedResult,
   GetApiUsersMeCoursesRecommendedParams,
@@ -26,7 +28,6 @@ import type {
   GetUserSimpleModelPagedResult,
   MarkFeedSeenModel,
   NoticeModelPagedResult,
-  Operation,
   StudyPlanOverviewModel,
   StudySessionCreateModel,
   StudySessionModel,
@@ -34,34 +35,6 @@ import type {
   UserAchievementModel,
   UserOwnedShopItemModel,
 } from "../models";
-
-// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
-type IfEquals<X, Y, A = X, B = never> =
-  (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? A : B;
-
-type WritableKeys<T> = {
-  [P in keyof T]-?: IfEquals<
-    { [Q in P]: T[P] },
-    { -readonly [Q in P]: T[P] },
-    P
-  >;
-}[keyof T];
-
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
-  k: infer I,
-) => void
-  ? I
-  : never;
-type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
-
-type Writable<T> = Pick<T, WritableKeys<T>>;
-type NonReadonly<T> = [T] extends [UnionToIntersection<T>]
-  ? {
-      [P in keyof Writable<T>]: T[P] extends object
-        ? NonReadonly<NonNullable<T[P]>>
-        : T[P];
-    }
-  : DistributeReadOnlyOverUnions<T>;
 
 export const getUsers = (axiosInstance: AxiosInstance = axios) => {
   const getApiUsers = (
@@ -79,10 +52,14 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     return axiosInstance.get(`/api/users/me/settings`, options);
   };
   const patchApiUsersMeSettings = (
-    operation: NonReadonly<Operation[]>,
+    changeUserSettingsPatchModel: ChangeUserSettingsPatchModel,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<GetUserSettingsModel | void>> => {
-    return axiosInstance.patch(`/api/users/me/settings`, operation, options);
+    return axiosInstance.patch(
+      `/api/users/me/settings`,
+      changeUserSettingsPatchModel,
+      options,
+    );
   };
   const postApiUsersMeStudySessions = (
     studySessionCreateModel: StudySessionCreateModel,
@@ -293,12 +270,12 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
   };
   const patchApiUsersMeCoursesCourseId = (
     courseId: number,
-    operation: NonReadonly<Operation[]>,
+    changeUserCoursePatchModel: ChangeUserCoursePatchModel,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<void>> => {
     return axiosInstance.patch(
       `/api/users/me/courses/${courseId}`,
-      operation,
+      changeUserCoursePatchModel,
       options,
     );
   };

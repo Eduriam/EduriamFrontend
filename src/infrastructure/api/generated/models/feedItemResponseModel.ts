@@ -15,7 +15,7 @@ export interface FeedItemResponseModel {
   /** @nullable */
   seenByUser?: boolean | null;
   author: string;
-  avatarDefinition?: AvatarModel | null;
+  avatar?: AvatarModel | null;
   reactions: FeedReactionGroupModel[];
   publishedAt: string;
   /** @nullable */

@@ -4,13 +4,19 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { PreRequisiteModel } from "./preRequisiteModel";
 
 export interface GetCourseModel {
   id: number;
-  language1: string;
-  language2: string;
   name: string;
-  /** @nullable */
-  thumbnailUrl?: string | null;
+  thumbnailUrl: string;
   isEnrolled: boolean;
+  /** @nullable */
+  category?: string | null;
+  /** @nullable */
+  logoId?: string | null;
+  /** @nullable */
+  shortDescription?: string | null;
+  premium: boolean;
+  prerequisites: PreRequisiteModel[];
 }

@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 import type { CourseStudyMode } from "./courseStudyMode";
+import type { PreRequisiteModel } from "./preRequisiteModel";
 
 export interface GetUserCourseModel {
   id: number;
@@ -12,4 +13,12 @@ export interface GetUserCourseModel {
   thumbnailUrl: string;
   userProgress: number;
   studyMode: CourseStudyMode;
+  /** @nullable */
+  category?: string | null;
+  /** @nullable */
+  logoId?: string | null;
+  /** @nullable */
+  shortDescription?: string | null;
+  premium: boolean;
+  prerequisites: PreRequisiteModel[];
 }

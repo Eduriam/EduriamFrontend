@@ -4,6 +4,7 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { PreRequisiteModel } from "./preRequisiteModel";
 
 export interface CourseCatalogItemModelBase {
   id: number;
@@ -18,6 +19,14 @@ export interface CourseCatalogItemModelBase {
   userCertificate?: number | null;
   /** @nullable */
   description?: string | null;
+  /** @nullable */
+  category?: string | null;
+  /** @nullable */
+  logoId?: string | null;
+  /** @nullable */
+  shortDescription?: string | null;
+  premium: boolean;
+  prerequisites: PreRequisiteModel[];
   /** @nullable */
   upcomingLessonId?: number | null;
 }

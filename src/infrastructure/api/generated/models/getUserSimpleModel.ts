@@ -10,6 +10,6 @@ export interface GetUserSimpleModel {
   id: number;
   name: string;
   username: string;
-  avatarDefinition?: AvatarModel | null;
+  avatar?: AvatarModel | null;
   isFollowed: boolean;
 }
