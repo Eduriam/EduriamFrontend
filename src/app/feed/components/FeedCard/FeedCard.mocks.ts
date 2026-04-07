@@ -6,6 +6,8 @@ import {
   AvatarExpression,
   AvatarEyeColor,
   AvatarEyes,
+  FeedMessageType,
+  FeedReactionType,
   AvatarHair,
   AvatarHairColor,
   AvatarSkinColor,
@@ -19,7 +21,7 @@ const base: IFeedCard = {
   feedMessage: {
     id: 1,
     author: "Pepa Okurka",
-    avatarDefinition: {
+    avatar: {
       skinColor: AvatarSkinColor.Light,
       eyes: AvatarEyes.Eyes1,
       eyeColor: AvatarEyeColor.Brown,
@@ -29,24 +31,31 @@ const base: IFeedCard = {
       clothing: AvatarClothing.Shirt1,
       backgroundColor: AvatarBackgroundColor.LightGray,
     },
-    message: "streak_milestone",
+    message: FeedMessageType.StreakMilestone,
     streak: 120,
-    publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
     reactions: [
       {
-        counter: 12,
-        reactedByUser: true,
-        id: "heart",
+        reactionType: FeedReactionType.Heart,
+        count: 12,
+        userReactions: [
+          {
+            id: 1,
+            reactionType: FeedReactionType.Heart,
+            userId: 101,
+            reactedAt: new Date().toISOString(),
+          },
+        ],
       },
       {
-        counter: 12,
-        reactedByUser: false,
-        id: "muscle",
+        reactionType: FeedReactionType.Muscle,
+        count: 12,
+        userReactions: [],
       },
       {
-        counter: 12,
-        reactedByUser: false,
-        id: "confetti",
+        reactionType: FeedReactionType.Confetti,
+        count: 12,
+        userReactions: [],
       },
     ],
   },

@@ -18,7 +18,7 @@ Read `AGENTS.md` before coding.
 2. Read the original API class.
 3. Create a Service class that will replace the existing API class.
 4. Make any necessary changes to the codebase and the mock API so that it reflects the new structure in the generated API classes and models.
-5. Run e2e tests to make sure everything works.
+5. Run yarn build and all e2e tests to make sure everything works.
 
 ## Constraints
 

@@ -922,7 +922,7 @@
       "responses": [
         {
           "uuid": "15b09ed5-08cf-4c8e-b9a3-c3bdf76f2494",
-          "body": "[{\"id\":\"feed-streak-milestone-1\",\"author\":\"Pepa Okurka\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"streak_milestone\",\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-achievement-earned-1\",\"author\":\"Anna Novakova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"achievement_earned\",\"achievementId\":\"streak_master\",\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-league-promoted-1\",\"author\":\"Karel Vacek\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"league_promoted\",\"league\":\"gold\",\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":\"feed-course-completed-1\",\"author\":\"Eva Svobodova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"course_completed\",\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}]",
+          "body": "{\"items\":[{\"id\":101,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":102,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":103,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":104,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":4,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Default mixed feed",
@@ -941,7 +941,7 @@
         },
         {
           "uuid": "c8419c68-6bd6-4f42-a313-cc35696fdb9d",
-          "body": "[{\"id\":\"feed-streak-milestone-variant-1\",\"author\":\"Pepa Okurka\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"streak_milestone\",\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "body": "{\"items\":[{\"id\":201,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Streak milestone feed message",
@@ -968,7 +968,7 @@
         },
         {
           "uuid": "f2fcb4f8-4f63-4f5d-bba4-7e6be1c83971",
-          "body": "[{\"id\":\"feed-achievement-earned-variant-1\",\"author\":\"Anna Novakova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"achievement_earned\",\"achievementId\":\"streak_master\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "body": "{\"items\":[{\"id\":202,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Achievement earned feed message",
@@ -995,7 +995,7 @@
         },
         {
           "uuid": "e61ecd30-65bf-482f-b4fd-a0ea6255368a",
-          "body": "[{\"id\":\"feed-league-promoted-variant-1\",\"author\":\"Karel Vacek\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"league_promoted\",\"league\":\"gold\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "body": "{\"items\":[{\"id\":203,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: League promoted feed message",
@@ -1022,7 +1022,7 @@
         },
         {
           "uuid": "49cb2bb9-78ec-4d45-8f62-6e2865f91f42",
-          "body": "[{\"id\":\"feed-course-completed-variant-1\",\"author\":\"Eva Svobodova\",\"avatarDefinition\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":\"course_completed\",\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}]",
+          "body": "{\"items\":[{\"id\":204,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Course completed feed message",
@@ -1049,7 +1049,7 @@
         },
         {
           "uuid": "d20fcefe-6c62-4cc9-afd1-f7776c7cb229",
-          "body": "[]",
+          "body": "{\"items\":[],\"totalItems\":0,\"page\":1,\"pageSize\":20,\"totalPages\":0,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Empty feed",
@@ -1091,6 +1091,37 @@
           "body": "{}",
           "latency": 0,
           "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dc80a8f1-7637-4272-b55b-1a5f6437d6c3",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/feed/mark-seen",
+      "responses": [
+        {
+          "uuid": "41d8ac0f-f8e5-4f58-a0f8-87ff2a4a7f3f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
           "label": "",
           "headers": [],
           "bodyType": "INLINE",

@@ -11,43 +11,75 @@ import Typography from "@mui/material/Typography";
 import Avatar from "components/avatar/Avatar";
 
 import {
-  FeedMessage,
-  MessageType,
-} from "infrastructure/api/users/me/feed/Feed";
-import { ReactionId } from "infrastructure/api/users/me/feed/reactions/Reactions";
+  FeedMessageType,
+  FeedReactionType,
+  LeaderboardLeague,
+} from "infrastructure/api/generated/models";
+import type {
+  FeedItemResponseModel,
+  FeedReactionType as FeedReactionTypeValue,
+} from "infrastructure/api/generated/models";
 
 export interface IFeedCard {
-  feedMessage: FeedMessage;
-  onAddReaction: (reactionId: ReactionId) => void;
-  onRemoveReaction: (reactionId: ReactionId) => void;
+  feedMessage: FeedItemResponseModel;
+  onAddReaction: (reactionType: FeedReactionTypeValue) => void;
+  onRemoveReaction: (reactionType: FeedReactionTypeValue) => void;
 }
 
-const allowedReactions: Array<ReactionId> = [
-  "confetti",
-  "heart",
-  "muscle",
-  "clappingHands",
-  "sunglasses",
+type ReactionIllustrationName =
+  | "confetti"
+  | "heart"
+  | "muscle"
+  | "clappingHands"
+  | "sunglasses";
+
+const allowedReactions: Array<FeedReactionTypeValue> = [
+  FeedReactionType.Confetti,
+  FeedReactionType.Heart,
+  FeedReactionType.Muscle,
+  FeedReactionType.ClappingHands,
+  FeedReactionType.Sunglasses,
 ];
 
-const reactionTestIdMap: Record<ReactionId, string> = {
-  confetti: "confetti",
-  heart: "heart",
-  muscle: "muscle",
-  clappingHands: "clapping-hands",
-  sunglasses: "sunglasses",
+const reactionIllustrationMap: Record<FeedReactionTypeValue, ReactionIllustrationName> = {
+  [FeedReactionType.Confetti]: "confetti",
+  [FeedReactionType.Heart]: "heart",
+  [FeedReactionType.Muscle]: "muscle",
+  [FeedReactionType.ClappingHands]: "clappingHands",
+  [FeedReactionType.Sunglasses]: "sunglasses",
 };
 
-const messageTestIdMap: Partial<Record<MessageType, string>> = {
-  streak_milestone: "streak-milestone",
-  achievement_earned: "achievement-earned",
-  league_promoted: "league-promoted",
-  course_completed: "course-completed",
+const reactionTestIdMap: Record<FeedReactionTypeValue, string> = {
+  [FeedReactionType.Confetti]: "confetti",
+  [FeedReactionType.Heart]: "heart",
+  [FeedReactionType.Muscle]: "muscle",
+  [FeedReactionType.ClappingHands]: "clapping-hands",
+  [FeedReactionType.Sunglasses]: "sunglasses",
 };
 
-function getMessageTestId(message: MessageType): string {
-  return messageTestIdMap[message] ?? message.replaceAll("_", "-");
+const leagueTranslationMap: Record<LeaderboardLeague, string> = {
+  [LeaderboardLeague.Bronze]: "bronze",
+  [LeaderboardLeague.Silver]: "silver",
+  [LeaderboardLeague.Gold]: "gold",
+  [LeaderboardLeague.Platinum]: "platinum",
+  [LeaderboardLeague.Diamond]: "diamond",
+};
+
+function getMessageTestId(messageType: FeedMessageTypeValue): string {
+  switch (messageType) {
+    case FeedMessageType.StreakMilestone:
+      return "streak-milestone";
+    case FeedMessageType.AchievementEarned:
+      return "achievement-earned";
+    case FeedMessageType.LeaguePromoted:
+      return "league-promoted";
+    case FeedMessageType.CourseCompleted:
+    default:
+      return "course-completed";
+  }
 }
+
+type FeedMessageTypeValue = (typeof FeedMessageType)[keyof typeof FeedMessageType];
 
 const FeedCard: React.FC<IFeedCard> = ({
   feedMessage,
@@ -62,21 +94,23 @@ const FeedCard: React.FC<IFeedCard> = ({
   );
   const messageText = useMemo(() => {
     switch (feedMessage.message) {
-      case "streak_milestone":
+      case FeedMessageType.StreakMilestone:
         return t("feed.messages.streak_milestone", {
           streak: feedMessage.streak,
         });
-      case "achievement_earned":
+      case FeedMessageType.AchievementEarned:
         return t("feed.messages.achievement_earned", {
           achievementName: t(
-            `achievements.achievementsById.${feedMessage.achievementId}`,
+            `achievements.achievementsById.${String(feedMessage.achievementId ?? "")}`,
           ),
         });
-      case "league_promoted":
+      case FeedMessageType.LeaguePromoted:
         return t("feed.messages.league_promoted", {
-          league: t(`leaderboard.leagues.${feedMessage.league}`),
+          league: t(
+            `leaderboard.leagues.${leagueTranslationMap[feedMessage.league ?? LeaderboardLeague.Bronze]}`,
+          ),
         });
-      case "course_completed":
+      case FeedMessageType.CourseCompleted:
         return t("feed.messages.course_completed", {
           courseName: feedMessage.courseName,
         });
@@ -133,7 +167,7 @@ const FeedCard: React.FC<IFeedCard> = ({
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Avatar
-              definition={feedMessage.avatarDefinition}
+              definition={feedMessage.avatar ?? {}}
               size={48}
               alt={feedMessage.author}
             />
@@ -181,25 +215,29 @@ const FeedCard: React.FC<IFeedCard> = ({
             }}
           >
             {feedMessage.reactions
-              .filter((reaction) => allowedReactions.includes(reaction.id))
+              .filter((reaction) =>
+                allowedReactions.includes(reaction.reactionType),
+              )
               .map((reaction) => (
                 <Box
-                  key={`${feedMessage.id}-${reaction.id}`}
-                  data-test={`${messageTestId}-${reactionTestIdMap[reaction.id]}-reaction-section`}
+                  key={`${feedMessage.id}-${reaction.reactionType}`}
+                  data-test={`${messageTestId}-${reactionTestIdMap[reaction.reactionType]}-reaction-section`}
                   onClick={() => {
-                    if (reaction.reactedByUser) {
-                      onRemoveReaction(reaction.id);
+                    const hasUserReaction = (reaction.userReactions?.length ?? 0) > 0;
+
+                    if (hasUserReaction) {
+                      onRemoveReaction(reaction.reactionType);
                       return;
                     }
 
-                    onAddReaction(reaction.id);
+                    onAddReaction(reaction.reactionType);
                   }}
                   sx={{
                     height: 32,
                     px: 2,
                     borderRadius: "16px",
                     border: "1px solid",
-                    borderColor: reaction.reactedByUser
+                    borderColor: (reaction.userReactions?.length ?? 0) > 0
                       ? "primary.main"
                       : "divider",
                     display: "flex",
@@ -208,9 +246,13 @@ const FeedCard: React.FC<IFeedCard> = ({
                     cursor: "pointer",
                   }}
                 >
-                  <Illustration name={reaction.id} width={20} height={20} />
+                  <Illustration
+                    name={reactionIllustrationMap[reaction.reactionType]}
+                    width={20}
+                    height={20}
+                  />
                   <Typography variant="body1" color="text.secondary">
-                    {reaction.counter}
+                    {reaction.count}
                   </Typography>
                 </Box>
               ))}
@@ -234,7 +276,11 @@ const FeedCard: React.FC<IFeedCard> = ({
                       handleMenuClose();
                     }}
                   >
-                    <Illustration name={reaction} width={20} height={20} />
+                    <Illustration
+                      name={reactionIllustrationMap[reaction]}
+                      width={20}
+                      height={20}
+                    />
                   </IconButton>
                 ))}
               </Box>

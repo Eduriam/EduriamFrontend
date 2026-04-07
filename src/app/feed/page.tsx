@@ -17,13 +17,13 @@ import Stack from "@mui/material/Stack";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import { FeedMessage } from "infrastructure/api/users/me/feed/Feed";
-import FeedAPI from "infrastructure/api/users/me/feed/FeedAPI";
-import {
-  Reaction,
-  ReactionId,
-} from "infrastructure/api/users/me/feed/reactions/Reactions";
-import ReactionsAPI from "infrastructure/api/users/me/feed/reactions/ReactionsAPI";
+import type {
+  FeedItemResponseModel,
+  FeedReactionGroupModel,
+  FeedReactionType,
+  FeedUserReactionModel,
+} from "infrastructure/api/generated/models";
+import { FeedService } from "infrastructure/services/feed/FeedService";
 
 import FeedCard from "./components/FeedCard/FeedCard";
 
@@ -32,7 +32,7 @@ export interface IFeed {}
 const Feed: React.FC<IFeed> = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { feed = [], mutate } = FeedAPI.useFeed();
+  const { feed = [], mutate } = FeedService.useFeed();
 
   const sortedFeed = useMemo(
     () =>
@@ -57,39 +57,62 @@ const Feed: React.FC<IFeed> = () => {
     [feed],
   );
 
-  function updateReactionArray(
-    reactions: Array<Reaction>,
-    reactionId: ReactionId,
-    reacted: boolean,
-  ): Array<Reaction> {
-    let reactionExists = false;
+  function createOptimisticUserReaction(
+    reactionType: FeedReactionType,
+  ): FeedUserReactionModel {
+    return {
+      id: Date.now(),
+      reactionType,
+      userId: 0,
+      reactedAt: new Date().toISOString(),
+    };
+  }
 
-    const newReactions: Array<Reaction> = reactions
+  function updateReactionArray(
+    reactions: Array<FeedReactionGroupModel>,
+    reactionType: FeedReactionType,
+    reacted: boolean,
+  ): Array<FeedReactionGroupModel> {
+    let hasReactionGroup = false;
+
+    const newReactions: Array<FeedReactionGroupModel> = reactions
       .map((reaction) => {
-        if (reaction.id === reactionId) {
-          reactionExists = true;
+        if (reaction.reactionType === reactionType) {
+          hasReactionGroup = true;
+          const hasUserReaction = (reaction.userReactions?.length ?? 0) > 0;
+          const nextCount =
+            !hasUserReaction && reacted
+              ? reaction.count + 1
+              : hasUserReaction && !reacted
+                ? reaction.count - 1
+                : reaction.count;
+          const nextUserReactions = reacted
+            ? hasUserReaction
+              ? reaction.userReactions
+              : [
+                  ...(reaction.userReactions ?? []),
+                  createOptimisticUserReaction(reactionType),
+                ]
+            : hasUserReaction
+              ? (reaction.userReactions ?? []).slice(1)
+              : reaction.userReactions;
 
           return {
             ...reaction,
-            reactedByUser: reacted,
-            counter:
-              !reaction.reactedByUser && reacted
-                ? reaction.counter + 1
-                : reaction.reactedByUser && !reacted
-                  ? reaction.counter - 1
-                  : reaction.counter,
+            count: nextCount,
+            userReactions: nextUserReactions,
           };
         }
 
         return reaction;
       })
-      .filter((reaction) => reaction.counter > 0);
+      .filter((reaction) => reaction.count > 0);
 
-    if (reacted && !reactionExists) {
+    if (reacted && !hasReactionGroup) {
       newReactions.push({
-        counter: 1,
-        reactedByUser: true,
-        id: reactionId,
+        reactionType,
+        count: 1,
+        userReactions: [createOptimisticUserReaction(reactionType)],
       });
     }
 
@@ -97,13 +120,13 @@ const Feed: React.FC<IFeed> = () => {
   }
 
   function handleReactionUpdate(
-    feedItem: FeedMessage,
-    reactionId: ReactionId,
+    feedItem: FeedItemResponseModel,
+    reactionType: FeedReactionType,
     reacted: boolean,
   ) {
     const reactions = updateReactionArray(
       feedItem.reactions,
-      reactionId,
+      reactionType,
       reacted,
     );
 
@@ -117,13 +140,13 @@ const Feed: React.FC<IFeed> = () => {
 
     mutate(async () => {
       if (reacted) {
-        await ReactionsAPI.addReaction(feedItem.id, reactionId);
+        await FeedService.addReaction(feedItem.id, reactionType);
       } else {
-        await ReactionsAPI.deleteReaction(feedItem.id, reactionId);
+        await FeedService.deleteReaction(feedItem.id, reactionType);
       }
 
       return newFeed;
-    }, optimisticMutationOption<Array<FeedMessage>>(newFeed));
+    }, optimisticMutationOption<Array<FeedItemResponseModel>>(newFeed));
   }
 
   return (
