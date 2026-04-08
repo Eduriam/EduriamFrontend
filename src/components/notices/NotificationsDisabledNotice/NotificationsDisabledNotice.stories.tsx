@@ -18,7 +18,6 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "NOTIFICATIONS_DISABLED",
   },
 } as NotificationsDisabledNoticeProps;
 

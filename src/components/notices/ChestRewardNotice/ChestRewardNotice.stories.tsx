@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import ChestRewardNotice, { type ChestRewardNoticeProps } from "./ChestRewardNotice";
 
 export default {
@@ -16,7 +18,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "CHEST_REWARD",
+    type: NoticeType.CHEST_REWARD,
     chestId: 1,
     reward: 10,
   },

@@ -18,12 +18,12 @@ import AdvertisementDialog from "components/advertisement/AdvertisementDialog/Ad
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
 import ChestsAPI from "infrastructure/api/users/me/chests/ChestsAPI";
-import type { ChestRewardNotice as ChestRewardNoticeType } from "infrastructure/api/users/me/notices/Notices";
+import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useAuth from "infrastructure/services/AuthProvider";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface ChestRewardNoticeProps {
-  notice: ChestRewardNoticeType;
+  notice: Notice;
 }
 
 type ChestRewardFlowState = "idle" | "ad_open" | "double_reward_confirmed";
@@ -75,7 +75,7 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
 
   const initialBalance = baseBalanceRef.current;
   const rewardAmount = useMemo(
-    () => Math.max(0, notice.reward),
+    () => Math.max(0, notice.reward ?? 0),
     [notice.reward],
   );
   const doubledRewardAmount = rewardAmount * 2;
@@ -175,6 +175,10 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
   }, [doubledRewardAmount, flowState, rewardAmount]);
 
   const openChest = async (doubleReward: boolean) => {
+    if (notice.chestId === undefined) {
+      return;
+    }
+
     const payload = doubleReward
       ? { open: true as const, doubleReward: true as const }
       : { open: true as const };

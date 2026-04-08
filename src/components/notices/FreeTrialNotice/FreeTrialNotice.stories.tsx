@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import FreeTrialNotice, { type FreeTrialNoticeProps } from "./FreeTrialNotice";
 
 export default {
@@ -16,7 +18,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "FREE_TRIAL",
+    type: NoticeType.FREE_TRIAL,
   },
 } as FreeTrialNoticeProps;
 

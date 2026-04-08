@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
-import { UserRole } from "infrastructure/api/generated/models";
+import { NoticeType, UserRole } from "infrastructure/api/generated/models";
 import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -25,10 +25,10 @@ import ReviewCourseStudySession from "./components/ReviewCourseStudySession";
 
 export interface IReviewPage {}
 const REVIEW_NOTICE_TYPES = [
-  "CHEST_REWARD",
-  "STREAK_MILESTONE",
-  "STREAK_LOST",
-  "STREAK_SAVED",
+  NoticeType.CHEST_REWARD,
+  NoticeType.STREAK_MILESTONE,
+  NoticeType.STREAK_LOST,
+  NoticeType.STREAK_SAVED,
 ] as const;
 
 const ReviewPage: React.FC<IReviewPage> = () => {

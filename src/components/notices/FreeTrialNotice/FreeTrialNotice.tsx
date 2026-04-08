@@ -10,11 +10,11 @@ import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 import PremiumBenefits from "components/premium/PremiumBenefits/PremiumBenefits";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
-import type { FreeTrialNotice as FreeTrialNoticeType } from "infrastructure/api/users/me/notices/Notices";
+import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface FreeTrialNoticeProps {
-  notice: FreeTrialNoticeType;
+  notice: Notice;
 }
 
 const FreeTrialNotice: React.FC<FreeTrialNoticeProps> = ({ notice }) => {

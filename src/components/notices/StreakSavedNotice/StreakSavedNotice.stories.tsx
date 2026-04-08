@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import StreakSavedNotice, {
   type StreakSavedNoticeProps,
 } from "./StreakSavedNotice";
@@ -18,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "STREAK_SAVED",
+    type: NoticeType.STREAK_SAVED,
     streakDays: 121,
     freezesLeft: 1,
   },

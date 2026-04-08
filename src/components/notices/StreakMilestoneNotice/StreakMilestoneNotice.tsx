@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import type { StreakMilestoneNotice as StreakMilestoneNoticeType } from "infrastructure/api/users/me/notices/Notices";
+import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface StreakMilestoneNoticeProps {
-  notice: StreakMilestoneNoticeType;
+  notice: Notice;
 }
 
 const StreakMilestoneNotice: React.FC<StreakMilestoneNoticeProps> = ({
@@ -34,7 +34,7 @@ const StreakMilestoneNotice: React.FC<StreakMilestoneNoticeProps> = ({
       <Stack spacing={2} alignItems="center" sx={{ width: "100%", mt: 8 }}>
         <Illustration name="fire" width={128} height={128} />
         <Typography variant="h2" textAlign="center" lineHeight="58px">
-          {notice.streakDays}
+          {notice.streakDays ?? 0}
         </Typography>
         <Typography variant="h5" textAlign="center">
           {t("notices.dayStreak")}

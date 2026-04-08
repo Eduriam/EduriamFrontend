@@ -8,8 +8,9 @@ import {
   useState,
 } from "react";
 
-import type { Notice } from "infrastructure/api/users/me/notices/Notices";
-import NoticesAPI from "infrastructure/api/users/me/notices/NoticesAPI";
+import NoticeService, {
+  type Notice,
+} from "infrastructure/api/users/me/notices/NoticeService";
 
 export interface NoticeContextType {
   notices: Notice[];
@@ -50,13 +51,13 @@ export function NoticeProvider({
   const [notices, setNotices] = useState<Notice[]>([]);
 
   const fetchNotices = useCallback(async (): Promise<Notice[]> => {
-    const newNotices = await NoticesAPI.getNotices();
+    const newNotices = await NoticeService.getNotices();
     setNotices((previousNotices) => mergeNotices(previousNotices, newNotices));
     return newNotices;
   }, []);
 
   const markNoticeAsRead = useCallback(async (noticeId: Id) => {
-    await NoticesAPI.deleteNotice(noticeId);
+    await NoticeService.deleteNotice(noticeId);
     setNotices((previousNotices) =>
       previousNotices.filter((notice) => notice.id !== noticeId),
     );

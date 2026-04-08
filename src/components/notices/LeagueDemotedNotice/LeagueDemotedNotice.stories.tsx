@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { LeaderboardLeague, NoticeType } from "infrastructure/api/generated/models";
+
 import LeagueDemotedNotice, {
   type LeagueDemotedNoticeProps,
 } from "./LeagueDemotedNotice";
@@ -18,8 +20,8 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "LEAGUE_DEMOTED",
-    league: "emerald",
+    type: NoticeType.LEAGUE_DEMOTED,
+    league: LeaderboardLeague.Silver,
   },
 } as LeagueDemotedNoticeProps;
 

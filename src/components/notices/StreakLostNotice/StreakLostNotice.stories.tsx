@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import StreakLostNotice, { type StreakLostNoticeProps } from "./StreakLostNotice";
 
 export default {
@@ -16,7 +18,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "STREAK_LOST",
+    type: NoticeType.STREAK_LOST,
     previousStreakDays: 47,
   },
 } as StreakLostNoticeProps;

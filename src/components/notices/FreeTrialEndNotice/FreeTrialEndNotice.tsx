@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import type { FreeTrialEndNotice as FreeTrialEndNoticeType } from "infrastructure/api/users/me/notices/Notices";
+import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface FreeTrialEndNoticeProps {
-  notice: FreeTrialEndNoticeType;
+  notice: Notice;
 }
 
 const FreeTrialEndNotice: React.FC<FreeTrialEndNoticeProps> = ({ notice }) => {

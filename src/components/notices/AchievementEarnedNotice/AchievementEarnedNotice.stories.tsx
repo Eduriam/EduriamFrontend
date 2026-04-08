@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import AchievementEarnedNotice, {
   type AchievementEarnedNoticeProps,
 } from "./AchievementEarnedNotice";
@@ -18,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "ACHIEVEMENT_EARNED",
+    type: NoticeType.ACHIEVEMENT_EARNED,
     title: "Skvělý student",
     description: "Dokončil jsi 100 lekcí.",
     badgeIconName: "achievement-1",

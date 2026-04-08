@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
+import { NoticeType } from "infrastructure/api/generated/models";
+
 import StreakMilestoneNotice, {
   type StreakMilestoneNoticeProps,
 } from "./StreakMilestoneNotice";
@@ -18,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: "STREAK_MILESTONE",
+    type: NoticeType.STREAK_MILESTONE,
     streakDays: 100,
   },
 } as StreakMilestoneNoticeProps;

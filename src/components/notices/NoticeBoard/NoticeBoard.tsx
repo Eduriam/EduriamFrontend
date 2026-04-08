@@ -6,12 +6,14 @@ import FreeTrialEndNotice from "components/notices/FreeTrialEndNotice/FreeTrialE
 import FreeTrialNotice from "components/notices/FreeTrialNotice/FreeTrialNotice";
 import LeagueDemotedNotice from "components/notices/LeagueDemotedNotice/LeagueDemotedNotice";
 import LeaguePromotedNotice from "components/notices/LeaguePromotedNotice/LeaguePromotedNotice";
-import NotificationsDisabledNotice from "components/notices/NotificationsDisabledNotice/NotificationsDisabledNotice";
 import StreakLostNotice from "components/notices/StreakLostNotice/StreakLostNotice";
 import StreakMilestoneNotice from "components/notices/StreakMilestoneNotice/StreakMilestoneNotice";
 import StreakSavedNotice from "components/notices/StreakSavedNotice/StreakSavedNotice";
 
-import type { Notice, NoticeType } from "infrastructure/api/users/me/notices/Notices";
+import {
+  NoticeType,
+  type Notice,
+} from "infrastructure/api/users/me/notices/NoticeService";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface NoticeBoardProps {
@@ -20,25 +22,23 @@ export interface NoticeBoardProps {
 
 function renderNotice(notice: Notice) {
   switch (notice.type) {
-    case "NOTIFICATIONS_DISABLED":
-      return <NotificationsDisabledNotice notice={notice} />;
-    case "STREAK_MILESTONE":
+    case NoticeType.STREAK_MILESTONE:
       return <StreakMilestoneNotice notice={notice} />;
-    case "STREAK_LOST":
+    case NoticeType.STREAK_LOST:
       return <StreakLostNotice notice={notice} />;
-    case "STREAK_SAVED":
+    case NoticeType.STREAK_SAVED:
       return <StreakSavedNotice notice={notice} />;
-    case "LEAGUE_PROMOTED":
+    case NoticeType.LEAGUE_PROMOTED:
       return <LeaguePromotedNotice notice={notice} />;
-    case "LEAGUE_DEMOTED":
+    case NoticeType.LEAGUE_DEMOTED:
       return <LeagueDemotedNotice notice={notice} />;
-    case "ACHIEVEMENT_EARNED":
+    case NoticeType.ACHIEVEMENT_EARNED:
       return <AchievementEarnedNotice notice={notice} />;
-    case "CHEST_REWARD":
+    case NoticeType.CHEST_REWARD:
       return <ChestRewardNotice notice={notice} />;
-    case "FREE_TRIAL":
+    case NoticeType.FREE_TRIAL:
       return <FreeTrialNotice notice={notice} />;
-    case "FREE_TRIAL_END":
+    case NoticeType.FREE_TRIAL_END:
       return <FreeTrialEndNotice notice={notice} />;
     default:
       return null;
