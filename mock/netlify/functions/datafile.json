@@ -1424,7 +1424,7 @@
       "responses": [
         {
           "uuid": "414d5d41-2ee5-47da-af76-faab526daea5",
-          "body": "{\n  \"id\": {{urlParam 'certificateId'}},\n  \"userName\": \"Pepa Okurka\",\n  \"courseName\": \"JavaScript Basics\",\n  \"createdAt\": \"July 23, 2026\"\n}",
+          "body": "{\n  \"id\": {{urlParam 'certificateId'}},\n  \"userName\": \"Pepa Okurka\",\n  \"productName\": \"JavaScript Basics\",\n  \"createdAt\": \"July 23, 2026\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

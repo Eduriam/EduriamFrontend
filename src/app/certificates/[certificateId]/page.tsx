@@ -44,7 +44,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
     const shareUrl = window.location.href;
     const title = "Eduriam certificate";
     const text = certificate
-      ? `${certificate.userName} - ${certificate.courseName}`
+      ? `${certificate.userName} - ${certificate.productName}`
       : "Check out this Eduriam certificate";
 
     if (navigator.share) {
@@ -93,7 +93,7 @@ const CertificatePage: React.FC<ICertificatePage> = () => {
       >
         <Certificate
           userName={certificate?.userName ?? ""}
-          courseName={certificate?.courseName ?? ""}
+          courseName={certificate?.productName ?? ""}
           createdAt={certificate?.createdAt ?? ""}
           data-test="certificate-section"
         />

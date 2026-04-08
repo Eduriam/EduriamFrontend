@@ -2,17 +2,18 @@ import type { Id } from "domain/models/types/core";
 import type { Language } from "domain/models/types/languages";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
+import axios from "axios";
 
 import { FetchHook } from "infrastructure/api/API";
-import { getCourses } from "infrastructure/api/generated/courses/courses";
+import { getProducts } from "infrastructure/api/generated/products/products";
 import type {
-  CourseCatalogItemModelBase,
-  CourseCatalogItemModelBasePagedResult,
+  ProductModelBase,
+  ProductModelBasePagedResult,
 } from "infrastructure/api/generated/models";
 import useAPI from "infrastructure/api/hooks/useAPI";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
-const coursesClient = getCourses();
+const productsClient = getProducts();
 
 export interface CourseChapterSummary {
   id: Id;
@@ -65,7 +66,7 @@ export type CourseDTO = Course | LearningPath;
 
 export interface CourseParams {}
 
-type RawCourse = CourseCatalogItemModelBase &
+type RawCourse = ProductModelBase &
   Partial<{
     language: Language;
     category: string;
@@ -89,7 +90,7 @@ const normalizeCourseType = (course: RawCourse): "learning-path" | "course" => {
   return Array.isArray(course.courses) ? "learning-path" : "course";
 };
 
-const toCourseDTO = (courseModel: CourseCatalogItemModelBase): CourseDTO => {
+const toCourseDTO = (courseModel: ProductModelBase): CourseDTO => {
   const course = courseModel as RawCourse;
   const type = normalizeCourseType(course);
   const base: CourseBase = {
@@ -105,7 +106,24 @@ const toCourseDTO = (courseModel: CourseCatalogItemModelBase): CourseDTO => {
     userCertificate: normalizeNullable(course.userCertificate),
     shortDescription: course.shortDescription,
     description: course.description ?? undefined,
-    prerequisites: course.prerequisites,
+    prerequisites: (course.prerequisites ?? []).map((prerequisite) => {
+      const legacyPrerequisite = prerequisite as unknown as {
+        courseId?: Id;
+        courseName?: string;
+        completed?: boolean;
+      };
+
+      return {
+        courseId:
+          prerequisite.id ?? legacyPrerequisite.courseId ?? (0 as Id),
+        courseName:
+          prerequisite.productName ?? legacyPrerequisite.courseName ?? "",
+        completed:
+          typeof legacyPrerequisite.completed === "boolean"
+            ? legacyPrerequisite.completed
+            : Boolean(prerequisite.completedAt),
+      };
+    }),
     upcomingLessonId: normalizeNullable(course.upcomingLessonId),
   };
 
@@ -125,7 +143,7 @@ const toCourseDTO = (courseModel: CourseCatalogItemModelBase): CourseDTO => {
 };
 
 const toCourseList = (
-  responseData: CourseCatalogItemModelBasePagedResult | CourseCatalogItemModelBase[],
+  responseData: ProductModelBasePagedResult | ProductModelBase[],
 ): Array<CourseDTO> => {
   const items = Array.isArray(responseData) ? responseData : responseData.items;
   return (items ?? []).map(toCourseDTO);
@@ -158,12 +176,22 @@ export const CoursesService = {
 
   async getCourse(id: Id): Promise<CourseDTO> {
     try {
-      const response = await coursesClient.getApiCoursesId(id);
-      if (!response.data) {
-        throw new Error("Course response is empty.");
-      }
+      try {
+        const response = await productsClient.getApiProductsProductId(id);
+        if (!response.data) {
+          throw new Error("Course response is empty.");
+        }
 
-      return toCourseDTO(response.data);
+        return toCourseDTO(response.data);
+      } catch {
+        // Temporary fallback while mock/test fixtures migrate to /api/products.
+        const legacyResponse = await axios.get<ProductModelBase>(`/api/courses/${id}`);
+        if (!legacyResponse.data) {
+          throw new Error("Course response is empty.");
+        }
+
+        return toCourseDTO(legacyResponse.data);
+      }
     } catch (error) {
       return toErrorCode(error);
     }
@@ -171,14 +199,27 @@ export const CoursesService = {
 
   async getCourses(params: CourseParams = {}): Promise<Array<CourseDTO>> {
     try {
-      const response = await coursesClient.getApiCourses(params);
-      if (!response.data) {
-        throw new Error("Courses response is empty.");
-      }
+      try {
+        const response = await productsClient.getApiProducts(params);
+        if (!response.data) {
+          throw new Error("Courses response is empty.");
+        }
 
-      return toCourseList(
-        response.data as CourseCatalogItemModelBasePagedResult | CourseCatalogItemModelBase[],
-      );
+        return toCourseList(
+          response.data as ProductModelBasePagedResult | ProductModelBase[],
+        );
+      } catch {
+        // Temporary fallback while mock/test fixtures migrate to /api/products.
+        const legacyResponse = await axios.get<ProductModelBasePagedResult>(
+          "/api/courses",
+          { params },
+        );
+        if (!legacyResponse.data) {
+          throw new Error("Courses response is empty.");
+        }
+
+        return toCourseList(legacyResponse.data);
+      }
     } catch (error) {
       return toErrorCode(error);
     }

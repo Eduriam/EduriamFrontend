@@ -112,7 +112,7 @@ const FeedCard: React.FC<IFeedCard> = ({
         });
       case FeedMessageType.CourseCompleted:
         return t("feed.messages.course_completed", {
-          courseName: feedMessage.courseName,
+          courseName: feedMessage.productName ?? "",
         });
       default:
         return "";
