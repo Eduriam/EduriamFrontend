@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
 import { NoticeType, UserRole } from "infrastructure/api/generated/models";
-import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
+import StudyPlanService from "infrastructure/api/users/me/study-plan/StudyPlanService";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import StudyPreview from "../(home)/components/StudyPreview/StudyPreview";
@@ -49,7 +49,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
   }, [searchParams]);
 
   const { studyPlan, isLoading: isStudyPlanLoading } =
-    StudyPlanAPI.useStudyPlan();
+    StudyPlanService.useStudyPlan();
 
   const upcomingReviewCourse = studyPlan?.upcomingReviewCourse;
   const queryCourseId = parseId(queryCourseIdRaw);
@@ -123,7 +123,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
                     t("home.reviewDescription") ??
                     "Review the most important concepts carefully selected for you."
                   }
-                  imageSrc={upcomingReviewCourse?.thumbnailUrl}
+                  imageSrc={upcomingReviewCourse?.thumbnailUrl ?? undefined}
                 />
 
                 <Stack spacing={4} alignItems="center" sx={{ width: "100%" }}>

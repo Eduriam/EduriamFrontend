@@ -20,7 +20,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
 
 import { UserRole } from "infrastructure/api/generated/models";
-import StudyPlanAPI from "infrastructure/api/users/me/study-plan/StudyPlanAPI";
+import StudyPlanService from "infrastructure/api/users/me/study-plan/StudyPlanService";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import EnergyDrawer from "./components/EnergyDrawer/EnergyDrawer";
@@ -44,7 +44,7 @@ const HomePage: React.FC<IHomePage> = () => {
   const [streakDrawerOpen, setStreakDrawerOpen] = useState(false);
   const [energyDrawerOpen, setEnergyDrawerOpen] = useState(false);
 
-  const { studyPlan, isLoading } = StudyPlanAPI.useStudyPlan();
+  const { studyPlan, isLoading } = StudyPlanService.useStudyPlan();
 
   const isPremiumUser = user?.role === UserRole.PremiumUser;
   const streak = user?.streak ?? 0;
@@ -220,7 +220,9 @@ const HomePage: React.FC<IHomePage> = () => {
                     t("home.reviewDescription") ??
                     "Review the most important concepts carefully selected for you."
                   }
-                  imageSrc={studyPlan?.upcomingReviewCourse?.thumbnailUrl}
+                  imageSrc={
+                    studyPlan?.upcomingReviewCourse?.thumbnailUrl ?? undefined
+                  }
                 />
                 <LargeButton
                   fullWidth
