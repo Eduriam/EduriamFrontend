@@ -17,7 +17,7 @@ import { keyframes } from "@mui/system";
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import ChestsAPI from "infrastructure/api/users/me/chests/ChestsAPI";
+import ChestService from "infrastructure/api/users/me/chests/ChestService";
 import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useAuth from "infrastructure/services/AuthProvider";
 import useNotices from "infrastructure/services/NoticeProvider";
@@ -179,11 +179,7 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
       return;
     }
 
-    const payload = doubleReward
-      ? { open: true as const, doubleReward: true as const }
-      : { open: true as const };
-
-    await ChestsAPI.openChest(notice.chestId, payload);
+    await ChestService.openChest(notice.chestId, doubleReward);
   };
 
   const markAsRead = async () => {

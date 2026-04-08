@@ -2781,8 +2781,8 @@
       "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99",
       "type": "http",
       "documentation": "",
-      "method": "patch",
-      "endpoint": "users/me/chests/:id",
+      "method": "post",
+      "endpoint": "users/me/user-chests/:userChestId/open",
       "responses": [
         {
           "uuid": "fd6efccd-2e0e-4248-9bbf-b762bbf2811c",
@@ -2790,6 +2790,37 @@
           "latency": 0,
           "statusCode": 200,
           "label": "Open chest success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2d4b27ae-489b-4f3c-9d88-c02d77724116",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/user-chests/:userChestId/double",
+      "responses": [
+        {
+          "uuid": "a61f48d2-a631-4482-8411-160fdafb6513",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Double chest reward success",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
