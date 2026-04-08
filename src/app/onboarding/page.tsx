@@ -1,8 +1,7 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import { PageRoot, ProgressNavbar } from "@eduriam/ui-core";
+import type { Id } from "domain/models/types/core";
 import theme from "styles/theme";
 
 import { useState } from "react";
@@ -12,12 +11,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
+import type {
+  ProductAreaOfInterest,
+  ProductCodingExperience,
+  ProductUserGoal,
+} from "infrastructure/api/generated/models";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import { CoursesService } from "infrastructure/services/courses/CoursesService";
 import { AccountSetupService } from "infrastructure/services/users/AccountSetupService";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 import AreaOfInterestStep from "../courses/recommended/quiz/components/AreaOfInterestStep";
 import CodingExperienceStep from "../courses/recommended/quiz/components/CodingExperienceStep";
@@ -55,9 +59,11 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const { mutateUser } = useAuth();
 
   const [step, setStep] = useState<OnboardingStep>("coding-experience");
-  const [codingExperience, setCodingExperience] = useState<string | null>(null);
-  const [areaOfInterest, setAreaOfInterest] = useState<string | null>(null);
-  const [userGoal, setUserGoal] = useState<string | null>(null);
+  const [codingExperience, setCodingExperience] =
+    useState<ProductCodingExperience | null>(null);
+  const [areaOfInterest, setAreaOfInterest] =
+    useState<ProductAreaOfInterest | null>(null);
+  const [userGoal, setUserGoal] = useState<ProductUserGoal | null>(null);
   const [selectedCourseId, setSelectedCourseId] = useState<Id | null>(null);
   const [dailyGoalValue, setDailyGoalValue] = useState<number | null>(null);
   const [showAllCourses, setShowAllCourses] = useState(false);
@@ -69,8 +75,8 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     .filter((course) => !course.premium)
     .slice(0, 3);
   const allCourses = (courses ?? []).filter((course) => !course.premium);
-  const htmlCourseId = allCourses.find(
-    (c) => c.name?.toLowerCase().includes("html"),
+  const htmlCourseId = allCourses.find((c) =>
+    c.name?.toLowerCase().includes("html"),
   )?.id;
   const displayCourses = showAllCourses ? allCourses : recommendedCourses;
 
@@ -107,11 +113,11 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   };
 
   const handleContinue = async () => {
-    if (step === "coding-experience" && codingExperience) {
+    if (step === "coding-experience" && codingExperience !== null) {
       transitionStep(() => setStep("area-of-interest"), "forward", step);
-    } else if (step === "area-of-interest" && areaOfInterest) {
+    } else if (step === "area-of-interest" && areaOfInterest !== null) {
       transitionStep(() => setStep("user-goal"), "forward", step);
-    } else if (step === "user-goal" && userGoal) {
+    } else if (step === "user-goal" && userGoal !== null) {
       await updateCoursePreferences();
       transitionStep(() => setStep("value-proposition"), "forward", step);
     } else if (step === "value-proposition") {
@@ -123,11 +129,11 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 
   const updateCoursePreferences = async () => {
     try {
-      await SettingsAPI.updateSettings({
-        coursePreferences: {
-          codingExperience: codingExperience ?? undefined,
-          areaOfInterest: areaOfInterest ?? undefined,
-          userGoal: userGoal ?? undefined,
+      await SettingsService.updateSettings({
+        productPreferences: {
+          codingExperience: codingExperience,
+          areaOfInterest: areaOfInterest,
+          userGoal: userGoal,
         },
       });
     } catch {
@@ -174,7 +180,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           selectedId={codingExperience}
           onSelect={setCodingExperience}
           onContinue={handleContinue}
-          canContinue={!!codingExperience}
+          canContinue={codingExperience !== null}
         />
       );
     }
@@ -184,7 +190,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           selectedId={areaOfInterest}
           onSelect={setAreaOfInterest}
           onContinue={handleContinue}
-          canContinue={!!areaOfInterest}
+          canContinue={areaOfInterest !== null}
         />
       );
     }
@@ -194,7 +200,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
           selectedId={userGoal}
           onSelect={setUserGoal}
           onContinue={handleContinue}
-          canContinue={!!userGoal}
+          canContinue={userGoal !== null}
         />
       );
     }
@@ -241,9 +247,9 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   };
 
   const canContinue =
-    (step === "coding-experience" && codingExperience) ||
-    (step === "area-of-interest" && areaOfInterest) ||
-    (step === "user-goal" && userGoal) ||
+    (step === "coding-experience" && codingExperience !== null) ||
+    (step === "area-of-interest" && areaOfInterest !== null) ||
+    (step === "user-goal" && userGoal !== null) ||
     step === "value-proposition" ||
     (step === "daily-goal" && dailyGoalValue !== null);
 
@@ -346,4 +352,3 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
 };
 
 export default OnboardingPage;
-

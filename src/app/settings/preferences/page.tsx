@@ -18,35 +18,39 @@ import Stack from "@mui/material/Stack";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import type { ThemeMode } from "infrastructure/api/users/me/settings/Settings";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import type { ThemeMode } from "infrastructure/api/generated/models";
+import { ThemeMode as ThemeModeValues } from "infrastructure/api/generated/models";
 import { useThemeMode } from "infrastructure/services/ThemeModeProvider";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 const SettingsPreferencesPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { settings, mutate } = SettingsAPI.useSettings();
+  const { settings, mutate } = SettingsService.useSettings();
   const { mode, setMode } = useThemeMode();
 
   const [isThemeModeDrawerOpen, setIsThemeModeDrawerOpen] = useState(false);
 
-  const selectedMode = settings?.themeMode ?? mode ?? "system";
+  const selectedMode = settings?.themeMode ?? mode ?? ThemeModeValues.System;
 
-  const themeModeOptions: Array<{ value: ThemeMode; dataTest: string }> =
+  const themeModeOptions: Array<{ value: ThemeMode; id: string; dataTest: string }> =
     useMemo(
       () => [
         {
-          value: "system",
+          value: ThemeModeValues.System,
+          id: String(ThemeModeValues.System),
           dataTest: "appearance-mode-system-option-button",
         },
         {
-          value: "dark",
+          value: ThemeModeValues.Dark,
+          id: String(ThemeModeValues.Dark),
           dataTest: "appearance-mode-dark-option-button",
         },
         {
-          value: "light",
+          value: ThemeModeValues.Light,
+          id: String(ThemeModeValues.Light),
           dataTest: "appearance-mode-light-option-button",
         },
       ],
@@ -59,8 +63,16 @@ const SettingsPreferencesPage: React.FC = () => {
         title: t("settings.preferences.mode"),
         dataTest: "appearance-mode-select-section",
         options: themeModeOptions.map((option) => ({
-          id: option.value,
-          label: t(`settings.preferences.themeModes.${option.value}`),
+          id: option.id,
+          label: t(
+            `settings.preferences.themeModes.${
+              option.value === ThemeModeValues.System
+                ? "system"
+                : option.value === ThemeModeValues.Dark
+                  ? "dark"
+                  : "light"
+            }`,
+          ),
           dataTest: option.dataTest,
         })),
       },
@@ -82,8 +94,8 @@ const SettingsPreferencesPage: React.FC = () => {
     setMode(nextMode);
 
     await mutate(async () => {
-      const updatedSettings = await SettingsAPI.updateSettings({
-        themeMode: nextMode,
+      const updatedSettings = await SettingsService.updateSettings({
+        theme: nextMode,
       });
 
       enqueueSnackbar(t("settings.saved"), { variant: "success" });
@@ -116,7 +128,15 @@ const SettingsPreferencesPage: React.FC = () => {
         <Stack spacing={1} width="100%">
           <Select
             label={t("settings.preferences.mode")}
-            value={t(`settings.preferences.themeModes.${selectedMode}`)}
+            value={t(
+              `settings.preferences.themeModes.${
+                selectedMode === ThemeModeValues.System
+                  ? "system"
+                  : selectedMode === ThemeModeValues.Dark
+                    ? "dark"
+                    : "light"
+              }`,
+            )}
             data-test="appearance-mode-select-button"
             onClick={() => setIsThemeModeDrawerOpen(true)}
             fullWidth
@@ -128,9 +148,10 @@ const SettingsPreferencesPage: React.FC = () => {
         open={isThemeModeDrawerOpen}
         onClose={() => setIsThemeModeDrawerOpen(false)}
         sections={themeModeSections}
-        selectedOptionId={selectedMode}
+        selectedOptionId={String(selectedMode)}
         onChange={({ optionId }) => {
-          void handleThemeModeChange(optionId as ThemeMode);
+          const nextMode = Number(optionId) as ThemeMode;
+          void handleThemeModeChange(nextMode);
           setIsThemeModeDrawerOpen(false);
         }}
         data-test="appearance-mode-select-drawer"

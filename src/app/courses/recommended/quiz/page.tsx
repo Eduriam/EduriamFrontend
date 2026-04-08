@@ -15,7 +15,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import type {
+  ProductAreaOfInterest,
+  ProductCodingExperience,
+  ProductUserGoal,
+} from "infrastructure/api/generated/models";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 import QuizFinishedStep from "./components/QuizFinishedStep";
 
@@ -36,9 +41,11 @@ const RecommendationQuizPage: React.FC = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
 
   const [step, setStep] = useState<QuizStep>("coding-experience");
-  const [codingExperience, setCodingExperience] = useState<string | null>(null);
-  const [areaOfInterest, setAreaOfInterest] = useState<string | null>(null);
-  const [userGoal, setUserGoal] = useState<string | null>(null);
+  const [codingExperience, setCodingExperience] =
+    useState<ProductCodingExperience | null>(null);
+  const [areaOfInterest, setAreaOfInterest] =
+    useState<ProductAreaOfInterest | null>(null);
+  const [userGoal, setUserGoal] = useState<ProductUserGoal | null>(null);
 
   const currentStepIndex = QUIZ_STEPS.indexOf(step);
   const showBack = currentStepIndex > 0;
@@ -62,17 +69,17 @@ const RecommendationQuizPage: React.FC = () => {
   };
 
   const handleContinue = async () => {
-    if (step === "coding-experience" && codingExperience) {
+    if (step === "coding-experience" && codingExperience !== null) {
       transitionStep(() => setStep("area-of-interest"), "forward", step);
-    } else if (step === "area-of-interest" && areaOfInterest) {
+    } else if (step === "area-of-interest" && areaOfInterest !== null) {
       transitionStep(() => setStep("user-goal"), "forward", step);
-    } else if (step === "user-goal" && userGoal) {
+    } else if (step === "user-goal" && userGoal !== null) {
       try {
-        await SettingsAPI.updateSettings({
-          coursePreferences: {
-            codingExperience: codingExperience ?? undefined,
-            areaOfInterest: areaOfInterest ?? undefined,
-            userGoal: userGoal ?? undefined,
+        await SettingsService.updateSettings({
+          productPreferences: {
+            codingExperience: codingExperience ?? null,
+            areaOfInterest: areaOfInterest ?? null,
+            userGoal: userGoal ?? null,
           },
         });
       } catch {
@@ -93,7 +100,7 @@ const RecommendationQuizPage: React.FC = () => {
           selectedId={codingExperience}
           onSelect={setCodingExperience}
           onContinue={handleContinue}
-          canContinue={!!codingExperience}
+          canContinue={codingExperience !== null}
         />
       );
     }
@@ -103,7 +110,7 @@ const RecommendationQuizPage: React.FC = () => {
           selectedId={areaOfInterest}
           onSelect={setAreaOfInterest}
           onContinue={handleContinue}
-          canContinue={!!areaOfInterest}
+          canContinue={areaOfInterest !== null}
         />
       );
     }
@@ -113,7 +120,7 @@ const RecommendationQuizPage: React.FC = () => {
           selectedId={userGoal}
           onSelect={setUserGoal}
           onContinue={handleContinue}
-          canContinue={!!userGoal}
+          canContinue={userGoal !== null}
         />
       );
     }

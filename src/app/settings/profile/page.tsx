@@ -20,7 +20,8 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import type { GetUserSettingsModel } from "infrastructure/api/generated/models";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
@@ -35,7 +36,11 @@ const SettingsProfilePage: React.FC = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { settings, mutate } = SettingsAPI.useSettings();
+  const { settings, mutate } = SettingsService.useSettings();
+  const settingsWithOptionalEmail = settings as
+    | (GetUserSettingsModel & { email?: string })
+    | undefined;
+  const settingsEmail = settingsWithOptionalEmail?.email ?? "";
 
   const [draft, setDraft] = useState<ProfileDraft>({
     name: "",
@@ -52,9 +57,9 @@ const SettingsProfilePage: React.FC = () => {
     setDraft({
       name: settings.name,
       username: settings.username,
-      email: settings.email,
+      email: settingsEmail,
     });
-  }, [settings]);
+  }, [settings, settingsEmail]);
 
   const hasUnsavedChanges = useMemo(() => {
     if (!settings) {
@@ -64,16 +69,16 @@ const SettingsProfilePage: React.FC = () => {
     return (
       draft.name !== settings.name ||
       draft.username !== settings.username ||
-      draft.email !== settings.email
+      draft.email !== settingsEmail
     );
-  }, [draft, settings]);
+  }, [draft, settings, settingsEmail]);
 
   const handleSave = async () => {
     if (!settings || !hasUnsavedChanges) {
       return;
     }
 
-    const isEmailChanged = draft.email !== settings.email;
+    const isEmailChanged = draft.email !== settingsEmail;
 
     if (isEmailChanged) {
       try {
@@ -85,7 +90,7 @@ const SettingsProfilePage: React.FC = () => {
         setDraft({
           name: settings.name,
           username: settings.username,
-          email: settings.email,
+          email: settingsEmail,
         });
       } catch (error) {
         if (error === errorCodes.emailAddressTaken) {
@@ -104,7 +109,10 @@ const SettingsProfilePage: React.FC = () => {
 
     try {
       await mutate(async () => {
-        const updatedSettings = await SettingsAPI.updateSettings(draft);
+        const updatedSettings = await SettingsService.updateSettings({
+          name: draft.name,
+          username: draft.username,
+        });
         enqueueSnackbar(t("settings.saved"), { variant: "success" });
         setErrors([]);
         return updatedSettings;
@@ -168,7 +176,7 @@ const SettingsProfilePage: React.FC = () => {
               sx={{ cursor: "pointer" }}
             >
               <Avatar
-                definition={settings?.avatarDefinition ?? {}}
+                definition={settings?.avatar ?? {}}
                 size={100}
               />
             </Stack>

@@ -8,13 +8,15 @@ import {
   LargeRadioButtonGroup,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import type { ProductUserGoal } from "infrastructure/api/generated/models";
+import { ProductUserGoal as ProductUserGoalValues } from "infrastructure/api/generated/models";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 export interface IUserGoalStepProps {
-  selectedId: string | null;
-  onSelect: (id: string) => void;
+  selectedId: ProductUserGoal | null;
+  onSelect: (id: ProductUserGoal) => void;
   onContinue: () => void;
   canContinue: boolean;
 }
@@ -29,32 +31,32 @@ const UserGoalStep: React.FC<IUserGoalStepProps> = ({
 
   const options: LargeRadioButtonOption[] = [
     {
-      id: "switch-career-option",
+      id: String(ProductUserGoalValues.SwitchCareer),
       text: tForm("onboarding.userGoalOptions.switch-career.text"),
       "data-test": "switch-career-option",
     },
     {
-      id: "build-project-option",
+      id: String(ProductUserGoalValues.BuildProject),
       text: tForm("onboarding.userGoalOptions.build-project.text"),
       "data-test": "build-project-option",
     },
     {
-      id: "learn-school-option",
+      id: String(ProductUserGoalValues.LearnForSchool),
       text: tForm("onboarding.userGoalOptions.learn-school.text"),
       "data-test": "learn-school-option",
     },
     {
-      id: "advance-career-option",
+      id: String(ProductUserGoalValues.AdvanceCareer),
       text: tForm("onboarding.userGoalOptions.advance-career.text"),
       "data-test": "advance-career-option",
     },
     {
-      id: "learn-for-fun-option",
+      id: String(ProductUserGoalValues.LearnForFun),
       text: tForm("onboarding.userGoalOptions.learn-for-fun.text"),
       "data-test": "learn-for-fun-option",
     },
     {
-      id: "something-else-option",
+      id: String(ProductUserGoalValues.Other),
       text: tForm("onboarding.userGoalOptions.something-else.text"),
       "data-test": "something-else-option",
     },
@@ -71,7 +73,7 @@ const UserGoalStep: React.FC<IUserGoalStepProps> = ({
           <LargeRadioButtonGroup
             data-test="user-goal-radio-group"
             options={options}
-            onChange={onSelect}
+            onChange={(id) => onSelect(Number(id) as ProductUserGoal)}
             fullWidth
           />
         </Box>

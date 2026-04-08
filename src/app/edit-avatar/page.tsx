@@ -20,7 +20,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { AvatarModel } from "infrastructure/api/generated/models";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 import { ShopService } from "infrastructure/services/shop/ShopService";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
@@ -39,7 +39,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
 
-  const { settings, mutate } = SettingsAPI.useSettings();
+  const { settings, mutate } = SettingsService.useSettings();
   const { ownedShopItems = [] } = ShopService.useOwnedShopItems();
 
   const [baseAvatar, setBaseAvatar] = useState<AvatarModel>(buildShopAvatar());
@@ -54,7 +54,7 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
       return;
     }
 
-    const initialAvatar = buildShopAvatar(settings.avatarDefinition);
+    const initialAvatar = buildShopAvatar(settings.avatar ?? undefined);
     setBaseAvatar(initialAvatar);
     setDraftAvatar(initialAvatar);
   }, [settings]);
@@ -90,9 +90,8 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
       ...(settings ?? {
         username: "",
         name: "",
-        email: "",
         dailyGoal: 0,
-        themeMode: "system",
+        themeMode: 0,
         notificationPreferences: {
           dailyPractice: true,
           streakFreezeUsed: false,
@@ -101,11 +100,11 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
           friendActivity: false,
         },
       }),
-      avatarDefinition: draftAvatar,
+      avatar: draftAvatar,
     };
 
     await mutate(async () => {
-      await SettingsAPI.updateSettings({ avatarDefinition: draftAvatar });
+      await SettingsService.updateSettings({ avatar: draftAvatar });
       setBaseAvatar(draftAvatar);
       return optimisticSettings;
     }, optimisticMutationOption(optimisticSettings));

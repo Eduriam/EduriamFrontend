@@ -19,16 +19,16 @@ import Typography from "@mui/material/Typography";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import type { NotificationPreferences } from "infrastructure/api/users/me/settings/Settings";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import type { NotificationPreferencesModel } from "infrastructure/api/generated/models";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 type NotificationSettingItem = {
-  id: keyof NotificationPreferences;
+  id: keyof NotificationPreferencesModel;
   labelKey: string;
   dataTest: string;
 };
 
-const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferences = {
+const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferencesModel = {
   dailyPractice: true,
   streakFreezeUsed: false,
   leaderboardStatus: false,
@@ -41,9 +41,9 @@ const SettingsNotificationsPage: React.FC = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { settings, mutate } = SettingsAPI.useSettings();
+  const { settings, mutate } = SettingsService.useSettings();
   const [lastSavedPreference, setLastSavedPreference] = useState<
-    keyof NotificationPreferences | null
+    keyof NotificationPreferencesModel | null
   >(null);
 
   const notificationPreferences =
@@ -99,7 +99,7 @@ const SettingsNotificationsPage: React.FC = () => {
   );
 
   const handleToggle = async (
-    preferenceKey: keyof NotificationPreferences,
+    preferenceKey: keyof NotificationPreferencesModel,
     checked: boolean,
   ) => {
     if (!settings) {
@@ -117,7 +117,7 @@ const SettingsNotificationsPage: React.FC = () => {
     };
 
     await mutate(async () => {
-      const updatedSettings = await SettingsAPI.updateSettings({
+      const updatedSettings = await SettingsService.updateSettings({
         notificationPreferences: nextPreferences,
       });
 

@@ -14,8 +14,9 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
-import type { ThemeMode } from "infrastructure/api/users/me/settings/Settings";
-import SettingsAPI from "infrastructure/api/users/me/settings/SettingsAPI";
+import type { ThemeMode } from "infrastructure/api/generated/models";
+import { ThemeMode as ThemeModeValues } from "infrastructure/api/generated/models";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 import useAuth from "./AuthProvider";
 
@@ -28,7 +29,7 @@ interface ThemeModeContextType {
 }
 
 const ThemeModeContext = createContext<ThemeModeContextType>({
-  mode: "system",
+  mode: ThemeModeValues.System,
   resolvedMode: "dark",
   setMode: () => undefined,
 });
@@ -37,9 +38,9 @@ export const useThemeMode = () => useContext(ThemeModeContext);
 
 const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuth();
-  const { settings } = SettingsAPI.useSettings();
+  const { settings } = SettingsService.useSettings();
 
-  const [mode, setModeState] = useState<ThemeMode>("system");
+  const [mode, setModeState] = useState<ThemeMode>(ThemeModeValues.System);
   const [systemPrefersDark, setSystemPrefersDark] = useState(false);
   const [hasHydratedFromStorage, setHasHydratedFromStorage] = useState(false);
 
@@ -58,14 +59,11 @@ const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const storedThemeMode = localStorage.getItem(
-      THEME_MODE_STORAGE_KEY,
-    ) as ThemeMode | null;
-
+    const storedThemeMode = Number(localStorage.getItem(THEME_MODE_STORAGE_KEY));
     if (
-      storedThemeMode === "dark" ||
-      storedThemeMode === "light" ||
-      storedThemeMode === "system"
+      storedThemeMode === ThemeModeValues.System ||
+      storedThemeMode === ThemeModeValues.Light ||
+      storedThemeMode === ThemeModeValues.Dark
     ) {
       setModeState(storedThemeMode);
     }
@@ -82,11 +80,11 @@ const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, [settings?.themeMode, user]);
 
   const resolvedMode: "dark" | "light" = useMemo(() => {
-    if (mode === "system") {
+    if (mode === ThemeModeValues.System) {
       return systemPrefersDark ? "dark" : "light";
     }
 
-    return mode;
+    return mode === ThemeModeValues.Dark ? "dark" : "light";
   }, [mode, systemPrefersDark]);
 
   useEffect(() => {
@@ -94,13 +92,13 @@ const ThemeModeProvider: React.FC<PropsWithChildren> = ({ children }) => {
       return;
     }
 
-    localStorage.setItem(THEME_MODE_STORAGE_KEY, mode);
+    localStorage.setItem(THEME_MODE_STORAGE_KEY, String(mode));
     document.documentElement.dataset.themeMode = resolvedMode;
   }, [hasHydratedFromStorage, mode, resolvedMode]);
 
   const setMode = (nextMode: ThemeMode) => {
     setModeState(nextMode);
-    localStorage.setItem(THEME_MODE_STORAGE_KEY, nextMode);
+    localStorage.setItem(THEME_MODE_STORAGE_KEY, String(nextMode));
   };
 
   const contextValue = useMemo(
