@@ -2,12 +2,16 @@
 
 import {
   AtomProgressRating,
+  type ExerciseStudyBlockDTO,
+  type ExplanationStudyBlockDTO,
   ReportDialog,
   SelectedStudyBlockData,
+  StudyBlockMode,
+  StudyBlockType,
+  type StudyBlockDTO,
   StudySession,
-  StudySessionDTO,
+  type StudySessionDTO,
 } from "@eduriam/ui-x";
-import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import {
   STUDY_BLOCK_REPORT_DATA_TEST,
@@ -21,26 +25,92 @@ import {
 
 import { useMemo, useState } from "react";
 
-import { ReportType, UserRole } from "infrastructure/api/generated/models";
-import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
+import {
+  ReportType,
+  type StudySessionBlockModel,
+  type StudySessionModel,
+  UserRole,
+} from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   parseReportProblemType,
   ReportsService,
 } from "infrastructure/services/reports/ReportsService";
+import { StudySessionService } from "infrastructure/services/users/StudySessionService";
 
 export interface IStudySessionContainer {
-  studySession: StudySessionDTO;
-  lessonId?: Id;
-  courseId?: Id;
+  studySession: StudySessionModel;
   onQuit: () => void;
   onExit: () => void;
 }
 
+const hasObjectContent = (
+  content: unknown,
+): content is Record<string, unknown> =>
+  typeof content === "object" && content !== null && !Array.isArray(content);
+
+type ExerciseStudyBlockContent = ExerciseStudyBlockDTO["content"];
+type ExplanationStudyBlockContent = ExplanationStudyBlockDTO["content"];
+
+const isExerciseContent = (
+  content: unknown,
+): content is ExerciseStudyBlockContent =>
+  hasObjectContent(content) && Array.isArray(content.components);
+
+const isExplanationContent = (
+  content: unknown,
+): content is ExplanationStudyBlockContent =>
+  hasObjectContent(content) && Array.isArray(content.scenes);
+
+const toExerciseContent = (content: unknown): ExerciseStudyBlockContent => {
+  if (isExerciseContent(content)) {
+    return content;
+  }
+
+  return { components: [] };
+};
+
+const toExplanationContent = (
+  content: unknown,
+): ExplanationStudyBlockContent => {
+  if (isExplanationContent(content)) {
+    return content;
+  }
+
+  return { scenes: [] };
+};
+
+const toUiStudyBlock = (
+  studyBlock: StudySessionBlockModel,
+): StudyBlockDTO => {
+  if (studyBlock.type === StudyBlockType.Explanation) {
+    return {
+      ...studyBlock,
+      type: StudyBlockType.Explanation,
+      mode: studyBlock.mode === StudyBlockMode.Review
+        ? StudyBlockMode.Review
+        : StudyBlockMode.Learn,
+      content: toExplanationContent(studyBlock.content),
+    };
+  }
+
+  return {
+    ...studyBlock,
+    type: StudyBlockType.Exercise,
+    mode: studyBlock.mode === StudyBlockMode.Review
+      ? StudyBlockMode.Review
+      : StudyBlockMode.Learn,
+    content: toExerciseContent(studyBlock.content),
+  };
+};
+
+const toUiStudySession = (studySession: StudySessionModel): StudySessionDTO => ({
+  id: studySession.id,
+  studyBlocks: studySession.studyBlocks.map(toUiStudyBlock),
+});
+
 const StudySessionContainer: React.FC<IStudySessionContainer> = ({
   studySession,
-  lessonId,
-  courseId,
   onQuit,
   onExit,
 }) => {
@@ -59,18 +129,21 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
     const isCorrector = user?.role === UserRole.Admin;
 
     return createStudyBlockReportProblemTypeSections(t, {
-      studyBlockType: selectedStudyBlockData?.type ?? "explanation",
+      studyBlockType: selectedStudyBlockData?.type ?? StudyBlockType.Explanation,
       answerState: selectedStudyBlockData?.answerState ?? null,
       isCorrector,
     });
   }, [selectedStudyBlockData, t, user?.role]);
 
+  const uiStudySession = useMemo(
+    () => toUiStudySession(studySession),
+    [studySession],
+  );
+
   const handleFinish = async (
     atomProgressRatings: Array<AtomProgressRating>,
   ) => {
-    await StudySessionAPI.updateStudySession({
-      lessonId,
-      courseId,
+    await StudySessionService.submitStudySessionResult(studySession.id, {
       atomProgress: atomProgressRatings.map((rating) => ({
         atomId: rating.atomId,
         rating: rating.rating,
@@ -81,7 +154,7 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
   return (
     <>
       <StudySession
-        studySession={studySession}
+        studySession={uiStudySession}
         onFinish={handleFinish}
         onQuit={onQuit}
         onExit={onExit}

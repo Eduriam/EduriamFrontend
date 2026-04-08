@@ -1,5 +1,9 @@
 import { DrawerSelectSection } from "@eduriam/ui-core";
-import { ReportDialogDataTest, ReportDialogLocalization } from "@eduriam/ui-x";
+import {
+  ReportDialogDataTest,
+  ReportDialogLocalization,
+  StudyBlockType,
+} from "@eduriam/ui-x";
 import { ReportProblemType } from "infrastructure/api/generated/models";
 
 export const STUDY_BLOCK_REPORT_DATA_TEST: ReportDialogDataTest = {
@@ -18,7 +22,6 @@ export const STUDY_BLOCK_REPORT_DATA_TEST: ReportDialogDataTest = {
   },
 };
 
-type StudyBlockType = "exercise" | "explanation";
 type StudyBlockAnswerState = "RIGHT" | "WRONG" | "NONE" | null;
 
 interface StudyBlockReportProblemTypeContext {
@@ -162,7 +165,7 @@ const REPORT_PROBLEM_SECTION_TEMPLATES: Record<string, ProblemSectionTemplate> =
 const getProblemSectionTemplateIds = (
   context: StudyBlockReportProblemTypeContext,
 ): string[] => {
-  if (context.studyBlockType === "explanation") {
+  if (context.studyBlockType === StudyBlockType.Explanation) {
     return context.isCorrector
       ? ["explanationUser", "explanationCorrector"]
       : ["explanationUser"];

@@ -10,9 +10,9 @@ import { useRouter } from "next/navigation";
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import type { IStudySessionContainer } from "components/organisms/StudySessionContainer/StudySessionContainer";
 
-import { UserRole } from "infrastructure/api/generated/models";
-import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
+import { StudyBlockMode, UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
+import { StudySessionService } from "infrastructure/services/users/StudySessionService";
 
 export interface IReviewCourseStudySession {
   courseId: Id;
@@ -35,9 +35,9 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
   const [pendingNavigationTarget, setPendingNavigationTarget] = useState<
     "back" | null
   >(null);
-  const { studySession, isLoading } = StudySessionAPI.useStudySession({
+  const { studySession, isLoading } = StudySessionService.useStudySession({
     courseId,
-    mode: "review",
+    mode: StudyBlockMode.Review,
   });
 
   const navigate = useCallback(() => {
@@ -77,7 +77,6 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
     <>
       <StudySessionContainer
         studySession={studySession}
-        courseId={courseId}
         onQuit={handleQuitOrExit}
         onExit={handleQuitOrExit}
       />

@@ -10,9 +10,9 @@ import { useRouter } from "next/navigation";
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import type { IStudySessionContainer } from "components/organisms/StudySessionContainer/StudySessionContainer";
 
-import { UserRole } from "infrastructure/api/generated/models";
-import StudySessionAPI from "infrastructure/api/users/me/study-session/StudySessionAPI";
+import { StudyBlockMode, UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
+import { StudySessionService } from "infrastructure/services/users/StudySessionService";
 
 export interface ILearnLessonStudySession {
   lessonId: Id;
@@ -35,9 +35,9 @@ const LearnLessonStudySession: React.FC<ILearnLessonStudySession> = ({
   const [pendingNavigationTarget, setPendingNavigationTarget] = useState<
     "back" | "review" | null
   >(null);
-  const { studySession, isLoading } = StudySessionAPI.useStudySession({
+  const { studySession, isLoading } = StudySessionService.useStudySession({
     lessonId,
-    mode: "learn",
+    mode: StudyBlockMode.Learn,
   });
 
   const navigate = useCallback(
@@ -84,7 +84,6 @@ const LearnLessonStudySession: React.FC<ILearnLessonStudySession> = ({
     <>
       <StudySessionContainer
         studySession={studySession}
-        lessonId={lessonId}
         onQuit={() => runWithAdvertisement("back")}
         onExit={() => runWithAdvertisement("review")}
       />
