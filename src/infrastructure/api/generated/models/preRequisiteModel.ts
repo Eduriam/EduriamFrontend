@@ -7,7 +7,7 @@
 
 export interface PreRequisiteModel {
   id: number;
-  courseName: string;
+  productName: string;
   /** @nullable */
   completedAt?: string | null;
 }

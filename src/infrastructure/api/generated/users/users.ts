@@ -14,20 +14,20 @@ import type {
   ChangeUserSettingsPatchModel,
   CreateSubscriptionRespModel,
   FeedItemResponseModelPagedResult,
-  GetApiUsersMeCoursesRecommendedParams,
   GetApiUsersMeFeedParams,
   GetApiUsersMeNoticesParams,
+  GetApiUsersMeProductsRecommendedParams,
   GetApiUsersParams,
-  GetCourseModelPagedResult,
   GetFollowerModel,
   GetSubscriptionModel,
-  GetUserCourseModel,
   GetUserModel,
   GetUserPublicProfileModel,
   GetUserSettingsModel,
   GetUserSimpleModelPagedResult,
   MarkFeedSeenModel,
   NoticeModelPagedResult,
+  ProductModelBase,
+  ProductModelPagedResult,
   StudyPlanOverviewModel,
   StudySessionCreateModel,
   StudySessionModel,
@@ -238,43 +238,43 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
   ): Promise<AxiosResponse<GetFollowerModel[] | void>> => {
     return axiosInstance.get(`/api/users/me/followers`, options);
   };
-  const getApiUsersMeCourses = (
+  const getApiUsersMeProducts = (
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<GetUserCourseModel[] | void>> => {
-    return axiosInstance.get(`/api/users/me/courses`, options);
+  ): Promise<AxiosResponse<ProductModelBase[] | void>> => {
+    return axiosInstance.get(`/api/users/me/products`, options);
   };
-  const getApiUsersMeCoursesRecommended = (
-    params?: GetApiUsersMeCoursesRecommendedParams,
+  const getApiUsersMeProductsRecommended = (
+    params?: GetApiUsersMeProductsRecommendedParams,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<GetCourseModelPagedResult | void>> => {
-    return axiosInstance.get(`/api/users/me/courses/recommended`, {
+  ): Promise<AxiosResponse<ProductModelPagedResult | void>> => {
+    return axiosInstance.get(`/api/users/me/products/recommended`, {
       ...options,
       params: { ...params, ...options?.params },
     });
   };
-  const putApiUsersMeCoursesCourseId = (
-    courseId: number,
+  const putApiUsersMeProductsProductId = (
+    productId: number,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<void>> => {
     return axiosInstance.put(
-      `/api/users/me/courses/${courseId}`,
+      `/api/users/me/products/${productId}`,
       undefined,
       options,
     );
   };
-  const deleteApiUsersMeCoursesCourseId = (
-    courseId: number,
+  const deleteApiUsersMeProductsProductId = (
+    productId: number,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<void>> => {
-    return axiosInstance.delete(`/api/users/me/courses/${courseId}`, options);
+    return axiosInstance.delete(`/api/users/me/products/${productId}`, options);
   };
-  const patchApiUsersMeCoursesCourseId = (
-    courseId: number,
+  const patchApiUsersMeProductsProductId = (
+    productId: number,
     changeUserCoursePatchModel: ChangeUserCoursePatchModel,
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<void>> => {
     return axiosInstance.patch(
-      `/api/users/me/courses/${courseId}`,
+      `/api/users/me/products/${productId}`,
       changeUserCoursePatchModel,
       options,
     );
@@ -342,11 +342,11 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     getApiUsersMeFollowing,
     getApiUsersUserIdFollowers,
     getApiUsersMeFollowers,
-    getApiUsersMeCourses,
-    getApiUsersMeCoursesRecommended,
-    putApiUsersMeCoursesCourseId,
-    deleteApiUsersMeCoursesCourseId,
-    patchApiUsersMeCoursesCourseId,
+    getApiUsersMeProducts,
+    getApiUsersMeProductsRecommended,
+    putApiUsersMeProductsProductId,
+    deleteApiUsersMeProductsProductId,
+    patchApiUsersMeProductsProductId,
     putApiUsersMeFollowingUserId,
     deleteApiUsersMeFollowingUserId,
     postApiUsersMeUserChestsUserChestIdOpen,
@@ -406,14 +406,14 @@ export type GetApiUsersUserIdFollowersResult = AxiosResponse<
 export type GetApiUsersMeFollowersResult = AxiosResponse<
   GetFollowerModel[] | void
 >;
-export type GetApiUsersMeCoursesResult = AxiosResponse<
-  GetUserCourseModel[] | void
+export type GetApiUsersMeProductsResult = AxiosResponse<
+  ProductModelBase[] | void
 >;
-export type GetApiUsersMeCoursesRecommendedResult =
-  AxiosResponse<GetCourseModelPagedResult | void>;
-export type PutApiUsersMeCoursesCourseIdResult = AxiosResponse<void>;
-export type DeleteApiUsersMeCoursesCourseIdResult = AxiosResponse<void>;
-export type PatchApiUsersMeCoursesCourseIdResult = AxiosResponse<void>;
+export type GetApiUsersMeProductsRecommendedResult =
+  AxiosResponse<ProductModelPagedResult | void>;
+export type PutApiUsersMeProductsProductIdResult = AxiosResponse<void>;
+export type DeleteApiUsersMeProductsProductIdResult = AxiosResponse<void>;
+export type PatchApiUsersMeProductsProductIdResult = AxiosResponse<void>;
 export type PutApiUsersMeFollowingUserIdResult = AxiosResponse<void>;
 export type DeleteApiUsersMeFollowingUserIdResult = AxiosResponse<void>;
 export type PostApiUsersMeUserChestsUserChestIdOpenResult = AxiosResponse<void>;

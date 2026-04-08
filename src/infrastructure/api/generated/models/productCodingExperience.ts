@@ -5,10 +5,10 @@
  * OpenAPI spec version: v1
  */
 
-export type CourseCodingExperience =
-  (typeof CourseCodingExperience)[keyof typeof CourseCodingExperience];
+export type ProductCodingExperience =
+  (typeof ProductCodingExperience)[keyof typeof ProductCodingExperience];
 
-export const CourseCodingExperience = {
+export const ProductCodingExperience = {
   Beginner: 0,
   Intermediate: 1,
   Advanced: 2,

@@ -8,9 +8,5 @@
 export interface CreateReportContextModel {
   /** @nullable */
   studyBlockId?: number | null;
-  /**
-   * @minLength 1
-   * @maxLength 1000
-   */
   answer: string;
 }

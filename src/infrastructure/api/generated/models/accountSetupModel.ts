@@ -6,5 +6,6 @@
  */
 
 export interface AccountSetupModel {
-  dailyGoal: number;
+  /** @nullable */
+  dailyGoal?: number | null;
 }

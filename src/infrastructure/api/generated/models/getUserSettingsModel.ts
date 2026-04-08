@@ -5,8 +5,8 @@
  * OpenAPI spec version: v1
  */
 import type { AvatarModel } from "./avatarModel";
-import type { CoursePreferencesModel } from "./coursePreferencesModel";
 import type { NotificationPreferencesModel } from "./notificationPreferencesModel";
+import type { ProductPreferencesModel } from "./productPreferencesModel";
 import type { ThemeMode } from "./themeMode";
 
 export interface GetUserSettingsModel {
@@ -15,7 +15,7 @@ export interface GetUserSettingsModel {
   /** @nullable */
   dailyGoal?: number | null;
   avatar?: AvatarModel | null;
-  coursePreferences?: CoursePreferencesModel | null;
+  productPreferences?: ProductPreferencesModel | null;
   themeMode: ThemeMode;
   notificationPreferences?: NotificationPreferencesModel | null;
 }

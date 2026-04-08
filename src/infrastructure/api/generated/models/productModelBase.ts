@@ -6,11 +6,19 @@
  */
 import type { PreRequisiteModel } from "./preRequisiteModel";
 
-export interface GetCourseModel {
+export interface ProductModelBase {
   id: number;
   name: string;
-  thumbnailUrl: string;
-  isEnrolled: boolean;
+  /** @nullable */
+  thumbnailUrl?: string | null;
+  /** @nullable */
+  userProgress?: number | null;
+  /** @nullable */
+  enrolled?: boolean | null;
+  /** @nullable */
+  userCertificate?: number | null;
+  /** @nullable */
+  description?: string | null;
   /** @nullable */
   category?: string | null;
   /** @nullable */
@@ -19,4 +27,6 @@ export interface GetCourseModel {
   shortDescription?: string | null;
   premium: boolean;
   prerequisites: PreRequisiteModel[];
+  /** @nullable */
+  upcomingLessonId?: number | null;
 }

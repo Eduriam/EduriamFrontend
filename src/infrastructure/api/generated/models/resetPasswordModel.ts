@@ -6,6 +6,5 @@
  */
 
 export interface ResetPasswordModel {
-  /** @minLength 1 */
   email: string;
 }

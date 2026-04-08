@@ -8,6 +8,6 @@
 export interface CertificateModel {
   id: number;
   userName: string;
-  courseName: string;
+  productName: string;
   createdAt: string;
 }

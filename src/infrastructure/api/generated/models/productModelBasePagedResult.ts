@@ -4,10 +4,10 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
-import type { CourseCatalogItemModelBase } from "./courseCatalogItemModelBase";
+import type { ProductModelBase } from "./productModelBase";
 
-export interface CourseCatalogItemModelBasePagedResult {
-  items: CourseCatalogItemModelBase[];
+export interface ProductModelBasePagedResult {
+  items: ProductModelBase[];
   totalItems: number;
   page: number;
   pageSize: number;

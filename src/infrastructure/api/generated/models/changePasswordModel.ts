@@ -6,9 +6,7 @@
  */
 
 export interface ChangePasswordModel {
-  /** @minLength 1 */
   resetToken: string;
   userId: number;
-  /** @minLength 1 */
   password: string;
 }

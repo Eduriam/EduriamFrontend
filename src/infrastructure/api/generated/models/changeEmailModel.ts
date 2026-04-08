@@ -6,6 +6,5 @@
  */
 
 export interface ChangeEmailModel {
-  /** @minLength 1 */
   newEmail: string;
 }

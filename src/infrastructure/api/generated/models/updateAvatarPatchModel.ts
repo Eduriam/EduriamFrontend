@@ -19,17 +19,17 @@ import type { AvatarHeadwearNullableOptional } from "./avatarHeadwearNullableOpt
 import type { AvatarSkinColorNullableOptional } from "./avatarSkinColorNullableOptional";
 
 export interface UpdateAvatarPatchModel {
-  skinColor: AvatarSkinColorNullableOptional | null;
-  eyes: AvatarEyesNullableOptional | null;
-  eyeColor: AvatarEyeColorNullableOptional | null;
-  expression: AvatarExpressionNullableOptional | null;
-  hair: AvatarHairNullableOptional | null;
-  hairColor: AvatarHairColorNullableOptional | null;
-  accessories: AvatarAccessoriesNullableOptional | null;
-  glassesColor: AvatarGlassesColorNullableOptional | null;
-  beard: AvatarBeardNullableOptional | null;
-  beardColor: AvatarBeardColorNullableOptional | null;
-  headwear: AvatarHeadwearNullableOptional | null;
-  clothing: AvatarClothingNullableOptional | null;
-  backgroundColor: AvatarBackgroundColorNullableOptional | null;
+  skinColor?: AvatarSkinColorNullableOptional | null;
+  eyes?: AvatarEyesNullableOptional | null;
+  eyeColor?: AvatarEyeColorNullableOptional | null;
+  expression?: AvatarExpressionNullableOptional | null;
+  hair?: AvatarHairNullableOptional | null;
+  hairColor?: AvatarHairColorNullableOptional | null;
+  accessories?: AvatarAccessoriesNullableOptional | null;
+  glassesColor?: AvatarGlassesColorNullableOptional | null;
+  beard?: AvatarBeardNullableOptional | null;
+  beardColor?: AvatarBeardColorNullableOptional | null;
+  headwear?: AvatarHeadwearNullableOptional | null;
+  clothing?: AvatarClothingNullableOptional | null;
+  backgroundColor?: AvatarBackgroundColorNullableOptional | null;
 }

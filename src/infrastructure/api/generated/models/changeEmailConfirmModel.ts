@@ -6,9 +6,7 @@
  */
 
 export interface ChangeEmailConfirmModel {
-  /** @minLength 1 */
   token: string;
   userId: number;
-  /** @minLength 1 */
   newEmail: string;
 }

@@ -4,18 +4,18 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
-import type { CoursePreferencesPatchModelOptional } from "./coursePreferencesPatchModelOptional";
 import type { NotificationPreferencesPatchModelOptional } from "./notificationPreferencesPatchModelOptional";
+import type { ProductPreferencesPatchModelOptional } from "./productPreferencesPatchModelOptional";
 import type { ThemeModeNullableOptional } from "./themeModeNullableOptional";
 import type { UpdateAvatarPatchModelOptional } from "./updateAvatarPatchModelOptional";
 
 export interface ChangeUserSettingsPatchModel {
-  name: string;
-  username: string;
+  name?: string;
+  username?: string;
   /** @nullable */
-  dailyGoal: number | null;
-  avatar: UpdateAvatarPatchModelOptional | null;
-  coursePreferences: CoursePreferencesPatchModelOptional | null;
-  theme: ThemeModeNullableOptional | null;
-  notificationPreferences: NotificationPreferencesPatchModelOptional | null;
+  dailyGoal?: number | null;
+  avatar?: UpdateAvatarPatchModelOptional | null;
+  productPreferences?: ProductPreferencesPatchModelOptional | null;
+  theme?: ThemeModeNullableOptional | null;
+  notificationPreferences?: NotificationPreferencesPatchModelOptional | null;
 }

@@ -24,5 +24,5 @@ export interface FeedItemResponseModel {
   achievementId?: number | null;
   league?: LeaderboardLeague | null;
   /** @nullable */
-  courseName?: string | null;
+  productName?: string | null;
 }

@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-export type GetApiCoursesIdParams = {
-  Type?: string;
+export type GetApiUsersMeProductsRecommendedParams = {
+  Page?: number;
+  PageSize?: number;
 };

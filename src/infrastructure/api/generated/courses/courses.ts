@@ -7,34 +7,9 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import type {
-  CourseCatalogItemModelBase,
-  CourseCatalogItemModelBasePagedResult,
-  CourseChapterModel,
-  GetApiCoursesIdParams,
-  GetApiCoursesParams,
-} from "../models";
+import type { CourseChapterModel } from "../models";
 
 export const getCourses = (axiosInstance: AxiosInstance = axios) => {
-  const getApiCourses = (
-    params?: GetApiCoursesParams,
-    options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<CourseCatalogItemModelBasePagedResult | void>> => {
-    return axiosInstance.get(`/api/courses`, {
-      ...options,
-      params: { ...params, ...options?.params },
-    });
-  };
-  const getApiCoursesId = (
-    id: number,
-    params?: GetApiCoursesIdParams,
-    options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<CourseCatalogItemModelBase | void>> => {
-    return axiosInstance.get(`/api/courses/${id}`, {
-      ...options,
-      params: { ...params, ...options?.params },
-    });
-  };
   const getApiCoursesCourseIdChaptersChapterId = (
     courseId: number,
     chapterId: number,
@@ -45,15 +20,7 @@ export const getCourses = (axiosInstance: AxiosInstance = axios) => {
       options,
     );
   };
-  return {
-    getApiCourses,
-    getApiCoursesId,
-    getApiCoursesCourseIdChaptersChapterId,
-  };
+  return { getApiCoursesCourseIdChaptersChapterId };
 };
-export type GetApiCoursesResult =
-  AxiosResponse<CourseCatalogItemModelBasePagedResult | void>;
-export type GetApiCoursesIdResult =
-  AxiosResponse<CourseCatalogItemModelBase | void>;
 export type GetApiCoursesCourseIdChaptersChapterIdResult =
   AxiosResponse<CourseChapterModel | void>;

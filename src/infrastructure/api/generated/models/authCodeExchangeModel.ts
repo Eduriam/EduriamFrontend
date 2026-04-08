@@ -6,6 +6,5 @@
  */
 
 export interface AuthCodeExchangeModel {
-  /** @minLength 1 */
   code: string;
 }

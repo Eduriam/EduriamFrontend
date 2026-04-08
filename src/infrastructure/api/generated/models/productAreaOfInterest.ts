@@ -5,10 +5,10 @@
  * OpenAPI spec version: v1
  */
 
-export type CourseAreaOfInterest =
-  (typeof CourseAreaOfInterest)[keyof typeof CourseAreaOfInterest];
+export type ProductAreaOfInterest =
+  (typeof ProductAreaOfInterest)[keyof typeof ProductAreaOfInterest];
 
-export const CourseAreaOfInterest = {
+export const ProductAreaOfInterest = {
   Frontend: 0,
   Backend: 1,
   Fullstack: 2,

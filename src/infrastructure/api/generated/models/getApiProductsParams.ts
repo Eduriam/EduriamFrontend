@@ -5,7 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-export type GetApiCoursesParams = {
+export type GetApiProductsParams = {
   Page?: number;
   PageSize?: number;
 };

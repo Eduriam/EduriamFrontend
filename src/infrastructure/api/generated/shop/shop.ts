@@ -25,23 +25,7 @@ export const getShop = (axiosInstance: AxiosInstance = axios) => {
       options,
     );
   };
-  const postApiShopUserItemsUserShopItemIdConsume = (
-    userShopItemId: number,
-    options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<void>> => {
-    return axiosInstance.post(
-      `/api/shop/user-items/${userShopItemId}/consume`,
-      undefined,
-      options,
-    );
-  };
-  return {
-    getApiShopItems,
-    postApiShopItemsShopItemIdPurchase,
-    postApiShopUserItemsUserShopItemIdConsume,
-  };
+  return { getApiShopItems, postApiShopItemsShopItemIdPurchase };
 };
 export type GetApiShopItemsResult = AxiosResponse<ShopItemViewModel[] | void>;
 export type PostApiShopItemsShopItemIdPurchaseResult = AxiosResponse<void>;
-export type PostApiShopUserItemsUserShopItemIdConsumeResult =
-  AxiosResponse<void>;

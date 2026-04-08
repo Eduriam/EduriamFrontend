@@ -6,14 +6,6 @@
  */
 
 export interface LoginUserModel {
-  /**
-   * @minLength 1
-   * @maxLength 256
-   */
   email: string;
-  /**
-   * @minLength 1
-   * @maxLength 128
-   */
   password: string;
 }

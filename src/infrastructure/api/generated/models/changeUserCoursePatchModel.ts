@@ -7,5 +7,5 @@
 import type { CourseStudyModeNullableOptional } from "./courseStudyModeNullableOptional";
 
 export interface ChangeUserCoursePatchModel {
-  studyMode: CourseStudyModeNullableOptional | null;
+  studyMode?: CourseStudyModeNullableOptional | null;
 }

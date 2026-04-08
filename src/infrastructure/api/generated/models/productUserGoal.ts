@@ -5,10 +5,10 @@
  * OpenAPI spec version: v1
  */
 
-export type CourseUserGoal =
-  (typeof CourseUserGoal)[keyof typeof CourseUserGoal];
+export type ProductUserGoal =
+  (typeof ProductUserGoal)[keyof typeof ProductUserGoal];
 
-export const CourseUserGoal = {
+export const ProductUserGoal = {
   SwitchCareer: 0,
   BuildProject: 1,
   LearnForSchool: 2,
