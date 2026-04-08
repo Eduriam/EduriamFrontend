@@ -1,5 +1,9 @@
 import { getAuth } from "infrastructure/api/generated/auth/auth";
-import type { GetUserModel, RegisterUserModel } from "infrastructure/api/generated/models";
+import type {
+  GetUserModel,
+  RegisterUserModel,
+  RegistrationConfirmModel,
+} from "infrastructure/api/generated/models";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { UserService } from "infrastructure/services/users/UserService";
@@ -28,6 +32,14 @@ export class SignupService {
       LocalStorageManager.setItem<GetUserModel>("user", user);
 
       return user;
+    } catch (error) {
+      return toErrorCode(error);
+    }
+  }
+
+  static async confirmSignup(data: RegistrationConfirmModel): Promise<void> {
+    try {
+      await authClient.postApiAuthSignupConfirm(data);
     } catch (error) {
       return toErrorCode(error);
     }

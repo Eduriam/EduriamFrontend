@@ -72,6 +72,14 @@
     "backToSettings": "Zpět do nastavení"
   },
 
+  "verifyEmail": {
+    "emailVerified": "Email ověřen",
+    "emailVerifiedDescription": "Nyní můžete aplikaci používat!",
+    "continue": "Pokračovat",
+    "invalidLink": "Neplatný odkaz pro ověření emailu.",
+    "backToSignin": "Zpět na přihlášení"
+  },
+
   "onboarding": {
     "codingExperienceTitle": "Jaké jsou vaše zkušenosti s programováním?",
     "codingExperienceOptions": {
