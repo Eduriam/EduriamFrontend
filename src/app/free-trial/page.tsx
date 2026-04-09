@@ -15,9 +15,9 @@ import { useTheme } from "@mui/material/styles";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
-import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
 import { SubscriptionStatus, UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
+import { SubscriptionsService } from "infrastructure/services/users/SubscriptionsService";
 
 import FreeTrialActivatedStep from "./components/FreeTrialActivatedStep/FreeTrialActivatedStep";
 import FreeTrialPaymentStep from "./components/FreeTrialPaymentStep/FreeTrialPaymentStep";
@@ -67,7 +67,7 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
     setIsActivating(true);
 
     try {
-      const { type, clientSecret } = await SubscriptionAPI.startFreeTrial();
+      const { type, clientSecret } = await SubscriptionsService.startFreeTrial();
       if (clientSecret) {
         if (!stripe || !elements) {
           return;

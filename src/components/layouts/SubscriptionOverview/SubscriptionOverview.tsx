@@ -21,7 +21,7 @@ import {
   GetSubscriptionModel,
   SubscriptionStatus,
 } from "infrastructure/api/generated/models";
-import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
+import { SubscriptionsService } from "infrastructure/services/users/SubscriptionsService";
 
 export interface ISubscriptionOverview {}
 
@@ -45,7 +45,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
   const [page, setPage] = useState(0);
   const navigateWithTransition = useTransitionNavigationHandler();
 
-  const { subscription, mutate } = SubscriptionAPI.useSubscription();
+  const { subscription, mutate } = SubscriptionsService.useSubscription();
 
   const unsubscribeOptions: LargeRadioButtonOption[] = useMemo(
     () =>
@@ -87,7 +87,7 @@ const SubscriptionOverview: React.FC<ISubscriptionOverview> = () => {
     };
 
     mutate(
-      SubscriptionAPI.cancelSubscription({
+      SubscriptionsService.cancelSubscription({
         unsubscribeReason:
           selectedReason !== undefined
             ? t(

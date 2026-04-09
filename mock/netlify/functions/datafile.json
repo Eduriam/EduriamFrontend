@@ -834,11 +834,11 @@
       "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336",
       "documentation": "",
       "method": "get",
-      "endpoint": "users/me/subscriptions",
+      "endpoint": "users/me/subscriptions/current",
       "responses": [
         {
           "uuid": "96c8cdd7-cc66-4023-8594-a05b3d177598",
-          "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": \"PAID\"\n}",
+          "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": 3\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -864,12 +864,12 @@
     {
       "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9",
       "documentation": "",
-      "method": "delete",
-      "endpoint": "users/me/subscriptions",
+      "method": "post",
+      "endpoint": "users/me/subscriptions/current/cancellation",
       "responses": [
         {
           "uuid": "0789e6a4-bcea-4097-aa37-e727e4fe69ce",
-          "body": "{}",
+          "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": 6\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

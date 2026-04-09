@@ -23,7 +23,7 @@ import PaymentForm from "components/molecules/forms/PaymentForm/PaymentForm";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
-import SubscriptionAPI from "infrastructure/api/users/me/subscriptions/SubscriptionsAPI";
+import { SubscriptionsService } from "infrastructure/services/users/SubscriptionsService";
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PAYMENT_SUCCESS_URL, PLAN_PRICING_OPTIONS } from "./config";
@@ -74,7 +74,8 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
     }
 
     try {
-      const { type, clientSecret } = await SubscriptionAPI.createSubscription();
+      const { type, clientSecret } =
+        await SubscriptionsService.createSubscription();
       if (clientSecret) {
         const confirmIntent =
           type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
