@@ -1244,7 +1244,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "courses",
+      "endpoint": "products",
       "responses": [
         {
           "uuid": "e73768e1-bd62-4593-8e2b-c95d99a19a86",
@@ -1310,11 +1310,11 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "courses/:courseId",
+      "endpoint": "products/:productId",
       "responses": [
         {
           "uuid": "6ff3634d-7f2b-49f1-9920-386ff719b85d",
-          "body": "{\n  \"id\": 2001,\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": 1001,\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": 1003,\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": 2001,\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"id\": 1001,\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Learning path",
@@ -1326,7 +1326,7 @@
           "rules": [
             {
               "target": "params",
-              "modifier": "courseId",
+              "modifier": "productId",
               "value": "2001",
               "invert": false,
               "operator": "regex"
@@ -1341,7 +1341,7 @@
         },
         {
           "uuid": "998c40c5-f318-4b34-9c6a-027a1c82ceba",
-          "body": "{\n  \"id\": 1001,\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": \"course\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"courseId\": 1001,\n      \"courseName\": \"HTML\",\n      \"completed\": true\n    },\n    {\n      \"courseId\": 1003,\n      \"courseName\": \"CSS\",\n      \"completed\": false\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": 5001,\n      \"name\": \"Introduction\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 5002,\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\": 5003,\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": 1001,\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": \"course\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"id\": 1001,\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": 5001,\n      \"name\": \"Introduction\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 5002,\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\": 5003,\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Course",
@@ -1368,7 +1368,7 @@
       "type": "http",
       "documentation": "",
       "method": "put",
-      "endpoint": "users/me/courses/:courseId",
+      "endpoint": "users/me/products/:productId",
       "responses": [
         {
           "uuid": "ec1e84f7-af09-4521-b1b9-e2130cf044e4",
@@ -1430,7 +1430,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "users/me/courses",
+      "endpoint": "users/me/products",
       "responses": [
         {
           "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
@@ -1642,11 +1642,11 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "users/me/recommended-courses",
+      "endpoint": "users/me/products/recommended",
       "responses": [
         {
           "uuid": "0f4ad0ec-2611-4617-8b07-8ea2276b8e28",
-          "body": "[\n  {\n    \"id\": 1001,\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}}\n  },\n  {\n    \"id\": 2005,\n    \"language\": \"en\",\n    \"name\": \"React Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}}\n  },\n  {\n    \"id\": 1002,\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": 1003,\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\"\n  },\n  {\n    \"id\": 2004,\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"learning-path\"\n  }\n]",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n      \"prerequisites\": [],\n      \"type\": \"learning-path\"\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 1003,\n      \"name\": \"CSS\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 2004,\n      \"name\": \"Frontend Developer\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"learning-path\"\n    }\n  ],\n  \"totalItems\": 5,\n  \"page\": 1,\n  \"pageSize\": 5,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -2530,7 +2530,7 @@
       "type": "http",
       "documentation": "",
       "method": "patch",
-      "endpoint": "users/me/courses/:courseId",
+      "endpoint": "users/me/products/:productId",
       "responses": [
         {
           "uuid": "49b33a7c-d3b1-4e46-913b-9c728fb73b38",
@@ -2751,7 +2751,7 @@
       "type": "http",
       "documentation": "",
       "method": "delete",
-      "endpoint": "users/me/courses/:courseId",
+      "endpoint": "users/me/products/:productId",
       "responses": [
         {
           "uuid": "88d80142-8961-4f59-881f-8960020deab5",

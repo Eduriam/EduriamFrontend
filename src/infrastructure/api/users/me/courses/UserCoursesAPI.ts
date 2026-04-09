@@ -10,7 +10,7 @@ import { UserCourse } from "./UserCourses";
 export interface CourseParams {}
 
 const UserCoursesAPI = {
-  URI: "users/me/courses",
+  URI: "users/me/products",
 
   useUserCourses(
     params: CourseParams = {},

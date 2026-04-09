@@ -14,10 +14,10 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import { CourseDTO } from "infrastructure/services/courses/CoursesService";
+import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
 
 export interface IRecommendedCoursesStepProps {
-  courses: CourseDTO[];
+  courses: StudyProduct[];
   htmlCourseId: Id | undefined;
   onCourseSelect: (courseId: Id) => void;
   onExploreAll: () => void;
@@ -45,14 +45,15 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
             const icon = (
               <CourseLogo
                 variant={
-                  getVariantFromLogoId(course.logoId) ??
+                  getVariantFromLogoId(course.logoId ?? undefined) ??
                   (course.name?.toLowerCase().includes("javascript")
                     ? "JavaScript"
                     : "HTML")
                 }
               />
             );
-            const isLearningPath = course.type === "learning-path";
+            const isLearningPath =
+              course.type === "learning-path" || course.type === "study-path";
             return (
               <Box
                 key={course.id}

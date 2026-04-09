@@ -1,7 +1,5 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import { Chip, Drawer, LargeButton, Paragraph } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
@@ -13,11 +11,9 @@ import { useRouter } from "next/navigation";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-export interface PrerequisiteItem {
-  courseId: Id;
-  courseName: string;
-  completed?: boolean;
-}
+import type { PreRequisiteModel } from "infrastructure/api/generated/models";
+
+export type PrerequisiteItem = PreRequisiteModel;
 
 export interface ICourseDetailsDrawer {
   open: boolean;
@@ -61,14 +57,14 @@ const CourseDetailsDrawer: React.FC<ICourseDetailsDrawer> = ({
           >
             {prerequisites.map((item) => (
               <Link
-                key={item.courseId}
-                href={`/courses/${item.courseId}`}
+                key={item.id}
+                href={`/courses/${item.id}`}
                 style={{ textDecoration: "none" }}
               >
                 <Chip
-                  label={item.courseName}
-                  color={item.completed ? "chipGreen" : "neutral"}
-                  icon={item.completed ? "check" : "arrowRight"}
+                  label={item.productName}
+                  color={item.completedAt ? "chipGreen" : "neutral"}
+                  icon={item.completedAt ? "check" : "arrowRight"}
                   variant="outlined"
                   component="span"
                 />

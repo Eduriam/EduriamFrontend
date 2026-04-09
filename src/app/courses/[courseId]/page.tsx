@@ -30,7 +30,11 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { UserRole } from "infrastructure/api/generated/models";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
-import { Course, CoursesService } from "infrastructure/services/courses/CoursesService";
+import {
+  CourseProduct,
+  StudyProductChapterSummary,
+  StudyProductService,
+} from "infrastructure/services/courses/StudyProductService";
 
 export interface ICoursePage {}
 
@@ -43,7 +47,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
   const params = useParams();
   const courseId = parseId(params?.courseId);
 
-  const { course } = CoursesService.useCourse(courseId ?? 0);
+  const { product } = StudyProductService.useProduct(courseId ?? 0);
 
   useEffect(() => {
     if (courseId === undefined) {
@@ -56,13 +60,13 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const isPremiumUser = user?.role === UserRole.PremiumUser;
   const hasCertificate =
-    course?.userCertificate !== null && course?.userCertificate !== undefined;
+    product?.userCertificate !== null && product?.userCertificate !== undefined;
   const premiumLabel = t("courses.premiumLabel");
 
   const shouldRedirectToPremiumBecauseNoEnergy =
     user && !isPremiumUser && (user.energy ?? 0) <= 0;
   const shouldRedirectToPremiumBecauseCourseLocked =
-    Boolean(course?.premium) && !isPremiumUser;
+    Boolean(product?.premium) && !isPremiumUser;
 
   const redirectToPremiumForNoEnergy = () => {
     navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
@@ -96,7 +100,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
       return;
     }
 
-    navigateWithTransition(`/study?lessonId=${course?.upcomingLessonId}`)();
+    navigateWithTransition(`/study?lessonId=${product?.upcomingLessonId}`)();
   };
 
   const handleReviewCourse = () => {
@@ -127,7 +131,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
     // Premium users with a certificate go directly to the certificate page.
     if (hasCertificate) {
-      const certificateId = course?.userCertificate;
+      const certificateId = product?.userCertificate;
       if (certificateId !== null && certificateId !== undefined) {
         navigateWithTransition(`/certificates/${certificateId}`)();
         return;
@@ -147,16 +151,17 @@ const CoursePage: React.FC<ICoursePage> = () => {
   };
 
   const courseShortDescription = (
-    course as unknown as { shortDescription?: string }
+    product as unknown as { shortDescription?: string }
   )?.shortDescription;
 
-  const courseDescription = (course as unknown as { description?: string })
+  const courseDescription = (product as unknown as { description?: string })
     ?.description;
 
-  const chapters = (course as Course)?.chapters ?? [];
+  const chapters: NonNullable<CourseProduct["chapters"]> =
+    (product as CourseProduct)?.chapters ?? [];
 
-  const isEnrolled = course?.enrolled ?? false;
-  const hasUpcomingLesson = Boolean(course?.upcomingLessonId);
+  const isEnrolled = product?.enrolled ?? false;
+  const hasUpcomingLesson = Boolean(product?.upcomingLessonId);
 
   return (
     <>
@@ -198,7 +203,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
                     color="chipBlue"
                     variant="filled"
                   />
-                  {course?.premium && (
+                  {product?.premium && (
                     <Chip
                       label={premiumLabel}
                       color="chipYellow"
@@ -223,7 +228,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
               >
                 <CourseLogo variant="JavaScript" size="large" />
                 <Typography variant="h4">
-                  {course?.name ?? t("courses.unnamedCourse")}
+                  {product?.name ?? t("courses.unnamedCourse")}
                 </Typography>
                 {courseShortDescription && (
                   <Typography
@@ -298,7 +303,8 @@ const CoursePage: React.FC<ICoursePage> = () => {
                 spacing={2}
                 sx={{ mt: 2, position: "relative", zIndex: 1 }}
               >
-                {chapters.map((chapter, index) => (
+                {chapters.map(
+                  (chapter: StudyProductChapterSummary, index: number) => (
                   <ChapterCard
                     key={chapter.id}
                     title={chapter.name}
@@ -311,7 +317,8 @@ const CoursePage: React.FC<ICoursePage> = () => {
                     )}
                     data-test="chapter-card"
                   />
-                ))}
+                  ),
+                )}
               </Stack>
             </Box>
           </Stack>
@@ -322,7 +329,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
         open={isDetailsDrawerOpen}
         onClose={handleCloseDetails}
         description={courseDescription}
-        prerequisites={course?.prerequisites}
+        prerequisites={product?.prerequisites}
       />
       <CertificateLockedDrawer
         open={isCertificateDrawerOpen}

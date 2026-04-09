@@ -28,16 +28,16 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import {
-  CourseDTO,
-  CoursesService,
-} from "infrastructure/services/courses/CoursesService";
+  StudyProduct,
+  StudyProductService,
+} from "infrastructure/services/courses/StudyProductService";
 
 const DEFAULT_CATEGORY = "other";
 
 function groupCoursesByCategory(
-  courses: CourseDTO[],
-): Array<{ category: string; courses: CourseDTO[] }> {
-  const map = new Map<string, CourseDTO[]>();
+  courses: StudyProduct[],
+): Array<{ category: string; courses: StudyProduct[] }> {
+  const map = new Map<string, StudyProduct[]>();
   for (const course of courses) {
     const category = course.category ?? DEFAULT_CATEGORY;
     const list = map.get(category);
@@ -53,12 +53,12 @@ function groupCoursesByCategory(
   }));
 }
 
-function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
+function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
-type CourseCardKind = CourseDTO["type"];
+type CourseCardKind = StudyProduct["type"];
 
 function CourseOrLearningPathCard({
   course,
@@ -67,7 +67,7 @@ function CourseOrLearningPathCard({
   onSelect,
   premiumLabel,
 }: {
-  course: CourseDTO;
+  course: StudyProduct;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, kind: CourseCardKind) => void;
@@ -76,13 +76,15 @@ function CourseOrLearningPathCard({
   const icon = (
     <CourseLogo
       variant={
-        getVariantFromLogoId(course.logoId) ?? getCourseLogoVariant(course)
+        getVariantFromLogoId(course.logoId ?? undefined) ??
+        getCourseLogoVariant(course)
       }
     />
   );
-  const isLearningPath = course.type === "learning-path";
+  const isLearningPath =
+    course.type === "learning-path" || course.type === "study-path";
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
-  const kind: CourseCardKind = isLearningPath ? "learning-path" : "course";
+  const kind: CourseCardKind = isLearningPath ? course.type : "course";
   const handleClick = () => onSelect(course.id, kind);
 
   const enrolled = typeof course.userProgress === "number";
@@ -127,11 +129,11 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   const { t: tForm } = useTranslation("form");
   const navigateWithTransition = useTransitionNavigationHandler();
 
-  const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesService.useCourses();
+  const { recommendedProducts } = RecommendedCoursesAPI.useRecommendedCourses();
+  const { products } = StudyProductService.useProducts();
 
-  const displayRecommended = (recommendedCourses ?? []).slice(0, 2);
-  const displayAllCourses = courses ?? [];
+  const displayRecommended = (recommendedProducts ?? []).slice(0, 2);
+  const displayAllCourses = products ?? [];
   const allCourseGroups = groupCoursesByCategory(displayAllCourses);
 
   const firstCategory = allCourseGroups[0]?.category ?? DEFAULT_CATEGORY;
@@ -188,7 +190,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
 
   const handleCourseSelect = (courseId: Id, kind: CourseCardKind) => {
     const path =
-      kind === "learning-path"
+      kind === "learning-path" || kind === "study-path"
         ? `/learning-paths/${courseId}`
         : `/courses/${courseId}`;
     navigateWithTransition(path)();

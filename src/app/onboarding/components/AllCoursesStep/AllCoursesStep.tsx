@@ -16,14 +16,14 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import { CourseDTO } from "infrastructure/services/courses/CoursesService";
+import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
 
 const DEFAULT_CATEGORY = "other";
 
 function groupCoursesByCategory(
-  courses: CourseDTO[],
-): Array<{ category: string; courses: CourseDTO[] }> {
-  const map = new Map<string, CourseDTO[]>();
+  courses: StudyProduct[],
+): Array<{ category: string; courses: StudyProduct[] }> {
+  const map = new Map<string, StudyProduct[]>();
   for (const course of courses) {
     const category = course.category ?? DEFAULT_CATEGORY;
     const list = map.get(category);
@@ -39,13 +39,13 @@ function groupCoursesByCategory(
   }));
 }
 
-function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
+function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
 export interface IAllCoursesStepProps {
-  courses: CourseDTO[];
+  courses: StudyProduct[];
   htmlCourseId: Id | undefined;
   onCourseSelect: (courseId: Id) => void;
 }
@@ -128,12 +128,14 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
                   const icon = (
                     <CourseLogo
                       variant={
-                        getVariantFromLogoId(course.logoId) ??
+                        getVariantFromLogoId(course.logoId ?? undefined) ??
                         getCourseLogoVariant(course)
                       }
                     />
                   );
-                  const isLearningPath = course.type === "learning-path";
+                  const isLearningPath =
+                    course.type === "learning-path" ||
+                    course.type === "study-path";
                   return (
                     <Box
                       key={course.id}

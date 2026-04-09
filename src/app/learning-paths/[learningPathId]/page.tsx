@@ -33,9 +33,10 @@ import { UserRole } from "infrastructure/api/generated/models";
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
-  CoursesService,
-  LearningPath,
-} from "infrastructure/services/courses/CoursesService";
+  StudyPathProductSummary,
+  StudyPathProduct,
+  StudyProductService,
+} from "infrastructure/services/courses/StudyProductService";
 
 export interface ILearningPathPage {}
 
@@ -48,7 +49,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const params = useParams();
   const learningPathId = parseId(params?.learningPathId);
 
-  const { course: learningPath } = CoursesService.useCourse(learningPathId ?? 0);
+  const { product: studyPath } = StudyProductService.useProduct(learningPathId ?? 0);
 
   useEffect(() => {
     if (learningPathId === undefined) {
@@ -65,7 +66,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const shouldRedirectToPremiumBecauseNoEnergy =
     user && !isPremiumUser && (user.energy ?? 0) <= 0;
   const shouldRedirectToPremiumBecauseLearningPathLocked =
-    Boolean(learningPath?.premium) && !isPremiumUser;
+    Boolean(studyPath?.premium) && !isPremiumUser;
 
   const redirectToPremiumForNoEnergy = () => {
     navigateWithTransition(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft))();
@@ -96,7 +97,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   };
 
   const handleContinueLearning = () => {
-    if (!learningPath?.upcomingLessonId) {
+    if (!studyPath?.upcomingLessonId) {
       return;
     }
 
@@ -106,7 +107,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
     }
 
     navigateWithTransition(
-      `/study?lessonId=${learningPath.upcomingLessonId}`,
+      `/study?lessonId=${studyPath.upcomingLessonId}`,
     )();
   };
 
@@ -131,14 +132,14 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
     setIsDetailsDrawerOpen(false);
   };
 
-  const shortDescription = learningPath?.shortDescription;
-  const description = learningPath?.description;
-  const courses = (learningPath as LearningPath)?.courses ?? [];
-  const isEnrolled = learningPath?.enrolled ?? false;
-  const hasUpcomingLesson = Boolean(learningPath?.upcomingLessonId);
+  const shortDescription = studyPath?.shortDescription;
+  const description = studyPath?.description ?? undefined;
+  const courses: NonNullable<StudyPathProduct["courses"]> =
+    (studyPath as StudyPathProduct)?.courses ?? [];
+  const isEnrolled = studyPath?.enrolled ?? false;
+  const hasUpcomingLesson = Boolean(studyPath?.upcomingLessonId);
   const hasCertificate =
-    learningPath?.userCertificate !== null &&
-    learningPath?.userCertificate !== undefined;
+    studyPath?.userCertificate !== null && studyPath?.userCertificate !== undefined;
 
   const handleViewCertificate = () => {
     if (!learningPathId) {
@@ -155,7 +156,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
     // Premium users with a certificate go directly to the certificate page.
     if (hasCertificate) {
-      const certificateId = learningPath?.userCertificate;
+      const certificateId = studyPath?.userCertificate;
       if (certificateId !== null && certificateId !== undefined) {
         navigateWithTransition(`/certificates/${certificateId}`)();
         return;
@@ -206,7 +207,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                     color="chipBlue"
                     variant="filled"
                   />
-                  {learningPath?.premium && (
+                  {studyPath?.premium && (
                     <Chip
                       label={premiumLabel}
                       color="chipYellow"
@@ -231,12 +232,13 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
               >
                 <CourseLogo
                   variant={
-                    getVariantFromLogoId(learningPath?.logoId) ?? "JavaScript"
+                    getVariantFromLogoId(studyPath?.logoId ?? undefined) ??
+                    "JavaScript"
                   }
                   size="large"
                 />
                 <Typography variant="h4">
-                  {learningPath?.name ?? t("courses.unnamedCourse")}
+                  {studyPath?.name ?? t("courses.unnamedCourse")}
                 </Typography>
                 {shortDescription && (
                   <Typography
@@ -316,14 +318,15 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                 spacing={2}
                 sx={{ mt: 2, position: "relative", zIndex: 1 }}
               >
-                {courses.map((course) => (
+                {courses.map((course: StudyPathProductSummary) => (
                   <CourseCard
                     key={course.id}
                     title={course.name}
                     icon={
                       <CourseLogo
                         variant={
-                          getVariantFromLogoId(course.logoId) ?? "JavaScript"
+                          getVariantFromLogoId(course.logoId ?? undefined) ??
+                          "JavaScript"
                         }
                       />
                     }
@@ -345,7 +348,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
         open={isDetailsDrawerOpen}
         onClose={handleCloseDetails}
         description={description}
-        prerequisites={learningPath?.prerequisites}
+        prerequisites={studyPath?.prerequisites}
         data-test="learning-path-details-drawer"
       />
       <CertificateLockedDrawer

@@ -1,9 +1,9 @@
-import { Course } from "infrastructure/services/courses/CoursesService";
+import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
 
 export type StudyMode = "learn" | "review" | "paused";
 
 export type UserCourse = Pick<
-  Course,
+  StudyProduct,
   | "id"
   | "language"
   | "name"

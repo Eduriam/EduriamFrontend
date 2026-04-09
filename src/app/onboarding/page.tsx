@@ -19,7 +19,7 @@ import type {
 import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
-import { CoursesService } from "infrastructure/services/courses/CoursesService";
+import { StudyProductService } from "infrastructure/services/courses/StudyProductService";
 import { AccountSetupService } from "infrastructure/services/users/AccountSetupService";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 
@@ -68,13 +68,13 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const [dailyGoalValue, setDailyGoalValue] = useState<number | null>(null);
   const [showAllCourses, setShowAllCourses] = useState(false);
 
-  const { recommendedCourses: recommendedFromApi } =
+  const { recommendedProducts: recommendedFromApi } =
     RecommendedCoursesAPI.useRecommendedCourses();
-  const { courses } = CoursesService.useCourses();
+  const { products } = StudyProductService.useProducts();
   const recommendedCourses = (recommendedFromApi ?? [])
     .filter((course) => !course.premium)
     .slice(0, 3);
-  const allCourses = (courses ?? []).filter((course) => !course.premium);
+  const allCourses = (products ?? []).filter((course) => !course.premium);
   const htmlCourseId = allCourses.find((c) =>
     c.name?.toLowerCase().includes("html"),
   )?.id;

@@ -1,18 +1,28 @@
 import { Modify } from "domain/models/utils/modify";
 
 import { FetchHook } from "infrastructure/api/API";
+import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
-import { Course } from "infrastructure/services/courses/CoursesService";
+import type { StudyProduct } from "infrastructure/services/courses/StudyProductService";
+
+const usersClient = getUsers();
 
 const RecommendedCoursesAPI = {
-  URI: "users/me/recommended-courses",
+  URI: "users/me/products/recommended",
 
   useRecommendedCourses(): Modify<
-    FetchHook<Array<Course>>,
-    { recommendedCourses: Array<Course> }
+    FetchHook<Array<StudyProduct>>,
+    { recommendedProducts: Array<StudyProduct> }
   > {
-    const { data, ...rest } = useAuthenticatedAPI<Array<Course>>(this.URI);
-    return { recommendedCourses: data, ...rest };
+    const { data, ...rest } = useAuthenticatedAPI<Array<StudyProduct>>(
+      this.URI,
+      async () => {
+        const response = await usersClient.getApiUsersMeProductsRecommended();
+        return (response.data?.items as StudyProduct[]) ?? [];
+      },
+    );
+
+    return { recommendedProducts: data ?? [], ...rest };
   },
 };
 

@@ -23,9 +23,9 @@ import LearningPathCard from "components/courses/LearningPathCard/LearningPathCa
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
-import { CourseDTO } from "infrastructure/services/courses/CoursesService";
+import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
 
-function getCourseLogoVariant(course: CourseDTO): "HTML" | "JavaScript" {
+function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
@@ -37,7 +37,7 @@ function CourseOrLearningPathCard({
   onSelect,
   premiumLabel,
 }: {
-  course: CourseDTO;
+  course: StudyProduct;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
   onSelect: (courseId: Id, isLearningPath: boolean) => void;
@@ -46,11 +46,13 @@ function CourseOrLearningPathCard({
   const icon = (
     <CourseLogo
       variant={
-        getVariantFromLogoId(course.logoId) ?? getCourseLogoVariant(course)
+        getVariantFromLogoId(course.logoId ?? undefined) ??
+        getCourseLogoVariant(course)
       }
     />
   );
-  const isLearningPath = course.type === "learning-path";
+  const isLearningPath =
+    course.type === "learning-path" || course.type === "study-path";
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
   const handleClick = () => onSelect(course.id, isLearningPath);
   const enrolled = typeof course.userProgress === "number";
@@ -90,8 +92,8 @@ const RecommendedCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
 
-  const { recommendedCourses } = RecommendedCoursesAPI.useRecommendedCourses();
-  const displayRecommended = recommendedCourses ?? [];
+  const { recommendedProducts } = RecommendedCoursesAPI.useRecommendedCourses();
+  const displayRecommended = recommendedProducts ?? [];
   const premiumLabel = t("courses.premiumLabel");
 
   const handleCourseSelect = (courseId: Id, isLearningPath: boolean) => {

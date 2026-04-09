@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { CoursesService } from "infrastructure/services/courses/CoursesService";
+import { StudyProductService } from "infrastructure/services/courses/StudyProductService";
 
 import LearnLessonStudySession from "./components/LearnLessonStudySession";
 
@@ -65,8 +65,8 @@ const StudyPage: React.FC<IStudyPage> = () => {
 
     const resolveUpcomingLessonId = async () => {
       try {
-        const course = await CoursesService.getCourse(courseIdParam);
-        const resolvedLessonId = parseId(course.upcomingLessonId);
+        const product = await StudyProductService.getProduct(courseIdParam);
+        const resolvedLessonId = parseId(product.upcomingLessonId);
         if (!isCancelled) {
           setLessonId(resolvedLessonId);
           setIsResolvingCourseLesson(false);

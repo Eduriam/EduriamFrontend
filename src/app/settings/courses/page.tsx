@@ -95,7 +95,9 @@ const SettingsCoursesPage: React.FC = () => {
                 }}
               >
                 <CourseLogo
-                  variant={getVariantFromLogoId(course.logoId) ?? "HTML"}
+                  variant={
+                    getVariantFromLogoId(course.logoId ?? undefined) ?? "HTML"
+                  }
                   size="medium"
                 />
                 <Box sx={{ minWidth: 0, flexGrow: 1 }}>
