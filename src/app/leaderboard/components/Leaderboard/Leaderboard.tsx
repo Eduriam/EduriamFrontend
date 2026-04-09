@@ -14,7 +14,7 @@ export interface LeaderboardUser {
   id: Id;
   rank: number;
   name: string;
-  avatarDefinition: AvatarDefinition;
+  avatar: AvatarDefinition;
   xp: number;
 }
 
@@ -64,7 +64,7 @@ const Leaderboard: React.FC<ILeaderboard> = ({
               <LeaderboardListItem
                 rank={user.rank}
                 name={user.name}
-                avatarDefinition={user.avatarDefinition}
+                avatar={user.avatar}
                 xp={user.xp}
                 active={active}
                 data-test={active ? currentUserDataTest : undefined}

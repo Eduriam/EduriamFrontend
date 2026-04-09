@@ -28,7 +28,7 @@ export interface UserProfile {
   level: number;
   league: LeaderboardLeague;
   name: string;
-  avatarDefinition?: AvatarModel;
+  avatar?: AvatarModel;
   isFollowed: boolean;
   username: string;
   streak: number;
@@ -64,7 +64,7 @@ const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
   level: 0,
   league: "iron",
   name: model.name,
-  avatarDefinition: model.avatar ?? undefined,
+  avatar: model.avatar ?? undefined,
   isFollowed: model.isFollowed,
   username: model.username,
   streak: model.streak,

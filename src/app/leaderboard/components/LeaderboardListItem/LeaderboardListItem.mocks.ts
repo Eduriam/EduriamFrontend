@@ -4,7 +4,7 @@ import { defaultAvatar } from "components/avatar/Avatar.mocks";
 export const mockLeaderboardListItemProps: ILeaderboardListItem = {
   rank: 1,
   name: "Alex Johnson",
-  avatarDefinition: defaultAvatar,
+  avatar: defaultAvatar,
   xp: 1250,
 };
 
@@ -13,13 +13,13 @@ export const mockLeaderboardListItems: ILeaderboardListItem[] = [
   {
     rank: 2,
     name: "Sam Williams",
-    avatarDefinition: defaultAvatar,
+    avatar: defaultAvatar,
     xp: 980,
   },
   {
     rank: 3,
     name: "Jordan Lee",
-    avatarDefinition: defaultAvatar,
+    avatar: defaultAvatar,
     xp: 720,
   },
 ];

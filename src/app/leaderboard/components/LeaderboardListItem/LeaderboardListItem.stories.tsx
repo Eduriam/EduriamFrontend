@@ -26,7 +26,7 @@ export const WithLowXp = Template.bind({});
 WithLowXp.args = {
   rank: 4,
   name: "Casey Brown",
-  avatarDefinition: mockLeaderboardListItemProps.avatarDefinition,
+  avatar: mockLeaderboardListItemProps.avatar,
   xp: 150,
 } as ILeaderboardListItem;
 

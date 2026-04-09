@@ -10,7 +10,7 @@ export interface UserProfile {
   level: number;
   league: LeaderboardLeague;
   name: string;
-  avatarDefinition?: AvatarModel;
+  avatar?: AvatarModel;
   isFollowed: boolean;
   username: string;
   streak: number;

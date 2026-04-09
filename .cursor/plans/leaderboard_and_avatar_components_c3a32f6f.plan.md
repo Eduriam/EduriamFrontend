@@ -60,7 +60,7 @@ isProject: false
 
 - `rank: number`
 - `name: string`
-- `avatarDefinition: AvatarDefinition` (passed to Avatar)
+- `avatar: AvatarDefinition` (passed to Avatar)
 - Optional: `leagueVariant?: LeagueIconVariant` (reuse [LeagueIcon](src/components/leaderboard/LeagueIcon.tsx)), or other fields from Figma (e.g. score)
 
 **Layout:** Flex row: rank (number or badge), Avatar (small size), name; optional league icon/score on the right. Exact spacing and typography to match [Figma list item (45-3916)](https://www.figma.com/design/VZFuqWojrXq8yWjrBIq4OH/Eduriam-Web-App?node-id=45-3916&m=dev) during implementation.
@@ -94,7 +94,7 @@ isProject: false
 
 **Data shape:**
 
-- **Input:** `users: Array<{ rank: number; name: string; avatarDefinition: AvatarDefinition; ... }>` (and optionally zone boundaries).
+- **Input:** `users: Array<{ rank: number; name: string; avatar: AvatarDefinition; ... }>` (and optionally zone boundaries).
 - **Zone split:** Either:
   - **Option A:** Parent passes zone boundaries, e.g. `promotionEndIndex: number`, `neutralEndIndex: number` (users before `promotionEndIndex` = promotion, then neutral, then demotion), or
   - **Option B:** Each user has `zone: 'promotion' | 'neutral' | 'demotion'` and Leaderboard groups by that.
@@ -104,7 +104,7 @@ Recommendation: **Option A** (indices) so a single ordered list is the source of
 **Rendering:**
 
 1. Slice `users` into three arrays from boundaries.
-2. For each zone: optionally render `LeaderboardZoneDivider` (e.g. with label), then map users to `LeaderboardListItem` (rank, name, avatarDefinition, …).
+2. For each zone: optionally render `LeaderboardZoneDivider` (e.g. with label), then map users to `LeaderboardListItem` (rank, name, avatar, …).
 
 **Props (suggested):**
 

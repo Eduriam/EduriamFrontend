@@ -60,7 +60,7 @@ const LeaderboardPage: React.FC = () => {
       rank: entry.rank,
       name: entry.name,
       xp: entry.xp,
-      avatarDefinition: entry.avatarDefinition,
+      avatar: entry.avatar,
     })) ?? [];
 
   const currentLeagueName = t(`leaderboard.leagues.${currentLeague}`);

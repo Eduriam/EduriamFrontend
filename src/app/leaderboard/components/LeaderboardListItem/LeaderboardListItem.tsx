@@ -11,7 +11,7 @@ export interface ILeaderboardListItem {
   /** Display name of the user */
   name: string;
   /** Avatar layer definition passed to Avatar component */
-  avatarDefinition: AvatarDefinition;
+  avatar: AvatarDefinition;
   /** XP gained by the user */
   xp: number;
   /** When true, highlights current user row */
@@ -23,7 +23,7 @@ export interface ILeaderboardListItem {
 const LeaderboardListItem: React.FC<ILeaderboardListItem> = ({
   rank,
   name,
-  avatarDefinition,
+  avatar,
   xp,
   active = false,
   "data-test": dataTest,
@@ -49,7 +49,7 @@ const LeaderboardListItem: React.FC<ILeaderboardListItem> = ({
         >
           {rank}
         </Typography>
-        <Avatar definition={avatarDefinition} size={52} alt={name} />
+        <Avatar definition={avatar} size={52} alt={name} />
         <Typography variant="body1" sx={{ color: "text.primary" }}>
           {name}
         </Typography>

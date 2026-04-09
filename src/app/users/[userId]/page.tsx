@@ -158,7 +158,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                 data-test={isOwnProfile ? "edit-avatar-button" : undefined}
               >
                 <Avatar
-                  definition={buildShopAvatar(userProfile.avatarDefinition)}
+                  definition={buildShopAvatar(userProfile.avatar)}
                   size={180}
                   alt={userProfile.name}
                 />

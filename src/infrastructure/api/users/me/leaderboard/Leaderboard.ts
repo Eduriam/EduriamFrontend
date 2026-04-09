@@ -18,7 +18,7 @@ export interface LeaderboardEntry {
   id: Id;
   rank: number;
   name: string;
-  avatarDefinition: AvatarModel;
+  avatar: AvatarModel;
   xp: number;
 }
 
