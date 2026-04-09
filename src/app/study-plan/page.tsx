@@ -17,8 +17,11 @@ import Stack from "@mui/material/Stack";
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import type { UserCourse } from "infrastructure/api/users/me/courses/UserCourses";
-import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
+import { CourseStudyMode } from "infrastructure/api/generated/models";
+import {
+  UserProduct,
+  UserProductsService,
+} from "infrastructure/services/courses/UserProductsService";
 
 import StudyPlanCourseCard, {
   type IStudyPlanCourseCard,
@@ -41,7 +44,7 @@ interface StudyPlanCourse
 type StudyPlanState = Record<StudyPlanLaneId, StudyPlanCourse[]>;
 
 function toLogoVariant(
-  course: UserCourse,
+  course: UserProduct,
 ): IStudyPlanCourseCard["logoVariant"] {
   const byLogoId =
     (course.logoId && getVariantFromLogoId(course.logoId)) ?? undefined;
@@ -52,7 +55,7 @@ function toLogoVariant(
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
-function mapCourseToStudyPlanCourse(course: UserCourse): StudyPlanCourse {
+function mapCourseToStudyPlanCourse(course: UserProduct): StudyPlanCourse {
   const courseId = course.id;
 
   return {
@@ -72,8 +75,28 @@ function mapCourseToStudyPlanCourse(course: UserCourse): StudyPlanCourse {
   };
 }
 
+function mapStudyModeToLane(studyMode: UserProduct["studyMode"]): StudyPlanLaneId {
+  if (studyMode === CourseStudyMode.Review) {
+    return "review";
+  }
+  if (studyMode === CourseStudyMode.Paused) {
+    return "paused";
+  }
+  return "learn";
+}
+
+function mapLaneToStudyMode(lane: StudyPlanLaneId): CourseStudyMode {
+  if (lane === "review") {
+    return CourseStudyMode.Review;
+  }
+  if (lane === "paused") {
+    return CourseStudyMode.Paused;
+  }
+  return CourseStudyMode.Learn;
+}
+
 function createInitialStateFromCourses(
-  courses: UserCourse[] | undefined,
+  courses: UserProduct[] | undefined,
 ): StudyPlanState | null {
   if (!courses) {
     return null;
@@ -86,11 +109,11 @@ function createInitialStateFromCourses(
   for (const course of courses) {
     const mapped = mapCourseToStudyPlanCourse(course);
 
-    if (course.studyMode === "learn") {
+    if (mapStudyModeToLane(course.studyMode) === "learn") {
       learnCourses.push(mapped);
-    } else if (course.studyMode === "review") {
+    } else if (mapStudyModeToLane(course.studyMode) === "review") {
       reviewCourses.push(mapped);
-    } else if (course.studyMode === "paused") {
+    } else if (mapStudyModeToLane(course.studyMode) === "paused") {
       pausedCourses.push(mapped);
     }
   }
@@ -104,17 +127,17 @@ function createInitialStateFromCourses(
 
 const StudyPlanPage: React.FC = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { courses } = UserCoursesAPI.useUserCourses();
+  const { userProducts } = UserProductsService.useUserProducts();
 
   const [lanes, setLanes] = React.useState<StudyPlanState | null>(() =>
-    createInitialStateFromCourses(courses),
+    createInitialStateFromCourses(userProducts),
   );
 
   React.useEffect(() => {
     if (!lanes) {
-      setLanes(createInitialStateFromCourses(courses));
+      setLanes(createInitialStateFromCourses(userProducts));
     }
-  }, [courses, lanes]);
+  }, [userProducts, lanes]);
 
   const [dragOverLane, setDragOverLane] =
     React.useState<StudyPlanLaneId | null>(null);
@@ -168,10 +191,9 @@ const StudyPlanPage: React.FC = () => {
     });
 
     // Persist study mode change to backend
-    const newStudyMode: UserCourse["studyMode"] =
-      targetLane === "learn" ? "learn" : targetLane;
+    const newStudyMode = mapLaneToStudyMode(targetLane);
     try {
-      await UserCoursesAPI.updateStudyMode(courseId, newStudyMode);
+      await UserProductsService.updateStudyMode(courseId, newStudyMode);
     } catch {
       // Silently ignore errors for now; UI has already updated optimistically.
     }

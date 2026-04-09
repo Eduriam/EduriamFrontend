@@ -28,13 +28,13 @@ import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { UserRole } from "infrastructure/api/generated/models";
-import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   CourseProduct,
   StudyProductChapterSummary,
   StudyProductService,
 } from "infrastructure/services/courses/StudyProductService";
+import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
 
 export interface ICoursePage {}
 
@@ -90,7 +90,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
       return;
     }
 
-    await UserCoursesAPI.enrollInCourse(courseId);
+    await UserProductsService.enrollInProduct(courseId);
     navigateWithTransition(`/study?courseId=${courseId}`)();
   };
 

@@ -1434,7 +1434,7 @@
       "responses": [
         {
           "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
-          "body": "[\n  {\n    \"id\": 1001,\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"studyMode\": \"learn\"\n  },\n  {\n    \"id\": 1002,\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"studyMode\": \"paused\"\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1001,\n    \"name\": \"HTML\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4001,\n    \"studyMode\": 0\n  },\n  {\n    \"id\": 1002,\n    \"name\": \"JavaScript\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4002,\n    \"studyMode\": 2\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",

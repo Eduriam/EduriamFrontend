@@ -16,10 +16,10 @@ import type {
   ProductCodingExperience,
   ProductUserGoal,
 } from "infrastructure/api/generated/models";
-import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import useAuth from "infrastructure/services/AuthProvider";
 import { StudyProductService } from "infrastructure/services/courses/StudyProductService";
+import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
 import { AccountSetupService } from "infrastructure/services/users/AccountSetupService";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 
@@ -147,7 +147,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     }
     try {
       await AccountSetupService.setupAccount({ dailyGoal: dailyGoalValue });
-      await UserCoursesAPI.enrollInCourse(selectedCourseId);
+      await UserProductsService.enrollInProduct(selectedCourseId);
       transitionStep(() => setStep("complete"), "forward", step);
     } catch {
       transitionStep(() => setStep("complete"), "forward", step);

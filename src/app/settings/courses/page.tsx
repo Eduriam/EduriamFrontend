@@ -25,20 +25,22 @@ import CourseLogo, {
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import type { UserCourse } from "infrastructure/api/users/me/courses/UserCourses";
-import UserCoursesAPI from "infrastructure/api/users/me/courses/UserCoursesAPI";
+import {
+  UserProduct,
+  UserProductsService,
+} from "infrastructure/services/courses/UserProductsService";
 
 const SettingsCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { courses = [], mutate } = UserCoursesAPI.useUserCourses();
-  const [courseToDelete, setCourseToDelete] = useState<UserCourse | null>(null);
+  const { userProducts = [], mutate } = UserProductsService.useUserProducts();
+  const [courseToDelete, setCourseToDelete] = useState<UserProduct | null>(null);
 
   const displayedCourses = useMemo(
-    () => courses.filter((course) => course.enrolled),
-    [courses],
+    () => userProducts.filter((course) => course.enrolled),
+    [userProducts],
   );
 
   const handleDeleteCourse = async () => {
@@ -46,17 +48,17 @@ const SettingsCoursesPage: React.FC = () => {
       return;
     }
 
-    const optimisticCourses = courses.filter(
+    const optimisticProducts = userProducts.filter(
       (course) => course.id !== courseToDelete.id,
     );
 
     await mutate(async () => {
-      await UserCoursesAPI.removeCourse(courseToDelete.id);
+      await UserProductsService.removeProduct(courseToDelete.id);
       enqueueSnackbar(t("settings.courses.removed"), {
         variant: "success",
       });
-      return optimisticCourses;
-    }, optimisticMutationOption(optimisticCourses));
+      return optimisticProducts;
+    }, optimisticMutationOption(optimisticProducts));
 
     setCourseToDelete(null);
   };
