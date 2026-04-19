@@ -4,14 +4,19 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { AchievementType } from "./achievementType";
 
 export interface UserAchievementModel {
+  /** @nullable */
+  userAchievementId?: number | null;
   achievementId: number;
-  key: string;
-  name: string;
-  description: string;
+  type: AchievementType;
+  achievementMaxLevel: number;
+  currentLevel: number;
   /** @nullable */
-  thumbnailUrl?: string | null;
+  achievedAt?: string | null;
   /** @nullable */
-  unlockedAt?: string | null;
+  goal?: number | null;
+  /** @nullable */
+  nextLevelGoal?: number | null;
 }

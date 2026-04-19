@@ -25,7 +25,13 @@ export const getShop = (axiosInstance: AxiosInstance = axios) => {
       options,
     );
   };
-  return { getApiShopItems, postApiShopItemsShopItemIdPurchase };
+  const postApiShop = (
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<void>> => {
+    return axiosInstance.post(`/api/shop`, undefined, options);
+  };
+  return { getApiShopItems, postApiShopItemsShopItemIdPurchase, postApiShop };
 };
 export type GetApiShopItemsResult = AxiosResponse<ShopItemViewModel[] | void>;
 export type PostApiShopItemsShopItemIdPurchaseResult = AxiosResponse<void>;
+export type PostApiShopResult = AxiosResponse<void>;

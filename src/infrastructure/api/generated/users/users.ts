@@ -26,8 +26,9 @@ import type {
   GetUserSimpleModelPagedResult,
   MarkFeedSeenModel,
   NoticeModelPagedResult,
-  ProductModelBase,
-  ProductModelPagedResult,
+  ProductBaseModelPagedResult,
+  ProductCourseModel,
+  ProductLearningPathModel,
   StudyPlanOverviewModel,
   StudySessionCreateModel,
   StudySessionModel,
@@ -240,13 +241,15 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
   };
   const getApiUsersMeProducts = (
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<ProductModelBase[] | void>> => {
+  ): Promise<
+    AxiosResponse<(ProductCourseModel | ProductLearningPathModel)[] | void>
+  > => {
     return axiosInstance.get(`/api/users/me/products`, options);
   };
   const getApiUsersMeProductsRecommended = (
     params?: GetApiUsersMeProductsRecommendedParams,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<ProductModelPagedResult | void>> => {
+  ): Promise<AxiosResponse<ProductBaseModelPagedResult | void>> => {
     return axiosInstance.get(`/api/users/me/products/recommended`, {
       ...options,
       params: { ...params, ...options?.params },
@@ -407,10 +410,10 @@ export type GetApiUsersMeFollowersResult = AxiosResponse<
   GetFollowerModel[] | void
 >;
 export type GetApiUsersMeProductsResult = AxiosResponse<
-  ProductModelBase[] | void
+  (ProductCourseModel | ProductLearningPathModel)[] | void
 >;
 export type GetApiUsersMeProductsRecommendedResult =
-  AxiosResponse<ProductModelPagedResult | void>;
+  AxiosResponse<ProductBaseModelPagedResult | void>;
 export type PutApiUsersMeProductsProductIdResult = AxiosResponse<void>;
 export type DeleteApiUsersMeProductsProductIdResult = AxiosResponse<void>;
 export type PatchApiUsersMeProductsProductIdResult = AxiosResponse<void>;

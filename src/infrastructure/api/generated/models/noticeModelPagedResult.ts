@@ -4,10 +4,30 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
-import type { NoticeModel } from "./noticeModel";
+import type { AchievementEarnedNoticeModel } from "./achievementEarnedNoticeModel";
+import type { ChestRewardNoticeModel } from "./chestRewardNoticeModel";
+import type { CourseCompletedNoticeModel } from "./courseCompletedNoticeModel";
+import type { FreeTrialEndNoticeModel } from "./freeTrialEndNoticeModel";
+import type { FreeTrialNoticeModel } from "./freeTrialNoticeModel";
+import type { LeagueDemotedNoticeModel } from "./leagueDemotedNoticeModel";
+import type { LeaguePromotedNoticeModel } from "./leaguePromotedNoticeModel";
+import type { StreakLostNoticeModel } from "./streakLostNoticeModel";
+import type { StreakMilestoneNoticeModel } from "./streakMilestoneNoticeModel";
+import type { StreakSavedNoticeModel } from "./streakSavedNoticeModel";
 
 export interface NoticeModelPagedResult {
-  items: NoticeModel[];
+  items: (
+    | StreakMilestoneNoticeModel
+    | StreakLostNoticeModel
+    | StreakSavedNoticeModel
+    | LeaguePromotedNoticeModel
+    | LeagueDemotedNoticeModel
+    | AchievementEarnedNoticeModel
+    | ChestRewardNoticeModel
+    | FreeTrialNoticeModel
+    | FreeTrialEndNoticeModel
+    | CourseCompletedNoticeModel
+  )[];
   totalItems: number;
   page: number;
   pageSize: number;

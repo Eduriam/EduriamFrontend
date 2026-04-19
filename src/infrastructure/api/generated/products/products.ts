@@ -9,15 +9,16 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import type {
   GetApiProductsParams,
-  ProductModelBase,
-  ProductModelBasePagedResult,
+  ProductBaseModelPagedResult,
+  ProductCourseModel,
+  ProductLearningPathModel,
 } from "../models";
 
 export const getProducts = (axiosInstance: AxiosInstance = axios) => {
   const getApiProducts = (
     params?: GetApiProductsParams,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<ProductModelBasePagedResult | void>> => {
+  ): Promise<AxiosResponse<ProductBaseModelPagedResult | void>> => {
     return axiosInstance.get(`/api/products`, {
       ...options,
       params: { ...params, ...options?.params },
@@ -26,12 +27,15 @@ export const getProducts = (axiosInstance: AxiosInstance = axios) => {
   const getApiProductsProductId = (
     productId: number,
     options?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<ProductModelBase | void>> => {
+  ): Promise<
+    AxiosResponse<ProductCourseModel | ProductLearningPathModel | void>
+  > => {
     return axiosInstance.get(`/api/products/${productId}`, options);
   };
   return { getApiProducts, getApiProductsProductId };
 };
 export type GetApiProductsResult =
-  AxiosResponse<ProductModelBasePagedResult | void>;
-export type GetApiProductsProductIdResult =
-  AxiosResponse<ProductModelBase | void>;
+  AxiosResponse<ProductBaseModelPagedResult | void>;
+export type GetApiProductsProductIdResult = AxiosResponse<
+  ProductCourseModel | ProductLearningPathModel | void
+>;

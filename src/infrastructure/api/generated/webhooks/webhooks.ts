@@ -7,7 +7,7 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-export const getStripeWebhook = (axiosInstance: AxiosInstance = axios) => {
+export const getWebhooks = (axiosInstance: AxiosInstance = axios) => {
   const postApiWebhooksStripe = (
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<void>> => {

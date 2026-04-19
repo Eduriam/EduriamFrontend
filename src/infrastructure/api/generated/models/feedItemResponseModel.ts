@@ -7,7 +7,7 @@
 import type { AvatarModel } from "./avatarModel";
 import type { FeedMessageType } from "./feedMessageType";
 import type { FeedReactionGroupModel } from "./feedReactionGroupModel";
-import type { LeaderboardLeague } from "./leaderboardLeague";
+import type { LeagueType } from "./leagueType";
 
 export interface FeedItemResponseModel {
   id: number;
@@ -22,7 +22,7 @@ export interface FeedItemResponseModel {
   streak?: number | null;
   /** @nullable */
   achievementId?: number | null;
-  league?: LeaderboardLeague | null;
+  league?: LeagueType | null;
   /** @nullable */
   productName?: string | null;
 }

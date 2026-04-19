@@ -5,7 +5,4 @@
  * OpenAPI spec version: v1
  */
 
-export interface CreateReportContextModel {
-  studyBlockId: number;
-  answer: string;
-}
+export type HttpValidationProblemDetailsErrors = { [key: string]: string[] };
