@@ -331,15 +331,15 @@
     "achievements": "Ocenění",
     "collectReward": "Sebrat odměnu",
     "achievementsByType": {
-      "lessonCompletions": "Dokončené lekce",
-      "reviewCompletions": "Dokončená opakování",
-      "courseCompletions": "Dokončené kurzy",
-      "streakDays": "Dny streaku",
-      "perfectLessonCompletions": "Perfektní lekce",
-      "feedReactions": "Reakce ve feedu",
-      "leagueTier": "Liga",
-      "leagueFirstPlaceAny": "1. místo v lize",
-      "leagueFirstPlaceMythic": "1. místo v mýtické lize"
+      "lessonCompletions": "Mistr lekcí",
+      "reviewCompletions": "Mistr opakování",
+      "courseCompletions": "Dokončovač kurzů",
+      "streakDays": "Udržovač streaků",
+      "perfectLessonCompletions": "Perfektní výkon",
+      "feedReactions": "Podporující kamarád",
+      "leagueTier": "Soutěživec",
+      "leagueFirstPlaceAny": "Vzrůstající ligový vítěz",
+      "leagueFirstPlaceMythic": "Legendární ligový vítěz"
     },
     "achievementsById": {
       "streak_master": "Streak Master",
