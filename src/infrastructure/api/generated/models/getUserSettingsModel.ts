@@ -13,6 +13,8 @@ export interface GetUserSettingsModel {
   name: string;
   username: string;
   /** @nullable */
+  streakTimeZoneId?: string | null;
+  /** @nullable */
   dailyGoal?: number | null;
   avatar?: AvatarModel | null;
   productPreferences?: ProductPreferencesModel | null;

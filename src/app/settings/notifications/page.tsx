@@ -22,8 +22,14 @@ import { optimisticMutationOption } from "infrastructure/api/API";
 import type { NotificationPreferencesModel } from "infrastructure/api/generated/models";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 
+// Todo: remove after API switches from studyReminderMinutesBefore to "smartStudyReminder: boolean"
+type NotificationTogglePreferenceKey = Exclude<
+  keyof NotificationPreferencesModel,
+  "studyReminderMinutesBefore"
+>;
+
 type NotificationSettingItem = {
-  id: keyof NotificationPreferencesModel;
+  id: NotificationTogglePreferenceKey;
   labelKey: string;
   dataTest: string;
 };
@@ -42,9 +48,8 @@ const SettingsNotificationsPage: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const { settings, mutate } = SettingsService.useSettings();
-  const [lastSavedPreference, setLastSavedPreference] = useState<
-    keyof NotificationPreferencesModel | null
-  >(null);
+  const [lastSavedPreference, setLastSavedPreference] =
+    useState<NotificationTogglePreferenceKey | null>(null);
 
   const notificationPreferences =
     settings?.notificationPreferences ?? DEFAULT_NOTIFICATION_PREFERENCES;
@@ -99,7 +104,7 @@ const SettingsNotificationsPage: React.FC = () => {
   );
 
   const handleToggle = async (
-    preferenceKey: keyof NotificationPreferencesModel,
+    preferenceKey: NotificationTogglePreferenceKey,
     checked: boolean,
   ) => {
     if (!settings) {

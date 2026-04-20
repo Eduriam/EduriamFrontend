@@ -18,4 +18,5 @@ export interface ChangeUserSettingsPatchModel {
   productPreferences?: ProductPreferencesPatchModelOptional | null;
   theme?: ThemeModeNullableOptional | null;
   notificationPreferences?: NotificationPreferencesPatchModelOptional | null;
+  streakTimeZoneId?: string;
 }

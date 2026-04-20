@@ -113,6 +113,7 @@ export * from "./productUserGoal";
 export * from "./productUserGoalNullableOptional";
 export * from "./refreshTokenModel";
 export * from "./refreshTokenRespModel";
+export * from "./registerDeviceTokenModel";
 export * from "./registerUserModel";
 export * from "./registrationConfirmModel";
 export * from "./reportProblemType";

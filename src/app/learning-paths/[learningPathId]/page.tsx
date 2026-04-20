@@ -32,9 +32,9 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
-  isLearningPathProduct,
   StudyPathProductSummary,
   StudyProductService,
+  isLearningPathProduct,
 } from "infrastructure/services/courses/StudyProductService";
 import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
 
@@ -49,7 +49,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const params = useParams();
   const learningPathId = parseId(params?.learningPathId);
 
-  const { product: studyPath } = StudyProductService.useProduct(learningPathId ?? 0);
+  const { product: studyPath } = StudyProductService.useProduct(
+    learningPathId ?? 0,
+  );
 
   useEffect(() => {
     if (learningPathId === undefined) {
@@ -106,9 +108,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
       return;
     }
 
-    navigateWithTransition(
-      `/study?lessonId=${studyPath.upcomingLessonId}`,
-    )();
+    navigateWithTransition(`/study?lessonId=${studyPath.upcomingLessonId}`)();
   };
 
   const handleReviewLearningPath = () => {
@@ -140,7 +140,8 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
   const isEnrolled = studyPath?.enrolled ?? false;
   const hasUpcomingLesson = Boolean(studyPath?.upcomingLessonId);
   const hasCertificate =
-    studyPath?.userCertificate !== null && studyPath?.userCertificate !== undefined;
+    studyPath?.userCertificate !== null &&
+    studyPath?.userCertificate !== undefined;
 
   const handleViewCertificate = () => {
     if (!learningPathId) {
@@ -323,11 +324,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                   <CourseCard
                     key={course.id}
                     title={course.name}
-                    icon={
-                      <CourseLogo variant="JavaScript" />
-                    }
+                    icon={<CourseLogo variant="JavaScript" />}
                     enrolled={typeof course.userProgress === "number"}
-                    premium={false}
+                    premium={course.premium}
                     premiumLabel={premiumLabel}
                     progress={course.userProgress ?? 0}
                     onClick={navigateWithTransition(`/courses/${course.id}`)}

@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import { getBrowserTimeZone } from "util/functions/timezones";
 
 import type {
   ProductAreaOfInterest,
@@ -145,6 +146,16 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     if (selectedCourseId === null || dailyGoalValue === null) {
       return;
     }
+
+    const streakTimeZoneId = getBrowserTimeZone();
+    if (streakTimeZoneId) {
+      try {
+        await SettingsService.updateSettings({ streakTimeZoneId });
+      } catch {
+        // Continue onboarding even if timezone update fails
+      }
+    }
+
     try {
       await AccountSetupService.setupAccount({ dailyGoal: dailyGoalValue });
       await UserProductsService.enrollInProduct(selectedCourseId);

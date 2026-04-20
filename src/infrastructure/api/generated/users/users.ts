@@ -29,6 +29,7 @@ import type {
   ProductBaseModelPagedResult,
   ProductCourseModel,
   ProductLearningPathModel,
+  RegisterDeviceTokenModel,
   StudyPlanOverviewModel,
   StudySessionCreateModel,
   StudySessionModel,
@@ -80,6 +81,16 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     return axiosInstance.post(
       `/api/users/me/study-sessions/${sessionId}/results`,
       studySessionResultCreateModel,
+      options,
+    );
+  };
+  const postApiUsersMeDevices = (
+    registerDeviceTokenModel: RegisterDeviceTokenModel,
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<void>> => {
+    return axiosInstance.post(
+      `/api/users/me/devices`,
+      registerDeviceTokenModel,
       options,
     );
   };
@@ -324,6 +335,7 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     patchApiUsersMeSettings,
     postApiUsersMeStudySessions,
     postApiUsersMeStudySessionsSessionIdResults,
+    postApiUsersMeDevices,
     getApiUsersMeStudyPlan,
     getApiUsersMeAchievements,
     getApiUsersMeNotices,
@@ -366,6 +378,7 @@ export type PostApiUsersMeStudySessionsResult =
   AxiosResponse<StudySessionModel | void>;
 export type PostApiUsersMeStudySessionsSessionIdResultsResult =
   AxiosResponse<void>;
+export type PostApiUsersMeDevicesResult = AxiosResponse<void>;
 export type GetApiUsersMeStudyPlanResult =
   AxiosResponse<StudyPlanOverviewModel | void>;
 export type GetApiUsersMeAchievementsResult = AxiosResponse<

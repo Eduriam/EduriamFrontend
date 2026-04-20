@@ -8,6 +8,7 @@
 export interface ProductMemberSummaryModel {
   id: number;
   name: string;
+  premium: boolean;
   /** @nullable */
   userProgress?: number | null;
 }

@@ -16,4 +16,6 @@ export interface NotificationPreferencesPatchModel {
   newFollower?: boolean | null;
   /** @nullable */
   friendActivity?: boolean | null;
+  /** @nullable */
+  studyReminderMinutesBefore?: number | null;
 }
