@@ -7,11 +7,23 @@ import Typography from "@mui/material/Typography";
 
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
+import {
+  type FreeTrialNoticeModel,
+} from "infrastructure/api/generated/models";
 import useNotices from "infrastructure/services/NoticeProvider";
 
+export const NOTIFICATIONS_DISABLED_NOTICE_TYPE = "notifications-disabled" as const;
+
+export type NotificationsDisabledNotice = Omit<
+  FreeTrialNoticeModel,
+  "type"
+> & {
+  type: typeof NOTIFICATIONS_DISABLED_NOTICE_TYPE;
+  notificationsDisabled: true;
+};
+
 export interface NotificationsDisabledNoticeProps {
-  notice: Pick<Notice, "id">;
+  notice: NotificationsDisabledNotice;
 }
 
 const NotificationsDisabledNotice: React.FC<NotificationsDisabledNoticeProps> = ({

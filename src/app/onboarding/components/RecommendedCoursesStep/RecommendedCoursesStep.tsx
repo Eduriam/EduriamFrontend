@@ -14,7 +14,10 @@ import CourseLogo, {
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
-import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
+import {
+  isLearningPathProduct,
+  StudyProduct,
+} from "infrastructure/services/courses/StudyProductService";
 
 export interface IRecommendedCoursesStepProps {
   courses: StudyProduct[];
@@ -52,8 +55,7 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
                 }
               />
             );
-            const isLearningPath =
-              course.type === "learning-path" || course.type === "study-path";
+            const isLearningPath = isLearningPathProduct(course);
             return (
               <Box
                 key={course.id}

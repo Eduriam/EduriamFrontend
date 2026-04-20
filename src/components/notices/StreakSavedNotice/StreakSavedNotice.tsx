@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
+import type { StreakSavedNoticeModel } from "infrastructure/api/generated/models";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface StreakSavedNoticeProps {
-  notice: Notice;
+  notice: StreakSavedNoticeModel;
 }
 
 const StreakSavedNotice: React.FC<StreakSavedNoticeProps> = ({ notice }) => {

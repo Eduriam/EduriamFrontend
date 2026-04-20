@@ -13,7 +13,7 @@ import Avatar from "components/avatar/Avatar";
 import {
   FeedMessageType,
   FeedReactionType,
-  LeaderboardLeague,
+  LeagueType,
 } from "infrastructure/api/generated/models";
 import type {
   FeedItemResponseModel,
@@ -57,12 +57,17 @@ const reactionTestIdMap: Record<FeedReactionTypeValue, string> = {
   [FeedReactionType.Sunglasses]: "sunglasses",
 };
 
-const leagueTranslationMap: Record<LeaderboardLeague, string> = {
-  [LeaderboardLeague.Bronze]: "bronze",
-  [LeaderboardLeague.Silver]: "silver",
-  [LeaderboardLeague.Gold]: "gold",
-  [LeaderboardLeague.Platinum]: "platinum",
-  [LeaderboardLeague.Diamond]: "diamond",
+const leagueTranslationMap: Record<LeagueType, string> = {
+  [LeagueType.Iron]: "iron",
+  [LeagueType.Bronze]: "bronze",
+  [LeagueType.Silver]: "silver",
+  [LeagueType.Gold]: "gold",
+  [LeagueType.Platinum]: "platinum",
+  [LeagueType.Emerald]: "emerald",
+  [LeagueType.Ruby]: "ruby",
+  [LeagueType.Sapphire]: "sapphire",
+  [LeagueType.Diamond]: "diamond",
+  [LeagueType.Mythic]: "mythic",
 };
 
 function getMessageTestId(messageType: FeedMessageTypeValue): string {
@@ -107,7 +112,7 @@ const FeedCard: React.FC<IFeedCard> = ({
       case FeedMessageType.LeaguePromoted:
         return t("feed.messages.league_promoted", {
           league: t(
-            `leaderboard.leagues.${leagueTranslationMap[feedMessage.league ?? LeaderboardLeague.Bronze]}`,
+            `leaderboard.leagues.${leagueTranslationMap[feedMessage.league ?? LeagueType.Iron]}`,
           ),
         });
       case FeedMessageType.CourseCompleted:

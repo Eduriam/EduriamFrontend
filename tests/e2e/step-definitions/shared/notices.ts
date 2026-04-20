@@ -8,7 +8,6 @@ import {
 } from "../../util/mockoon-env";
 
 const NOTICE_VARIANTS_BY_TEST_ID: Record<string, MockoonNoticeVariant> = {
-  "notifications-disabled-notice": "single-notifications-disabled",
   "streak-milestone-notice": "single-streak-milestone",
   "streak-lost-notice": "single-streak-lost",
   "streak-saved-notice": "single-streak-saved",

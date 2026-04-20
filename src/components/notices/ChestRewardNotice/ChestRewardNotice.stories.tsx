@@ -19,7 +19,10 @@ Base.args = {
   notice: {
     id: 1,
     type: NoticeType.CHEST_REWARD,
+    userChestId: 1,
+    lessonId: 1001,
     chestId: 1,
+    chestName: "Bronze Chest",
     reward: 10,
   },
 } as ChestRewardNoticeProps;

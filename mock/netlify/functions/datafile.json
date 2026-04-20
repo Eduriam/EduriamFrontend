@@ -901,7 +901,7 @@
       "responses": [
         {
           "uuid": "15b09ed5-08cf-4c8e-b9a3-c3bdf76f2494",
-          "body": "{\"items\":[{\"id\":101,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":102,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":103,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":104,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":4,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":101,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":102,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":103,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":104,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"productName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":4,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Default mixed feed",
@@ -1001,7 +1001,7 @@
         },
         {
           "uuid": "49cb2bb9-78ec-4d45-8f62-6e2865f91f42",
-          "body": "{\"items\":[{\"id\":204,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"courseName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":204,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"productName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Course completed feed message",
@@ -1248,7 +1248,7 @@
       "responses": [
         {
           "uuid": "e73768e1-bd62-4593-8e2b-c95d99a19a86",
-          "body": "{\n  \"items\": [\n  {\n    \"id\": 1001,\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2002,\n    \"language\": \"en\",\n    \"name\": \"Angular Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2003,\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2004,\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"learning-path\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1003,\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 1004,\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1005,\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1006,\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1007,\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1008,\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1009,\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1002,\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\": \"course\",\n    \"userProgress\": 15,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 2001,\n    \"language\": \"en\",\n    \"name\": \"React Developer Path\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\": \"learning-path\",\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n    \"userProgress\": 0,\n    \"enrolled\": false\n  }\n],\n  \"totalItems\": 13,\n  \"page\": 1,\n  \"pageSize\": 13,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "body": "{\n  \"items\": [\n  {\n    \"id\": 1001,\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2002,\n    \"language\": \"en\",\n    \"name\": \"Angular Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":\"learning-path\",\"prerequisites\":[],\"memberProducts\":[],\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2003,\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":\"learning-path\",\"prerequisites\":[],\"memberProducts\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2004,\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":\"learning-path\",\"prerequisites\":[],\"memberProducts\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1003,\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 1004,\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1005,\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1006,\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1007,\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1008,\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1009,\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1002,\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\":\"course\",\"prerequisites\":[],\"chapters\":[],\n    \"userProgress\": 15,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 2001,\n    \"language\": \"en\",\n    \"name\": \"React Developer Path\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":\"learning-path\",\"prerequisites\":[],\"memberProducts\":[],\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n    \"userProgress\": 0,\n    \"enrolled\": false\n  }\n],\n  \"totalItems\": 13,\n  \"page\": 1,\n  \"pageSize\": 13,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response: language=cs",
@@ -1275,7 +1275,7 @@
         },
         {
           "uuid": "89be40cd-477b-4222-9df6-3a301147fa7d",
-          "body": "{\n  \"items\": [\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"language\":\"en\",\r\n      \"name\":\"English\",\r\n      \"category\":\"languages\",\r\n      \"logoId\":\"html\",\r\n      \"type\":\"course\"\r\n   }\r\n],\n  \"totalItems\": 1,\n  \"page\": 1,\n  \"pageSize\": 1,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "body": "{\n  \"items\": [\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"language\":\"en\",\r\n      \"name\":\"English\",\r\n      \"category\":\"languages\",\r\n      \"logoId\":\"html\",\r\n      \"type\":\"course\",\"prerequisites\":[],\"chapters\":[]\r\n   }\r\n],\n  \"totalItems\": 1,\n  \"page\": 1,\n  \"pageSize\": 1,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Example Response: language=en-US",
@@ -1314,7 +1314,7 @@
       "responses": [
         {
           "uuid": "6ff3634d-7f2b-49f1-9920-386ff719b85d",
-          "body": "{\n  \"id\": 2001,\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"id\": 1001,\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": 2001,\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": \"learning-path\",\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"id\": 1001,\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"memberProducts\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Learning path",
@@ -1434,7 +1434,7 @@
       "responses": [
         {
           "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
-          "body": "[\n  {\n    \"id\": 1001,\n    \"name\": \"HTML\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4001,\n    \"studyMode\": 0\n  },\n  {\n    \"id\": 1002,\n    \"name\": \"JavaScript\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4002,\n    \"studyMode\": 2\n  }\n]",
+          "body": "[\n  {\n    \"id\": 1001,\n    \"name\": \"HTML\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4001,\n    \"chapters\": [],\n    \"studyMode\": 0\n  },\n  {\n    \"id\": 1002,\n    \"name\": \"JavaScript\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4002,\n    \"chapters\": [],\n    \"studyMode\": 2\n  }\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1496,7 +1496,7 @@
       "responses": [
         {
           "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
-          "body": "{\n  \"id\": {{urlParam 'userId'}},\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"avatar\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"achievements\":[\n   {\n      \"achievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"key\":\"{{faker 'lorem.slug'}}\",\n      \"name\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"thumbnailUrl\": null,\n      \"unlockedAt\":\"{{faker 'date.recent'}}\"\n   },\n   {{#repeat 3}}\n   {\n      \"achievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"key\":\"{{faker 'lorem.slug'}}\",\n      \"name\":\"{{faker 'lorem.words' 3}}\",\n      \"description\":\"{{faker 'lorem.sentence' 8}}\",\n      \"thumbnailUrl\": null,\n      \"unlockedAt\":\"{{faker 'date.recent'}}\"\n   }\n   {{/repeat}}\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"studyMode\": 0\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"studyMode\": 0\n    }\n  ]\n}",
+          "body": "{\n  \"id\": {{urlParam 'userId'}},\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"avatar\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"achievements\":[\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1001,\n      \"type\": 0,\n      \"achievementMaxLevel\": 10,\n      \"currentLevel\": {{faker 'number.int' min=1 max=10}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 100,\n      \"nextLevelGoal\": 120\n    },\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1002,\n      \"type\": 3,\n      \"achievementMaxLevel\": 30,\n      \"currentLevel\": {{faker 'number.int' min=1 max=30}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 30,\n      \"nextLevelGoal\": 31\n    },\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1003,\n      \"type\": 6,\n      \"achievementMaxLevel\": 10,\n      \"currentLevel\": {{faker 'number.int' min=1 max=10}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 10,\n      \"nextLevelGoal\": null\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"enrolled\": true,\n      \"description\": null,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"upcomingLessonId\": 4001,\n      \"chapters\": []\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"enrolled\": true,\n      \"description\": null,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"upcomingLessonId\": 4002,\n      \"chapters\": []\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1646,7 +1646,7 @@
       "responses": [
         {
           "uuid": "0f4ad0ec-2611-4617-8b07-8ea2276b8e28",
-          "body": "{\n  \"items\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n      \"prerequisites\": [],\n      \"type\": \"learning-path\"\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 1003,\n      \"name\": \"CSS\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"course\"\n    },\n    {\n      \"id\": 2004,\n      \"name\": \"Frontend Developer\",\n      \"thumbnailUrl\": null,\n      \"isEnrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"type\": \"learning-path\"\n    }\n  ],\n  \"totalItems\": 5,\n  \"page\": 1,\n  \"pageSize\": 5,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n      \"prerequisites\":[],\"type\":\"course\",\"chapters\":[]\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n      \"prerequisites\":[],\"type\":\"learning-path\",\"memberProducts\":[]\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":\"course\",\"chapters\":[]\n    },\n    {\n      \"id\": 1003,\n      \"name\": \"CSS\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":\"course\",\"chapters\":[]\n    },\n    {\n      \"id\": 2004,\n      \"name\": \"Frontend Developer\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":\"learning-path\",\"memberProducts\":[]\n    }\n  ],\n  \"totalItems\": 5,\n  \"page\": 1,\n  \"pageSize\": 5,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1811,35 +1811,8 @@
           "callbacks": []
         },
         {
-          "uuid": "9fb9d1d4-6950-466d-82f4-16fa29e09d5a",
-          "body": "{\"items\":[{\"id\":701,\"type\":7}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
-          "latency": 0,
-          "statusCode": 200,
-          "label": "Single: Notifications disabled",
-          "headers": [],
-          "bodyType": "INLINE",
-          "filePath": "",
-          "databucketID": "",
-          "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "global_var",
-              "modifier": "MOCKOON_NOTICE_VARIANT",
-              "value": "single-notifications-disabled",
-              "invert": false,
-              "operator": "equals"
-            }
-          ],
-          "rulesOperator": "AND",
-          "disableTemplating": false,
-          "fallbackTo404": false,
-          "default": false,
-          "crudKey": "id",
-          "callbacks": []
-        },
-        {
           "uuid": "e95b52b3-d5f2-46e4-9d43-76bd634895f4",
-          "body": "{\"items\":[{\"id\":501,\"type\":5,\"title\":\"Streak Master\",\"description\":\"Udrzel(a) jste streak 100 dnu.\"}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":501,\"type\":5,\"achievementId\":1001,\"title\":\"Streak Master\",\"description\":\"Udrzel(a) jste streak 100 dnu.\",\"badgeIconName\":\"achievement-1\"}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Achievement earned",
@@ -1866,7 +1839,7 @@
         },
         {
           "uuid": "247c4ee6-3a5d-4366-bf1d-b59565b0570e",
-          "body": "{\"items\":[{\"id\":601,\"type\":6,\"chestId\":1,\"reward\":250}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":601,\"type\":6,\"userChestId\":1,\"lessonId\":5001,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Single: Chest reward",
@@ -1947,7 +1920,7 @@
         },
         {
           "uuid": "24ea2c7d-1875-40f4-a941-ad9ed11c814c",
-          "body": "{\"items\":[{\"id\":2,\"type\":0,\"streakDays\":100},{\"id\":602,\"type\":6,\"chestId\":1,\"reward\":250}],\"totalItems\":2,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":2,\"type\":0,\"streakDays\":100},{\"id\":602,\"type\":6,\"userChestId\":2,\"lessonId\":5002,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250}],\"totalItems\":2,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "Review mixed notices",
@@ -1974,7 +1947,7 @@
         },
         {
           "uuid": "3d6e2992-2e9e-4f38-9ab6-f8dfc6471c5f",
-          "body": "{\"items\":[{\"id\":703,\"type\":7},{\"id\":3,\"type\":0,\"streakDays\":100},{\"id\":102,\"type\":1,\"previousStreakDays\":14},{\"id\":202,\"type\":2,\"streakDays\":13,\"freezesLeft\":1},{\"id\":302,\"type\":3,\"league\":2},{\"id\":402,\"type\":4,\"league\":1},{\"id\":502,\"type\":5,\"title\":\"Champion\",\"description\":\"Ziskal(a) jste novy uspech.\"},{\"id\":603,\"type\":6,\"chestId\":1,\"reward\":250}],\"totalItems\":8,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "body": "{\"items\":[{\"id\":3,\"type\":0,\"streakDays\":100},{\"id\":102,\"type\":1,\"previousStreakDays\":14},{\"id\":202,\"type\":2,\"streakDays\":13,\"freezesLeft\":1},{\"id\":302,\"type\":3,\"league\":2},{\"id\":402,\"type\":4,\"league\":1},{\"id\":502,\"type\":5,\"achievementId\":1002,\"title\":\"Champion\",\"description\":\"Ziskal(a) jste novy uspech.\",\"badgeIconName\":\"achievement-2\"},{\"id\":603,\"type\":6,\"userChestId\":3,\"lessonId\":5003,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250},{\"id\":903,\"type\":9,\"productName\":\"React Developer\"}],\"totalItems\":8,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
           "latency": 0,
           "statusCode": 200,
           "label": "All notice types",
@@ -3108,16 +3081,6 @@
       ]
     },
     {
-      "uuid": "f920e467-0bc7-4410-a15e-538eee401287",
-      "name": "recommended-courses",
-      "children": [
-        {
-          "type": "route",
-          "uuid": "95802a78-05a2-434c-a533-a46d1d93b121"
-        }
-      ]
-    },
-    {
       "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d",
       "name": "chapters",
       "children": [
@@ -3211,10 +3174,6 @@
         },
         {
           "type": "folder",
-          "uuid": "f920e467-0bc7-4410-a15e-538eee401287"
-        },
-        {
-          "type": "folder",
           "uuid": "e77179f4-f5a7-48a8-b095-5a4c099db7c6"
         },
         {
@@ -3259,7 +3218,7 @@
     },
     {
       "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372",
-      "name": "courses",
+      "name": "products",
       "children": [
         {
           "type": "route",
@@ -3276,6 +3235,10 @@
         {
           "type": "route",
           "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900"
+        },
+        {
+          "type": "route",
+          "uuid": "95802a78-05a2-434c-a533-a46d1d93b121"
         }
       ]
     },
@@ -3390,6 +3353,18 @@
     {
       "type": "folder",
       "uuid": "187cec26-ec89-4119-b64f-43d5260fc7a0"
+    },
+    {
+      "type": "route",
+      "uuid": "dc80a8f1-7637-4272-b55b-1a5f6437d6c3"
+    },
+    {
+      "type": "route",
+      "uuid": "2dc0aa80-7d6d-4bdf-9fc0-5f45b9286acd"
+    },
+    {
+      "type": "route",
+      "uuid": "2d4b27ae-489b-4f3c-9d88-c02d77724116"
     }
   ],
   "callbacks": [

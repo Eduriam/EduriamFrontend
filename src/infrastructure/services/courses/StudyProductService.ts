@@ -1,53 +1,40 @@
 import type { Id } from "domain/models/types/core";
-import type { Language } from "domain/models/types/languages";
 import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import { FetchHook } from "infrastructure/api/API";
 import { getProducts } from "infrastructure/api/generated/products/products";
 import type {
-  ProductModelBase,
-  ProductModelBasePagedResult,
+  ProductBaseModelPagedResult,
+  ProductCourseModel,
+  ProductLearningPathModel,
+  ProductMemberSummaryModel,
+  CourseChapterSummaryModel,
 } from "infrastructure/api/generated/models";
 import useAPI from "infrastructure/api/hooks/useAPI";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const productsClient = getProducts();
 
-export type StudyProductType = "course" | "learning-path" | "study-path";
-
-export interface StudyProductChapterSummary {
-  id: Id;
-  name: string;
-  userProgress?: number | null;
-}
-
-export interface StudyPathProductSummary {
-  id: Id;
-  name: string;
-  logoId?: string | null;
-  userProgress?: number | null;
-  premium?: boolean;
-}
-
-export type StudyProduct = ProductModelBase & {
-  language?: Language;
-  type?: StudyProductType;
-  chapters?: StudyProductChapterSummary[];
-  courses?: StudyPathProductSummary[];
-};
-
-export type CourseProduct = StudyProduct & {
-  type?: "course";
-  chapters?: StudyProductChapterSummary[];
-};
-
-export type StudyPathProduct = StudyProduct & {
-  type?: "learning-path" | "study-path";
-  courses?: StudyPathProductSummary[];
-};
+export type StudyProduct = ProductCourseModel | ProductLearningPathModel;
+export type StudyProductChapterSummary = CourseChapterSummaryModel;
+export type StudyPathProductSummary = ProductMemberSummaryModel;
+export type CourseProduct = ProductCourseModel;
+export type StudyPathProduct = ProductLearningPathModel;
 
 export interface StudyProductParams {}
+
+export function isCourseProduct(
+  product: StudyProduct | null | undefined,
+): product is CourseProduct {
+  return Boolean(product && "chapters" in product);
+}
+
+export function isLearningPathProduct(
+  product: StudyProduct | null | undefined,
+): product is StudyPathProduct {
+  return Boolean(product && "memberProducts" in product);
+}
 
 function useStudyProductQuery(
   id: Id,
@@ -83,7 +70,7 @@ export const StudyProductService = {
         throw new Error("Product response is empty.");
       }
 
-      return response.data as StudyProduct;
+      return response.data;
     } catch (error) {
       return toErrorCode(error);
     }
@@ -96,7 +83,7 @@ export const StudyProductService = {
         throw new Error("Products response is empty.");
       }
 
-      const pagedResult = response.data as ProductModelBasePagedResult;
+      const pagedResult = response.data as ProductBaseModelPagedResult;
       return (pagedResult.items ?? []) as StudyProduct[];
     } catch (error) {
       return toErrorCode(error);

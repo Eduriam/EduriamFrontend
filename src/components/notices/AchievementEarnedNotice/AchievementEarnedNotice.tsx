@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
-import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
+import type { AchievementEarnedNoticeModel } from "infrastructure/api/generated/models";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface AchievementEarnedNoticeProps {
-  notice: Notice;
+  notice: AchievementEarnedNoticeModel;
 }
 
 const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
@@ -18,6 +18,10 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
 }) => {
   const { t } = useTranslation("common");
   const { markNoticeAsRead } = useNotices();
+  const badgeIconName =
+    notice.badgeIconName === "achievement-2"
+      ? "achievement-2"
+      : "achievement-1";
 
   return (
     <NoticeDialog
@@ -36,7 +40,7 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
           {t("notices.achievementEarned")}
         </Typography>
 
-        <AchievementBadge badgeIconName={notice.badgeIconName ?? "achievement-1"} />
+        <AchievementBadge badgeIconName={badgeIconName} />
 
         <Stack spacing={1} alignItems="center" sx={{ width: "100%" }}>
           <Typography variant="h6" textAlign="center">

@@ -179,7 +179,6 @@ export type MockoonNoticeVariant =
   | "single-streak-milestone"
   | "single-streak-lost"
   | "single-streak-saved"
-  | "single-notifications-disabled"
   | "single-achievement-earned"
   | "single-chest-reward"
   | "single-free-trial"

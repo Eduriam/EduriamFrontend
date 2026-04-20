@@ -31,6 +31,7 @@ import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   CourseProduct,
+  isCourseProduct,
   StudyProductChapterSummary,
   StudyProductService,
 } from "infrastructure/services/courses/StudyProductService";
@@ -150,15 +151,11 @@ const CoursePage: React.FC<ICoursePage> = () => {
     setIsDetailsDrawerOpen(false);
   };
 
-  const courseShortDescription = (
-    product as unknown as { shortDescription?: string }
-  )?.shortDescription;
-
-  const courseDescription = (product as unknown as { description?: string })
-    ?.description;
-
-  const chapters: NonNullable<CourseProduct["chapters"]> =
-    (product as CourseProduct)?.chapters ?? [];
+  const courseShortDescription = product?.shortDescription;
+  const courseDescription = product?.description ?? undefined;
+  const chapters: NonNullable<CourseProduct["chapters"]> = isCourseProduct(product)
+    ? product.chapters
+    : [];
 
   const isEnrolled = product?.enrolled ?? false;
   const hasUpcomingLesson = Boolean(product?.upcomingLessonId);

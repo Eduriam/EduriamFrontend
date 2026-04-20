@@ -28,6 +28,7 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import {
+  isLearningPathProduct,
   StudyProduct,
   StudyProductService,
 } from "infrastructure/services/courses/StudyProductService";
@@ -58,8 +59,6 @@ function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
-type CourseCardKind = StudyProduct["type"];
-
 function CourseOrLearningPathCard({
   course,
   dataTestCourse,
@@ -70,7 +69,7 @@ function CourseOrLearningPathCard({
   course: StudyProduct;
   dataTestCourse?: string;
   dataTestLearningPath?: string;
-  onSelect: (courseId: Id, kind: CourseCardKind) => void;
+  onSelect: (courseId: Id, isLearningPath: boolean) => void;
   premiumLabel: string;
 }) {
   const icon = (
@@ -81,11 +80,9 @@ function CourseOrLearningPathCard({
       }
     />
   );
-  const isLearningPath =
-    course.type === "learning-path" || course.type === "study-path";
+  const isLearningPath = isLearningPathProduct(course);
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
-  const kind: CourseCardKind = isLearningPath ? course.type : "course";
-  const handleClick = () => onSelect(course.id, kind);
+  const handleClick = () => onSelect(course.id, isLearningPath);
 
   const enrolled = typeof course.userProgress === "number";
   const progress = course.userProgress ?? 0;
@@ -188,11 +185,10 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   ];
   const premiumLabel = t("courses.premiumLabel") || "Premium";
 
-  const handleCourseSelect = (courseId: Id, kind: CourseCardKind) => {
-    const path =
-      kind === "learning-path" || kind === "study-path"
-        ? `/learning-paths/${courseId}`
-        : `/courses/${courseId}`;
+  const handleCourseSelect = (courseId: Id, isLearningPath: boolean) => {
+    const path = isLearningPath
+      ? `/learning-paths/${courseId}`
+      : `/courses/${courseId}`;
     navigateWithTransition(path)();
   };
 

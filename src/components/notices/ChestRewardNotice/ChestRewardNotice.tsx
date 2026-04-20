@@ -17,13 +17,13 @@ import { keyframes } from "@mui/system";
 import AdvertisementDialog from "components/advertisement/AdvertisementDialog/AdvertisementDialog";
 import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 
+import type { ChestRewardNoticeModel } from "infrastructure/api/generated/models";
 import ChestService from "infrastructure/api/users/me/chests/ChestService";
-import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
 import useAuth from "infrastructure/services/AuthProvider";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface ChestRewardNoticeProps {
-  notice: Notice;
+  notice: ChestRewardNoticeModel;
 }
 
 type ChestRewardFlowState = "idle" | "ad_open" | "double_reward_confirmed";
@@ -175,11 +175,11 @@ const ChestRewardNotice: React.FC<ChestRewardNoticeProps> = ({ notice }) => {
   }, [doubledRewardAmount, flowState, rewardAmount]);
 
   const openChest = async (doubleReward: boolean) => {
-    if (notice.chestId === undefined) {
+    if (notice.userChestId === undefined) {
       return;
     }
 
-    await ChestService.openChest(notice.chestId, doubleReward);
+    await ChestService.openChest(notice.userChestId, doubleReward);
   };
 
   const markAsRead = async () => {

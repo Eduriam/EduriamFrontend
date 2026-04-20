@@ -10,6 +10,17 @@ import StreakLostNotice from "components/notices/StreakLostNotice/StreakLostNoti
 import StreakMilestoneNotice from "components/notices/StreakMilestoneNotice/StreakMilestoneNotice";
 import StreakSavedNotice from "components/notices/StreakSavedNotice/StreakSavedNotice";
 
+import type {
+  AchievementEarnedNoticeModel,
+  ChestRewardNoticeModel,
+  FreeTrialEndNoticeModel,
+  FreeTrialNoticeModel,
+  LeagueDemotedNoticeModel,
+  LeaguePromotedNoticeModel,
+  StreakLostNoticeModel,
+  StreakMilestoneNoticeModel,
+  StreakSavedNoticeModel,
+} from "infrastructure/api/generated/models";
 import {
   NoticeType,
   type Notice,
@@ -23,23 +34,25 @@ export interface NoticeBoardProps {
 function renderNotice(notice: Notice) {
   switch (notice.type) {
     case NoticeType.STREAK_MILESTONE:
-      return <StreakMilestoneNotice notice={notice} />;
+      return <StreakMilestoneNotice notice={notice as StreakMilestoneNoticeModel} />;
     case NoticeType.STREAK_LOST:
-      return <StreakLostNotice notice={notice} />;
+      return <StreakLostNotice notice={notice as StreakLostNoticeModel} />;
     case NoticeType.STREAK_SAVED:
-      return <StreakSavedNotice notice={notice} />;
+      return <StreakSavedNotice notice={notice as StreakSavedNoticeModel} />;
     case NoticeType.LEAGUE_PROMOTED:
-      return <LeaguePromotedNotice notice={notice} />;
+      return <LeaguePromotedNotice notice={notice as LeaguePromotedNoticeModel} />;
     case NoticeType.LEAGUE_DEMOTED:
-      return <LeagueDemotedNotice notice={notice} />;
+      return <LeagueDemotedNotice notice={notice as LeagueDemotedNoticeModel} />;
     case NoticeType.ACHIEVEMENT_EARNED:
-      return <AchievementEarnedNotice notice={notice} />;
+      return <AchievementEarnedNotice notice={notice as AchievementEarnedNoticeModel} />;
     case NoticeType.CHEST_REWARD:
-      return <ChestRewardNotice notice={notice} />;
+      return <ChestRewardNotice notice={notice as ChestRewardNoticeModel} />;
     case NoticeType.FREE_TRIAL:
-      return <FreeTrialNotice notice={notice} />;
+      return <FreeTrialNotice notice={notice as FreeTrialNoticeModel} />;
     case NoticeType.FREE_TRIAL_END:
-      return <FreeTrialEndNotice notice={notice} />;
+      return <FreeTrialEndNotice notice={notice as FreeTrialEndNoticeModel} />;
+    case NoticeType.COURSE_COMPLETED:
+      return null;
     default:
       return null;
   }

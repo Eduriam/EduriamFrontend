@@ -23,7 +23,10 @@ import LearningPathCard from "components/courses/LearningPathCard/LearningPathCa
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
-import { StudyProduct } from "infrastructure/services/courses/StudyProductService";
+import {
+  isLearningPathProduct,
+  StudyProduct,
+} from "infrastructure/services/courses/StudyProductService";
 
 function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
@@ -51,8 +54,7 @@ function CourseOrLearningPathCard({
       }
     />
   );
-  const isLearningPath =
-    course.type === "learning-path" || course.type === "study-path";
+  const isLearningPath = isLearningPathProduct(course);
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
   const handleClick = () => onSelect(course.id, isLearningPath);
   const enrolled = typeof course.userProgress === "number";

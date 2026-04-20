@@ -32,8 +32,8 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
+  isLearningPathProduct,
   StudyPathProductSummary,
-  StudyPathProduct,
   StudyProductService,
 } from "infrastructure/services/courses/StudyProductService";
 import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
@@ -134,8 +134,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
 
   const shortDescription = studyPath?.shortDescription;
   const description = studyPath?.description ?? undefined;
-  const courses: NonNullable<StudyPathProduct["courses"]> =
-    (studyPath as StudyPathProduct)?.courses ?? [];
+  const courses: StudyPathProductSummary[] = isLearningPathProduct(studyPath)
+    ? studyPath.memberProducts
+    : [];
   const isEnrolled = studyPath?.enrolled ?? false;
   const hasUpcomingLesson = Boolean(studyPath?.upcomingLessonId);
   const hasCertificate =
@@ -323,15 +324,10 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                     key={course.id}
                     title={course.name}
                     icon={
-                      <CourseLogo
-                        variant={
-                          getVariantFromLogoId(course.logoId ?? undefined) ??
-                          "JavaScript"
-                        }
-                      />
+                      <CourseLogo variant="JavaScript" />
                     }
                     enrolled={typeof course.userProgress === "number"}
-                    premium={Boolean(course.premium)}
+                    premium={false}
                     premiumLabel={premiumLabel}
                     progress={course.userProgress ?? 0}
                     onClick={navigateWithTransition(`/courses/${course.id}`)}

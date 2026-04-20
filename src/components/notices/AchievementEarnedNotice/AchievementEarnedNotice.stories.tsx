@@ -21,8 +21,9 @@ Base.args = {
   notice: {
     id: 1,
     type: NoticeType.ACHIEVEMENT_EARNED,
-    title: "Skvělý student",
-    description: "Dokončil jsi 100 lekcí.",
+    achievementId: 1001,
+    title: "Great Student",
+    description: "You completed 100 lessons.",
     badgeIconName: "achievement-1",
   },
 } as AchievementEarnedNoticeProps;

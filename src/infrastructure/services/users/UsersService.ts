@@ -5,6 +5,7 @@ import { parseQueryParams } from "util/functions/api";
 import { FetchHook } from "infrastructure/api/API";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import type {
+  AchievementType,
   AvatarModel,
   GetFollowerModel,
   GetUserPublicProfileModel,
@@ -38,13 +39,12 @@ export interface UserProfile {
 
 export type ProfileAchievement = {
   badgeIconName: "achievement-1" | "achievement-2";
+  titleKey: string;
   userProgress: {
     value: number;
     goal: number;
   };
-  description?: string;
   id: Id;
-  title: string;
 };
 
 export interface ProfileCourse {
@@ -57,6 +57,23 @@ export interface ProfileCourse {
 
 const usersClient = getUsers();
 
+const ACHIEVEMENT_TYPE_TO_TITLE_KEY: Record<AchievementType, string> = {
+  0: "achievements.achievementsByType.lessonCompletions",
+  1: "achievements.achievementsByType.reviewCompletions",
+  2: "achievements.achievementsByType.courseCompletions",
+  3: "achievements.achievementsByType.streakDays",
+  4: "achievements.achievementsByType.perfectLessonCompletions",
+  5: "achievements.achievementsByType.feedReactions",
+  6: "achievements.achievementsByType.leagueTier",
+  7: "achievements.achievementsByType.leagueFirstPlaceAny",
+  8: "achievements.achievementsByType.leagueFirstPlaceMythic",
+};
+
+const toAchievementBadgeIconName = (
+  achievementType: AchievementType,
+): "achievement-1" | "achievement-2" =>
+  achievementType % 2 === 0 ? "achievement-1" : "achievement-2";
+
 const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
   id: model.id,
   followers: model.followers,
@@ -68,21 +85,23 @@ const toUserProfile = (model: GetUserPublicProfileModel): UserProfile => ({
   isFollowed: model.isFollowed,
   username: model.username,
   streak: model.streak,
-  achievements: (model.achievements ?? []).map((achievement, index) => ({
-    badgeIconName: index % 2 === 0 ? "achievement-1" : "achievement-2",
+  achievements: (model.achievements ?? []).map((achievement) => ({
+    badgeIconName: toAchievementBadgeIconName(achievement.type),
+    titleKey:
+      ACHIEVEMENT_TYPE_TO_TITLE_KEY[achievement.type] ??
+      "achievements.achievements",
     userProgress: {
-      value: achievement.unlockedAt ? 1 : 0,
-      goal: 1,
+      value: achievement.currentLevel,
+      goal: Math.max(achievement.achievementMaxLevel, 1),
     },
-    description: achievement.description,
-    id: achievement.achievementId,
-    title: achievement.name,
+    id: achievement.userAchievementId ?? achievement.achievementId,
   })),
   courses: (model.courses ?? []).map((course) => ({
     id: course.id,
     name: course.name,
     type: "course",
-    userProgress: course.userProgress,
+    logoId: course.logoId ?? undefined,
+    userProgress: course.userProgress ?? undefined,
   })),
 });
 

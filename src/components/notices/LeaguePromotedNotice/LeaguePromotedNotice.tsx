@@ -7,26 +7,33 @@ import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 import LeagueIcon from "components/leaderboard/LeagueIcon";
 import type { LeagueIconVariant } from "components/leaderboard/LeagueIcon";
 
-import { LeaderboardLeague } from "infrastructure/api/generated/models";
-import type { Notice } from "infrastructure/api/users/me/notices/NoticeService";
+import {
+  LeagueType,
+  type LeaguePromotedNoticeModel,
+} from "infrastructure/api/generated/models";
 import useNotices from "infrastructure/services/NoticeProvider";
 
 export interface LeaguePromotedNoticeProps {
-  notice: Notice;
+  notice: LeaguePromotedNoticeModel;
 }
 
-const leagueTranslationMap: Partial<Record<LeaderboardLeague, LeagueIconVariant>> = {
-  [LeaderboardLeague.Bronze]: "bronze",
-  [LeaderboardLeague.Silver]: "silver",
-  [LeaderboardLeague.Gold]: "gold",
-  [LeaderboardLeague.Platinum]: "platinum",
-  [LeaderboardLeague.Diamond]: "diamond",
+const leagueTranslationMap: Record<LeagueType, LeagueIconVariant> = {
+  [LeagueType.Iron]: "iron",
+  [LeagueType.Bronze]: "bronze",
+  [LeagueType.Silver]: "silver",
+  [LeagueType.Gold]: "gold",
+  [LeagueType.Platinum]: "platinum",
+  [LeagueType.Emerald]: "emerald",
+  [LeagueType.Ruby]: "ruby",
+  [LeagueType.Sapphire]: "sapphire",
+  [LeagueType.Diamond]: "diamond",
+  [LeagueType.Mythic]: "mythic",
 };
 
 const LeaguePromotedNotice: React.FC<LeaguePromotedNoticeProps> = ({ notice }) => {
   const { t } = useTranslation("common");
   const { markNoticeAsRead } = useNotices();
-  const league = leagueTranslationMap[notice.league ?? LeaderboardLeague.Bronze] ?? "bronze";
+  const league = leagueTranslationMap[notice.league ?? LeagueType.Iron] ?? "iron";
 
   return (
     <NoticeDialog

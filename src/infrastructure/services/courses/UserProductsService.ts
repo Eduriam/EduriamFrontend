@@ -3,7 +3,10 @@ import { Modify } from "domain/models/utils/modify";
 import { parseQueryParams } from "util/functions/api";
 
 import { FetchHook } from "infrastructure/api/API";
-import type { CourseStudyModeNullableOptional, ProductModelBase } from "infrastructure/api/generated/models";
+import type {
+  CourseStudyModeNullableOptional,
+  ProductBaseModel,
+} from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
@@ -12,10 +15,10 @@ const usersClient = getUsers();
 
 export interface UserProductsParams {}
 
-export type UserProduct = ProductModelBase & {
+export type UserProduct = ProductBaseModel & {
   /**
    * Compatibility field used by Study Plan while OpenAPI models for users/me/products
-   * do not include study mode in ProductModelBase.
+   * do not include study mode in ProductBaseModel.
    */
   studyMode?: CourseStudyModeNullableOptional | null;
 };
