@@ -26,12 +26,12 @@ import CourseLogo, {
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import {
   isLearningPathProduct,
   StudyProduct,
   StudyProductService,
 } from "infrastructure/services/courses/StudyProductService";
+import { RecommendedProductsService } from "infrastructure/services/courses/RecommendedProductsService";
 
 const DEFAULT_CATEGORY = "other";
 
@@ -126,7 +126,8 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   const { t: tForm } = useTranslation("form");
   const navigateWithTransition = useTransitionNavigationHandler();
 
-  const { recommendedProducts } = RecommendedCoursesAPI.useRecommendedCourses();
+  const { recommendedProducts } =
+    RecommendedProductsService.useRecommendedProducts();
   const { products } = StudyProductService.useProducts();
 
   const displayRecommended = (recommendedProducts ?? []).slice(0, 2);

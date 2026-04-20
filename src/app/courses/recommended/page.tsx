@@ -22,11 +22,11 @@ import CourseLogo, {
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
 import {
   isLearningPathProduct,
   StudyProduct,
 } from "infrastructure/services/courses/StudyProductService";
+import { RecommendedProductsService } from "infrastructure/services/courses/RecommendedProductsService";
 
 function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
   const name = course.name?.toLowerCase() ?? "";
@@ -94,7 +94,8 @@ const RecommendedCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
 
-  const { recommendedProducts } = RecommendedCoursesAPI.useRecommendedCourses();
+  const { recommendedProducts } =
+    RecommendedProductsService.useRecommendedProducts();
   const displayRecommended = recommendedProducts ?? [];
   const premiumLabel = t("courses.premiumLabel");
 

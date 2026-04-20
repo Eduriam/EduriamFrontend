@@ -17,7 +17,7 @@ import type {
   ProductCodingExperience,
   ProductUserGoal,
 } from "infrastructure/api/generated/models";
-import RecommendedCoursesAPI from "infrastructure/api/users/me/recommended-courses/RecommendedCoursesAPI";
+import { RecommendedProductsService } from "infrastructure/services/courses/RecommendedProductsService";
 import useAuth from "infrastructure/services/AuthProvider";
 import { StudyProductService } from "infrastructure/services/courses/StudyProductService";
 import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
@@ -70,7 +70,7 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
   const [showAllCourses, setShowAllCourses] = useState(false);
 
   const { recommendedProducts: recommendedFromApi } =
-    RecommendedCoursesAPI.useRecommendedCourses();
+    RecommendedProductsService.useRecommendedProducts();
   const { products } = StudyProductService.useProducts();
   const recommendedCourses = (recommendedFromApi ?? [])
     .filter((course) => !course.premium)
