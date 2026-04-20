@@ -11,7 +11,9 @@ import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
 import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
 import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
@@ -32,6 +34,11 @@ import AchievementBadge from "./components/AchievementBadge/AchievementBadge";
 import CourseListItem from "./components/CourseListItem/CourseListItem";
 import DayStreakCard from "./components/DayStreakCard/DayStreakCard";
 import LeagueCard from "./components/LeagueCard/LeagueCard";
+import {
+  isAchievementCompleted,
+  toAchievementBadgeIconName,
+  toAchievementTitleKey,
+} from "./util/achievementUtils";
 
 export interface IUsersPage {
   params: {
@@ -41,9 +48,9 @@ export interface IUsersPage {
 
 function resolveCourseLogoVariant(
   name: string,
-  logoId?: string,
+  logoId?: string | null,
 ): "HTML" | "JavaScript" {
-  const mapped = getVariantFromLogoId(logoId);
+  const mapped = getVariantFromLogoId(logoId ?? undefined);
 
   if (mapped) {
     return mapped;
@@ -238,7 +245,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               data-test="current-league-section"
             >
               <DayStreakCard streak={userProfile.streak} />
-              <LeagueCard league={userProfile.league} />
+              <LeagueCard league="locked" />
             </Stack>
           </Box>
         )}
@@ -269,10 +276,10 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           <Stack direction="row" justifyContent="space-between">
             {achievements.slice(0, 5).map((achievement) => (
               <AchievementBadge
-                key={achievement.id}
-                badgeIconName={achievement.badgeIconName}
-                name={t(achievement.titleKey)}
-                completed={achievement.userProgress.value >= achievement.userProgress.goal}
+                key={achievement.achievementId}
+                badgeIconName={toAchievementBadgeIconName(achievement.type)}
+                name={t(toAchievementTitleKey(achievement.type))}
+                completed={isAchievementCompleted(achievement)}
               />
             ))}
           </Stack>
@@ -292,9 +299,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               icon="arrowRight"
               variant="text"
               color="textPrimary"
-              onClick={navigateWithTransition(
-                `/users/${safeUserId}/courses`,
-              )}
+              onClick={navigateWithTransition(`/users/${safeUserId}/courses`)}
               data-test="show-all-enrolled-courses-button"
             />
           </Stack>
@@ -306,7 +311,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                   courseId={course.id}
                   title={course.name}
                   progress={course.userProgress ?? 0}
-                  variant={course.type}
+                  variant="course"
                   logoVariant={resolveCourseLogoVariant(
                     course.name,
                     course.logoId,

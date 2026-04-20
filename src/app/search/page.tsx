@@ -55,7 +55,7 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user } = useAuth();
   const { users, mutate } = UsersService.useUsers({
-    searchName: searchPrompt.toLowerCase(),
+    SearchName: searchPrompt.toLowerCase(),
   });
 
   const userResults = normalizeUserList<GetUserSimpleModel>(users);
@@ -127,4 +127,3 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
 };
 
 export default SearchPagePage;
-

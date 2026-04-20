@@ -1,18 +1,19 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
 import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { Stack } from "@mui/material";
 import Divider from "@mui/material/Divider";
 
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { UsersService } from "infrastructure/services/users/UsersService";
 
@@ -26,9 +27,9 @@ export interface IUsersCoursesPage {
 
 function resolveCourseLogoVariant(
   name: string,
-  logoId?: string,
+  logoId?: string | null,
 ): "HTML" | "JavaScript" {
-  const mapped = getVariantFromLogoId(logoId);
+  const mapped = getVariantFromLogoId(logoId ?? undefined);
 
   if (mapped) {
     return mapped;
@@ -55,15 +56,20 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
 
   return (
     <PageRoot>
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("userProfile.userCourses")}
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition(`/users/${safeUserId}`, {
-            direction: "back",
-          }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            header={t("userProfile.userCourses")}
+            leftButton={{
+              icon: "arrowLeft",
+              onClick: navigateWithTransition(`/users/${safeUserId}`, {
+                direction: "back",
+              }),
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer width="small" justifyContent="flex-start">
         <Stack
@@ -77,7 +83,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
                 courseId={course.id}
                 title={course.name}
                 progress={course.userProgress ?? 0}
-                variant={course.type}
+                variant={"course"}
                 logoVariant={resolveCourseLogoVariant(
                   course.name,
                   course.logoId,
