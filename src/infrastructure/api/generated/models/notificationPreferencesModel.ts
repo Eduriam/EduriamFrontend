@@ -11,6 +11,5 @@ export interface NotificationPreferencesModel {
   leaderboardStatus: boolean;
   newFollower: boolean;
   friendActivity: boolean;
-  /** @nullable */
-  studyReminderMinutesBefore?: number | null;
+  smartStudyReminderEnabled: boolean;
 }

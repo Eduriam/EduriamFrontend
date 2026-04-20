@@ -587,6 +587,7 @@
         "followers": "Sledující"
       },
       "items": {
+        "smartStudyReminderEnabled": "Chytré připomenutí studia",
         "dailyPractice": "Každodenní učení",
         "streakFreezeUsed": "Při použití zmrazení denní řady",
         "leaderboardStatus": "Umístění v lize",

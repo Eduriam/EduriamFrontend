@@ -4,9 +4,12 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { CourseStudyMode } from "./courseStudyMode";
 import type { PreRequisiteModel } from "./preRequisiteModel";
+import type { ProductType } from "./productType";
 
 export interface ProductBaseModel {
+  type: ProductType;
   id: number;
   name: string;
   /** @nullable */
@@ -29,4 +32,5 @@ export interface ProductBaseModel {
   prerequisites: PreRequisiteModel[];
   /** @nullable */
   upcomingLessonId?: number | null;
+  studyMode?: CourseStudyMode | null;
 }

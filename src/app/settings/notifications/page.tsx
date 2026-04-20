@@ -22,11 +22,7 @@ import { optimisticMutationOption } from "infrastructure/api/API";
 import type { NotificationPreferencesModel } from "infrastructure/api/generated/models";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 
-// Todo: remove after API switches from studyReminderMinutesBefore to "smartStudyReminder: boolean"
-type NotificationTogglePreferenceKey = Exclude<
-  keyof NotificationPreferencesModel,
-  "studyReminderMinutesBefore"
->;
+type NotificationTogglePreferenceKey = keyof NotificationPreferencesModel;
 
 type NotificationSettingItem = {
   id: NotificationTogglePreferenceKey;
@@ -40,6 +36,7 @@ const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferencesModel = {
   leaderboardStatus: false,
   newFollower: true,
   friendActivity: false,
+  smartStudyReminderEnabled: false,
 };
 
 const SettingsNotificationsPage: React.FC = () => {
@@ -60,6 +57,11 @@ const SettingsNotificationsPage: React.FC = () => {
         id: "learning-reminders",
         titleKey: "settings.notifications.sections.learningReminders",
         items: [
+          {
+            id: "smartStudyReminderEnabled",
+            labelKey: "settings.notifications.items.smartStudyReminderEnabled",
+            dataTest: "notification-smart-study-reminder-switch-button",
+          },
           {
             id: "dailyPractice",
             labelKey: "settings.notifications.items.dailyPractice",

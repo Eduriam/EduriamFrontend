@@ -15,13 +15,7 @@ const usersClient = getUsers();
 
 export interface UserProductsParams {}
 
-export type UserProduct = ProductBaseModel & {
-  /**
-   * Compatibility field used by Study Plan while OpenAPI models for users/me/products
-   * do not include study mode in ProductBaseModel.
-   */
-  studyMode?: CourseStudyModeNullableOptional | null;
-};
+export type UserProduct = ProductBaseModel;
 
 const useUserProductsQuery = (
   params: UserProductsParams = {},

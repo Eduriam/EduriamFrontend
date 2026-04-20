@@ -11,12 +11,13 @@ import Typography from "@mui/material/Typography";
 import CourseLogo, {
   type CourseLogoVariant,
 } from "components/courses/CourseLogo/CourseLogo";
+import { ProductType } from "infrastructure/api/generated/models";
 
 export interface ICourseListItem {
   courseId: Id;
   title: string;
   progress?: number;
-  variant?: "course" | "learning-path";
+  variant?: ProductType;
   logoVariant?: CourseLogoVariant;
   "data-test"?: string;
 }
@@ -25,7 +26,7 @@ const CourseListItem: React.FC<ICourseListItem> = ({
   courseId,
   title,
   progress = 0,
-  variant = "course",
+  variant = ProductType.Course,
   logoVariant = "HTML",
   "data-test": dataTest,
 }) => {
@@ -33,7 +34,7 @@ const CourseListItem: React.FC<ICourseListItem> = ({
   const navigateWithTransition = useTransitionNavigationHandler();
   const clampedProgress = Math.max(0, Math.min(100, progress));
   const coursePath =
-    variant === "learning-path"
+    variant === ProductType.StudyPath
       ? `/learning-paths/${courseId}`
       : `/courses/${courseId}`;
 
@@ -73,7 +74,7 @@ const CourseListItem: React.FC<ICourseListItem> = ({
             {title}
           </Typography>
 
-          {variant === "learning-path" && (
+          {variant === ProductType.StudyPath && (
             <Typography variant="body2" color="text.secondary">
               {t("courses.learningPathLabel")}
             </Typography>

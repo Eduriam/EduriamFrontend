@@ -17,5 +17,5 @@ export interface NotificationPreferencesPatchModel {
   /** @nullable */
   friendActivity?: boolean | null;
   /** @nullable */
-  studyReminderMinutesBefore?: number | null;
+  smartStudyReminderEnabled?: boolean | null;
 }

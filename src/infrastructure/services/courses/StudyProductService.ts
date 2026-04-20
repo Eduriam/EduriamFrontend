@@ -4,12 +4,13 @@ import { parseQueryParams } from "util/functions/api";
 
 import { FetchHook } from "infrastructure/api/API";
 import { getProducts } from "infrastructure/api/generated/products/products";
-import type {
-  ProductBaseModelPagedResult,
-  ProductCourseModel,
-  ProductLearningPathModel,
-  ProductMemberSummaryModel,
-  CourseChapterSummaryModel,
+import {
+  ProductType,
+  type CourseChapterSummaryModel,
+  type ProductBaseModelPagedResult,
+  type ProductCourseModel,
+  type ProductLearningPathModel,
+  type ProductMemberSummaryModel,
 } from "infrastructure/api/generated/models";
 import useAPI from "infrastructure/api/hooks/useAPI";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
@@ -27,13 +28,13 @@ export interface StudyProductParams {}
 export function isCourseProduct(
   product: StudyProduct | null | undefined,
 ): product is CourseProduct {
-  return Boolean(product && "chapters" in product);
+  return product?.type === ProductType.Course;
 }
 
 export function isLearningPathProduct(
   product: StudyProduct | null | undefined,
 ): product is StudyPathProduct {
-  return Boolean(product && "memberProducts" in product);
+  return product?.type === ProductType.StudyPath;
 }
 
 function useStudyProductQuery(

@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 import type { AvatarModel } from "./avatarModel";
+import type { LeagueType } from "./leagueType";
 import type { SubscriptionModel } from "./subscriptionModel";
 import type { UserRole } from "./userRole";
 
@@ -21,6 +22,7 @@ export interface GetUserModel {
   role: UserRole;
   energy: number;
   streakFreezes: number;
+  league?: LeagueType | null;
   accountInitialized: boolean;
   activeSubscription?: SubscriptionModel | null;
   avatar?: AvatarModel | null;

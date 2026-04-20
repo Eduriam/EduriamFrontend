@@ -83,7 +83,7 @@ const UsersCoursesPage: React.FC<IUsersCoursesPage> = ({ params }) => {
                 courseId={course.id}
                 title={course.name}
                 progress={course.userProgress ?? 0}
-                variant={"course"}
+                variant={course.type}
                 logoVariant={resolveCourseLogoVariant(
                   course.name,
                   course.logoId,
