@@ -479,6 +479,118 @@
       "streamingInterval": 0
     },
     {
+      "uuid": "f34d1a4a-5b7f-4b0f-8f74-5ad526f9d983",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup-confirm",
+      "responses": [
+        {
+          "uuid": "1b1e5dbf-95cc-4496-8f64-e719e68a4cdc",
+          "body": "{\n  \"code\": \"EMAIL_CONFIRMATION_TOKEN_EXPIRED\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_CONFIRMATION_TOKEN_EXPIRED (confirmationToken: expired-token)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "confirmationToken",
+              "value": "expired-token",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "8b6627de-2c2e-4d70-bcc4-cc9f2e86c9e8",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "confirmationToken",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d7e31dc6-0c8f-44df-b891-cd7d495ac01b",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup-resend-confirmation",
+      "responses": [
+        {
+          "uuid": "b8c1fad3-a0b7-4d00-a9b4-0738d5caf95d",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
       "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
       "documentation": "",
       "method": "post",
@@ -3013,6 +3125,26 @@
       ]
     },
     {
+      "uuid": "8df38f4b-a7b0-44a2-bc67-f8ee5aec52be",
+      "name": "signup-confirm",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "f34d1a4a-5b7f-4b0f-8f74-5ad526f9d983"
+        }
+      ]
+    },
+    {
+      "uuid": "ec7f3a3a-56a8-4159-a0d5-ecadb4e557f4",
+      "name": "signup-resend-confirmation",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "d7e31dc6-0c8f-44df-b891-cd7d495ac01b"
+        }
+      ]
+    },
+    {
       "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a",
       "name": "notices",
       "children": [
@@ -3365,6 +3497,14 @@
     {
       "type": "route",
       "uuid": "2d4b27ae-489b-4f3c-9d88-c02d77724116"
+    },
+    {
+      "type": "folder",
+      "uuid": "8df38f4b-a7b0-44a2-bc67-f8ee5aec52be"
+    },
+    {
+      "type": "folder",
+      "uuid": "ec7f3a3a-56a8-4159-a0d5-ecadb4e557f4"
     }
   ],
   "callbacks": [

@@ -3,6 +3,7 @@ import type {
   GetUserModel,
   RegisterUserModel,
   RegistrationConfirmModel,
+  ResendEmailConfirmationModel,
 } from "infrastructure/api/generated/models";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
@@ -40,6 +41,16 @@ export class SignupService {
   static async confirmSignup(data: RegistrationConfirmModel): Promise<void> {
     try {
       await authClient.postApiAuthSignupConfirm(data);
+    } catch (error) {
+      return toErrorCode(error);
+    }
+  }
+
+  static async resendSignupConfirmation(
+    data: ResendEmailConfirmationModel,
+  ): Promise<void> {
+    try {
+      await authClient.postApiAuthSignupResendConfirmation(data);
     } catch (error) {
       return toErrorCode(error);
     }

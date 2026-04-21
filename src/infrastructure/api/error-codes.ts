@@ -10,6 +10,7 @@ const errorCodes: Record<string, string> = {
   googleAccountExists: "GOOGLE_ACCOUNT_EXISTS",
   invalidGoogleAuthorizationUrl: "INVALID_GOOGLE_AUTHORIZATION_URL",
   externalAuthError: "EXTERNAL_AUTH_ERROR",
+  emailConfirmationTokenExpired: "EMAIL_CONFIRMATION_TOKEN_EXPIRED",
 };
 
 export default errorCodes;

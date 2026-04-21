@@ -77,7 +77,12 @@
     "emailVerifiedDescription": "Nyní můžete aplikaci používat!",
     "continue": "Pokračovat",
     "invalidLink": "Neplatný odkaz pro ověření emailu.",
-    "backToSignin": "Zpět na přihlášení"
+    "backToSignin": "Zpět na přihlášení",
+    "expiredTitle": "Odkaz vypršel",
+    "expiredDescription": "Platnost odkazu pro ověření emailu vypršela. Pošlete si nový potvrzovací email.",
+    "resendButton": "Poslat potvrzovací email znovu",
+    "resendSuccess": "Potvrzovací email jsme znovu odeslali.",
+    "resendError": "Nepodařilo se odeslat nový potvrzovací email. Zkuste to prosím znovu."
   },
 
   "onboarding": {
