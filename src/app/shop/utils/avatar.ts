@@ -1,13 +1,18 @@
 import {
+  AvatarAccessories,
   AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
   AvatarClothing,
   AvatarExpression,
   AvatarEyeColor,
   AvatarEyes,
+  AvatarGlassesColor,
   AvatarHair,
   AvatarHairColor,
-  AvatarSkinColor,
+  AvatarHeadwear,
   type AvatarModel,
+  AvatarSkinColor,
 } from "infrastructure/api/generated/models";
 
 export const DEFAULT_SHOP_AVATAR: AvatarModel = {
@@ -17,6 +22,11 @@ export const DEFAULT_SHOP_AVATAR: AvatarModel = {
   expression: AvatarExpression.Expression1,
   hair: AvatarHair.Hair1,
   hairColor: AvatarHairColor.DarkBrown,
+  accessories: AvatarAccessories.None,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.None,
+  beardColor: AvatarBeardColor.DarkBrown,
+  headwear: AvatarHeadwear.None,
   clothing: AvatarClothing.Shirt1,
   backgroundColor: AvatarBackgroundColor.LightGray,
 };
