@@ -6,7 +6,9 @@
  */
 import type { CourseChapterSummaryModel } from "./courseChapterSummaryModel";
 import type { ProductBaseModel } from "./productBaseModel";
+import type { ProductType } from "./productType";
 
 export type ProductCourseModel = ProductBaseModel & {
+  readonly type: ProductType;
   chapters: CourseChapterSummaryModel[];
 };

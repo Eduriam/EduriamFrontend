@@ -9,7 +9,6 @@ import type { PreRequisiteModel } from "./preRequisiteModel";
 import type { ProductType } from "./productType";
 
 export interface ProductBaseModel {
-  type: ProductType;
   id: number;
   name: string;
   /** @nullable */
@@ -33,4 +32,5 @@ export interface ProductBaseModel {
   /** @nullable */
   upcomingLessonId?: number | null;
   studyMode?: CourseStudyMode | null;
+  readonly type: ProductType;
 }

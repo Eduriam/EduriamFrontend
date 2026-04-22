@@ -111,6 +111,7 @@ export * from "./productMemberSummaryModel";
 export * from "./productPreferencesModel";
 export * from "./productPreferencesPatchModel";
 export * from "./productPreferencesPatchModelOptional";
+export * from "./productType";
 export * from "./productUserGoal";
 export * from "./productUserGoalNullableOptional";
 export * from "./refreshTokenModel";

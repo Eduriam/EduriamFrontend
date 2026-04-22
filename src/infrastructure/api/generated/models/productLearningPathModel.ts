@@ -6,7 +6,9 @@
  */
 import type { ProductBaseModel } from "./productBaseModel";
 import type { ProductMemberSummaryModel } from "./productMemberSummaryModel";
+import type { ProductType } from "./productType";
 
 export type ProductLearningPathModel = ProductBaseModel & {
+  readonly type: ProductType;
   memberProducts: ProductMemberSummaryModel[];
 };
