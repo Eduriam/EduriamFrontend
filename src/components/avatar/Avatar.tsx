@@ -48,28 +48,7 @@ export type BeardKey = "beard_1" | "beard_2" | "none";
 export type HeadwearKey = "hat_1" | "hat_2" | "none";
 export type ClothingKey = "shirt_1" | "shirt_2";
 
-interface LegacyAvatarDefinition {
-  skinColor?: SkinColorKey;
-  eyes?: EyesKey;
-  eyeColor?: EyeColorKey;
-  expression?: ExpressionKey;
-  hair?: HairKey;
-  hairColor?: HairColorKey;
-  accessories?: AccessoriesKey;
-  glassesColor?: GlassesColorKey;
-  beard?: BeardKey;
-  beardColor?: BeardColorKey;
-  headwear?: HeadwearKey;
-  clothing?: ClothingKey;
-  backgroundColor?: BackgroundColorKey;
-}
-
-/**
- * Avatar definition sourced from generated OpenAPI model.
- * Legacy string shape stays supported during migration.
- * TODO: remove legacy definition if possible
- */
-export type AvatarDefinition = AvatarModel | LegacyAvatarDefinition;
+export type AvatarDefinition = AvatarModel;
 
 export interface AvatarProps {
   definition: AvatarDefinition;

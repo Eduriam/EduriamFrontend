@@ -1,18 +1,38 @@
 import type { AvatarDefinition } from "./Avatar";
+import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  AvatarSkinColor,
+} from "infrastructure/api/generated/models";
 
 /**
  * Default avatar with background and typical layer options.
  * Add body/eyes/expression/hair SVG assets to public/images/avatar/ to see full avatar.
  */
 export const defaultAvatar: AvatarDefinition = {
-  skinColor: "light",
-  eyes: "eyes_1",
-  eyeColor: "brown",
-  expression: "expression_1",
-  hair: "hair_1",
-  hairColor: "mediumBrown",
-  clothing: "shirt_1",
-  backgroundColor: "lightGray",
+  skinColor: AvatarSkinColor.Light,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.Brown,
+  expression: AvatarExpression.Expression1,
+  hair: AvatarHair.Hair1,
+  hairColor: AvatarHairColor.MediumBrown,
+  accessories: AvatarAccessories.None,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.None,
+  beardColor: AvatarBeardColor.Black,
+  headwear: AvatarHeadwear.None,
+  clothing: AvatarClothing.Shirt1,
+  backgroundColor: AvatarBackgroundColor.LightGray,
 };
 
 /**
@@ -20,7 +40,19 @@ export const defaultAvatar: AvatarDefinition = {
  * Demonstrates fallback when no layer assets exist.
  */
 export const minimalAvatar: AvatarDefinition = {
-  backgroundColor: "lightGray",
+  skinColor: AvatarSkinColor.Light,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.Brown,
+  expression: AvatarExpression.Expression1,
+  hair: AvatarHair.None,
+  hairColor: AvatarHairColor.Black,
+  accessories: AvatarAccessories.None,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.None,
+  beardColor: AvatarBeardColor.Black,
+  headwear: AvatarHeadwear.None,
+  clothing: AvatarClothing.Shirt1,
+  backgroundColor: AvatarBackgroundColor.LightGray,
 };
 
 /**
@@ -28,17 +60,17 @@ export const minimalAvatar: AvatarDefinition = {
  * Requires all corresponding SVG assets in public/images/avatar/.
  */
 export const fullAvatar: AvatarDefinition = {
-  skinColor: "lightMedium",
-  eyes: "eyes_1",
-  eyeColor: "darkBrown",
-  expression: "expression_2",
-  hair: "hair_2",
-  hairColor: "black",
-  accessories: "glasses_1",
-  glassesColor: "black",
-  beard: "beard_1",
-  beardColor: "black",
-  headwear: "hat_1",
-  clothing: "shirt_2",
-  backgroundColor: "pastelCyan",
+  skinColor: AvatarSkinColor.LightMedium,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.DarkBrown,
+  expression: AvatarExpression.Expression2,
+  hair: AvatarHair.Hair2,
+  hairColor: AvatarHairColor.Black,
+  accessories: AvatarAccessories.Glasses1,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.Beard1,
+  beardColor: AvatarBeardColor.Black,
+  headwear: AvatarHeadwear.Hat1,
+  clothing: AvatarClothing.Shirt2,
+  backgroundColor: AvatarBackgroundColor.PastelCyan,
 };
