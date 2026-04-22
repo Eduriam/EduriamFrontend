@@ -33,7 +33,7 @@ export interface IHomePage {}
 type HomeTab = "learn" | "review";
 
 const MAX_STREAK_FREEZES = 2;
-const MAX_ENERGY_POINTS = 40;
+const MAX_ENERGY_POINTS = 10;
 
 const HomePage: React.FC<IHomePage> = () => {
   const { t } = useTranslation("common");
