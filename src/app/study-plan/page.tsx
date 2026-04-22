@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Header,
   PageRoot,
@@ -15,6 +14,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { CourseStudyMode } from "infrastructure/api/generated/models";
@@ -270,13 +270,9 @@ const StudyPlanPage: React.FC = () => {
       <PageRoot data-test="study-plan-page">
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "arrowLeft",
-                onClick: navigateWithTransition("/", {
-                  direction: "back",
-                }),
-              }}
+            <BackNavbar
+              withTransition
+              route="/"
               rightButton={{
                 icon: "add",
                 onClick: navigateWithTransition("/courses"),
@@ -302,13 +298,9 @@ const StudyPlanPage: React.FC = () => {
       >
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "chevronLeft",
-                onClick: navigateWithTransition("/", {
-                  direction: "back",
-                }),
-              }}
+            <BackNavbar
+              withTransition
+              route="/"
               rightButton={{
                 icon: "add",
                 onClick: navigateWithTransition("/courses"),

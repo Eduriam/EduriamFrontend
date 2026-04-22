@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   Chip,
   ContentContainer,
   Header,
@@ -25,6 +24,7 @@ import CertificateLockedDrawer from "components/courses/CertificateLockedDrawer/
 import ChapterCard from "components/courses/ChapterCard/ChapterCard";
 import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDetailsDrawer";
 import CourseLogo from "components/courses/CourseLogo/CourseLogo";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { UserRole } from "infrastructure/api/generated/models";
@@ -165,13 +165,9 @@ const CoursePage: React.FC<ICoursePage> = () => {
       <PageRoot data-test="course-page">
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "chevronLeft",
-                onClick: navigateWithTransition("/courses", {
-                  direction: "back",
-                }),
-              }}
+            <BackNavbar
+              withTransition
+              route="/courses"
               rightButton={{
                 icon: "info",
                 onClick: handleOpenDetails,

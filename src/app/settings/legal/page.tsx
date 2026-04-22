@@ -1,11 +1,12 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { SETTINGS_LEGAL_ARTICLES } from "./content";
@@ -16,13 +17,12 @@ const SettingsLegalPage: React.FC = () => {
 
   return (
     <PageRoot data-test="settings-legal-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        header={t("title")}
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/settings", { direction: "back" }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={
+          <BackNavbar withTransition route="/settings" header={t("title")} />
+        }
+        mainNavigation="hidden"
+      />
 
       <ContentContainer
         width="small"

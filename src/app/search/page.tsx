@@ -2,7 +2,7 @@
 
 import type { Id } from "domain/models/types/core";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import UserList from "components/atoms/UserList/UserList";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -84,12 +85,7 @@ const SearchPagePage: React.FC<ISearchPagePage> = () => {
     <PageRoot data-test="search-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition("/", { direction: "back" }),
-            }}
-          />
+          <BackNavbar withTransition route="/" />
         }
         mainNavigation="hidden"
       />

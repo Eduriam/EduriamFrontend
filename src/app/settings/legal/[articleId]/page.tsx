@@ -1,15 +1,14 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Header,
   PageRoot,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Typography from "@mui/material/Typography";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { getSettingsLegalArticle } from "../content";
@@ -24,19 +23,14 @@ const SettingsLegalArticlePage: React.FC<ISettingsLegalArticlePage> = ({
   params,
 }) => {
   const { t } = useTranslation("legal");
-  const navigateWithTransition = useTransitionNavigationHandler();
   const article = getSettingsLegalArticle(params.articleId);
 
   return (
     <PageRoot data-test="settings-legal-article-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "arrowLeft",
-          onClick: navigateWithTransition("/settings/legal", {
-            direction: "back",
-          }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={<BackNavbar withTransition route="/settings/legal" />}
+        mainNavigation="hidden"
+      />
 
       <ContentContainer
         width="small"

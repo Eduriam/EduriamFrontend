@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   Chip,
   ContentContainer,
   Header,
@@ -27,6 +26,7 @@ import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDe
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { UserRole } from "infrastructure/api/generated/models";
@@ -174,13 +174,9 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
       <PageRoot data-test="learning-path-page">
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "chevronLeft",
-                onClick: navigateWithTransition("/courses", {
-                  direction: "back",
-                }),
-              }}
+            <BackNavbar
+              withTransition
+              route="/courses"
               rightButton={{
                 icon: "info",
                 onClick: handleOpenDetails,

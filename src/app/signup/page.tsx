@@ -2,26 +2,20 @@
 
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 
 import SignupForm from "components/molecules/SignupForm/SignupForm";
 
 export interface ISignupPage {}
 
 const SignupPage: React.FC<ISignupPage> = () => {
-  const navigateWithTransition = useTransitionNavigationHandler();
-
   return (
     <PageRoot data-test="signup-page">
-      <PageNavigation topNavigation={<BasicNavbar
-        leftButton={{
-          icon: "chevronLeft",
-          onClick: navigateWithTransition("/welcome", {
-            direction: "back",
-          }),
-        }}
-      />} mainNavigation="hidden" />
+      <PageNavigation
+        topNavigation={<BackNavbar withTransition route="/welcome" />}
+        mainNavigation="hidden"
+      />
       <ContentContainer width="small" justifyContent="space-between">
         <SignupForm />
       </ContentContainer>

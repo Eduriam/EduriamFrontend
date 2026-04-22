@@ -2,7 +2,6 @@
 
 import type { Id } from "domain/models/types/core";
 import {
-  BasicNavbar,
   ContentContainer,
   PageRoot,
   Tabs,
@@ -16,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import UserList from "components/atoms/UserList/UserList";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -149,14 +149,7 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
     <PageRoot>
       <PageNavigation
         topNavigation={
-          <BasicNavbar
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition(`/users/${safeUserId}`, {
-                direction: "back",
-              }),
-            }}
-          />
+          <BackNavbar withTransition route={`/users/${safeUserId}`} />
         }
         mainNavigation="hidden"
       />

@@ -3,7 +3,6 @@
 import type { Id } from "domain/models/types/core";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Header,
   IconButton,
@@ -24,6 +23,7 @@ import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import {
@@ -205,14 +205,7 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
       >
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "arrowLeft",
-                onClick: navigateWithTransition("/", {
-                  direction: "back",
-                }),
-              }}
-            />
+            <BackNavbar withTransition route="/" />
           }
           mainNavigation="desktopOnly"
         />

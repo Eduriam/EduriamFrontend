@@ -3,7 +3,6 @@
 import type { Id } from "domain/models/types/core";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Header,
   LargeButton,
@@ -20,6 +19,7 @@ import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import {
@@ -118,14 +118,7 @@ const RecommendedCoursesPage: React.FC = () => {
       >
         <PageNavigation
           topNavigation={
-            <BasicNavbar
-              leftButton={{
-                icon: "arrowLeft",
-                onClick: navigateWithTransition("/courses", {
-                  direction: "back",
-                }),
-              }}
-            />
+            <BackNavbar withTransition route="/courses" />
           }
           mainNavigation="hidden"
         />

@@ -1,14 +1,13 @@
 "use client";
 
-import { BasicNavbar, ContentContainer, PageRoot } from "@eduriam/ui-core";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-
-import { useRouter } from "next/navigation";
 
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import SubscriptionOverview from "components/layouts/SubscriptionOverview/SubscriptionOverview";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import useAuth from "infrastructure/services/AuthProvider";
@@ -18,18 +17,15 @@ export interface IManageSubscriptionPage {}
 const ManageSubscriptionPage: React.FC<IManageSubscriptionPage> = () => {
   const { user } = useAuth();
   const { t } = useTranslation("common");
-  const router = useRouter();
 
   return (
     <PageRoot data-test="manage-subscription-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
+          <BackNavbar
+            withTransition={false}
+            useRouterBack
             header={t("manageSubscription.title")}
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: () => router.back(),
-            }}
           />
         }
         mainNavigation="hidden"

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Drawer,
   IconButton,
@@ -10,7 +9,6 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo, useState } from "react";
 
@@ -22,6 +20,7 @@ import Typography from "@mui/material/Typography";
 import CourseLogo, {
   getVariantFromLogoId,
 } from "components/courses/CourseLogo/CourseLogo";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -32,7 +31,6 @@ import {
 
 const SettingsCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
-  const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
   const { userProducts = [], mutate } = UserProductsService.useUserProducts();
@@ -67,14 +65,10 @@ const SettingsCoursesPage: React.FC = () => {
     <PageRoot data-test="manage-courses-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
+          <BackNavbar
+            withTransition
+            route="/settings"
             header={t("settings.items.courses")}
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition("/settings", {
-                direction: "back",
-              }),
-            }}
           />
         }
         mainNavigation="hidden"

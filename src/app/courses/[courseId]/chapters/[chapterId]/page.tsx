@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Header,
   PageRoot,
@@ -19,6 +18,7 @@ import Stack from "@mui/material/Stack";
 
 import LessonListItem from "components/courses/LessonListItem/LessonListItem";
 import SectionCard from "components/courses/SectionCard/SectionCard";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { ChaptersService } from "infrastructure/services/courses/ChaptersService";
@@ -69,14 +69,7 @@ const CourseChapterPage: React.FC<ICourseChapterPage> = () => {
     <PageRoot data-test="chapter-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
-            leftButton={{
-              icon: "chevronLeft",
-              onClick: navigateWithTransition(`/courses/${safeCourseId}`, {
-                direction: "back",
-              }),
-            }}
-          />
+          <BackNavbar withTransition route={`/courses/${safeCourseId}`} />
         }
         mainNavigation="hidden"
       />

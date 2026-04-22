@@ -1,14 +1,12 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   PageRoot,
   Switch,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo, useState } from "react";
 
@@ -16,6 +14,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -41,7 +40,6 @@ const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferencesModel = {
 
 const SettingsNotificationsPage: React.FC = () => {
   const { t } = useTranslation("common");
-  const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
   const { settings, mutate } = SettingsService.useSettings();
@@ -138,14 +136,10 @@ const SettingsNotificationsPage: React.FC = () => {
     <PageRoot data-test="notification-settings-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
+          <BackNavbar
+            withTransition
+            route="/settings"
             header={t("settings.items.notifications")}
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition("/settings", {
-                direction: "back",
-              }),
-            }}
           />
         }
         mainNavigation="hidden"

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   Icon,
   PageRoot,
@@ -23,6 +22,7 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { ReportType } from "infrastructure/api/generated/models";
@@ -161,13 +161,7 @@ const SettingsPage: React.FC = () => {
     <PageRoot data-test="settings-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
-            header={t("settings.title")}
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition("/", { direction: "back" }),
-            }}
-          />
+          <BackNavbar withTransition route="/" header={t("settings.title")} />
         }
         mainNavigation="desktopOnly"
       />

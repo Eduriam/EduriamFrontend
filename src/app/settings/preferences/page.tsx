@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BasicNavbar,
   ContentContainer,
   DrawerSelect,
   PageRoot,
@@ -9,12 +8,12 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
-import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo, useState } from "react";
 
 import Stack from "@mui/material/Stack";
 
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -25,7 +24,6 @@ import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 const SettingsPreferencesPage: React.FC = () => {
   const { t } = useTranslation("common");
-  const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
   const { settings, mutate } = SettingsService.useSettings();
@@ -107,14 +105,10 @@ const SettingsPreferencesPage: React.FC = () => {
     <PageRoot data-test="preferences-page">
       <PageNavigation
         topNavigation={
-          <BasicNavbar
+          <BackNavbar
+            withTransition
+            route="/settings"
             header={t("settings.items.preferences")}
-            leftButton={{
-              icon: "arrowLeft",
-              onClick: navigateWithTransition("/settings", {
-                direction: "back",
-              }),
-            }}
           />
         }
         mainNavigation="hidden"
