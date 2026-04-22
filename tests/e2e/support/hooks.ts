@@ -1,6 +1,19 @@
 import { After, Before } from "@cucumber/cucumber";
 
 import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  AvatarSkinColor,
   UserRole,
   type GetUserModel,
 } from "../../../src/infrastructure/api/generated/models";
@@ -32,6 +45,21 @@ Before({ tags: "@onboarding" }, async function (this: CustomWorld) {
     streakFreezes: 0,
     accountInitialized: false,
     activeSubscription: null,
+    avatar: {
+      skinColor: AvatarSkinColor.Light,
+      eyes: AvatarEyes.Eyes1,
+      eyeColor: AvatarEyeColor.DarkBrown,
+      expression: AvatarExpression.Expression1,
+      hair: AvatarHair.Hair1,
+      hairColor: AvatarHairColor.DarkBrown,
+      accessories: AvatarAccessories.None,
+      glassesColor: AvatarGlassesColor.Black,
+      beard: AvatarBeard.None,
+      beardColor: AvatarBeardColor.DarkBrown,
+      headwear: AvatarHeadwear.None,
+      clothing: AvatarClothing.Shirt1,
+      backgroundColor: AvatarBackgroundColor.LightGray,
+    },
   } satisfies GetUserModel;
   const idToken = createJwt(60 * 60);
   const refreshToken = "test-refresh-token";

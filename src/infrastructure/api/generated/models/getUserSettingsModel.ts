@@ -16,7 +16,7 @@ export interface GetUserSettingsModel {
   streakTimeZoneId?: string | null;
   /** @nullable */
   dailyGoal?: number | null;
-  avatar?: AvatarModel | null;
+  avatar: AvatarModel;
   productPreferences?: ProductPreferencesModel | null;
   themeMode: ThemeMode;
   notificationPreferences?: NotificationPreferencesModel | null;

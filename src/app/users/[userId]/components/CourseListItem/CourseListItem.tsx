@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import CourseLogo, {
   type CourseLogoVariant,
 } from "components/courses/CourseLogo/CourseLogo";
-import { ProductType } from "infrastructure/api/generated/models";
+import { ProductType } from "infrastructure/api/generated/models/productType";
 
 export interface ICourseListItem {
   courseId: Id;

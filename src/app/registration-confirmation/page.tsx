@@ -53,7 +53,6 @@ const VerifyEmailPage: React.FC<IVerifyEmailPage> = () => {
   const confirmationToken =
     searchParams?.get("confirmationToken") ?? searchParams?.get("token");
   const userIdParam = searchParams?.get("userId");
-  const email = searchParams?.get("email");
   const hasRequestedVerification = useRef(false);
   const [verificationStatus, setVerificationStatus] =
     useState<VerificationStatus>("loading");
@@ -105,7 +104,7 @@ const VerifyEmailPage: React.FC<IVerifyEmailPage> = () => {
   }, [confirmationToken, userId]);
 
   const handleResendConfirmation = async () => {
-    if (!email || resendStatus === "loading" || resendStatus === "success") {
+    if (userId === null || resendStatus === "loading" || resendStatus === "success") {
       return;
     }
 
@@ -113,7 +112,7 @@ const VerifyEmailPage: React.FC<IVerifyEmailPage> = () => {
 
     try {
       await SignupService.resendSignupConfirmation({
-        email,
+        userId,
       });
       setResendStatus("success");
       enqueueSnackbar(t("verifyEmail.resendSuccess"), { variant: "success" });
@@ -143,17 +142,15 @@ const VerifyEmailPage: React.FC<IVerifyEmailPage> = () => {
       </Stack>
 
       <Stack spacing={2}>
-        {email ? (
-          <LargeButton
-            variant="contained"
-            onClick={() => {
-              void handleResendConfirmation();
-            }}
-            disabled={resendStatus === "loading" || resendStatus === "success"}
-          >
-            {t("verifyEmail.resendButton")}
-          </LargeButton>
-        ) : null}
+        <LargeButton
+          variant="contained"
+          onClick={() => {
+            void handleResendConfirmation();
+          }}
+          disabled={resendStatus === "loading" || resendStatus === "success"}
+        >
+          {t("verifyEmail.resendButton")}
+        </LargeButton>
 
         <LargeButton variant="outlined" onClick={() => router.push("/signin")}>
           {t("verifyEmail.backToSignin")}

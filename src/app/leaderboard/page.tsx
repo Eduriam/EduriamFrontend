@@ -11,11 +11,11 @@ import Typography from "@mui/material/Typography";
 import LeagueIcon from "components/leaderboard/LeagueIcon";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import LeaderboardAPI from "infrastructure/api/users/me/leaderboard/LeaderboardAPI";
 import useAuth from "infrastructure/services/AuthProvider";
+import { LeaderboardService } from "infrastructure/services/users/LeaderboardService";
 
 import LeaderboardComponent from "./components/Leaderboard/Leaderboard";
-import { getLeagueDisplayConfig } from "./leaderboard.config";
+import { getLeagueDisplayConfig, toLeagueVariant } from "./leaderboard.config";
 
 function formatIsoDuration(duration: string | undefined): string {
   if (!duration || !duration.startsWith("P")) {
@@ -45,22 +45,22 @@ function formatIsoDuration(duration: string | undefined): string {
 
 const LeaderboardPage: React.FC = () => {
   const { t } = useTranslation("common");
-  const { leaderboard } = LeaderboardAPI.useLeaderboard();
+  const { leaderboard } = LeaderboardService.useLeaderboard();
   const { user } = useAuth();
 
-  const currentLeague = leaderboard?.currentLeague ?? "gold";
-  const hasStartedWeek = leaderboard?.hasStartedWeek ?? false;
+  const currentLeague = toLeagueVariant(leaderboard?.currentLeague);
+  const hasStartedWeek = (leaderboard?.users.length ?? 0) > 0;
 
   const { visibleLeagues, highlightedLeagueIndex } =
     getLeagueDisplayConfig(currentLeague);
 
   const users =
     leaderboard?.users.map((entry) => ({
-      id: entry.id,
+      id: /^\d+$/.test(entry.id) ? Number(entry.id) : entry.id,
       rank: entry.rank,
       name: entry.name,
       xp: entry.xp,
-      avatar: entry.avatar,
+      avatar: entry.avatarDefinition,
     })) ?? [];
 
   const currentLeagueName = t(`leaderboard.leagues.${currentLeague}`);

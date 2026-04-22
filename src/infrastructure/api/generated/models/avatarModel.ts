@@ -19,17 +19,17 @@ import type { AvatarHeadwear } from "./avatarHeadwear";
 import type { AvatarSkinColor } from "./avatarSkinColor";
 
 export interface AvatarModel {
-  skinColor?: AvatarSkinColor | null;
-  eyes?: AvatarEyes | null;
-  eyeColor?: AvatarEyeColor | null;
-  expression?: AvatarExpression | null;
-  hair?: AvatarHair | null;
-  hairColor?: AvatarHairColor | null;
-  accessories?: AvatarAccessories | null;
-  glassesColor?: AvatarGlassesColor | null;
-  beard?: AvatarBeard | null;
-  beardColor?: AvatarBeardColor | null;
-  headwear?: AvatarHeadwear | null;
-  clothing?: AvatarClothing | null;
-  backgroundColor?: AvatarBackgroundColor | null;
+  skinColor: AvatarSkinColor;
+  eyes: AvatarEyes;
+  eyeColor: AvatarEyeColor;
+  expression: AvatarExpression;
+  hair: AvatarHair;
+  hairColor: AvatarHairColor;
+  accessories: AvatarAccessories;
+  glassesColor: AvatarGlassesColor;
+  beard: AvatarBeard;
+  beardColor: AvatarBeardColor;
+  headwear: AvatarHeadwear;
+  clothing: AvatarClothing;
+  backgroundColor: AvatarBackgroundColor;
 }

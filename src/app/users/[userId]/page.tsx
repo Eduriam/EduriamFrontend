@@ -7,7 +7,6 @@ import {
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
-import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
 import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -165,7 +164,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                 data-test={isOwnProfile ? "edit-avatar-button" : undefined}
               >
                 <Avatar
-                  definition={buildShopAvatar(userProfile.avatar)}
+                  definition={userProfile.avatar}
                   size={180}
                   alt={userProfile.name}
                 />
@@ -245,7 +244,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               data-test="current-league-section"
             >
               <DayStreakCard streak={userProfile.streak} />
-              <LeagueCard league="locked" />
+              <LeagueCard league={userProfile.league} />
             </Stack>
           </Box>
         )}

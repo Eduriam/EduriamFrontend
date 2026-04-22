@@ -11,7 +11,7 @@ import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Stack from "@mui/material/Stack";
 
@@ -47,6 +47,7 @@ const SettingsProfilePage: React.FC = () => {
     username: "",
     email: "",
   });
+  const [isEmailEdited, setIsEmailEdited] = useState(false);
   const [errors, setErrors] = useState<Array<string>>([]);
 
   useEffect(() => {
@@ -59,26 +60,15 @@ const SettingsProfilePage: React.FC = () => {
       username: settings.username,
       email: settingsEmail,
     });
+    setIsEmailEdited(false);
   }, [settings, settingsEmail]);
 
-  const hasUnsavedChanges = useMemo(() => {
-    if (!settings) {
-      return false;
-    }
-
-    return (
-      draft.name !== settings.name ||
-      draft.username !== settings.username ||
-      draft.email !== settingsEmail
-    );
-  }, [draft, settings, settingsEmail]);
-
   const handleSave = async () => {
-    if (!settings || !hasUnsavedChanges) {
+    if (!settings) {
       return;
     }
 
-    const isEmailChanged = draft.email !== settingsEmail;
+    const isEmailChanged = isEmailEdited && draft.email !== settingsEmail;
 
     if (isEmailChanged) {
       try {
@@ -92,6 +82,7 @@ const SettingsProfilePage: React.FC = () => {
           username: settings.username,
           email: settingsEmail,
         });
+        setIsEmailEdited(false);
       } catch (error) {
         if (error === errorCodes.emailAddressTaken) {
           setErrors([errorCodes.emailAddressTaken]);
@@ -108,15 +99,13 @@ const SettingsProfilePage: React.FC = () => {
     };
 
     try {
-      await mutate(async () => {
-        const updatedSettings = await SettingsService.updateSettings({
-          name: draft.name,
-          username: draft.username,
-        });
-        enqueueSnackbar(t("settings.saved"), { variant: "success" });
-        setErrors([]);
-        return updatedSettings;
-      }, optimisticMutationOption(optimisticSettings));
+      const updatedSettings = await SettingsService.updateSettings({
+        name: draft.name,
+        username: draft.username,
+      });
+      await mutate(updatedSettings, optimisticMutationOption(optimisticSettings));
+      enqueueSnackbar(t("settings.saved"), { variant: "success" });
+      setErrors([]);
     } catch (error) {
       if (error === errorCodes.usernameTaken) {
         setErrors([errorCodes.usernameTaken]);
@@ -143,9 +132,7 @@ const SettingsProfilePage: React.FC = () => {
             rightButton={{
               text: t("userActions.save").toUpperCase(),
               onClick: () => {
-                if (hasUnsavedChanges) {
-                  void handleSave();
-                }
+                void handleSave();
               },
               dataTest: "settings-profile-save-button",
             }}
@@ -162,24 +149,23 @@ const SettingsProfilePage: React.FC = () => {
       >
         <Stack spacing={6}>
           <Stack spacing={1} alignItems="center">
-            <Stack
-              data-test="settings-profile-avatar"
-              role="button"
-              tabIndex={0}
-              onClick={navigateWithTransition("/edit-avatar")}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  navigateWithTransition("/edit-avatar")();
-                }
-              }}
-              sx={{ cursor: "pointer" }}
-            >
-              <Avatar
-                definition={settings?.avatar ?? {}}
-                size={100}
-              />
-            </Stack>
+            {settings && (
+              <Stack
+                data-test="settings-profile-avatar"
+                role="button"
+                tabIndex={0}
+                onClick={navigateWithTransition("/edit-avatar")}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    navigateWithTransition("/edit-avatar")();
+                  }
+                }}
+                sx={{ cursor: "pointer" }}
+              >
+                <Avatar definition={settings.avatar} size={100} />
+              </Stack>
+            )}
             <LargeButton
               variant="text"
               onClick={navigateWithTransition("/edit-avatar")}
@@ -191,6 +177,7 @@ const SettingsProfilePage: React.FC = () => {
 
           <Stack data-test="settings-profile-name-field">
             <TextField
+              data-test="settings-profile-name-field"
               label={t("settings.profile.name")}
               value={draft.name}
               onChange={(event) =>
@@ -205,6 +192,7 @@ const SettingsProfilePage: React.FC = () => {
 
           <Stack data-test="settings-profile-username-field">
             <TextField
+              data-test="settings-profile-username-field"
               label={t("settings.profile.username")}
               value={draft.username}
               error={errors.includes(errorCodes.usernameTaken)}
@@ -232,6 +220,7 @@ const SettingsProfilePage: React.FC = () => {
 
           <Stack data-test="settings-profile-email-field">
             <TextField
+              data-test="settings-profile-email-field"
               label={t("settings.profile.email")}
               type="email"
               value={draft.email}
@@ -241,12 +230,13 @@ const SettingsProfilePage: React.FC = () => {
                   ? t("settings.profile.emailTaken")
                   : undefined
               }
-              onChange={(event) =>
+              onChange={(event) => {
+                setIsEmailEdited(true);
                 setDraft((currentDraft) => ({
                   ...currentDraft,
                   email: event.target.value,
-                }))
-              }
+                }));
+              }}
               onFocus={() =>
                 setErrors((currentErrors) =>
                   currentErrors.filter(

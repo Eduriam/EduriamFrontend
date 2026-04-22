@@ -172,7 +172,7 @@ const FeedCard: React.FC<IFeedCard> = ({
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Avatar
-              definition={feedMessage.avatar ?? {}}
+              definition={feedMessage.avatar}
               size={48}
               alt={feedMessage.author}
             />

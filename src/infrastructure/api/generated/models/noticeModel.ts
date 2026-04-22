@@ -10,5 +10,7 @@ export interface NoticeModel {
   id: number;
   /** @nullable */
   createdAt?: string | null;
+  /** @nullable */
+  activeFrom?: string | null;
   readonly type: NoticeType;
 }

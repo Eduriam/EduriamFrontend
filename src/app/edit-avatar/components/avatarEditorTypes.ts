@@ -23,9 +23,10 @@ import {
   AvatarHeadwear,
   AvatarSkinColor,
 } from "infrastructure/api/generated/models";
+import type { AvatarModel } from "infrastructure/api/generated/models";
 import type { UserOwnedShopItemModel } from "infrastructure/api/generated/models";
 
-export type AvatarEditableField = keyof AvatarDefinition;
+export type AvatarEditableField = keyof AvatarModel;
 
 export interface AvatarEditorCategoryConfig {
   id: string;
@@ -227,6 +228,22 @@ const AVATAR_FIELD_OPTIONS: Partial<
   ],
 };
 
+const DEFAULT_AVATAR_PREVIEW: AvatarModel = {
+  skinColor: AvatarSkinColor.Light,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.DarkBrown,
+  expression: AvatarExpression.Expression1,
+  hair: AvatarHair.Hair1,
+  hairColor: AvatarHairColor.DarkBrown,
+  accessories: AvatarAccessories.None,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.None,
+  beardColor: AvatarBeardColor.DarkBrown,
+  headwear: AvatarHeadwear.None,
+  clothing: AvatarClothing.Shirt1,
+  backgroundColor: AvatarBackgroundColor.LightGray,
+};
+
 function addValue(
   grouped: Map<AvatarEditableField, Set<number>>,
   field: AvatarEditableField,
@@ -264,14 +281,14 @@ function createCategory(
 }
 
 function applyAvatarFieldValue(
-  avatar: AvatarDefinition,
+  avatar: AvatarModel,
   field: AvatarEditableField,
   value: number,
-): AvatarDefinition {
+): AvatarModel {
   return {
     ...avatar,
-    [field]: value as AvatarDefinition[typeof field],
-  };
+    [field]: value as AvatarModel[typeof field],
+  } as AvatarModel;
 }
 
 export function collectAvatarCategories(
@@ -320,11 +337,12 @@ export function buildCategoryPreview(
   category: AvatarCategory,
   avatar: AvatarDefinition,
 ): AvatarDefinition {
-  let preview: AvatarDefinition = {
+  let preview: AvatarModel = {
+    ...DEFAULT_AVATAR_PREVIEW,
     skinColor: (toAvatarOptionNumber(
       "skinColor",
       avatar.skinColor,
-    ) ?? AvatarSkinColor.Light) as AvatarDefinition["skinColor"],
+    ) ?? AvatarSkinColor.Light) as AvatarModel["skinColor"],
   };
 
   // Body-only preview for the skin color category.

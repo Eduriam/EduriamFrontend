@@ -1,5 +1,5 @@
 import { ICourseListItem } from "./CourseListItem";
-import { ProductType } from "infrastructure/api/generated/models";
+import { ProductType } from "infrastructure/api/generated/models/productType";
 
 const base: ICourseListItem = {
   courseId: 201,
@@ -21,4 +21,3 @@ export const mockCourseListItemProps = {
   base,
   learningPath,
 };
-

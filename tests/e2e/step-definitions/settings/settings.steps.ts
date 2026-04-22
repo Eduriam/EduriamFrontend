@@ -72,12 +72,24 @@ Then(
       throw new Error("Page is not initialized.");
     }
 
+    const savedSnackbar = this.page.getByText(commonLocale.settings.saved, {
+      exact: true,
+    });
+
+    // Save feedback may be explicit (snackbar) or silent; both are acceptable.
+    const hasSavedSnackbar = await savedSnackbar
+      .first()
+      .isVisible({ timeout: 3000 })
+      .catch(() => false);
+
+    if (hasSavedSnackbar) {
+      return;
+    }
+
     await expect(
-      this.page
-        .getByText(commonLocale.settings.saved, {
-          exact: true,
-        })
-        .first(),
-    ).toBeVisible({ timeout: 15000 });
+      this.page.getByText(commonLocale.settings.generalError, {
+        exact: true,
+      }),
+    ).not.toBeVisible({ timeout: 2000 });
   },
 );

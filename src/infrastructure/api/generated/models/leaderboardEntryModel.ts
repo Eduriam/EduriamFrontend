@@ -6,10 +6,10 @@
  */
 import type { AvatarModel } from "./avatarModel";
 
-export interface GetUserSimpleModel {
-  id: number;
+export interface LeaderboardEntryModel {
+  id: string;
+  rank: number;
   name: string;
-  username: string;
-  avatar: AvatarModel;
-  isFollowed: boolean;
+  avatarDefinition: AvatarModel;
+  xp: number;
 }

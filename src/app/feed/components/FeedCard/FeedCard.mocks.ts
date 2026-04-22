@@ -1,15 +1,20 @@
 import { action } from "@storybook/addon-actions";
 
 import {
+  AvatarAccessories,
   AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
   AvatarClothing,
   AvatarExpression,
   AvatarEyeColor,
   AvatarEyes,
+  AvatarGlassesColor,
   FeedMessageType,
   FeedReactionType,
   AvatarHair,
   AvatarHairColor,
+  AvatarHeadwear,
   AvatarSkinColor,
 } from "infrastructure/api/generated/models";
 
@@ -28,6 +33,11 @@ const base: IFeedCard = {
       expression: AvatarExpression.Expression1,
       hair: AvatarHair.Hair1,
       hairColor: AvatarHairColor.MediumBrown,
+      accessories: AvatarAccessories.None,
+      glassesColor: AvatarGlassesColor.Black,
+      beard: AvatarBeard.None,
+      beardColor: AvatarBeardColor.DarkBrown,
+      headwear: AvatarHeadwear.None,
       clothing: AvatarClothing.Shirt1,
       backgroundColor: AvatarBackgroundColor.LightGray,
     },

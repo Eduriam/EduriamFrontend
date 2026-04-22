@@ -1,17 +1,12 @@
-import type { LeaderboardLeague } from "infrastructure/api/users/me/leaderboard/Leaderboard";
+import {
+  LEAGUE_ORDER,
+  toLeagueVariant,
+  type RankedLeagueVariant,
+} from "components/leaderboard/leagueType";
 
-export const LEAGUE_ORDER: LeaderboardLeague[] = [
-  "iron",
-  "bronze",
-  "silver",
-  "gold",
-  "platinum",
-  "emerald",
-  "ruby",
-  "sapphire",
-  "diamond",
-  "mythic",
-];
+export { toLeagueVariant };
+
+export type LeaderboardLeague = RankedLeagueVariant;
 
 const DISPLAY_SLOT_OFFSETS = [-2, -1, 0, 1, 2] as const;
 

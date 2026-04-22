@@ -5,6 +5,7 @@ import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
+import type { NullableAvatarPatch } from "app/shop/utils/avatar";
 import {
   getShopItemCategoryId,
   isShopItemPurchased,
@@ -23,7 +24,6 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { optimisticMutationOption } from "infrastructure/api/API";
 import errorCodes from "infrastructure/api/error-codes";
 import type {
-  AvatarModel,
   UserOwnedShopItemModel,
 } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -76,7 +76,7 @@ const ShopPage: React.FC<IShopPage> = () => {
       : undefined;
 
   const previewAvatarByCategory = useMemo(() => {
-    const entries = new Map<string, Partial<AvatarModel>>();
+    const entries = new Map<string, NullableAvatarPatch>();
 
     shopItems.forEach((item) => {
       const categoryId = getShopItemCategoryId(item);

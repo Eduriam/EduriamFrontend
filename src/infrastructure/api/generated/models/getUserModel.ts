@@ -25,5 +25,5 @@ export interface GetUserModel {
   league?: LeagueType | null;
   accountInitialized: boolean;
   activeSubscription?: SubscriptionModel | null;
-  avatar?: AvatarModel | null;
+  avatar: AvatarModel;
 }

@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-export interface ResendEmailConfirmationModel {
-  userId: number;
+export interface LeaderboardZonesModel {
+  promotionZoneEndIndex: number;
+  demotionZoneStartIndex: number;
 }

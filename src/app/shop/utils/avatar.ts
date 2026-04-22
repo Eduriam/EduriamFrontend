@@ -31,11 +31,19 @@ export const DEFAULT_SHOP_AVATAR: AvatarModel = {
   backgroundColor: AvatarBackgroundColor.LightGray,
 };
 
+export type NullableAvatarPatch = {
+  [K in keyof AvatarModel]?: AvatarModel[K] | null;
+};
+
 export function buildShopAvatar(
-  partial?: Partial<AvatarModel> | null,
+  partial?: NullableAvatarPatch | null,
 ): AvatarModel {
+  const sanitizedPatch = Object.fromEntries(
+    Object.entries(partial ?? {}).filter(([, value]) => value !== null),
+  ) as Partial<AvatarModel>;
+
   return {
     ...DEFAULT_SHOP_AVATAR,
-    ...(partial ?? {}),
+    ...sanitizedPatch,
   };
 }

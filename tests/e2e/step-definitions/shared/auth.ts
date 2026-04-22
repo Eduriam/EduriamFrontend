@@ -1,6 +1,19 @@
 import { Given, When } from "@cucumber/cucumber";
 
 import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  AvatarSkinColor,
   SubscriptionStatus,
   UserRole,
   type GetUserModel,
@@ -9,6 +22,22 @@ import {
 import { CustomWorld } from "../../support/world";
 import { setGoogleAuthVariant } from "../../util/mockoon-env";
 import { createJwt } from "../util/jwt";
+
+const DEFAULT_AVATAR = {
+  skinColor: AvatarSkinColor.Light,
+  eyes: AvatarEyes.Eyes1,
+  eyeColor: AvatarEyeColor.DarkBrown,
+  expression: AvatarExpression.Expression1,
+  hair: AvatarHair.Hair1,
+  hairColor: AvatarHairColor.DarkBrown,
+  accessories: AvatarAccessories.None,
+  glassesColor: AvatarGlassesColor.Black,
+  beard: AvatarBeard.None,
+  beardColor: AvatarBeardColor.DarkBrown,
+  headwear: AvatarHeadwear.None,
+  clothing: AvatarClothing.Shirt1,
+  backgroundColor: AvatarBackgroundColor.LightGray,
+} as const;
 
 async function navigateToGoogleCallback(
   world: CustomWorld,
@@ -51,6 +80,7 @@ Given("I am signed in", async function (this: CustomWorld) {
     streakFreezes: 0,
     accountInitialized: true,
     activeSubscription: null,
+    avatar: DEFAULT_AVATAR,
   };
 
   const idToken = createJwt(60 * 60);
@@ -99,6 +129,7 @@ Given("I am signed in as corrector", async function (this: CustomWorld) {
     streakFreezes: 0,
     accountInitialized: true,
     activeSubscription: null,
+    avatar: DEFAULT_AVATAR,
   };
 
   const idToken = createJwt(60 * 60);
@@ -148,6 +179,7 @@ Given(
       streakFreezes: 0,
       accountInitialized: true,
       activeSubscription: null,
+      avatar: DEFAULT_AVATAR,
     };
 
     const idToken = createJwt(60 * 60);
@@ -209,6 +241,7 @@ Given(
       streakFreezes: 0,
       accountInitialized: true,
       activeSubscription: null,
+      avatar: DEFAULT_AVATAR,
       // Extra field used only by the app runtime to mark the enrolled learning path.
       // It is intentionally not part of the GetUserModel TypeScript type.
       selectedLearningPath: { id: 2001 },
@@ -271,6 +304,7 @@ Given(
       streakFreezes: 0,
       accountInitialized: false,
       activeSubscription: null,
+      avatar: DEFAULT_AVATAR,
     };
 
     const idToken = createJwt(60 * 60);
@@ -346,6 +380,7 @@ Given("I am a premium user", async function (this: CustomWorld) {
       periodStart: new Date().toISOString(),
       periodEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     },
+    avatar: DEFAULT_AVATAR,
   };
 
   const idToken = createJwt(60 * 60);

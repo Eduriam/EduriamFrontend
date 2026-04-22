@@ -2,14 +2,14 @@
 
 import { Card } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
+import type { NullableAvatarPatch } from "app/shop/utils/avatar";
 
 import Box from "@mui/material/Box";
 
-import type { AvatarModel } from "infrastructure/api/generated/models";
 import Avatar from "components/avatar/Avatar";
 
 export interface IShopCategory {
-  avatar?: Partial<AvatarModel>;
+  avatar?: NullableAvatarPatch;
   onClick?: () => void;
   "data-test"?: string;
 }

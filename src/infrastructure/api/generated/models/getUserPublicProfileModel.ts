@@ -5,6 +5,7 @@
  * OpenAPI spec version: v1
  */
 import type { AvatarModel } from "./avatarModel";
+import type { LeagueType } from "./leagueType";
 import type { ProductCourseModel } from "./productCourseModel";
 import type { UserAchievementModel } from "./userAchievementModel";
 
@@ -12,11 +13,12 @@ export interface GetUserPublicProfileModel {
   id: number;
   name: string;
   username: string;
-  avatar?: AvatarModel | null;
+  avatar: AvatarModel;
   isFollowed: boolean;
   followers: number;
   following: number;
   streak: number;
+  league?: LeagueType | null;
   courses: ProductCourseModel[];
   achievements: UserAchievementModel[];
 }

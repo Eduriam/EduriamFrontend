@@ -9,34 +9,17 @@ import Typography from "@mui/material/Typography";
 import LeagueIcon, {
   type LeagueIconVariant,
 } from "components/leaderboard/LeagueIcon";
+import { toLeagueVariant } from "components/leaderboard/leagueType";
+
+import type { LeagueType } from "infrastructure/api/generated/models";
 
 export interface ILeagueCard {
-  league?: LeagueIconVariant | string | null;
+  league?: LeagueType | null;
 }
-
-const LEAGUE_VARIANTS: LeagueIconVariant[] = [
-  "empty",
-  "locked",
-  "iron",
-  "bronze",
-  "silver",
-  "gold",
-  "platinum",
-  "emerald",
-  "ruby",
-  "sapphire",
-  "diamond",
-  "mythic",
-];
 
 const LeagueCard: React.FC<ILeagueCard> = ({ league }) => {
   const { t } = useTranslation("common");
-  const normalizedLeague = typeof league === "string" ? league.toLowerCase() : "";
-  const safeLeague: LeagueIconVariant = LEAGUE_VARIANTS.includes(
-    normalizedLeague as LeagueIconVariant,
-  )
-    ? (normalizedLeague as LeagueIconVariant)
-    : "locked";
+  const safeLeague: LeagueIconVariant = toLeagueVariant(league);
 
   return (
     <Card paddingX="medium" paddingY="small">

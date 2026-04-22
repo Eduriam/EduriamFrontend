@@ -10,6 +10,6 @@ export interface GetFollowerModel {
   id: number;
   name: string;
   username: string;
-  avatar?: AvatarModel | null;
+  avatar: AvatarModel;
   isFollowed: boolean;
 }

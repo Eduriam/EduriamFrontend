@@ -5,13 +5,13 @@ import { parseQueryParams } from "util/functions/api";
 import { FetchHook } from "infrastructure/api/API";
 import { getProducts } from "infrastructure/api/generated/products/products";
 import {
-  ProductType,
   type CourseChapterSummaryModel,
   type ProductBaseModelPagedResult,
   type ProductCourseModel,
   type ProductLearningPathModel,
   type ProductMemberSummaryModel,
 } from "infrastructure/api/generated/models";
+import { ProductType } from "infrastructure/api/generated/models/productType";
 import useAPI from "infrastructure/api/hooks/useAPI";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 

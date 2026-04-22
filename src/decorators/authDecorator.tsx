@@ -1,6 +1,22 @@
 import { Story } from "@storybook/react";
 
-import { SubscriptionStatus, UserRole } from "../infrastructure/api/generated/models";
+import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  AvatarSkinColor,
+  SubscriptionStatus,
+  UserRole,
+} from "../infrastructure/api/generated/models";
 import {
   AuthContext,
   AuthContextType,
@@ -28,7 +44,21 @@ export default function AuthDecorator(Story: Story) {
           new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
         ).toISOString(), // One week from now
       },
-      avatar: null,
+      avatar: {
+        skinColor: AvatarSkinColor.Light,
+        eyes: AvatarEyes.Eyes1,
+        eyeColor: AvatarEyeColor.DarkBrown,
+        expression: AvatarExpression.Expression1,
+        hair: AvatarHair.Hair1,
+        hairColor: AvatarHairColor.DarkBrown,
+        accessories: AvatarAccessories.None,
+        glassesColor: AvatarGlassesColor.Black,
+        beard: AvatarBeard.None,
+        beardColor: AvatarBeardColor.DarkBrown,
+        headwear: AvatarHeadwear.None,
+        clothing: AvatarClothing.Shirt1,
+        backgroundColor: AvatarBackgroundColor.LightGray,
+      },
     },
     signin: () => console.log("signin"),
     signout: () => console.log("signout"),

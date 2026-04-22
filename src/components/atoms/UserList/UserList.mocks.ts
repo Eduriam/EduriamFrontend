@@ -1,13 +1,18 @@
 import { action } from "@storybook/addon-actions";
 
 import {
+  AvatarAccessories,
   AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
   AvatarClothing,
   AvatarExpression,
   AvatarEyeColor,
   AvatarEyes,
+  AvatarGlassesColor,
   AvatarHair,
   AvatarHairColor,
+  AvatarHeadwear,
   AvatarSkinColor,
 } from "infrastructure/api/generated/models";
 
@@ -30,6 +35,11 @@ const base: IUserList = {
         expression: AvatarExpression.Expression1,
         hair: AvatarHair.Hair1,
         hairColor: AvatarHairColor.DarkBrown,
+        accessories: AvatarAccessories.None,
+        glassesColor: AvatarGlassesColor.Black,
+        beard: AvatarBeard.None,
+        beardColor: AvatarBeardColor.DarkBrown,
+        headwear: AvatarHeadwear.None,
         clothing: AvatarClothing.Shirt1,
         backgroundColor: AvatarBackgroundColor.LightGray,
       },
@@ -46,6 +56,11 @@ const base: IUserList = {
         expression: AvatarExpression.Expression1,
         hair: AvatarHair.Hair1,
         hairColor: AvatarHairColor.DarkBrown,
+        accessories: AvatarAccessories.None,
+        glassesColor: AvatarGlassesColor.Black,
+        beard: AvatarBeard.None,
+        beardColor: AvatarBeardColor.DarkBrown,
+        headwear: AvatarHeadwear.None,
         clothing: AvatarClothing.Shirt1,
         backgroundColor: AvatarBackgroundColor.LightGray,
       },

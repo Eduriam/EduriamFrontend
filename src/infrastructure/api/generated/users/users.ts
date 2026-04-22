@@ -35,6 +35,7 @@ import type {
   StudySessionModel,
   StudySessionResultCreateModel,
   UserAchievementModel,
+  UserLeaderboardModel,
   UserOwnedShopItemModel,
 } from "../models";
 
@@ -212,6 +213,11 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
   ): Promise<AxiosResponse<GetUserModel | void>> => {
     return axiosInstance.get(`/api/users/me`, options);
   };
+  const getApiUsersMeLeaderboard = (
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<UserLeaderboardModel | void>> => {
+    return axiosInstance.get(`/api/users/me/leaderboard`, options);
+  };
   const postApiUsersMeAccountSetup = (
     accountSetupModel: AccountSetupModel,
     options?: AxiosRequestConfig,
@@ -351,6 +357,7 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     postApiUsersMeSubscriptionsTrial,
     postApiUsersMeShopItemsShopItemId,
     getApiUsersMe,
+    getApiUsersMeLeaderboard,
     postApiUsersMeAccountSetup,
     getApiUsersUserId,
     getApiUsersUserIdFollowing,
@@ -407,6 +414,8 @@ export type PostApiUsersMeSubscriptionsTrialResult =
   AxiosResponse<CreateSubscriptionRespModel | void>;
 export type PostApiUsersMeShopItemsShopItemIdResult = AxiosResponse<void>;
 export type GetApiUsersMeResult = AxiosResponse<GetUserModel | void>;
+export type GetApiUsersMeLeaderboardResult =
+  AxiosResponse<UserLeaderboardModel | void>;
 export type PostApiUsersMeAccountSetupResult = AxiosResponse<void>;
 export type GetApiUsersUserIdResult =
   AxiosResponse<GetUserPublicProfileModel | void>;
