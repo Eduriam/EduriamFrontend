@@ -69,7 +69,7 @@ function CourseOrLearningPathCard({
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
   const handleClick = () => onSelect(course.id, isLearningPath);
 
-  const enrolled = typeof course.userProgress === "number";
+  const enrolled = course.enrolled ?? false;
   const progress = course.userProgress ?? 0;
 
   if (isLearningPath) {
