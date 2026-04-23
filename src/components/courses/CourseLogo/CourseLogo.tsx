@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
 
-export type CourseLogoVariant = "HTML" | "JavaScript";
+export type CourseLogoVariant = "HTML" | "JavaScript" | "CSS";
 
 export type CourseLogoSize = "large" | "medium" | "small";
 
 const LOGO_ID_TO_VARIANT: Record<string, CourseLogoVariant> = {
   html: "HTML",
   javascript: "JavaScript",
+  css: "CSS",
 };
 
 /**
@@ -41,6 +42,7 @@ export interface CourseLogoProps {
 const variantToSrc: Record<CourseLogoVariant, string> = {
   HTML: "/images/course-logo/html.svg",
   JavaScript: "/images/course-logo/javascript.svg",
+  CSS: "/images/course-logo/css.svg",
 };
 
 const sizeToPixels: Record<CourseLogoSize, number> = {

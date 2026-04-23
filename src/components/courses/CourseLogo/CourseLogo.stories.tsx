@@ -12,7 +12,7 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["HTML", "JavaScript"] satisfies CourseLogoVariant[],
+        options: ["HTML", "JavaScript", "CSS"] satisfies CourseLogoVariant[],
       },
     },
     size: {
