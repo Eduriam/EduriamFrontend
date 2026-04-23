@@ -23,9 +23,7 @@ import Stack from "@mui/material/Stack";
 import CertificateLockedDrawer from "components/courses/CertificateLockedDrawer/CertificateLockedDrawer";
 import CourseCard from "components/courses/CourseCard/CourseCard";
 import CourseDetailsDrawer from "components/courses/CourseDetailsDrawer/CourseDetailsDrawer";
-import CourseLogo, {
-  getVariantFromLogoId,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -228,13 +226,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                 alignItems="center"
                 data-test="learning-path-description-section"
               >
-                <CourseLogo
-                  variant={
-                    getVariantFromLogoId(studyPath?.logoId ?? undefined) ??
-                    "JavaScript"
-                  }
-                  size="large"
-                />
+                <CourseLogo variant={studyPath?.logoId} size="large" />
                 <Typography variant="h4">
                   {studyPath?.name ?? t("courses.unnamedCourse")}
                 </Typography>
@@ -320,7 +312,7 @@ const LearningPathPage: React.FC<ILearningPathPage> = () => {
                   <CourseCard
                     key={course.id}
                     title={course.name}
-                    icon={<CourseLogo variant="JavaScript" />}
+                    icon={<CourseLogo variant="javascript" />}
                     enrolled={typeof course.userProgress === "number"}
                     premium={course.premium}
                     premiumLabel={premiumLabel}

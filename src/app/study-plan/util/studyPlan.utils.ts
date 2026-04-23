@@ -1,4 +1,4 @@
-import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
+import type { CourseLogoVariant } from "components/courses/CourseLogo/CourseLogo";
 
 import { CourseStudyMode } from "infrastructure/api/generated/models";
 import { UserProduct } from "infrastructure/services/courses/UserProductsService";
@@ -10,17 +10,18 @@ import {
   StudyPlanState,
 } from "../types/studyPlan.types";
 
+function isCourseLogoVariant(value: string): value is CourseLogoVariant {
+  return value === "html" || value === "javascript" || value === "css";
+}
+
 function toLogoVariant(
   course: UserProduct,
 ): IStudyPlanCourseCard["logoVariant"] {
-  const byLogoId =
-    (course.logoId && getVariantFromLogoId(course.logoId)) ?? undefined;
-  if (byLogoId) {
-    return byLogoId;
+  if (course.logoId && isCourseLogoVariant(course.logoId)) {
+    return course.logoId;
   }
 
-  const name = course.name.toLowerCase();
-  return name.includes("javascript") ? "JavaScript" : "HTML";
+  return "javascript";
 }
 
 export function mapCourseToStudyPlanCourse(

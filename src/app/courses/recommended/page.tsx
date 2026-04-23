@@ -1,13 +1,12 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import {
   ContentContainer,
   Header,
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
+import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -15,23 +14,16 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import CourseCard from "components/courses/CourseCard/CourseCard";
-import CourseLogo, {
-  getVariantFromLogoId,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import {
-  isLearningPathProduct,
-  StudyProduct,
-} from "infrastructure/services/courses/StudyProductService";
 import { RecommendedProductsService } from "infrastructure/services/courses/RecommendedProductsService";
-
-function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
-  const name = course.name?.toLowerCase() ?? "";
-  return name.includes("javascript") ? "JavaScript" : "HTML";
-}
+import {
+  StudyProduct,
+  isLearningPathProduct,
+} from "infrastructure/services/courses/StudyProductService";
 
 function CourseOrLearningPathCard({
   course,
@@ -46,14 +38,7 @@ function CourseOrLearningPathCard({
   onSelect: (courseId: Id, isLearningPath: boolean) => void;
   premiumLabel: string;
 }) {
-  const icon = (
-    <CourseLogo
-      variant={
-        getVariantFromLogoId(course.logoId ?? undefined) ??
-        getCourseLogoVariant(course)
-      }
-    />
-  );
+  const icon = <CourseLogo variant={course.logoId} />;
   const isLearningPath = isLearningPathProduct(course);
   const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
   const handleClick = () => onSelect(course.id, isLearningPath);
@@ -117,9 +102,7 @@ const RecommendedCoursesPage: React.FC = () => {
         }}
       >
         <PageNavigation
-          topNavigation={
-            <BackNavbar withTransition route="/courses" />
-          }
+          topNavigation={<BackNavbar withTransition route="/courses" />}
           mainNavigation="hidden"
         />
       </Box>
@@ -160,4 +143,3 @@ const RecommendedCoursesPage: React.FC = () => {
 };
 
 export default RecommendedCoursesPage;
-

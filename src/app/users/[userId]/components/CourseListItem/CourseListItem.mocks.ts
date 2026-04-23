@@ -6,7 +6,7 @@ const base: ICourseListItem = {
   title: "JavaScript",
   progress: 40,
   variant: ProductType.Course,
-  logoVariant: "JavaScript",
+  logoVariant: "javascript",
 };
 
 const learningPath: ICourseListItem = {
@@ -14,7 +14,7 @@ const learningPath: ICourseListItem = {
   title: "HTML Developer",
   progress: 40,
   variant: ProductType.StudyPath,
-  logoVariant: "HTML",
+  logoVariant: "html",
 };
 
 export const mockCourseListItemProps = {

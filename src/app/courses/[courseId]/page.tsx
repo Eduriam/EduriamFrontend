@@ -31,9 +31,9 @@ import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   CourseProduct,
-  isCourseProduct,
   StudyProductChapterSummary,
   StudyProductService,
+  isCourseProduct,
 } from "infrastructure/services/courses/StudyProductService";
 import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
 
@@ -153,7 +153,9 @@ const CoursePage: React.FC<ICoursePage> = () => {
 
   const courseShortDescription = product?.shortDescription;
   const courseDescription = product?.description ?? undefined;
-  const chapters: NonNullable<CourseProduct["chapters"]> = isCourseProduct(product)
+  const chapters: NonNullable<CourseProduct["chapters"]> = isCourseProduct(
+    product,
+  )
     ? product.chapters
     : [];
 
@@ -219,7 +221,7 @@ const CoursePage: React.FC<ICoursePage> = () => {
                 alignItems="center"
                 data-test="course-description-section"
               >
-                <CourseLogo variant="JavaScript" size="large" />
+                <CourseLogo variant={product?.logoId} size="large" />
                 <Typography variant="h4">
                   {product?.name ?? t("courses.unnamedCourse")}
                 </Typography>
@@ -298,18 +300,18 @@ const CoursePage: React.FC<ICoursePage> = () => {
               >
                 {chapters.map(
                   (chapter: StudyProductChapterSummary, index: number) => (
-                  <ChapterCard
-                    key={chapter.id}
-                    title={chapter.name}
-                    subtitle={t("courses.chapterNumber", {
-                      index: index + 1,
-                    })}
-                    progress={chapter.userProgress ?? 0}
-                    onClick={navigateWithTransition(
-                      `/courses/${courseId}/chapters/${chapter.id}`,
-                    )}
-                    data-test="chapter-card"
-                  />
+                    <ChapterCard
+                      key={chapter.id}
+                      title={chapter.name}
+                      subtitle={t("courses.chapterNumber", {
+                        index: index + 1,
+                      })}
+                      progress={chapter.userProgress ?? 0}
+                      onClick={navigateWithTransition(
+                        `/courses/${courseId}/chapters/${chapter.id}`,
+                      )}
+                      data-test="chapter-card"
+                    />
                   ),
                 )}
               </Stack>

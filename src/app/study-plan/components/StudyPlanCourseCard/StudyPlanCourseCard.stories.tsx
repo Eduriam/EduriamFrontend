@@ -21,6 +21,6 @@ export const Base = Template.bind({});
 
 Base.args = {
   title: "JavaScript",
-  logoVariant: "JavaScript",
+  logoVariant: "javascript",
 } as IStudyPlanCourseCard;
 

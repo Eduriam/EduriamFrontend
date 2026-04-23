@@ -61,7 +61,7 @@ const CourseCard: React.FC<ICourseCard> = ({
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
         <Box sx={{ width: "64px", height: "64px", flex: "0 0 auto" }}>
-          {icon ?? <CourseLogo variant="JavaScript" />}
+          {icon ?? <CourseLogo variant="javascript" />}
         </Box>
 
         <Box

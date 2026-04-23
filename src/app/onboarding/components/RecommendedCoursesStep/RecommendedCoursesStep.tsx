@@ -1,22 +1,19 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import { ContentContainer, Header, LargeButton } from "@eduriam/ui-core";
+import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import CourseCard from "components/courses/CourseCard/CourseCard";
-import CourseLogo, {
-  getVariantFromLogoId,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
 import {
-  isLearningPathProduct,
   StudyProduct,
+  isLearningPathProduct,
 } from "infrastructure/services/courses/StudyProductService";
 
 export interface IRecommendedCoursesStepProps {
@@ -45,16 +42,7 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
         />
         <Stack direction="column" spacing={3}>
           {courses.map((course, index) => {
-            const icon = (
-              <CourseLogo
-                variant={
-                  getVariantFromLogoId(course.logoId ?? undefined) ??
-                  (course.name?.toLowerCase().includes("javascript")
-                    ? "JavaScript"
-                    : "HTML")
-                }
-              />
-            );
+            const icon = <CourseLogo variant={course.logoId} />;
             const isLearningPath = isLearningPathProduct(course);
             return (
               <Box
@@ -102,4 +90,3 @@ const RecommendedCoursesStep: React.FC<IRecommendedCoursesStepProps> = ({
 };
 
 export default RecommendedCoursesStep;
-

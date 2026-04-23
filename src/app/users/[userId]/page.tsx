@@ -21,7 +21,6 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
-import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -43,19 +42,6 @@ export interface IUsersPage {
   params: {
     userId: string;
   };
-}
-
-function resolveCourseLogoVariant(
-  name: string,
-  logoId?: string | null,
-): "HTML" | "JavaScript" {
-  const mapped = getVariantFromLogoId(logoId ?? undefined);
-
-  if (mapped) {
-    return mapped;
-  }
-
-  return name.toLowerCase().includes("javascript") ? "JavaScript" : "HTML";
 }
 
 const UsersPage: React.FC<IUsersPage> = ({ params }) => {
@@ -311,10 +297,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                   title={course.name}
                   progress={course.userProgress ?? 0}
                   variant={course.type}
-                  logoVariant={resolveCourseLogoVariant(
-                    course.name,
-                    course.logoId,
-                  )}
+                  logoVariant={course.logoId}
                 />
                 {index < list.length - 1 && <Divider />}
               </Stack>

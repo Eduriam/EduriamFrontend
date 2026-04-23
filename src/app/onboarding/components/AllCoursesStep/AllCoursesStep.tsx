@@ -1,8 +1,7 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
-
 import { ContentContainer, Header, Tabs } from "@eduriam/ui-core";
+import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 
 import { useEffect, useState } from "react";
@@ -11,14 +10,12 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 import CourseCard from "components/courses/CourseCard/CourseCard";
-import CourseLogo, {
-  getVariantFromLogoId,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
 
 import {
-  isLearningPathProduct,
   StudyProduct,
+  isLearningPathProduct,
 } from "infrastructure/services/courses/StudyProductService";
 
 const DEFAULT_CATEGORY = "other";
@@ -40,11 +37,6 @@ function groupCoursesByCategory(
     category,
     courses: list,
   }));
-}
-
-function getCourseLogoVariant(course: StudyProduct): "HTML" | "JavaScript" {
-  const name = course.name?.toLowerCase() ?? "";
-  return name.includes("javascript") ? "JavaScript" : "HTML";
 }
 
 export interface IAllCoursesStepProps {
@@ -128,14 +120,7 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
                 />
 
                 {categoryCourses.map((course) => {
-                  const icon = (
-                    <CourseLogo
-                      variant={
-                        getVariantFromLogoId(course.logoId ?? undefined) ??
-                        getCourseLogoVariant(course)
-                      }
-                    />
-                  );
+                  const icon = <CourseLogo variant={course.logoId} />;
                   const isLearningPath = isLearningPathProduct(course);
                   return (
                     <Box

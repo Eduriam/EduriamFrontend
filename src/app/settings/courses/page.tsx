@@ -17,9 +17,7 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import CourseLogo, {
-  getVariantFromLogoId,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -34,7 +32,9 @@ const SettingsCoursesPage: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const { userProducts = [], mutate } = UserProductsService.useUserProducts();
-  const [courseToDelete, setCourseToDelete] = useState<UserProduct | null>(null);
+  const [courseToDelete, setCourseToDelete] = useState<UserProduct | null>(
+    null,
+  );
 
   const displayedCourses = useMemo(
     () => userProducts.filter((course) => course.enrolled),
@@ -90,12 +90,7 @@ const SettingsCoursesPage: React.FC = () => {
                   py: 1,
                 }}
               >
-                <CourseLogo
-                  variant={
-                    getVariantFromLogoId(course.logoId ?? undefined) ?? "HTML"
-                  }
-                  size="medium"
-                />
+                <CourseLogo variant={course.logoId} size="medium" />
                 <Box sx={{ minWidth: 0, flexGrow: 1 }}>
                   <Typography variant="h6">{course.name}</Typography>
                 </Box>

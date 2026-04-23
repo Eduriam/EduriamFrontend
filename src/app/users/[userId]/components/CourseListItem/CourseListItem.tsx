@@ -8,9 +8,7 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import CourseLogo, {
-  type CourseLogoVariant,
-} from "components/courses/CourseLogo/CourseLogo";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 import { ProductType } from "infrastructure/api/generated/models/productType";
 
 export interface ICourseListItem {
@@ -18,7 +16,7 @@ export interface ICourseListItem {
   title: string;
   progress?: number;
   variant?: ProductType;
-  logoVariant?: CourseLogoVariant;
+  logoVariant?: string | null;
   "data-test"?: string;
 }
 
@@ -27,7 +25,7 @@ const CourseListItem: React.FC<ICourseListItem> = ({
   title,
   progress = 0,
   variant = ProductType.Course,
-  logoVariant = "HTML",
+  logoVariant,
   "data-test": dataTest,
 }) => {
   const { t } = useTranslation("common");

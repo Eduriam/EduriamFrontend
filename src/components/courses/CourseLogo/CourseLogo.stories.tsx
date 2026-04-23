@@ -12,7 +12,7 @@ export default {
     variant: {
       control: {
         type: "select",
-        options: ["HTML", "JavaScript", "CSS"] satisfies CourseLogoVariant[],
+        options: ["html", "javascript", "css"] satisfies CourseLogoVariant[],
       },
     },
     size: {
@@ -30,6 +30,6 @@ const Template: ComponentStory<typeof CourseLogo> = (args) => (
 
 export const Default: ComponentStory<typeof CourseLogo> = Template.bind({});
 Default.args = {
-  variant: "HTML",
+  variant: "html",
   size: "large",
 } as CourseLogoProps;
