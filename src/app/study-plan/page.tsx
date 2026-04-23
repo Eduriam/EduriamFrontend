@@ -1,11 +1,20 @@
 ﻿"use client";
 
 import {
-  ContentContainer,
-  Header,
-  PageRoot,
-} from "@eduriam/ui-core";
+  DndContext,
+  DragEndEvent,
+  DragOverEvent,
+  DragOverlay,
+  DragStartEvent,
+  PointerSensor,
+  UniqueIdentifier,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { Id } from "domain/models/types/core";
+import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import React from "react";
@@ -13,119 +22,26 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import { getVariantFromLogoId } from "components/courses/CourseLogo/CourseLogo";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-import { CourseStudyMode } from "infrastructure/api/generated/models";
+import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
+
+import StudyPlanCourseCard from "./components/StudyPlanCourseCard/StudyPlanCourseCard";
+import StudyPlanLane from "./components/StudyPlanLane/StudyPlanLane";
+import { StudyPlanLaneId, StudyPlanState } from "./types/studyPlan.types";
 import {
-  UserProduct,
-  UserProductsService,
-} from "infrastructure/services/courses/UserProductsService";
-
-import StudyPlanCourseCard, {
-  type IStudyPlanCourseCard,
-} from "./components/StudyPlanCourseCard/StudyPlanCourseCard";
-
-type StudyPlanLaneId = "learn" | "review" | "paused";
-
-interface StudyPlanCourse
-  extends Pick<
-    IStudyPlanCourseCard,
-    "title" | "logoVariant" | "data-test-learn-button"
-  > {
-  id: Id;
-  /**
-   * Optional data-test attribute for E2E tests.
-   */
-  dataTest?: string;
-}
-
-type StudyPlanState = Record<StudyPlanLaneId, StudyPlanCourse[]>;
-
-function toLogoVariant(
-  course: UserProduct,
-): IStudyPlanCourseCard["logoVariant"] {
-  const byLogoId =
-    (course.logoId && getVariantFromLogoId(course.logoId)) ?? undefined;
-  if (byLogoId) {
-    return byLogoId;
-  }
-  const name = course.name.toLowerCase();
-  return name.includes("javascript") ? "JavaScript" : "HTML";
-}
-
-function mapCourseToStudyPlanCourse(course: UserProduct): StudyPlanCourse {
-  const courseId = course.id;
-
-  return {
-    id: course.id,
-    title: course.name,
-    logoVariant: toLogoVariant(course),
-    dataTest:
-      courseId === 1001
-        ? "test-course-learn-card"
-        : courseId === 1002
-          ? "test-course-paused-card"
-          : undefined,
-    "data-test-learn-button":
-      courseId === 1001
-        ? "start-test-course-learning-button"
-        : undefined,
-  };
-}
-
-function mapStudyModeToLane(studyMode: UserProduct["studyMode"]): StudyPlanLaneId {
-  if (studyMode === CourseStudyMode.Review) {
-    return "review";
-  }
-  if (studyMode === CourseStudyMode.Paused) {
-    return "paused";
-  }
-  return "learn";
-}
-
-function mapLaneToStudyMode(lane: StudyPlanLaneId): CourseStudyMode {
-  if (lane === "review") {
-    return CourseStudyMode.Review;
-  }
-  if (lane === "paused") {
-    return CourseStudyMode.Paused;
-  }
-  return CourseStudyMode.Learn;
-}
-
-function createInitialStateFromCourses(
-  courses: UserProduct[] | undefined,
-): StudyPlanState | null {
-  if (!courses) {
-    return null;
-  }
-
-  const learnCourses: StudyPlanCourse[] = [];
-  const reviewCourses: StudyPlanCourse[] = [];
-  const pausedCourses: StudyPlanCourse[] = [];
-
-  for (const course of courses) {
-    const mapped = mapCourseToStudyPlanCourse(course);
-
-    if (mapStudyModeToLane(course.studyMode) === "learn") {
-      learnCourses.push(mapped);
-    } else if (mapStudyModeToLane(course.studyMode) === "review") {
-      reviewCourses.push(mapped);
-    } else if (mapStudyModeToLane(course.studyMode) === "paused") {
-      pausedCourses.push(mapped);
-    }
-  }
-
-  return {
-    learn: learnCourses,
-    review: reviewCourses,
-    paused: pausedCourses,
-  };
-}
+  createInitialStateFromCourses,
+  findCourseLocation,
+  mapLaneToStudyMode,
+} from "./util/studyPlan.utils";
+import {
+  parseCourseIdFromDndId,
+  parseLaneIdFromDndId,
+} from "./util/studyPlanDndIds";
 
 const StudyPlanPage: React.FC = () => {
+  const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { userProducts } = UserProductsService.useUserProducts();
 
@@ -139,131 +55,176 @@ const StudyPlanPage: React.FC = () => {
     }
   }, [userProducts, lanes]);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+  );
+
+  const [activeCourseId, setActiveCourseId] = React.useState<Id | null>(null);
+  const [activeCourseLane, setActiveCourseLane] =
+    React.useState<StudyPlanLaneId | null>(null);
   const [dragOverLane, setDragOverLane] =
     React.useState<StudyPlanLaneId | null>(null);
 
-  const [dragging, setDragging] = React.useState<{
-    courseId: Id;
-    fromLane: StudyPlanLaneId;
-  } | null>(null);
-
-  const handleDragStart = (laneId: StudyPlanLaneId, courseId: Id) => {
-    setDragging({ courseId, fromLane: laneId });
-  };
-
-  const handleDragEnd = () => {
-    setDragging(null);
+  const resetDragState = React.useCallback(() => {
+    setActiveCourseId(null);
+    setActiveCourseLane(null);
     setDragOverLane(null);
-  };
+  }, []);
 
-  const handleDropOnLane = async (targetLane: StudyPlanLaneId) => {
-    if (!dragging || !lanes) {
-      return;
-    }
-
-    const { courseId, fromLane } = dragging;
-
-    if (fromLane === targetLane) {
-      setDragging(null);
-      return;
-    }
-
-    setLanes((prev) => {
-      if (!prev) {
-        return prev;
+  const getLaneFromOverId = React.useCallback(
+    (dndId: UniqueIdentifier | null | undefined): StudyPlanLaneId | null => {
+      if (!lanes) {
+        return null;
       }
 
-      const sourceCourses = prev[fromLane];
-      const targetCourses = prev[targetLane];
-
-      const courseIndex = sourceCourses.findIndex((c) => c.id === courseId);
-      if (courseIndex === -1) {
-        return prev;
+      const explicitLane = parseLaneIdFromDndId(dndId);
+      if (explicitLane) {
+        return explicitLane;
       }
 
-      const course = sourceCourses[courseIndex];
+      const courseId = parseCourseIdFromDndId(dndId);
+      if (courseId === null) {
+        return null;
+      }
 
-      return {
-        ...prev,
-        [fromLane]: sourceCourses.filter((c) => c.id !== courseId),
-        [targetLane]: [course, ...targetCourses],
-      };
-    });
+      return findCourseLocation(lanes, courseId)?.laneId ?? null;
+    },
+    [lanes],
+  );
 
-    // Persist study mode change to backend
-    const newStudyMode = mapLaneToStudyMode(targetLane);
-    try {
-      await UserProductsService.updateStudyMode(courseId, newStudyMode);
-    } catch {
-      // Silently ignore errors for now; UI has already updated optimistically.
+  const handleDragStart = React.useCallback(
+    (event: DragStartEvent) => {
+      if (!lanes) {
+        return;
+      }
+
+      const startedCourseId = parseCourseIdFromDndId(event.active.id);
+      if (startedCourseId === null) {
+        return;
+      }
+
+      const location = findCourseLocation(lanes, startedCourseId);
+      if (!location) {
+        return;
+      }
+
+      setActiveCourseId(startedCourseId);
+      setActiveCourseLane(location.laneId);
+      setDragOverLane(location.laneId);
+    },
+    [lanes],
+  );
+
+  const handleDragOver = React.useCallback(
+    (event: DragOverEvent) => {
+      const laneId = getLaneFromOverId(event.over?.id);
+      if (!laneId) {
+        return;
+      }
+
+      setDragOverLane(laneId);
+    },
+    [getLaneFromOverId],
+  );
+
+  const handleDragCancel = React.useCallback(() => {
+    resetDragState();
+  }, [resetDragState]);
+
+  const handleDragEnd = React.useCallback(
+    async (event: DragEndEvent) => {
+      if (!lanes || activeCourseId === null || activeCourseLane === null) {
+        resetDragState();
+        return;
+      }
+
+      const targetLane = getLaneFromOverId(event.over?.id);
+      if (!targetLane || targetLane === activeCourseLane) {
+        resetDragState();
+        return;
+      }
+
+      const sourceLane = activeCourseLane;
+      const courseId = activeCourseId;
+
+      setLanes((prev) => {
+        if (!prev) {
+          return prev;
+        }
+
+        const sourceCourses = prev[sourceLane];
+        const targetCourses = prev[targetLane];
+        const courseIndex = sourceCourses.findIndex(
+          (course) => course.id === courseId,
+        );
+        if (courseIndex === -1) {
+          return prev;
+        }
+
+        const course = sourceCourses[courseIndex];
+        if (!course) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          [sourceLane]: sourceCourses.filter((item) => item.id !== courseId),
+          [targetLane]: [course, ...targetCourses],
+        };
+      });
+
+      resetDragState();
+
+      const newStudyMode = mapLaneToStudyMode(targetLane);
+      try {
+        await UserProductsService.updateStudyMode(courseId, newStudyMode);
+      } catch {
+        // Silently ignore errors for now; UI has already updated optimistically.
+      }
+    },
+    [
+      activeCourseId,
+      activeCourseLane,
+      getLaneFromOverId,
+      lanes,
+      resetDragState,
+    ],
+  );
+
+  const activeCourseLocation = React.useMemo(() => {
+    if (!lanes || activeCourseId === null) {
+      return null;
     }
 
-    setDragging(null);
-    setDragOverLane(null);
-  };
+    return findCourseLocation(lanes, activeCourseId);
+  }, [activeCourseId, lanes]);
 
   const renderLane = (
     laneId: StudyPlanLaneId,
     title: string,
     dataTest: string,
-  ) => {
-    const courses = lanes?.[laneId] ?? [];
-    const isLearnLane = laneId === "learn";
-
-    return (
-      <Box
-        key={laneId}
-        data-test={dataTest}
-        onDragOver={(event) => {
-          event.preventDefault();
-          if (dragging) {
-            setDragOverLane(laneId);
-          }
-        }}
-        onDrop={(event) => {
-          event.preventDefault();
-          handleDropOnLane(laneId);
-        }}
-        sx={{ width: "100%", minHeight: 140 }}
-      >
-        <Header variant="section" text={title} />
-        <Stack direction="column" spacing={3} mt={3}>
-          {dragging && dragOverLane === laneId && (
-            <Box
-              sx={{
-                height: 96,
-                borderRadius: 2,
-                border: "2px dashed",
-                borderColor: "divider",
-                bgcolor: "background.paper",
-                opacity: 0.8,
-              }}
-            />
-          )}
-          {courses.map((course) => (
-            <Box
-              key={course.id}
-              draggable
-              data-test={course.dataTest}
-              onDragStart={() => handleDragStart(laneId, course.id)}
-              onDragEnd={handleDragEnd}
-            >
-              <StudyPlanCourseCard
-                title={course.title}
-                logoVariant={course.logoVariant}
-                onPlayClick={
-                  isLearnLane
-                    ? navigateWithTransition(`/study?courseId=${course.id}`)
-                    : undefined
-                }
-                data-test-learn-button={course["data-test-learn-button"]}
-              />
-            </Box>
-          ))}
-        </Stack>
-      </Box>
-    );
-  };
+  ) => (
+    <StudyPlanLane
+      key={laneId}
+      laneId={laneId}
+      title={title}
+      dataTest={dataTest}
+      courses={lanes?.[laneId] ?? []}
+      activeCourseId={activeCourseId}
+      activeCourseLane={activeCourseLane}
+      isActiveDragOver={dragOverLane === laneId}
+      onCourseClick={(courseId: Id) =>
+        navigateWithTransition(`/courses/${courseId}`)
+      }
+      onPlayClick={(courseId: Id) =>
+        navigateWithTransition(`/study?courseId=${courseId}`)
+      }
+    />
+  );
 
   if (!lanes) {
     return (
@@ -277,7 +238,7 @@ const StudyPlanPage: React.FC = () => {
                 icon: "add",
                 onClick: navigateWithTransition("/courses"),
               }}
-              header="Study Plan"
+              header={t("studyPlanPage.header") ?? "Study Plan"}
             />
           }
           mainNavigation="desktopOnly"
@@ -305,7 +266,7 @@ const StudyPlanPage: React.FC = () => {
                 icon: "add",
                 onClick: navigateWithTransition("/courses"),
               }}
-              header="Study Plan"
+              header={t("studyPlanPage.header") ?? "Study Plan"}
             />
           }
           mainNavigation="desktopOnly"
@@ -313,17 +274,43 @@ const StudyPlanPage: React.FC = () => {
       </Box>
 
       <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
-        <Box data-test="study-plan-section" sx={{ width: "100%" }}>
-          <Stack width="100%" spacing={8}>
-            {renderLane(
-              "learn",
-              "Learn and Review",
-              "learn-courses-list-section",
-            )}
-            {renderLane("review", "Review Only", "review-courses-list-section")}
-            {renderLane("paused", "Paused", "paused-courses-list-section")}
-          </Stack>
-        </Box>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDragCancel={handleDragCancel}
+          onDragEnd={handleDragEnd}
+        >
+          <Box data-test="study-plan-section" sx={{ width: "100%" }}>
+            <Stack width="100%" spacing={8}>
+              {renderLane(
+                "learn",
+                t("studyPlanPage.learnAndReview") ?? "Learn and Review",
+                "learn-courses-list-section",
+              )}
+              {renderLane(
+                "review",
+                t("studyPlanPage.reviewOnly") ?? "Review Only",
+                "review-courses-list-section",
+              )}
+              {renderLane(
+                "paused",
+                t("studyPlanPage.paused") ?? "Paused",
+                "paused-courses-list-section",
+              )}
+            </Stack>
+          </Box>
+
+          <DragOverlay>
+            {activeCourseLocation?.course ? (
+              <StudyPlanCourseCard
+                title={activeCourseLocation.course.title}
+                logoVariant={activeCourseLocation.course.logoVariant}
+              />
+            ) : null}
+          </DragOverlay>
+        </DndContext>
       </ContentContainer>
     </PageRoot>
   );

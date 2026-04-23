@@ -50,6 +50,28 @@ When(
     const card = this.page.locator(`[data-test="${cardTestId}"]`).first();
     const section = this.page.locator(`[data-test="${sectionTestId}"]`).first();
 
-    await card.dragTo(section);
+    await card.waitFor({ state: "visible", timeout: 15000 });
+    await section.waitFor({ state: "visible", timeout: 15000 });
+    await card.scrollIntoViewIfNeeded();
+    await section.scrollIntoViewIfNeeded();
+
+    const cardBox = await card.boundingBox();
+    const sectionBox = await section.boundingBox();
+
+    if (!cardBox || !sectionBox) {
+      throw new Error("Could not resolve card or section bounding box for drag.");
+    }
+
+    const startX = cardBox.x + cardBox.width / 2;
+    const startY = cardBox.y + cardBox.height / 2;
+    const endX = sectionBox.x + sectionBox.width / 2;
+    const endY = sectionBox.y + Math.min(48, sectionBox.height / 2);
+
+    await this.page.mouse.move(startX, startY);
+    await this.page.mouse.down();
+    // Small initial move to pass pointer activation threshold.
+    await this.page.mouse.move(startX + 12, startY + 12, { steps: 3 });
+    await this.page.mouse.move(endX, endY, { steps: 12 });
+    await this.page.mouse.up();
   },
 );

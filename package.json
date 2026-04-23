@@ -22,8 +22,11 @@
     "api:generate": "orval --config ./orval.config.ts"
   },
   "dependencies": {
-    "@eduriam/ui-core": "^0.6.74",
-    "@eduriam/ui-x": "^0.2.98",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@eduriam/ui-core": "^0.6.77",
+    "@eduriam/ui-x": "^0.2.101",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",

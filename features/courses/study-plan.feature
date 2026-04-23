@@ -42,3 +42,10 @@ Feature: Study Plan
     And I should see the "test-course-learn-card" card in the "learn-courses-list-section" section
     When I drag and drop the "test-course-learn-card" card to the "paused-courses-list-section" section
     Then I should see the "test-course-learn-card" card in the "paused-courses-list-section" section
+
+  Scenario: User opens course page from study plan card center area
+    Given I am signed in
+    And I am on the "study-plan-page" page
+    And I should see the "test-course-learn-card" card in the "learn-courses-list-section" section
+    When I click on the "test-course-learn-card-course-click-area" button
+    Then I should be on the "course-page" page

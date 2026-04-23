@@ -9,6 +9,7 @@ export default {
   component: StudyPlanCourseCard,
   argTypes: {
     onPlayClick: { action: "play clicked" },
+    onCourseClick: { action: "course area clicked" },
   },
 } as ComponentMeta<typeof StudyPlanCourseCard>;
 

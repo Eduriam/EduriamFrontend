@@ -218,6 +218,12 @@
     "reviewXpInfo": "Opakování ti dá 2x více XP!",
     "skipForToday": "Pro dnešek přeskočit"
   },
+  "studyPlanPage": {
+    "header": "Studijní plán",
+    "learnAndReview": "Učení a opakování",
+    "reviewOnly": "Pouze opakování",
+    "paused": "Pozastavené"
+  },
   "manageSubscription": {
     "title": "Spravovat předplatné",
     "current": "Momentální předplatné",

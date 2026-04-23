@@ -1905,9 +1905,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.74":
-  version: 0.6.74
-  resolution: "@eduriam/ui-core@npm:0.6.74::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.74%2F35c12a04c0c3c660b9926022ea72da3e96b5d964"
+"@dnd-kit/accessibility@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@dnd-kit/accessibility@npm:3.1.1"
+  dependencies:
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10c0/be0bf41716dc58f9386bc36906ec1ce72b7b42b6d1d0e631d347afe9bd8714a829bd6f58a346dd089b1519e93918ae2f94497411a61a4f5e4d9247c6cfd1fef8
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/core@npm:^6.3.1":
+  version: 6.3.1
+  resolution: "@dnd-kit/core@npm:6.3.1"
+  dependencies:
+    "@dnd-kit/accessibility": "npm:^3.1.1"
+    "@dnd-kit/utilities": "npm:^3.2.2"
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/196db95d81096d9dc248983533eab91ba83591770fa5c894b1ac776f42af0d99522b3fd5bb3923411470e4733fcfa103e6ee17adc17b9b7eb54c7fbec5ff7c52
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/sortable@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@dnd-kit/sortable@npm:10.0.0"
+  dependencies:
+    "@dnd-kit/utilities": "npm:^3.2.2"
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    "@dnd-kit/core": ^6.3.0
+    react: ">=16.8.0"
+  checksum: 10c0/37ee48bc6789fb512dc0e4c374a96d19abe5b2b76dc34856a5883aaa96c3297891b94cc77bbc409e074dcce70967ebcb9feb40cd9abadb8716fc280b4c7f99af
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/utilities@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "@dnd-kit/utilities@npm:3.2.2"
+  dependencies:
+    tslib: "npm:^2.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10c0/9aa90526f3e3fd567b5acc1b625a63177b9e8d00e7e50b2bd0e08fa2bf4dba7e19529777e001fdb8f89a7ce69f30b190c8364d390212634e0afdfa8c395e85a0
+  languageName: node
+  linkType: hard
+
+"@eduriam/ui-core@npm:^0.6.77":
+  version: 0.6.77
+  resolution: "@eduriam/ui-core@npm:0.6.77::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.77%2F84c35449421ef33c0752f28903dbcc4274fe7f23"
   dependencies:
     mermaid: "npm:^11.12.0"
   peerDependencies:
@@ -1916,15 +1965,15 @@ __metadata:
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/59eb23f805d369bee18985e9c50fad6b75dce3f2038580a4820c6ab15b3113271a1ecf225e8d23ed6432e43c5dc830243fecdbc53d7950b85f991d42b222f393
+  checksum: 10c0/eab10cb14bfbb03b1802daf3cb5366c1a46b4e68c2bffc936e3eaeea5541a69ffbf75a71c4039ad1322c78adc12901972dec8bca1e4f5ae518d516e7c89dd60d
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.98":
-  version: 0.2.98
-  resolution: "@eduriam/ui-x@npm:0.2.98::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.98%2Fb4c3a347c6c31fc61d7d670005767e01338e46be"
+"@eduriam/ui-x@npm:^0.2.101":
+  version: 0.2.101
+  resolution: "@eduriam/ui-x@npm:0.2.101::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.101%2Fa9c2b7ab151fb3d40484ade932cd85057d86f68a"
   dependencies:
-    "@eduriam/ui-core": "npm:^0.6.74"
+    "@eduriam/ui-core": "npm:^0.6.77"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
@@ -1944,7 +1993,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/6b2c7be551b8361ff024f017747d2a64d40bcaadbd19bfed4edc46ab5f71437bee60bd0075b48862254ad345d585b99dcc74a4ffc383e76d273a03916372af31
+  checksum: 10c0/dc7d0053d23f9ecb48cfad6680a3b73d4105c1ce442ec8ed4cfe6a2f3472afccefaecda61551a5fe7be25a323cb6f8dbbc78af8c30753cab493306f6a90b768e
   languageName: node
   linkType: hard
 
@@ -14895,8 +14944,11 @@ __metadata:
     "@commitlint/cli": "npm:^17.1.2"
     "@commitlint/config-conventional": "npm:^17.1.0"
     "@cucumber/cucumber": "npm:^10.3.1"
-    "@eduriam/ui-core": "npm:^0.6.74"
-    "@eduriam/ui-x": "npm:^0.2.98"
+    "@dnd-kit/core": "npm:^6.3.1"
+    "@dnd-kit/sortable": "npm:^10.0.0"
+    "@dnd-kit/utilities": "npm:^3.2.2"
+    "@eduriam/ui-core": "npm:^0.6.77"
+    "@eduriam/ui-x": "npm:^0.2.101"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
