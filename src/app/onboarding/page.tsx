@@ -295,7 +295,8 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
         <Box
           sx={{
             position: "relative",
-            overflow: "hidden",
+            overflowX: "hidden",
+            overflowY: "visible",
             display: "flex",
             flexDirection: "column",
             flex: 1,

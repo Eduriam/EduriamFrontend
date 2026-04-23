@@ -85,21 +85,29 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
   return (
     <>
       {groups.length > 0 && (
-        <Stack
-          direction="column"
-          width="100%"
-          alignItems="center"
-          sx={{
-            position: "sticky",
-            top: 64,
-            zIndex: 10,
-            backgroundColor: "background.default",
-          }}
-        >
-          <Box maxWidth="1000px" width="100%">
-            <Tabs tabs={tabs} value={effectiveTab} onChange={handleTabChange} />
+        <>
+          <Box
+            sx={{
+              position: "fixed",
+              top: 64,
+              left: 0,
+              right: 0,
+              zIndex: 20,
+              backgroundColor: "background.default",
+            }}
+          >
+            <Stack direction="column" width="100%" alignItems="center">
+              <Box maxWidth="1000px" width="100%">
+                <Tabs
+                  tabs={tabs}
+                  value={effectiveTab}
+                  onChange={handleTabChange}
+                />
+              </Box>
+            </Stack>
           </Box>
-        </Stack>
+          <Box sx={{ height: 48 }} />
+        </>
       )}
       <ContentContainer width="small" justifyContent="space-between">
         <Stack spacing={6} data-test="all-courses-section">
