@@ -296,9 +296,9 @@
     "button": "Odemknout neomezenou energii"
   },
   "streakDrawer": {
-    "title": "Denní řada",
+    "title": "Streak",
     "daysLabel": "{{countFormatted}} dní",
-    "freezeTitle": "Zmrazení řady",
+    "freezeTitle": "Zmrazení streaku",
     "equippedLabel": "{{equippedFormatted}} / {{maxFormatted}} zapnuto"
   },
   "certificate": {
@@ -356,7 +356,7 @@
     "today": "dnes",
     "daysAgo": "před {{count}} dny",
     "messages": {
-      "streak_milestone": "Dosáhl(a) denní řady {{streak}} dní.",
+      "streak_milestone": "Dosáhl(a) streaku {{streak}} dní.",
       "achievement_earned": "Získal(a) ocenění {{achievementName}}.",
       "league_promoted": "Postoupil(a) do ligy {{league}}.",
       "course_completed": "Dokončil(a) kurz {{courseName}}."
@@ -398,7 +398,7 @@
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
     "stats": "Statistiky",
-    "streak": "Denní řada",
+    "streak": "Streak",
     "addFriends": "Přidat přátele",
     "overview": "Přehled",
     "userCourses": "Kurzy uživatele"
@@ -451,9 +451,9 @@
     "turnOnNotifications": "Zapnout notifikace",
     "notificationsMotivation": "Zapněte notifikace a zůstaňte motivovaní každý den!",
     "notNow": "Teď ne",
-    "dayStreak": "denní řada",
+    "dayStreak": "denní streak",
     "streakLost": "Váš streak byl resetován",
-    "streakSaved": "Zmrazení denní řady bylo použito",
+    "streakSaved": "Zmrazení streaku bylo použito",
     "streakSavedDescription": "Zbývá vám ještě {{freezesLeft}} zmrazení.",
     "leaguePromoted": "Byli jste povýšeni do vyšší ligy!",
     "leagueDemoted": "Byli jste přesunuti do nižší ligy",
@@ -595,7 +595,7 @@
       "items": {
         "smartStudyReminderEnabled": "Chytré připomenutí studia",
         "dailyPractice": "Každodenní učení",
-        "streakFreezeUsed": "Při použití zmrazení denní řady",
+        "streakFreezeUsed": "Při použití zmrazení streaku",
         "leaderboardStatus": "Umístění v lize",
         "newFollower": "Nový sledující",
         "friendActivity": "Aktivita přátel"
