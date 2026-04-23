@@ -193,8 +193,25 @@ const AdvertisementDialog: React.FC<AdvertisementDialogProps> = ({
               alignItems: "center",
               justifyContent: "center",
               p: 2,
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                pointerEvents: "none",
+              }}
+            >
+              {t("advertisementDialog.fallbackLabel")}
+            </Typography>
             {adClient && adSlot ? (
               <ins
                 ref={adElementRef}
@@ -204,6 +221,8 @@ const AdvertisementDialog: React.FC<AdvertisementDialogProps> = ({
                   display: "inline-block",
                   width: `${AD_WIDTH_PX}px`,
                   height: `${AD_HEIGHT_PX}px`,
+                  position: "relative",
+                  zIndex: 1,
                 }}
                 data-ad-client={adClient}
                 data-ad-slot={adSlot}
