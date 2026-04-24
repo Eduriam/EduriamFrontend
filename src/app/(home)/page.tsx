@@ -69,6 +69,14 @@ const HomePage: React.FC<IHomePage> = () => {
     }
   };
 
+  const handleStartUpcomingLesson = navigateWithTransition(
+    `/study?lessonId=${studyPlan?.upcomingLearnLesson?.id}`,
+  );
+
+  const handleStartReview = navigateWithTransition(
+    `/review?courseId=${studyPlan?.upcomingReviewCourse?.id}`,
+  );
+
   return (
     <PageRoot data-test="home-page">
       <NoticeBoard />
@@ -159,13 +167,12 @@ const HomePage: React.FC<IHomePage> = () => {
                     t("home.nextStudyPlanLesson") ?? "Next study plan lesson."
                   }
                   imageSrc={studyPlan?.upcomingLearnLesson?.thumbnailUrl}
+                  onImageClick={handleStartUpcomingLesson}
                 />
 
                 <LargeButton
                   fullWidth
-                  onClick={navigateWithTransition(
-                    `/study?lessonId=${studyPlan?.upcomingLearnLesson?.id}`,
-                  )}
+                  onClick={handleStartUpcomingLesson}
                   data-test="start-upcoming-lesson-button"
                 >
                   {t("home.startLesson") ?? "Start Lesson"}
@@ -223,12 +230,11 @@ const HomePage: React.FC<IHomePage> = () => {
                   imageSrc={
                     studyPlan?.upcomingReviewCourse?.thumbnailUrl ?? undefined
                   }
+                  onImageClick={handleStartReview}
                 />
                 <LargeButton
                   fullWidth
-                  onClick={navigateWithTransition(
-                    `/review?courseId=${studyPlan?.upcomingReviewCourse?.id}`,
-                  )}
+                  onClick={handleStartReview}
                   data-test="start-review-button"
                 >
                   {t("home.startReview") ?? "Start Review"}

@@ -56,7 +56,7 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
       <Toolbar
         sx={(theme) => ({
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: { xs: "space-between", sm: "flex-end" },
           minHeight: { xs: 56 },
           px: MOBILE_PADDING_X,
           [theme.breakpoints.up("sm")]: {
@@ -67,27 +67,29 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
           width: "100%",
         })}
       >
-        {/* Streak, coins, energy, study plan: aligned to the right */}
+        {/* Streak, coins, energy: spread on mobile, compact on larger screens */}
         <Stack
           direction="row"
           alignItems="center"
-          spacing={{ xs: 0, md: 4 }}
+          spacing={{ xs: 0, sm: 5 }}
           sx={{
-            justifyContent: "flex-end",
-            width: "auto",
+            justifyContent: { xs: "space-around", sm: "flex-end" },
+            width: { xs: "100%", sm: "auto" },
+            flex: { xs: 1, sm: "unset" },
+            mr: { xs: 1, sm: 2 },
           }}
         >
           {/* Streak */}
           <Stack
             direction="row"
             alignItems="center"
-            gap={2}
+            gap={0.8}
             onClick={onStreakClick}
             sx={{ cursor: onStreakClick ? "pointer" : "default" }}
             data-test="streak-section"
           >
-            <Illustration name="fire" width={32} height={32} />
-            <Typography variant="h6" fontWeight="medium">
+            <Illustration name="fire" width={26} height={26} />
+            <Typography variant="subtitle1" fontWeight="medium">
               {streak}
             </Typography>
           </Stack>
@@ -96,13 +98,13 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
           <Stack
             direction="row"
             alignItems="center"
-            gap={2}
+            gap={1}
             onClick={onCoinsClick}
             sx={{ cursor: onCoinsClick ? "pointer" : "default" }}
             data-test="coins-section"
           >
-            <Illustration name="coin" width={32} height={32} />
-            <Typography variant="h6" fontWeight="medium">
+            <Illustration name="coin" width={24} height={24} />
+            <Typography variant="subtitle1" fontWeight="medium">
               {coins >= 1000 ? `${Math.floor(coins / 1000)}k` : coins}
             </Typography>
           </Stack>
@@ -111,27 +113,26 @@ const HomepageNavbar: React.FC<IHomepageNavbar> = ({
           <Stack
             direction="row"
             alignItems="center"
-            gap={2}
+            gap={0.2}
             onClick={onEnergyClick}
             sx={{ cursor: onEnergyClick ? "pointer" : "default" }}
             data-test="energy-section"
           >
-            <Illustration name="energy" width={32} height={32} />
-            <Typography variant="h6" fontWeight="medium">
+            <Illustration name="energy" width={25} height={25} />
+            <Typography variant="subtitle1" fontWeight="medium">
               {energy}
             </Typography>
           </Stack>
-
-          {/* Study Plan Button */}
-          <IconButton
-            icon="studyPlan"
-            variant="text"
-            size="medium"
-            color="textPrimary"
-            onClick={onStudyPlanClick}
-            data-test={dataTestStudyPlanButton}
-          />
         </Stack>
+        {/* Study Plan Button */}
+        <IconButton
+          icon="studyPlan"
+          variant="text"
+          size="medium"
+          color="textPrimary"
+          onClick={onStudyPlanClick}
+          data-test={dataTestStudyPlanButton}
+        />
       </Toolbar>
     </AppBar>
   );
