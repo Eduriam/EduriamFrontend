@@ -25,6 +25,7 @@ import Stack from "@mui/material/Stack";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
+import { optimisticMutationOption } from "infrastructure/api/API";
 import { UserProductsService } from "infrastructure/services/courses/UserProductsService";
 
 import StudyPlanCourseCard from "./components/StudyPlanCourseCard/StudyPlanCourseCard";
@@ -43,17 +44,11 @@ import {
 const StudyPlanPage: React.FC = () => {
   const { t } = useTranslation("common");
   const navigateWithTransition = useTransitionNavigationHandler();
-  const { userProducts } = UserProductsService.useUserProducts();
-
-  const [lanes, setLanes] = React.useState<StudyPlanState | null>(() =>
-    createInitialStateFromCourses(userProducts),
+  const { userProducts, mutate } = UserProductsService.useUserProducts();
+  const lanes = React.useMemo<StudyPlanState | null>(
+    () => createInitialStateFromCourses(userProducts),
+    [userProducts],
   );
-
-  React.useEffect(() => {
-    if (!lanes) {
-      setLanes(createInitialStateFromCourses(userProducts));
-    }
-  }, [userProducts, lanes]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -148,42 +143,26 @@ const StudyPlanPage: React.FC = () => {
         return;
       }
 
-      const sourceLane = activeCourseLane;
       const courseId = activeCourseId;
-
-      setLanes((prev) => {
-        if (!prev) {
-          return prev;
-        }
-
-        const sourceCourses = prev[sourceLane];
-        const targetCourses = prev[targetLane];
-        const courseIndex = sourceCourses.findIndex(
-          (course) => course.id === courseId,
-        );
-        if (courseIndex === -1) {
-          return prev;
-        }
-
-        const course = sourceCourses[courseIndex];
-        if (!course) {
-          return prev;
-        }
-
-        return {
-          ...prev,
-          [sourceLane]: sourceCourses.filter((item) => item.id !== courseId),
-          [targetLane]: [course, ...targetCourses],
-        };
-      });
-
       resetDragState();
 
       const newStudyMode = mapLaneToStudyMode(targetLane);
+      const optimisticProducts = (userProducts ?? []).map((product) =>
+        product.id === courseId
+          ? {
+              ...product,
+              studyMode: newStudyMode,
+            }
+          : product,
+      );
+
       try {
-        await UserProductsService.updateStudyMode(courseId, newStudyMode);
+        await mutate(async () => {
+          await UserProductsService.updateStudyMode(courseId, newStudyMode);
+          return optimisticProducts;
+        }, optimisticMutationOption(optimisticProducts));
       } catch {
-        // Silently ignore errors for now; UI has already updated optimistically.
+        // On failure, SWR rollback restores previous study mode state.
       }
     },
     [
@@ -191,7 +170,9 @@ const StudyPlanPage: React.FC = () => {
       activeCourseLane,
       getLaneFromOverId,
       lanes,
+      mutate,
       resetDragState,
+      userProducts,
     ],
   );
 
