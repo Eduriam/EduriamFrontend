@@ -8,14 +8,15 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import LeagueIcon from "components/leaderboard/LeagueIcon";
+import { toLeagueVariant } from "components/leaderboard/leagueType";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import useAuth from "infrastructure/services/AuthProvider";
+import type { LeagueType } from "infrastructure/api/generated/models";
 import { LeaderboardService } from "infrastructure/services/users/LeaderboardService";
 
 import LeaderboardComponent from "./components/Leaderboard/Leaderboard";
-import { getLeagueDisplayConfig, toLeagueVariant } from "./leaderboard.config";
+import LeaguesShelf from "./components/LeaguesShelf/LeaguesShelf";
 
 function formatIsoDuration(duration: string | undefined): string {
   if (!duration || !duration.startsWith("P")) {
@@ -48,11 +49,16 @@ const LeaderboardPage: React.FC = () => {
   const { leaderboard } = LeaderboardService.useLeaderboard();
   const { user } = useAuth();
 
-  const currentLeague = toLeagueVariant(leaderboard?.currentLeague);
-  const hasStartedWeek = (leaderboard?.users.length ?? 0) > 0;
+  const toResolvedLeague = (league?: LeagueType | null) => {
+    const resolvedLeague = toLeagueVariant(league);
+    return resolvedLeague === "locked" ? null : resolvedLeague;
+  };
 
-  const { visibleLeagues, highlightedLeagueIndex } =
-    getLeagueDisplayConfig(currentLeague);
+  const currentLeague =
+    toResolvedLeague(leaderboard?.currentLeague) ??
+    toResolvedLeague(user?.league) ??
+    null;
+  const hasStartedWeek = (leaderboard?.users.length ?? 0) > 0;
 
   const users =
     leaderboard?.users.map((entry) => ({
@@ -63,7 +69,7 @@ const LeaderboardPage: React.FC = () => {
       avatar: entry.avatarDefinition,
     })) ?? [];
 
-  const currentLeagueName = t(`leaderboard.leagues.${currentLeague}`);
+  const currentLeagueName = t(`leaderboard.leagues.${currentLeague ?? "empty"}`);
   const navbarHeader = hasStartedWeek
     ? `${currentLeagueName} ${t("leaderboard.league")}`
     : "Leagues";
@@ -85,23 +91,7 @@ const LeaderboardPage: React.FC = () => {
         paddingTop="none"
       >
         <Stack direction="column" spacing={7} width="100%">
-          <Stack
-            direction="row"
-            spacing={1.25}
-            justifyContent="center"
-            alignItems="center"
-            width="100%"
-            data-test="current-league-icon"
-            pt={1.5}
-          >
-            {visibleLeagues.map((league, index) => (
-              <LeagueIcon
-                key={`${league}-${index}`}
-                variant={league}
-                size={index === highlightedLeagueIndex ? "large" : "medium"}
-              />
-            ))}
-          </Stack>
+          <LeaguesShelf currentLeague={currentLeague} />
 
           {hasStartedWeek ? (
             <Box data-test="leaderboard-section" sx={{ width: "100%" }}>

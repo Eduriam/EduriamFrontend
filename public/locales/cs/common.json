@@ -319,6 +319,7 @@
   "leaderboard": {
     "league": "Liga",
     "leagues": {
+      "empty": "Žádná",
       "iron": "Železná",
       "bronze": "Bronzová",
       "silver": "Stříbrná",
