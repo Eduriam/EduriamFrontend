@@ -12,12 +12,15 @@ export interface IStudyPreviewProps {
    * If not provided, an empty placeholder area is rendered.
    */
   imageSrc?: string;
+  /** Optional click handler for the preview image box. */
+  onImageClick?: () => void;
 }
 
 const StudyPreview: React.FC<IStudyPreviewProps> = ({
   title,
   description,
   imageSrc,
+  onImageClick,
 }) => {
   return (
     <Stack
@@ -27,12 +30,23 @@ const StudyPreview: React.FC<IStudyPreviewProps> = ({
       width="100%"
       maxWidth={353}
     >
-      <Stack
-        width="100%"
-        height={272}
-        borderRadius={2}
-        overflow="hidden"
-        bgcolor="disabled"
+      <Box
+        component="button"
+        type="button"
+        onClick={onImageClick}
+        disabled={!onImageClick}
+        sx={{
+          width: "100%",
+          height: 272,
+          borderRadius: 2,
+          overflow: "hidden",
+          bgcolor: "disabled",
+          border: "none",
+          p: 0,
+          m: 0,
+          display: "block",
+          cursor: onImageClick ? "pointer" : "default",
+        }}
       >
         {imageSrc && (
           <Box
@@ -47,7 +61,7 @@ const StudyPreview: React.FC<IStudyPreviewProps> = ({
             }}
           />
         )}
-      </Stack>
+      </Box>
 
       <Stack alignItems="center" textAlign="center" spacing={4}>
         <Typography variant="h4">{title}</Typography>
