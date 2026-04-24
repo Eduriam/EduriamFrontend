@@ -67,7 +67,7 @@ const ShopNavbar: React.FC<ShopNavbarProps> = ({
 
         <Stack
           direction="row"
-          spacing={0.5}
+          spacing={1}
           alignItems="center"
           data-test={balanceDataTest}
         >
