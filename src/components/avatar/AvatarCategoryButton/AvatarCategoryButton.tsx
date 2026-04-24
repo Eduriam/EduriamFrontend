@@ -1,20 +1,18 @@
 "use client";
 
 import { Card } from "@eduriam/ui-core";
-import { buildShopAvatar } from "app/shop/utils/avatar";
-import type { NullableAvatarPatch } from "app/shop/utils/avatar";
 
 import Box from "@mui/material/Box";
 
-import Avatar from "components/avatar/Avatar";
+import Avatar, { type AvatarDefinition } from "components/avatar/Avatar";
 
-export interface IShopCategory {
-  avatar?: NullableAvatarPatch;
+export interface IAvatarCategoryButton {
+  avatar: AvatarDefinition;
   onClick?: () => void;
   "data-test"?: string;
 }
 
-const ShopCategory: React.FC<IShopCategory> = ({
+const AvatarCategoryButton: React.FC<IAvatarCategoryButton> = ({
   avatar,
   onClick,
   "data-test": dataTest,
@@ -29,11 +27,11 @@ const ShopCategory: React.FC<IShopCategory> = ({
         paddingY="large"
       >
         <Box display="flex" justifyContent="center">
-          <Avatar definition={buildShopAvatar(avatar)} size={56} />
+          <Avatar definition={avatar} size={56} />
         </Box>
       </Card>
     </Box>
   );
 };
 
-export default ShopCategory;
+export default AvatarCategoryButton;

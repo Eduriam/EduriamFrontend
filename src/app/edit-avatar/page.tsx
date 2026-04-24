@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import Stack from "@mui/material/Stack";
 
 import Avatar from "components/avatar/Avatar";
+import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCategoryGrid";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -26,11 +27,10 @@ import { ShopService } from "infrastructure/services/shop/ShopService";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
-import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
 import LeaveAvatarEditorDrawer from "./components/LeaveAvatarEditorDrawer/LeaveAvatarEditorDrawer";
 import {
   type AvatarCategory,
-  buildCategoryPreview,
+  AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS,
   collectAvatarCategories,
   serializeAvatar,
 } from "./components/avatarEditorTypes";
@@ -155,21 +155,20 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
         <Stack spacing={2} width="100%" data-test="item-categories-section">
           <Header variant="section" text={t("avatarEditor.title")} />
 
-          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-            {categories.map((category) => {
-              const preview = buildCategoryPreview(category, draftAvatar);
-
-              return (
-                <Stack key={category.id} spacing={1}>
-                  <AvatarEditorItemButton
-                    preview={preview}
-                    onClick={() => setActiveCategory(category)}
-                    data-test="item-category"
-                  />
-                </Stack>
-              );
+          <AvatarCategoryGrid
+            data-test="avatar-categories-grid"
+            items={categories.map((category) => {
+              return {
+                id: category.id,
+                labelKey: category.labelKey,
+                avatar: buildShopAvatar(
+                  AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS[category.id],
+                ),
+                onClick: () => setActiveCategory(category),
+                "data-test": "item-category",
+              };
             })}
-          </Stack>
+          />
         </Stack>
       </ContentContainer>
 
