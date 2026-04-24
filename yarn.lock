@@ -1969,9 +1969,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.105":
-  version: 0.2.105
-  resolution: "@eduriam/ui-x@npm:0.2.105::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.105%2Fc13e83bb7c76f90a704c78b415e1ee8026348cac"
+"@eduriam/ui-x@npm:^0.2.106":
+  version: 0.2.106
+  resolution: "@eduriam/ui-x@npm:0.2.106::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.106%2F3440b266baeba636905747f172abefc8cbb8744f"
   dependencies:
     "@eduriam/ui-core": "npm:^0.6.79"
     "@remotion/captions": "npm:^4.0.353"
@@ -1993,7 +1993,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/03a8c2a09f920e7f26b1df26193c7d0fe0b25c5757f6099c888152a86f24e97601c2fc18a7806b34a10f87fb1f658600e6a6423797abced7a42965a55564eb83
+  checksum: 10c0/4214a967ba03c3b0a760aefa094b79f3f68a81c987aad8cbd8339a8943123259fba49d82151984a4ae7a2772fc9017d7b29671579e2099de7d2e1b4c65e75059
   languageName: node
   linkType: hard
 
@@ -14948,7 +14948,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
     "@eduriam/ui-core": "npm:^0.6.79"
-    "@eduriam/ui-x": "npm:^0.2.105"
+    "@eduriam/ui-x": "npm:^0.2.106"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"

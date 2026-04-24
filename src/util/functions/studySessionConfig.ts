@@ -64,6 +64,7 @@ export function createStudySessionLocalization(
       explanationTitle: t("exercise.explanationTitle"),
       whyButton: t("exercise.why"),
       continueButton: t("exercise.continue"),
+      retryButton: t("exercise.retryExercise"),
       skipExerciseButton: t("exercise.skipExercise"),
     },
     multipleChoiceExercise: {
