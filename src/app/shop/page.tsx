@@ -1,11 +1,10 @@
 ﻿"use client";
 
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
-import ShopCategory from "app/shop/components/ShopCategory/ShopCategory";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
-import type { NullableAvatarPatch } from "app/shop/utils/avatar";
+import { buildShopAvatar } from "app/shop/utils/avatar";
 import {
   getShopItemCategoryId,
   isShopItemPurchased,
@@ -19,6 +18,7 @@ import { useMemo, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCategoryGrid";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -74,24 +74,6 @@ const ShopPage: React.FC<IShopPage> = () => {
           ),
         })
       : undefined;
-
-  const previewAvatarByCategory = useMemo(() => {
-    const entries = new Map<string, NullableAvatarPatch>();
-
-    shopItems.forEach((item) => {
-      const categoryId = getShopItemCategoryId(item);
-      if (
-        item.image.avatar &&
-        categoryId &&
-        categoryId !== "streak-freeze" &&
-        !entries.has(categoryId)
-      ) {
-        entries.set(categoryId, item.image.avatar);
-      }
-    });
-
-    return entries;
-  }, [shopItems]);
 
   const handleBuy = async () => {
     if (!selectedItem) {
@@ -175,20 +157,16 @@ const ShopPage: React.FC<IShopPage> = () => {
         <Stack spacing={3} width="100%" data-test="shop-item-categories">
           <Typography variant="h5">{t("shop.characterTitle")}</Typography>
 
-          <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-            {shopCategories.map((category) => (
-              <Stack key={category.id} spacing={1}>
-                <Typography variant="body1" color="text.secondary">
-                  {t(category.nameKey)}
-                </Typography>
-                <ShopCategory
-                  avatar={previewAvatarByCategory.get(category.id)}
-                  onClick={navigateWithTransition(`/shop/${category.id}`)}
-                  data-test="shop-item-category"
-                />
-              </Stack>
-            ))}
-          </Stack>
+          <AvatarCategoryGrid
+            data-test="shop-categories-grid"
+            items={shopCategories.map((category) => ({
+              id: category.id,
+              labelKey: category.nameKey,
+              avatar: buildShopAvatar(category.previewAvatar),
+              onClick: navigateWithTransition(`/shop/${category.id}`),
+              "data-test": "shop-item-category",
+            }))}
+          />
         </Stack>
       </ContentContainer>
 

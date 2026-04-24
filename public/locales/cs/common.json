@@ -197,6 +197,19 @@
     "characterTitle": "Postava",
     "unlockRequirement": "Získej ocenění {{achievementName}} pro odemčení položky."
   },
+  "avatar": {
+    "categories": {
+      "hair": "Vlasy",
+      "eyes": "Oči",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "accessories": "Doplňky",
+      "headwear": "Čepice",
+      "clothing": "Oblečení",
+      "skinColor": "Barva pleti",
+      "backgroundColor": "Pozadí"
+    }
+  },
   "feedback": {
     "header": "Našli jste chybu? Něco vám nevyhovuje? Máte nápad na zlepšení? Dejte nám vědět! Každou zprávu si čteme :)",
     "thanks": "Děkujeme za zpětnou vazbu!"

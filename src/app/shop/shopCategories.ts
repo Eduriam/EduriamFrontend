@@ -1,36 +1,76 @@
+import type { NullableAvatarPatch } from "app/shop/utils/avatar";
+
+import {
+  AvatarAccessories,
+  AvatarBeard,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+} from "infrastructure/api/generated/models";
+
 export interface ShopCategoryConfig {
   id: string;
   nameKey: string;
+  previewAvatar: NullableAvatarPatch;
 }
 
 export const shopCategories: ShopCategoryConfig[] = [
   {
     id: "hair",
-    nameKey: "shop.categories.hair",
+    nameKey: "avatar.categories.hair",
+    previewAvatar: {
+      hair: AvatarHair.Hair2,
+      hairColor: AvatarHairColor.Red,
+    },
   },
   {
     id: "eyes",
-    nameKey: "shop.categories.eyes",
+    nameKey: "avatar.categories.eyes",
+    previewAvatar: {
+      eyes: AvatarEyes.Eyes2,
+      eyeColor: AvatarEyeColor.Blue,
+    },
   },
   {
     id: "expression",
-    nameKey: "shop.categories.expression",
+    nameKey: "avatar.categories.expression",
+    previewAvatar: {
+      expression: AvatarExpression.Expression2,
+    },
   },
   {
     id: "beard",
-    nameKey: "shop.categories.beard",
+    nameKey: "avatar.categories.beard",
+    previewAvatar: {
+      beard: AvatarBeard.Beard2,
+    },
   },
   {
     id: "accessories",
-    nameKey: "shop.categories.accessories",
+    nameKey: "avatar.categories.accessories",
+    previewAvatar: {
+      accessories: AvatarAccessories.Glasses1,
+      glassesColor: AvatarGlassesColor.Navy,
+    },
   },
   {
     id: "headwear",
-    nameKey: "shop.categories.headwear",
+    nameKey: "avatar.categories.headwear",
+    previewAvatar: {
+      headwear: AvatarHeadwear.Hat2,
+    },
   },
   {
     id: "clothing",
-    nameKey: "shop.categories.clothing",
+    nameKey: "avatar.categories.clothing",
+    previewAvatar: {
+      clothing: AvatarClothing.Shirt2,
+    },
   },
 ];
 

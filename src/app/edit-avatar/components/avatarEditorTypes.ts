@@ -1,4 +1,5 @@
 import type { AvatarDefinition } from "components/avatar/Avatar";
+import type { NullableAvatarPatch } from "app/shop/utils/avatar";
 import {
   backgroundColors,
   beardColors,
@@ -101,54 +102,88 @@ export const COLOR_FIELD_PALETTE: Partial<
 export const AVATAR_EDITOR_CATEGORY_CONFIG: AvatarEditorCategoryConfig[] = [
   {
     id: "hair",
-    labelKey: "avatarEditor.fields.hair",
+    labelKey: "avatar.categories.hair",
     itemField: "hair",
     colorField: "hairColor",
   },
   {
     id: "eyes",
-    labelKey: "avatarEditor.fields.eyes",
+    labelKey: "avatar.categories.eyes",
     itemField: "eyes",
     colorField: "eyeColor",
   },
   {
     id: "expression",
-    labelKey: "avatarEditor.fields.expression",
+    labelKey: "avatar.categories.expression",
     itemField: "expression",
   },
   {
     id: "beard",
-    labelKey: "avatarEditor.fields.beard",
+    labelKey: "avatar.categories.beard",
     itemField: "beard",
     colorField: "beardColor",
   },
   {
     id: "accessories",
-    labelKey: "avatarEditor.fields.accessories",
+    labelKey: "avatar.categories.accessories",
     itemField: "accessories",
     colorField: "glassesColor",
   },
   {
     id: "headwear",
-    labelKey: "avatarEditor.fields.headwear",
+    labelKey: "avatar.categories.headwear",
     itemField: "headwear",
   },
   {
     id: "clothing",
-    labelKey: "avatarEditor.fields.clothing",
+    labelKey: "avatar.categories.clothing",
     itemField: "clothing",
   },
   {
     id: "skinColor",
-    labelKey: "avatarEditor.fields.skinColor",
+    labelKey: "avatar.categories.skinColor",
     itemField: "skinColor",
   },
   {
     id: "backgroundColor",
-    labelKey: "avatarEditor.fields.backgroundColor",
+    labelKey: "avatar.categories.backgroundColor",
     itemField: "backgroundColor",
   },
 ];
+
+export const AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS: Record<string, NullableAvatarPatch> =
+  {
+    hair: {
+      hair: AvatarHair.Hair2,
+      hairColor: AvatarHairColor.Red,
+    },
+    eyes: {
+      eyes: AvatarEyes.Eyes2,
+      eyeColor: AvatarEyeColor.Blue,
+    },
+    expression: {
+      expression: AvatarExpression.Expression2,
+    },
+    beard: {
+      beard: AvatarBeard.Beard2,
+    },
+    accessories: {
+      accessories: AvatarAccessories.Glasses1,
+      glassesColor: AvatarGlassesColor.Navy,
+    },
+    headwear: {
+      headwear: AvatarHeadwear.Hat2,
+    },
+    clothing: {
+      clothing: AvatarClothing.Shirt2,
+    },
+    skinColor: {
+      skinColor: AvatarSkinColor.DeepDark,
+    },
+    backgroundColor: {
+      backgroundColor: AvatarBackgroundColor.PastelOrange,
+    },
+  };
 
 export const AVATAR_FIELD_LABELS: Partial<Record<AvatarEditableField, string>> =
   {

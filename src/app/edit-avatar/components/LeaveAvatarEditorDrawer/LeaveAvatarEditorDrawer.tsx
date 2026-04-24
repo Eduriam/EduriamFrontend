@@ -22,24 +22,35 @@ const LeaveAvatarEditorDrawer: React.FC<ILeaveAvatarEditorDrawer> = ({
   const { t } = useTranslation("common");
 
   return (
-    <Drawer open={open} onClose={onClose} data-test="leave-avatar-editor-section">
-      <Stack spacing={3} sx={{ width: "100%" }}>
-        <Typography variant="h5" textAlign="center">
-          {t("avatarEditor.leave.title")}
-        </Typography>
-        <Typography variant="body1" textAlign="center">
-          {t("avatarEditor.leave.description")}
-        </Typography>
+    <Drawer
+      open={open}
+      onClose={onClose}
+      data-test="leave-avatar-editor-section"
+    >
+      <Stack spacing={8} sx={{ width: "100%" }}>
+        <Stack spacing={2} sx={{ width: "100%" }}>
+          <Typography variant="h5" textAlign="center">
+            {t("avatarEditor.leave.title")}
+          </Typography>
+          <Typography variant="body1" textAlign="center">
+            {t("avatarEditor.leave.description")}
+          </Typography>
+        </Stack>
 
-        <Stack spacing={1.5} sx={{ width: "100%" }}>
+        <Stack spacing={1} sx={{ width: "100%" }}>
           <LargeButton
-            variant="outlined"
+            variant="contained"
             onClick={onKeepEditing}
             data-test="keep-editing-button"
           >
             {t("avatarEditor.leave.keepEditing")}
           </LargeButton>
-          <LargeButton onClick={onDiscardChanges} data-test="discard-changes-button">
+          <LargeButton
+            onClick={onDiscardChanges}
+            data-test="discard-changes-button"
+            color="error"
+            variant="text"
+          >
             {t("avatarEditor.leave.discardChanges")}
           </LargeButton>
         </Stack>
