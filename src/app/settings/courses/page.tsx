@@ -9,6 +9,7 @@ import {
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { useSnackbar } from "notistack";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useMemo, useState } from "react";
 
@@ -22,6 +23,7 @@ import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
+import { ProductType } from "infrastructure/api/generated/models/productType";
 import {
   UserProduct,
   UserProductsService,
@@ -30,6 +32,7 @@ import {
 const SettingsCoursesPage: React.FC = () => {
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   const { userProducts = [], mutate } = UserProductsService.useUserProducts();
   const [courseToDelete, setCourseToDelete] = useState<UserProduct | null>(
@@ -61,6 +64,11 @@ const SettingsCoursesPage: React.FC = () => {
     setCourseToDelete(null);
   };
 
+  const getCoursePath = (course: UserProduct) =>
+    course.type === ProductType.StudyPath
+      ? `/learning-paths/${course.id}`
+      : `/courses/${course.id}`;
+
   return (
     <PageRoot data-test="manage-courses-page">
       <PageNavigation
@@ -80,32 +88,44 @@ const SettingsCoursesPage: React.FC = () => {
         paddingTop="small"
       >
         <Stack spacing={3} width="100%">
-          {displayedCourses.map((course, index) => (
-            <Stack key={course.id} spacing={3}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2.5,
-                  py: 1,
-                }}
-              >
-                <CourseLogo variant={course.logoId} size="medium" />
-                <Box sx={{ minWidth: 0, flexGrow: 1 }}>
-                  <Typography variant="h6">{course.name}</Typography>
+          {displayedCourses.map((course, index) => {
+            const coursePath = getCoursePath(course);
+
+            return (
+              <Stack key={course.id} spacing={3}>
+                <Box
+                  role="button"
+                  tabIndex={0}
+                  data-test={`course-item-${course.id}`}
+                  onClick={navigateWithTransition(coursePath)}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2.5,
+                    py: 1,
+                    cursor: "pointer",
+                  }}
+                >
+                  <CourseLogo variant={course.logoId} size="medium" />
+                  <Box sx={{ minWidth: 0, flexGrow: 1 }}>
+                    <Typography variant="h6">{course.name}</Typography>
+                  </Box>
+                  <IconButton
+                    icon="delete"
+                    variant="text"
+                    color="textPrimary"
+                    size="medium"
+                    data-test={`remove-course-${course.id}-button`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setCourseToDelete(course);
+                    }}
+                  />
                 </Box>
-                <IconButton
-                  icon="delete"
-                  variant="text"
-                  color="textPrimary"
-                  size="medium"
-                  data-test={`remove-course-${course.id}-button`}
-                  onClick={() => setCourseToDelete(course)}
-                />
-              </Box>
-              {index < displayedCourses.length - 1 ? <Divider /> : null}
-            </Stack>
-          ))}
+                {index < displayedCourses.length - 1 ? <Divider /> : null}
+              </Stack>
+            );
+          })}
         </Stack>
       </ContentContainer>
 
