@@ -202,16 +202,9 @@ export const AVATAR_FIELD_LABELS: Partial<Record<AvatarEditableField, string>> =
     backgroundColor: "avatarEditor.fields.backgroundColor",
   };
 
-const AVATAR_FIELD_OPTIONS: Partial<
+const AVATAR_COLOR_FIELD_OPTIONS: Partial<
   Record<AvatarEditableField, readonly number[]>
 > = {
-  hair: [AvatarHair.Hair1, AvatarHair.Hair2, AvatarHair.None],
-  eyes: [AvatarEyes.Eyes1, AvatarEyes.Eyes2],
-  expression: [AvatarExpression.Expression1, AvatarExpression.Expression2],
-  beard: [AvatarBeard.Beard1, AvatarBeard.Beard2, AvatarBeard.None],
-  accessories: [AvatarAccessories.Glasses1, AvatarAccessories.None],
-  headwear: [AvatarHeadwear.Hat1, AvatarHeadwear.Hat2, AvatarHeadwear.None],
-  clothing: [AvatarClothing.Shirt1, AvatarClothing.Shirt2],
   skinColor: [
     AvatarSkinColor.Light,
     AvatarSkinColor.Fair,
@@ -348,16 +341,15 @@ export function collectAvatarCategories(
   });
 
   AVATAR_EDITOR_CATEGORY_CONFIG.forEach((config) => {
+    // Keep currently equipped values visible even if not in owned payload.
     addValue(grouped, config.itemField, currentAvatar[config.itemField]);
-    if (config.colorField) {
-      addValue(grouped, config.colorField, currentAvatar[config.colorField]);
-    }
-
-    AVATAR_FIELD_OPTIONS[config.itemField]?.forEach((value) =>
+    AVATAR_COLOR_FIELD_OPTIONS[config.itemField]?.forEach((value) =>
       addValue(grouped, config.itemField, value),
     );
+
     if (config.colorField) {
-      AVATAR_FIELD_OPTIONS[config.colorField]?.forEach((value) =>
+      addValue(grouped, config.colorField, currentAvatar[config.colorField]);
+      AVATAR_COLOR_FIELD_OPTIONS[config.colorField]?.forEach((value) =>
         addValue(grouped, config.colorField as AvatarEditableField, value),
       );
     }
