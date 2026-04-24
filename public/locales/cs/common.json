@@ -318,6 +318,7 @@
   },
   "leaderboard": {
     "league": "Liga",
+    "leaguesLabel": "Liga učení",
     "leagues": {
       "empty": "Žádná",
       "iron": "Železná",

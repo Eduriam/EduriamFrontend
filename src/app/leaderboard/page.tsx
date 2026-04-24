@@ -72,7 +72,7 @@ const LeaderboardPage: React.FC = () => {
   const currentLeagueName = t(`leaderboard.leagues.${currentLeague ?? "empty"}`);
   const navbarHeader = hasStartedWeek
     ? `${currentLeagueName} ${t("leaderboard.league")}`
-    : "Leagues";
+    : t("leaderboard.leaguesLabel");
 
   const promotionZoneEndIndex = leaderboard?.zones?.promotionZoneEndIndex ?? 0;
   const demotionZoneStartIndex =
