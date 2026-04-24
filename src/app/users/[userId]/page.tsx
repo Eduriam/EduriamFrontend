@@ -8,6 +8,7 @@ import {
   PageRoot,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import theme from "styles/theme";
 import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -19,6 +20,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
@@ -52,8 +54,10 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
   const { user } = useAuth();
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const isOwnProfile = userId !== null && user?.id === userId;
+  const maxAchievementsToDisplay = mobile ? 3 : 4;
   const achievements = userProfile?.achievements ?? [];
   const courses = userProfile?.courses ?? [];
 
@@ -259,7 +263,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           </Stack>
 
           <Stack direction="row" justifyContent="space-between">
-            {achievements.slice(0, 5).map((achievement) => (
+            {achievements.slice(0, maxAchievementsToDisplay).map((achievement) => (
               <AchievementBadge
                 key={achievement.achievementId}
                 badgeIconName={toAchievementBadgeIconName(achievement.type)}
