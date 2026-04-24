@@ -8,6 +8,7 @@ import {
 } from "@eduriam/ui-core";
 import { buildShopAvatar } from "app/shop/utils/avatar";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect, useMemo, useState } from "react";
 
@@ -20,8 +21,9 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 
 import { optimisticMutationOption } from "infrastructure/api/API";
 import type { AvatarModel } from "infrastructure/api/generated/models";
-import { SettingsService } from "infrastructure/services/users/SettingsService";
+import useAuth from "infrastructure/services/AuthProvider";
 import { ShopService } from "infrastructure/services/shop/ShopService";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import AvatarEditorItemButton from "./components/AvatarEditorItemButton/AvatarEditorItemButton";
@@ -38,12 +40,15 @@ export interface IEditAvatarPage {}
 const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
 
   const { settings, mutate } = SettingsService.useSettings();
   const { ownedShopItems = [] } = ShopService.useOwnedShopItems();
 
   const [baseAvatar, setBaseAvatar] = useState<AvatarModel>(buildShopAvatar());
-  const [draftAvatar, setDraftAvatar] = useState<AvatarModel>(buildShopAvatar());
+  const [draftAvatar, setDraftAvatar] =
+    useState<AvatarModel>(buildShopAvatar());
   const [activeCategory, setActiveCategory] = useState<AvatarCategory | null>(
     null,
   );
@@ -108,6 +113,11 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
       setBaseAvatar(draftAvatar);
       return optimisticSettings;
     }, optimisticMutationOption(optimisticSettings));
+
+    if (user?.id) {
+      navigateWithTransition(`/users/${user.id}`)();
+      return;
+    }
 
     navigateBack();
   };
