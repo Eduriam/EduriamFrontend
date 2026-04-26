@@ -1954,9 +1954,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.79":
-  version: 0.6.79
-  resolution: "@eduriam/ui-core@npm:0.6.79::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.79%2F1e2a0b9e9f9070f29aae2bf3310c45a7777a4d8f"
+"@eduriam/ui-core@npm:^0.6.81":
+  version: 0.6.81
+  resolution: "@eduriam/ui-core@npm:0.6.81::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.81%2F8ef040916a7c37f9d74b5903395529548c1147ca"
   dependencies:
     mermaid: "npm:^11.12.0"
   peerDependencies:
@@ -1965,20 +1965,21 @@ __metadata:
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/8dc6c54b1b81eb76771acc3276a415e6813c0770d70074d011519da2a8863d8ae2469d010ffccf458136dae3e9c6bb0d6c87cd6667a4ca047054a2a4e8089a83
+  checksum: 10c0/167280c8e42d39017d6a4fd3faf76a5e38c6307a040e423ddfa5e342549678dcbdd9296cfa471b9b6e9df39b40ed832fe4e09b93c34910fe820044a4f0d074ce
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.106":
-  version: 0.2.106
-  resolution: "@eduriam/ui-x@npm:0.2.106::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.106%2F3440b266baeba636905747f172abefc8cbb8744f"
+"@eduriam/ui-x@npm:^0.2.112":
+  version: 0.2.112
+  resolution: "@eduriam/ui-x@npm:0.2.112::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.112%2F8b21103aff68f65e820906938a2b46f25ab26e3d"
   dependencies:
-    "@eduriam/ui-core": "npm:^0.6.79"
+    "@eduriam/ui-core": "npm:^0.6.81"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
     canvas-confetti: "npm:^1.9.3"
     dompurify: "npm:^3.3.1"
+    fitty: "npm:^2.4.2"
     mermaid: "npm:^11.12.0"
     prism-react-renderer: "npm:^2.4.0"
     prismjs: "npm:^1.29.0"
@@ -1993,7 +1994,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/4214a967ba03c3b0a760aefa094b79f3f68a81c987aad8cbd8339a8943123259fba49d82151984a4ae7a2772fc9017d7b29671579e2099de7d2e1b4c65e75059
+  checksum: 10c0/d9c540c30cece79d19d296650bdc226c82074c63b239b910362bbabd31f5ff6fcaf7933f991c027ee57b134d368a8470937449ea09d873a60024075c8f09c1ae
   languageName: node
   linkType: hard
 
@@ -12613,6 +12614,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fitty@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "fitty@npm:2.4.2"
+  checksum: 10c0/6134364601849b50e8c60018e6310ac8022aee18462b90b1f798ad2fec3c1dca331e142f77f162a81c32d72f27b706b77cb6425504bd58a834a78d6e4aff5c4b
+  languageName: node
+  linkType: hard
+
 "flat-cache@npm:^3.0.4":
   version: 3.2.0
   resolution: "flat-cache@npm:3.2.0"
@@ -14947,8 +14955,8 @@ __metadata:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eduriam/ui-core": "npm:^0.6.79"
-    "@eduriam/ui-x": "npm:^0.2.106"
+    "@eduriam/ui-core": "npm:^0.6.81"
+    "@eduriam/ui-x": "npm:^0.2.112"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
