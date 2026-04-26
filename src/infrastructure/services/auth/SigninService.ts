@@ -1,5 +1,8 @@
 import { getAuth } from "infrastructure/api/generated/auth/auth";
-import type { GetUserModel, LoginUserModel } from "infrastructure/api/generated/models";
+import type {
+  GetUserModel,
+  LoginUserModel,
+} from "infrastructure/api/generated/models";
 import AuthManager from "infrastructure/repositories/AuthManager";
 import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import { UserService } from "infrastructure/services/users/UserService";
@@ -23,10 +26,7 @@ export class SigninService {
         response.data.refreshToken,
       );
 
-      const user = await UserService.getUser();
-      LocalStorageManager.setItem<GetUserModel>("user", user);
-
-      return user;
+      return await UserService.getUser();
     } catch (error) {
       return toErrorCode(error);
     }

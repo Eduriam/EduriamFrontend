@@ -28,11 +28,7 @@ export class SignupService {
         response.data.refreshToken,
       );
 
-      const user = await UserService.getUser();
-
-      LocalStorageManager.setItem<GetUserModel>("user", user);
-
-      return user;
+      return await UserService.getUser();
     } catch (error) {
       return toErrorCode(error);
     }

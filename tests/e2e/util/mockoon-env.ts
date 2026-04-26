@@ -17,7 +17,17 @@ const MOCKOON_DEFAULT_GLOBAL_VARS: Record<string, string> = {
   MOCKOON_NOTICE_VARIANT: "empty",
   MOCKOON_FEED_VARIANT: "default",
   MOCKOON_GOOGLE_AUTH_VARIANT: "default",
-  MOCKOON_SIGNUP_ACCOUNT_UNINITIALIZED: "false",
+  MOCKOON_CURRENT_USER_ID: "1001",
+  MOCKOON_CURRENT_USER_USERNAME: "test.user",
+  MOCKOON_CURRENT_USER_NAME: "Test user",
+  MOCKOON_CURRENT_USER_STREAK: "0",
+  MOCKOON_CURRENT_USER_BALANCE: "1000",
+  MOCKOON_CURRENT_USER_ROLE: "0",
+  MOCKOON_CURRENT_USER_ENERGY: "40",
+  MOCKOON_CURRENT_USER_STREAK_FREEZES: "0",
+  MOCKOON_CURRENT_USER_ACCOUNT_INITIALIZED: "true",
+  MOCKOON_CURRENT_USER_SUBSCRIPTION_ACTIVE: "false",
+  MOCKOON_CURRENT_USER_SUBSCRIPTION_STATUS: "3",
 };
 
 function getMockoonAdminBaseUrl(): string {
@@ -217,13 +227,77 @@ export async function setGoogleAuthVariant(
   await setMockoonGlobalVar("MOCKOON_GOOGLE_AUTH_VARIANT", variant);
 }
 
+export async function setCurrentUserId(id: number): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_ID", id.toString());
+}
+
+export async function setCurrentUserUsername(username: string): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_USERNAME", username);
+}
+
+export async function setCurrentUserName(name: string): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_NAME", name);
+}
+
+export async function setCurrentUserStreak(streak: number): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_STREAK", streak.toString());
+}
+
+export async function setCurrentUserBalance(balance: number): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CURRENT_USER_BALANCE",
+    balance.toString(),
+  );
+}
+
+export async function setCurrentUserRole(role: number): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_ROLE", role.toString());
+}
+
+export async function setCurrentUserEnergy(energy: number): Promise<void> {
+  await setMockoonGlobalVar("MOCKOON_CURRENT_USER_ENERGY", energy.toString());
+}
+
+export async function setCurrentUserStreakFreezes(
+  streakFreezes: number,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CURRENT_USER_STREAK_FREEZES",
+    streakFreezes.toString(),
+  );
+}
+
+export async function setCurrentUserAccountInitialized(
+  initialized: boolean,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CURRENT_USER_ACCOUNT_INITIALIZED",
+    initialized ? "true" : "false",
+  );
+}
+
+export async function setCurrentUserSubscriptionActive(
+  active: boolean,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CURRENT_USER_SUBSCRIPTION_ACTIVE",
+    active ? "true" : "false",
+  );
+}
+
+export async function setCurrentUserSubscriptionStatus(
+  status: number,
+): Promise<void> {
+  await setMockoonGlobalVar(
+    "MOCKOON_CURRENT_USER_SUBSCRIPTION_STATUS",
+    status.toString(),
+  );
+}
+
 export async function setSignupAccountUninitialized(
   uninitialized: boolean,
 ): Promise<void> {
-  await setMockoonGlobalVar(
-    "MOCKOON_SIGNUP_ACCOUNT_UNINITIALIZED",
-    uninitialized ? "true" : "false",
-  );
+  await setCurrentUserAccountInitialized(!uninitialized);
 }
 
 export async function resetMockoonGlobalVarsToDefaults(): Promise<void> {

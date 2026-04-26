@@ -4,6 +4,7 @@ import type {
   StudySessionResultCreateModel,
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -18,6 +19,7 @@ export const StudySessionService = {
         throw new Error("Study session response is empty.");
       }
 
+      await invalidateCurrentUser();
       return response.data;
     } catch (error) {
       return toErrorCode(error);
@@ -33,6 +35,7 @@ export const StudySessionService = {
         sessionId,
         payload,
       );
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }

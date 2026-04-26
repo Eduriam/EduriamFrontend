@@ -6,15 +6,16 @@ import {
   type CourseCompletedNoticeModel,
   type FreeTrialEndNoticeModel,
   type FreeTrialNoticeModel,
-  NoticeType,
+  type GetApiUsersMeNoticesParams,
   type LeagueDemotedNoticeModel,
   type LeaguePromotedNoticeModel,
-  type GetApiUsersMeNoticesParams,
+  NoticeType,
   type StreakLostNoticeModel,
   type StreakMilestoneNoticeModel,
   type StreakSavedNoticeModel,
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -49,6 +50,7 @@ const NoticeService = {
   async deleteNotice(noticeId: Id): Promise<void> {
     try {
       await usersClient.deleteApiUsersMeNoticesNoticeId(noticeId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }

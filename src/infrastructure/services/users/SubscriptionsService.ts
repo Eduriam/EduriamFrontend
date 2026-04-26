@@ -8,6 +8,7 @@ import type {
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -45,6 +46,7 @@ export const SubscriptionsService = {
         throw new Error("Create subscription response is empty.");
       }
 
+      await invalidateCurrentUser();
       return response.data;
     } catch (error) {
       return toErrorCode(error);
@@ -61,6 +63,7 @@ export const SubscriptionsService = {
         throw new Error("Cancel subscription response is empty.");
       }
 
+      await invalidateCurrentUser();
       return response.data;
     } catch (error) {
       return toErrorCode(error);
@@ -74,6 +77,7 @@ export const SubscriptionsService = {
         throw new Error("Start free trial response is empty.");
       }
 
+      await invalidateCurrentUser();
       return response.data;
     } catch (error) {
       return toErrorCode(error);

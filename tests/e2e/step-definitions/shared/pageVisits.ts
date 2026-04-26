@@ -248,7 +248,6 @@ Then(
       return !!element;
     } catch (error) {
       const debug = await this.page.evaluate(() => {
-        const storedUser = window.localStorage.getItem("user");
         const testMarkers = Array.from(
           document.querySelectorAll("[data-test]"),
         )
@@ -258,13 +257,12 @@ Then(
 
         return {
           url: window.location.href,
-          storedUser,
           testMarkers,
         };
       });
 
       throw new Error(
-        `Expected "${pageName}" marker not found. URL="${debug.url}" user=${debug.storedUser} markers=${JSON.stringify(
+        `Expected "${pageName}" marker not found. URL="${debug.url}" markers=${JSON.stringify(
           debug.testMarkers,
         )} original=${
           error instanceof Error ? error.message : String(error)

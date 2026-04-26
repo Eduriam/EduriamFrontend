@@ -7,6 +7,7 @@ import type {
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -46,6 +47,7 @@ export const SettingsService = {
         throw new Error("Updated user settings response is empty.");
       }
 
+      await invalidateCurrentUser();
       return response.data;
     } catch (error) {
       return toErrorCode(error);

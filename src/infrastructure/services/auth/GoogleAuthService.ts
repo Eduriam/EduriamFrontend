@@ -35,7 +35,9 @@ export class GoogleAuthService {
     return response.data.authorizationUrl;
   }
 
-  static async authorizeCode(data: AuthCodeExchangeModel): Promise<GetUserModel> {
+  static async authorizeCode(
+    data: AuthCodeExchangeModel,
+  ): Promise<GetUserModel> {
     try {
       const response = await authClient.postApiAuthExternalGoogleToken(data);
       if (!response.data) {
@@ -49,10 +51,7 @@ export class GoogleAuthService {
         response.data.refreshToken,
       );
 
-      const user = await UserService.getUser();
-      LocalStorageManager.setItem<GetUserModel>("user", user);
-
-      return user;
+      return await UserService.getUser();
     } catch (error) {
       throw normalizeGoogleAuthError(error);
     }

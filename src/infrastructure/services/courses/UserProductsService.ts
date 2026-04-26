@@ -9,6 +9,7 @@ import type {
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -19,7 +20,10 @@ export type UserProduct = ProductBaseModel;
 
 const useUserProductsQuery = (
   params: UserProductsParams = {},
-): Modify<FetchHook<Array<UserProduct>>, { userProducts: Array<UserProduct> }> => {
+): Modify<
+  FetchHook<Array<UserProduct>>,
+  { userProducts: Array<UserProduct> }
+> => {
   const query = parseQueryParams(params);
   const key = query ? `users/me/products?${query}` : "users/me/products";
   const { data, ...rest } = useAuthenticatedAPI<Array<UserProduct>>(
@@ -47,6 +51,7 @@ export const UserProductsService = {
       await usersClient.patchApiUsersMeProductsProductId(productId, {
         studyMode,
       });
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -55,6 +60,7 @@ export const UserProductsService = {
   async enrollInProduct(productId: Id): Promise<void> {
     try {
       await usersClient.putApiUsersMeProductsProductId(productId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -63,6 +69,7 @@ export const UserProductsService = {
   async removeProduct(productId: Id): Promise<void> {
     try {
       await usersClient.deleteApiUsersMeProductsProductId(productId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -70,7 +77,10 @@ export const UserProductsService = {
 
   useUserProducts(
     params: UserProductsParams = {},
-  ): Modify<FetchHook<Array<UserProduct>>, { userProducts: Array<UserProduct> }> {
+  ): Modify<
+    FetchHook<Array<UserProduct>>,
+    { userProducts: Array<UserProduct> }
+  > {
     return useUserProductsQuery(params);
   },
 };

@@ -72,7 +72,12 @@ export default function AuthDecorator(Story: Story) {
       return mock.user;
     },
     mutateUser: () => console.log("mutateUser"),
-    revalidateUser: () => console.log("revalidateUser"),
+    revalidateUser: async () => {
+      console.log("revalidateUser");
+    },
+    invalidateUser: async () => {
+      console.log("invalidateUser");
+    },
   };
 
   return (

@@ -1,6 +1,8 @@
 import type { Id } from "domain/models/types/core";
+
 import type { GetUserModel } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -22,6 +24,7 @@ export class UserService {
   static async followUser(userId: Id): Promise<void> {
     try {
       await usersClient.putApiUsersMeFollowingUserId(userId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -30,6 +33,7 @@ export class UserService {
   static async unfollowUser(userId: Id): Promise<void> {
     try {
       await usersClient.deleteApiUsersMeFollowingUserId(userId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }

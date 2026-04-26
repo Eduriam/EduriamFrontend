@@ -9,6 +9,7 @@ import type {
 import { getShop } from "infrastructure/api/generated/shop/shop";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const shopClient = getShop();
@@ -58,6 +59,7 @@ export const ShopService = {
   async purchaseShopItem(shopItemId: Id): Promise<void> {
     try {
       await shopClient.postApiShopItemsShopItemIdPurchase(shopItemId);
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }

@@ -10,6 +10,7 @@ import type {
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
@@ -21,7 +22,10 @@ export interface FeedParams {
 
 const useFeedQuery = (
   params: FeedParams = {},
-): Modify<FetchHook<Array<FeedItemResponseModel>>, { feed: Array<FeedItemResponseModel> }> => {
+): Modify<
+  FetchHook<Array<FeedItemResponseModel>>,
+  { feed: Array<FeedItemResponseModel> }
+> => {
   const query = parseQueryParams(params);
   const key = query ? `users/me/feed?${query}` : "users/me/feed";
   const { data, ...rest } = useAuthenticatedAPI<Array<FeedItemResponseModel>>(
@@ -33,7 +37,9 @@ const useFeedQuery = (
 };
 
 export const FeedService = {
-  async getFeed(params: FeedParams = {}): Promise<Array<FeedItemResponseModel>> {
+  async getFeed(
+    params: FeedParams = {},
+  ): Promise<Array<FeedItemResponseModel>> {
     try {
       const queryParams: GetApiUsersMeFeedParams = {
         Page: params.page,
@@ -48,23 +54,31 @@ export const FeedService = {
     }
   },
 
-  async addReaction(feedItemId: Id, reactionType: FeedReactionType): Promise<void> {
+  async addReaction(
+    feedItemId: Id,
+    reactionType: FeedReactionType,
+  ): Promise<void> {
     try {
       await usersClient.putApiUsersMeFeedFeedItemIdReactionsReactionId(
         feedItemId,
         reactionType,
       );
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
   },
 
-  async deleteReaction(feedItemId: Id, reactionType: FeedReactionType): Promise<void> {
+  async deleteReaction(
+    feedItemId: Id,
+    reactionType: FeedReactionType,
+  ): Promise<void> {
     try {
       await usersClient.deleteApiUsersMeFeedFeedItemIdReactionsReactionId(
         feedItemId,
         reactionType,
       );
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -73,6 +87,7 @@ export const FeedService = {
   async markSeen(feedItemIds: Array<Id>): Promise<void> {
     try {
       await usersClient.postApiUsersMeFeedMarkSeen({ feedItemIds });
+      await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
     }
@@ -80,7 +95,10 @@ export const FeedService = {
 
   useFeed(
     params: FeedParams = {},
-  ): Modify<FetchHook<Array<FeedItemResponseModel>>, { feed: Array<FeedItemResponseModel> }> {
+  ): Modify<
+    FetchHook<Array<FeedItemResponseModel>>,
+    { feed: Array<FeedItemResponseModel> }
+  > {
     return useFeedQuery(params);
   },
 };

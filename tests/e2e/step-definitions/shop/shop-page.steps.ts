@@ -3,40 +3,16 @@ import { expect } from "@playwright/test";
 
 import { CustomWorld } from "../../support/world";
 import {
+  setCurrentUserBalance,
   setShopEnoughMoney,
   setShopLockedItem,
 } from "../../util/mockoon-env";
-
-const setUserBalanceInitScript = (balance: number) => {
-  const updateBalance = ({ nextBalance }: { nextBalance: number }) => {
-    const rawUser = localStorage.getItem("user");
-    if (!rawUser) {
-      return;
-    }
-
-    const parsedUser = JSON.parse(rawUser);
-    parsedUser.balance = nextBalance;
-    localStorage.setItem("user", JSON.stringify(parsedUser));
-  };
-
-  return {
-    updateBalance,
-    payload: { nextBalance: balance },
-  };
-};
 
 Given("I have enough virtual currency", async function (this: CustomWorld) {
   await setShopEnoughMoney(true);
 
   const initialBalance = 5000;
-  const { updateBalance, payload } = setUserBalanceInitScript(initialBalance);
-
-  if (this.context) {
-    await this.context.addInitScript(updateBalance, payload);
-  }
-  if (this.page) {
-    await this.page.addInitScript(updateBalance, payload);
-  }
+  await setCurrentUserBalance(initialBalance);
 
   (this as CustomWorld & { shopInitialBalance?: number }).shopInitialBalance =
     initialBalance;
@@ -48,14 +24,7 @@ Given(
     await setShopEnoughMoney(false);
 
     const initialBalance = 0;
-    const { updateBalance, payload } = setUserBalanceInitScript(initialBalance);
-
-    if (this.context) {
-      await this.context.addInitScript(updateBalance, payload);
-    }
-    if (this.page) {
-      await this.page.addInitScript(updateBalance, payload);
-    }
+    await setCurrentUserBalance(initialBalance);
 
     (this as CustomWorld & { shopInitialBalance?: number }).shopInitialBalance =
       initialBalance;

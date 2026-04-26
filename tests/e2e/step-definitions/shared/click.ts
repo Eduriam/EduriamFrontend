@@ -2,6 +2,7 @@ import { When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
 
 import { CustomWorld } from "../../support/world";
+import { setCurrentUserAccountInitialized } from "../../util/mockoon-env";
 
 async function findButtonContainer(world: CustomWorld, buttonTestId: string) {
   if (!world.page) {
@@ -49,6 +50,10 @@ async function clickButtonByTestId(
   let lastError: unknown;
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    if (buttonTestId === "start-learning-button") {
+      await setCurrentUserAccountInitialized(true);
+    }
+
     const container = await findButtonContainer(world, buttonTestId);
     const innerButton = container.locator("button").first();
     const clickTarget =

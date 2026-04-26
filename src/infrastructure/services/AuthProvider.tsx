@@ -12,13 +12,18 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 
 import errorCodes from "infrastructure/api/error-codes";
+import type { GetUserModel } from "infrastructure/api/generated/models";
 import {
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/services/auth/GoogleAuthService";
-import type { GetUserModel } from "infrastructure/api/generated/models";
-import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
-import { UserService } from "infrastructure/services/users/UserService";
+import {
+  clearCurrentUser,
+  invalidateCurrentUser,
+  patchCurrentUser,
+  setCurrentUser,
+  useCurrentUserState,
+} from "infrastructure/services/users/currentUserState";
 
 import { setLanguage, useTranslation } from "../../i18n/client";
 import AuthManager from "../repositories/AuthManager";
@@ -36,7 +41,8 @@ export interface AuthContextType {
   ) => Promise<GetUserModel>;
   signout: () => void;
   mutateUser: (userChange: Partial<GetUserModel>) => void;
-  revalidateUser: () => void;
+  revalidateUser: () => Promise<void>;
+  invalidateUser: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType>(
@@ -49,9 +55,10 @@ export function AuthProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [user, setUser] = useState<GetUserModel>();
+  const { user, isLoading: isCurrentUserLoading } = useCurrentUserState();
   const [errors, setError] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
+  const [isSessionLoading, setIsSessionLoading] = useState<boolean>(true);
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation("snack");
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
@@ -66,62 +73,84 @@ export function AuthProvider({
     if (errors) {
       setError(() => []);
     }
-
-    setInitialLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {
-    setLoading(true);
+    let isActive = true;
+    setIsSessionLoading(true);
 
-    AuthManager.getCurrentUser()
-      .then((user) => {
-        setUser(user);
-        setLanguage();
-      })
-      .catch(() => {
-        setLanguage();
+    AuthManager.ensureValidSession()
+      .then((hasValidSession) => {
+        if (!isActive) {
+          return;
+        }
+
+        if (hasValidSession) {
+          const shouldSkipAutoRevalidation =
+            pathname === "/signin/callback" ||
+            (pathname === "/onboarding" && user?.accountInitialized === false);
+          if (shouldSkipAutoRevalidation) {
+            return;
+          }
+
+          void invalidateCurrentUser();
+        } else {
+          void clearCurrentUser();
+        }
       })
       .finally(() => {
-        setLoading(false);
+        if (!isActive) {
+          return;
+        }
+
+        setLanguage();
+        setIsSessionLoading(false);
+        setInitialLoading(false);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      isActive = false;
+    };
   }, [pathname]);
 
   function signin(email: string, password: string) {
-    setLoading(true);
+    setIsActionLoading(true);
     setError(() => []);
 
     AuthManager.signin({ email, password })
-      .then((user) => {
-        setUser(user);
+      .then((signedInUser) => {
+        void setCurrentUser(signedInUser);
+        void invalidateCurrentUser();
         router.push("/");
       })
       .catch((errorCode) => {
         handleError(errorCode);
       })
       .finally(() => {
-        setLoading(false);
+        setIsActionLoading(false);
       });
   }
 
   function signUp(username: string, email: string, password: string) {
-    setLoading(true);
+    setIsActionLoading(true);
     setError(() => []);
 
     AuthManager.signUp({ name: username, email, password })
-      .then((user) => {
-        setUser(user);
+      .then((signedUpUser) => {
+        void setCurrentUser(signedUpUser);
+        void invalidateCurrentUser();
         router.push("/");
       })
       .catch((errorCode) => {
         handleError(errorCode);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setIsActionLoading(false));
   }
 
   async function startGoogleAuth(source: GoogleAuthSource): Promise<void> {
-    setLoading(true);
+    setIsActionLoading(true);
     setError(() => []);
 
     try {
@@ -136,7 +165,7 @@ export function AuthProvider({
           : errorCodes.externalAuthError,
       );
     } finally {
-      setLoading(false);
+      setIsActionLoading(false);
     }
   }
 
@@ -144,7 +173,7 @@ export function AuthProvider({
     code: string,
     source?: GoogleAuthSource,
   ): Promise<GetUserModel> {
-    setLoading(true);
+    setIsActionLoading(true);
     setError(() => []);
 
     try {
@@ -154,8 +183,10 @@ export function AuthProvider({
           ? { ...authorizedUser, accountInitialized: false }
           : authorizedUser;
 
-      setUser(resolvedUser);
-      LocalStorageManager.setItem<GetUserModel>("user", resolvedUser);
+      await setCurrentUser(resolvedUser);
+      if (source !== "signup") {
+        void invalidateCurrentUser();
+      }
 
       return resolvedUser;
     } catch (errorCode) {
@@ -163,16 +194,16 @@ export function AuthProvider({
         ? errorCode
         : errorCodes.externalAuthError;
     } finally {
-      setLoading(false);
+      setIsActionLoading(false);
     }
   }
 
   function signout() {
-    setLoading(true);
+    setIsActionLoading(true);
     setError(() => []);
     AuthManager.signout();
-    setUser(undefined);
-    setLoading(false);
+    void clearCurrentUser();
+    setIsActionLoading(false);
     router.push("/signin");
   }
 
@@ -205,24 +236,18 @@ export function AuthProvider({
   }
 
   function mutateUser(userChange: Partial<GetUserModel>) {
-    const currentUser =
-      user ?? LocalStorageManager.getItem<GetUserModel>("user");
-    if (!currentUser) {
-      return;
-    }
-
-    const newUser = { ...currentUser, ...userChange };
-
-    setUser(newUser);
-    LocalStorageManager.setItem<GetUserModel>("user", newUser);
+    void patchCurrentUser(userChange);
   }
 
   async function revalidateUser() {
-    const user = await UserService.getUser();
-
-    setUser(user);
-    LocalStorageManager.setItem<GetUserModel>("user", user);
+    await invalidateCurrentUser();
   }
+
+  async function invalidateUser() {
+    await invalidateCurrentUser();
+  }
+
+  const loading = isActionLoading || isSessionLoading || isCurrentUserLoading;
 
   const memoedValue = useMemo(
     () => ({
@@ -236,6 +261,7 @@ export function AuthProvider({
       signout,
       mutateUser,
       revalidateUser,
+      invalidateUser,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [user, loading, errors],

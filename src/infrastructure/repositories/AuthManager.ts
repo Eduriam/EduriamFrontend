@@ -12,7 +12,6 @@ import { RefreshTokenService } from "infrastructure/services/auth/RefreshTokenSe
 import { SigninService } from "infrastructure/services/auth/SigninService";
 import { SignupService } from "infrastructure/services/auth/SignupService";
 
-
 import { LocalStorageManager } from "./LocalStorageManager";
 
 const AuthManager = {
@@ -24,7 +23,6 @@ const AuthManager = {
     this.removeAuthHeader();
     LocalStorageManager.removeItem("idToken");
     LocalStorageManager.removeItem("refreshToken");
-    LocalStorageManager.removeItem("user");
   },
 
   async signin(data: LoginUserModel): Promise<GetUserModel> {
@@ -45,50 +43,50 @@ const AuthManager = {
     return GoogleAuthService.authorizeCode(data);
   },
 
-  async refreshIdToken(): Promise<void> {
+  async refreshIdToken(): Promise<boolean> {
     const refreshToken = LocalStorageManager.getItem<string>("refreshToken");
 
     if (refreshToken === null) {
       // Refresh token doesn't exist, user needs to sign in again
       this.signout();
-      return;
+      return false;
     }
 
-    return RefreshTokenService.refreshIdToken({
-      refreshToken,
-    })
-      .then((res) => {
-        this.setAuthHeader(res.accessToken);
-        LocalStorageManager.setItem<string>("idToken", res.accessToken);
-        LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
-      })
-      .catch(() => {
-        // Refresh token is expired, user needs to sign in again
-        this.signout();
+    try {
+      const res = await RefreshTokenService.refreshIdToken({
+        refreshToken,
       });
+      this.setAuthHeader(res.accessToken);
+      LocalStorageManager.setItem<string>("idToken", res.accessToken);
+      LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
+      return true;
+    } catch {
+      // Refresh token is expired, user needs to sign in again
+      this.signout();
+      return false;
+    }
   },
 
-  async getCurrentUser(): Promise<GetUserModel> {
+  async ensureValidSession(): Promise<boolean> {
     const token = LocalStorageManager.getItem<string>("idToken");
 
-    if (token) {
+    if (!token) {
+      this.signout();
+      return false;
+    }
+
+    try {
       const decodedToken = jwtDecode<DecodedToken>(token);
       // If Id token is expired
       if (decodedToken.exp * 1000 < Date.now()) {
-        await this.refreshIdToken();
-      } else {
-        this.setAuthHeader(token);
+        return this.refreshIdToken();
       }
-    } else {
-      this.signout();
+    } catch {
+      // Some environments (e.g. test fixtures) use opaque tokens without exp claims. In that case we still attach the token and let API responses drive auth validity.
     }
 
-    const user = LocalStorageManager.getItem<GetUserModel>("user");
-    if (user === null) {
-      return Promise.reject("No user found.");
-    }
-
-    return user;
+    this.setAuthHeader(token);
+    return true;
   },
 
   setAuthHeader(idToken: string): void {
