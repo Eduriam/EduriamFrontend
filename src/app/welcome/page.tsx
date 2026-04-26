@@ -7,6 +7,7 @@ import {
   LargeButton,
   PageRoot,
 } from "@eduriam/ui-core";
+import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect } from "react";
@@ -23,6 +24,7 @@ export interface IWelcomePage {}
 
 const WelcomePage: React.FC<IWelcomePage> = () => {
   const { user, loading } = useAuth();
+  const { t } = useTranslation("common");
   const router = useRouter();
   const navigateWithTransition = useTransitionNavigationHandler();
 
@@ -49,7 +51,11 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
         >
           <Illustration name="eduriam-logo" width={128} height={128} />
 
-          <Header variant="page" text="Eduriam" align="center" />
+          <Header
+            variant="page"
+            text={t("navigation.eduriamTitle")}
+            align="center"
+          />
 
           <Box
             data-test="welcome-value-proposition-section"
@@ -61,9 +67,9 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               align="center"
               sx={{ lineHeight: 1.35 }}
             >
-              Master programming
+              {t("welcome.valuePropositionLine1")}
               <br />
-              just 10m a day.
+              {t("welcome.valuePropositionLine2")}
             </Typography>
           </Box>
         </Box>
@@ -79,7 +85,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               fullWidth
               onClick={navigateWithTransition("/signup")}
             >
-              Continue
+              {t("userActions.continue")}
             </LargeButton>
             <LargeButton
               data-test="signin-button"
@@ -88,7 +94,7 @@ const WelcomePage: React.FC<IWelcomePage> = () => {
               fullWidth
               onClick={navigateWithTransition("/signin")}
             >
-              Sign In
+              {t("signin")}
             </LargeButton>
           </Stack>
         </Box>
