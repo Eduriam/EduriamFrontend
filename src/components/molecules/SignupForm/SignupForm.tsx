@@ -16,11 +16,11 @@ import Typography from "@mui/material/Typography";
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
+import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
 } from "infrastructure/services/auth/GoogleAuthService";
-import useAuth from "infrastructure/services/AuthProvider";
 
 export const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
@@ -104,7 +104,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
                 <TextField
                   id="username"
                   type="text"
-                  placeholder={t("auth.username")}
+                  placeholder={t("auth.name")}
                   error={
                     errors.username !== undefined ||
                     authErrors?.includes(errorCodes.usernameTaken) ||
@@ -113,7 +113,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
                   helperText={usernameHelperText || undefined}
                   fullWidth
                   autoComplete="username"
-                  inputProps={{ "aria-label": t("auth.username") }}
+                  inputProps={{ "aria-label": t("auth.name") }}
                   value={field.value ?? ""}
                   onChange={field.onChange}
                   onBlur={field.onBlur}
