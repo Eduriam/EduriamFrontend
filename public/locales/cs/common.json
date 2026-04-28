@@ -285,12 +285,12 @@
     "recommended": "Doporučené kurzy",
     "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz",
     "courseLabel": "Kurz",
-    "learningPathLabel": "Learning path",
+    "learningPathLabel": "Studijní cesta",
     "premiumLabel": "Premium",
     "startCourse": "Začít kurz",
     "reviewCourse": "Zopakovat látku",
     "reviewLearningPath": "Zopakovat látku",
-    "startLearningPath": "Začít learning path",
+    "startLearningPath": "Začít studijní cestu",
     "continueLearning": "Pokračovat v učení",
     "description": "Popis kurzu",
     "chapters": "Kapitoly",
@@ -329,7 +329,7 @@
   },
   "courseDetailsDrawer": {
     "title": "Detaily kurzu",
-    "prerequisites": "Prerekvizity",
+    "prerequisites": "Předpoklady",
     "description": "Popis",
     "manageCourses": "Spravovat kurzy",
     "close": "Zavřít"
@@ -368,8 +368,8 @@
       "leagueFirstPlaceMythic": "Legendární ligový vítěz"
     },
     "achievementsById": {
-      "streak_master": "Streak Master",
-      "first_100_xp": "Prvnich 100 XP"
+      "streak_master": "Mistr streaku",
+      "first_100_xp": "Prvních 100 XP"
     }
   },
   "feed": {
@@ -437,7 +437,7 @@
       "beard": "Vousy",
       "beardColor": "Barva vousů",
       "accessories": "Doplňky",
-      "glassesColor": "Barva brylí",
+      "glassesColor": "Barva brýlí",
       "headwear": "Čepice",
       "clothing": "Oblečení",
       "skinColor": "Barva pleti",
@@ -466,7 +466,7 @@
     "studySessionEnded": "Dobrá práce! Učení dokončeno.",
     "rightAnswers": "Správné odpovědi",
     "wrongAnswers": "Špatné odpovědi",
-    "freeTrialOfferHeader": "Vyzkousejte premium na 14 dni zdarma!",
+    "freeTrialOfferHeader": "Vyzkoušejte Premium na 14 dní zdarma!",
     "tryForFree": "Vyzkoušet zdarma",
     "declineFreeTrialOffer": "Nemám zájem",
     "turnOnNotifications": "Zapnout notifikace",
@@ -525,15 +525,15 @@
     "manageSubscription": "Spravovat předplatné"
   },
   "subscription": {
-    "subscriptionHeader": "Získejte premium!",
+    "subscriptionHeader": "Získejte Premium!",
     "valuePropositions": [
       "Učte se pokročilá slovíčka",
       "Vytvářejte vlastní balíčky slovíček",
       "Dělejte pokročilé lekce",
       "Žádné reklamy při učení"
     ],
-    "getSubscription": "Získat premium",
-    "subscribedHeader": "Váš premium účet",
+    "getSubscription": "Získat Premium",
+    "subscribedHeader": "Váš Premium účet",
     "subscribedFeaturesHeader": "Můžete naplno využívat tyto funkce",
     "subscribedFeatures": [
       "Učte se pokročilá slovíčka",
@@ -565,8 +565,8 @@
     "cardNumberPlaceholder": "Číslo karty",
     "cardExpiryPlaceholder": "MM/RR",
     "cardCvvPlaceholder": "CVC",
-    "activatedTitle": "Váše zkušební verze byla aktivována!",
-    "endNoticeReminder": "Připomenutí: váše zkušební verze Premium skončí za {{days}} dní."
+    "activatedTitle": "Vaše zkušební verze byla aktivována!",
+    "endNoticeReminder": "Připomenutí: vaše zkušební verze Premium skončí za {{days}} dní."
   },
   "freeTrialEndNotice": {
     "title": "Prodlužte si předplatné a užívejte si tyto výhody",

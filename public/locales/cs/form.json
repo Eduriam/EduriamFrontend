@@ -18,11 +18,11 @@
     "dont-have-account": "Nemáte účet? Zaregistrujte se",
     "here": "zde",
     "forgot-password": "Zapomněli jste heslo?",
-    "continue-with-google": "Pokracovat s Googlem",
+    "continue-with-google": "Pokračovat s Googlem",
     "google-signin-account-not-found": "K tomuto Google účtu není připojen žádný účet. Vytvořte si nový účet pomocí registrace.",
     "google-signin-signup-button": "Vytvořit účet",
     "google-signup-account-exists": "Účet s tímto emailem již existuje. Přihlaste se do existujícího účtu.",
-    "google-signup-signin-button": "Prihlasit se"
+    "google-signup-signin-button": "Přihlásit se"
   },
 
   "error": {
@@ -114,7 +114,7 @@
       },
       "fullstack": {
         "text": "Fullstack vývoj",
-        "subText": "Creating the entire application, from frontend to backend."
+        "subText": "Tvorba celé aplikace od frontendu po backend."
       },
       "other": {
         "text": "Něco jiného"
@@ -145,7 +145,7 @@
     "valuePropositionItems": {
       "masterProgramming": {
         "title": "Zdokonalíte programování",
-        "description": "Staňte se skvelým programátorem pomocí krátých a zábavných cvičení"
+        "description": "Staňte se skvělým programátorem pomocí krátkých a zábavných cvičení"
       },
       "buildKnowledge": {
         "title": "Vybudujete si znalosti",
@@ -158,8 +158,8 @@
     },
     "exploreAllCourses": "Prozkoumat všechny kurzy",
     "courseCategories": {
-      "web-development": "Web development",
-      "backend-development": "Backend development",
+      "web-development": "Vývoj webů",
+      "backend-development": "Backend vývoj",
       "languages": "Jazyky",
       "other": "Ostatní"
     },
@@ -249,7 +249,7 @@
       },
       "takeTest": {
         "name": "Test znalostí",
-        "description": "Udělejte si 5 minutový test, který určí vaší úroveň."
+        "description": "Udělejte si 5minutový test, který určí vaši úroveň."
       },
       "selectLevel": {
         "name": "Nastavte si vlastní úroveň",
