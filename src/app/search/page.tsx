@@ -6,7 +6,7 @@ import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -53,10 +53,25 @@ function normalizeUserList<T>(data: unknown): Array<T> {
 const SearchPagePage: React.FC<ISearchPagePage> = () => {
   const { t } = useTranslation("common");
   const [searchPrompt, setSearchPrompt] = useState("");
+  const [debouncedSearchPrompt, setDebouncedSearchPrompt] = useState("");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (searchPrompt.trim() === "") {
+      setDebouncedSearchPrompt("");
+      return;
+    }
+
+    const debounceTimer = setTimeout(() => {
+      setDebouncedSearchPrompt(searchPrompt);
+    }, 300);
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchPrompt]);
+
   const { users, mutate } = UsersService.useUsers({
-    SearchName: searchPrompt.toLowerCase(),
+    SearchName: debouncedSearchPrompt.toLowerCase(),
   });
 
   const userResults = normalizeUserList<GetUserSimpleModel>(users);
