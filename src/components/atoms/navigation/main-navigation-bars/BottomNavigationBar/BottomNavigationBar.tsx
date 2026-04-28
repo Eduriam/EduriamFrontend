@@ -66,6 +66,24 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
         sx={{
           boxShadow: "0 -2px 0 0 rgba(0,0,0,0.09)",
           backgroundColor: "background.default",
+          width: "100%",
+          // Ensure the nav bar doesn't overflow the screen on smaller devices (that have width less than 375px)
+          pl: "max(8px, env(safe-area-inset-left))",
+          pr: "max(8px, env(safe-area-inset-right))",
+          "& .MuiBottomNavigationAction-root": {
+            minWidth: 0,
+            maxWidth: "none",
+            flex: 1,
+            px: 1,
+            "@media (max-width:375px)": {
+              px: 0.5,
+            },
+          },
+          "& .MuiBottomNavigationAction-label": {
+            "@media (max-width:375px)": {
+              display: "none",
+            },
+          },
         }}
       >
         {primaryNavigation.map((item, i) => (
