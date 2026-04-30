@@ -19,11 +19,23 @@ const NOTICE_VARIANTS_BY_TEST_ID: Record<string, MockoonNoticeVariant> = {
   "free-trial-end-notice": "single-free-trial-end",
 };
 
-const ALL_NOTICE_TEST_IDS = Object.keys(NOTICE_VARIANTS_BY_TEST_ID);
+const LOCAL_NOTICE_TEST_IDS = ["enable-notifications-notice"];
+const ALL_NOTICE_TEST_IDS = [
+  ...Object.keys(NOTICE_VARIANTS_BY_TEST_ID),
+  ...LOCAL_NOTICE_TEST_IDS,
+];
 
 Given(
   "I have an unread {string} notice",
   async function (noticeTestId: string) {
+    if (noticeTestId === "enable-notifications-notice") {
+      await this.page?.evaluate(() => {
+        window.localStorage.removeItem("eduriam.notifications.noticeDismissed");
+        (window as any).__eduriamSetNotificationPermission?.("default");
+      });
+      return;
+    }
+
     const variant = NOTICE_VARIANTS_BY_TEST_ID[noticeTestId];
 
     if (!variant) {

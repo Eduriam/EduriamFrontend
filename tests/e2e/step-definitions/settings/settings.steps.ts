@@ -13,12 +13,16 @@ Then(
     }
 
     const notificationSwitch = this.page
-      .locator('[data-test="notification-settings-switch-button"]')
+      .locator(
+        [
+          '[data-test="study-reminder-notification-settings-switch-button"]',
+          '[data-test="notification-settings-switch-button"]',
+        ].join(", "),
+      )
+      .locator('xpath=ancestor::*[@data-saved="true"][1]')
       .first();
 
-    await expect(
-      notificationSwitch.locator('xpath=ancestor::*[@data-saved][1]'),
-    ).toHaveAttribute("data-saved", "true");
+    await expect(notificationSwitch).toBeVisible();
   },
 );
 

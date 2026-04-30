@@ -14,12 +14,14 @@ export interface CustomWorld extends World {
   browser?: Browser;
   context?: BrowserContext;
   page?: Page;
+  notificationTypeEnabled?: boolean;
 }
 
 export class CustomWorld extends World implements CustomWorld {
   browser?: Browser;
   context?: BrowserContext;
   page?: Page;
+  notificationTypeEnabled?: boolean;
 
   constructor(options: IWorldOptions) {
     super(options);

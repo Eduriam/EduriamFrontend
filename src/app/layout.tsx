@@ -11,6 +11,7 @@ import { configureAxios } from "infrastructure/api/configureAxios";
 import { NoticeProvider } from "infrastructure/services/NoticeProvider";
 import PwaServiceWorkerRegistration from "infrastructure/services/PwaServiceWorkerRegistration";
 import ThemeModeProvider from "infrastructure/services/ThemeModeProvider";
+import PushNotificationForegroundHandler from "infrastructure/services/notifications/PushNotificationForegroundHandler";
 
 import { AuthProvider } from "../infrastructure/services/AuthProvider";
 import { ErrorHandler } from "../infrastructure/services/ErrorHandler";
@@ -41,6 +42,7 @@ export default function RootLayout({
                   <NoticeProvider>
                     <GoogleAnalytics />
                     <GoogleAdsense />
+                    <PushNotificationForegroundHandler />
                     {children}
                   </NoticeProvider>
                 </ThemeModeProvider>

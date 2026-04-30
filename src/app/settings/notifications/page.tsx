@@ -35,7 +35,7 @@ const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferencesModel = {
   leaderboardStatus: false,
   newFollower: true,
   friendActivity: false,
-  smartStudyReminderEnabled: false,
+  smartStudyReminderEnabled: true,
 };
 
 const SettingsNotificationsPage: React.FC = () => {
@@ -58,7 +58,7 @@ const SettingsNotificationsPage: React.FC = () => {
           {
             id: "smartStudyReminderEnabled",
             labelKey: "settings.notifications.items.smartStudyReminderEnabled",
-            dataTest: "notification-smart-study-reminder-switch-button",
+            dataTest: "study-reminder-notification-settings-switch-button",
           },
           {
             id: "dailyPractice",

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import AchievementEarnedNotice from "components/notices/AchievementEarnedNotice/AchievementEarnedNotice";
 import ChestRewardNotice from "components/notices/ChestRewardNotice/ChestRewardNotice";
@@ -6,6 +6,7 @@ import FreeTrialEndNotice from "components/notices/FreeTrialEndNotice/FreeTrialE
 import FreeTrialNotice from "components/notices/FreeTrialNotice/FreeTrialNotice";
 import LeagueDemotedNotice from "components/notices/LeagueDemotedNotice/LeagueDemotedNotice";
 import LeaguePromotedNotice from "components/notices/LeaguePromotedNotice/LeaguePromotedNotice";
+import NotificationNotice from "components/notices/NotificationNotice/NotificationNotice";
 import StreakLostNotice from "components/notices/StreakLostNotice/StreakLostNotice";
 import StreakMilestoneNotice from "components/notices/StreakMilestoneNotice/StreakMilestoneNotice";
 import StreakSavedNotice from "components/notices/StreakSavedNotice/StreakSavedNotice";
@@ -26,6 +27,7 @@ import {
   type Notice,
 } from "infrastructure/api/users/me/notices/NoticeService";
 import useNotices from "infrastructure/services/NoticeProvider";
+import PushNotificationService from "infrastructure/services/notifications/PushNotificationService";
 
 export interface NoticeBoardProps {
   allowedNoticeTypes?: NoticeType[];
@@ -61,6 +63,7 @@ function renderNotice(notice: Notice) {
 const NoticeBoard: React.FC<NoticeBoardProps> = ({ allowedNoticeTypes }) => {
   const fetchedRef = useRef(false);
   const { notices, fetchNotices } = useNotices();
+  const [showNotificationNotice, setShowNotificationNotice] = useState(false);
 
   useEffect(() => {
     if (fetchedRef.current) {
@@ -71,6 +74,17 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ allowedNoticeTypes }) => {
     void fetchNotices();
   }, [fetchNotices]);
 
+  useEffect(() => {
+    if (allowedNoticeTypes && allowedNoticeTypes.length > 0) {
+      setShowNotificationNotice(false);
+      return;
+    }
+
+    setShowNotificationNotice(
+      PushNotificationService.shouldShowNotificationNotice(),
+    );
+  }, [allowedNoticeTypes]);
+
   const currentNotice = useMemo(() => {
     if (!allowedNoticeTypes || allowedNoticeTypes.length === 0) {
       return notices[0];
@@ -80,7 +94,25 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ allowedNoticeTypes }) => {
   }, [allowedNoticeTypes, notices]);
 
   if (!currentNotice) {
+    if (showNotificationNotice) {
+      return (
+        <NotificationNotice
+          onDismiss={() => setShowNotificationNotice(false)}
+          onEnabled={() => setShowNotificationNotice(false)}
+        />
+      );
+    }
+
     return null;
+  }
+
+  if (showNotificationNotice) {
+    return (
+      <NotificationNotice
+        onDismiss={() => setShowNotificationNotice(false)}
+        onEnabled={() => setShowNotificationNotice(false)}
+      />
+    );
   }
 
   return <>{renderNotice(currentNotice)}</>;

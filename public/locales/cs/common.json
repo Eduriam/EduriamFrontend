@@ -472,6 +472,11 @@
     "turnOnNotifications": "Zapnout notifikace",
     "notificationsMotivation": "Zapněte notifikace a zůstaňte motivovaní každý den!",
     "notNow": "Teď ne",
+    "enableNotifications": {
+      "title": "Zapněte notifikace a zůstaňte motivovaní každý den!",
+      "turnOn": "Zapnout",
+      "notNow": "Teď ne"
+    },
     "dayStreak": "denní streak",
     "streakLost": "Váš streak byl resetován",
     "streakSaved": "Zmrazení streaku bylo použito",
