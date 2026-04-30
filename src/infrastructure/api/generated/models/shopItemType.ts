@@ -9,4 +9,5 @@ export type ShopItemType = (typeof ShopItemType)[keyof typeof ShopItemType];
 
 export const ShopItemType = {
   StreakFreeze: 0,
+  AvatarCosmetic: 1,
 } as const;
