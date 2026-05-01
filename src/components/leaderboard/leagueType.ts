@@ -9,11 +9,11 @@ export const LEAGUE_ORDER: RankedLeagueVariant[] = Object.keys(
   LeagueTypeEnum,
 ).map((leagueName) => leagueName.toLowerCase() as RankedLeagueVariant);
 
-export function toLeagueVariant(
+export function toRankedLeagueVariant(
   league?: LeagueType | null,
-): RankedLeagueVariant | "locked" {
+): RankedLeagueVariant | null {
   if (league === null || league === undefined) {
-    return "locked";
+    return null;
   }
 
   const enumKey = Object.entries(LeagueTypeEnum).find(
@@ -21,9 +21,9 @@ export function toLeagueVariant(
   )?.[0];
 
   if (!enumKey) {
-    return "locked";
+    return null;
   }
 
   const normalized = enumKey.toLowerCase() as RankedLeagueVariant;
-  return LEAGUE_ORDER.includes(normalized) ? normalized : "locked";
+  return LEAGUE_ORDER.includes(normalized) ? normalized : null;
 }

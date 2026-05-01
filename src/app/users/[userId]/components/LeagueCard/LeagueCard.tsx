@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import LeagueIcon, {
   type LeagueIconVariant,
 } from "components/leaderboard/LeagueIcon";
-import { toLeagueVariant } from "components/leaderboard/leagueType";
+import { toRankedLeagueVariant } from "components/leaderboard/leagueType";
 
 import type { LeagueType } from "infrastructure/api/generated/models";
 
@@ -19,7 +19,7 @@ export interface ILeagueCard {
 
 const LeagueCard: React.FC<ILeagueCard> = ({ league }) => {
   const { t } = useTranslation("common");
-  const safeLeague: LeagueIconVariant = toLeagueVariant(league);
+  const safeLeague: LeagueIconVariant = toRankedLeagueVariant(league) ?? "empty";
 
   return (
     <Card paddingX="medium" paddingY="small">

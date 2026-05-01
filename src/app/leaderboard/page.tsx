@@ -8,11 +8,10 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { toLeagueVariant } from "components/leaderboard/leagueType";
+import { toRankedLeagueVariant } from "components/leaderboard/leagueType";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import useAuth from "infrastructure/services/AuthProvider";
-import type { LeagueType } from "infrastructure/api/generated/models";
 import { LeaderboardService } from "infrastructure/services/users/LeaderboardService";
 
 import LeaderboardComponent from "./components/Leaderboard/Leaderboard";
@@ -49,14 +48,9 @@ const LeaderboardPage: React.FC = () => {
   const { leaderboard } = LeaderboardService.useLeaderboard();
   const { user } = useAuth();
 
-  const toResolvedLeague = (league?: LeagueType | null) => {
-    const resolvedLeague = toLeagueVariant(league);
-    return resolvedLeague === "locked" ? null : resolvedLeague;
-  };
-
   const currentLeague =
-    toResolvedLeague(leaderboard?.currentLeague) ??
-    toResolvedLeague(user?.league) ??
+    toRankedLeagueVariant(leaderboard?.currentLeague) ??
+    toRankedLeagueVariant(user?.league) ??
     null;
   const hasStartedWeek = (leaderboard?.users.length ?? 0) > 0;
 
