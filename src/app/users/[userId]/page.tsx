@@ -245,9 +245,20 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           data-test="achievements-summary-section"
         >
           <Stack
+            component="button"
+            type="button"
             direction="row"
             justifyContent="space-between"
             alignItems="center"
+            onClick={navigateWithTransition(`/users/${safeUserId}/achievements`)}
+            sx={{
+              width: "100%",
+              border: "none",
+              background: "transparent",
+              padding: 0,
+              cursor: "pointer",
+              color: "inherit",
+            }}
           >
             <Typography variant="h6">
               {t("achievements.achievements")}
@@ -256,9 +267,6 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
               icon="arrowRight"
               variant="text"
               color="textPrimary"
-              onClick={navigateWithTransition(
-                `/users/${safeUserId}/achievements`,
-              )}
               data-test="show-all-achievements-button"
             />
           </Stack>
@@ -282,16 +290,26 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           data-test="enrolled-courses-summary-section"
         >
           <Stack
+            component="button"
+            type="button"
             direction="row"
             justifyContent="space-between"
             alignItems="center"
+            onClick={navigateWithTransition(`/users/${safeUserId}/courses`)}
+            sx={{
+              width: "100%",
+              border: "none",
+              background: "transparent",
+              padding: 0,
+              cursor: "pointer",
+              color: "inherit",
+            }}
           >
             <Typography variant="h6">{t("navigation.courses")}</Typography>
             <IconButton
               icon="arrowRight"
               variant="text"
               color="textPrimary"
-              onClick={navigateWithTransition(`/users/${safeUserId}/courses`)}
               data-test="show-all-enrolled-courses-button"
             />
           </Stack>
