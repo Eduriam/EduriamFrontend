@@ -1,10 +1,8 @@
-import { useTranslation } from "i18n/client";
-
 import { ReactNode, useEffect } from "react";
 
 import { usePathname, useRouter } from "next/navigation";
 
-import { CircularProgress, Container } from "@mui/material";
+import LoadingScreen from "components/loading/LoadingScreen/LoadingScreen";
 
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -15,7 +13,6 @@ export interface IProtectedRoute {
 const ProtectedRoute: React.FC<IProtectedRoute> = ({ children }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const { t } = useTranslation("common");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -43,17 +40,7 @@ const ProtectedRoute: React.FC<IProtectedRoute> = ({ children }) => {
         user &&
         user?.accountInitialized !== true &&
         pathname !== "/onboarding") ? (
-        <Container
-          sx={{
-            justifyContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress color="inherit" />
-          {t("loading")}
-        </Container>
+        <LoadingScreen />
       ) : (
         children
       )}

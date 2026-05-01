@@ -1,10 +1,8 @@
-import { useTranslation } from "i18n/client";
-
 import { ReactNode, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { CircularProgress, Container } from "@mui/material";
+import LoadingScreen from "components/loading/LoadingScreen/LoadingScreen";
 
 import useAuth from "infrastructure/services/AuthProvider";
 
@@ -17,7 +15,6 @@ const UnauthenticatedOnlyRoute: React.FC<IUnauthenticatedOnlyRoute> = ({
 }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const { t } = useTranslation("common");
 
   useEffect(() => {
     if (!loading && user) {
@@ -25,25 +22,7 @@ const UnauthenticatedOnlyRoute: React.FC<IUnauthenticatedOnlyRoute> = ({
     }
   }, [loading, user, router]);
 
-  return (
-    <>
-      {loading || user ? (
-        <Container
-          sx={{
-            justifyContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress color="inherit" />
-          {t("loading")}
-        </Container>
-      ) : (
-        children
-      )}
-    </>
-  );
+  return <>{loading || user ? <LoadingScreen /> : children}</>;
 };
 
 export default UnauthenticatedOnlyRoute;

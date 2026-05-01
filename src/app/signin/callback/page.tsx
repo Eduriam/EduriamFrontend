@@ -1,22 +1,19 @@
 "use client";
 
-import { ContentContainer, Header, PageRoot } from "@eduriam/ui-core";
-import { useTranslation } from "i18n/client";
-
 import { useEffect, useRef } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import CircularProgress from "@mui/material/CircularProgress";
+import LoadingScreen from "components/loading/LoadingScreen/LoadingScreen";
 
 import errorCodes from "infrastructure/api/error-codes";
+import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/services/auth/GoogleAuthService";
-import useAuth from "infrastructure/services/AuthProvider";
 
 const GOOGLE_AUTH_PAGE_BY_SOURCE: Record<GoogleAuthSource, string> = {
   signin: "/signin",
@@ -26,7 +23,6 @@ const GOOGLE_AUTH_PAGE_BY_SOURCE: Record<GoogleAuthSource, string> = {
 const SigninCallbackPage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { t } = useTranslation("common");
   const { authorizeGoogleCode } = useAuth();
   const hasHandledCallbackRef = useRef(false);
 
@@ -62,14 +58,7 @@ const SigninCallbackPage: React.FC = () => {
     void finishCallback();
   }, [authorizeGoogleCode, code, error, router]);
 
-  return (
-    <PageRoot data-test="signin-callback-page">
-      <ContentContainer width="small" justifyContent="center" spacing={8}>
-        <Header variant="title" text={t("loading")} align="center" />
-        <CircularProgress color="inherit" />
-      </ContentContainer>
-    </PageRoot>
-  );
+  return <LoadingScreen />;
 };
 
 function getSourceFromSession(): GoogleAuthSource {
