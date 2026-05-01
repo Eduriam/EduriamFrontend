@@ -23,7 +23,11 @@ const ValuePropositionStep: React.FC<IValuePropositionStepProps> = ({
   const { t: tCommon } = useTranslation("common");
 
   return (
-    <ContentContainer width="small" justifyContent="space-between">
+    <ContentContainer
+      width="small"
+      justifyContent="space-between"
+      paddingTop="small"
+    >
       <Stack spacing={6} data-test="value-proposition-section">
         <Header
           variant="section"
