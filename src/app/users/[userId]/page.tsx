@@ -22,6 +22,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import { BOTTOM_NAV_BAR_HEIGHT } from "components/atoms/navigation/main-navigation-bars/BottomNavigationBar/BottomNavigationBar";
 import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -263,14 +264,16 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           </Stack>
 
           <Stack direction="row" justifyContent="space-between">
-            {achievements.slice(0, maxAchievementsToDisplay).map((achievement) => (
-              <AchievementBadge
-                key={achievement.achievementId}
-                badgeIconName={toAchievementBadgeIconName(achievement.type)}
-                name={t(toAchievementTitleKey(achievement.type))}
-                completed={isAchievementCompleted(achievement)}
-              />
-            ))}
+            {achievements
+              .slice(0, maxAchievementsToDisplay)
+              .map((achievement) => (
+                <AchievementBadge
+                  key={achievement.achievementId}
+                  badgeIconName={toAchievementBadgeIconName(achievement.type)}
+                  name={t(toAchievementTitleKey(achievement.type))}
+                  completed={isAchievementCompleted(achievement)}
+                />
+              ))}
           </Stack>
         </Box>
 
@@ -308,6 +311,14 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
             ))}
           </Stack>
         </Box>
+
+        {/* Bottom padding to avoid the bottom navigation bar from covering the content */}
+        <Box
+          sx={{
+            display: { xs: "block", md: "none" },
+            height: `calc(${BOTTOM_NAV_BAR_HEIGHT}px + env(safe-area-inset-bottom))`,
+          }}
+        />
       </ContentContainer>
     </PageRoot>
   );
