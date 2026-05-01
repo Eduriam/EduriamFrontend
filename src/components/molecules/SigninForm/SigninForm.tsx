@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
-import errorCodes from "infrastructure/api/error-codes";
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
@@ -45,6 +45,15 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
   const googleError = searchParams?.get(GOOGLE_AUTH_ERROR_QUERY_PARAM);
   const showGoogleAccountNotFound =
     googleError === GOOGLE_AUTH_ERRORS.accountNotFound;
+  const signinErrorMessage = authErrors?.includes(
+    ApplicationProblemDetailsCode.WRONG_EMAIL_OR_PASSWORD,
+  )
+    ? t("error.wrong-email-or-password")
+    : authErrors?.includes(ApplicationProblemDetailsCode.WRONG_EMAIL)
+      ? t("error.wrong-email")
+      : authErrors?.includes(ApplicationProblemDetailsCode.EMAIL_NOT_CONFIRMED)
+        ? t("error.email-not-confirmed")
+        : undefined;
 
   const onSubmit = (data: { email: string; password: string }) => {
     signin(data.email, data.password);
@@ -143,12 +152,10 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
             />
           </Box>
           <FormHelperText
-            error={authErrors?.includes(errorCodes.wrongEmailOrPassword)}
+            error={signinErrorMessage !== undefined}
             sx={{ textAlign: "center" }}
           >
-            {authErrors?.includes(errorCodes.wrongEmailOrPassword) && (
-              <>{t("error.wrong-email-or-password")}</>
-            )}
+            {signinErrorMessage}
           </FormHelperText>
         </Stack>
         <Stack sx={{ width: "100%" }} spacing={{ xs: 4, md: 6 }}>

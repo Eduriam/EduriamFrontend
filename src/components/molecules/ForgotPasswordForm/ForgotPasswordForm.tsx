@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import errorCodes from "infrastructure/api/error-codes";
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
@@ -38,7 +38,7 @@ const ForgotPasswordForm: React.FC<IForgotPasswordForm> = ({ onEmailSent }) => {
   const onSubmit = (data: { email: string }) => {
     ResetPasswordService.resetPassword(data)
       .catch((err) => {
-        if (err === errorCodes.invalidEmailAddress) {
+        if (err === ApplicationProblemDetailsCode.INVALID_EMAIL_ADDRESS) {
           setInvalidEmail(true);
         }
       })

@@ -247,7 +247,7 @@
       "responses": [
         {
           "uuid": "a9a1ef5c-5323-45e7-ba77-f6da53716db0",
-          "body": "{\n  \"error\":\"USERNAME_TAKEN\"\n}",
+          "body": "{\n  \"code\":\"USERNAME_TAKEN\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Error: USERNAME_TAKEN (username: taken-username)",
@@ -274,10 +274,10 @@
         },
         {
           "uuid": "f8f84592-519b-490c-8e69-228093cc8905",
-          "body": "{\r\n   \"error\":\"EMAIL_ADDDRESS_TAKEN\"\r\n}",
+          "body": "{\r\n   \"code\":\"EMAIL_ADDRESS_TAKEN\"\r\n}",
           "latency": 0,
           "statusCode": 400,
-          "label": "Error: EMAIL_ADDDRESS_TAKEN (email: taken@example.com)",
+          "label": "Error: EMAIL_ADDRESS_TAKEN (email: taken@example.com)",
           "headers": [],
           "filePath": "",
           "sendFileAsBody": false,
@@ -301,7 +301,7 @@
         },
         {
           "uuid": "3b4e5587-d078-43cd-a7cc-c9356bd85115",
-          "body": "{\r\n   \"error\":\"PASSWORD_TOO_SHORT\"\r\n}",
+          "body": "{\r\n   \"code\":\"PASSWORD_TOO_SHORT\"\r\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Error: PASSWORD_TOO_SHORT",
@@ -328,7 +328,7 @@
         },
         {
           "uuid": "54bca47b-e374-45e0-96b2-1443748d6295",
-          "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
+          "body": "{\r\n   \"code\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Error: INVALID_EMAIL_ADDRESS",
@@ -342,6 +342,13 @@
               "value": "\\S+@\\S+\\.\\S+",
               "invert": true,
               "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "backend-invalid@example.com",
+              "invert": false,
+              "operator": "equals"
             }
           ],
           "rulesOperator": "OR",
@@ -355,7 +362,7 @@
         },
         {
           "uuid": "99b17acf-23f8-4c01-9a5e-01f3571e9cf2",
-          "body": "{\r\n   \"error\":\"INVALID_USERNAME\"\r\n}",
+          "body": "{\r\n   \"code\":\"INVALID_USERNAME\"\r\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Error: INVALID_USERNAME",
@@ -598,7 +605,7 @@
       "responses": [
         {
           "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
-          "body": "{\n  \"error\":\"WRONG_EMAIL_OR_PASSWORD\"\n}",
+          "body": "{\n  \"code\":\"WRONG_EMAIL_OR_PASSWORD\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Example Response - Wrong Password (password: wrong-password)",
@@ -610,6 +617,60 @@
               "target": "body",
               "modifier": "password",
               "value": "wrong-password",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "26f4b7b7-1da9-4db0-8dd3-18ef1ffbf29e",
+          "body": "{\n  \"code\":\"WRONG_EMAIL\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: WRONG_EMAIL (email: wrong-email@example.com)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "wrong-email@example.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9b2f70c0-0dbf-4a52-b450-0c06d2f3674d",
+          "body": "{\n  \"code\":\"EMAIL_NOT_CONFIRMED\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_NOT_CONFIRMED (email: unconfirmed@example.com)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "unconfirmed@example.com",
               "invert": false,
               "operator": "equals"
             }
@@ -1716,10 +1777,10 @@
         },
         {
           "uuid": "8f62dfbc-f9c7-46b0-b51c-ac9eddcb8b3e",
-          "body": "{\r\n   \"error\":\"EMAIL_ADDDRESS_TAKEN\"\r\n}",
+          "body": "{\r\n   \"code\":\"EMAIL_ADDRESS_TAKEN\"\r\n}",
           "latency": 0,
           "statusCode": 400,
-          "label": "Error: EMAIL_ADDDRESS_TAKEN",
+          "label": "Error: EMAIL_ADDRESS_TAKEN",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
@@ -2778,7 +2839,7 @@
         },
         {
           "uuid": "14757a15-1af0-4ee7-b24f-8d8b4cc7f3e8",
-          "body": "{\n  \"error\":\"NOT_ENOUGH_MONEY\"\n}",
+          "body": "{\n  \"code\":\"INSUFFICIENT_BALANCE\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Example Response: Not enough money",

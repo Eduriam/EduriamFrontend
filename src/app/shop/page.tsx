@@ -22,9 +22,9 @@ import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCateg
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import type {
-  UserOwnedShopItemModel,
+import {
+  ApplicationProblemDetailsCode,
+  type UserOwnedShopItemModel,
 } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
@@ -97,7 +97,7 @@ const ShopPage: React.FC<IShopPage> = () => {
           balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
         });
       } catch (err) {
-        if (err === errorCodes.notEnoughMoney) {
+        if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
           setError(tError("notEnoughMoney"));
         }
 

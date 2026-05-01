@@ -20,4 +20,20 @@ Feature: Signin
     And I enter "wrong-password" in the "signin-password-field" field
     And I click on the "signin-submit-button" button
     Then I should remain on the "signin-page" page
+    And I should see the text "Zadali jste nesprávný email nebo heslo."
 
+  Scenario: User cannot sign in with a wrong email
+    Given I am on the "signin-page" page
+    When I enter "wrong-email@example.com" in the "signin-email-field" field
+    And I enter "ValidPassword123" in the "signin-password-field" field
+    And I click on the "signin-submit-button" button
+    Then I should remain on the "signin-page" page
+    And I should see the text "Zadali jste nesprávný email."
+
+  Scenario: User cannot sign in before confirming email
+    Given I am on the "signin-page" page
+    When I enter "unconfirmed@example.com" in the "signin-email-field" field
+    And I enter "ValidPassword123" in the "signin-password-field" field
+    And I click on the "signin-submit-button" button
+    Then I should remain on the "signin-page" page
+    And I should see the text "Emailová adresa není potvrzená."

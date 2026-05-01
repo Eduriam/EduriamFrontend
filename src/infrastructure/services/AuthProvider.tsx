@@ -11,9 +11,13 @@ import {
 
 import { usePathname, useRouter } from "next/navigation";
 
-import errorCodes from "infrastructure/api/error-codes";
-import type { GetUserModel } from "infrastructure/api/generated/models";
 import {
+  ApplicationProblemDetailsCode,
+  type GetUserModel,
+  type ApplicationProblemDetailsCode as ApplicationProblemDetailsCodeType,
+} from "infrastructure/api/generated/models";
+import {
+  GOOGLE_AUTH_SERVICE_ERRORS,
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/services/auth/GoogleAuthService";
@@ -31,7 +35,7 @@ import AuthManager from "../repositories/AuthManager";
 export interface AuthContextType {
   user?: GetUserModel;
   loading: boolean;
-  errors?: string[];
+  errors?: ApplicationProblemDetailsCodeType[];
   signin: (email: string, password: string) => void;
   signUp: (username: string, email: string, password: string) => void;
   startGoogleAuth: (source: GoogleAuthSource) => Promise<void>;
@@ -56,7 +60,7 @@ export function AuthProvider({
   children: ReactNode;
 }): JSX.Element {
   const { user, isLoading: isCurrentUserLoading } = useCurrentUserState();
-  const [errors, setError] = useState<string[]>([]);
+  const [errors, setError] = useState<ApplicationProblemDetailsCodeType[]>([]);
   const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
   const [isSessionLoading, setIsSessionLoading] = useState<boolean>(true);
   const { enqueueSnackbar } = useSnackbar();
@@ -162,7 +166,7 @@ export function AuthProvider({
       handleError(
         typeof errorCode === "string"
           ? errorCode
-          : errorCodes.externalAuthError,
+          : GOOGLE_AUTH_SERVICE_ERRORS.externalAuthError,
       );
     } finally {
       setIsActionLoading(false);
@@ -192,7 +196,7 @@ export function AuthProvider({
     } catch (errorCode) {
       throw typeof errorCode === "string"
         ? errorCode
-        : errorCodes.externalAuthError;
+        : GOOGLE_AUTH_SERVICE_ERRORS.externalAuthError;
     } finally {
       setIsActionLoading(false);
     }
@@ -209,23 +213,18 @@ export function AuthProvider({
 
   function handleError(error: string) {
     switch (error) {
-      case errorCodes.wrongEmailOrPassword:
-        setError((errors) => [...errors, errorCodes.wrongEmailOrPassword]);
-        break;
-      case errorCodes.usernameTaken:
-        setError((errors) => [...errors, errorCodes.usernameTaken]);
-        break;
-      case errorCodes.emailAddressTaken:
-        setError((errors) => [...errors, errorCodes.emailAddressTaken]);
-        break;
-      case errorCodes.passwordTooShort:
-        setError((errors) => [...errors, errorCodes.passwordTooShort]);
-        break;
-      case errorCodes.invalidEmailAddress:
-        setError((errors) => [...errors, errorCodes.invalidEmailAddress]);
-        break;
-      case errorCodes.invalidUsername:
-        setError((errors) => [...errors, errorCodes.invalidUsername]);
+      case ApplicationProblemDetailsCode.WRONG_EMAIL_OR_PASSWORD:
+      case ApplicationProblemDetailsCode.WRONG_EMAIL:
+      case ApplicationProblemDetailsCode.EMAIL_NOT_CONFIRMED:
+      case ApplicationProblemDetailsCode.USERNAME_TAKEN:
+      case ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN:
+      case ApplicationProblemDetailsCode.PASSWORD_TOO_SHORT:
+      case ApplicationProblemDetailsCode.INVALID_EMAIL_ADDRESS:
+      case ApplicationProblemDetailsCode.INVALID_USERNAME:
+        setError((errors) => [
+          ...errors,
+          error as ApplicationProblemDetailsCodeType,
+        ]);
         break;
       default:
         enqueueSnackbar(t("general-error-message"), {

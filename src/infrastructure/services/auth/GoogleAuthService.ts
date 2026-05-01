@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import errorCodes from "infrastructure/api/error-codes";
 import { getAuth } from "infrastructure/api/generated/auth/auth";
 import type {
   AuthCodeExchangeModel,
@@ -21,6 +20,13 @@ export const GOOGLE_AUTH_ERRORS = {
   accountExists: "account-exists",
 } as const;
 
+export const GOOGLE_AUTH_SERVICE_ERRORS = {
+  invalidGoogleAuthorizationUrl: "INVALID_GOOGLE_AUTHORIZATION_URL",
+  googleAccountNotFound: "GOOGLE_ACCOUNT_NOT_FOUND",
+  googleAccountExists: "GOOGLE_ACCOUNT_EXISTS",
+  externalAuthError: "EXTERNAL_AUTH_ERROR",
+} as const;
+
 export type GoogleAuthErrorQuery =
   (typeof GOOGLE_AUTH_ERRORS)[keyof typeof GOOGLE_AUTH_ERRORS];
 
@@ -29,7 +35,7 @@ export class GoogleAuthService {
     const response = await authClient.getApiAuthExternalGoogleLogin();
 
     if (!response.data?.authorizationUrl) {
-      throw errorCodes.invalidGoogleAuthorizationUrl;
+      throw GOOGLE_AUTH_SERVICE_ERRORS.invalidGoogleAuthorizationUrl;
     }
 
     return response.data.authorizationUrl;
@@ -76,15 +82,15 @@ function normalizeGoogleAuthError(error: unknown): string {
 
     const statusCode = error.response?.status;
     if (statusCode === 404) {
-      return errorCodes.googleAccountNotFound;
+      return GOOGLE_AUTH_SERVICE_ERRORS.googleAccountNotFound;
     }
 
     if (statusCode === 409) {
-      return errorCodes.googleAccountExists;
+      return GOOGLE_AUTH_SERVICE_ERRORS.googleAccountExists;
     }
   }
 
-  return errorCodes.externalAuthError;
+  return GOOGLE_AUTH_SERVICE_ERRORS.externalAuthError;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

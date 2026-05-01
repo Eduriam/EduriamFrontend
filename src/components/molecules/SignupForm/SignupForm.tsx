@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
-import errorCodes from "infrastructure/api/error-codes";
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
@@ -63,23 +63,23 @@ const SignupForm: React.FC<ISignupForm> = () => {
   const usernameHelperText =
     errors.username?.type === "required"
       ? t("error.field-is-required")
-      : authErrors?.includes(errorCodes.invalidUsername)
+      : authErrors?.includes(ApplicationProblemDetailsCode.INVALID_USERNAME)
         ? t("error.invalid-username")
-        : authErrors?.includes(errorCodes.usernameTaken) &&
+        : authErrors?.includes(ApplicationProblemDetailsCode.USERNAME_TAKEN) &&
           t("error.username-taken");
   const emailHelperText =
     errors.email?.type === "required"
       ? t("error.field-is-required")
       : errors.email?.type === "pattern" ||
-          authErrors?.includes(errorCodes.invalidEmailAddress)
+          authErrors?.includes(ApplicationProblemDetailsCode.INVALID_EMAIL_ADDRESS)
         ? t("error.invalid-email-address")
-        : authErrors?.includes(errorCodes.emailAddressTaken) &&
+        : authErrors?.includes(ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN) &&
           t("error.email-taken");
   const passwordHelperText =
     errors.password?.type === "required"
       ? t("error.field-is-required")
       : (errors.password?.type === "minLength" ||
-          authErrors?.includes(errorCodes.passwordTooShort)) &&
+          authErrors?.includes(ApplicationProblemDetailsCode.PASSWORD_TOO_SHORT)) &&
         t("error.password-too-short");
 
   return (
@@ -111,8 +111,8 @@ const SignupForm: React.FC<ISignupForm> = () => {
                   placeholder={t("auth.name")}
                   error={
                     errors.username !== undefined ||
-                    authErrors?.includes(errorCodes.usernameTaken) ||
-                    authErrors?.includes(errorCodes.invalidUsername)
+                    authErrors?.includes(ApplicationProblemDetailsCode.USERNAME_TAKEN) ||
+                    authErrors?.includes(ApplicationProblemDetailsCode.INVALID_USERNAME)
                   }
                   helperText={usernameHelperText || undefined}
                   fullWidth
@@ -137,8 +137,8 @@ const SignupForm: React.FC<ISignupForm> = () => {
                   placeholder={t("auth.email")}
                   error={
                     errors.email !== undefined ||
-                    authErrors?.includes(errorCodes.emailAddressTaken) ||
-                    authErrors?.includes(errorCodes.invalidEmailAddress)
+                    authErrors?.includes(ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN) ||
+                    authErrors?.includes(ApplicationProblemDetailsCode.INVALID_EMAIL_ADDRESS)
                   }
                   helperText={emailHelperText || undefined}
                   fullWidth
@@ -163,7 +163,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
                   placeholder={t("auth.password")}
                   error={
                     errors.password !== undefined ||
-                    authErrors?.includes(errorCodes.passwordTooShort)
+                    authErrors?.includes(ApplicationProblemDetailsCode.PASSWORD_TOO_SHORT)
                   }
                   helperText={passwordHelperText || undefined}
                   fullWidth

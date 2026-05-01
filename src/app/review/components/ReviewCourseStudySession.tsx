@@ -12,11 +12,11 @@ import AdvertisementDialog from "components/advertisement/AdvertisementDialog/Ad
 import type { IStudySessionContainer } from "components/organisms/StudySessionContainer/StudySessionContainer";
 
 import {
+  ApplicationProblemDetailsCode,
   StudyBlockMode,
   type StudySessionModel,
   UserRole,
 } from "infrastructure/api/generated/models";
-import errorCodes from "infrastructure/api/error-codes";
 import useAuth from "infrastructure/services/AuthProvider";
 import useErrorHandler from "infrastructure/services/ErrorHandler";
 import { StudySessionService } from "infrastructure/services/users/StudySessionService";
@@ -72,7 +72,7 @@ const ReviewCourseStudySession: React.FC<IReviewCourseStudySession> = ({
           return;
         }
 
-        if (err === errorCodes.insufficientEnergy) {
+        if (err === ApplicationProblemDetailsCode.INSUFFICIENT_ENERGY) {
           setError(tError("insufficientEnergy"));
         } else {
           setError();

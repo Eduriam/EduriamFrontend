@@ -6,11 +6,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import LoadingScreen from "components/loading/LoadingScreen/LoadingScreen";
 
-import errorCodes from "infrastructure/api/error-codes";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
+  GOOGLE_AUTH_SERVICE_ERRORS,
   GOOGLE_AUTH_SOURCE_STORAGE_KEY,
   GoogleAuthSource,
 } from "infrastructure/services/auth/GoogleAuthService";
@@ -70,11 +70,11 @@ function resolveGoogleErrorPath(
   errorCode: unknown,
   fallbackPath: string,
 ): string {
-  if (errorCode === errorCodes.googleAccountNotFound) {
+  if (errorCode === GOOGLE_AUTH_SERVICE_ERRORS.googleAccountNotFound) {
     return `/signin?${GOOGLE_AUTH_ERROR_QUERY_PARAM}=${GOOGLE_AUTH_ERRORS.accountNotFound}`;
   }
 
-  if (errorCode === errorCodes.googleAccountExists) {
+  if (errorCode === GOOGLE_AUTH_SERVICE_ERRORS.googleAccountExists) {
     return `/signup?${GOOGLE_AUTH_ERROR_QUERY_PARAM}=${GOOGLE_AUTH_ERRORS.accountExists}`;
   }
 

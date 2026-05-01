@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 
-import errorCodes from "infrastructure/api/error-codes";
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import { SignupService } from "infrastructure/services/auth/SignupService";
 
 export interface IVerifyEmailPage {}
@@ -19,7 +19,7 @@ type VerificationStatus = "loading" | "success" | "error" | "expired";
 type ResendStatus = "idle" | "loading" | "success" | "error";
 
 const isExpiredConfirmationTokenError = (error: unknown): boolean => {
-  if (error === errorCodes.emailConfirmationTokenExpired) {
+  if (error === ApplicationProblemDetailsCode.EMAIL_CONFIRMATION_TOKEN_EXPIRED) {
     return true;
   }
 
@@ -42,7 +42,7 @@ const isExpiredConfirmationTokenError = (error: unknown): boolean => {
   }
 
   const dataRecord = data as Record<string, unknown>;
-  return dataRecord.code === errorCodes.emailConfirmationTokenExpired;
+  return dataRecord.code === ApplicationProblemDetailsCode.EMAIL_CONFIRMATION_TOKEN_EXPIRED;
 };
 
 const VerifyEmailPage: React.FC<IVerifyEmailPage> = () => {

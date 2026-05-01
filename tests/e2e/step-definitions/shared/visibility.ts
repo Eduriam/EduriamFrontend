@@ -18,6 +18,19 @@ Then(
 );
 
 Then(
+  "I should see the text {string}",
+  async function (this: CustomWorld, text: string) {
+    if (!this.page) {
+      throw new Error("Page is not initialized.");
+    }
+
+    await expect(this.page.getByText(text, { exact: true }).first()).toBeVisible(
+      { timeout: 15000 },
+    );
+  },
+);
+
+Then(
   "I should not see the {string} section",
   async function (this: CustomWorld, sectionTestId: string) {
     if (!this.page) {

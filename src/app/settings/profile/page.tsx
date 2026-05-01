@@ -19,8 +19,10 @@ import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import type { GetUserSettingsModel } from "infrastructure/api/generated/models";
+import {
+  ApplicationProblemDetailsCode,
+  type GetUserSettingsModel,
+} from "infrastructure/api/generated/models";
 import { SettingsService } from "infrastructure/services/users/SettingsService";
 import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
@@ -48,7 +50,12 @@ const SettingsProfilePage: React.FC = () => {
     email: "",
   });
   const [isEmailEdited, setIsEmailEdited] = useState(false);
-  const [errors, setErrors] = useState<Array<string>>([]);
+  const [errors, setErrors] = useState<
+    Array<
+      | typeof ApplicationProblemDetailsCode.USERNAME_TAKEN
+      | typeof ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN
+    >
+  >([]);
 
   useEffect(() => {
     if (!settings) {
@@ -84,8 +91,8 @@ const SettingsProfilePage: React.FC = () => {
         });
         setIsEmailEdited(false);
       } catch (error) {
-        if (error === errorCodes.emailAddressTaken) {
-          setErrors([errorCodes.emailAddressTaken]);
+        if (error === ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN) {
+          setErrors([ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN]);
         } else {
           enqueueSnackbar(t("settings.generalError"), { variant: "error" });
         }
@@ -107,10 +114,10 @@ const SettingsProfilePage: React.FC = () => {
       enqueueSnackbar(t("settings.saved"), { variant: "success" });
       setErrors([]);
     } catch (error) {
-      if (error === errorCodes.usernameTaken) {
-        setErrors([errorCodes.usernameTaken]);
-      } else if (error === errorCodes.emailAddressTaken) {
-        setErrors([errorCodes.emailAddressTaken]);
+      if (error === ApplicationProblemDetailsCode.USERNAME_TAKEN) {
+        setErrors([ApplicationProblemDetailsCode.USERNAME_TAKEN]);
+      } else if (error === ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN) {
+        setErrors([ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN]);
       } else {
         enqueueSnackbar(t("settings.generalError"), { variant: "error" });
       }
@@ -195,9 +202,9 @@ const SettingsProfilePage: React.FC = () => {
               data-test="settings-profile-username-field"
               label={t("settings.profile.username")}
               value={draft.username}
-              error={errors.includes(errorCodes.usernameTaken)}
+              error={errors.includes(ApplicationProblemDetailsCode.USERNAME_TAKEN)}
               helperText={
-                errors.includes(errorCodes.usernameTaken)
+                errors.includes(ApplicationProblemDetailsCode.USERNAME_TAKEN)
                   ? t("settings.profile.usernameTaken")
                   : undefined
               }
@@ -210,7 +217,7 @@ const SettingsProfilePage: React.FC = () => {
               onFocus={() =>
                 setErrors((currentErrors) =>
                   currentErrors.filter(
-                    (code) => code !== errorCodes.usernameTaken,
+                    (code) => code !== ApplicationProblemDetailsCode.USERNAME_TAKEN,
                   ),
                 )
               }
@@ -224,9 +231,11 @@ const SettingsProfilePage: React.FC = () => {
               label={t("settings.profile.email")}
               type="email"
               value={draft.email}
-              error={errors.includes(errorCodes.emailAddressTaken)}
+              error={errors.includes(
+                ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN,
+              )}
               helperText={
-                errors.includes(errorCodes.emailAddressTaken)
+                errors.includes(ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN)
                   ? t("settings.profile.emailTaken")
                   : undefined
               }
@@ -240,7 +249,8 @@ const SettingsProfilePage: React.FC = () => {
               onFocus={() =>
                 setErrors((currentErrors) =>
                   currentErrors.filter(
-                    (code) => code !== errorCodes.emailAddressTaken,
+                    (code) =>
+                      code !== ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN,
                   ),
                 )
               }

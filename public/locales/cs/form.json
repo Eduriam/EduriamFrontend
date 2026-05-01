@@ -31,6 +31,8 @@
     "password-too-short": "Heslo musí být dlouhé alespoň 8 znaků!",
     "invalid-email-address": "Neplatná emailová adresa!",
     "wrong-email-or-password": "Zadali jste nesprávný email nebo heslo.",
+    "wrong-email": "Zadali jste nesprávný email.",
+    "email-not-confirmed": "Emailová adresa není potvrzená.",
     "username-taken": "Toto jméno už někdo používá!",
     "email-taken": "Tento email už někdo používá!",
     "passwords-dont-match": "Hesla se musí shodovat!",
