@@ -15,12 +15,15 @@ const SigninPage: React.FC<ISigninPage> = () => {
   return (
     <PageRoot data-test="signin-page">
       <PageNavigation
-        topNavigation={
-          <BackNavbar withTransition route="/welcome" />
-        }
+        topNavigation={<BackNavbar withTransition route="/welcome" />}
         mainNavigation="hidden"
       />
-      <ContentContainer width="small" justifyContent="flex-start" spacing={16}>
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        spacing={16}
+        paddingTop="small"
+      >
         <SigninForm
           onForgotPasswordClick={navigateWithTransition("/forgot-password")}
         />

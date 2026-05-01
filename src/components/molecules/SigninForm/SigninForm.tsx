@@ -15,11 +15,11 @@ import Typography from "@mui/material/Typography";
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
 
 import errorCodes from "infrastructure/api/error-codes";
+import useAuth from "infrastructure/services/AuthProvider";
 import {
   GOOGLE_AUTH_ERRORS,
   GOOGLE_AUTH_ERROR_QUERY_PARAM,
 } from "infrastructure/services/auth/GoogleAuthService";
-import useAuth from "infrastructure/services/AuthProvider";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
@@ -66,7 +66,11 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
   return (
     <>
       <Header variant="title" text={t("auth.signin-header")} align="center" />
-      <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
+      <Stack
+        alignItems="center"
+        sx={{ width: "100%" }}
+        spacing={{ xs: 18, md: 22 }}
+      >
         <Stack
           direction="column"
           justifyContent="center"
@@ -147,50 +151,52 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
             )}
           </FormHelperText>
         </Stack>
-        <Stack sx={{ width: "100%", gap: 4 }}>
-          <LargeButton
-            type="submit"
-            onClick={handleSubmit(onSubmit)}
-            variant="contained"
-            disabled={loading || Object.keys(errors).length !== 0}
-            fullWidth
-            data-test="signin-submit-button"
-          >
-            {t("auth.signin")}
-          </LargeButton>
-          <GoogleSignupButton
-            width="100%"
-            text={t("auth.continue-with-google")}
-            onClick={handleGoogleSignin}
-            disabled={loading}
-            dataTest="signin-google-button"
-          />
+        <Stack sx={{ width: "100%" }} spacing={{ xs: 4, md: 6 }}>
+          <Stack spacing={3}>
+            <LargeButton
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+              variant="contained"
+              disabled={loading || Object.keys(errors).length !== 0}
+              fullWidth
+              data-test="signin-submit-button"
+            >
+              {t("auth.signin")}
+            </LargeButton>
+            <GoogleSignupButton
+              width="100%"
+              text={t("auth.continue-with-google")}
+              onClick={handleGoogleSignin}
+              disabled={loading}
+              dataTest="signin-google-button"
+            />
+            {showGoogleAccountNotFound && (
+              <Stack
+                spacing={4}
+                sx={{ mt: 6, width: "100%" }}
+                data-test="signin-google-account-not-found-section"
+              >
+                <Typography variant="body1" sx={{ color: "#989898" }}>
+                  {t("auth.google-signin-account-not-found")}
+                </Typography>
+                <LargeButton
+                  variant="outlined"
+                  onClick={navigateWithTransition("/signup")}
+                  data-test="signin-google-signup-button"
+                >
+                  {t("auth.google-signin-signup-button")}
+                </LargeButton>
+              </Stack>
+            )}
+          </Stack>
+          <Stack direction="row" justifyContent="center" sx={{ gap: 1 }}>
+            <Typography variant="body1" sx={{ color: "text.secondary" }}>
+              {t("auth.dont-have-account")}
+            </Typography>
+            <Link href="/signup" text={t("auth.here")} />
+          </Stack>
         </Stack>
       </Stack>
-      {showGoogleAccountNotFound && (
-        <Stack
-          spacing={4}
-          sx={{ mt: 6, width: "100%" }}
-          data-test="signin-google-account-not-found-section"
-        >
-          <Typography variant="body1" sx={{ color: "#989898" }}>
-            {t("auth.google-signin-account-not-found")}
-          </Typography>
-          <LargeButton
-            variant="outlined"
-            onClick={navigateWithTransition("/signup")}
-            data-test="signin-google-signup-button"
-          >
-            {t("auth.google-signin-signup-button")}
-          </LargeButton>
-        </Stack>
-      )}
-      <Box sx={{ display: "flex", justifyContent: "center", gap: "4px" }}>
-        <Typography variant="body1" sx={{ color: "#989898" }}>
-          {t("auth.dont-have-account")}
-        </Typography>
-        <Link href="/signup" text={t("auth.here")} />
-      </Box>
     </>
   );
 };

@@ -1,11 +1,10 @@
 "use client";
 
-import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
-
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
-import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 
 import SignupForm from "components/molecules/SignupForm/SignupForm";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 export interface ISignupPage {}
 
@@ -16,7 +15,11 @@ const SignupPage: React.FC<ISignupPage> = () => {
         topNavigation={<BackNavbar withTransition route="/welcome" />}
         mainNavigation="hidden"
       />
-      <ContentContainer width="small" justifyContent="space-between">
+      <ContentContainer
+        width="small"
+        justifyContent="space-between"
+        paddingTop="small"
+      >
         <SignupForm />
       </ContentContainer>
     </PageRoot>

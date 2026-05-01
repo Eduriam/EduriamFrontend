@@ -85,7 +85,11 @@ const SignupForm: React.FC<ISignupForm> = () => {
   return (
     <>
       <Header variant="title" text={t("auth.signup-header")} align="center" />
-      <Stack alignItems="center" sx={{ width: "100%", gap: "88px" }}>
+      <Stack
+        alignItems="center"
+        sx={{ width: "100%" }}
+        spacing={{ xs: 18, md: 22 }}
+      >
         <Stack
           direction="column"
           justifyContent="center"
@@ -208,49 +212,51 @@ const SignupForm: React.FC<ISignupForm> = () => {
             {errors.checked?.type === "required" && t("error.agree-with-terms")}
           </FormHelperText>
         </Stack>
-        <Stack sx={{ width: "100%", gap: 4 }}>
-          <LargeButton
-            type="submit"
-            onClick={handleSubmit(onSubmit)}
-            variant="contained"
-            disabled={loading || Object.keys(errors).length !== 0}
-            fullWidth
-            data-test="signup-submit-button"
-          >
-            {t("auth.signup")}
-          </LargeButton>
-          <GoogleSignupButton
-            width="100%"
-            text={t("auth.continue-with-google")}
-            onClick={handleGoogleSignup}
-            disabled={loading}
-            dataTest="signup-google-button"
-          />
+        <Stack sx={{ width: "100%" }} spacing={{ xs: 4, md: 6 }}>
+          <Stack spacing={3}>
+            <LargeButton
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+              variant="contained"
+              disabled={loading || Object.keys(errors).length !== 0}
+              fullWidth
+              data-test="signup-submit-button"
+            >
+              {t("auth.signup")}
+            </LargeButton>
+            <GoogleSignupButton
+              width="100%"
+              text={t("auth.continue-with-google")}
+              onClick={handleGoogleSignup}
+              disabled={loading}
+              dataTest="signup-google-button"
+            />
+            {showGoogleAccountExists && (
+              <Stack
+                spacing={4}
+                sx={{ mt: 6, width: "100%" }}
+                data-test="signup-google-account-exists-section"
+              >
+                <Typography variant="body1" sx={{ color: "#989898" }}>
+                  {t("auth.google-signup-account-exists")}
+                </Typography>
+                <LargeButton
+                  variant="outlined"
+                  onClick={navigateWithTransition("/signin")}
+                  data-test="signup-existing-account-signin-button"
+                >
+                  {t("auth.google-signup-signin-button")}
+                </LargeButton>
+              </Stack>
+            )}
+          </Stack>
+          <Stack direction="row" justifyContent="center" sx={{ gap: 1 }}>
+            <Typography variant="body1" sx={{ color: "text.secondary" }}>
+              {t("auth.have-an-account")}
+            </Typography>
+            <Link href="/signin" text={t("auth.here")} />
+          </Stack>
         </Stack>
-      </Stack>
-      {showGoogleAccountExists && (
-        <Stack
-          spacing={4}
-          sx={{ mt: 6, width: "100%" }}
-          data-test="signup-google-account-exists-section"
-        >
-          <Typography variant="body1" sx={{ color: "#989898" }}>
-            {t("auth.google-signup-account-exists")}
-          </Typography>
-          <LargeButton
-            variant="outlined"
-            onClick={navigateWithTransition("/signin")}
-            data-test="signup-existing-account-signin-button"
-          >
-            {t("auth.google-signup-signin-button")}
-          </LargeButton>
-        </Stack>
-      )}
-      <Stack direction="row" justifyContent="center" sx={{ gap: 1 }}>
-        <Typography variant="body1" sx={{ color: "#989898" }}>
-          {t("auth.have-an-account")}
-        </Typography>
-        <Link href="/signin" text={t("auth.here")} />
       </Stack>
     </>
   );
