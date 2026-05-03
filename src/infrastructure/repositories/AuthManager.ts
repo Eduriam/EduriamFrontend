@@ -43,13 +43,13 @@ const AuthManager = {
     return GoogleAuthService.authorizeCode(data);
   },
 
-  async refreshIdToken(): Promise<boolean> {
+  async refreshIdToken(): Promise<string | null> {
     const refreshToken = LocalStorageManager.getItem<string>("refreshToken");
 
     if (refreshToken === null) {
       // Refresh token doesn't exist, user needs to sign in again
       this.signout();
-      return false;
+      return null;
     }
 
     try {
@@ -59,11 +59,11 @@ const AuthManager = {
       this.setAuthHeader(res.accessToken);
       LocalStorageManager.setItem<string>("idToken", res.accessToken);
       LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
-      return true;
+      return res.accessToken;
     } catch {
       // Refresh token is expired, user needs to sign in again
       this.signout();
-      return false;
+      return null;
     }
   },
 
@@ -79,7 +79,7 @@ const AuthManager = {
       const decodedToken = jwtDecode<DecodedToken>(token);
       // If Id token is expired
       if (decodedToken.exp * 1000 < Date.now()) {
-        return this.refreshIdToken();
+        return Boolean(await this.refreshIdToken());
       }
     } catch {
       // Some environments (e.g. test fixtures) use opaque tokens without exp claims. In that case we still attach the token and let API responses drive auth validity.
