@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "components/avatar/Avatar";
 import { toIllustrationName } from "app/shop/utils/shopItem";
+import { useElementSize } from "util/hooks/useElementSize";
 
 import {
   ShopImageKind,
@@ -21,6 +22,7 @@ export interface IShopItem {
   item: ShopItemViewModel;
   purchased?: boolean;
   locked?: boolean;
+  fullWidth?: boolean;
   onClick?: () => void;
   "data-test"?: string;
 }
@@ -32,9 +34,19 @@ const ShopItem: React.FC<IShopItem> = ({
   item,
   purchased = false,
   locked = false,
+  fullWidth = false,
   onClick,
   "data-test": dataTest,
 }) => {
+  const [contentRef, contentSize] = useElementSize<HTMLDivElement>();
+  const previewSize =
+    fullWidth && contentSize.width > 0
+      ? Math.min(Math.floor(contentSize.width * 0.7), PREVIEW_SIZE)
+      : PREVIEW_SIZE;
+  const priceIconSize =
+    fullWidth && contentSize.width > 0
+      ? Math.min(Math.max(Math.floor(contentSize.width * 0.22), 16), 20)
+      : 20;
   const shopItemState = purchased ? "bought" : locked ? "locked" : "default";
   const showPrice = shopItemState !== "bought";
   const priceCoinIllustration =
@@ -56,7 +68,13 @@ const ShopItem: React.FC<IShopItem> = ({
       : undefined;
 
   return (
-    <Box sx={{ width: CARD_SIZE, height: CARD_SIZE }}>
+    <Box
+      sx={{
+        aspectRatio: "1 / 1",
+        height: fullWidth ? undefined : CARD_SIZE,
+        width: fullWidth ? "100%" : CARD_SIZE,
+      }}
+    >
       <Card
         variant={cardVariant as React.ComponentProps<typeof Card>["variant"]}
         onClick={onClick}
@@ -64,24 +82,31 @@ const ShopItem: React.FC<IShopItem> = ({
         paddingX="small"
         paddingY="small"
         sx={{
-          height: CARD_SIZE,
-          widht: CARD_SIZE,
+          boxSizing: "border-box",
+          height: "100%",
+          width: "100%",
           ...(boughtCardSx ?? {}),
         }}
       >
-        <Stack alignItems="center" justifyContent="center" spacing={0.75}>
-          <Box sx={{ width: PREVIEW_SIZE, height: PREVIEW_SIZE }}>
+        <Stack
+          ref={contentRef}
+          alignItems="center"
+          height="100%"
+          justifyContent="center"
+          spacing={0.75}
+        >
+          <Box sx={{ height: previewSize, width: previewSize }}>
             {item.image.kind === ShopImageKind.Avatar ? (
               <Avatar
                 definition={buildShopAvatar(item.image.avatar ?? {})}
-                size={PREVIEW_SIZE}
+                size={previewSize}
                 alt={item.name}
               />
             ) : (
               <Illustration
                 name={toIllustrationName(item.image.illustration?.kind)}
-                width={PREVIEW_SIZE}
-                height={PREVIEW_SIZE}
+                width={previewSize}
+                height={previewSize}
               />
             )}
           </Box>
@@ -90,8 +115,8 @@ const ShopItem: React.FC<IShopItem> = ({
             <Stack direction="row" spacing={0.5} alignItems="center">
               <Illustration
                 name={priceCoinIllustration}
-                width={20}
-                height={20}
+                width={priceIconSize}
+                height={priceIconSize}
               />
               <Typography
                 variant="body2"

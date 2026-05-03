@@ -1,11 +1,14 @@
 "use client";
 
-import type { Id } from "domain/models/types/core";
 import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
-import { getShopItemCategoryId, isShopItemPurchased } from "app/shop/utils/shopItem";
+import {
+  getShopItemCategoryId,
+  isShopItemPurchased,
+} from "app/shop/utils/shopItem";
+import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
@@ -13,9 +16,9 @@ import { useEffect, useMemo, useState } from "react";
 
 import { useParams, useRouter } from "next/navigation";
 
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import ResponsiveItemGrid from "components/ResponsiveItemGrid/ResponsiveItemGrid";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
@@ -75,7 +78,8 @@ const ShopCategoryPage: React.FC = () => {
       ? isShopItemPurchased(selectedItem, ownedShopItems)
       : false;
 
-  const selectedItemLocked = selectedItem?.isLocked === true && !selectedItemPurchased;
+  const selectedItemLocked =
+    selectedItem?.isLocked === true && !selectedItemPurchased;
 
   const canBuySelectedItem =
     !!selectedItem && (user?.balance ?? 0) >= selectedItem.price;
@@ -104,25 +108,28 @@ const ShopCategoryPage: React.FC = () => {
       consumedAt: null,
     };
 
-    mutateOwnedShopItems(async () => {
-      try {
-        await ShopService.purchaseShopItem(selectedItem.id);
-        mutateUser({
-          balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
-        });
-      } catch (err) {
-        if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
-          setError(tError("notEnoughMoney"));
+    mutateOwnedShopItems(
+      async () => {
+        try {
+          await ShopService.purchaseShopItem(selectedItem.id);
+          mutateUser({
+            balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
+          });
+        } catch (err) {
+          if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
+            setError(tError("notEnoughMoney"));
+          }
+
+          return Promise.reject(err);
         }
 
-        return Promise.reject(err);
-      }
-
-      return [...ownedShopItems, optimisticOwnedItem];
-    }, optimisticMutationOption<Array<UserOwnedShopItemModel>>([
-      ...ownedShopItems,
-      optimisticOwnedItem,
-    ]));
+        return [...ownedShopItems, optimisticOwnedItem];
+      },
+      optimisticMutationOption<Array<UserOwnedShopItemModel>>([
+        ...ownedShopItems,
+        optimisticOwnedItem,
+      ]),
+    );
 
     setSelectedItemId(null);
   };
@@ -151,13 +158,7 @@ const ShopCategoryPage: React.FC = () => {
       <ContentContainer width="small" justifyContent="flex-start" spacing={8}>
         <Typography variant="h5">{t(category.nameKey)}</Typography>
 
-        <Stack
-          direction="row"
-          spacing={1.5}
-          flexWrap="wrap"
-          useFlexGap
-          data-test="shop-items-category-section"
-        >
+        <ResponsiveItemGrid data-test="shop-items-category-section">
           {categoryItems.map((item) => {
             const purchased = isShopItemPurchased(item, ownedShopItems);
             const locked = item.isLocked && !purchased;
@@ -166,6 +167,7 @@ const ShopCategoryPage: React.FC = () => {
               <ShopItem
                 key={item.id}
                 item={item}
+                fullWidth
                 purchased={purchased}
                 locked={locked}
                 data-test={
@@ -175,7 +177,7 @@ const ShopCategoryPage: React.FC = () => {
               />
             );
           })}
-        </Stack>
+        </ResponsiveItemGrid>
       </ContentContainer>
 
       <ShopItemDetailsDrawer

@@ -11,6 +11,7 @@ import { useTranslation } from "i18n/client";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
+import ResponsiveItemGrid from "components/ResponsiveItemGrid/ResponsiveItemGrid";
 import Avatar, { type AvatarDefinition } from "components/avatar/Avatar";
 
 import AvatarEditorColorButton from "../AvatarEditorColorButton/AvatarEditorColorButton";
@@ -70,7 +71,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
         <Stack spacing={8} width="100%" data-test="items-category-section">
           <Stack spacing={2}>
             <Header variant="section" text={t(category.labelKey)} />
-            <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+            <ResponsiveItemGrid gap={2}>
               {category.itemValues.map((value) => {
                 const field = category.itemField;
                 const isSelected = draftAvatar[field] === value;
@@ -82,6 +83,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
                     key={`${field}-${value}`}
                     color={color}
                     selected={isSelected}
+                    fullWidth
                     onClick={() => onSelectOption(field, value)}
                     data-avatar-field={field}
                     data-avatar-value={String(value)}
@@ -96,6 +98,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
                     key={`${field}-${value}`}
                     preview={preview}
                     selected={isSelected}
+                    fullWidth
                     onClick={() => onSelectOption(field, value)}
                     data-test={
                       isSelected
@@ -105,7 +108,7 @@ const AvatarCategoryDialog: React.FC<IAvatarCategoryDialog> = ({
                   />
                 );
               })}
-            </Stack>
+            </ResponsiveItemGrid>
           </Stack>
 
           {category.colorField && category.colorValues.length > 0 ? (

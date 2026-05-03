@@ -5,9 +5,12 @@ import { Card } from "@eduriam/ui-core";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
+import { useElementSize } from "util/hooks/useElementSize";
+
 export interface IAvatarEditorColorButton {
   color: string;
   selected?: boolean;
+  fullWidth?: boolean;
   onClick?: () => void;
   "data-test"?: string;
   "data-avatar-field"?: string;
@@ -17,11 +20,18 @@ export interface IAvatarEditorColorButton {
 const AvatarEditorColorButton: React.FC<IAvatarEditorColorButton> = ({
   color,
   selected = false,
+  fullWidth = false,
   onClick,
   "data-test": dataTest,
   "data-avatar-field": dataAvatarField,
   "data-avatar-value": dataAvatarValue,
 }) => {
+  const [contentRef, contentSize] = useElementSize<HTMLDivElement>();
+  const swatchSize =
+    fullWidth && contentSize.width > 0
+      ? Math.min(Math.floor(contentSize.width * 0.65), 36)
+      : 36;
+
   return (
     <Card
       variant={selected ? "selected" : "clickable"}
@@ -29,13 +39,24 @@ const AvatarEditorColorButton: React.FC<IAvatarEditorColorButton> = ({
       data-test={dataTest}
       paddingX={0}
       paddingY={0}
-      sx={{ width: 64, height: 64 }}
+      sx={{
+        aspectRatio: "1 / 1",
+        boxSizing: "border-box",
+        height: fullWidth ? undefined : 64,
+        width: fullWidth ? "100%" : 64,
+      }}
     >
-      <Stack width="100%" height="100%" alignItems="center" justifyContent="center">
+      <Stack
+        ref={contentRef}
+        width="100%"
+        height="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Box
           sx={{
-            width: 36,
-            height: 36,
+            width: swatchSize,
+            height: swatchSize,
             borderRadius: "4px",
             backgroundColor: color,
           }}

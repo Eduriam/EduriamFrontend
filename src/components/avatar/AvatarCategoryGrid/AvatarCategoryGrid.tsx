@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import type { AvatarDefinition } from "components/avatar/Avatar";
 import AvatarCategoryButton from "components/avatar/AvatarCategoryButton/AvatarCategoryButton";
+import ResponsiveItemGrid from "components/ResponsiveItemGrid/ResponsiveItemGrid";
 
 export interface AvatarCategoryGridItem {
   id: string;
@@ -28,7 +29,7 @@ const AvatarCategoryGrid: React.FC<IAvatarCategoryGrid> = ({
   const { t } = useTranslation("common");
 
   return (
-    <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap data-test={dataTest}>
+    <ResponsiveItemGrid data-test={dataTest} gap={2}>
       {items.map((item) => (
         <Stack key={item.id} spacing={1}>
           <Typography variant="body1" color="text.secondary">
@@ -36,12 +37,13 @@ const AvatarCategoryGrid: React.FC<IAvatarCategoryGrid> = ({
           </Typography>
           <AvatarCategoryButton
             avatar={item.avatar}
+            fullWidth
             onClick={item.onClick}
             data-test={item["data-test"]}
           />
         </Stack>
       ))}
-    </Stack>
+    </ResponsiveItemGrid>
   );
 };
 

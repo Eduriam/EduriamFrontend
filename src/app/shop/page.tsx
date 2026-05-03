@@ -18,6 +18,7 @@ import { useMemo, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import ResponsiveItemGrid from "components/ResponsiveItemGrid/ResponsiveItemGrid";
 import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCategoryGrid";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
@@ -47,7 +48,10 @@ const ShopPage: React.FC<IShopPage> = () => {
   const [selectedItemId, setSelectedItemId] = useState<Id | null>(null);
 
   const streakFreezeItems = useMemo(
-    () => shopItems.filter((item) => getShopItemCategoryId(item) === "streak-freeze"),
+    () =>
+      shopItems.filter(
+        (item) => getShopItemCategoryId(item) === "streak-freeze",
+      ),
     [shopItems],
   );
 
@@ -61,7 +65,8 @@ const ShopPage: React.FC<IShopPage> = () => {
       ? isShopItemPurchased(selectedItem, ownedShopItems)
       : false;
 
-  const selectedItemLocked = selectedItem?.isLocked === true && !selectedItemPurchased;
+  const selectedItemLocked =
+    selectedItem?.isLocked === true && !selectedItemPurchased;
 
   const canBuySelectedItem =
     !!selectedItem && (user?.balance ?? 0) >= selectedItem.price;
@@ -90,25 +95,28 @@ const ShopPage: React.FC<IShopPage> = () => {
       consumedAt: null,
     };
 
-    mutateOwnedShopItems(async () => {
-      try {
-        await ShopService.purchaseShopItem(selectedItem.id);
-        mutateUser({
-          balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
-        });
-      } catch (err) {
-        if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
-          setError(tError("notEnoughMoney"));
+    mutateOwnedShopItems(
+      async () => {
+        try {
+          await ShopService.purchaseShopItem(selectedItem.id);
+          mutateUser({
+            balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
+          });
+        } catch (err) {
+          if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
+            setError(tError("notEnoughMoney"));
+          }
+
+          return Promise.reject(err);
         }
 
-        return Promise.reject(err);
-      }
-
-      return [...ownedShopItems, optimisticOwnedItem];
-    }, optimisticMutationOption<Array<UserOwnedShopItemModel>>([
-      ...ownedShopItems,
-      optimisticOwnedItem,
-    ]));
+        return [...ownedShopItems, optimisticOwnedItem];
+      },
+      optimisticMutationOption<Array<UserOwnedShopItemModel>>([
+        ...ownedShopItems,
+        optimisticOwnedItem,
+      ]),
+    );
 
     setSelectedItemId(null);
   };
@@ -140,18 +148,21 @@ const ShopPage: React.FC<IShopPage> = () => {
             {t("shop.streakFreezeDescription")}
           </Typography>
 
-          <Stack direction="row" spacing={1.5}>
+          <ResponsiveItemGrid>
             {streakFreezeItems.map((item) => (
               <ShopItem
                 key={item.id}
                 item={item}
+                fullWidth
                 purchased={isShopItemPurchased(item, ownedShopItems)}
-                locked={item.isLocked && !isShopItemPurchased(item, ownedShopItems)}
+                locked={
+                  item.isLocked && !isShopItemPurchased(item, ownedShopItems)
+                }
                 onClick={() => setSelectedItemId(item.id)}
                 data-test="streak-freeze-item-button"
               />
             ))}
-          </Stack>
+          </ResponsiveItemGrid>
         </Stack>
 
         <Stack spacing={3} width="100%" data-test="shop-item-categories">

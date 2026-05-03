@@ -29,8 +29,8 @@ import { SettingsService } from "infrastructure/services/users/SettingsService";
 import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
 import LeaveAvatarEditorDrawer from "./components/LeaveAvatarEditorDrawer/LeaveAvatarEditorDrawer";
 import {
-  type AvatarCategory,
   AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS,
+  type AvatarCategory,
   collectAvatarCategories,
   serializeAvatar,
 } from "./components/avatarEditorTypes";
