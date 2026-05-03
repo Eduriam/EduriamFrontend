@@ -77,6 +77,10 @@ const SettingsCoursesPage: React.FC = () => {
             withTransition
             route="/settings"
             header={t("settings.items.courses")}
+            rightButton={{
+              icon: "add",
+              onClick: navigateWithTransition("/courses"),
+            }}
           />
         }
         mainNavigation="hidden"
