@@ -23,7 +23,7 @@ import {
   createStudySessionLocalization,
 } from "util/functions/studySessionConfig";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import {
   ReportType,
@@ -31,12 +31,15 @@ import {
   type StudySessionModel,
   UserRole,
 } from "infrastructure/api/generated/models";
+import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
 import useAuth from "infrastructure/services/AuthProvider";
 import {
   parseReportProblemType,
   ReportsService,
 } from "infrastructure/services/reports/ReportsService";
 import { StudySessionService } from "infrastructure/services/users/StudySessionService";
+
+const STUDY_SESSION_AUDIO_MUTED_STORAGE_KEY = "studySession.audioMuted";
 
 export interface IStudySessionContainer {
   studySession: StudySessionModel;
@@ -118,6 +121,13 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
   const { t } = useTranslation("common");
 
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false);
+  const [audioMuted, setAudioMuted] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      LocalStorageManager.getItem<boolean>(
+        STUDY_SESSION_AUDIO_MUTED_STORAGE_KEY,
+      ) === true,
+  );
   const [selectedStudyBlockData, setSelectedStudyBlockData] = useState<
     SelectedStudyBlockData | undefined
   >(undefined);
@@ -151,10 +161,20 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
     });
   };
 
+  const handleAudioMutedChange = useCallback((nextAudioMuted: boolean) => {
+    setAudioMuted(nextAudioMuted);
+    LocalStorageManager.setItem<boolean>(
+      STUDY_SESSION_AUDIO_MUTED_STORAGE_KEY,
+      nextAudioMuted,
+    );
+  }, []);
+
   return (
     <>
       <StudySession
         studySession={uiStudySession}
+        audioMuted={audioMuted}
+        onAudioMutedChange={handleAudioMutedChange}
         onFinish={handleFinish}
         onQuit={onQuit}
         onExit={onExit}

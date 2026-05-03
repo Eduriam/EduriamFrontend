@@ -1969,10 +1969,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.114":
-  version: 0.2.114
-  resolution: "@eduriam/ui-x@npm:0.2.114::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.114%2F9dd6fe73beba347552a30fae315cc240fe1a939b"
+"@eduriam/ui-x@npm:^0.2.116":
+  version: 0.2.116
+  resolution: "@eduriam/ui-x@npm:0.2.116::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.116%2Fdf2a1520e4f81f67c17fedc146f2322f737de91a"
   dependencies:
+    "@dnd-kit/core": "npm:^6.3.1"
+    "@dnd-kit/utilities": "npm:^3.2.2"
     "@eduriam/ui-core": "npm:^0.6.83"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
@@ -1994,7 +1996,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/04b8caf244d9d81a4d92ebe258507ca31ba17038d6c75f5da4e9a5c53a310a75d9ab000f401990fb248c89bd4ea98b4457cc1f05cfb6a21f817d63792ddd21a2
+  checksum: 10c0/c0555ab8ad2e09154c7636a00866c69f753112e423275d976b51ccd9070cc88479ffa82d4943808ee36abe1ef61d3ddcb4fa530fbe53bcbaebeb8ea5d919d997
   languageName: node
   linkType: hard
 
@@ -15662,7 +15664,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
     "@eduriam/ui-core": "npm:^0.6.83"
-    "@eduriam/ui-x": "npm:^0.2.114"
+    "@eduriam/ui-x": "npm:^0.2.116"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
