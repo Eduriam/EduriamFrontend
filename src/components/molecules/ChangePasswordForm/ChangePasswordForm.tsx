@@ -1,10 +1,12 @@
-import { Header, LargeButton, TextField } from "@eduriam/ui-core";
+import { Header, LargeButton } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useForm } from "react-hook-form";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+
+import PasswordTextField from "components/molecules/PasswordTextField/PasswordTextField";
 
 import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
 
@@ -70,39 +72,41 @@ const ChangePasswordForm: React.FC<IChangePasswordForm> = ({
         sx={{ gap: "88px", width: "100%" }}
       >
         <Stack direction="column" sx={{ gap: 2, width: "100%" }}>
-          <TextField
-            id="password"
-            type="password"
-            placeholder={t("changePassword.newPassword")}
-            error={errors.password !== undefined}
-            helperText={
-              errors.password?.type === "required"
-                ? t("error.field-is-required")
-                : errors.password?.type === "minLength"
-                  ? t("error.password-too-short")
-                  : undefined
-            }
-            {...passwordField}
-            inputRef={passwordRef}
-            fullWidth
-            autoComplete="new-password"
-          />
-          <TextField
-            id="reenterPassword"
-            type="password"
-            placeholder={t("changePassword.reenterPassword")}
-            error={errors.reenterPassword !== undefined}
-            helperText={
-              errors.reenterPassword?.type === "required"
-                ? t("error.field-is-required")
-                : errors.reenterPassword?.type === "matches"
-                  ? t("error.passwords-dont-match")
-                  : undefined
-            }
-            {...reenterPasswordField}
-            inputRef={reenterPasswordRef}
-            fullWidth
-          />
+          <Box>
+            <PasswordTextField
+              id="password"
+              placeholder={t("changePassword.newPassword")}
+              error={errors.password !== undefined}
+              helperText={
+                errors.password?.type === "required"
+                  ? t("error.field-is-required")
+                  : errors.password?.type === "minLength"
+                    ? t("error.password-too-short")
+                    : undefined
+              }
+              {...passwordField}
+              inputRef={passwordRef}
+              fullWidth
+              autoComplete="new-password"
+            />
+          </Box>
+          <Box>
+            <PasswordTextField
+              id="reenterPassword"
+              placeholder={t("changePassword.reenterPassword")}
+              error={errors.reenterPassword !== undefined}
+              helperText={
+                errors.reenterPassword?.type === "required"
+                  ? t("error.field-is-required")
+                  : errors.reenterPassword?.type === "matches"
+                    ? t("error.passwords-dont-match")
+                    : undefined
+              }
+              {...reenterPasswordField}
+              inputRef={reenterPasswordRef}
+              fullWidth
+            />
+          </Box>
         </Stack>
         <Box>
           <LargeButton

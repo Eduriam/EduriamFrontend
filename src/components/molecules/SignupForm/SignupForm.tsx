@@ -14,6 +14,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
+import PasswordTextField from "components/molecules/PasswordTextField/PasswordTextField";
 
 import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -157,9 +158,8 @@ const SignupForm: React.FC<ISignupForm> = () => {
             rules={{ required: true, minLength: 8 }}
             render={({ field }) => (
               <Stack data-test="signup-password-field">
-                <TextField
+                <PasswordTextField
                   id="password"
-                  type="password"
                   placeholder={t("auth.password")}
                   error={
                     errors.password !== undefined ||
@@ -169,6 +169,7 @@ const SignupForm: React.FC<ISignupForm> = () => {
                   fullWidth
                   autoComplete="new-password"
                   inputProps={{ "aria-label": t("auth.password") }}
+                  visibilityToggleDataTest="signup-password-visibility-toggle-button"
                   value={field.value ?? ""}
                   onChange={field.onChange}
                   onBlur={field.onBlur}

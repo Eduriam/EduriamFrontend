@@ -13,6 +13,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import GoogleSignupButton from "components/atoms/GoogleSignupButton/GoogleSignupButton";
+import PasswordTextField from "components/molecules/PasswordTextField/PasswordTextField";
 
 import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -123,9 +124,8 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
             rules={{ required: true }}
             render={({ field }) => (
               <Box data-test="signin-password-field">
-                <TextField
+                <PasswordTextField
                   id="password"
-                  type="password"
                   placeholder={t("auth.password")}
                   error={errors.password !== undefined}
                   helperText={
@@ -136,6 +136,7 @@ const SigninForm: React.FC<ISigninForm> = ({ onForgotPasswordClick }) => {
                   fullWidth
                   autoComplete="new-password"
                   inputProps={{ "aria-label": t("auth.password") }}
+                  visibilityToggleDataTest="signin-password-visibility-toggle-button"
                   value={field.value ?? ""}
                   onChange={field.onChange}
                   onBlur={field.onBlur}
