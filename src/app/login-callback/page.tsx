@@ -20,7 +20,7 @@ const GOOGLE_AUTH_PAGE_BY_SOURCE: Record<GoogleAuthSource, string> = {
   signup: "/signup",
 };
 
-const SigninCallbackPage: React.FC = () => {
+const LoginCallbackPage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { authorizeGoogleCode } = useAuth();
@@ -81,4 +81,4 @@ function resolveGoogleErrorPath(
   return fallbackPath;
 }
 
-export default SigninCallbackPage;
+export default LoginCallbackPage;

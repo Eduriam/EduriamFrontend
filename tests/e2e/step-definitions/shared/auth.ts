@@ -159,10 +159,10 @@ When(
     const code =
       source === "signup" ? "google-signup-code" : "google-signin-code";
 
-    await navigateToGoogleCallback(this, `/signin/callback?code=${code}`);
+    await navigateToGoogleCallback(this, `/login-callback?code=${code}`);
   },
 );
 
 When("I cancel Google authentication", async function (this: CustomWorld) {
-  await navigateToGoogleCallback(this, "/signin/callback?error=access_denied");
+  await navigateToGoogleCallback(this, "/login-callback?error=access_denied");
 });

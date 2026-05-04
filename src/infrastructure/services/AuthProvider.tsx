@@ -93,7 +93,7 @@ export function AuthProvider({
 
         if (hasValidSession) {
           const shouldSkipAutoRevalidation =
-            pathname === "/signin/callback" ||
+            pathname === "/login-callback" ||
             (pathname === "/onboarding" && user?.accountInitialized === false);
           if (shouldSkipAutoRevalidation) {
             return;
