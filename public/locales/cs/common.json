@@ -620,11 +620,9 @@
       },
       "items": {
         "smartStudyReminderEnabled": "Chytré připomenutí studia",
-        "dailyPractice": "Každodenní učení",
         "streakFreezeUsed": "Při použití zmrazení streaku",
         "leaderboardStatus": "Umístění v lize",
-        "newFollower": "Nový sledující",
-        "friendActivity": "Aktivita přátel"
+        "newFollower": "Nový sledující"
       }
     },
     "courses": {

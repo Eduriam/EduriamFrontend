@@ -35,25 +35,25 @@ export interface NoticeBoardProps {
 
 function renderNotice(notice: Notice) {
   switch (notice.type) {
-    case NoticeType.STREAK_MILESTONE:
+    case NoticeType.StreakMilestone:
       return <StreakMilestoneNotice notice={notice as StreakMilestoneNoticeModel} />;
-    case NoticeType.STREAK_LOST:
+    case NoticeType.StreakLost:
       return <StreakLostNotice notice={notice as StreakLostNoticeModel} />;
-    case NoticeType.STREAK_SAVED:
+    case NoticeType.StreakSaved:
       return <StreakSavedNotice notice={notice as StreakSavedNoticeModel} />;
-    case NoticeType.LEAGUE_PROMOTED:
+    case NoticeType.LeaguePromoted:
       return <LeaguePromotedNotice notice={notice as LeaguePromotedNoticeModel} />;
-    case NoticeType.LEAGUE_DEMOTED:
+    case NoticeType.LeagueDemoted:
       return <LeagueDemotedNotice notice={notice as LeagueDemotedNoticeModel} />;
-    case NoticeType.ACHIEVEMENT_EARNED:
+    case NoticeType.AchievementEarned:
       return <AchievementEarnedNotice notice={notice as AchievementEarnedNoticeModel} />;
-    case NoticeType.CHEST_REWARD:
+    case NoticeType.ChestReward:
       return <ChestRewardNotice notice={notice as ChestRewardNoticeModel} />;
-    case NoticeType.FREE_TRIAL:
+    case NoticeType.FreeTrial:
       return <FreeTrialNotice notice={notice as FreeTrialNoticeModel} />;
-    case NoticeType.FREE_TRIAL_END:
+    case NoticeType.FreeTrialEnd:
       return <FreeTrialEndNotice notice={notice as FreeTrialEndNoticeModel} />;
-    case NoticeType.COURSE_COMPLETED:
+    case NoticeType.CourseCompleted:
       return null;
     default:
       return null;

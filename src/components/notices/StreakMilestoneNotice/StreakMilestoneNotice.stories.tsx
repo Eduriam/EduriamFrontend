@@ -20,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.STREAK_MILESTONE,
+    type: NoticeType.StreakMilestone,
     streakDays: 100,
   },
 } as StreakMilestoneNoticeProps;

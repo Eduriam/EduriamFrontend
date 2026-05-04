@@ -20,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.FREE_TRIAL_END,
+    type: NoticeType.FreeTrialEnd,
     daysLeft: 3,
   },
 } as FreeTrialEndNoticeProps;

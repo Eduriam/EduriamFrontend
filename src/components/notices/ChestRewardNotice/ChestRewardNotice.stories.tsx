@@ -18,7 +18,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.CHEST_REWARD,
+    type: NoticeType.ChestReward,
     userChestId: 1,
     lessonId: 1001,
     chestId: 1,

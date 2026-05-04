@@ -1,7 +1,6 @@
 "use client";
 
 import { TextField, type TextFieldProps } from "@eduriam/ui-core";
-import { useTranslation } from "i18n/client";
 
 import { useState } from "react";
 
@@ -21,7 +20,6 @@ const PasswordTextField: React.FC<IPasswordTextField> = ({
   ...textFieldProps
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { t } = useTranslation("form");
 
   return (
     <TextField

@@ -25,10 +25,10 @@ import ReviewCourseStudySession from "./components/ReviewCourseStudySession";
 
 export interface IReviewPage {}
 const REVIEW_NOTICE_TYPES = [
-  NoticeType.CHEST_REWARD,
-  NoticeType.STREAK_MILESTONE,
-  NoticeType.STREAK_LOST,
-  NoticeType.STREAK_SAVED,
+  NoticeType.ChestReward,
+  NoticeType.StreakMilestone,
+  NoticeType.StreakLost,
+  NoticeType.StreakSaved,
 ] as const;
 
 const ReviewPage: React.FC<IReviewPage> = () => {

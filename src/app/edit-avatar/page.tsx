@@ -98,11 +98,10 @@ const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
         dailyGoal: 0,
         themeMode: 0,
         notificationPreferences: {
-          dailyPractice: true,
           streakFreezeUsed: false,
           leaderboardStatus: false,
           newFollower: true,
-          friendActivity: false,
+          smartStudyReminderEnabled: true,
         },
       }),
       avatar: draftAvatar,

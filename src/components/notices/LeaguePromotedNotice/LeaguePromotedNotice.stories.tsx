@@ -20,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.LEAGUE_PROMOTED,
+    type: NoticeType.LeaguePromoted,
     league: LeagueType.Diamond,
   },
 } as LeaguePromotedNoticeProps;

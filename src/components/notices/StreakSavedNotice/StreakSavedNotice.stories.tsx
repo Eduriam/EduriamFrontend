@@ -20,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.STREAK_SAVED,
+    type: NoticeType.StreakSaved,
     streakDays: 121,
     freezesLeft: 1,
   },

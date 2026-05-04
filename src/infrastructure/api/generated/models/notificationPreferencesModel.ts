@@ -6,10 +6,8 @@
  */
 
 export interface NotificationPreferencesModel {
-  dailyPractice: boolean;
   streakFreezeUsed: boolean;
   leaderboardStatus: boolean;
   newFollower: boolean;
-  friendActivity: boolean;
   smartStudyReminderEnabled: boolean;
 }

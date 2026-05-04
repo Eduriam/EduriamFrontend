@@ -20,7 +20,7 @@ export const Base = Template.bind({});
 Base.args = {
   notice: {
     id: 1,
-    type: NoticeType.ACHIEVEMENT_EARNED,
+    type: NoticeType.AchievementEarned,
     achievementId: 1001,
     title: "Great Student",
     description: "You completed 100 lessons.",

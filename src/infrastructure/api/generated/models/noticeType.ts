@@ -8,14 +8,14 @@
 export type NoticeType = (typeof NoticeType)[keyof typeof NoticeType];
 
 export const NoticeType = {
-  STREAK_MILESTONE: 0,
-  STREAK_LOST: 1,
-  STREAK_SAVED: 2,
-  LEAGUE_PROMOTED: 3,
-  LEAGUE_DEMOTED: 4,
-  ACHIEVEMENT_EARNED: 5,
-  CHEST_REWARD: 6,
-  FREE_TRIAL: 7,
-  FREE_TRIAL_END: 8,
-  COURSE_COMPLETED: 9,
+  StreakMilestone: 0,
+  StreakLost: 1,
+  StreakSaved: 2,
+  LeaguePromoted: 3,
+  LeagueDemoted: 4,
+  AchievementEarned: 5,
+  ChestReward: 6,
+  FreeTrial: 7,
+  FreeTrialEnd: 8,
+  CourseCompleted: 9,
 } as const;

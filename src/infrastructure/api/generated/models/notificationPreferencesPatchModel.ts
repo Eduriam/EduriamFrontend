@@ -7,15 +7,11 @@
 
 export interface NotificationPreferencesPatchModel {
   /** @nullable */
-  dailyPractice?: boolean | null;
-  /** @nullable */
   streakFreezeUsed?: boolean | null;
   /** @nullable */
   leaderboardStatus?: boolean | null;
   /** @nullable */
   newFollower?: boolean | null;
-  /** @nullable */
-  friendActivity?: boolean | null;
   /** @nullable */
   smartStudyReminderEnabled?: boolean | null;
 }

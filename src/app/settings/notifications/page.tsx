@@ -30,11 +30,9 @@ type NotificationSettingItem = {
 };
 
 const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferencesModel = {
-  dailyPractice: true,
   streakFreezeUsed: false,
   leaderboardStatus: false,
   newFollower: true,
-  friendActivity: false,
   smartStudyReminderEnabled: true,
 };
 
@@ -61,14 +59,9 @@ const SettingsNotificationsPage: React.FC = () => {
             dataTest: "study-reminder-notification-settings-switch-button",
           },
           {
-            id: "dailyPractice",
-            labelKey: "settings.notifications.items.dailyPractice",
-            dataTest: "notification-settings-switch-button",
-          },
-          {
             id: "streakFreezeUsed",
             labelKey: "settings.notifications.items.streakFreezeUsed",
-            dataTest: "notification-streak-freeze-switch-button",
+            dataTest: "notification-settings-switch-button",
           },
         ] as NotificationSettingItem[],
       },
@@ -91,11 +84,6 @@ const SettingsNotificationsPage: React.FC = () => {
             id: "newFollower",
             labelKey: "settings.notifications.items.newFollower",
             dataTest: "notification-new-follower-switch-button",
-          },
-          {
-            id: "friendActivity",
-            labelKey: "settings.notifications.items.friendActivity",
-            dataTest: "notification-friend-activity-switch-button",
           },
         ] as NotificationSettingItem[],
       },

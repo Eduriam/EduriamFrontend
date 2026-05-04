@@ -95,6 +95,15 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
       options,
     );
   };
+  const deleteApiUsersMeDevices = (
+    registerDeviceTokenModel: RegisterDeviceTokenModel,
+    options?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<void>> => {
+    return axiosInstance.delete(`/api/users/me/devices`, {
+      data: registerDeviceTokenModel,
+      ...options,
+    });
+  };
   const getApiUsersMeStudyPlan = (
     options?: AxiosRequestConfig,
   ): Promise<AxiosResponse<StudyPlanOverviewModel | void>> => {
@@ -342,6 +351,7 @@ export const getUsers = (axiosInstance: AxiosInstance = axios) => {
     postApiUsersMeStudySessions,
     postApiUsersMeStudySessionsSessionIdResults,
     postApiUsersMeDevices,
+    deleteApiUsersMeDevices,
     getApiUsersMeStudyPlan,
     getApiUsersMeAchievements,
     getApiUsersMeNotices,
@@ -386,6 +396,7 @@ export type PostApiUsersMeStudySessionsResult =
 export type PostApiUsersMeStudySessionsSessionIdResultsResult =
   AxiosResponse<void>;
 export type PostApiUsersMeDevicesResult = AxiosResponse<void>;
+export type DeleteApiUsersMeDevicesResult = AxiosResponse<void>;
 export type GetApiUsersMeStudyPlanResult =
   AxiosResponse<StudyPlanOverviewModel | void>;
 export type GetApiUsersMeAchievementsResult = AxiosResponse<
