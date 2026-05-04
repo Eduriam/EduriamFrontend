@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ContentContainer,
-  LargeButton,
-  PageRoot,
-} from "@eduriam/ui-core";
+import { ContentContainer, LargeButton, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -21,7 +17,6 @@ import PremiumBenefits from "components/premium/PremiumBenefits/PremiumBenefits"
 import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
 import { UserRole } from "infrastructure/api/generated/models";
-
 import useAuth from "infrastructure/services/AuthProvider";
 
 import { PREMIUM_MESSAGES, type PremiumMessageValue } from "./premiumMessages";
@@ -105,17 +100,17 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
         <ContentContainer
           width="small"
           justifyContent="flex-start"
-          spacing={24}
+          spacing={16}
         >
           <Stack spacing={8}>
             <Stack spacing={4} alignItems="center">
-              <Typography variant="h3" align="center">
+              <Typography variant="h4" align="center">
                 {isPremiumUser
                   ? t("premium.premiumUserHeader")
                   : t("premium.header")}
               </Typography>
               <Typography
-                variant="subtitle1"
+                variant="body1"
                 align="center"
                 data-test={subtitleDataTest}
               >
@@ -130,7 +125,9 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
             fullWidth
             variant={isPremiumUser ? "text" : "contained"}
             onClick={() =>
-              router.push(isPremiumUser ? "/manage-subscription" : "/free-trial")
+              router.push(
+                isPremiumUser ? "/manage-subscription" : "/free-trial",
+              )
             }
             data-test={
               isPremiumUser

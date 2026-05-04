@@ -38,6 +38,7 @@ const FreeTrialNotice: React.FC<FreeTrialNoticeProps> = ({ notice }) => {
     <NoticeDialog
       data-test="free-trial-notice"
       backgroundImage={getPremiumBackgroundGradient(theme.palette.mode)}
+      paddingTop="none"
       navbar={
         <BasicNavbar
           background="transparent"
@@ -66,17 +67,9 @@ const FreeTrialNotice: React.FC<FreeTrialNoticeProps> = ({ notice }) => {
       }}
       transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
     >
-      <Stack
-        spacing={5}
-        sx={{
-          width: "100%",
-          mt: 4,
-          p: 2,
-          borderRadius: 4,
-        }}
-      >
+      <Stack spacing={6}>
         <Typography
-          variant="h3"
+          variant="h4"
           align="center"
           data-test="free-trial-notice-section"
         >

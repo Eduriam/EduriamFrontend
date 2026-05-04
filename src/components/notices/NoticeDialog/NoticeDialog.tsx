@@ -21,6 +21,8 @@ interface NoticeDialogButton {
   dataTest?: string;
 }
 
+type NoticeDialogPaddingTop = "none" | "small" | "medium";
+
 export interface NoticeDialogProps {
   children?: ReactNode;
   navbar?: ReactNode;
@@ -29,6 +31,7 @@ export interface NoticeDialogProps {
   secondaryButton?: NoticeDialogButton;
   transitionDuration?: unknown;
   backgroundImage?: ResponsiveStyleValue<string>;
+  paddingTop?: NoticeDialogPaddingTop;
 }
 
 const NoticeDialog: React.FC<NoticeDialogProps> = ({
@@ -38,16 +41,24 @@ const NoticeDialog: React.FC<NoticeDialogProps> = ({
   primaryButton,
   secondaryButton,
   backgroundImage,
+  paddingTop = "medium",
 }) => {
   return (
     <CoreFullscreenDialog open onClose={() => undefined} dataTest={dataTest}>
-      <Stack sx={{ height: "100dvh", minHeight: "100vh", backgroundImage }}>
+      <Stack
+        sx={{
+          height: "100dvh",
+          minHeight: "100vh",
+          bgcolor: "background.default",
+          backgroundImage,
+        }}
+      >
         {navbar}
 
         <ContentContainer
           width="small"
           justifyContent="space-between"
-          paddingTop="medium"
+          paddingTop={paddingTop}
         >
           <KeyPress onPress={() => primaryButton?.onClick?.()} keys={["Enter"]} />
 

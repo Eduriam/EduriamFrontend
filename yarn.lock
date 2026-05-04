@@ -1954,9 +1954,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.83":
-  version: 0.6.83
-  resolution: "@eduriam/ui-core@npm:0.6.83::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.83%2F7c7157e10a9d4e25193f2dbb614d2e235291b545"
+"@eduriam/ui-core@npm:^0.6.85":
+  version: 0.6.85
+  resolution: "@eduriam/ui-core@npm:0.6.85::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.85%2F4e5658d99fd9ed8db6d1a07310e3170dba859d47"
   dependencies:
     mermaid: "npm:^11.12.0"
   peerDependencies:
@@ -1965,17 +1965,17 @@ __metadata:
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/cfd10e7cd76dfdc6b7f2002c2b21f875ba5d40e68f5a9327f5b908e5c0eb8be5af994190296413da27f7d3fc987ef3b2c744e6629e7b17eb565a12b6fee27377
+  checksum: 10c0/9cfafdc5927a9ce63e28684f3cb85a78d3da09feb677825f7c8fabb1bd3a55a246f749aacfd747a967d3ccd188c4e99097a600e381c66c2920740c39dbadb2c0
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.116":
-  version: 0.2.116
-  resolution: "@eduriam/ui-x@npm:0.2.116::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.116%2Fdf2a1520e4f81f67c17fedc146f2322f737de91a"
+"@eduriam/ui-x@npm:^0.2.118":
+  version: 0.2.118
+  resolution: "@eduriam/ui-x@npm:0.2.118::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.118%2F8bd5e22950c9785a7b71368e22400b7841fdd97a"
   dependencies:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eduriam/ui-core": "npm:^0.6.83"
+    "@eduriam/ui-core": "npm:^0.6.85"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
@@ -1996,7 +1996,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/c0555ab8ad2e09154c7636a00866c69f753112e423275d976b51ccd9070cc88479ffa82d4943808ee36abe1ef61d3ddcb4fa530fbe53bcbaebeb8ea5d919d997
+  checksum: 10c0/b5111f8a34410408c9a907ca792002a48af955371afbe9246ab66d035b23f7f606d575196ac8fea5f7386a78483f4ad5e0096de1f20130723aaaa4a8d0ef249b
   languageName: node
   linkType: hard
 
@@ -15663,8 +15663,8 @@ __metadata:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eduriam/ui-core": "npm:^0.6.83"
-    "@eduriam/ui-x": "npm:^0.2.116"
+    "@eduriam/ui-core": "npm:^0.6.85"
+    "@eduriam/ui-x": "npm:^0.2.118"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
