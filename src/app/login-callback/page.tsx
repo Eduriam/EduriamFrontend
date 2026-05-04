@@ -46,9 +46,11 @@ const LoginCallbackPage: React.FC = () => {
       }
 
       try {
-        await authorizeGoogleCode(code, source);
+        const authorizedUser = await authorizeGoogleCode(code, source);
         sessionStorage.removeItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
-        router.replace(source === "signup" ? "/onboarding" : "/");
+        router.replace(
+          authorizedUser.accountInitialized ? "/" : "/onboarding",
+        );
       } catch (errorCode) {
         sessionStorage.removeItem(GOOGLE_AUTH_SOURCE_STORAGE_KEY);
         router.replace(resolveGoogleErrorPath(errorCode, sourcePath));

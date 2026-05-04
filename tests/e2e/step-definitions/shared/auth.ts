@@ -158,6 +158,7 @@ When(
     );
     const code =
       source === "signup" ? "google-signup-code" : "google-signin-code";
+    await setCurrentUserAccountInitialized(source !== "signup");
 
     await navigateToGoogleCallback(this, `/login-callback?code=${code}`);
   },

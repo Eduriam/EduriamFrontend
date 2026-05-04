@@ -117,7 +117,7 @@ export function AuthProvider({
     return () => {
       isActive = false;
     };
-  }, [pathname]);
+  }, [pathname, user?.accountInitialized]);
 
   function signin(email: string, password: string) {
     setIsActionLoading(true);
@@ -173,26 +173,17 @@ export function AuthProvider({
     }
   }
 
-  async function authorizeGoogleCode(
-    code: string,
-    source?: GoogleAuthSource,
-  ): Promise<GetUserModel> {
+  async function authorizeGoogleCode(code: string): Promise<GetUserModel> {
     setIsActionLoading(true);
     setError(() => []);
 
     try {
       const authorizedUser = await AuthManager.authorizeGoogleCode({ code });
-      const resolvedUser =
-        source === "signup"
-          ? { ...authorizedUser, accountInitialized: false }
-          : authorizedUser;
 
-      await setCurrentUser(resolvedUser);
-      if (source !== "signup") {
-        void invalidateCurrentUser();
-      }
+      await setCurrentUser(authorizedUser);
+      void invalidateCurrentUser();
 
-      return resolvedUser;
+      return authorizedUser;
     } catch (errorCode) {
       throw typeof errorCode === "string"
         ? errorCode
