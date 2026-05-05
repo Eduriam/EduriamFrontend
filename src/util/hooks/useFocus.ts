@@ -2,7 +2,7 @@ import { MutableRefObject, useRef } from "react";
 
 export function useFocus(): [
   htmlElRef: MutableRefObject<HTMLInputElement | undefined>,
-  setFocus: () => void
+  setFocus: () => void,
 ] {
   const htmlElRef = useRef<HTMLInputElement>();
   const setFocus = () => {

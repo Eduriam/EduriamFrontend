@@ -1,8 +1,28 @@
 {
-  "artificialDelayMilliseconds": 700,
+  "artificialDelayMilliseconds": 1000,
   "keepExistingTerminalsOpen": false,
   "runOnStartup": true,
   "terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "yarn install",
+          "commands": ["set -a; . ./.env; set +a && yarn install"],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "yarn up",
+          "commands": [
+            "set -a; . ./.env; set +a && yarn up @eduriam/ui-core && yarn up @eduriam/ui-x"
+          ],
+          "shouldRunCommands": false
+        }
+      ]
+    },
     {
       "splitTerminals": [
         {
@@ -15,10 +35,23 @@
     {
       "splitTerminals": [
         {
+          "name": "test:e2e",
+          "commands": ["yarn test:e2e -- --tags \"@lesson-learning\""],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
           "name": "lint",
           "commands": ["yarn lint"],
           "shouldRunCommands": false
-        },
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
         {
           "name": "build",
           "commands": ["yarn build"],
@@ -29,8 +62,9 @@
     {
       "splitTerminals": [
         {
-          "name": "client",
-          "commands": ["yarn install", "yarn dev"]
+          "name": "dev",
+          "commands": ["yarn dev"],
+          "shouldRunCommands": false
         }
       ]
     }

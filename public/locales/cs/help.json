@@ -1,0 +1,40 @@
+{
+  "title": "Nápověda",
+  "notFoundTitle": "Článek nenalezen",
+  "notFoundDescription": "Požadovaný článek nebyl nalezen.",
+  "sections": {
+    "usingEduriam": "Používání Eduriam",
+    "accountManagement": "Správa účtu",
+    "subscriptionAndPayments": "Předplatné a platby"
+  },
+  "articles": {
+    "whatIsAStreak": {
+      "title": "Co je to streak?",
+      "body": "Streak je počet po sobě jdoucích dní, kdy jste splnili denní cíl učení."
+    },
+    "whatAreLeaguesAndLeaderboards": {
+      "title": "Co jsou ligy a žebříčky?",
+      "body": "Ligy a žebříčky porovnávají aktivitu uživatelů v týdnu podle získaného XP."
+    },
+    "howDoIResetCourseProgress": {
+      "title": "Jak resetuji postup v kurzu?",
+      "body": "Pokud potřebujete resetovat postup, kontaktujte podporu přímo z aplikace."
+    },
+    "howDoIChangeAccountDetails": {
+      "title": "Jak změním údaje účtu (e-mail, heslo, atd.)?",
+      "body": "Údaje účtu upravíte v sekci Profil. Změnu hesla provedete přes tlačítko Změnit heslo."
+    },
+    "howDoIDeleteMyAccount": {
+      "title": "Jak mohu smazat svůj účet?",
+      "body": "Pro smazání účtu kontaktujte podporu a ověřte vlastnictví účtu."
+    },
+    "whatIsEduriamPremium": {
+      "title": "Co je Eduriam Premium a jak se přihlásit?",
+      "body": "Premium odemyká pokročilé funkce. Předplatné můžete aktivovat na stránce Premium."
+    },
+    "howCanICancelEduriamPremiumSubscription": {
+      "title": "Jak zruším Eduriam Premium předplatné?",
+      "body": "Předplatné můžete kdykoliv zrušit v sekci Správa předplatného v nastavení."
+    }
+  }
+}

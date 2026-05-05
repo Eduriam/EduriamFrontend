@@ -1,12 +1,16 @@
-// prettier-ignore
-"use client"
+"use client";
 
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import useAuth from "infrastructure/services/AuthProvider";
 
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import SubscriptionOverview from "components/layouts/SubscriptionOverview/SubscriptionOverview";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import useAuth from "infrastructure/services/AuthProvider";
 
 export interface IManageSubscriptionPage {}
 
@@ -15,15 +19,40 @@ const ManageSubscriptionPage: React.FC<IManageSubscriptionPage> = () => {
   const { t } = useTranslation("common");
 
   return (
-    <>
-      {user && user.activeSubscription ? (
-        <SubscriptionOverview />
-      ) : (
-        <Typography variant="body1">
-          {t("manageSubscription.notSubscribed")}
-        </Typography>
-      )}
-    </>
+    <PageRoot data-test="manage-subscription-page">
+      <PageNavigation
+        topNavigation={
+          <BackNavbar
+            withTransition={false}
+            useRouterBack
+            header={t("manageSubscription.title")}
+          />
+        }
+        mainNavigation="hidden"
+      />
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        paddingTop="none"
+      >
+        {user && user.activeSubscription ? (
+          <SubscriptionOverview />
+        ) : (
+          <Stack
+            sx={{
+              width: "100%",
+              minHeight: "calc(100dvh - 128px)",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="body1" align="center">
+              {t("manageSubscription.notSubscribed")}
+            </Typography>
+          </Stack>
+        )}
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

@@ -32,14 +32,16 @@ export function ErrorHandler({
 
   const setError = useCallback(
     (message?: string) => {
-      if (!message) message = t("general-error-message");
+      if (!message) {
+        message = t("general-error-message");
+      }
 
       if (message && !errorMessages.includes(message)) {
         enqueueSnackbar(message);
         setErrorMessage((errorMessages) => [...errorMessages, `${message}`]);
       }
     },
-    [enqueueSnackbar, errorMessages, t]
+    [enqueueSnackbar, errorMessages, t],
   );
 
   // Clear errors on path change
@@ -53,7 +55,7 @@ export function ErrorHandler({
     () => ({
       setError,
     }),
-    [setError]
+    [setError],
   );
 
   return (

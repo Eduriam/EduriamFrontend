@@ -1,44 +1,84 @@
-// prettier-ignore
-"use client"
+"use client";
 
+import {
+  BasicNavbar,
+  ContentContainer,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import FullWidthButton from "components/atoms/FullWidthButton/FullWidthButton";
+import { useTheme } from "@mui/material/styles";
+
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import { getPremiumBackgroundGradient } from "components/premium/premiumBackground";
 
 export interface ISubscribedPage {}
 
 const SubscribedPage: React.FC<ISubscribedPage> = () => {
-  const router = useRouter();
   const { t } = useTranslation("common");
+  const theme = useTheme();
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
-      <Typography variant="h5" sx={{ textAlign: "center" }}>
-        {t("subscribed.thankYou")}
-      </Typography>
-
-      <Box>
-        <Image
-          src={"/images/subscription/subscribed.svg"}
-          alt="Subscribed"
-          width={400}
-          height={265}
+    <PageRoot data-test="subscribed-page">
+      <Stack
+        sx={{
+          minHeight: "100dvh",
+          backgroundImage: getPremiumBackgroundGradient(theme.palette.mode),
+        }}
+      >
+        <PageNavigation
+          topNavigation={
+            <BasicNavbar
+              background="transparent"
+              leftButton={{
+                icon: "close",
+                onClick: navigateWithTransition("/"),
+                dataTest: "close-subscribed-button",
+              }}
+            />
+          }
+          mainNavigation="hidden"
         />
-      </Box>
+        <ContentContainer width="small" justifyContent="space-between">
+          <Stack spacing={8} alignItems="center">
+            <Typography variant="h3" align="center">
+              {t("subscribed.thankYou")}
+            </Typography>
 
-      <Typography variant="body1" sx={{ textAlign: "center", mb: 8 }}>
-        {t("subscribed.subscriptionActivated")}
-      </Typography>
+            <Box sx={{ width: { xs: 271, sm: 300 }, maxWidth: "100%" }}>
+              <Image
+                src="/images/subscription/subscribed.svg"
+                alt={t("subscribed.thankYou")}
+                width={271}
+                height={206}
+                style={{ width: "100%", height: "auto" }}
+                priority
+              />
+            </Box>
 
-      <FullWidthButton onClick={() => router.push("/")}>
-        {t("userActions.continue")}
-      </FullWidthButton>
-    </Box>
+            <Typography variant="h6" align="center" sx={{ maxWidth: 280 }}>
+              {t("subscribed.subscriptionActivated")}
+            </Typography>
+          </Stack>
+
+          <LargeButton
+            fullWidth
+            onClick={navigateWithTransition("/")}
+            data-test="continue-subscribed-button"
+          >
+            {t("userActions.continue")}
+          </LargeButton>
+        </ContentContainer>
+      </Stack>
+    </PageRoot>
   );
 };
 

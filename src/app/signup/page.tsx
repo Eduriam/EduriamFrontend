@@ -1,32 +1,28 @@
-// prettier-ignore
-"use client"
+"use client";
 
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Container from "@mui/material/Container";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
+
 import SignupForm from "components/molecules/SignupForm/SignupForm";
-import theme from "styles/theme";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
-export interface ISignupPage {
-  
-}
+export interface ISignupPage {}
 
 const SignupPage: React.FC<ISignupPage> = () => {
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
-
   return (
-    <Container maxWidth="xs" sx={{ pt: 3 }}>
-      <Box>
-        {desktop ? (
-          <Card sx={{ textAlign: "center" }}>
-            <SignupForm />
-          </Card>
-        ) : (
-          <SignupForm />
-        )}
-      </Box>
-    </Container>
+    <PageRoot data-test="signup-page">
+      <PageNavigation
+        topNavigation={<BackNavbar withTransition route="/welcome" />}
+        mainNavigation="hidden"
+      />
+      <ContentContainer
+        width="small"
+        justifyContent="space-between"
+        paddingTop="small"
+      >
+        <SignupForm />
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

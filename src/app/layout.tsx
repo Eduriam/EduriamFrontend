@@ -1,22 +1,23 @@
-// prettier-ignore
 "use client";
 
-import axios from "axios";
-import { NoticeProvider } from "infrastructure/services/NoticeProvider";
 import { SnackbarProvider } from "notistack";
 
-import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import { ViewTransitions } from "next-view-transitions";
 
+import GoogleAdsense from "components/advertisement/GoogleAdsense/GoogleAdsense";
 import GoogleAnalytics from "components/atoms/GoogleAnalytics/GoogleAnalytics";
-import Navigation from "components/atoms/navigation/NavigationBars/NavigationBars";
 
-import GoogleAdsense from "components/atoms/GoogleAdsense/GoogleAdsense";
+import { configureAxios } from "infrastructure/api/configureAxios";
+import { NoticeProvider } from "infrastructure/services/NoticeProvider";
+import PwaServiceWorkerRegistration from "infrastructure/services/PwaServiceWorkerRegistration";
+import ThemeModeProvider from "infrastructure/services/ThemeModeProvider";
+import PushNotificationForegroundHandler from "infrastructure/services/notifications/PushNotificationForegroundHandler";
+
 import { AuthProvider } from "../infrastructure/services/AuthProvider";
 import { ErrorHandler } from "../infrastructure/services/ErrorHandler";
 import "../styles/globals.css";
-import theme from "../styles/theme";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+configureAxios();
 
 export default function RootLayout({
   children,
@@ -24,9 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang="cs">
       <body>
-        <ThemeProvider theme={theme}>
+        <PwaServiceWorkerRegistration />
+        <ViewTransitions>
           <SnackbarProvider
             maxSnack={3}
             anchorOrigin={{
@@ -36,16 +38,18 @@ export default function RootLayout({
           >
             <ErrorHandler>
               <AuthProvider>
-                <NoticeProvider>
-                  <Navigation />
-                  <GoogleAnalytics />
-                  <GoogleAdsense />
-                  {children}
-                </NoticeProvider>
+                <ThemeModeProvider>
+                  <NoticeProvider>
+                    <GoogleAnalytics />
+                    <GoogleAdsense />
+                    <PushNotificationForegroundHandler />
+                    {children}
+                  </NoticeProvider>
+                </ThemeModeProvider>
               </AuthProvider>
             </ErrorHandler>
           </SnackbarProvider>
-        </ThemeProvider>
+        </ViewTransitions>
       </body>
     </html>
   );

@@ -12,6 +12,16 @@
   "globals": {
     "React": "readonly"
   },
+  "rules": {
+    "curly": "error",
+    "eqeqeq": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "operator-assignment": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "yoda": "error"
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
@@ -19,6 +29,12 @@
         "no-undef": "off",
         "no-unused-vars": "off",
         "@typescript-eslint/no-empty-interface": "off"
+      }
+    },
+    {
+      "files": ["src/infrastructure/api/generated/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {

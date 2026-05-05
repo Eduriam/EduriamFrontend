@@ -1,10 +1,8 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { useTranslation } from "i18n/client";
-import ChangeEmailConfirmAPI from "infrastructure/api/change-email-confirm/ChangeEmailConfirmAPI";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -16,6 +14,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
+
 export interface IChangeEmailPage {}
 
 const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
@@ -24,32 +24,45 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
 
   const searchParams = useSearchParams();
   const token = searchParams?.get("token");
-  const oldEmail = searchParams?.get("oldEmail");
+  const userIdParam = searchParams?.get("userId");
   const newEmail = searchParams?.get("newEmail");
   const [emailChanged, setEmailChanged] = useState(false);
+
+  const userId = useMemo(() => {
+    if (!userIdParam) {
+      return null;
+    }
+
+    const parsedUserId = Number(userIdParam);
+    if (Number.isNaN(parsedUserId)) {
+      return null;
+    }
+
+    return parsedUserId;
+  }, [userIdParam]);
 
   useEffect(() => {
     const confirmEmailChange = async (
       token: string,
-      oldEmail: string,
-      newEmail: string
+      userId: number,
+      newEmail: string,
     ) => {
-      await ChangeEmailConfirmAPI.confirmEmailChange({
+      await ChangeEmailService.confirmEmailChange({
         token,
-        oldEmail,
+        userId,
         newEmail,
       });
     };
 
-    if (!emailChanged && token && oldEmail && newEmail) {
-      confirmEmailChange(token, oldEmail, newEmail);
+    if (!emailChanged && token && userId !== null && newEmail) {
+      void confirmEmailChange(token, userId, newEmail);
       setEmailChanged(true);
     }
-  }, [token, oldEmail, newEmail, emailChanged, setEmailChanged]);
+  }, [token, userId, newEmail, emailChanged, setEmailChanged]);
 
   return (
     <Container maxWidth="xs" sx={{ pt: 3 }}>
-      {token && oldEmail && newEmail ? (
+      {token && userId !== null && newEmail ? (
         <>
           {emailChanged === true ? (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -64,10 +77,10 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
 
               <Button
                 variant="contained"
-                onClick={() => router.push("/logout")}
+                onClick={() => router.push("/signout")}
                 sx={{ justifySelf: "center" }}
               >
-                {t("changeEmail.login")}
+                {t("changeEmail.signin")}
               </Button>
             </Box>
           ) : (
@@ -76,9 +89,7 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
         </>
       ) : (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <Typography variant="body2">
-            {t("changeEmail.invalidData")}
-          </Typography>
+          <Typography variant="body2">{t("changeEmail.invalidData")}</Typography>
 
           <Button
             variant="contained"

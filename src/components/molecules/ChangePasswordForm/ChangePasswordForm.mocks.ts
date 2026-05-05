@@ -5,7 +5,7 @@ import { IChangePasswordForm } from "./ChangePasswordForm";
 const base: IChangePasswordForm = {
   onPasswordChanged: action("onPasswordChanged"),
   resetToken: "dfafnklfnlkgsjf",
-  email: "pepa@example.com",
+  userId: 1001,
 };
 
 export const mockChangePasswordFormProps = {

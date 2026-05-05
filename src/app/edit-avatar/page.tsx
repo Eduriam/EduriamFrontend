@@ -1,0 +1,195 @@
+"use client";
+
+import {
+  BasicNavbar,
+  ContentContainer,
+  Header,
+  PageRoot,
+} from "@eduriam/ui-core";
+import { buildShopAvatar } from "app/shop/utils/avatar";
+import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
+import { useEffect, useMemo, useState } from "react";
+
+import { useRouter } from "next/navigation";
+
+import Stack from "@mui/material/Stack";
+
+import Avatar from "components/avatar/Avatar";
+import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCategoryGrid";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import type { AvatarModel } from "infrastructure/api/generated/models";
+import useAuth from "infrastructure/services/AuthProvider";
+import { ShopService } from "infrastructure/services/shop/ShopService";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
+
+import AvatarCategoryDialog from "./components/AvatarCategoryDialog/AvatarCategoryDialog";
+import LeaveAvatarEditorDrawer from "./components/LeaveAvatarEditorDrawer/LeaveAvatarEditorDrawer";
+import {
+  AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS,
+  type AvatarCategory,
+  collectAvatarCategories,
+  serializeAvatar,
+} from "./components/avatarEditorTypes";
+
+export interface IEditAvatarPage {}
+
+const EditAvatarPage: React.FC<IEditAvatarPage> = () => {
+  const { t } = useTranslation("common");
+  const router = useRouter();
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
+
+  const { settings, mutate } = SettingsService.useSettings();
+  const { ownedShopItems = [] } = ShopService.useOwnedShopItems();
+
+  const [baseAvatar, setBaseAvatar] = useState<AvatarModel>(buildShopAvatar());
+  const [draftAvatar, setDraftAvatar] =
+    useState<AvatarModel>(buildShopAvatar());
+  const [activeCategory, setActiveCategory] = useState<AvatarCategory | null>(
+    null,
+  );
+  const [leaveDrawerOpen, setLeaveDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    if (!settings) {
+      return;
+    }
+
+    const initialAvatar = buildShopAvatar(settings.avatar ?? undefined);
+    setBaseAvatar(initialAvatar);
+    setDraftAvatar(initialAvatar);
+  }, [settings]);
+
+  const boughtAvatarItems = useMemo(
+    () => ownedShopItems.filter((item) => item.image.avatar),
+    [ownedShopItems],
+  );
+
+  const categories = useMemo(
+    () => collectAvatarCategories(boughtAvatarItems, draftAvatar),
+    [boughtAvatarItems, draftAvatar],
+  );
+
+  const hasUnsavedChanges =
+    serializeAvatar(baseAvatar) !== serializeAvatar(draftAvatar);
+
+  const navigateBack = () => {
+    router.back();
+  };
+
+  const handleLeave = () => {
+    if (!hasUnsavedChanges) {
+      navigateBack();
+      return;
+    }
+
+    setLeaveDrawerOpen(true);
+  };
+
+  const handleSave = async () => {
+    const optimisticSettings = {
+      ...(settings ?? {
+        username: "",
+        name: "",
+        dailyGoal: 0,
+        themeMode: 0,
+        notificationPreferences: {
+          streakFreezeUsed: false,
+          leaderboardStatus: false,
+          newFollower: true,
+          smartStudyReminderEnabled: true,
+        },
+      }),
+      avatar: draftAvatar,
+    };
+
+    await mutate(async () => {
+      await SettingsService.updateSettings({ avatar: draftAvatar });
+      setBaseAvatar(draftAvatar);
+      return optimisticSettings;
+    }, optimisticMutationOption(optimisticSettings));
+
+    if (user?.id) {
+      navigateWithTransition(`/users/${user.id}`)();
+      return;
+    }
+
+    navigateBack();
+  };
+
+  return (
+    <PageRoot data-test="edit-avatar-page">
+      <PageNavigation
+        topNavigation={
+          <BasicNavbar
+            leftButton={{
+              icon: "close",
+              onClick: handleLeave,
+              dataTest: "leave-button",
+            }}
+            rightButton={{
+              text: t("userActions.save").toUpperCase(),
+              onClick: handleSave,
+              dataTest: "save-avatar-button",
+            }}
+          />
+        }
+        mainNavigation="hidden"
+      />
+
+      <ContentContainer width="small" justifyContent="flex-start" spacing={6}>
+        <Stack
+          sx={{ width: "100%", alignItems: "center" }}
+          data-test="avatar-preview-section"
+          data-avatar-definition={serializeAvatar(draftAvatar)}
+          data-avatar-updated={hasUnsavedChanges ? "true" : "false"}
+        >
+          <Avatar definition={draftAvatar} size={180} />
+        </Stack>
+
+        <Stack spacing={2} width="100%" data-test="item-categories-section">
+          <Header variant="section" text={t("avatarEditor.title")} />
+
+          <AvatarCategoryGrid
+            data-test="avatar-categories-grid"
+            items={categories.map((category) => {
+              return {
+                id: category.id,
+                labelKey: category.labelKey,
+                avatar: buildShopAvatar(
+                  AVATAR_EDITOR_CATEGORY_PREVIEW_AVATARS[category.id],
+                ),
+                onClick: () => setActiveCategory(category),
+                "data-test": "item-category",
+              };
+            })}
+          />
+        </Stack>
+      </ContentContainer>
+
+      <AvatarCategoryDialog
+        open={Boolean(activeCategory)}
+        onClose={() => setActiveCategory(null)}
+        onBack={() => setActiveCategory(null)}
+        category={activeCategory ?? undefined}
+        draftAvatar={draftAvatar}
+        onSelectOption={(field, value) => {
+          setDraftAvatar((prev) => ({ ...prev, [field]: value }));
+        }}
+      />
+
+      <LeaveAvatarEditorDrawer
+        open={leaveDrawerOpen}
+        onClose={() => setLeaveDrawerOpen(false)}
+        onKeepEditing={() => setLeaveDrawerOpen(false)}
+        onDiscardChanges={navigateBack}
+      />
+    </PageRoot>
+  );
+};
+
+export default EditAvatarPage;

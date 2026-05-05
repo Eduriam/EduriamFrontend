@@ -1,69 +1,296 @@
-// prettier-ignore
-"use client"
+"use client";
 
+import {
+  ContentContainer,
+  LargeButton,
+  PageRoot,
+  Tabs,
+} from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
+import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
+import { useMemo, useState } from "react";
+
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+import NoticeBoard from "components/notices/NoticeBoard/NoticeBoard";
+
+import { UserRole } from "infrastructure/api/generated/models";
+import StudyPlanService from "infrastructure/api/users/me/study-plan/StudyPlanService";
 import useAuth from "infrastructure/services/AuthProvider";
 
-import BottomFab from "components/atoms/BottomFab/BottomFab";
-import StudyMap from "components/atoms/StudyMap/StudyMap";
-import NoticeBoard from "components/molecules/NoticeBoard/NoticeBoard";
-import { useTranslation } from "i18n/client";
-import { UserPrivate } from "infrastructure/api/user/User";
-import { LocalStorageManager } from "infrastructure/repositories/LocalStorageManager";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import icons from "styles/icons";
-
-import { useSearchParams } from "next/navigation";
+import EnergyDrawer from "./components/EnergyDrawer/EnergyDrawer";
+import HomepageNavbar from "./components/HomepageNavbar/HomepageNavbar";
+import StreakDrawer from "./components/StreakDrawer/StreakDrawer";
+import StudyPreview from "./components/StudyPreview/StudyPreview";
 
 export interface IHomePage {}
 
+type HomeTab = "learn" | "review";
+
+const MAX_STREAK_FREEZES = 2;
+const MAX_ENERGY_POINTS = 10;
+
 const HomePage: React.FC<IHomePage> = () => {
-  const searchParams = useSearchParams();
-  const { user, mutateUser } = useAuth();
-  const {t} = useTranslation("common");
-  const router = useRouter();
+  const { t } = useTranslation("common");
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const { user } = useAuth();
 
-  function getSearchParamsLevel(): number | undefined {
-    const level = searchParams?.get("level");
+  const [activeTab, setActiveTab] = useState<HomeTab>("learn");
+  const [streakDrawerOpen, setStreakDrawerOpen] = useState(false);
+  const [energyDrawerOpen, setEnergyDrawerOpen] = useState(false);
 
-    if (level !== null && !isNaN(Number(level))) {
-      return Number(level);
+  const { studyPlan, isLoading } = StudyPlanService.useStudyPlan();
+
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
+  const streak = user?.streak ?? 0;
+  const coins = user?.balance ?? 0;
+  const energy = user?.energy ?? 0;
+  const equippedStreakFreezes = user?.streakFreezes ?? 0;
+
+  const hasUpcomingLesson = !!studyPlan?.upcomingLearnLesson;
+  const hasReviewContent = !!studyPlan?.upcomingReviewCourse;
+
+  const tabs = useMemo(
+    () => [
+      { label: t("home.learnTab") ?? "Learn", value: "learn" },
+      { label: t("home.reviewTab") ?? "Review", value: "review" },
+    ],
+    [t],
+  );
+
+  const handleTabChange = (value: string | number) => {
+    if (value === "learn" || value === "review") {
+      setActiveTab(value);
     }
-    return undefined;
-  }
+  };
 
-  useEffect(()=> {
-    const params = searchParams?.get("level");
-    let level;
+  const handleStartUpcomingLesson = navigateWithTransition(
+    `/study?lessonId=${studyPlan?.upcomingLearnLesson?.id}`,
+  );
 
-    if (params !== null && !isNaN(Number(params))) {
-      level = Number(params);
-    } else level = undefined;
-
-
-    if(user?.lastViewedStudyMapLevel && (level === undefined || level === null)) {
-      router.push(`/?level=${user?.lastViewedStudyMapLevel}`)
-    }
-
-    if(level !== user?.lastViewedStudyMapLevel && level !== undefined) {
-      const change: Partial<UserPrivate> = {
-        lastViewedStudyMapLevel: level
-      }
-      mutateUser(change);
-      LocalStorageManager.setItem<number>("lastViewedStudyMapLevel", level);
-    }
-  }, [searchParams, mutateUser, user?.lastViewedStudyMapLevel, router])
+  const handleStartReview = navigateWithTransition(
+    `/review?courseId=${studyPlan?.upcomingReviewCourse?.id}`,
+  );
 
   return (
-    <>
-      {user && <NoticeBoard fetchNewNotices={true} />}
-      {user && <StudyMap courseId={user.selectedCourse.id} level={getSearchParamsLevel()} lastViewedLevel={user.lastViewedStudyMapLevel ?? 0}/> }
-      <BottomFab
-        header={t("studying.study")}
-        icon={icons.start}
-        onClick={() => router.push(`/study`)}
+    <PageRoot data-test="home-page">
+      <NoticeBoard />
+
+      <PageNavigation
+        topNavigation={
+          <HomepageNavbar
+            streak={streak}
+            coins={coins}
+            energy={energy}
+            onStudyPlanClick={navigateWithTransition("/study-plan")}
+            onStreakClick={() => setStreakDrawerOpen(true)}
+            onCoinsClick={navigateWithTransition("/shop")}
+            onEnergyClick={() => setEnergyDrawerOpen(true)}
+            data-test-study-plan-button="study-plan-button"
+          />
+        }
+        mainNavigation="show"
       />
-    </>
+
+      <ContentContainer
+        width="small"
+        justifyContent="flex-start"
+        spacing={10}
+        paddingTop="none"
+      >
+        <Tabs
+          tabs={tabs}
+          value={activeTab}
+          onChange={handleTabChange}
+          variant="fullWidth"
+        />
+        <Box sx={{ width: "100%", mt: 6 }}>
+          <Box sx={{ position: "relative" }}>
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                pointerEvents: "none",
+              }}
+            >
+              <Box
+                component="button"
+                type="button"
+                onClick={() => setActiveTab("learn")}
+                sx={{
+                  pointerEvents: "auto",
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              />
+              <Box
+                component="button"
+                type="button"
+                data-test="review-tab-button"
+                onClick={() => setActiveTab("review")}
+                sx={{
+                  pointerEvents: "auto",
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
+          </Box>
+        </Box>
+
+        {activeTab === "learn" && (
+          <Stack
+            spacing={8}
+            alignItems="center"
+            sx={{ width: "100%" }}
+            data-test="upcoming-lesson-section"
+            flexDirection="column"
+          >
+            {!isLoading && hasUpcomingLesson && (
+              <>
+                <StudyPreview
+                  title={
+                    studyPlan?.upcomingLearnLesson?.title ??
+                    "HTML for Beginners"
+                  }
+                  description={
+                    t("home.nextStudyPlanLesson") ?? "Next study plan lesson."
+                  }
+                  imageSrc={studyPlan?.upcomingLearnLesson?.thumbnailUrl}
+                  onImageClick={handleStartUpcomingLesson}
+                />
+
+                <LargeButton
+                  fullWidth
+                  onClick={handleStartUpcomingLesson}
+                  data-test="start-upcoming-lesson-button"
+                >
+                  {t("home.startLesson") ?? "Start Lesson"}
+                </LargeButton>
+              </>
+            )}
+
+            {!isLoading && !hasUpcomingLesson && (
+              <>
+                <Stack
+                  spacing={3}
+                  alignItems="center"
+                  textAlign="center"
+                  sx={{ width: "100%" }}
+                  data-test="all-lessons-completed-section"
+                >
+                  <Typography variant="h4">
+                    {t("home.allLessonsLearnedTitle") ?? "All lessons learned!"}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    {t("home.allLessonsLearnedSubtitle") ??
+                      "Start a new course to learn more lessons"}
+                  </Typography>
+                </Stack>
+                <LargeButton
+                  fullWidth
+                  onClick={navigateWithTransition("/courses")}
+                  data-test="browse-courses-button"
+                >
+                  {t("home.browseCourses") ?? "Browse Courses"}
+                </LargeButton>
+              </>
+            )}
+          </Stack>
+        )}
+
+        {activeTab === "review" && (
+          <Stack
+            spacing={8}
+            alignItems="center"
+            sx={{ width: "100%" }}
+            data-test="review-section"
+          >
+            {!isLoading && hasReviewContent && (
+              <>
+                <StudyPreview
+                  title={
+                    studyPlan?.upcomingReviewCourse?.name ??
+                    "Fullstack Developer"
+                  }
+                  description={
+                    t("home.reviewDescription") ??
+                    "Review the most important concepts carefully selected for you."
+                  }
+                  imageSrc={
+                    studyPlan?.upcomingReviewCourse?.thumbnailUrl ?? undefined
+                  }
+                  onImageClick={handleStartReview}
+                />
+                <LargeButton
+                  fullWidth
+                  onClick={handleStartReview}
+                  data-test="start-review-button"
+                >
+                  {t("home.startReview") ?? "Start Review"}
+                </LargeButton>
+              </>
+            )}
+
+            {!isLoading && !hasReviewContent && (
+              <Stack
+                spacing={3}
+                alignItems="center"
+                textAlign="center"
+                sx={{ width: "100%" }}
+                data-test="no-content-to-review-section"
+              >
+                <Typography variant="h4">
+                  {t("home.allLessonsReviewedTitle") ?? "All lessons reviewed!"}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary">
+                  {t("home.allLessonsReviewedSubtitle") ?? "Come back later."}
+                </Typography>
+              </Stack>
+            )}
+          </Stack>
+        )}
+      </ContentContainer>
+
+      <StreakDrawer
+        open={streakDrawerOpen}
+        onClose={() => setStreakDrawerOpen(false)}
+        streakDays={streak}
+        equippedStreakFreezes={equippedStreakFreezes}
+        maxStreakFreezes={MAX_STREAK_FREEZES}
+        data-test="streak-drawer"
+      />
+      <EnergyDrawer
+        open={energyDrawerOpen}
+        onClose={() => setEnergyDrawerOpen(false)}
+        pointsLeft={energy}
+        progressValue={
+          MAX_ENERGY_POINTS > 0
+            ? Math.min(100, (energy / MAX_ENERGY_POINTS) * 100)
+            : 0
+        }
+        onUnlockUnlimited={() => {
+          setEnergyDrawerOpen(false);
+          navigateWithTransition(
+            getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft),
+          )();
+        }}
+        isPremiumUser={isPremiumUser}
+        data-test="energy-drawer"
+        data-test-unlock="unlock-unlimited-energy-button"
+        data-test-premium-message="premium-energy-message-section"
+      />
+    </PageRoot>
   );
 };
 

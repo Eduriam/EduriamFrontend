@@ -1,74 +1,122 @@
-// prettier-ignore
-"use client"
+"use client";
 
+import {
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
-import theme from "styles/theme";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import ChangePasswordForm from "components/molecules/ChangePasswordForm/ChangePasswordForm";
 
 export interface IChangePasswordPage {}
 
 const ChangePasswordPage: React.FC<IChangePasswordPage> = () => {
-  const desktop = useMediaQuery(theme.breakpoints.up("md"));
   const { t } = useTranslation("form");
   const [passwordChanged, setPasswordChanged] = useState(false);
   const router = useRouter();
 
   const searchParams = useSearchParams();
   const resetToken = searchParams?.get("resetToken");
-  const email = searchParams?.get("email");
+  const userIdParam = searchParams?.get("userId");
+
+  const userId = useMemo(() => {
+    if (!userIdParam) {
+      return null;
+    }
+
+    const parsedUserId = Number(userIdParam);
+    if (Number.isNaN(parsedUserId)) {
+      return null;
+    }
+
+    return parsedUserId;
+  }, [userIdParam]);
 
   return (
-    <Container maxWidth="xs" sx={{ pt: 3 }}>
-      <Box>
-        {passwordChanged === false && resetToken && email ? (
+    <PageRoot>
+      <ContentContainer width="small" justifyContent="center">
+        {passwordChanged ? (
           <>
-            {desktop ? (
-              <Card sx={{ textAlign: "center" }}>
-                <ChangePasswordForm
-                  onPasswordChanged={() => setPasswordChanged(true)}
-                  resetToken={resetToken}
-                  email={email}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <Header
+                  variant="title"
+                  text={t("changePassword.passwordChanged")}
                 />
-              </Card>
-            ) : (
-              <ChangePasswordForm
-                onPasswordChanged={() => setPasswordChanged(true)}
-                resetToken={resetToken}
-                email={email}
-              />
-            )}
+                <Typography
+                  variant="body1"
+                  sx={{ color: "#989898", textAlign: "left" }}
+                >
+                  {t("changePassword.passwordChangedDescription")}
+                </Typography>
+              </Box>
+              <LargeButton
+                variant="contained"
+                onClick={() => router.push("/signin")}
+                fullWidth
+              >
+                {t("changePassword.signin")}
+              </LargeButton>
+            </Box>
+          </>
+        ) : resetToken && userId !== null ? (
+          <>
+            <ChangePasswordForm
+              onPasswordChanged={() => setPasswordChanged(true)}
+              resetToken={resetToken}
+              userId={userId}
+            />
           </>
         ) : (
           <>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Typography variant="h3">
-                {t("changePassword.passwordChanged")}
-              </Typography>
-
-              <Button
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <Header
+                  variant="title"
+                  text={t("changePassword.invalidLink")}
+                />
+                <Typography
+                  variant="body1"
+                  sx={{ color: "#989898", textAlign: "left" }}
+                >
+                  {t("changePassword.invalidLinkDescription")}
+                </Typography>
+              </Box>
+              <LargeButton
                 variant="contained"
-                onClick={() => router.push("/login")}
-                sx={{ justifySelf: "center" }}
+                onClick={() => router.push("/signin")}
+                fullWidth
               >
-                {t("changePassword.login")}
-              </Button>
+                {t("changePassword.signin")}
+              </LargeButton>
             </Box>
           </>
         )}
-      </Box>
-    </Container>
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

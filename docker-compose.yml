@@ -1,0 +1,111 @@
+services:
+  mockoon-api:
+    image: mockoon/cli:latest
+    entrypoint: ["mockoon-cli"]
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./mock/netlify/functions/datafile.json:/data/datafile.json:ro"
+    command:
+      [
+        "start",
+        "-d",
+        "/data/datafile.json",
+        "-p",
+        "3001",
+        "-l",
+        "0.0.0.0",
+        "-t",
+      ]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:3001'', (r) => {process.exit(r.statusCode === 200 || r.statusCode === 404 ? 0 : 1)}).on(''error'', () => process.exit(1))" || exit 1',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  eduriam-frontend-dev:
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      # Use it's own node_modules and .next directory
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
+    depends_on:
+      mockoon-api:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    command: yarn dev
+
+  eduriam-frontend-build:
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    command: yarn build
+
+  eduriam-frontend-lint:
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    command: yarn lint
+
+  eduriam-frontend-prettier:
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    volumes:
+      - .:/app
+      # Use it's own node_modules and .next directory
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=production
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
+    command: yarn prettier
+
+  eduriam-frontend-storybook:
+    build:
+      context: .
+      args:
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    volumes:
+      - .:/app
+      # Use it's own node_modules and .next directory
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+    env_file:
+      - .env
+    ports:
+      - "6006:6006"
+    command: yarn storybook

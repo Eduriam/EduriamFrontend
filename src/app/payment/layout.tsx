@@ -1,12 +1,10 @@
-// prettier-ignore
-"use client"
+"use client";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import theme from "styles/theme";
 
 import ProtectedRoute from "components/layouts/authentication/ProtectedRoute/ProtectedRoute";
-import ContentContainer from "components/layouts/ContentContainer/ContentContainer";
 
 import { PLAN_PRICING_OPTIONS, STRIPE_PUBLIC_KEY } from "./config";
 
@@ -30,11 +28,9 @@ const Layout: React.FC<ILayout> = ({ children }) => {
 
   return (
     <ProtectedRoute>
-      <ContentContainer>
-        <Elements stripe={stripePromise} options={options}>
-          {children}
-        </Elements>
-      </ContentContainer>
+      <Elements stripe={stripePromise} options={options}>
+        {children}
+      </Elements>
     </ProtectedRoute>
   );
 };

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Language } from "domain/models/types/languages";
 import i18next from "i18next";
@@ -17,14 +17,14 @@ i18next
   .use(
     resourcesToBackend(
       (language: string, namespace: string) =>
-        import(`../../public/locales/${language}/${namespace}.json`)
-    )
+        import(`../../public/locales/${language}/${namespace}.json`),
+    ),
   )
   .init(getOptions());
 
 export function useTranslation(
   ns: string,
-  options: UseTranslationOptions = {}
+  options: UseTranslationOptions = {},
 ) {
   return useTranslationOrg(ns, options);
 }

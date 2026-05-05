@@ -1,16 +1,21 @@
 {
+  "404": {
+    "header": "Stránka nebyla nalezena",
+    "backToHome": "Zpět na hlavní stránku"
+  },
   "project-name": "Linguino",
   "loading": "Načítání...",
-
   "open-menu": "Otevřít menu",
   "user-avatar-circle-tooltip": "Hurá! Splnili jste svůj denní cíl!",
-  "login": "Přihlášení",
+  "signin": "Přihlášení",
   "signup": "Registrace",
-
+  "welcome": {
+    "valuePropositionLine1": "Naučte se programovat",
+    "valuePropositionLine2": "jen 10 minut denně."
+  },
   "menu": "Menu",
   "groups": "Skupiny",
   "categories": "Kategorie",
-
   "studying": {
     "study": "Učit se",
     "studyLesson": "Učit se lekci",
@@ -21,27 +26,59 @@
     "grammar": "Gramatika",
     "reading": "Čtení",
     "listening": "Poslech",
-
     "premiumStudying": "Učení zamknuto"
   },
-
   "exercise": {
     "right": "Správně!",
     "wrong": "Špatně!",
+    "why": "Proč?",
+    "skipExercise": "Přeskočit cvičení",
+    "retryExercise": "Zkusit znovu",
     "correctAnswer": "Správná odpověď:",
     "alternativeAnswer": "Další možná odpověď:",
     "check": "Zkontrolovat",
     "continue": "Pokračovat",
     "topic": "Téma",
-
     "newVocabulary": "Nové slovíčko!",
     "iKnowWord": "Toto slovíčko už umím!",
-
     "newGrammar": "Nová gramatika!",
-    "iKnowGrammar": "Tuto gramatiku už umím!"
+    "iKnowGrammar": "Tuto gramatiku už umím!",
+    "explanationTitle": "Vysvětlení"
   },
-
+  "reportStudyBlock": {
+    "header": "Nahlásit problém",
+    "problemTypePlaceholder": "Vyberte typ problému",
+    "descriptionPlaceholder": "Popište problém",
+    "submitLabel": "Odeslat",
+    "thankYouTitle": "Děkujeme za nahlášení",
+    "thankYouDescription": "Vaše nahlášení jsme přijali.",
+    "problemGroups": {
+      "user": {
+        "title": "Typ problému",
+        "options": {
+          "explanationNotUnderstood": "Nerozuměl(a) jsem vysvětlení.",
+          "exerciseNotUnderstood": "Nerozuměl(a) jsem cvičení.",
+          "answerShouldNotBeAccepted": "Moje odpověď by neměla být uznána.",
+          "answerShouldBeAccepted": "Moje odpověď by měla být uznána.",
+          "audioDoesNotSoundRight": "Zvuk nezní správně.",
+          "audioMissing": "Zvuk chybí.",
+          "somethingElseWentWrong": "Něco jiného se pokazilo."
+        }
+      },
+      "corrector": {
+        "title": "Možnosti pro korektora",
+        "options": {
+          "explanationStructureShouldBeChanged": "Struktura vysvětlení by se měla změnit.",
+          "exerciseStructureShouldBeChanged": "Struktura cvičení by se měla změnit.",
+          "lessonStructureShouldBeChanged": "Struktura lekce by se měla změnit."
+        }
+      }
+    }
+  },
   "exercises": {
+    "multipleChoice": {
+      "assignmentTitle": "Vyber správnou odpověď"
+    },
     "textExercise": {
       "assignmentTitle": "Přelož text!"
     },
@@ -76,7 +113,13 @@
       "assignmentTitle": "Spoj odpovídající dvojice!"
     }
   },
-
+  "studySessionStats": {
+    "title": "Učení dokončeno!",
+    "xpGained": "XP bodů",
+    "minStudied": "min učení",
+    "successRate": "úspěšnost",
+    "newConcepts": "konceptů"
+  },
   "other": {
     "other": "Ostatní",
     "subscription": "Předplatné",
@@ -84,24 +127,22 @@
     "news": "Novinky",
     "settings": "Nastavení",
     "my-profile": "Můj profil",
-    "logout": "Odhlásit",
+    "signout": "Odhlásit",
     "readMore": "Zobrazit více",
     "readLess": "Zobrazit méně",
     "submit": "Odeslat"
   },
-
   "calendar": {
     "calendar": "Kalendář"
   },
-
   "navigation": {
+    "eduriamTitle": "Eduriam",
     "home": "Domů",
     "shop": "Obchod",
     "challenges": "Výzvy",
     "feed": "Novinky",
     "profile": "Profil",
     "premium": "Premium",
-
     "levels": "Úrovně",
     "lessons": "Lekce",
     "favorites": "Oblíbené",
@@ -109,28 +150,23 @@
     "myLessons": "Moje balíčky slovíček",
     "myCourses": "Moje kurzy",
     "courses": "Kurzy",
+    "studyPlan": "Studijní plán",
     "search": "Vyhledávání",
     "help": "Nápověda",
     "bugReport": "Nahlášení chyby",
     "settings": "Nastavení",
-    "logout": "Odhlásit",
-
+    "signout": "Odhlásit",
     "followers": "Sledující",
     "following": "Sleduje",
-
     "continue": "Pokračovat",
     "open": "Otevřít",
-
     "topicSelection": "Výběr témat kurzu",
     "manageSubscription": "Spravovat předplatné",
-
     "noCollectionsCreated": "Zatím nemáte žádné vlastní balíčky slovíček."
   },
-
   "accountSetup": {
     "selectCourse": "Vybrat kurz"
   },
-
   "levels": [
     "Začátečník",
     "Pokročilý začátečník",
@@ -139,7 +175,6 @@
     "Velmi pokročilý",
     "Expert"
   ],
-
   "lessons": {
     "speaking": "Lekce mluvení",
     "pronunciation": "Lekce výslovnosti",
@@ -148,26 +183,72 @@
     "reading": "Lekce čtení",
     "listening": "Lekce poslechu"
   },
-
   "shop": {
     "buy": "Koupit",
-    "equip": "Zapnout",
-    "unequip": "Vypnout",
-    "categories": ["Profilové obrázky"],
-    "bought": "koupeno",
-    "equipped": "zapnuto"
+    "purchased": "Zakoupeno",
+    "categories": {
+      "hair": "Vlasy",
+      "eyes": "Oči",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "accessories": "Doplňky",
+      "headwear": "Čepice",
+      "clothing": "Oblečení"
+    },
+    "locked": "Zamčeno",
+    "close": "Zavřít",
+    "streakFreezeTitle": "Zmražení streaku",
+    "streakFreezeDescription": "Chraň svou denní sadu, i když jeden den vynecháš učení.",
+    "characterTitle": "Postava",
+    "unlockRequirement": "Získej ocenění {{achievementName}} pro odemčení položky."
   },
-
+  "avatar": {
+    "categories": {
+      "hair": "Vlasy",
+      "eyes": "Oči",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "accessories": "Doplňky",
+      "headwear": "Čepice",
+      "clothing": "Oblečení",
+      "skinColor": "Barva pleti",
+      "backgroundColor": "Pozadí"
+    }
+  },
   "feedback": {
     "header": "Našli jste chybu? Něco vám nevyhovuje? Máte nápad na zlepšení? Dejte nám vědět! Každou zprávu si čteme :)",
     "thanks": "Děkujeme za zpětnou vazbu!"
   },
-
+  "home": {
+    "learnTab": "Učení",
+    "reviewTab": "Opakování",
+    "nextStudyPlanLesson": "Další lekce studijního plánu.",
+    "startLesson": "Spustit lekci",
+    "allLessonsLearnedTitle": "Všechny lekce dokončeny!",
+    "allLessonsLearnedSubtitle": "Začněte nový kurz a učte se další lekce.",
+    "browseCourses": "Procházet kurzy",
+    "reviewDescription": "Zopakuj si nejdůležitější koncepty vybrané přímo pro tebe.",
+    "startReview": "Spustit opakování",
+    "allLessonsReviewedTitle": "Všechny lekce zopakovány!",
+    "allLessonsReviewedSubtitle": "Vrať se později."
+  },
+  "review": {
+    "reviewXpInfo": "Opakování ti dá 2x více XP!",
+    "skipForToday": "Pro dnešek přeskočit"
+  },
+  "studyPlanPage": {
+    "header": "Studijní plán",
+    "learnAndReview": "Učení a opakování",
+    "reviewOnly": "Pouze opakování",
+    "paused": "Pozastavené"
+  },
   "manageSubscription": {
+    "title": "Spravovat předplatné",
     "current": "Momentální předplatné",
     "nextPayment": "Další platba",
     "cancel": "Odhlásit předplatné",
     "whyUnsubscribe": "Proč rušíte předplatné?",
+    "whyUnsubscribeTitle": "Proč rušíte Premium?",
     "continue": "Pokračovat",
     "unsubscribeReasons": [
       "Stačí mi účet zdarma",
@@ -177,6 +258,8 @@
     ],
     "keep": "Ponechání premium",
     "keepPremium": "Ponechat premium",
+    "confirmCancellationTitle": "Opravdu chcete předplatné zrušit?",
+    "cancellationWarning": "Znovu se vám začnou zobrazovat reklamy a ztratíte přístup k neomezeným lekcím.",
     "confirmCancellation": "Potvrdit zrušení",
     "youWontHaveAccessToThese": "Po zrušení ztratíte přístup k těmto funkcím",
     "premiumFeatures": [
@@ -195,26 +278,114 @@
       "paid": "zaplaceno"
     }
   },
-
   "challenges": {
     "monthlyChallenge": "Měsíční výzva"
   },
-
+  "courses": {
+    "recommended": "Doporučené kurzy",
+    "retakeRecommendationQuiz": "Znovu vyplnit doporučovací kvíz",
+    "courseLabel": "Kurz",
+    "learningPathLabel": "Studijní cesta",
+    "premiumLabel": "Premium",
+    "startCourse": "Začít kurz",
+    "reviewCourse": "Zopakovat látku",
+    "reviewLearningPath": "Zopakovat látku",
+    "startLearningPath": "Začít studijní cestu",
+    "continueLearning": "Pokračovat v učení",
+    "description": "Popis kurzu",
+    "chapters": "Kapitoly",
+    "learningPathCourses": "Kurzy",
+    "courseNumber": "Kurz {{index}}",
+    "courseShortDescriptionPlaceholder": "Krátký popis kurzu zatím není k dispozici.",
+    "courseDescriptionPlaceholder": "Podrobný popis kurzu zatím není k dispozici.",
+    "chapterNumber": "Kapitola {{index}}",
+    "certificateButton": "Zobrazit certifikát"
+  },
+  "certificateLockedDrawer": {
+    "title": "Jen tak dál!",
+    "description": "Dokončete všechny lekce kurzu pro odemčení vašeho certifikátu.",
+    "continue": "Pokračovat"
+  },
+  "energy": {
+    "title": "Energie",
+    "pointsLeft": "Zbývá vám dnes {{pointsLeft}} bodů energie",
+    "subtitle": "Energii můžete využít na učení.",
+    "premiumSubtitle": "S Premium účtem si můžete využívat neomezenou energii a učení.",
+    "button": "Odemknout neomezenou energii"
+  },
+  "streakDrawer": {
+    "title": "Streak",
+    "daysLabel": "{{countFormatted}} dní",
+    "freezeTitle": "Zmrazení streaku",
+    "equippedLabel": "{{equippedFormatted}} / {{maxFormatted}} zapnuto"
+  },
+  "certificate": {
+    "projectTitle": "Eduriam",
+    "certificateOfCompletion": "Certifikát o absolvování",
+    "successfullyCompletedTheCourse": "úspěšně dokončil(a) kurz",
+    "signatoryName": "Bořivoj Ježek",
+    "signatoryTitle": "CEO společnosti",
+    "signatureAlt": "Podpis"
+  },
+  "courseDetailsDrawer": {
+    "title": "Detaily kurzu",
+    "prerequisites": "Předpoklady",
+    "description": "Popis",
+    "manageCourses": "Spravovat kurzy",
+    "close": "Zavřít"
+  },
+  "leaderboard": {
+    "league": "Liga",
+    "leaguesLabel": "Liga učení",
+    "leagues": {
+      "empty": "Žádná",
+      "iron": "Železná",
+      "bronze": "Bronzová",
+      "silver": "Stříbrná",
+      "gold": "Zlatá",
+      "platinum": "Platinová",
+      "emerald": "Smaragdová",
+      "ruby": "Rubínová",
+      "sapphire": "Safírová",
+      "diamond": "Diamantová",
+      "mythic": "Mýtická"
+    },
+    "notStartedMessage": "Dokončete jakoukoli lekci nebo opakování pro připojení do ligy",
+    "title": "Žebříček"
+  },
   "achievements": {
     "achievements": "Ocenění",
-    "collectReward": "Sebrat odměnu"
-  },
-
-  "feed": {
-    "earlier": "dříve",
-
-    "messages": {
-      "reached_level_10": "Dosáhnul úrovně 10!",
-      "reached_level_50": "Dosáhnul úrovně 50!",
-      "reached_level_100": "Dosáhnul úrovně 100!"
+    "collectReward": "Sebrat odměnu",
+    "achievementsByType": {
+      "lessonCompletions": "Mistr lekcí",
+      "reviewCompletions": "Mistr opakování",
+      "courseCompletions": "Dokončovač kurzů",
+      "streakDays": "Udržovač streaků",
+      "perfectLessonCompletions": "Perfektní výkon",
+      "feedReactions": "Podporující kamarád",
+      "leagueTier": "Soutěživec",
+      "leagueFirstPlaceAny": "Vzrůstající ligový vítěz",
+      "leagueFirstPlaceMythic": "Legendární ligový vítěz"
+    },
+    "achievementsById": {
+      "streak_master": "Mistr streaku",
+      "first_100_xp": "Prvních 100 XP"
     }
   },
-
+  "feed": {
+    "today": "dnes",
+    "daysAgo": "před {{count}} dny",
+    "messages": {
+      "streak_milestone": "Dosáhl(a) streaku {{streak}} dní.",
+      "achievement_earned": "Získal(a) ocenění {{achievementName}}.",
+      "league_promoted": "Postoupil(a) do ligy {{league}}.",
+      "course_completed": "Dokončil(a) kurz {{courseName}}."
+    },
+    "empty": {
+      "title": "Zatím tu nejsou žádné nové zprávy. Přidej nové přátele a sleduj jejich pokrok!",
+      "addFriends": "Přidat přátele"
+    }
+  },
   "userLessons": {
     "vocabulary": "Slovíčka",
     "lessonName": "Název balíčku",
@@ -225,14 +396,11 @@
     "removeLesson": "Odstranit balíček",
     "removeDialogText": "Opravdu chcete smazat balíček? Tato akce se nedá vrátit.",
     "emptyLesson": "V balíčku zatím nejsou žádná slovíčka.",
-
     "addVocabulary": "Přidat slovíčka",
     "searchVocabulary": "Vyhledat slovíčka",
     "noWordsFound": "Nebyla nalezena žádná slovíčka",
-
     "wordAdded": "Slovíčko přidáno"
   },
-
   "userActions": {
     "delete": "Smazat",
     "cancel": "Zrušit",
@@ -240,74 +408,137 @@
     "create": "Vytvořit",
     "continue": "Pokračovat"
   },
-
+  "advertisementDialog": {
+    "subtitle": "Díky reklamám můžeme tuto aplikaci provozovat zdarma.",
+    "fallbackLabel": "Reklama"
+  },
   "userProfile": {
     "level": "Úroveň",
     "followers": "Sledující",
     "following": "Sleduje",
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
-
     "stats": "Statistiky",
-
-    "streak": "Denní řada"
+    "streak": "Streak",
+    "addFriends": "Přidat přátele",
+    "overview": "Přehled",
+    "userCourses": "Kurzy uživatele"
   },
-
+  "avatarEditor": {
+    "title": "Avatar",
+    "editAvatar": "Upravit avatar",
+    "fields": {
+      "default": "Položky",
+      "hair": "Vlasy",
+      "hairColor": "Barva vlasů",
+      "eyes": "Oči",
+      "eyeColor": "Barva očí",
+      "expression": "Výraz",
+      "beard": "Vousy",
+      "beardColor": "Barva vousů",
+      "accessories": "Doplňky",
+      "glassesColor": "Barva brýlí",
+      "headwear": "Čepice",
+      "clothing": "Oblečení",
+      "skinColor": "Barva pleti",
+      "backgroundColor": "Pozadí"
+    },
+    "leave": {
+      "title": "Opustit editor avatara?",
+      "description": "Neuložené změny budou ztraceny.",
+      "keepEditing": "Pokračovat v úpravách",
+      "discardChanges": "Zahodit změny"
+    }
+  },
   "topics": {
     "main": "Hlavní témata",
     "extra": "Další témata"
   },
-
   "notices": {
     "achievementGet": "Dosáhli jste úspěchu!",
     "freeTrialEnded": "Zkušební období předplatného skončilo",
     "extendSubscription": "Prodloužit předplatné",
     "continueWithFreeAccount": "Pokračovat s plánem zdarma",
-
     "rewardGet": "Získali jste odměnu!",
+    "doubleRewardGet": "Získali jste dvojnásobnou odměnu!",
     "coins": "penízků",
-
     "advertisementNote": "Díky reklamám můžeme poskytovat aplikaci zdarma.",
-
     "studySessionEnded": "Dobrá práce! Učení dokončeno.",
     "rightAnswers": "Správné odpovědi",
     "wrongAnswers": "Špatné odpovědi",
-
-    "freeTrialOfferHeader": "Vyzkoušejte premium na 14 dní zdarma!",
+    "freeTrialOfferHeader": "Vyzkoušejte Premium na 14 dní zdarma!",
     "tryForFree": "Vyzkoušet zdarma",
-    "declineFreeTrialOffer": "Nemám zájem"
+    "declineFreeTrialOffer": "Nemám zájem",
+    "turnOnNotifications": "Zapnout notifikace",
+    "notificationsMotivation": "Zapněte notifikace a zůstaňte motivovaní každý den!",
+    "notNow": "Teď ne",
+    "enableNotifications": {
+      "title": "Zapněte notifikace a zůstaňte motivovaní každý den!",
+      "turnOn": "Zapnout",
+      "notNow": "Teď ne"
+    },
+    "dayStreak": "denní streak",
+    "streakLost": "Váš streak byl resetován",
+    "streakSaved": "Zmrazení streaku bylo použito",
+    "streakSavedDescription": "Zbývá vám ještě {{freezesLeft}} zmrazení.",
+    "leaguePromoted": "Byli jste povýšeni do vyšší ligy!",
+    "leagueDemoted": "Byli jste přesunuti do nižší ligy",
+    "achievementEarned": "Získali jste nový úspěch",
+    "chestRewardTitle": "Získali jste truhlu s odměnou",
+    "getDoubleReward": "Získat dvojnásobnou odměnu",
+    "advertisement": "Reklama"
   },
-
-  "404": {
-    "header": "Stránka nebyla nalezena",
-    "backToHome": "Zpět na hlavní stránku"
-  },
-
   "payment": {
-    "monthlySubscription": "Měsíční předplatné",
+    "monthlySubscription": "Fakturační údaje",
+    "eduriamPremium": "Eduriam Premium",
     "buySubscription": "Koupit předplatné",
     "generalPaymentErrorMessage": "Při ověření karty došlo k chybě. Zkuste to prosím znovu později.",
     "perMonth": "{{val, currency(USD)}} za měsíc",
     "subscriptionDisclaimer": "Částka vám bude automaticky naúčtována jednou za měsíc počínaje dneškem. Předplatné můžete kdykoliv zrušit v nastavení.",
     "iWantToReceiveInvoice": "Chci dostat fakturu"
   },
-
   "subscribed": {
     "thankYou": "Děkujeme!",
-    "subscriptionActivated": "Vaše předplatné bylo aktivováno!"
+    "subscriptionActivated": "Vaše předplatné bylo aktivováno."
   },
-
+  "premium": {
+    "premium": "Premium",
+    "header": "Postupujte rychleji s Premium účtem!",
+    "premiumUserHeader": "Učíte se s Premium!",
+    "premiumUserSubtitle": "Teď si můžete užívat všechny tyto výhody.",
+    "subtitles": {
+      "default": "Premium uživatelé postupují 4x rychleji",
+      "noEnergyLeft": "Získejte neomezené učení a další výhody.",
+      "certificateLocked": "Získejte certifikáty a další výhody.",
+      "courseLocked": "Odemkněte všechny kurzy a další výhody.",
+      "learningPathLocked": "Odemkněte všechny kariérní cesty a další výhody."
+    },
+    "table": {
+      "benefits": "Výhody",
+      "free": "Zdarma",
+      "premium": "Premium"
+    },
+    "benefits": {
+      "dailyLearning": "Denní učení",
+      "unlimitedLearning": "Neomezené učení",
+      "noAds": "Žádné reklamy",
+      "smartReviews": "Chytré opakování",
+      "certificates": "Certifikáty"
+    },
+    "startFreeTrial": "Spustit zkušební verzi zdarma",
+    "subscribeNow": "Získat Premium",
+    "manageSubscription": "Spravovat předplatné"
+  },
   "subscription": {
-    "subscriptionHeader": "Získejte premium!",
+    "subscriptionHeader": "Získejte Premium!",
     "valuePropositions": [
       "Učte se pokročilá slovíčka",
       "Vytvářejte vlastní balíčky slovíček",
       "Dělejte pokročilé lekce",
       "Žádné reklamy při učení"
     ],
-    "getSubscription": "Získat premium",
-
-    "subscribedHeader": "Váš premium účet",
+    "getSubscription": "Získat Premium",
+    "subscribedHeader": "Váš Premium účet",
     "subscribedFeaturesHeader": "Můžete naplno využívat tyto funkce",
     "subscribedFeatures": [
       "Učte se pokročilá slovíčka",
@@ -317,21 +548,146 @@
     ],
     "manageSubscription": "Spravovat předplatné"
   },
-
   "search": {
     "title": "Vyhledávání",
+    "nameOrUsername": "Jméno nebo uživatelské jméno",
     "categories": ["Uživatelé", "Lekce", "Slovíčka"],
     "noWordsFound": "Nebyla nalezena žádná slovíčka.",
     "noLessonsFound": "Nebyly nalezeny žádné lekce.",
     "noUsersFound": "Nebyli nalezeni žádní uživatelé."
   },
-
+  "freeTrial": {
+    "startButton": "Spustit zkušební verzi zdarma",
+    "reminderTitle": "Upozorníme vás 2 dny před koncem zkušební verze.",
+    "reminderSubtitle": "Snadné zrušení, bez poplatků.",
+    "paymentTitle": "Fakturační údaje",
+    "paymentDisclaimerPrefix": "Dnes vám bude naúčtováno",
+    "paymentDisclaimerToday": "{{val, currency(USD)}}",
+    "paymentDisclaimerSuffix": ".",
+    "paymentDisclaimerAfterTrial": "Poté {{val, currency(USD)}}/měsíc.",
+    "paymentDuringTrial": "Dnes {{val, currency(USD)}}.",
+    "paymentAfterTrial": "Po zkušební době {{val, currency(USD)}}/měsíc.",
+    "cardNumberPlaceholder": "Číslo karty",
+    "cardExpiryPlaceholder": "MM/RR",
+    "cardCvvPlaceholder": "CVC",
+    "activatedTitle": "Vaše zkušební verze byla aktivována!",
+    "endNoticeReminder": "Připomenutí: vaše zkušební verze Premium skončí za {{days}} dní."
+  },
   "freeTrialEndNotice": {
     "title": "Prodlužte si předplatné a užívejte si tyto výhody",
-
     "advancedVocabulary": "Učte se pokročilá slovíčka",
     "customVocabulary": "Vytvářejte vlastní balíčky slovíček",
     "advancedExercises": "Dělejte pokročilé lekce",
     "noAds": "Žádné reklamy při učení"
+  },
+  "settings": {
+    "title": "Nastavení",
+    "saved": "Nastavení uloženo.",
+    "generalError": "Nepodařilo se uložit nastavení.",
+    "items": {
+      "profile": "Profil",
+      "preferences": "Předvolby",
+      "notifications": "Oznámení",
+      "courses": "Kurzy",
+      "help": "Nápověda",
+      "reportAProblem": "Nahlásit problém",
+      "signout": "Odhlásit se",
+      "legal": "Právní informace"
+    },
+    "profile": {
+      "changeAvatar": "Změnit avatar",
+      "name": "Jméno",
+      "username": "Uživatelské jméno",
+      "email": "Email",
+      "changePassword": "Změnit heslo",
+      "passwordResetSent": "Email pro změnu hesla byl odeslán.",
+      "usernameTaken": "Toto uživatelské jméno je už obsazeno.",
+      "emailTaken": "Tato e-mailová adresa je už obsazena."
+    },
+    "preferences": {
+      "mode": "Režim",
+      "themeModes": {
+        "system": "Systémový",
+        "dark": "Tmavý",
+        "light": "Světlý"
+      }
+    },
+    "notifications": {
+      "sections": {
+        "learningReminders": "Připomenutí o učení",
+        "leaderboards": "Žebříčky",
+        "followers": "Sledující"
+      },
+      "items": {
+        "smartStudyReminderEnabled": "Chytré připomenutí studia",
+        "streakFreezeUsed": "Při použití zmrazení streaku",
+        "leaderboardStatus": "Umístění v lize",
+        "newFollower": "Nový sledující"
+      }
+    },
+    "courses": {
+      "removed": "Kurz byl odebrán.",
+      "removeTitle": "Opravdu chcete odebrat kurz?",
+      "removeDescription": "Odebráním kurzu přijdete o veškerý postup a tuto akci nelze vrátit.",
+      "remove": "Odebrat kurz"
+    },
+    "help": {
+      "notFoundTitle": "Článek nenalezen",
+      "notFoundDescription": "Požadovaný článek nebyl nalezen.",
+      "sections": {
+        "usingEduriam": "Používání Eduriam",
+        "accountManagement": "Správa účtu",
+        "subscriptionAndPayments": "Předplatné a platby"
+      },
+      "articles": {
+        "whatIsAStreak": {
+          "title": "Co je to streak?",
+          "body": "Streak je počet po sobě jdoucích dní, kdy jste splnili denní cíl učení."
+        },
+        "whatAreLeaguesAndLeaderboards": {
+          "title": "Co jsou ligy a žebříčky?",
+          "body": "Ligy a žebříčky porovnávají aktivitu uživatelů v týdnu podle získaného XP."
+        },
+        "howDoIResetCourseProgress": {
+          "title": "Jak resetuji postup v kurzu?",
+          "body": "Pokud potřebujete resetovat postup, kontaktujte podporu přímo z aplikace."
+        },
+        "howDoIChangeAccountDetails": {
+          "title": "Jak změním údaje účtu (e-mail, heslo, atd.)?",
+          "body": "Údaje účtu upravíte v sekci Profil. Změnu hesla provedete přes tlačítko Změnit heslo."
+        },
+        "howDoIDeleteMyAccount": {
+          "title": "Jak mohu smazat svůj účet?",
+          "body": "Pro smazání účtu kontaktujte podporu a ověřte vlastnictví účtu."
+        },
+        "whatIsEduriamPremium": {
+          "title": "Co je Eduriam Premium a jak se přihlásit?",
+          "body": "Premium odemyká pokročilé funkce. Předplatné můžete aktivovat na stránce Premium."
+        },
+        "howCanICancelEduriamPremiumSubscription": {
+          "title": "Jak zruším Eduriam Premium předplatné?",
+          "body": "Předplatné můžete kdykoliv zrušit v sekci Správa předplatného v nastavení."
+        }
+      }
+    },
+    "legal": {
+      "termsTitle": "Podmínky použití",
+      "privacyTitle": "Zásady ochrany osobních údajů",
+      "termsBody": "Toto je zástupný text podmínek použití. Bude nahrazen finální právní verzí.",
+      "privacyBody": "Toto je zástupný text zásady ochrany osobních údajů. Bude nahrazen finální právní verzí."
+    },
+    "report": {
+      "header": "Nahlásit problém",
+      "problemType": "Typ problému",
+      "problemTypePlaceholder": "Vyberte typ problému",
+      "descriptionPlaceholder": "Popište problém",
+      "submit": "Odeslat",
+      "thankYouTitle": "Děkujeme za nahlášení",
+      "thankYouDescription": "Vaše hlášení jsme přijali.",
+      "problemTypes": {
+        "bugReport": "Nahlásit chybu",
+        "improvementSuggestion": "Návrh na zlepšení"
+      }
+    }
   }
 }

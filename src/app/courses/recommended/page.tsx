@@ -1,0 +1,145 @@
+"use client";
+
+import {
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
+import type { Id } from "domain/models/types/core";
+import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
+
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+
+import CourseCard from "components/courses/CourseCard/CourseCard";
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
+import LearningPathCard from "components/courses/LearningPathCard/LearningPathCard";
+import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import { RecommendedProductsService } from "infrastructure/services/courses/RecommendedProductsService";
+import {
+  StudyProduct,
+  isLearningPathProduct,
+} from "infrastructure/services/courses/StudyProductService";
+
+function CourseOrLearningPathCard({
+  course,
+  dataTestCourse,
+  dataTestLearningPath,
+  onSelect,
+  premiumLabel,
+}: {
+  course: StudyProduct;
+  dataTestCourse?: string;
+  dataTestLearningPath?: string;
+  onSelect: (courseId: Id, isLearningPath: boolean) => void;
+  premiumLabel: string;
+}) {
+  const icon = <CourseLogo variant={course.logoId} />;
+  const isLearningPath = isLearningPathProduct(course);
+  const dataTest = isLearningPath ? dataTestLearningPath : dataTestCourse;
+  const handleClick = () => onSelect(course.id, isLearningPath);
+  const enrolled = typeof course.userProgress === "number";
+  const progress = course.userProgress ?? 0;
+
+  if (isLearningPath) {
+    return (
+      <Box data-test={dataTest}>
+        <LearningPathCard
+          title={course.name}
+          icon={icon}
+          enrolled={enrolled}
+          premium={Boolean(course.premium)}
+          premiumLabel={premiumLabel}
+          progress={progress}
+          onClick={handleClick}
+        />
+      </Box>
+    );
+  }
+  return (
+    <Box data-test={dataTest}>
+      <CourseCard
+        title={course.name}
+        icon={icon}
+        enrolled={enrolled}
+        premium={Boolean(course.premium)}
+        premiumLabel={premiumLabel}
+        progress={progress}
+        onClick={handleClick}
+      />
+    </Box>
+  );
+}
+
+const RecommendedCoursesPage: React.FC = () => {
+  const { t } = useTranslation("common");
+  const navigateWithTransition = useTransitionNavigationHandler();
+
+  const { recommendedProducts } =
+    RecommendedProductsService.useRecommendedProducts();
+  const displayRecommended = recommendedProducts ?? [];
+  const premiumLabel = t("courses.premiumLabel");
+
+  const handleCourseSelect = (courseId: Id, isLearningPath: boolean) => {
+    const path = isLearningPath
+      ? `/learning-paths/${courseId}`
+      : `/courses/${courseId}`;
+    navigateWithTransition(path)();
+  };
+
+  return (
+    <PageRoot data-test="recommendations-page">
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 20,
+          backgroundColor: "background.default",
+        }}
+      >
+        <PageNavigation
+          topNavigation={<BackNavbar withTransition route="/courses" />}
+          mainNavigation="hidden"
+        />
+      </Box>
+      <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
+        <Stack
+          spacing={3}
+          data-test="recommended-courses-and-learning-paths-section"
+        >
+          <Header variant="section" text={t("courses.recommended")} />
+          <Stack direction="column" spacing={3}>
+            {displayRecommended.map((course) => (
+              <CourseOrLearningPathCard
+                key={course.id}
+                course={course}
+                dataTestCourse="recommended-course-card"
+                dataTestLearningPath="recommended-learning-path-card"
+                onSelect={handleCourseSelect}
+                premiumLabel={premiumLabel}
+              />
+            ))}
+          </Stack>
+        </Stack>
+        <Box sx={{ pt: 2 }}>
+          <LargeButton
+            data-test="retake-recommendation-quiz-button"
+            onClick={() =>
+              navigateWithTransition("/courses/recommended/quiz")()
+            }
+            variant="outlined"
+            fullWidth
+          >
+            {t("courses.retakeRecommendationQuiz")}
+          </LargeButton>
+        </Box>
+      </ContentContainer>
+    </PageRoot>
+  );
+};
+
+export default RecommendedCoursesPage;

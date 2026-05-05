@@ -1,10 +1,11 @@
 {
   "auth": {
-    "login-header": "Přihlášení",
+    "signin-header": "Přihlášení",
     "signup-header": "Registrace",
     "signup": "Registrovat",
-    "login": "Přihlásit",
+    "signin": "Přihlásit",
     "username": "Uživatelské jméno",
+    "name": "Jméno",
     "email": "Emailová adresa",
     "password": "Heslo",
     "terms": [
@@ -16,7 +17,12 @@
     "have-an-account": "Máte účet? Přihlaste se",
     "dont-have-account": "Nemáte účet? Zaregistrujte se",
     "here": "zde",
-    "forgot-password": "Zapomněli jste heslo?"
+    "forgot-password": "Zapomněli jste heslo?",
+    "continue-with-google": "Pokračovat s Googlem",
+    "google-signin-account-not-found": "K tomuto Google účtu není připojen žádný účet. Vytvořte si nový účet pomocí registrace.",
+    "google-signin-signup-button": "Vytvořit účet",
+    "google-signup-account-exists": "Účet s tímto emailem již existuje. Přihlaste se do existujícího účtu.",
+    "google-signup-signin-button": "Přihlásit se"
   },
 
   "error": {
@@ -25,6 +31,8 @@
     "password-too-short": "Heslo musí být dlouhé alespoň 8 znaků!",
     "invalid-email-address": "Neplatná emailová adresa!",
     "wrong-email-or-password": "Zadali jste nesprávný email nebo heslo.",
+    "wrong-email": "Zadali jste nesprávný email.",
+    "email-not-confirmed": "Emailová adresa není potvrzená.",
     "username-taken": "Toto jméno už někdo používá!",
     "email-taken": "Tento email už někdo používá!",
     "passwords-dont-match": "Hesla se musí shodovat!",
@@ -45,7 +53,10 @@
     "reenterPassword": "Heslo znovu",
     "changePassword": "Změnit heslo",
     "passwordChanged": "Heslo změněno",
-    "login": "Přihlásit se"
+    "passwordChangedDescription": "Nyní se můžete přihlásit novým heslem.",
+    "signin": "Přihlásit se",
+    "invalidLink": "Neplatný odkaz",
+    "invalidLinkDescription": "Odkaz pro změnu hesla je neplatný nebo vypršel."
   },
 
   "changeEmail": {
@@ -59,9 +70,111 @@
 
     "emailChanged": "Email byl změněn!",
     "emailChangedDescription": "Nyní je s vaším účtem spojen nový email.",
-    "login": "Přihlásit se",
+    "signin": "Přihlásit se",
     "invalidData": "Neplatné údaje. Zkuste si změnit email znovu.",
     "backToSettings": "Zpět do nastavení"
+  },
+
+  "verifyEmail": {
+    "emailVerified": "Email ověřen",
+    "emailVerifiedDescription": "Nyní můžete aplikaci používat!",
+    "continue": "Pokračovat",
+    "invalidLink": "Neplatný odkaz pro ověření emailu.",
+    "backToSignin": "Zpět na přihlášení",
+    "expiredTitle": "Odkaz vypršel",
+    "expiredDescription": "Platnost odkazu pro ověření emailu vypršela. Pošlete si nový potvrzovací email.",
+    "resendButton": "Poslat potvrzovací email znovu",
+    "resendSuccess": "Potvrzovací email jsme znovu odeslali.",
+    "resendError": "Nepodařilo se odeslat nový potvrzovací email. Zkuste to prosím znovu."
+  },
+
+  "onboarding": {
+    "codingExperienceTitle": "Jaké jsou vaše zkušenosti s programováním?",
+    "codingExperienceOptions": {
+      "beginner": {
+        "text": "Začátečník",
+        "subText": "Znám pouze základy nebo jsem nikdy neprogramoval(a)."
+      },
+      "intermediate": {
+        "text": "Mírně pokročilý",
+        "subText": "Umím vytvářet jednoduché aplikace nebo programy."
+      },
+      "advanced": {
+        "text": "Pokročilý",
+        "subText": "Programuji profesionálně nebo mám hodně zkušeností."
+      }
+    },
+    "areaOfInterestTitle": "Která témata se chcete nejvíce naučit?",
+    "areaOfInterestOptions": {
+      "frontend-development": {
+        "text": "Vytváření webových stránek a aplikací",
+        "subText": "React, Next.js, Tailwind, TypeScript, ..."
+      },
+      "backend-development": {
+        "text": "Backend vývoj",
+        "subText": "API, Node.js, Docker, SQL, NoSQL, ..."
+      },
+      "fullstack": {
+        "text": "Fullstack vývoj",
+        "subText": "Tvorba celé aplikace od frontendu po backend."
+      },
+      "other": {
+        "text": "Něco jiného"
+      }
+    },
+    "userGoalTitle": "Jaký je váš cíl?",
+    "userGoalOptions": {
+      "switch-career": {
+        "text": "Změnit kariéru"
+      },
+      "build-project": {
+        "text": "Vytvořit vlastní projekt"
+      },
+      "learn-school": {
+        "text": "Excelovat ve škole nebo na univerzitě"
+      },
+      "advance-career": {
+        "text": "Postoupit v současné kariéře"
+      },
+      "learn-for-fun": {
+        "text": "Učit se programovat pro zábavu"
+      },
+      "something-else": {
+        "text": "Něco jiného"
+      }
+    },
+    "valuePropositionTitle": "S Eduriamem to dokážete!",
+    "valuePropositionItems": {
+      "masterProgramming": {
+        "title": "Zdokonalíte programování",
+        "description": "Staňte se skvělým programátorem pomocí krátkých a zábavných cvičení"
+      },
+      "buildKnowledge": {
+        "title": "Vybudujete si znalosti",
+        "description": "Díky chytrému opakování nikdy nezapomenete, co se naučíte"
+      },
+      "improveEveryDay": {
+        "title": "Zlepšujte se každý den",
+        "description": "Vytvořte si návyk učení pomocí výzev, žebříčků a dalších funkcí"
+      }
+    },
+    "exploreAllCourses": "Prozkoumat všechny kurzy",
+    "courseCategories": {
+      "web-development": "Vývoj webů",
+      "backend-development": "Backend vývoj",
+      "languages": "Jazyky",
+      "other": "Ostatní"
+    },
+    "accountReady": "Váš účet je připraven!",
+    "startLearning": "Začít se učit",
+    "recommendedForYou": "Vyberte si kurz",
+    "dailyGoalTitle": "Jaký je váš denní cíl učení?"
+  },
+
+  "recommendationQuiz": {
+    "quizFinishedTitle": "Kvíz dokončen!",
+    "quizFinishedDescription": "Vaše nová doporučení kurzů jsou připravena.",
+    "viewCourses": "Zobrazit kurzy"
   },
 
   "accountSetup": {
@@ -82,23 +195,23 @@
       "other": "Ostatní"
     },
 
-    "goalSelectTitle": "Vyberte si svůj denní cíl",
+    "goalSelectTitle": "Jaký je váš denní cíl učení?",
     "goalSelectOptions": {
       "casual": {
         "name": "Lehký",
-        "description": "~5 min / den"
+        "description": "5 min denně"
       },
       "medium": {
         "name": "Normální",
-        "description": "~10 min / den"
+        "description": "10 min denně"
       },
       "dedicated": {
-        "name": "Těžší",
-        "description": "~15 min / den"
+        "name": "Soustředěný",
+        "description": "15 min denně"
       },
       "intense": {
-        "name": "Seriózní",
-        "description": "~20 min / den"
+        "name": "Intenzivní",
+        "description": "20 min denně"
       }
     },
 
@@ -138,7 +251,7 @@
       },
       "takeTest": {
         "name": "Test znalostí",
-        "description": "Udělejte si 5 minutový test, který určí vaší úroveň."
+        "description": "Udělejte si 5minutový test, který určí vaši úroveň."
       },
       "selectLevel": {
         "name": "Nastavte si vlastní úroveň",

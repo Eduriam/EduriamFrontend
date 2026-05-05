@@ -1,5 +1,14 @@
 const config = {
-  pagesWithoutToolbar: ["/study", "/account-setup", "/change-email"],
+  pagesWithToolbar: /** @type {Array<string | RegExp>} */ ([
+    "/change-email-request",
+    "/challenges",
+    "/favorites",
+    "/lessons",
+    "/lessons-create",
+    "/topic-selection",
+    /^\/lesson-items(\/|$)/,
+    /^\/lessons(\/|$)/,
+  ]),
   pagesWithoutContentContainer: ["/study"],
   termsAndConditionsUrl: "https://www.example.com",
   privacyPolicyUrl: "https://www.example.com",
@@ -28,13 +37,6 @@ const config = {
     {
       id: "5",
       name: "levels.5",
-    },
-  ],
-
-  shopCategories: [
-    {
-      id: "avatars",
-      name: "shop.categories.0",
     },
   ],
 };

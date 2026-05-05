@@ -7,10 +7,8 @@ import {
 
 export default function NoticeDecorator(Story: Story) {
   const mock: NoticeContextType = {
-    addNotices: () => console.log("addNotices"),
-    deleteNotice: () => console.log("deleteNotice"),
-    fetchNotices: async () => console.log("fetchNotices"),
-    popNotice: () => console.log("popNotice"),
+    fetchNotices: async () => [],
+    markNoticeAsRead: async () => console.log("markNoticeAsRead"),
     notices: [],
   };
 

@@ -2,8 +2,19 @@ import axios, { AxiosRequestConfig } from "axios";
 import { KeyedMutator } from "swr";
 
 const API = {
-  get: (url: string, queryParams = "") =>
-    axios.get(`${url}${queryParams}`).then((res) => res.data),
+  get: (url: string, queryParams: string | AxiosRequestConfig<unknown> = "") => {
+    if (typeof queryParams === "string") {
+      return axios.get(`${url}${queryParams}`).then((res) => res.data);
+    }
+
+    return axios
+      .request({
+        method: "get",
+        url,
+        ...queryParams,
+      })
+      .then((res) => res.data);
+  },
 
   post(url: string, object: unknown) {
     return axios

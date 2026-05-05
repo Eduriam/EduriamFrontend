@@ -1,19 +1,46 @@
-import { Notice } from "infrastructure/api/user/notices/Notices";
-import NoticesAPI from "infrastructure/api/user/notices/NoticesAPI";
+import type { Id } from "domain/models/types/core";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import NoticeService, {
+  type Notice,
+} from "infrastructure/api/users/me/notices/NoticeService";
 
 export interface NoticeContextType {
-  notices: Array<Notice>;
-  addNotices: (noticesToAdd: Array<Notice>) => void;
-  popNotice: () => void;
-  fetchNotices: () => Promise<void>;
-  deleteNotice: (noticeId: Id) => void;
+  notices: Notice[];
+  fetchNotices: () => Promise<Notice[]>;
+  markNoticeAsRead: (noticeId: Id) => Promise<void>;
 }
 
-export const NoticeContext = createContext<NoticeContextType>(
-  {} as NoticeContextType
+export const NoticeContext = createContext<NoticeContextType | undefined>(
+  undefined,
 );
+
+function mergeNotices(existing: Notice[], incoming: Notice[]): Notice[] {
+  if (incoming.length === 0) {
+    return existing;
+  }
+
+  const seen = new Set(existing.map((notice) => notice.id));
+  const merged = [...existing];
+
+  for (const notice of incoming) {
+    if (seen.has(notice.id)) {
+      continue;
+    }
+
+    seen.add(notice.id);
+    merged.push(notice);
+  }
+
+  return merged;
+}
 
 // Source: https://dev.to/finiam/predictable-react-authentication-with-the-context-api-g10
 export function NoticeProvider({
@@ -21,46 +48,44 @@ export function NoticeProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [notices, setNotices] = useState<Array<Notice>>([]);
+  const [notices, setNotices] = useState<Notice[]>([]);
 
-  function addNotices(noticesToAdd: Array<Notice>) {
-    setNotices([...notices, ...noticesToAdd]);
-  }
+  const fetchNotices = useCallback(async (): Promise<Notice[]> => {
+    const newNotices = await NoticeService.getNotices();
+    setNotices((previousNotices) => mergeNotices(previousNotices, newNotices));
+    return newNotices;
+  }, []);
 
-  function popNotice() {
-    setNotices(notices.slice(1));
-  }
+  const markNoticeAsRead = useCallback(async (noticeId: Id) => {
+    await NoticeService.deleteNotice(noticeId);
+    setNotices((previousNotices) =>
+      previousNotices.filter((notice) => notice.id !== noticeId),
+    );
+  }, []);
 
-  async function fetchNotices() {
-    // Isn't implemented on backend in v1.0.0
-    // const newNotices = await NoticesAPI.getNotices();
-    const newNotices: Array<Notice> = [];
-
-    setNotices([...notices, ...newNotices]);
-
-    return Promise.resolve();
-  }
-
-  async function deleteNotice(noticeId: Id) {
-    setNotices(notices.filter((e) => e.id !== noticeId));
-    await NoticesAPI.deleteNotice(noticeId);
-  }
+  const contextValue = useMemo<NoticeContextType>(
+    () => ({
+      notices,
+      fetchNotices,
+      markNoticeAsRead,
+    }),
+    [notices, fetchNotices, markNoticeAsRead],
+  );
 
   return (
-    <NoticeContext.Provider
-      value={{
-        notices,
-        addNotices,
-        popNotice,
-        deleteNotice,
-        fetchNotices,
-      }}
-    >
+    <NoticeContext.Provider value={contextValue}>
       {children}
     </NoticeContext.Provider>
   );
 }
 
 export default function useNotices(): NoticeContextType {
-  return useContext(NoticeContext);
+  const context = useContext(NoticeContext);
+
+  if (!context) {
+    throw new Error("useNotices must be used within a NoticeProvider.");
+  }
+
+  return context;
 }
+

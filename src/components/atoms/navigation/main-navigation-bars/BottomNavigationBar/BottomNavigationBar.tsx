@@ -1,5 +1,3 @@
-import useAuth from "infrastructure/services/AuthProvider";
-
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
@@ -8,8 +6,11 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Box from "@mui/material/Box";
 
+import { primaryNavigation } from "components/navigation/config";
+
+import useAuth from "infrastructure/services/AuthProvider";
+
 import { useTranslation } from "../../../../../i18n/client";
-import { primaryNavigation } from "../../config";
 
 export interface IBottomNavigationBar {
   pathname: string;
@@ -25,10 +26,13 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
 
   // Change selected tab if path changed
   useEffect(() => {
+    const normalizedPathname = /^\/users\/[^/]+$/.test(pathname)
+      ? "/profile"
+      : pathname;
     let newValue: boolean | number = false;
 
     for (let i = 0; i < primaryNavigation.length; i++) {
-      if (primaryNavigation[i].path === pathname) {
+      if (primaryNavigation[i].path === normalizedPathname) {
         newValue = i;
       }
     }
@@ -53,12 +57,33 @@ const BottomNavigationBar: React.FC<IBottomNavigationBar> = ({ pathname }) => {
         onChange={(_, newValue) => {
           setValue(newValue);
 
-          if (primaryNavigation[newValue].path === "/profile")
+          if (primaryNavigation[newValue].path === "/profile") {
             router.push(`/users/${user?.id}`);
-          else router.push(primaryNavigation[newValue].path);
+          } else {
+            router.push(primaryNavigation[newValue].path);
+          }
         }}
         sx={{
           boxShadow: "0 -2px 0 0 rgba(0,0,0,0.09)",
+          backgroundColor: "background.default",
+          width: "100%",
+          // Ensure the nav bar doesn't overflow the screen on smaller devices (that have width less than 375px)
+          pl: "max(8px, env(safe-area-inset-left))",
+          pr: "max(8px, env(safe-area-inset-right))",
+          "& .MuiBottomNavigationAction-root": {
+            minWidth: 0,
+            maxWidth: "none",
+            flex: 1,
+            px: 1,
+            "@media (max-width:375px)": {
+              px: 0.5,
+            },
+          },
+          "& .MuiBottomNavigationAction-label": {
+            "@media (max-width:375px)": {
+              display: "none",
+            },
+          },
         }}
       >
         {primaryNavigation.map((item, i) => (

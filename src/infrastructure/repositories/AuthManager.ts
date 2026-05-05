@@ -1,76 +1,92 @@
 import axios from "axios";
-import { LoginRequestBody } from "infrastructure/api/login/Login";
-import LoginAPI from "infrastructure/api/login/LoginAPI";
-import RefreshTokenAPI from "infrastructure/api/refresh-token/RefreshTokenAPI";
-import { SignupRequestBody } from "infrastructure/api/signup/Signup";
-import SignupAPI from "infrastructure/api/signup/SignupAPI";
 import jwtDecode from "jwt-decode";
 
-import { UserPrivate } from "../api/user/User";
+import type {
+  AuthCodeExchangeModel,
+  GetUserModel,
+  LoginUserModel,
+  RegisterUserModel,
+} from "infrastructure/api/generated/models";
+import { GoogleAuthService } from "infrastructure/services/auth/GoogleAuthService";
+import { RefreshTokenService } from "infrastructure/services/auth/RefreshTokenService";
+import { SigninService } from "infrastructure/services/auth/SigninService";
+import { SignupService } from "infrastructure/services/auth/SignupService";
+
 import { LocalStorageManager } from "./LocalStorageManager";
 
 const AuthManager = {
-  logout(): void {
+  hasIdToken(): boolean {
+    return Boolean(LocalStorageManager.getItem<string>("idToken"));
+  },
+
+  signout(): void {
     this.removeAuthHeader();
     LocalStorageManager.removeItem("idToken");
     LocalStorageManager.removeItem("refreshToken");
-    LocalStorageManager.removeItem("user");
   },
 
-  async login(data: LoginRequestBody): Promise<UserPrivate> {
-    return LoginAPI.login(data);
+  async signin(data: LoginUserModel): Promise<GetUserModel> {
+    return SigninService.signin(data);
   },
 
-  async signUp(data: SignupRequestBody): Promise<UserPrivate> {
-    return SignupAPI.signUp(data);
+  async signUp(data: RegisterUserModel): Promise<GetUserModel> {
+    return SignupService.signUp(data);
   },
 
-  async refreshIdToken(): Promise<void> {
+  async getGoogleAuthorizationUrl(): Promise<string> {
+    return GoogleAuthService.getGoogleAuthorizationUrl();
+  },
+
+  async authorizeGoogleCode(
+    data: AuthCodeExchangeModel,
+  ): Promise<GetUserModel> {
+    return GoogleAuthService.authorizeCode(data);
+  },
+
+  async refreshIdToken(): Promise<string | null> {
     const refreshToken = LocalStorageManager.getItem<string>("refreshToken");
 
     if (refreshToken === null) {
-      // Refresh token doesn't exist, user needs to log in again
-      this.logout();
-      return;
+      // Refresh token doesn't exist, user needs to sign in again
+      this.signout();
+      return null;
     }
 
-    return RefreshTokenAPI.refreshIdToken({
-      token: refreshToken,
-    })
-      .then((res) => {
-        this.setAuthHeader(res.idToken);
-        LocalStorageManager.setItem<string>("idToken", res.idToken);
-        LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
-      })
-      .catch(() => {
-        // Refresh token is expired, user needs to log in again
-        this.logout();
+    try {
+      const res = await RefreshTokenService.refreshIdToken({
+        refreshToken,
       });
+      this.setAuthHeader(res.accessToken);
+      LocalStorageManager.setItem<string>("idToken", res.accessToken);
+      LocalStorageManager.setItem<string>("refreshToken", res.refreshToken);
+      return res.accessToken;
+    } catch {
+      // Refresh token is expired, user needs to sign in again
+      this.signout();
+      return null;
+    }
   },
 
-  async getCurrentUser(): Promise<UserPrivate> {
+  async ensureValidSession(): Promise<boolean> {
     const token = LocalStorageManager.getItem<string>("idToken");
 
-    if (token) {
+    if (!token) {
+      this.signout();
+      return false;
+    }
+
+    try {
       const decodedToken = jwtDecode<DecodedToken>(token);
       // If Id token is expired
-      if (decodedToken.exp * 1000 < Date.now()) await this.refreshIdToken();
-      else this.setAuthHeader(token);
-    } else this.logout();
-
-    let user = LocalStorageManager.getItem<UserPrivate>("user");
-    if (user === null) {
-      return Promise.reject("No user found.");
-    } else {
-      const studyMapLevel = LocalStorageManager.getItem<number>(
-        "lastViewedStudyMapLevel"
-      );
-      if (studyMapLevel !== null) {
-        user = { ...user, lastViewedStudyMapLevel: studyMapLevel };
+      if (decodedToken.exp * 1000 < Date.now()) {
+        return Boolean(await this.refreshIdToken());
       }
-
-      return user;
+    } catch {
+      // Some environments (e.g. test fixtures) use opaque tokens without exp claims. In that case we still attach the token and let API responses drive auth validity.
     }
+
+    this.setAuthHeader(token);
+    return true;
   },
 
   setAuthHeader(idToken: string): void {

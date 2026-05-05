@@ -1,6 +1,4 @@
 import { useTranslation } from "i18n/client";
-import ChangeEmailAPI from "infrastructure/api/change-email/ChangeEmailAPI";
-import errorCodes from "infrastructure/api/error-codes";
 import { useSnackbar } from "notistack";
 import theme from "styles/theme";
 
@@ -15,6 +13,9 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
+import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 
 import { EMAIL_REGEX } from "../SignupForm/SignupForm";
 
@@ -36,20 +37,24 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
   } = useForm<InputTypes>();
   const { t } = useTranslation("form");
   const { enqueueSnackbar } = useSnackbar();
-  const [apiErrors, setApiErrors] = useState<Array<string>>([]);
+  const [apiErrors, setApiErrors] = useState<
+    Array<typeof ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN>
+  >([]);
   const [sentEmail, setSentEmail] = useState<string>();
   const desktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const onSubmit = async (data: { email: string }) => {
     try {
-      // Zavolání API
-      await ChangeEmailAPI.changeEmail({ newEmail: data.email });
+      await ChangeEmailService.changeEmail({ newEmail: data.email });
       setSentEmail(data.email);
 
       onEmailSent();
     } catch (err) {
-      if (err === errorCodes.usernameTaken) {
-        setApiErrors((errors) => [...errors, errorCodes.emailAddressTaken]);
+      if (err === ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN) {
+        setApiErrors((errors) => [
+          ...errors,
+          ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN,
+        ]);
       } else {
         enqueueSnackbar(t("general-error-message"), {
           variant: "error",
@@ -80,14 +85,18 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
             errors.email?.type === "required"
               ? t("error.field-is-required")
               : errors.email?.type === "pattern"
-              ? t("error.invalid-email-address")
-              : apiErrors.includes(errorCodes.emailAddressTaken) &&
-                getValues("email") === sentEmail &&
-                t("error.email-taken")
+                ? t("error.invalid-email-address")
+                : apiErrors.includes(
+                    ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN,
+                  ) &&
+                  getValues("email") === sentEmail &&
+                  t("error.email-taken")
           }
           error={
             errors.email !== undefined ||
-            (apiErrors.includes(errorCodes.emailAddressTaken) &&
+            (apiErrors.includes(
+              ApplicationProblemDetailsCode.EMAIL_ADDRESS_TAKEN,
+            ) &&
               getValues("email") === sentEmail)
           }
           {...register("email", {
@@ -104,9 +113,9 @@ const ChangeEmailForm: React.FC<IChangeEmailForm> = ({ onEmailSent }) => {
             errors.reenterEmail?.type === "required"
               ? t("error.field-is-required")
               : errors.reenterEmail?.type === "pattern"
-              ? t("error.invalid-email-address")
-              : errors.reenterEmail?.type === "matches" &&
-                t("error.emails-dont-match")
+                ? t("error.invalid-email-address")
+                : errors.reenterEmail?.type === "matches" &&
+                  t("error.emails-dont-match")
           }
           error={errors.reenterEmail !== undefined}
           {...register("reenterEmail", {

@@ -1,0 +1,121 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import AchievementEarnedNotice from "components/notices/AchievementEarnedNotice/AchievementEarnedNotice";
+import ChestRewardNotice from "components/notices/ChestRewardNotice/ChestRewardNotice";
+import FreeTrialEndNotice from "components/notices/FreeTrialEndNotice/FreeTrialEndNotice";
+import FreeTrialNotice from "components/notices/FreeTrialNotice/FreeTrialNotice";
+import LeagueDemotedNotice from "components/notices/LeagueDemotedNotice/LeagueDemotedNotice";
+import LeaguePromotedNotice from "components/notices/LeaguePromotedNotice/LeaguePromotedNotice";
+import NotificationNotice from "components/notices/NotificationNotice/NotificationNotice";
+import StreakLostNotice from "components/notices/StreakLostNotice/StreakLostNotice";
+import StreakMilestoneNotice from "components/notices/StreakMilestoneNotice/StreakMilestoneNotice";
+import StreakSavedNotice from "components/notices/StreakSavedNotice/StreakSavedNotice";
+
+import type {
+  AchievementEarnedNoticeModel,
+  ChestRewardNoticeModel,
+  FreeTrialEndNoticeModel,
+  FreeTrialNoticeModel,
+  LeagueDemotedNoticeModel,
+  LeaguePromotedNoticeModel,
+  StreakLostNoticeModel,
+  StreakMilestoneNoticeModel,
+  StreakSavedNoticeModel,
+} from "infrastructure/api/generated/models";
+import {
+  NoticeType,
+  type Notice,
+} from "infrastructure/api/users/me/notices/NoticeService";
+import useNotices from "infrastructure/services/NoticeProvider";
+import PushNotificationService from "infrastructure/services/notifications/PushNotificationService";
+
+export interface NoticeBoardProps {
+  allowedNoticeTypes?: NoticeType[];
+}
+
+function renderNotice(notice: Notice) {
+  switch (notice.type) {
+    case NoticeType.StreakMilestone:
+      return <StreakMilestoneNotice notice={notice as StreakMilestoneNoticeModel} />;
+    case NoticeType.StreakLost:
+      return <StreakLostNotice notice={notice as StreakLostNoticeModel} />;
+    case NoticeType.StreakSaved:
+      return <StreakSavedNotice notice={notice as StreakSavedNoticeModel} />;
+    case NoticeType.LeaguePromoted:
+      return <LeaguePromotedNotice notice={notice as LeaguePromotedNoticeModel} />;
+    case NoticeType.LeagueDemoted:
+      return <LeagueDemotedNotice notice={notice as LeagueDemotedNoticeModel} />;
+    case NoticeType.AchievementEarned:
+      return <AchievementEarnedNotice notice={notice as AchievementEarnedNoticeModel} />;
+    case NoticeType.ChestReward:
+      return <ChestRewardNotice notice={notice as ChestRewardNoticeModel} />;
+    case NoticeType.FreeTrial:
+      return <FreeTrialNotice notice={notice as FreeTrialNoticeModel} />;
+    case NoticeType.FreeTrialEnd:
+      return <FreeTrialEndNotice notice={notice as FreeTrialEndNoticeModel} />;
+    case NoticeType.CourseCompleted:
+      return null;
+    default:
+      return null;
+  }
+}
+
+const NoticeBoard: React.FC<NoticeBoardProps> = ({ allowedNoticeTypes }) => {
+  const fetchedRef = useRef(false);
+  const { notices, fetchNotices } = useNotices();
+  const [showNotificationNotice, setShowNotificationNotice] = useState(false);
+
+  useEffect(() => {
+    if (fetchedRef.current) {
+      return;
+    }
+
+    fetchedRef.current = true;
+    void fetchNotices();
+  }, [fetchNotices]);
+
+  useEffect(() => {
+    if (allowedNoticeTypes && allowedNoticeTypes.length > 0) {
+      setShowNotificationNotice(false);
+      return;
+    }
+
+    setShowNotificationNotice(
+      PushNotificationService.shouldShowNotificationNotice(),
+    );
+  }, [allowedNoticeTypes]);
+
+  const currentNotice = useMemo(() => {
+    if (!allowedNoticeTypes || allowedNoticeTypes.length === 0) {
+      return notices[0];
+    }
+
+    return notices.find((notice) => allowedNoticeTypes.includes(notice.type));
+  }, [allowedNoticeTypes, notices]);
+
+  if (!currentNotice) {
+    if (showNotificationNotice) {
+      return (
+        <NotificationNotice
+          onDismiss={() => setShowNotificationNotice(false)}
+          onEnabled={() => setShowNotificationNotice(false)}
+        />
+      );
+    }
+
+    return null;
+  }
+
+  if (showNotificationNotice) {
+    return (
+      <NotificationNotice
+        onDismiss={() => setShowNotificationNotice(false)}
+        onEnabled={() => setShowNotificationNotice(false)}
+      />
+    );
+  }
+
+  return <>{renderNotice(currentNotice)}</>;
+};
+
+export default NoticeBoard;

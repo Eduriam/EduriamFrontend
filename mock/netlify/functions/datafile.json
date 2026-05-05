@@ -1,0 +1,3609 @@
+{
+  "uuid": "876a6f0a-9a8b-48cf-8c2f-6be6afa77346",
+  "lastMigration": 33,
+  "name": "Eduriam API",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "127.0.0.1",
+  "routes": [
+    {
+      "uuid": "e2748d73-e8ca-494a-ad47-390158fc04fa",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/study-sessions",
+      "responses": [
+        {
+          "uuid": "4ad5ab6f-0ab8-4c6d-86a5-17f31727d496",
+          "body": "{\n  \"id\": \"lesson-code-exercise-session\",\n  \"studyBlocks\": [\n    {\n      \"id\": 1,\n      \"type\": 0,\n      \"mode\": 0,\n      \"content\": {\n        \"answerExplanation\": {\n          \"text\": \"Use commas between selected columns and include FROM with the target table name.\"\n        },\n        \"components\": [\n          {\n            \"id\": \"code-editor-1\",\n            \"type\": \"CODE_EXERCISE\",\n            \"assignmentTitle\": \"Write a SQL query\",\n            \"assignmentDescription\": \"Select the id and name columns from the users table.\",\n            \"tabs\": [\n              {\n                \"id\": \"query-editor\",\n                \"label\": \"Editor\",\n                \"type\": \"fillInCode\",\n                \"defaultValue\": \"\",\n                \"correctAnswer\": \"SELECT id, name FROM users;\",\n                \"language\": \"sql\"\n              },\n              {\n                \"id\": \"query-result\",\n                \"label\": \"Result\",\n                \"type\": \"table\",\n                \"rows\": [\n                  [\n                    \"id\",\n                    \"name\"\n                  ],\n                  [\n                    \"1\",\n                    \"Alice\"\n                  ],\n                  [\n                    \"2\",\n                    \"Bob\"\n                  ]\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"atomId\": 1000\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Lesson study session (code exercise)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "lessonId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_STUDY_SESSON_VARIANT",
+              "value": "code-exercise",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "69c4ac7e-ec8e-4b8d-bde4-c50cec431bdd",
+          "body": "{\n  \"id\": \"lesson-study-session\",\n  \"studyBlocks\": [\n    {\n      \"id\": 1,\n      \"type\": 1,\n      \"mode\": 0,\n      \"content\": {\n        \"scenes\": [\n          {\n            \"id\": \"scene-1\",\n            \"duration\": 5000,\n            \"audio\": {\n              \"url\": \"https://mocks.eduriam.com/first-paragraph.mp3\",\n              \"captions\": [\n                {\n                  \"text\": \" This\",\n                  \"startMs\": 0,\n                  \"endMs\": 280,\n                  \"timestampMs\": 140,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" is\",\n                  \"startMs\": 280,\n                  \"endMs\": 450,\n                  \"timestampMs\": 365,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" the\",\n                  \"startMs\": 450,\n                  \"endMs\": 650,\n                  \"timestampMs\": 550,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" explanation\",\n                  \"startMs\": 650,\n                  \"endMs\": 1200,\n                  \"timestampMs\": 925,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" block.\",\n                  \"startMs\": 1200,\n                  \"endMs\": 1700,\n                  \"timestampMs\": 1450,\n                  \"confidence\": null\n                }\n              ]\n            },\n            \"slides\": [\n              {\n                \"id\": \"slide-1\",\n                \"type\": \"RAW\",\n                \"components\": [\n                  {\n                    \"id\": \"ph1\",\n                    \"type\": \"TEXT\",\n                    \"startTime\": 0,\n                    \"text\": \"Explanation\",\n                    \"column\": \"first\",\n                    \"align\": \"center\"\n                  },\n                  {\n                    \"id\": \"ps1\",\n                    \"type\": \"TEXT\",\n                    \"startTime\": 800,\n                    \"text\": \"Key concepts in this lesson\",\n                    \"column\": \"first\",\n                    \"align\": \"center\"\n                  }\n                ],\n                \"backgroundComponents\": [\n                  {\n                    \"id\": \"bg1\",\n                    \"type\": \"BACKGROUND_COLOR\",\n                    \"startTime\": 0,\n                    \"color\": \"#0ea5e9\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"id\": \"scene-2\",\n            \"duration\": 8000,\n            \"audio\": {\n              \"url\": \"https://mocks.eduriam.com/second-paragraph.mp3\",\n              \"captions\": [\n                {\n                  \"text\": \" Here\",\n                  \"startMs\": 0,\n                  \"endMs\": 280,\n                  \"timestampMs\": 140,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" are\",\n                  \"startMs\": 280,\n                  \"endMs\": 480,\n                  \"timestampMs\": 380,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" more\",\n                  \"startMs\": 480,\n                  \"endMs\": 760,\n                  \"timestampMs\": 620,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" details\",\n                  \"startMs\": 760,\n                  \"endMs\": 1180,\n                  \"timestampMs\": 970,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" in\",\n                  \"startMs\": 1180,\n                  \"endMs\": 1340,\n                  \"timestampMs\": 1260,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" scene\",\n                  \"startMs\": 1340,\n                  \"endMs\": 1680,\n                  \"timestampMs\": 1510,\n                  \"confidence\": null\n                },\n                {\n                  \"text\": \" two.\",\n                  \"startMs\": 1680,\n                  \"endMs\": 2150,\n                  \"timestampMs\": 1915,\n                  \"confidence\": null\n                }\n              ]\n            },\n            \"slides\": [\n              {\n                \"id\": \"slide-2\",\n                \"type\": \"RAW\",\n                \"components\": [\n                  {\n                    \"id\": \"h1\",\n                    \"type\": \"TEXT\",\n                    \"startTime\": 0,\n                    \"text\": \"Scene 2\",\n                    \"column\": \"first\",\n                    \"align\": \"center\"\n                  }\n                ],\n                \"backgroundComponents\": [\n                  {\n                    \"id\": \"bg2\",\n                    \"type\": \"BACKGROUND_COLOR\",\n                    \"startTime\": 0,\n                    \"color\": \"#e5e5e5\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"atomId\": 1000\n    },\n    {\n      \"id\": 2,\n      \"type\": 0,\n      \"mode\": 0,\n      \"content\": {\n        \"answerExplanation\": {\n          \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n        },\n        \"components\": [\n          {\n            \"id\": \"mc-asterisk\",\n            \"type\": \"MULTIPLE_CHOICE\",\n            \"question\": \"In SELECT *, what does the asterisk mean?\",\n            \"options\": [\n              {\n                \"id\": \"all-cols\",\n                \"text\": \"All columns from the table\"\n              },\n              {\n                \"id\": \"multiply\",\n                \"text\": \"Multiplication\"\n              },\n              {\n                \"id\": \"first-col\",\n                \"text\": \"Only the first column\"\n              }\n            ],\n            \"correctOptionId\": \"all-cols\"\n          }\n        ]\n      },\n      \"atomId\": 1001\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Lesson study session",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "lessonId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c1139fb2-a125-4fe0-b28b-b10cf8504d11",
+          "body": "{\n  \"id\": \"course-review-session\",\n  \"studyBlocks\": [\n    {\n      \"id\": 1,\n      \"type\": 0,\n      \"mode\": 1,\n      \"content\": {\n        \"answerExplanation\": {\n          \"text\": \"The asterisk in SELECT * means all columns are selected from the table.\"\n        },\n        \"components\": [\n          {\n            \"id\": \"mc-asterisk\",\n            \"type\": \"MULTIPLE_CHOICE\",\n            \"question\": \"In SELECT *, what does the asterisk mean?\",\n            \"options\": [\n              {\n                \"id\": \"all-cols\",\n                \"text\": \"All columns from the table\"\n              },\n              {\n                \"id\": \"multiply\",\n                \"text\": \"Multiplication\"\n              },\n              {\n                \"id\": \"first-col\",\n                \"text\": \"Only the first column\"\n              }\n            ],\n            \"correctOptionId\": \"all-cols\"\n          }\n        ]\n      },\n      \"atomId\": 1000\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Course review study session",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "courseId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "60e3d0be-74eb-4b88-af9c-f9e29fc76bf3",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/study-sessions/:sessionId/results",
+      "responses": [
+        {
+          "uuid": "7718a6f4-4f4f-4dff-a4f6-f2a44d1c8a63",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Submit study session result",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "sessionId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "b367f1bb-e033-4935-be62-120bb35a541e",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "reports",
+      "responses": [
+        {
+          "uuid": "8ef8ee63-c8d6-4f12-9225-bc5ae34e8f2f",
+          "body": "{\n  \"ok\": true\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "882e6794-d5ac-471d-9e46-4e6c095f7ab9",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:userId/followers",
+      "responses": [
+        {
+          "uuid": "ca35fee0-8cc5-4494-9b61-083b07186ce9",
+          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":{{faker 'number.int' min=1 max=9999}},\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"avatar\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n   {{/repeat}}\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:userId/following",
+      "responses": [
+        {
+          "uuid": "f264c388-1395-46a9-828c-1d6a4f5c02c2",
+          "body": "[\r\n   {{#repeat 5}}\r\n   {\r\n      \"id\":{{faker 'number.int' min=1 max=9999}},\r\n      \"name\":\"{{faker 'person.fullName'}}\",\r\n      \"isFollowed\":{{faker 'datatype.boolean'}},\r\n      \"username\":\"{{faker 'internet.userName'}}\",\r\n      \"avatar\":{\r\n         \"skinColor\":\"light\",\r\n         \"eyes\":\"eyes_1\",\r\n         \"eyeColor\":\"darkBrown\",\r\n         \"expression\":\"expression_1\",\r\n         \"hair\":\"hair_1\",\r\n         \"hairColor\":\"darkBrown\",\r\n         \"clothing\":\"shirt_1\",\r\n         \"backgroundColor\":\"lightGray\"\r\n      }\r\n   }\r\n   {{/repeat}}\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "df7c052b-be1d-4b1f-9cdb-87653d9e0fb3",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup",
+      "responses": [
+        {
+          "uuid": "a9a1ef5c-5323-45e7-ba77-f6da53716db0",
+          "body": "{\n  \"code\":\"USERNAME_TAKEN\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: USERNAME_TAKEN (username: taken-username)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "taken-username",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f8f84592-519b-490c-8e69-228093cc8905",
+          "body": "{\r\n   \"code\":\"EMAIL_ADDRESS_TAKEN\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_ADDRESS_TAKEN (email: taken@example.com)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "taken@example.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3b4e5587-d078-43cd-a7cc-c9356bd85115",
+          "body": "{\r\n   \"code\":\"PASSWORD_TOO_SHORT\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: PASSWORD_TOO_SHORT",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "^.{1,7}$",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "54bca47b-e374-45e0-96b2-1443748d6295",
+          "body": "{\r\n   \"code\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: INVALID_EMAIL_ADDRESS",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "\\S+@\\S+\\.\\S+",
+              "invert": true,
+              "operator": "regex"
+            },
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "backend-invalid@example.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "99b17acf-23f8-4c01-9a5e-01f3571e9cf2",
+          "body": "{\r\n   \"code\":\"INVALID_USERNAME\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: INVALID_USERNAME",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "^[A-Za-z0-9_]{3,20}$",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6eb7c6a7-be2a-48e4-a990-1b6ad4c826f1",
+          "body": "{\n  \"accessToken\": \"mock-signup-free-access-token\",\n  \"refreshToken\": \"mock-signup-free-refresh-token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response (free user)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "01ca20f7-427a-4025-ac3d-5d435a2ffbcb",
+          "body": "{\n  \"accessToken\": \"mock-signup-premium-access-token\",\n  \"refreshToken\": \"mock-signup-premium-refresh-token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response (premium user)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "name",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f34d1a4a-5b7f-4b0f-8f74-5ad526f9d983",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup-confirm",
+      "responses": [
+        {
+          "uuid": "1b1e5dbf-95cc-4496-8f64-e719e68a4cdc",
+          "body": "{\n  \"code\": \"EMAIL_CONFIRMATION_TOKEN_EXPIRED\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_CONFIRMATION_TOKEN_EXPIRED (confirmationToken: expired-token)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "confirmationToken",
+              "value": "expired-token",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "8b6627de-2c2e-4d70-bcc4-cc9f2e86c9e8",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "confirmationToken",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d7e31dc6-0c8f-44df-b891-cd7d495ac01b",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup-resend-confirmation",
+      "responses": [
+        {
+          "uuid": "b8c1fad3-a0b7-4d00-a9b4-0738d5caf95d",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signin",
+      "responses": [
+        {
+          "uuid": "8576d1db-75a0-4122-9f62-514d23abf0eb",
+          "body": "{\n  \"code\":\"WRONG_EMAIL_OR_PASSWORD\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Example Response - Wrong Password (password: wrong-password)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "wrong-password",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "26f4b7b7-1da9-4db0-8dd3-18ef1ffbf29e",
+          "body": "{\n  \"code\":\"WRONG_EMAIL\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: WRONG_EMAIL (email: wrong-email@example.com)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "wrong-email@example.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9b2f70c0-0dbf-4a52-b450-0c06d2f3674d",
+          "body": "{\n  \"code\":\"EMAIL_NOT_CONFIRMED\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_NOT_CONFIRMED (email: unconfirmed@example.com)",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "unconfirmed@example.com",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a8df4829-60bd-4145-bbb6-2329d871942a",
+          "body": "{\n  \"accessToken\": \"mock-signin-premium-access-token\",\n  \"refreshToken\": \"mock-signin-premium-refresh-token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response (premium user)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2cceea97-6b17-42aa-be0d-3abc4ce6eff5",
+          "body": "{\n  \"accessToken\": \"mock-signin-free-access-token\",\n  \"refreshToken\": \"mock-signin-free-refresh-token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response (free user)",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1a2daa85-e896-42de-b946-d6678ffafdcf",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "auth/external/google/login",
+      "responses": [
+        {
+          "uuid": "75c1971c-618a-4c23-926a-34bdb047ca5f",
+          "body": "{\"authorizationUrl\":\"#mock-google-auth\"}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google authorize URL",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6b697b69-0b10-4f0e-b5ba-483d749e4fde",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "auth/external/google/callback",
+      "responses": [
+        {
+          "uuid": "d29b2f65-d571-413a-8dc2-2cbdd17df518",
+          "body": "{\"ok\":true}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google callback mock",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/external/google/token",
+      "responses": [
+        {
+          "uuid": "b97503ff-a54c-4fd1-9ce8-93f49300e827",
+          "body": "{\"error\":\"GOOGLE_ACCOUNT_NOT_FOUND\"}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Google signin unlinked account",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signin-code",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_GOOGLE_AUTH_VARIANT",
+              "value": "signin-account-not-found",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0117a43a-cd92-4688-9dab-11b02a84c914",
+          "body": "{\"error\":\"GOOGLE_ACCOUNT_EXISTS\"}",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "Google signup existing account",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signup-code",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_GOOGLE_AUTH_VARIANT",
+              "value": "signup-account-exists",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "1be65fc7-dc18-4271-8ad1-feea6bb83df2",
+          "body": "{\"accessToken\":\"mock-google-signin-id-token\",\"refreshToken\":\"mock-google-signin-refresh-token\"}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google signin success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signin-code",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "305d2706-cc91-4dc4-86a4-1bd30798a010",
+          "body": "{\"accessToken\":\"mock-google-signup-id-token\",\"refreshToken\":\"mock-google-signup-refresh-token\"}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Google signup success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "code",
+              "value": "google-signup-code",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b87e0653-3fd5-4697-9f12-9d2907345ef9",
+          "body": "{\"error\":\"EXTERNAL_AUTH_ERROR\"}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid Google authorization code",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/subscriptions/current",
+      "responses": [
+        {
+          "uuid": "96c8cdd7-cc66-4023-8594-a05b3d177598",
+          "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": 3\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/subscriptions/current/cancellation",
+      "responses": [
+        {
+          "uuid": "0789e6a4-bcea-4097-aa37-e727e4fe69ce",
+          "body": "{\n  \"currentPeriodEnd\": \"{{faker 'date.future'}}\",\n  \"status\": 6\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c4adc43-658a-4aef-aeb0-a56c6228c72e",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/feed",
+      "responses": [
+        {
+          "uuid": "15b09ed5-08cf-4c8e-b9a3-c3bdf76f2494",
+          "body": "{\"items\":[{\"id\":101,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]},{\"id\":102,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-07T08:00:00.000Z\",\"reactions\":[]},{\"id\":103,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-06T08:00:00.000Z\",\"reactions\":[]},{\"id\":104,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"productName\":\"React Developer\",\"publishedAt\":\"2026-03-05T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":4,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Default mixed feed",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c8419c68-6bd6-4f42-a313-cc35696fdb9d",
+          "body": "{\"items\":[{\"id\":201,\"author\":\"Pepa Okurka\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":0,\"streak\":120,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak milestone feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "streak-milestone",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f2fcb4f8-4f63-4f5d-bba4-7e6be1c83971",
+          "body": "{\"items\":[{\"id\":202,\"author\":\"Anna Novakova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":1,\"achievementId\":1001,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Achievement earned feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "achievement-earned",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e61ecd30-65bf-482f-b4fd-a0ea6255368a",
+          "body": "{\"items\":[{\"id\":203,\"author\":\"Karel Vacek\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":2,\"league\":2,\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: League promoted feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "league-promoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "49cb2bb9-78ec-4d45-8f62-6e2865f91f42",
+          "body": "{\"items\":[{\"id\":204,\"author\":\"Eva Svobodova\",\"avatar\":{\"skinColor\":\"light\",\"eyes\":\"eyes_1\",\"eyeColor\":\"brown\",\"expression\":\"expression_1\",\"hair\":\"hair_1\",\"hairColor\":\"mediumBrown\",\"accessories\":\"none\",\"glassesColor\":\"black\",\"beard\":\"none\",\"beardColor\":\"darkBrown\",\"headwear\":\"none\",\"clothing\":\"shirt_1\",\"backgroundColor\":\"lightGray\"},\"message\":3,\"productName\":\"React Developer\",\"publishedAt\":\"2026-03-08T08:00:00.000Z\",\"reactions\":[]}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Course completed feed message",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "course-completed",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d20fcefe-6c62-4cc9-afd1-f7776c7cb229",
+          "body": "{\"items\":[],\"totalItems\":0,\"page\":1,\"pageSize\":20,\"totalPages\":0,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Empty feed",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_FEED_VARIANT",
+              "value": "empty",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "a6a360c5-6def-4ddb-a729-b71cb716a320",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/me/feed/:feedItemId/reactions/:reactionId",
+      "responses": [
+        {
+          "uuid": "b6c02e46-7eb9-47b4-b165-15d1c6fe538a",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dc80a8f1-7637-4272-b55b-1a5f6437d6c3",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/feed/mark-seen",
+      "responses": [
+        {
+          "uuid": "41d8ac0f-f8e5-4f58-a0f8-87ff2a4a7f3f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dc008a74-caa7-4ca0-b77e-e25fbae90187",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/reset-password",
+      "responses": [
+        {
+          "uuid": "a62dd0fe-72e2-47bc-9015-6c73b23c9d3e",
+          "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: INVALID_EMAIL_ADDRESS",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "\\S+@\\S+\\.\\S+",
+              "invert": true,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "490de962-6d54-4f7a-8c13-85dde7309cba",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "ae22ab21-d796-41ae-928a-8fc3ca27ba5c",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/reset-password-confirm",
+      "responses": [
+        {
+          "uuid": "d5b52c05-02a2-4159-a886-0f8a4945d23b",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "resetToken",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e3101882-78cd-4ced-b5c4-f5c8104af205",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "products",
+      "responses": [
+        {
+          "uuid": "e73768e1-bd62-4593-8e2b-c95d99a19a86",
+          "body": "{\n  \"items\": [\n  {\n    \"id\": \"1001\",\n    \"language\": \"en\",\n    \"name\": \"HTML\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n    \"userProgress\": 75,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2002,\n    \"language\": \"en\",\n    \"name\": \"Angular Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":2,\"prerequisites\":[],\"memberProducts\":[],\n    \"userProgress\": 30,\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2003,\n    \"language\": \"en\",\n    \"name\": \"Vue Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":2,\"prerequisites\":[],\"memberProducts\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 2004,\n    \"language\": \"en\",\n    \"name\": \"Frontend Developer\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":2,\"prerequisites\":[],\"memberProducts\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1003,\n    \"language\": \"en\",\n    \"name\": \"CSS\",\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"userProgress\": 100,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 1004,\n    \"language\": \"en\",\n    \"name\": \"Git\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1005,\n    \"language\": \"en\",\n    \"name\": \"Docker\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1006,\n    \"language\": \"en\",\n    \"name\": \"APIs\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1007,\n    \"language\": \"en\",\n    \"name\": \"SQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1008,\n    \"language\": \"en\",\n    \"name\": \"NoSQL\",\n    \"category\": \"backend-development\",\n    \"logoId\": \"html\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1009,\n    \"language\": \"en\",\n    \"name\": \"TypeScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"enrolled\": false\n  },\n  {\n    \"id\": 1002,\n    \"language\": \"en\",\n    \"name\": \"JavaScript\",\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"type\":1,\"prerequisites\":[],\"chapters\":[],\n    \"userProgress\": 15,\n    \"enrolled\": true\n  },\n  {\n    \"id\": 2001,\n    \"language\": \"en\",\n    \"name\": \"React Developer Path\",\n    \"category\": \"web-development\",\n    \"logoId\": \"javascript\",\n    \"type\":2,\"prerequisites\":[],\"memberProducts\":[],\n    \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n    \"userProgress\": 0,\n    \"enrolled\": false\n  }\n],\n  \"totalItems\": 13,\n  \"page\": 1,\n  \"pageSize\": 13,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response: language=cs",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "language",
+              "value": "cs",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "89be40cd-477b-4222-9df6-3a301147fa7d",
+          "body": "{\n  \"items\": [\r\n   {\r\n      \"id\":\"{{faker 'string.uuid'}}\",\r\n      \"language\":\"en\",\r\n      \"name\":\"English\",\r\n      \"category\":\"languages\",\r\n      \"logoId\":\"html\",\r\n      \"type\":1,\"prerequisites\":[],\"chapters\":[]\r\n   }\r\n],\n  \"totalItems\": 1,\n  \"page\": 1,\n  \"pageSize\": 1,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response: language=en-US",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "language",
+              "value": "en-US",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4988e6de-2353-438d-b767-6bfa863fffa5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "products/:productId",
+      "responses": [
+        {
+          "uuid": "6ff3634d-7f2b-49f1-9920-386ff719b85d",
+          "body": "{\n  \"id\": 2001,\n  \"language\": \"en\",\n  \"name\": \"React Developer Path\",\n  \"category\": \"web-development\",\n  \"logoId\": \"javascript\",\n  \"type\": 2,\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Master React and build modern web applications.\",\n  \"description\": \"In this learning path you will progress through courses that build your React skills from basics to advanced topics. Complete each course to earn your path certificate.\",\n  \"prerequisites\": [\n    {\n      \"id\": \"1001\",\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"memberProducts\": [\n    {\n      \"id\": \"1001\",\n      \"name\": \"HTML\",\n      \"logoId\": \"html\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 30\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"logoId\": \"javascript\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Learning path",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "productId",
+              "value": "2001",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "998c40c5-f318-4b34-9c6a-027a1c82ceba",
+          "body": "{\n  \"id\": \"1001\",\n  \"language\": \"en\",\n  \"name\": \"JavaScript\",\n  \"category\": \"languages\",\n  \"logoId\": \"html\",\n  \"type\": 1,\n  \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n  \"enrolled\": {{getGlobalVar 'MOCKOON_COURSE_ENROLLED' null 'false'}},\n  \"upcomingLessonId\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}4001{{else}}null{{/if}},\n  \"userCertificate\": {{#if (eq (getGlobalVar 'MOCKOON_COURSE_CERTIFICATE' null 'false') 'true')}}3001{{else}}null{{/if}},\n  \"shortDescription\": \"Learn the fundamentals of JavaScript and build interactive websites.\",\n  \"description\": \"In this course you will learn the basics of JavaScript, including variables, functions, arrays, and objects. You will build interactive web pages and gain a solid foundation for modern front-end development.\",\n  \"prerequisites\": [\n    {\n      \"id\": \"1001\",\n      \"productName\": \"HTML\",\n      \"completedAt\": \"2026-01-05T10:00:00.000Z\"\n    },\n    {\n      \"id\": 1003,\n      \"productName\": \"CSS\",\n      \"completedAt\": null\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": 5001,\n      \"name\": \"Introduction\",\n      \"userProgress\": 100\n    },\n    {\n      \"id\": 5002,\n      \"name\": \"Intermediate topics\",\n      \"userProgress\": 0\n    },\n    {\n      \"id\": 5003,\n      \"name\": \"Advanced functions\",\n      \"userProgress\": 0\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Course",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/products/:productId",
+      "responses": [
+        {
+          "uuid": "ec1e84f7-af09-4521-b1b9-e2130cf044e4",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "17bb1805-eed8-4205-9b12-b5f5e977e259",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "certificates/:certificateId",
+      "responses": [
+        {
+          "uuid": "414d5d41-2ee5-47da-af76-faab526daea5",
+          "body": "{\n  \"id\": {{urlParam 'certificateId'}},\n  \"userName\": \"Pepa Okurka\",\n  \"productName\": \"JavaScript Basics\",\n  \"createdAt\": \"July 23, 2026\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/products",
+      "responses": [
+        {
+          "uuid": "303e8907-52b3-48ac-99fa-2a5b5b117bb0",
+          "body": "[\n  {\n    \"id\": 1001,\n    \"name\": \"HTML\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 75,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"web-development\",\n    \"logoId\": \"html\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4001,\n    \"chapters\": [],\n    \"studyMode\": 0\n  },\n  {\n    \"id\": 1002,\n    \"name\": \"JavaScript\",\n    \"thumbnailUrl\": null,\n    \"userProgress\": 15,\n    \"enrolled\": true,\n    \"description\": null,\n    \"category\": \"languages\",\n    \"logoId\": \"javascript\",\n    \"shortDescription\": null,\n    \"premium\": false,\n    \"prerequisites\": [],\n    \"upcomingLessonId\": 4002,\n    \"chapters\": [],\n    \"studyMode\": 2\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6302d919-26dc-4058-900c-1f1ae5fb5498",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "courses/:courseId/chapters/:chapterId",
+      "responses": [
+        {
+          "uuid": "9a46cee9-221a-4467-9466-98678c0c36ba",
+          "body": "{\n  \"id\": 5001,\n  \"name\": \"Basics of JavaScript\",\n  \"sections\": [\n    {\n      \"id\": 5101,\n      \"name\": \"Advanced functions\",\n      \"lessons\": [\n        {\n          \"id\": 4001,\n          \"name\": \"Basic variables\",\n          \"completed\": true,\n          \"upcoming\": false\n        },\n        {\n          \"id\": 4002,\n          \"name\": \"Let variable\",\n          \"completed\": false,\n          \"upcoming\": true\n        },\n        {\n          \"id\": 4003,\n          \"name\": \"Const variable\",\n          \"completed\": false,\n          \"upcoming\": false\n        }\n      ]\n    },\n    {\n      \"id\": 5102,\n      \"name\": \"TypeScript Types\",\n      \"lessons\": [\n        {\n          \"id\": 4004,\n          \"name\": \"Record\",\n          \"completed\": false,\n          \"upcoming\": false\n        },\n        {\n          \"id\": 4005,\n          \"name\": \"Basics of JavaScript\",\n          \"completed\": false,\n          \"upcoming\": false\n        },\n        {\n          \"id\": 4006,\n          \"name\": \"Advanced JavaScript\",\n          \"completed\": false,\n          \"upcoming\": false\n        }\n      ]\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Course chapter sections and lessons",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "45af24d1-9f4f-4454-bb1f-070b31b62d05",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/:userId([0-9]+)",
+      "responses": [
+        {
+          "uuid": "4c1c7ff7-d160-441a-b9de-23aa7a99d73f",
+          "body": "{\n  \"id\": {{urlParam 'userId'}},\n  \"username\":\"{{faker 'internet.userName'}}\",\n  \"name\":\"{{faker 'person.fullName'}}\",\n  \"followers\": {{faker 'number.int' min=0 max=99}},\n  \"following\": {{faker 'number.int' min=0 max=99}},\n  \"avatar\":{\n    \"skinColor\":\"light\",\n    \"eyes\":\"eyes_1\",\n    \"eyeColor\":\"darkBrown\",\n    \"expression\":\"expression_1\",\n    \"hair\":\"hair_1\",\n    \"hairColor\":\"darkBrown\",\n    \"accessories\":\"none\",\n    \"glassesColor\":\"black\",\n    \"beard\":\"none\",\n    \"beardColor\":\"darkBrown\",\n    \"headwear\":\"none\",\n    \"clothing\":\"shirt_1\",\n    \"backgroundColor\":\"lightGray\"\n  },\n  \"isFollowed\":{{faker 'datatype.boolean'}},\n  \"streak\": {{faker 'number.int' min=0 max=999}},\n  \"league\": {{faker 'number.int' min=0 max=9}},\n  \"achievements\":[\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1001,\n      \"type\": 0,\n      \"achievementMaxLevel\": 10,\n      \"currentLevel\": {{faker 'number.int' min=1 max=10}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 100,\n      \"nextLevelGoal\": 120\n    },\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1002,\n      \"type\": 3,\n      \"achievementMaxLevel\": 30,\n      \"currentLevel\": {{faker 'number.int' min=1 max=30}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 30,\n      \"nextLevelGoal\": 31\n    },\n    {\n      \"userAchievementId\": {{faker 'number.int' min=1 max=9999}},\n      \"achievementId\": 1003,\n      \"type\": 6,\n      \"achievementMaxLevel\": 10,\n      \"currentLevel\": {{faker 'number.int' min=1 max=10}},\n      \"achievedAt\":\"{{faker 'date.recent'}}\",\n      \"goal\": 10,\n      \"nextLevelGoal\": null\n    }\n  ],\n  \"courses\": [\n    {\n      \"id\": 1001,\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"enrolled\": true,\n      \"description\": null,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"upcomingLessonId\": 4001,\n      \"chapters\": []\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": \"https://picsum.photos/200\",\n      \"userProgress\": {{faker 'number.int' min=0 max=100}},\n      \"enrolled\": true,\n      \"description\": null,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\": [],\n      \"upcomingLessonId\": 4002,\n      \"chapters\": []\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "84d83306-3778-463b-9998-c1cff76843a0",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/settings",
+      "responses": [
+        {
+          "uuid": "d4d718f9-31dd-400b-a7bd-1881d9a0337f",
+          "body": "{\n  \"name\": \"Test User\",\n  \"username\": \"test-user\",\n  \"dailyGoal\": 15,\n  \"themeMode\": 2,\n  \"notificationPreferences\": {\n    \"streakFreezeUsed\": false,\n    \"leaderboardStatus\": false,\n    \"newFollower\": true,\n    \"smartStudyReminderEnabled\": true\n  },\n  \"productPreferences\": {\n    \"codingExperience\": 1,\n    \"areaOfInterest\": 2,\n    \"userGoal\": 0\n  },\n  \"avatar\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"accessories\": \"none\",\n    \"glassesColor\": \"black\",\n    \"beard\": \"none\",\n    \"beardColor\": \"darkBrown\",\n    \"headwear\": \"none\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "dbff8a53-d881-4a09-9a6f-b19651efed72",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "users/me/settings",
+      "responses": [
+        {
+          "uuid": "9ed09469-e340-4e28-a8f8-6d5e4faddcb2",
+          "body": "{\n  \"name\": \"{{#if (body 'name')}}{{body 'name'}}{{else}}Test User{{/if}}\",\n  \"username\": \"{{#if (body 'username')}}{{body 'username'}}{{else}}test-user{{/if}}\",\n  \"dailyGoal\": 15,\n  \"themeMode\": {{#if (body 'theme')}}{{body 'theme'}}{{else}}2{{/if}},\n  \"notificationPreferences\": {\n    \"streakFreezeUsed\": false,\n    \"leaderboardStatus\": false,\n    \"newFollower\": true,\n    \"smartStudyReminderEnabled\": {{#if (body 'notificationPreferences')}}{{body 'notificationPreferences.smartStudyReminderEnabled'}}{{else}}true{{/if}}\n  },\n  \"productPreferences\": {\n    \"codingExperience\": 1,\n    \"areaOfInterest\": 2,\n    \"userGoal\": 0\n  },\n  \"avatar\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"accessories\": \"none\",\n    \"glassesColor\": \"black\",\n    \"beard\": \"none\",\n    \"beardColor\": \"darkBrown\",\n    \"headwear\": \"none\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a78d7d92-0ee9-4d75-8416-1470c96fe3be",
+          "body": "{\r\n   \"error\":\"USERNAME_TAKEN\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: USERNAME_TAKEN",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "__never_match__",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "8f62dfbc-f9c7-46b0-b51c-ac9eddcb8b3e",
+          "body": "{\r\n   \"code\":\"EMAIL_ADDRESS_TAKEN\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: EMAIL_ADDRESS_TAKEN",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "__never_match__",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ff91545d-0044-4524-8577-001182ec91e9",
+          "body": "{\r\n   \"error\":\"INVALID_EMAIL_ADDRESS\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Error: INVALID_EMAIL_ADDRESS",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "__never_match__",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "45f681ef-9a85-492f-954a-2894f7a97a50",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/devices",
+      "responses": [
+        {
+          "uuid": "73aa2e4c-6a3b-4ce1-a3a8-74e60a9b0d46",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "95802a78-05a2-434c-a533-a46d1d93b121",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/products/recommended",
+      "responses": [
+        {
+          "uuid": "0f4ad0ec-2611-4617-8b07-8ea2276b8e28",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": \"1001\",\n      \"name\": \"HTML\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_COURSE' null 'false'}},\n      \"prerequisites\":[],\"type\":1,\"chapters\":[]\n    },\n    {\n      \"id\": 2005,\n      \"name\": \"React Developer\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": {{getGlobalVar 'MOCKOON_PREMIUM_LEARNING_PATH' null 'false'}},\n      \"prerequisites\":[],\"type\":2,\"memberProducts\":[]\n    },\n    {\n      \"id\": 1002,\n      \"name\": \"JavaScript\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"languages\",\n      \"logoId\": \"javascript\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":1,\"chapters\":[]\n    },\n    {\n      \"id\": 1003,\n      \"name\": \"CSS\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":1,\"chapters\":[]\n    },\n    {\n      \"id\": 2004,\n      \"name\": \"Frontend Developer\",\n      \"thumbnailUrl\": null,\n      \"enrolled\": false,\n      \"category\": \"web-development\",\n      \"logoId\": \"html\",\n      \"shortDescription\": null,\n      \"premium\": false,\n      \"prerequisites\":[],\"type\":2,\"memberProducts\":[]\n    }\n  ],\n  \"totalItems\": 5,\n  \"page\": 1,\n  \"pageSize\": 5,\n  \"totalPages\": 1,\n  \"hasNext\": false,\n  \"hasPrevious\": false\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "21a68375-f61f-40d2-8f7c-776b699c9087",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/notices",
+      "responses": [
+        {
+          "uuid": "7103a66d-babd-4ec6-8c62-70af3dd674a4",
+          "body": "{\"items\":[{\"id\":301,\"type\":3,\"league\":3}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: League promoted (home)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-league-promoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f6482fc6-d2d0-49b4-b31d-af78ac56476f",
+          "body": "{\"items\":[{\"id\":401,\"type\":4,\"league\":1}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: League demoted",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-league-demoted",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a707a059-1c54-4653-ba84-5c3689d6ab26",
+          "body": "{\"items\":[{\"id\":1,\"type\":0,\"streakDays\":100}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak milestone",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-milestone",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "cf642e64-2794-4892-bea2-f8fa69fb271e",
+          "body": "{\"items\":[{\"id\":101,\"type\":1,\"previousStreakDays\":12}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak lost",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-lost",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "87ecd2d0-cd46-4134-9a56-13f0b461ddc3",
+          "body": "{\"items\":[{\"id\":201,\"type\":2,\"streakDays\":9,\"freezesLeft\":1}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Streak saved",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-streak-saved",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e95b52b3-d5f2-46e4-9d43-76bd634895f4",
+          "body": "{\"items\":[{\"id\":501,\"type\":5,\"achievementId\":1001,\"title\":\"Streak Master\",\"description\":\"Udrzel(a) jste streak 100 dnu.\",\"badgeIconName\":\"achievement-1\"}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Achievement earned",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-achievement-earned",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "247c4ee6-3a5d-4366-bf1d-b59565b0570e",
+          "body": "{\"items\":[{\"id\":601,\"type\":6,\"userChestId\":1,\"lessonId\":5001,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Chest reward",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-chest-reward",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2bb8f232-24d4-4e5d-82f2-d4a6e48de0dd",
+          "body": "{\"items\":[{\"id\":702,\"type\":7}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Free trial",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-free-trial",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4eea4ab7-4ae6-4479-a4e5-f7f74ab4f0cf",
+          "body": "{\"items\":[{\"id\":801,\"type\":8,\"daysLeft\":3}],\"totalItems\":1,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Single: Free trial end",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "single-free-trial-end",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "24ea2c7d-1875-40f4-a941-ad9ed11c814c",
+          "body": "{\"items\":[{\"id\":2,\"type\":0,\"streakDays\":100},{\"id\":602,\"type\":6,\"userChestId\":2,\"lessonId\":5002,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250}],\"totalItems\":2,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Review mixed notices",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "review-mixed",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3d6e2992-2e9e-4f38-9ab6-f8dfc6471c5f",
+          "body": "{\"items\":[{\"id\":3,\"type\":0,\"streakDays\":100},{\"id\":102,\"type\":1,\"previousStreakDays\":14},{\"id\":202,\"type\":2,\"streakDays\":13,\"freezesLeft\":1},{\"id\":302,\"type\":3,\"league\":2},{\"id\":402,\"type\":4,\"league\":1},{\"id\":502,\"type\":5,\"achievementId\":1002,\"title\":\"Champion\",\"description\":\"Ziskal(a) jste novy uspech.\",\"badgeIconName\":\"achievement-2\"},{\"id\":603,\"type\":6,\"userChestId\":3,\"lessonId\":5003,\"chestId\":1,\"chestName\":\"Bronze Chest\",\"reward\":250},{\"id\":903,\"type\":9,\"productName\":\"React Developer\"}],\"totalItems\":8,\"page\":1,\"pageSize\":20,\"totalPages\":1,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "All notice types",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_NOTICE_VARIANT",
+              "value": "all-types",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f9005df1-874e-4a59-b3b4-4abeed5b5cbe",
+          "body": "{\"items\":[],\"totalItems\":0,\"page\":1,\"pageSize\":20,\"totalPages\":0,\"hasNext\":false,\"hasPrevious\":false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Empty notices",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1cda3def-72a9-4f11-b377-986b57b1dd98",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/me/notices/:noticeId",
+      "responses": [
+        {
+          "uuid": "ed2ffb84-794e-43a3-89f8-668977236356",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7746912a-27a7-4f97-84ce-994a863e5dc8",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/subscriptions",
+      "responses": [
+        {
+          "uuid": "2735657b-2799-4d31-93cb-52cbb146e777",
+          "body": "{\n  \"error\": \"MOCK_NOT_SUPPORTED\"\n}",
+          "latency": 0,
+          "statusCode": 501,
+          "label": "Subscription is not supported",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2885308c-493e-42c4-a61d-8d2eb0cd55bd",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users",
+      "responses": [
+        {
+          "uuid": "7e473f0c-7ef3-450a-b714-6b43deef94e4",
+          "body": "{\r\n   \"items\":[\r\n      {\r\n         \"id\":{{faker 'number.int' min=1 max=9999}},\r\n         \"name\":\"Pepa Okurka\",\r\n         \"isFollowed\":{{faker 'datatype.boolean'}},\r\n         \"username\":\"{{faker 'internet.userName' 'Pepa' 'Okurka'}}\",\r\n         \"avatar\":{\r\n            \"skinColor\":\"light\",\r\n            \"eyes\":\"eyes_1\",\r\n            \"eyeColor\":\"darkBrown\",\r\n            \"expression\":\"expression_1\",\r\n            \"hair\":\"hair_1\",\r\n            \"hairColor\":\"darkBrown\",\r\n            \"clothing\":\"shirt_1\",\r\n            \"backgroundColor\":\"lightGray\"\r\n         }\r\n      }\r\n   ],\r\n   \"totalItems\":1,\r\n   \"page\":1,\r\n   \"pageSize\":20,\r\n   \"totalPages\":1,\r\n   \"hasNext\":false,\r\n   \"hasPrevious\":false\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Example Response: searchName=\"Pepa Okurka\"",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "searchName",
+              "value": "[Pp](?:e(?:p(?:a(?: [Oo](k(?:u(?:rka)?)?)?)?)?)?)?",
+              "invert": false,
+              "operator": "regex"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7e5e630a-2292-42b6-95c1-8ddca7f4d3a8",
+          "body": "{\r\n   \"items\":[\r\n      {{#repeat 5}}\r\n      {\r\n         \"id\":{{faker 'number.int' min=1 max=9999}},\r\n         \"name\":\"{{faker 'person.fullName'}}\",\r\n         \"isFollowed\":{{faker 'datatype.boolean'}},\r\n         \"username\":\"{{faker 'internet.userName'}}\",\r\n         \"avatar\":{\r\n            \"skinColor\":\"light\",\r\n            \"eyes\":\"eyes_1\",\r\n            \"eyeColor\":\"darkBrown\",\r\n            \"expression\":\"expression_1\",\r\n            \"hair\":\"hair_1\",\r\n            \"hairColor\":\"darkBrown\",\r\n            \"clothing\":\"shirt_1\",\r\n            \"backgroundColor\":\"lightGray\"\r\n         }\r\n      }\r\n      {{/repeat}}\r\n   ],\r\n   \"totalItems\":5,\r\n   \"page\":1,\r\n   \"pageSize\":20,\r\n   \"totalPages\":1,\r\n   \"hasNext\":false,\r\n   \"hasPrevious\":false\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "806ea649-2309-46bc-9995-b59112e0564b",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/refresh-token",
+      "responses": [
+        {
+          "uuid": "4d9be633-4941-4552-8b6d-41584078675b",
+          "body": "{\n  \"accessToken\": \"mock-refresh-access-token\",\n  \"refreshToken\": \"mock-refresh-token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "refreshToken",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me",
+      "responses": [
+        {
+          "uuid": "f1f47b4f-4ea9-4b8a-9858-f8eb7cc19a2d",
+          "body": "{\n  \"id\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ID' null '1001'}},\n  \"username\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_USERNAME' null 'test.user'}}\",\n  \"name\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_NAME' null 'Test user'}}\",\n  \"email\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_EMAIL' null 'test.user@example.com'}}\",\n  \"profileImageUrl\": null,\n  \"streak\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK' null '0'}},\n  \"balance\": {{getGlobalVar 'MOCKOON_CURRENT_USER_BALANCE' null '1000'}},\n  \"lastSessionDate\": null,\n  \"role\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ROLE' null '0'}},\n  \"energy\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ENERGY' null '40'}},\n  \"streakFreezes\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK_FREEZES' null '0'}},\n  \"accountInitialized\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ACCOUNT_INITIALIZED' null 'true'}},\n  \"activeSubscription\": {{#if (eq (getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_ACTIVE' null 'false') 'true')}}{\n    \"periodStart\": \"2026-01-01T00:00:00.000Z\",\n    \"periodEnd\": \"2026-12-31T00:00:00.000Z\",\n    \"status\": {{getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_STATUS' null '3'}}\n  }{{else}}null{{/if}},\n  \"avatar\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"accessories\": \"none\",\n    \"glassesColor\": \"black\",\n    \"beard\": \"none\",\n    \"beardColor\": \"darkBrown\",\n    \"headwear\": \"none\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Current User Response",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d53d0f9c-9d03-4468-b8a8-ff8ba489518e",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/account-setup",
+      "responses": [
+        {
+          "uuid": "4dae2c6c-78ad-4e02-b451-1216e13f8660",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/following/:userId",
+      "responses": [
+        {
+          "uuid": "aa466512-25bd-4ec7-87ad-9eecd3844813",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/me/following/:userId",
+      "responses": [
+        {
+          "uuid": "2a321f56-4b04-4b09-928a-615f7dcd0b55",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "021018c5-71b2-4f34-9a74-758e4a4b179b",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/feed/:feedItemId/reactions/:reactionId",
+      "responses": [
+        {
+          "uuid": "54a80038-18fd-4ff7-9d5a-62b137e10802",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "0af10595-e759-4b11-843b-8f56ee0eb8fa",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/subscriptions/trial",
+      "responses": [
+        {
+          "uuid": "e0db3ba5-9549-49ec-a8d0-5b0f33a39e60",
+          "body": "{\n  \"type\": \"setup\",\n  \"clientSecret\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "304b76d9-53de-425d-9308-f388c073a4e9",
+          "body": "{\n  \"error\": \"You are not eligible for a trial period anymore.\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Free trial not allowed",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9e9d59f8-b1a7-45a5-9725-964c73c6308a",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/change-email",
+      "responses": [
+        {
+          "uuid": "e3084c79-1858-4e6c-8ff2-83b007ccdde1",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "newEmail",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "050e4243-cfc2-4fb1-a9ee-f4e42bd67855",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/change-email-confirm",
+      "responses": [
+        {
+          "uuid": "24cce66a-fe0c-41be-8eff-31a63336f8c0",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "token",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "userId",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "newEmail",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "users/me/products/:productId",
+      "responses": [
+        {
+          "uuid": "49b33a7c-d3b1-4e46-913b-9c728fb73b38",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Used for changing \"studyMode\" course attribute",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5869020b-3a12-4ec1-acfb-57f2c1b939a4",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/study-plan",
+      "responses": [
+        {
+          "uuid": "10c1192a-ed8e-44d4-bc5f-158b4ef6fcbe",
+          "body": "{\n  \"upcomingLearnLesson\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}{\"id\": 4001,\"title\":\"HTML basics\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}},\n  \"upcomingReviewCourse\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_REVIEW_DEFINED' null 'true') 'true')}}{\"id\": \"1001\",\"title\":\"Fullstack Developer\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}}\n\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9673fae7-1e27-407b-af07-68bb09517b38",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/leaderboard",
+      "responses": [
+        {
+          "uuid": "9fe12697-9df8-48a9-a44d-b80d3e4987d3",
+          "body": "{\n  \"currentLeague\": 3,\n  \"timeLeft\": \"PT6H30M\",\n  \"zones\": {\n    \"promotionZoneEndIndex\": 5,\n    \"demotionZoneStartIndex\": 15\n  },\n  \"users\": {{#if (eq (getGlobalVar 'MOCKOON_LEADERBOARD_STARTED' null 'true') 'true')}}[\n  {\n    \"id\": \"user-1\",\n    \"rank\": 1,\n    \"name\": \"Ava Lane\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 212\n  },\n  {\n    \"id\": \"user-2\",\n    \"rank\": 2,\n    \"name\": \"Liam Frost\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 204\n  },\n  {\n    \"id\": \"user-3\",\n    \"rank\": 3,\n    \"name\": \"Noah Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 196\n  },\n  {\n    \"id\": \"user-4\",\n    \"rank\": 4,\n    \"name\": \"Mia Cole\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 188\n  },\n  {\n    \"id\": \"user-5\",\n    \"rank\": 5,\n    \"name\": \"Leo Finch\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 180\n  },\n  {\n    \"id\": \"user-6\",\n    \"rank\": 6,\n    \"name\": \"Ella Park\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 172\n  },\n  {\n    \"id\": \"user-7\",\n    \"rank\": 7,\n    \"name\": \"Ethan Moss\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 164\n  },\n  {\n    \"id\": \"user-8\",\n    \"rank\": 8,\n    \"name\": \"Olivia Hart\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 156\n  },\n  {\n    \"id\": \"user-9\",\n    \"rank\": 9,\n    \"name\": \"Lucas Stone\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 148\n  },\n  {\n    \"id\": \"user-10\",\n    \"rank\": 10,\n    \"name\": \"Emma Ford\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 140\n  },\n  {\n    \"id\": \"user-11\",\n    \"rank\": 11,\n    \"name\": \"Mason Bell\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 132\n  },\n  {\n    \"id\": \"user-12\",\n    \"rank\": 12,\n    \"name\": \"Sophia Reed\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 124\n  },\n  {\n    \"id\": \"1001\",\n    \"rank\": 13,\n    \"name\": \"User Name\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 116\n  },\n  {\n    \"id\": \"user-14\",\n    \"rank\": 14,\n    \"name\": \"Henry Lake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 108\n  },\n  {\n    \"id\": \"user-15\",\n    \"rank\": 15,\n    \"name\": \"Amelia Pike\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 100\n  },\n  {\n    \"id\": \"user-16\",\n    \"rank\": 16,\n    \"name\": \"Jack Hill\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 92\n  },\n  {\n    \"id\": \"user-17\",\n    \"rank\": 17,\n    \"name\": \"Isla West\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 84\n  },\n  {\n    \"id\": \"user-18\",\n    \"rank\": 18,\n    \"name\": \"Daniel Grove\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 76\n  },\n  {\n    \"id\": \"user-19\",\n    \"rank\": 19,\n    \"name\": \"Grace Mills\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 68\n  },\n  {\n    \"id\": \"user-20\",\n    \"rank\": 20,\n    \"name\": \"Owen Blake\",\n    \"avatarDefinition\": {\n      \"skinColor\": \"light\",\n      \"eyes\": \"eyes_1\",\n      \"eyeColor\": \"brown\",\n      \"expression\": \"expression_1\",\n      \"hair\": \"hair_1\",\n      \"hairColor\": \"mediumBrown\",\n      \"accessories\": \"none\",\n      \"glassesColor\": \"black\",\n      \"beard\": \"none\",\n      \"beardColor\": \"darkBrown\",\n      \"headwear\": \"none\",\n      \"clothing\": \"shirt_1\",\n      \"backgroundColor\": \"lightGray\"\n    },\n    \"xp\": 60\n  }\n]{{else}}[]{{/if}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "70fcba65-862b-4e4e-9a2e-7639c707f47b",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "shop/items",
+      "responses": [
+        {
+          "uuid": "741e7071-814c-4f8b-bf0a-272ce8df1f8e",
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Streak Freeze I\",\n    \"price\": 200,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"streak-freeze-1\",\n      \"kind\": 0,\n      \"illustration\": { \"kind\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 99,\n    \"remainingCount\": 99\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Streak Freeze II\",\n    \"price\": 400,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"streak-freeze-2\",\n      \"kind\": 0,\n      \"illustration\": { \"kind\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 99,\n    \"remainingCount\": 99\n  },\n  {\n    \"id\": 101,\n    \"name\": \"Hair 1\",\n    \"price\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_ENOUGH_MONEY' null 'true') 'true')}}300{{else}}9000{{/if}},\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-1\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 0 }\n    },\n    \"isLocked\": false,\n    \"requiredAchievementId\": null,\n    \"maxPurchasesPerUser\": 1,\n    \"remainingCount\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}0{{else}}1{{/if}}\n  },\n  {\n    \"id\": 102,\n    \"name\": \"Hair 2\",\n    \"price\": 300,\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-2\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 1 }\n    },\n    \"isLocked\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}true{{else}}false{{/if}},\n    \"requiredAchievementId\": {{#if (eq (getGlobalVar 'MOCKOON_SHOP_LOCKED_ITEM' null 'false') 'true')}}1001{{else}}null{{/if}},\n    \"maxPurchasesPerUser\": 1,\n    \"remainingCount\": {{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}0{{else}}1{{/if}}\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Default shop items",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1671166d-608d-4267-ba20-12f5aa15d849",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "shop/items/:shopItemId/purchase",
+      "responses": [
+        {
+          "uuid": "98471b2a-005a-441d-a5d3-3de74399ed1d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Item purchased",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_SHOP_ENOUGH_MONEY",
+              "value": "false",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "14757a15-1af0-4ee7-b24f-8d8b4cc7f3e8",
+          "body": "{\n  \"code\":\"INSUFFICIENT_BALANCE\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Example Response: Not enough money",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "global_var",
+              "modifier": "MOCKOON_SHOP_ENOUGH_MONEY",
+              "value": "false",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2dc0aa80-7d6d-4bdf-9fc0-5f45b9286acd",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "users/me/shop-items",
+      "responses": [
+        {
+          "uuid": "d4f8757f-a8f6-4b84-90dc-623adcd7eb7f",
+          "body": "{{#if (eq (getGlobalVar 'MOCKOON_AVATAR_ITEMS_PURCHASED' null 'false') 'true')}}[\n  {\n    \"id\": 9001,\n    \"shopItemId\": 101,\n    \"shopItemName\": \"Hair 1\",\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-1\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 0 }\n    },\n    \"purchasedAt\": \"2026-03-01T10:00:00.000Z\",\n    \"consumedAt\": null\n  },\n  {\n    \"id\": 9002,\n    \"shopItemId\": 102,\n    \"shopItemName\": \"Hair 2\",\n    \"type\": 0,\n    \"image\": {\n      \"id\": \"hair-2\",\n      \"kind\": 1,\n      \"avatar\": { \"hair\": 1 }\n    },\n    \"purchasedAt\": \"2026-03-01T10:01:00.000Z\",\n    \"consumedAt\": null\n  }\n]{{else}}[]{{/if}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User owned shop items",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "users/me/products/:productId",
+      "responses": [
+        {
+          "uuid": "88d80142-8961-4f59-881f-8960020deab5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "users/me/user-chests/:userChestId/open",
+      "responses": [
+        {
+          "uuid": "fd6efccd-2e0e-4248-9bbf-b762bbf2811c",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Open chest success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2d4b27ae-489b-4f3c-9d88-c02d77724116",
+      "type": "http",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "users/me/user-chests/:userChestId/double",
+      "responses": [
+        {
+          "uuid": "a61f48d2-a631-4482-8411-160fdafb6513",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Double chest reward success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With, baggage, sentry-trace"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [
+    {
+      "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b",
+      "name": "feed",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3c4adc43-658a-4aef-aeb0-a56c6228c72e"
+        },
+        {
+          "type": "folder",
+          "uuid": "2ae123a9-6cd0-42a5-907d-201751437f81"
+        }
+      ]
+    },
+    {
+      "uuid": "f47fa8ed-1f75-4eec-9786-6d0490df2d8e",
+      "name": "courses",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "e3101882-78cd-4ced-b5c4-f5c8104af205"
+        },
+        {
+          "type": "route",
+          "uuid": "4988e6de-2353-438d-b767-6bfa863fffa5"
+        },
+        {
+          "type": "folder",
+          "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d"
+        }
+      ]
+    },
+    {
+      "uuid": "c6bcf31d-ef65-4f3a-88aa-a948fbecb2ff",
+      "name": "users",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "2885308c-493e-42c4-a61d-8d2eb0cd55bd"
+        },
+        {
+          "type": "route",
+          "uuid": "45af24d1-9f4f-4454-bb1f-070b31b62d05"
+        },
+        {
+          "type": "folder",
+          "uuid": "6fa85af4-cbcf-4f00-9aed-ef0bf463d1a3"
+        },
+        {
+          "type": "folder",
+          "uuid": "80ac5cfc-3c1c-4c55-ac5a-4b65f74acae6"
+        },
+        {
+          "type": "folder",
+          "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37"
+        }
+      ]
+    },
+    {
+      "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa",
+      "name": "settings",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "84d83306-3778-463b-9998-c1cff76843a0"
+        },
+        {
+          "type": "route",
+          "uuid": "dbff8a53-d881-4a09-9a6f-b19651efed72"
+        }
+      ]
+    },
+    {
+      "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08",
+      "name": "subscriptions",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "97bb47fd-82bb-41b9-8b0b-639ff2748336"
+        },
+        {
+          "type": "route",
+          "uuid": "12588684-fc3f-47bf-b6e6-1d0afd8f7af9"
+        },
+        {
+          "type": "route",
+          "uuid": "7746912a-27a7-4f97-84ce-994a863e5dc8"
+        },
+        {
+          "type": "route",
+          "uuid": "0af10595-e759-4b11-843b-8f56ee0eb8fa"
+        }
+      ]
+    },
+    {
+      "uuid": "6fa85af4-cbcf-4f00-9aed-ef0bf463d1a3",
+      "name": "following",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "70623af3-e664-4bc2-a59c-96d09e7c545e"
+        }
+      ]
+    },
+    {
+      "uuid": "80ac5cfc-3c1c-4c55-ac5a-4b65f74acae6",
+      "name": "followers",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "882e6794-d5ac-471d-9e46-4e6c095f7ab9"
+        }
+      ]
+    },
+    {
+      "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086",
+      "name": "reset-password",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "dc008a74-caa7-4ca0-b77e-e25fbae90187"
+        }
+      ]
+    },
+    {
+      "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2",
+      "name": "change-password",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "ae22ab21-d796-41ae-928a-8fc3ca27ba5c"
+        }
+      ]
+    },
+    {
+      "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27",
+      "name": "signin",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a76e6cff-81ff-4efa-9dfc-884698e3efb2"
+        }
+      ]
+    },
+    {
+      "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04",
+      "name": "signup",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "df7c052b-be1d-4b1f-9cdb-87653d9e0fb3"
+        }
+      ]
+    },
+    {
+      "uuid": "8df38f4b-a7b0-44a2-bc67-f8ee5aec52be",
+      "name": "signup-confirm",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "f34d1a4a-5b7f-4b0f-8f74-5ad526f9d983"
+        }
+      ]
+    },
+    {
+      "uuid": "ec7f3a3a-56a8-4159-a0d5-ecadb4e557f4",
+      "name": "signup-resend-confirmation",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "d7e31dc6-0c8f-44df-b891-cd7d495ac01b"
+        }
+      ]
+    },
+    {
+      "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a",
+      "name": "notices",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "21a68375-f61f-40d2-8f7c-776b699c9087"
+        },
+        {
+          "type": "route",
+          "uuid": "1cda3def-72a9-4f11-b377-986b57b1dd98"
+        }
+      ]
+    },
+    {
+      "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847",
+      "name": "refresh-token",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "806ea649-2309-46bc-9995-b59112e0564b"
+        }
+      ]
+    },
+    {
+      "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f",
+      "name": "account-setup",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "d53d0f9c-9d03-4468-b8a8-ff8ba489518e"
+        }
+      ]
+    },
+    {
+      "uuid": "2ae123a9-6cd0-42a5-907d-201751437f81",
+      "name": "reactions",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "021018c5-71b2-4f34-9a74-758e4a4b179b"
+        },
+        {
+          "type": "route",
+          "uuid": "a6a360c5-6def-4ddb-a729-b71cb716a320"
+        }
+      ]
+    },
+    {
+      "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41",
+      "name": "change-email",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "9e9d59f8-b1a7-45a5-9725-964c73c6308a"
+        }
+      ]
+    },
+    {
+      "uuid": "ed428752-0203-4289-b380-d945e8ff0a31",
+      "name": "change-email-confirm",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "050e4243-cfc2-4fb1-a9ee-f4e42bd67855"
+        }
+      ]
+    },
+    {
+      "uuid": "b62df9b6-0b61-406f-b2b8-24f255bc408d",
+      "name": "chapters",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "6302d919-26dc-4058-900c-1f1ae5fb5498"
+        }
+      ]
+    },
+    {
+      "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632",
+      "name": "certificates",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "17bb1805-eed8-4205-9b12-b5f5e977e259"
+        }
+      ]
+    },
+    {
+      "uuid": "3d3dc421-69b3-4e91-96fa-edcde6d6c37f",
+      "name": "study-plan",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "5869020b-3a12-4ec1-acfb-57f2c1b939a4"
+        }
+      ]
+    },
+    {
+      "uuid": "b4268f8a-099c-41ee-bd66-47ddf27ed4a4",
+      "name": "study-sessions",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "e2748d73-e8ca-494a-ad47-390158fc04fa"
+        },
+        {
+          "type": "route",
+          "uuid": "60e3d0be-74eb-4b88-af9c-f9e29fc76bf3"
+        }
+      ]
+    },
+    {
+      "uuid": "18c944e6-aa03-4684-9ffa-ceeae99cbe37",
+      "name": "me",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "b4268f8a-099c-41ee-bd66-47ddf27ed4a4"
+        },
+        {
+          "type": "folder",
+          "uuid": "3d3dc421-69b3-4e91-96fa-edcde6d6c37f"
+        },
+        {
+          "type": "folder",
+          "uuid": "0c3a7810-22e1-47f8-be43-46fed3a0ad1c"
+        },
+        {
+          "type": "folder",
+          "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc"
+        },
+        {
+          "type": "folder",
+          "uuid": "bc20fe44-9ee6-419e-a6d4-5934f3cba2aa"
+        },
+        {
+          "type": "folder",
+          "uuid": "72469265-5c8f-4dfa-8710-e1084eeea33b"
+        },
+        {
+          "type": "folder",
+          "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372"
+        },
+        {
+          "type": "folder",
+          "uuid": "af187bf4-ba7d-4883-a085-eaac22ec2a3a"
+        },
+        {
+          "type": "folder",
+          "uuid": "c4f817d1-07e9-415a-9324-41fa7b902017"
+        },
+        {
+          "type": "folder",
+          "uuid": "33eef35e-e21e-47b3-9894-a27d68e19d08"
+        },
+        {
+          "type": "folder",
+          "uuid": "b2b4e19f-f454-43ae-8ec8-a90dc03fb44f"
+        },
+        {
+          "type": "folder",
+          "uuid": "e77179f4-f5a7-48a8-b095-5a4c099db7c6"
+        },
+        {
+          "type": "route",
+          "uuid": "93a80085-b3d7-4634-8d32-dceebbbd5752"
+        }
+      ]
+    },
+    {
+      "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81",
+      "name": "reports",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "b367f1bb-e033-4935-be62-120bb35a541e"
+        }
+      ]
+    },
+    {
+      "uuid": "0c3a7810-22e1-47f8-be43-46fed3a0ad1c",
+      "name": "leaderboard",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "9673fae7-1e27-407b-af07-68bb09517b38"
+        }
+      ]
+    },
+    {
+      "uuid": "c5484416-be5b-4888-be22-4776f9d9e3dc",
+      "name": "shop-items",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "70fcba65-862b-4e4e-9a2e-7639c707f47b"
+        },
+        {
+          "type": "route",
+          "uuid": "1671166d-608d-4267-ba20-12f5aa15d849"
+        }
+      ]
+    },
+    {
+      "uuid": "89383ab6-2287-4176-8f7c-209c9cf4a372",
+      "name": "products",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "38c027b9-0d1f-4180-a122-a3282a6e3093"
+        },
+        {
+          "type": "route",
+          "uuid": "ace8d95a-02f0-4e75-80ef-07ca9444cea2"
+        },
+        {
+          "type": "route",
+          "uuid": "af8056e1-8eb1-4012-a84d-ce9a8eb10ed8"
+        },
+        {
+          "type": "route",
+          "uuid": "5ec5f4b7-5893-4d18-9b43-a83b8b8a0900"
+        },
+        {
+          "type": "route",
+          "uuid": "95802a78-05a2-434c-a533-a46d1d93b121"
+        }
+      ]
+    },
+    {
+      "uuid": "c4f817d1-07e9-415a-9324-41fa7b902017",
+      "name": "chests",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "6d28c852-d8f6-4d75-9612-04ae6e873b99"
+        }
+      ]
+    },
+    {
+      "uuid": "477728a4-d3fc-4027-a504-be8aa5f245ed",
+      "name": "external-auth",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "2e52a304-c9d5-4efc-b756-efeb77ae8b1a"
+        }
+      ]
+    },
+    {
+      "uuid": "2e52a304-c9d5-4efc-b756-efeb77ae8b1a",
+      "name": "google",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1a2daa85-e896-42de-b946-d6678ffafdcf"
+        },
+        {
+          "type": "route",
+          "uuid": "6b697b69-0b10-4f0e-b5ba-483d749e4fde"
+        },
+        {
+          "type": "route",
+          "uuid": "7a3c1e10-2ad5-468c-9604-56078ceeecb6"
+        }
+      ]
+    },
+    {
+      "uuid": "187cec26-ec89-4119-b64f-43d5260fc7a0",
+      "name": "user-auth",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "7262b665-2823-42d7-86b9-2eb5b646bf41"
+        },
+        {
+          "type": "folder",
+          "uuid": "f19c2bc8-ba20-4f41-98a5-98f524c1a7c2"
+        },
+        {
+          "type": "folder",
+          "uuid": "ed428752-0203-4289-b380-d945e8ff0a31"
+        },
+        {
+          "type": "folder",
+          "uuid": "63c2d36a-d851-4b57-a27a-71d9fc9aa086"
+        },
+        {
+          "type": "folder",
+          "uuid": "bcc7aefa-1d2b-4585-9df3-caf2ddbdb847"
+        },
+        {
+          "type": "folder",
+          "uuid": "0556a772-d2e1-4805-b099-04f86bf1ce27"
+        },
+        {
+          "type": "folder",
+          "uuid": "e964b354-0cc5-459c-a130-bd5f3a9c7c04"
+        }
+      ]
+    },
+    {
+      "uuid": "e77179f4-f5a7-48a8-b095-5a4c099db7c6",
+      "name": "following",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "4c8f0418-7496-40e9-9ff6-dae0e0d66b95"
+        },
+        {
+          "type": "route",
+          "uuid": "acb12b2a-1e4f-4ec4-a426-306eb2f76d43"
+        }
+      ]
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "c6bcf31d-ef65-4f3a-88aa-a948fbecb2ff"
+    },
+    {
+      "type": "folder",
+      "uuid": "f47fa8ed-1f75-4eec-9786-6d0490df2d8e"
+    },
+    {
+      "type": "folder",
+      "uuid": "39c721c5-7d3d-4b2d-bf8c-1e041da24632"
+    },
+    {
+      "type": "folder",
+      "uuid": "7f3b6bb3-3488-4af9-a542-c5c8b97e5c81"
+    },
+    {
+      "type": "folder",
+      "uuid": "477728a4-d3fc-4027-a504-be8aa5f245ed"
+    },
+    {
+      "type": "folder",
+      "uuid": "187cec26-ec89-4119-b64f-43d5260fc7a0"
+    },
+    {
+      "type": "route",
+      "uuid": "dc80a8f1-7637-4272-b55b-1a5f6437d6c3"
+    },
+    {
+      "type": "route",
+      "uuid": "2dc0aa80-7d6d-4bdf-9fc0-5f45b9286acd"
+    },
+    {
+      "type": "route",
+      "uuid": "2d4b27ae-489b-4f3c-9d88-c02d77724116"
+    },
+    {
+      "type": "folder",
+      "uuid": "8df38f4b-a7b0-44a2-bc67-f8ee5aec52be"
+    },
+    {
+      "type": "folder",
+      "uuid": "ec7f3a3a-56a8-4159-a0d5-ecadb4e557f4"
+    },
+    {
+      "type": "route",
+      "uuid": "45f681ef-9a85-492f-954a-2894f7a97a50"
+    }
+  ],
+  "callbacks": [
+    {
+      "uuid": "a440c12c-2fec-4a80-b707-7550279fb80b",
+      "id": "6abp",
+      "uri": "https://api.stripe.com/v1/customers",
+      "name": "Stripe - create customer",
+      "documentation": "",
+      "method": "post",
+      "headers": [
+        {
+          "key": "Authorization",
+          "value": "Bearer sk_test_51Nc3x5C4N1Cw0gvFQYOlfej34rr9eEFgzYjyBxsRAXQonjhcqTea8GMu5JoqIKUy1OFucEEoQYybTahFMvCpxxpc00voFaroAM"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "bodyType": "INLINE",
+      "body": "email=pepa.okurka.pepa%40gmail.com&name=\"Pepa Okurka\"",
+      "databucketID": "",
+      "filePath": "",
+      "sendFileAsBody": true
+    }
+  ]
+}

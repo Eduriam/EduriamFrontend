@@ -1,163 +1,197 @@
-// prettier-ignore
-"use client"
+﻿"use client";
 
-import { shopCategories } from "config/config";
+import { ContentContainer, PageRoot } from "@eduriam/ui-core";
+import ShopItem from "app/shop/components/ShopItem/ShopItem";
+import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
+import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
+import { buildShopAvatar } from "app/shop/utils/avatar";
+import {
+  getShopItemCategoryId,
+  isShopItemPurchased,
+} from "app/shop/utils/shopItem";
+import { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
-import { optimisticMutationOption } from "infrastructure/api/API";
-import errorCodes from "infrastructure/api/error-codes";
-import { ShopItem } from "infrastructure/api/user/shop-items/ShopItems";
-import ShopItemsAPI from "infrastructure/api/user/shop-items/ShopItemsAPI";
-import useErrorHandler from "infrastructure/services/ErrorHandler";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import Popup, { IPopup } from "components/atoms/Popup/Popup";
-import TabBarPanel from "components/atoms/TabBarPanel/TabBarPanel";
-import Twemoji from "components/atoms/Twemoji/Twemoji";
-import SimpleCard from "components/atoms/cards/SimpleCard/SimpleCard";
-import CardGrid from "components/layouts/CardGrid/CardGrid";
+import ResponsiveItemGrid from "components/ResponsiveItemGrid/ResponsiveItemGrid";
+import AvatarCategoryGrid from "components/avatar/AvatarCategoryGrid/AvatarCategoryGrid";
+import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
+
+import { optimisticMutationOption } from "infrastructure/api/API";
+import {
+  ApplicationProblemDetailsCode,
+  type UserOwnedShopItemModel,
+} from "infrastructure/api/generated/models";
+import useAuth from "infrastructure/services/AuthProvider";
+import useErrorHandler from "infrastructure/services/ErrorHandler";
+import { ShopService } from "infrastructure/services/shop/ShopService";
+
+import { shopCategories } from "./shopCategories";
 
 export interface IShopPage {}
 
 const ShopPage: React.FC<IShopPage> = () => {
-  const [value, setValue] = useState(shopCategories[0].id);
-  const { shopItems, mutate } = ShopItemsAPI.useShopItems({
-    categoryId: value,
-  });
   const { t } = useTranslation("common");
   const { t: tError } = useTranslation("error-codes");
-  const [popup, setPopup] = useState<IPopup | null>(null);
+  const navigateWithTransition = useTransitionNavigationHandler();
+  const { user, mutateUser } = useAuth();
   const { setError } = useErrorHandler();
+  const { shopItems = [] } = ShopService.useShopItems();
+  const { ownedShopItems = [], mutate: mutateOwnedShopItems } =
+    ShopService.useOwnedShopItems();
 
-  const handleBuy = (itemId: Id) => {
-    const updatedArray = shopItems.map((item) => {
-      if (item.id === itemId) return { ...item, bought: true };
-      else return item;
-    });
+  const [selectedItemId, setSelectedItemId] = useState<Id | null>(null);
 
-    mutate(async () => {
-      try {
-        await ShopItemsAPI.buyItem(itemId);
-      } catch (err) {
-        if (err === errorCodes.notEnoughMoney) {
-          setError(tError("notEnoughMoney"));
+  const streakFreezeItems = useMemo(
+    () =>
+      shopItems.filter(
+        (item) => getShopItemCategoryId(item) === "streak-freeze",
+      ),
+    [shopItems],
+  );
+
+  const selectedItem = useMemo(
+    () => shopItems.find((item) => item.id === selectedItemId),
+    [selectedItemId, shopItems],
+  );
+
+  const selectedItemPurchased =
+    selectedItem !== undefined
+      ? isShopItemPurchased(selectedItem, ownedShopItems)
+      : false;
+
+  const selectedItemLocked =
+    selectedItem?.isLocked === true && !selectedItemPurchased;
+
+  const canBuySelectedItem =
+    !!selectedItem && (user?.balance ?? 0) >= selectedItem.price;
+
+  const unlockCondition =
+    selectedItem?.requiredAchievementId && selectedItemLocked
+      ? t("shop.unlockRequirement", {
+          achievementName: t(
+            `achievements.achievementsById.${selectedItem.requiredAchievementId}`,
+          ),
+        })
+      : undefined;
+
+  const handleBuy = async () => {
+    if (!selectedItem) {
+      return;
+    }
+
+    const optimisticOwnedItem: UserOwnedShopItemModel = {
+      id: Date.now(),
+      shopItemId: selectedItem.id,
+      shopItemName: selectedItem.name,
+      type: selectedItem.type,
+      image: selectedItem.image,
+      purchasedAt: new Date().toISOString(),
+      consumedAt: null,
+    };
+
+    mutateOwnedShopItems(
+      async () => {
+        try {
+          await ShopService.purchaseShopItem(selectedItem.id);
+          mutateUser({
+            balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
+          });
+        } catch (err) {
+          if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
+            setError(tError("notEnoughMoney"));
+          }
+
+          return Promise.reject(err);
         }
-        return Promise.reject(err);
-      }
 
-      return updatedArray;
-    }, optimisticMutationOption<Array<ShopItem>>(updatedArray));
-  };
+        return [...ownedShopItems, optimisticOwnedItem];
+      },
+      optimisticMutationOption<Array<UserOwnedShopItemModel>>([
+        ...ownedShopItems,
+        optimisticOwnedItem,
+      ]),
+    );
 
-  const handleItemEquipChange = (itemId: Id, equipped: boolean) => {
-    const updatedArray = shopItems.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, equipped };
-      } else {
-        if (equipped === true) {
-          return { ...item, equipped: false };
-        } else return item;
-      }
-    });
-
-    mutate(async () => {
-      try {
-        if (equipped) {
-          await ShopItemsAPI.equipItem(itemId);
-        } else {
-          await ShopItemsAPI.unequipItem(itemId);
-        }
-      } catch (err) {
-        return Promise.reject(err);
-      }
-
-      return updatedArray;
-    }, optimisticMutationOption<Array<ShopItem>>(updatedArray));
+    setSelectedItemId(null);
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Typography variant="subtitle1">{t("categories")}</Typography>
-      {popup && <Popup {...popup} open={true} onClose={() => setPopup(null)} />}
-      <TabBarPanel
-        onChange={(value) => setValue(value)}
-        tabs={shopCategories}
-        panelContent={
-          shopItems && (
-            <CardGrid
-              cards={shopItems
-                .sort((a, b) => a.price - b.price)
-                .map((item) => {
-                  return {
-                    component: SimpleCard,
-                    props: {
-                      header:
-                        item.equipped === true
-                          ? t("shop.equipped")
-                          : item.bought
-                          ? t("shop.bought")
-                          : item.price,
-                      headerEmoji: !item.bought ? "🪙" : undefined,
-                      imageUrl: item.imageUrl,
-                      highlightCard: item.equipped,
-                      onClick: () => {
-                        const buyPopupProps = {
-                          displayCloseButton: true,
-                          subheader: <Box display="flex" justifyContent="center" alignItems="center">{item.price}<Twemoji emoji={"🪙"} width={20} height={20} /></Box>,
-                          imageUrl: item.imageUrl,
-                          primaryAction: {
-                            text: t("shop.buy"),
-                            onClick: () => {
-                              handleBuy(item.id);
-                              setPopup(null);
-                            },
-                          },
-                        };
-
-                        const equipPopupProps = {
-                          displayCloseButton: true,
-                          imageUrl: item.imageUrl,
-                          primaryAction: {
-                            text: t("shop.equip"),
-                            onClick: () => {
-                              handleItemEquipChange(item.id, true);
-                              setPopup(null);
-                            },
-                          },
-                        };
-
-                        const unequipPopupProps = {
-                          displayCloseButton: true,
-                          imageUrl: item.imageUrl,
-                          primaryAction: {
-                            text: t("shop.unequip"),
-                            onClick: () => {
-                              handleItemEquipChange(item.id, false);
-                              setPopup(null);
-                            },
-                          },
-                        };
-
-                        setPopup(
-                          item.equipped === true
-                            ? unequipPopupProps
-                            : item.bought === true
-                            ? equipPopupProps
-                            : buyPopupProps
-                        );
-                      },
-                    },
-                  };
-                })}
-            />
-          )
+    <PageRoot data-test="shop-page">
+      <PageNavigation
+        topNavigation={
+          <ShopNavbar
+            leftButton={{
+              icon: "close",
+              onClick: navigateWithTransition(
+                user?.id ? `/users/${user.id}` : "/",
+                {
+                  direction: "back",
+                },
+              ),
+            }}
+            balance={user?.balance ?? 0}
+          />
         }
-        value={value}
+        mainNavigation="desktopOnly"
       />
-    </Box>
+
+      <ContentContainer width="small" justifyContent="flex-start" spacing={10}>
+        <Stack spacing={3} width="100%" data-test="streak-freeze-items-section">
+          <Typography variant="h6">{t("shop.streakFreezeTitle")}</Typography>
+          <Typography variant="body1" color="text.secondary">
+            {t("shop.streakFreezeDescription")}
+          </Typography>
+
+          <ResponsiveItemGrid>
+            {streakFreezeItems.map((item) => (
+              <ShopItem
+                key={item.id}
+                item={item}
+                fullWidth
+                purchased={isShopItemPurchased(item, ownedShopItems)}
+                locked={
+                  item.isLocked && !isShopItemPurchased(item, ownedShopItems)
+                }
+                onClick={() => setSelectedItemId(item.id)}
+                data-test="streak-freeze-item-button"
+              />
+            ))}
+          </ResponsiveItemGrid>
+        </Stack>
+
+        <Stack spacing={3} width="100%" data-test="shop-item-categories">
+          <Typography variant="h5">{t("shop.characterTitle")}</Typography>
+
+          <AvatarCategoryGrid
+            data-test="shop-categories-grid"
+            items={shopCategories.map((category) => ({
+              id: category.id,
+              labelKey: category.nameKey,
+              avatar: buildShopAvatar(category.previewAvatar),
+              onClick: navigateWithTransition(`/shop/${category.id}`),
+              "data-test": "shop-item-category",
+            }))}
+          />
+        </Stack>
+      </ContentContainer>
+
+      <ShopItemDetailsDrawer
+        open={Boolean(selectedItem)}
+        onClose={() => setSelectedItemId(null)}
+        item={selectedItem}
+        purchased={selectedItemPurchased}
+        canBuy={canBuySelectedItem}
+        locked={selectedItemLocked}
+        unlockCondition={unlockCondition}
+        onBuy={handleBuy}
+      />
+    </PageRoot>
   );
 };
 

@@ -1,0 +1,27 @@
+# Use Node.js 24 LTS as base image
+FROM node:24-alpine
+
+# Install Yarn 4.x
+RUN corepack enable && corepack prepare yarn@4.9.3 --activate
+
+# Disable NextJS telemetry
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Accept NPM_AUTH_TOKEN as build argument
+ARG NPM_AUTH_TOKEN
+ENV NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json yarn.lock ./
+
+# Copy yarn configuration (if it exists)
+COPY .yarnrc.yml* .yarnrc* ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy source code
+COPY . .

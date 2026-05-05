@@ -1,6 +1,23 @@
 import { Story } from "@storybook/react";
 
 import {
+  AvatarAccessories,
+  AvatarBackgroundColor,
+  AvatarBeard,
+  AvatarBeardColor,
+  AvatarClothing,
+  AvatarExpression,
+  AvatarEyeColor,
+  AvatarEyes,
+  AvatarGlassesColor,
+  AvatarHair,
+  AvatarHairColor,
+  AvatarHeadwear,
+  AvatarSkinColor,
+  SubscriptionStatus,
+  UserRole,
+} from "../infrastructure/api/generated/models";
+import {
   AuthContext,
   AuthContextType,
 } from "../infrastructure/services/AuthProvider";
@@ -9,32 +26,59 @@ export default function AuthDecorator(Story: Story) {
   const mock: AuthContextType = {
     loading: false,
     user: {
-      id: "123",
-      role: "PREMIUM_USER",
-      selectedCourse: {
-        id: "abcd",
-        name: "Czech course",
-        language1: "cs",
-        language2: "cs",
-      },
+      id: 123,
+      email: "pepaokurka@example.com",
       username: "pepaokurka",
-      balance: 999,
-      lastSessionDate: new Date(),
-      lastViewedStudyMapLevel: 2,
+      name: "Pepa Okurka",
+      profileImageUrl: null,
       streak: 114,
+      balance: 999,
+      lastSessionDate: null,
+      role: UserRole.PremiumUser,
+      energy: 12,
+      streakFreezes: 0,
       accountInitialized: true,
       activeSubscription: {
-        status: "ACTIVE",
-        currentPeriodEnd: new Date(
-          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
-        ), // One week from now
+        status: SubscriptionStatus.Active,
+        periodStart: new Date().toISOString(),
+        periodEnd: new Date(
+          new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
+        ).toISOString(), // One week from now
+      },
+      avatar: {
+        skinColor: AvatarSkinColor.Light,
+        eyes: AvatarEyes.Eyes1,
+        eyeColor: AvatarEyeColor.DarkBrown,
+        expression: AvatarExpression.Expression1,
+        hair: AvatarHair.Hair1,
+        hairColor: AvatarHairColor.DarkBrown,
+        accessories: AvatarAccessories.None,
+        glassesColor: AvatarGlassesColor.Black,
+        beard: AvatarBeard.None,
+        beardColor: AvatarBeardColor.DarkBrown,
+        headwear: AvatarHeadwear.None,
+        clothing: AvatarClothing.Shirt1,
+        backgroundColor: AvatarBackgroundColor.LightGray,
       },
     },
-    login: () => console.log("login"),
-    logout: () => console.log("logout"),
+    signin: () => console.log("signin"),
+    signout: () => console.log("signout"),
     signUp: () => console.log("signup"),
+    startGoogleAuth: () => Promise.resolve(),
+    authorizeGoogleCode: async () => {
+      if (!mock.user) {
+        throw new Error("Mock user is not defined.");
+      }
+
+      return mock.user;
+    },
     mutateUser: () => console.log("mutateUser"),
-    revalidateUser: () => console.log("revalidateUser"),
+    revalidateUser: async () => {
+      console.log("revalidateUser");
+    },
+    invalidateUser: async () => {
+      console.log("invalidateUser");
+    },
   };
 
   return (
