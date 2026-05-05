@@ -4,9 +4,13 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { ChapterModel } from "./chapterModel";
+import type { CourseModel } from "./courseModel";
 
 export interface StudyPlanUpcomingLessonModel {
   id: number;
   title: string;
   thumbnailUrl: string;
+  course: CourseModel;
+  chapter: ChapterModel;
 }

@@ -11,6 +11,7 @@ import type { UserRole } from "./userRole";
 
 export interface GetUserModel {
   id: number;
+  email: string;
   username: string;
   name: string;
   /** @nullable */

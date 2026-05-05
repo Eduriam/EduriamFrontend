@@ -5,9 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-export interface StudyPlanUpcomingCourseModel {
+export interface ChapterModel {
   id: number;
-  name: string;
-  logoId: string;
-  thumbnailUrl: string;
+  order: number;
 }

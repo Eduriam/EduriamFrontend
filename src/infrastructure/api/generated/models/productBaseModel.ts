@@ -11,8 +11,7 @@ import type { ProductType } from "./productType";
 export interface ProductBaseModel {
   id: number;
   name: string;
-  /** @nullable */
-  thumbnailUrl?: string | null;
+  thumbnailUrl: string;
   /** @nullable */
   userProgress?: number | null;
   /** @nullable */
@@ -23,8 +22,7 @@ export interface ProductBaseModel {
   description?: string | null;
   /** @nullable */
   category?: string | null;
-  /** @nullable */
-  logoId?: string | null;
+  logoId: string;
   /** @nullable */
   shortDescription?: string | null;
   premium: boolean;

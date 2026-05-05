@@ -11,5 +11,7 @@ import type { ReportType } from "./reportType";
 export interface CreateReportModel {
   type: ReportType;
   problemTypeId: ReportProblemType;
+  /** @nullable */
+  description?: string | null;
   context?: CreateReportContextModel | null;
 }

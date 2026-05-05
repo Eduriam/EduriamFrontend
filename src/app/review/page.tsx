@@ -118,7 +118,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
             {!isStudyPlanLoading && (
               <>
                 <StudyPreview
-                  title={upcomingReviewCourse?.title ?? "Fullstack Developer"}
+                  title={upcomingReviewCourse?.name ?? "Fullstack Developer"}
                   description={
                     t("home.reviewDescription") ??
                     "Review the most important concepts carefully selected for you."

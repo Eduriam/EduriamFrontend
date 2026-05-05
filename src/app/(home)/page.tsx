@@ -220,7 +220,7 @@ const HomePage: React.FC<IHomePage> = () => {
               <>
                 <StudyPreview
                   title={
-                    studyPlan?.upcomingReviewCourse?.title ??
+                    studyPlan?.upcomingReviewCourse?.name ??
                     "Fullstack Developer"
                   }
                   description={

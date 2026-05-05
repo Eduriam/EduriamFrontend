@@ -27,6 +27,7 @@ export default function AuthDecorator(Story: Story) {
     loading: false,
     user: {
       id: 123,
+      email: "pepaokurka@example.com",
       username: "pepaokurka",
       name: "Pepa Okurka",
       profileImageUrl: null,
