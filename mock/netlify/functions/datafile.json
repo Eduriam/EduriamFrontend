@@ -2392,7 +2392,7 @@
       "responses": [
         {
           "uuid": "f1f47b4f-4ea9-4b8a-9858-f8eb7cc19a2d",
-          "body": "{\n  \"id\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ID' null '1001'}},\n  \"username\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_USERNAME' null 'test.user'}}\",\n  \"name\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_NAME' null 'Test user'}}\",\n  \"profileImageUrl\": null,\n  \"streak\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK' null '0'}},\n  \"balance\": {{getGlobalVar 'MOCKOON_CURRENT_USER_BALANCE' null '1000'}},\n  \"lastSessionDate\": null,\n  \"role\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ROLE' null '0'}},\n  \"energy\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ENERGY' null '40'}},\n  \"streakFreezes\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK_FREEZES' null '0'}},\n  \"accountInitialized\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ACCOUNT_INITIALIZED' null 'true'}},\n  \"activeSubscription\": {{#if (eq (getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_ACTIVE' null 'false') 'true')}}{\n    \"periodStart\": \"2026-01-01T00:00:00.000Z\",\n    \"periodEnd\": \"2026-12-31T00:00:00.000Z\",\n    \"status\": {{getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_STATUS' null '3'}}\n  }{{else}}null{{/if}},\n  \"avatar\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"accessories\": \"none\",\n    \"glassesColor\": \"black\",\n    \"beard\": \"none\",\n    \"beardColor\": \"darkBrown\",\n    \"headwear\": \"none\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
+          "body": "{\n  \"id\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ID' null '1001'}},\n  \"username\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_USERNAME' null 'test.user'}}\",\n  \"name\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_NAME' null 'Test user'}}\",\n  \"email\": \"{{getGlobalVar 'MOCKOON_CURRENT_USER_EMAIL' null 'test.user@example.com'}}\",\n  \"profileImageUrl\": null,\n  \"streak\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK' null '0'}},\n  \"balance\": {{getGlobalVar 'MOCKOON_CURRENT_USER_BALANCE' null '1000'}},\n  \"lastSessionDate\": null,\n  \"role\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ROLE' null '0'}},\n  \"energy\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ENERGY' null '40'}},\n  \"streakFreezes\": {{getGlobalVar 'MOCKOON_CURRENT_USER_STREAK_FREEZES' null '0'}},\n  \"accountInitialized\": {{getGlobalVar 'MOCKOON_CURRENT_USER_ACCOUNT_INITIALIZED' null 'true'}},\n  \"activeSubscription\": {{#if (eq (getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_ACTIVE' null 'false') 'true')}}{\n    \"periodStart\": \"2026-01-01T00:00:00.000Z\",\n    \"periodEnd\": \"2026-12-31T00:00:00.000Z\",\n    \"status\": {{getGlobalVar 'MOCKOON_CURRENT_USER_SUBSCRIPTION_STATUS' null '3'}}\n  }{{else}}null{{/if}},\n  \"avatar\": {\n    \"skinColor\": \"light\",\n    \"eyes\": \"eyes_1\",\n    \"eyeColor\": \"darkBrown\",\n    \"expression\": \"expression_1\",\n    \"hair\": \"hair_1\",\n    \"hairColor\": \"darkBrown\",\n    \"accessories\": \"none\",\n    \"glassesColor\": \"black\",\n    \"beard\": \"none\",\n    \"beardColor\": \"darkBrown\",\n    \"headwear\": \"none\",\n    \"clothing\": \"shirt_1\",\n    \"backgroundColor\": \"lightGray\"\n  }\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "Current User Response",
@@ -3575,6 +3575,10 @@
     {
       "type": "folder",
       "uuid": "ec7f3a3a-56a8-4159-a0d5-ecadb4e557f4"
+    },
+    {
+      "type": "route",
+      "uuid": "45f681ef-9a85-492f-954a-2894f7a97a50"
     }
   ],
   "callbacks": [

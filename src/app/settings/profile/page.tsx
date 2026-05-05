@@ -19,13 +19,11 @@ import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
-import {
-  ApplicationProblemDetailsCode,
-  type GetUserSettingsModel,
-} from "infrastructure/api/generated/models";
-import { SettingsService } from "infrastructure/services/users/SettingsService";
+import { ApplicationProblemDetailsCode } from "infrastructure/api/generated/models";
+import useAuth from "infrastructure/services/AuthProvider";
 import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 import { ResetPasswordService } from "infrastructure/services/auth/ResetPasswordService";
+import { SettingsService } from "infrastructure/services/users/SettingsService";
 
 type ProfileDraft = {
   name: string;
@@ -38,11 +36,9 @@ const SettingsProfilePage: React.FC = () => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { enqueueSnackbar } = useSnackbar();
 
+  const { user } = useAuth();
   const { settings, mutate } = SettingsService.useSettings();
-  const settingsWithOptionalEmail = settings as
-    | (GetUserSettingsModel & { email?: string })
-    | undefined;
-  const settingsEmail = settingsWithOptionalEmail?.email ?? "";
+  const userEmail = user?.email ?? "";
 
   const [draft, setDraft] = useState<ProfileDraft>({
     name: "",
@@ -65,17 +61,17 @@ const SettingsProfilePage: React.FC = () => {
     setDraft({
       name: settings.name,
       username: settings.username,
-      email: settingsEmail,
+      email: userEmail,
     });
     setIsEmailEdited(false);
-  }, [settings, settingsEmail]);
+  }, [settings, userEmail]);
 
   const handleSave = async () => {
     if (!settings) {
       return;
     }
 
-    const isEmailChanged = isEmailEdited && draft.email !== settingsEmail;
+    const isEmailChanged = isEmailEdited && draft.email !== userEmail;
 
     if (isEmailChanged) {
       try {
@@ -87,7 +83,7 @@ const SettingsProfilePage: React.FC = () => {
         setDraft({
           name: settings.name,
           username: settings.username,
-          email: settingsEmail,
+          email: userEmail,
         });
         setIsEmailEdited(false);
       } catch (error) {

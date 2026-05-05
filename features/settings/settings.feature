@@ -29,6 +29,7 @@ Feature: Settings
     And I am on the "settings-page" page
     When I click on the "profile-settings-button" button
     Then I should see the "settings-profile-save-button" button
+    And the "settings-profile-email-field" field should contain "test.user@example.com"
     When I enter "new.email@example.com" in the "settings-profile-email-field" field
     And I click on the "settings-profile-save-button" button
     Then The profile password reset email snackbar should be shown
