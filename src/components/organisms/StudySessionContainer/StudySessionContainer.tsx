@@ -201,13 +201,16 @@ const StudySessionContainer: React.FC<IStudySessionContainer> = ({
             return;
           }
 
+          const userAnswer = selectedStudyBlockData.userAnswerReport ?? "";
+
           await ReportsService.submitReport({
             type: ReportType.StudyBlock,
             problemTypeId: parseReportProblemType(payload.problemTypeId),
             description: payload.description,
             context: {
               studyBlockId: selectedStudyBlockData.id,
-              userAnswer: selectedStudyBlockData.userAnswerReport ?? "",
+              // Generated model requires at least one character.
+              answer: userAnswer.trim().length ? userAnswer : " ",
             },
           });
         }}
