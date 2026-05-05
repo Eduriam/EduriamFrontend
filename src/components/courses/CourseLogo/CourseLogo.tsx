@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 export type CourseLogoId = "html" | "javascript" | "css";
 export type CourseLogoVariant = CourseLogoId;
 
-export type CourseLogoSize = "large" | "medium" | "small";
+export type CourseLogoSize = "xlarge" | "large" | "medium" | "small";
 
 export interface CourseLogoProps {
   /**
@@ -13,6 +13,7 @@ export interface CourseLogoProps {
   variant?: string | null;
   /**
    * Size of the logo.
+   * - xlarge: 128px
    * - large: 100px
    * - medium: 64px
    * - small: 24px
@@ -23,6 +24,7 @@ export interface CourseLogoProps {
 }
 
 const sizeToPixels: Record<CourseLogoSize, number> = {
+  xlarge: 128,
   large: 100,
   medium: 64,
   small: 24,

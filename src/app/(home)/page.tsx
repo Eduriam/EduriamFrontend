@@ -26,6 +26,7 @@ import useAuth from "infrastructure/services/AuthProvider";
 import EnergyDrawer from "./components/EnergyDrawer/EnergyDrawer";
 import HomepageNavbar from "./components/HomepageNavbar/HomepageNavbar";
 import StreakDrawer from "./components/StreakDrawer/StreakDrawer";
+import StudyCard from "./components/StudyCard/StudyCard";
 import StudyPreview from "./components/StudyPreview/StudyPreview";
 
 export interface IHomePage {}
@@ -77,6 +78,21 @@ const HomePage: React.FC<IHomePage> = () => {
     `/review?courseId=${studyPlan?.upcomingReviewCourse?.id}`,
   );
 
+  const upcomingLesson = studyPlan?.upcomingLearnLesson;
+  const upcomingReviewCourse = studyPlan?.upcomingReviewCourse;
+  const handleOpenUpcomingLessonCourse = navigateWithTransition(
+    `/courses/${upcomingLesson?.course?.id}`,
+  );
+  const handleOpenUpcomingReviewCourse = navigateWithTransition(
+    `/courses/${upcomingReviewCourse?.id}`,
+  );
+  const upcomingLessonChapter =
+    upcomingLesson?.chapter?.order !== undefined
+      ? (t("home.chapterNumber", {
+          number: upcomingLesson.chapter.order,
+        }) ?? `Chapter ${upcomingLesson.chapter.order}`)
+      : (t("home.chapterNumber", { number: 1 }) ?? "Chapter 1");
+
   return (
     <PageRoot data-test="home-page">
       <NoticeBoard />
@@ -100,83 +116,75 @@ const HomePage: React.FC<IHomePage> = () => {
       <ContentContainer
         width="small"
         justifyContent="flex-start"
-        spacing={10}
         paddingTop="none"
+        spacing={10}
       >
-        <Tabs
-          tabs={tabs}
-          value={activeTab}
-          onChange={handleTabChange}
-          variant="fullWidth"
-        />
-        <Box sx={{ width: "100%", mt: 6 }}>
-          <Box sx={{ position: "relative" }}>
+        <Box sx={{ width: "100%", position: "relative" }}>
+          <Tabs
+            tabs={tabs}
+            value={activeTab}
+            onChange={handleTabChange}
+            variant="fullWidth"
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              pointerEvents: "none",
+            }}
+          >
             <Box
+              component="button"
+              type="button"
+              onClick={() => setActiveTab("learn")}
               sx={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                pointerEvents: "none",
+                pointerEvents: "auto",
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
               }}
-            >
-              <Box
-                component="button"
-                type="button"
-                onClick={() => setActiveTab("learn")}
-                sx={{
-                  pointerEvents: "auto",
-                  flex: 1,
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              />
-              <Box
-                component="button"
-                type="button"
-                data-test="review-tab-button"
-                onClick={() => setActiveTab("review")}
-                sx={{
-                  pointerEvents: "auto",
-                  flex: 1,
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
+            />
+            <Box
+              component="button"
+              type="button"
+              data-test="review-tab-button"
+              onClick={() => setActiveTab("review")}
+              sx={{
+                pointerEvents: "auto",
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+              }}
+            />
           </Box>
         </Box>
 
         {activeTab === "learn" && (
           <Stack
-            spacing={8}
-            alignItems="center"
-            sx={{ width: "100%" }}
             data-test="upcoming-lesson-section"
-            flexDirection="column"
+            flexGrow={1}
+            justifyContent="space-around"
+            alignItems="center"
           >
             {!isLoading && hasUpcomingLesson && (
               <>
                 <StudyPreview
-                  title={
-                    studyPlan?.upcomingLearnLesson?.title ??
-                    "HTML for Beginners"
-                  }
-                  description={
-                    t("home.nextStudyPlanLesson") ?? "Next study plan lesson."
-                  }
-                  imageSrc={studyPlan?.upcomingLearnLesson?.thumbnailUrl}
-                  onImageClick={handleStartUpcomingLesson}
+                  title={upcomingLesson?.course?.name ?? ""}
+                  subtitle={upcomingLessonChapter}
+                  logoVariant={upcomingLesson?.course?.logoId ?? null}
+                  onPreviewClick={handleOpenUpcomingLessonCourse}
                 />
 
-                <LargeButton
-                  fullWidth
-                  onClick={handleStartUpcomingLesson}
-                  data-test="start-upcoming-lesson-button"
-                >
-                  {t("home.startLesson") ?? "Start Lesson"}
-                </LargeButton>
+                <StudyCard
+                  subtitle={t("home.nextLesson") ?? "Next lesson"}
+                  title={upcomingLesson?.title ?? "Basic variables"}
+                  buttonLabel={t("home.startLesson") ?? "Start lesson"}
+                  onStartClick={handleStartUpcomingLesson}
+                  data-test-start-button="start-upcoming-lesson-button"
+                />
               </>
             )}
 
@@ -211,34 +219,28 @@ const HomePage: React.FC<IHomePage> = () => {
 
         {activeTab === "review" && (
           <Stack
-            spacing={8}
+            flexGrow={1}
+            justifyContent="space-around"
             alignItems="center"
-            sx={{ width: "100%" }}
             data-test="review-section"
           >
             {!isLoading && hasReviewContent && (
               <>
                 <StudyPreview
-                  title={
-                    studyPlan?.upcomingReviewCourse?.name ??
-                    "Fullstack Developer"
-                  }
-                  description={
-                    t("home.reviewDescription") ??
-                    "Review the most important concepts carefully selected for you."
-                  }
-                  imageSrc={
-                    studyPlan?.upcomingReviewCourse?.thumbnailUrl ?? undefined
-                  }
-                  onImageClick={handleStartReview}
+                  title={upcomingReviewCourse?.name ?? "Fullstack Developer"}
+                  subtitle={t("home.reviewDescription")}
+                  logoVariant={upcomingReviewCourse?.logoId ?? null}
+                  onPreviewClick={handleOpenUpcomingReviewCourse}
                 />
-                <LargeButton
-                  fullWidth
-                  onClick={handleStartReview}
-                  data-test="start-review-button"
-                >
-                  {t("home.startReview") ?? "Start Review"}
-                </LargeButton>
+                <Box sx={{ width: "100%", maxWidth: "315px" }}>
+                  <LargeButton
+                    fullWidth
+                    onClick={handleStartReview}
+                    data-test="start-review-button"
+                  >
+                    {t("home.startReview")}
+                  </LargeButton>
+                </Box>
               </>
             )}
 

@@ -2720,7 +2720,7 @@
       "responses": [
         {
           "uuid": "10c1192a-ed8e-44d4-bc5f-158b4ef6fcbe",
-          "body": "{\n  \"upcomingLearnLesson\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}{\"id\": 4001,\"title\":\"HTML basics\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}},\n  \"upcomingReviewCourse\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_REVIEW_DEFINED' null 'true') 'true')}}{\"id\": \"1001\",\"title\":\"Fullstack Developer\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}}\n\n}",
+          "body": "{\n  \"upcomingLearnLesson\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_LESSON_DEFINED' null 'true') 'true')}}{\"id\":4001,\"title\":\"Basic variables\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\",\"course\":{\"id\":1001,\"name\":\"HTML for Beginners\",\"logoId\":\"html\"},\"chapter\":{\"id\":3001,\"order\":1}}{{else}}null{{/if}},\n  \"upcomingReviewCourse\": {{#if (eq (getGlobalVar 'MOCKOON_UPCOMING_REVIEW_DEFINED' null 'true') 'true')}}{\"id\":1001,\"name\":\"HTML for Beginners\",\"logoId\":\"html\",\"thumbnailUrl\":\"https://picsum.photos/id/60/200/300\"}{{else}}null{{/if}}\n\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

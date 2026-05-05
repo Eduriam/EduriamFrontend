@@ -119,11 +119,8 @@ const ReviewPage: React.FC<IReviewPage> = () => {
               <>
                 <StudyPreview
                   title={upcomingReviewCourse?.name ?? "Fullstack Developer"}
-                  description={
-                    t("home.reviewDescription") ??
-                    "Review the most important concepts carefully selected for you."
-                  }
-                  imageSrc={upcomingReviewCourse?.thumbnailUrl ?? undefined}
+                  subtitle={t("home.reviewDescription")}
+                  logoVariant={upcomingReviewCourse?.logoId ?? null}
                 />
 
                 <Stack spacing={4} alignItems="center" sx={{ width: "100%" }}>

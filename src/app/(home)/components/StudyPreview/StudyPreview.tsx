@@ -1,73 +1,63 @@
 "use client";
 
 import { Stack } from "@mui/material";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
+import CourseLogo from "components/courses/CourseLogo/CourseLogo";
 
 export interface IStudyPreviewProps {
   title: string;
-  description: string;
+  subtitle: string;
   /**
-   * Optional preview image shown above the text.
-   * If not provided, an empty placeholder area is rendered.
+   * Visual variant of the course logo shown above the text.
    */
-  imageSrc?: string;
-  /** Optional click handler for the preview image box. */
-  onImageClick?: () => void;
+  logoVariant?: string | null;
+  /** Optional click handler for the preview area. */
+  onPreviewClick?: () => void;
 }
 
 const StudyPreview: React.FC<IStudyPreviewProps> = ({
   title,
-  description,
-  imageSrc,
-  onImageClick,
+  subtitle,
+  logoVariant,
+  onPreviewClick,
 }) => {
+  const isClickable = Boolean(onPreviewClick);
+
   return (
     <Stack
+      component={isClickable ? "button" : "div"}
+      type={isClickable ? "button" : undefined}
+      onClick={onPreviewClick}
       direction="column"
-      spacing={5}
+      spacing="32px"
       alignItems="center"
       width="100%"
       maxWidth={353}
+      sx={{
+        border: 0,
+        background: "transparent",
+        appearance: "none",
+        p: 0,
+        m: 0,
+        cursor: isClickable ? "pointer" : "default",
+        color: "text.primary",
+        font: "inherit",
+      }}
     >
-      <Box
-        component="button"
-        type="button"
-        onClick={onImageClick}
-        disabled={!onImageClick}
-        sx={{
-          width: "100%",
-          height: 272,
-          borderRadius: 2,
-          overflow: "hidden",
-          bgcolor: "disabled",
-          border: "none",
-          p: 0,
-          m: 0,
-          display: "block",
-          cursor: onImageClick ? "pointer" : "default",
-        }}
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+        sx={{ width: 128, height: 128 }}
       >
-        {imageSrc && (
-          <Box
-            component="img"
-            src={imageSrc}
-            alt={title}
-            sx={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-        )}
-      </Box>
+        <CourseLogo variant={logoVariant} size="xlarge" />
+      </Stack>
 
-      <Stack alignItems="center" textAlign="center" spacing={4}>
+      <Stack alignItems="center" textAlign="center" spacing="8px" width="100%">
         <Typography variant="h4">{title}</Typography>
 
         <Typography variant="subtitle1" color="text.secondary">
-          {description}
+          {subtitle}
         </Typography>
       </Stack>
     </Stack>

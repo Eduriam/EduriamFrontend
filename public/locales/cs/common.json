@@ -223,6 +223,8 @@
     "learnTab": "Učení",
     "reviewTab": "Opakování",
     "nextStudyPlanLesson": "Další lekce studijního plánu.",
+    "nextLesson": "Další lekce",
+    "chapterNumber": "Kapitola {{number}}",
     "startLesson": "Spustit lekci",
     "allLessonsLearnedTitle": "Všechny lekce dokončeny!",
     "allLessonsLearnedSubtitle": "Začněte nový kurz a učte se další lekce.",
