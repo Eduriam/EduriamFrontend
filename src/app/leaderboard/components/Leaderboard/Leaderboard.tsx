@@ -80,7 +80,7 @@ const Leaderboard: React.FC<ILeaderboard> = ({
     <Box component="section" sx={{ width: "100%" }}>
       {renderUsers(promotionUsers)}
 
-      {promotionLabel && neutralUsers.length > 0 && (
+      {promotionLabel && promotionUsers.length > 0 && (
         <LeaderboardZoneDivider label={promotionLabel} variant="promotion" />
       )}
       {renderUsers(neutralUsers)}
