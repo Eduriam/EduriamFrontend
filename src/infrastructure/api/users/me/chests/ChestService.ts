@@ -9,13 +9,12 @@ const usersClient = getUsers();
 const ChestService = {
   async openChest(userChestId: Id, doubleReward = false): Promise<void> {
     try {
+      await usersClient.postApiUsersMeUserChestsUserChestIdOpen(userChestId);
+
       if (doubleReward) {
         await usersClient.putApiUsersMeUserChestsUserChestIdDouble(userChestId);
-        await invalidateCurrentUser();
-        return;
       }
 
-      await usersClient.postApiUsersMeUserChestsUserChestIdOpen(userChestId);
       await invalidateCurrentUser();
     } catch (error) {
       return toErrorCode(error);
