@@ -353,7 +353,9 @@
       "mythic": "Mýtická"
     },
     "notStartedMessage": "Dokončete jakoukoli lekci nebo opakování pro připojení do ligy",
-    "title": "Žebříček"
+    "title": "Žebříček",
+    "promotionZone": "Postupová zóna",
+    "demotionZone": "Sestupová zóna"
   },
   "achievements": {
     "achievements": "Ocenění",
