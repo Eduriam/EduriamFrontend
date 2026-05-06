@@ -8,24 +8,41 @@ export interface IAchievementBadge {
   badgeIconName?: "achievement-1" | "achievement-2";
   name?: string;
   showText?: boolean;
+  size?: "medium" | "large";
   "data-test"?: string;
 }
+
+const badgeSizeConfig = {
+  medium: {
+    width: 100,
+    imageSize: 80,
+  },
+  large: {
+    width: 180,
+    imageSize: 180,
+  },
+} satisfies Record<
+  NonNullable<IAchievementBadge["size"]>,
+  { width: number; imageSize: number }
+>;
 
 const AchievementBadge: React.FC<IAchievementBadge> = ({
   completed = true,
   badgeIconName = "achievement-1",
   name,
   showText = false,
+  size = "medium",
   "data-test": dataTest,
 }) => {
   const imageSrc = `/images/achievements/${badgeIconName}${
     completed ? "" : "-disabled"
   }.svg`;
+  const sizeConfig = badgeSizeConfig[size];
 
   return (
     <Box
       sx={{
-        width: 100,
+        width: sizeConfig.width,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -37,7 +54,11 @@ const AchievementBadge: React.FC<IAchievementBadge> = ({
         component="img"
         src={imageSrc}
         alt={completed ? "completed achievement" : "locked achievement"}
-        sx={{ width: 80, height: 80, display: "block" }}
+        sx={{
+          width: sizeConfig.imageSize,
+          height: sizeConfig.imageSize,
+          display: "block",
+        }}
       />
 
       {showText && (

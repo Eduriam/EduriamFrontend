@@ -34,23 +34,23 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
         dataTest: "continue-button",
       }}
       transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
+      paddingTop="medium"
     >
-      <Stack spacing={2} alignItems="center" sx={{ width: "100%", mt: 8 }}>
+      <Stack spacing={8} alignItems="center" sx={{ width: "100%" }}>
         <Typography variant="h5" textAlign="center">
           {t("notices.achievementEarned")}
         </Typography>
 
-        <AchievementBadge badgeIconName={badgeIconName} />
+        <AchievementBadge badgeIconName={badgeIconName} size="large" />
 
         <Stack spacing={1} alignItems="center" sx={{ width: "100%" }}>
           <Typography variant="h6" textAlign="center">
             {notice.title ?? t("notices.achievementEarned")}
           </Typography>
           <Typography
-            variant="body1"
+            variant="subtitle1"
             color="text.secondary"
             textAlign="center"
-            sx={{ maxWidth: 199 }}
           >
             {notice.description ?? ""}
           </Typography>
