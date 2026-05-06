@@ -418,6 +418,8 @@
     "level": "Úroveň",
     "followers": "Sledující",
     "following": "Sleduje",
+    "noFollowers": "Tento uživatel zatím nemá žádné sledující.",
+    "noFollowing": "Tento uživatel zatím nikoho nesleduje.",
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
     "stats": "Statistiky",

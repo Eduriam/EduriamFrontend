@@ -13,6 +13,7 @@ import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHa
 import { useEffect, useMemo, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import Typography from "@mui/material/Typography";
 
 import UserList from "components/atoms/UserList/UserList";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
@@ -165,19 +166,30 @@ const FollowersPage: React.FC<IFollowersPage> = ({ params }) => {
           onChange={(next) => setValue(next as "followers" | "following")}
           variant="fullWidth"
         />
-
-        <UserList
-          items={items}
-          currentUserId={user?.id}
-          onUserClick={(userId) => navigateWithTransition(`/users/${userId}`)()}
-          onFollowToggle={(itemId, isFollowed) => {
-            if (value === "followers") {
-              updateFollower(itemId, isFollowed);
-            } else {
-              updateFollowing(itemId, isFollowed);
-            }
-          }}
-        />
+        {items.length === 0 ? (
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            sx={{ textAlign: "center", mt: 4 }}
+          >
+            {value === "followers"
+              ? t("userProfile.noFollowers")
+              : t("userProfile.noFollowing")}
+          </Typography>
+        ) : (
+          <UserList
+            items={items}
+            currentUserId={user?.id}
+            onUserClick={(userId) => navigateWithTransition(`/users/${userId}`)()}
+            onFollowToggle={(itemId, isFollowed) => {
+              if (value === "followers") {
+                updateFollower(itemId, isFollowed);
+              } else {
+                updateFollowing(itemId, isFollowed);
+              }
+            }}
+          />
+        )}
       </ContentContainer>
     </PageRoot>
   );
