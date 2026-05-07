@@ -32,10 +32,10 @@ NotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
-    progress: 0,
+    currentValue: 0,
     achievedAt: null,
-    goal: 10,
-    nextLevelGoal: 10,
+    achievedGoal: 10,
+    nextGoal: 10,
   },
 } as AchievementDialogProps;
 
@@ -48,9 +48,9 @@ InProgress.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 1,
-    progress: 25,
-    goal: 10,
-    nextLevelGoal: 50,
+    currentValue: 25,
+    achievedGoal: 10,
+    nextGoal: 50,
   },
 } as AchievementDialogProps;
 
@@ -63,9 +63,9 @@ CompletedAllLevels.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 10,
-    progress: 1000,
-    goal: 1000,
-    nextLevelGoal: null,
+    currentValue: 1000,
+    achievedGoal: 1000,
+    nextGoal: null,
   },
 } as AchievementDialogProps;
 
@@ -78,10 +78,10 @@ OtherUserNotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
-    progress: 0,
+    currentValue: 0,
     achievedAt: null,
-    goal: 10,
-    nextLevelGoal: 10,
+    achievedGoal: 10,
+    nextGoal: 10,
   },
 } as AchievementDialogProps;
 
@@ -94,8 +94,8 @@ OtherUserAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 7,
-    progress: 250,
-    goal: 250,
-    nextLevelGoal: 500,
+    currentValue: 250,
+    achievedGoal: 250,
+    nextGoal: 500,
   },
 } as AchievementDialogProps;

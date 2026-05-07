@@ -9,6 +9,12 @@ import NoticeDialog from "components/notices/NoticeDialog/NoticeDialog";
 import type { AchievementEarnedNoticeModel } from "infrastructure/api/generated/models";
 import useNotices from "infrastructure/services/NoticeProvider";
 
+import {
+  toAchievementBadgeIconName,
+  toAchievementEarnedNoticeDescriptionKey,
+  toAchievementTitleKey,
+} from "app/users/[userId]/util/achievementUtils";
+
 export interface AchievementEarnedNoticeProps {
   notice: AchievementEarnedNoticeModel;
 }
@@ -18,10 +24,11 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
 }) => {
   const { t } = useTranslation("common");
   const { markNoticeAsRead } = useNotices();
-  const badgeIconName =
-    notice.badgeIconName === "achievement-2"
-      ? "achievement-2"
-      : "achievement-1";
+  const achievementTitle = t(toAchievementTitleKey(notice.achievementType));
+  const achievementDescription = t(
+    toAchievementEarnedNoticeDescriptionKey(notice.achievementType),
+  );
+  const badgeIconName = toAchievementBadgeIconName(notice.achievementType);
 
   return (
     <NoticeDialog
@@ -45,14 +52,14 @@ const AchievementEarnedNotice: React.FC<AchievementEarnedNoticeProps> = ({
 
         <Stack spacing={1} alignItems="center" sx={{ width: "100%" }}>
           <Typography variant="h6" textAlign="center">
-            {notice.title ?? t("notices.achievementEarned")}
+            {achievementTitle}
           </Typography>
           <Typography
             variant="subtitle1"
             color="text.secondary"
             textAlign="center"
           >
-            {notice.description ?? ""}
+            {achievementDescription}
           </Typography>
         </Stack>
       </Stack>

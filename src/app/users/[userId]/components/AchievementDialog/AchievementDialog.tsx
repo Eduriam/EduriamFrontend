@@ -51,12 +51,12 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
   const achieved = isAchievementCompleted(achievement);
   const completedAllLevels = isAchievementMaxLevelCompleted(achievement);
   const title = t(toAchievementTitleKey(achievement.type));
-  const goal = toAchievementRequirement(achievement);
-  const nextLevelGoal = achievement.nextLevelGoal ?? goal;
-  const progressTarget = achieved ? nextLevelGoal : goal;
+  const achievedGoal = toAchievementAchievedGoal(achievement);
+  const nextGoal = achievement.nextGoal ?? achievedGoal;
+  const progressTarget = achieved ? nextGoal : achievedGoal;
   const showProgress = isOwnProfile && !completedAllLevels && progressTarget > 0;
   const progressValue = toProgressPercentage(
-    achievement.progress,
+    achievement.currentValue,
     progressTarget,
   );
   const levelLabel = achieved
@@ -68,9 +68,9 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
   const description = getAchievementDescription({
     achieved,
     completedAllLevels,
-    goal,
+    achievedGoal,
     isOwnProfile,
-    nextLevelGoal,
+    nextGoal,
     t,
     type: achievement.type,
     userName: userName ?? "",
@@ -152,7 +152,7 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
                   <ProgressBar value={progressValue} size="large" />
                 </Box>
                 <Typography variant="body1" sx={{ color: "text.primary" }}>
-                  {`${achievement.progress}/${progressTarget}`}
+                  {`${achievement.currentValue}/${progressTarget}`}
                 </Typography>
               </Stack>
             )}
@@ -166,9 +166,9 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
 interface AchievementDescriptionOptions {
   achieved: boolean;
   completedAllLevels: boolean;
-  goal: number;
+  achievedGoal: number;
   isOwnProfile: boolean;
-  nextLevelGoal: number;
+  nextGoal: number;
   t: ReturnType<typeof useTranslation>["t"];
   type: UserAchievementModel["type"];
   userName: string;
@@ -177,9 +177,9 @@ interface AchievementDescriptionOptions {
 function getAchievementDescription({
   achieved,
   completedAllLevels,
-  goal,
+  achievedGoal,
   isOwnProfile,
-  nextLevelGoal,
+  nextGoal,
   t,
   type,
   userName,
@@ -190,7 +190,7 @@ function getAchievementDescription({
     isOwnProfile,
   });
   const key = toAchievementDialogTextKey(type, state);
-  const values = { goal, nextLevelGoal, userName };
+  const values = { achievedGoal, nextGoal, userName };
 
   return t(key, values);
 }
@@ -221,10 +221,10 @@ function toAchievementDialogTextState({
   return "inProgress";
 }
 
-function toAchievementRequirement(achievement: UserAchievementModel): number {
+function toAchievementAchievedGoal(achievement: UserAchievementModel): number {
   return (
-    achievement.goal ??
-    achievement.nextLevelGoal ??
+    achievement.achievedGoal ??
+    achievement.nextGoal ??
     Math.max(achievement.achievementMaxLevel, 1)
   );
 }

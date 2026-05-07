@@ -23,6 +23,12 @@ export function toAchievementDialogTextKey(
   return `${toAchievementLocalizationBaseKey(achievementType)}.${state}`;
 }
 
+export function toAchievementEarnedNoticeDescriptionKey(
+  achievementType: AchievementType,
+): string {
+  return `${toAchievementLocalizationBaseKey(achievementType)}.earnedNoticeDescription`;
+}
+
 export function toAchievementBadgeIconName(
   achievementType: AchievementType,
 ): "achievement-1" | "achievement-2" {
