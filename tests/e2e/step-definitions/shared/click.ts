@@ -100,6 +100,23 @@ When(
 );
 
 When(
+  "I click on the first {string} element",
+  async function (this: CustomWorld, testId: string) {
+    if (!this.page) {
+      throw new Error(
+        "Page is not initialized. Make sure browser is initialized.",
+      );
+    }
+
+    const element = this.page.locator(`[data-test="${testId}"]:visible`).first();
+    await element.waitFor({ state: "visible", timeout: 15000 });
+    await element.click({ timeout: 10000 });
+
+    return element;
+  },
+);
+
+When(
   "I click on the {string} link",
   async function (this: CustomWorld, linkTestId: string) {
     if (!this.page) {

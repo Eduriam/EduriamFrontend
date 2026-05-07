@@ -5,10 +5,7 @@ import ShopItem from "app/shop/components/ShopItem/ShopItem";
 import ShopItemDetailsDrawer from "app/shop/components/ShopItemDetailsDrawer/ShopItemDetailsDrawer";
 import ShopNavbar from "app/shop/components/ShopNavbar/ShopNavbar";
 import { buildShopAvatar } from "app/shop/utils/avatar";
-import {
-  getShopItemCategoryId,
-  isShopItemPurchased,
-} from "app/shop/utils/shopItem";
+import { isShopItemPurchased } from "app/shop/utils/shopItem";
 import { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
@@ -25,6 +22,8 @@ import PageNavigation from "components/navigation/PageNavigation/PageNavigation"
 import { optimisticMutationOption } from "infrastructure/api/API";
 import {
   ApplicationProblemDetailsCode,
+  ShopItemType,
+  type ShopItemViewModel,
   type UserOwnedShopItemModel,
 } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
@@ -35,13 +34,19 @@ import { shopCategories } from "./shopCategories";
 
 export interface IShopPage {}
 
+interface StreakFreezeSlot {
+  item: ShopItemViewModel;
+  available: boolean;
+  slotIndex: number;
+}
+
 const ShopPage: React.FC<IShopPage> = () => {
   const { t } = useTranslation("common");
   const { t: tError } = useTranslation("error-codes");
   const navigateWithTransition = useTransitionNavigationHandler();
   const { user, mutateUser } = useAuth();
   const { setError } = useErrorHandler();
-  const { shopItems = [] } = ShopService.useShopItems();
+  const { shopItems = [], mutate: mutateShopItems } = ShopService.useShopItems();
   const { ownedShopItems = [], mutate: mutateOwnedShopItems } =
     ShopService.useOwnedShopItems();
 
@@ -50,9 +55,24 @@ const ShopPage: React.FC<IShopPage> = () => {
   const streakFreezeItems = useMemo(
     () =>
       shopItems.filter(
-        (item) => getShopItemCategoryId(item) === "streak-freeze",
+        (item) => item.type === ShopItemType.StreakFreeze,
       ),
     [shopItems],
+  );
+
+  const streakFreezeSlots = useMemo(
+    () =>
+      streakFreezeItems.flatMap<StreakFreezeSlot>((item) =>
+        Array.from(
+          { length: Math.max(item.maxPurchasesPerUser, 0) },
+          (_, slotIndex) => ({
+            item,
+            available: slotIndex < Math.max(item.availableToPurchase, 0),
+            slotIndex,
+          }),
+        ),
+      ),
+    [streakFreezeItems],
   );
 
   const selectedItem = useMemo(
@@ -62,7 +82,9 @@ const ShopPage: React.FC<IShopPage> = () => {
 
   const selectedItemPurchased =
     selectedItem !== undefined
-      ? isShopItemPurchased(selectedItem, ownedShopItems)
+      ? selectedItem.type === ShopItemType.StreakFreeze
+        ? false
+        : isShopItemPurchased(selectedItem, ownedShopItems)
       : false;
 
   const selectedItemLocked =
@@ -102,6 +124,23 @@ const ShopPage: React.FC<IShopPage> = () => {
           mutateUser({
             balance: Math.max((user?.balance ?? 0) - selectedItem.price, 0),
           });
+
+          if (selectedItem.type === ShopItemType.StreakFreeze) {
+            mutateShopItems(
+              shopItems.map((item) =>
+                item.id === selectedItem.id
+                  ? {
+                      ...item,
+                      availableToPurchase: Math.max(
+                        item.availableToPurchase - 1,
+                        0,
+                      ),
+                    }
+                  : item,
+              ),
+              false,
+            );
+          }
         } catch (err) {
           if (err === ApplicationProblemDetailsCode.INSUFFICIENT_BALANCE) {
             setError(tError("notEnoughMoney"));
@@ -149,19 +188,31 @@ const ShopPage: React.FC<IShopPage> = () => {
           </Typography>
 
           <ResponsiveItemGrid>
-            {streakFreezeItems.map((item) => (
-              <ShopItem
-                key={item.id}
-                item={item}
-                fullWidth
-                purchased={isShopItemPurchased(item, ownedShopItems)}
-                locked={
-                  item.isLocked && !isShopItemPurchased(item, ownedShopItems)
-                }
-                onClick={() => setSelectedItemId(item.id)}
-                data-test="streak-freeze-item-button"
-              />
-            ))}
+            {streakFreezeSlots.map(({ item, available, slotIndex }) => {
+              const locked = item.isLocked && available;
+
+              return (
+                <div
+                  key={`${item.id}-${slotIndex}`}
+                  data-test="streak-freeze-item-slot"
+                >
+                  <ShopItem
+                    item={item}
+                    fullWidth
+                    purchased={!available}
+                    locked={locked}
+                    onClick={
+                      available ? () => setSelectedItemId(item.id) : undefined
+                    }
+                    data-test={
+                      available
+                        ? "streak-freeze-item-button"
+                        : "unavailable-streak-freeze-item-button"
+                    }
+                  />
+                </div>
+              );
+            })}
           </ResponsiveItemGrid>
         </Stack>
 
