@@ -1,6 +1,9 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { NoticeType } from "infrastructure/api/generated/models";
+import {
+  AchievementType,
+  NoticeType,
+} from "infrastructure/api/generated/models";
 
 import AchievementEarnedNotice, {
   type AchievementEarnedNoticeProps,
@@ -22,6 +25,7 @@ Base.args = {
     id: 1,
     type: NoticeType.AchievementEarned,
     achievementId: 1001,
+    achievementType: AchievementType.LessonCompletions,
     title: "Great Student",
     description: "You completed 100 lessons.",
     badgeIconName: "achievement-1",

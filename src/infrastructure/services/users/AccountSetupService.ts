@@ -5,11 +5,20 @@ import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
 const usersClient = getUsers();
 
+interface AccountSetupOptions {
+  revalidateUser?: boolean;
+}
+
 export class AccountSetupService {
-  static async setupAccount(data: AccountSetupModel): Promise<void> {
+  static async setupAccount(
+    data: AccountSetupModel,
+    options: AccountSetupOptions = {},
+  ): Promise<void> {
     try {
       await usersClient.postApiUsersMeAccountSetup(data);
-      await invalidateCurrentUser();
+      if (options.revalidateUser !== false) {
+        await invalidateCurrentUser();
+      }
     } catch (error) {
       return toErrorCode(error);
     }

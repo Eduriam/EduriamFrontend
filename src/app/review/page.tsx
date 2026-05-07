@@ -42,11 +42,23 @@ const ReviewPage: React.FC<IReviewPage> = () => {
   const [selectedCourseId, setSelectedCourseId] = useState<Id | undefined>(() =>
     parseId(queryCourseIdRaw),
   );
+  const hasNoEnergy = (user?.energy ?? 0) <= 0;
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
+  const shouldRedirectToPremiumBecauseNoEnergy =
+    Boolean(user && !isPremiumUser && hasNoEnergy);
 
   useEffect(() => {
     const queryCourseId = parseId(searchParams.get("courseId"));
     setSelectedCourseId(queryCourseId);
   }, [searchParams]);
+
+  useEffect(() => {
+    if (selectedCourseId && shouldRedirectToPremiumBecauseNoEnergy) {
+      router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), {
+        scroll: false,
+      });
+    }
+  }, [router, selectedCourseId, shouldRedirectToPremiumBecauseNoEnergy]);
 
   const { studyPlan, isLoading: isStudyPlanLoading } =
     StudyPlanService.useStudyPlan();
@@ -85,10 +97,7 @@ const ReviewPage: React.FC<IReviewPage> = () => {
       return;
     }
 
-    const hasNoEnergy = (user?.energy ?? 0) <= 0;
-    const isPremiumUser = user?.role === UserRole.PremiumUser;
-
-    if (user && !isPremiumUser && hasNoEnergy) {
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
       router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), {
         scroll: false,
       });
@@ -101,11 +110,15 @@ const ReviewPage: React.FC<IReviewPage> = () => {
     });
   };
 
+  if (selectedCourseId && shouldRedirectToPremiumBecauseNoEnergy) {
+    return null;
+  }
+
   return (
     <PageRoot data-test="review-page">
       <NoticeBoard allowedNoticeTypes={[...REVIEW_NOTICE_TYPES]} />
 
-      {selectedCourseId ? (
+      {selectedCourseId && !shouldRedirectToPremiumBecauseNoEnergy ? (
         <ReviewCourseStudySession courseId={selectedCourseId} />
       ) : (
         <ContentContainer width="small" justifyContent="flex-start">
@@ -119,11 +132,8 @@ const ReviewPage: React.FC<IReviewPage> = () => {
               <>
                 <StudyPreview
                   title={upcomingReviewCourse?.name ?? "Fullstack Developer"}
-                  description={
-                    t("home.reviewDescription") ??
-                    "Review the most important concepts carefully selected for you."
-                  }
-                  imageSrc={upcomingReviewCourse?.thumbnailUrl ?? undefined}
+                  subtitle={t("home.reviewDescription")}
+                  logoVariant={upcomingReviewCourse?.logoId ?? null}
                 />
 
                 <Stack spacing={4} alignItems="center" sx={{ width: "100%" }}>

@@ -4,7 +4,7 @@ import { ContentContainer, PageRoot } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 import { parseRequiredId } from "util/functions/api";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -13,9 +13,12 @@ import Box from "@mui/material/Box";
 import BackNavbar from "components/navigation/BackNavbar/BackNavbar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
+import type { UserAchievementModel } from "infrastructure/api/generated/models";
+import useAuth from "infrastructure/services/AuthProvider";
 import { UsersService } from "infrastructure/services/users/UsersService";
 
 import AchievementBadge from "../components/AchievementBadge/AchievementBadge";
+import AchievementDialog from "../components/AchievementDialog/AchievementDialog";
 import {
   isAchievementCompleted,
   toAchievementBadgeIconName,
@@ -35,9 +38,13 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({
   const userId = parseRequiredId(params.userId);
   const safeUserId = userId ?? 0;
   const { userProfile } = UsersService.useUser(safeUserId);
+  const { user } = useAuth();
   const { t } = useTranslation("common");
+  const [selectedAchievement, setSelectedAchievement] =
+    useState<UserAchievementModel>();
 
   const achievements = userProfile?.achievements ?? [];
+  const isOwnProfile = userId !== null && user?.id === userId;
 
   useEffect(() => {
     if (userId === null) {
@@ -77,10 +84,20 @@ const UsersAchievementsPage: React.FC<IUsersAchievementsPage> = ({
               name={t(toAchievementTitleKey(achievement.type))}
               showText
               completed={isAchievementCompleted(achievement)}
+              onClick={() => setSelectedAchievement(achievement)}
+              data-test="achievement-button"
             />
           ))}
         </Box>
       </ContentContainer>
+
+      <AchievementDialog
+        open={Boolean(selectedAchievement)}
+        achievement={selectedAchievement}
+        isOwnProfile={isOwnProfile}
+        userName={userProfile?.name}
+        onClose={() => setSelectedAchievement(undefined)}
+      />
     </PageRoot>
   );
 };

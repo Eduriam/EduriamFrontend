@@ -11,7 +11,7 @@
   "signup": "Registrace",
   "welcome": {
     "valuePropositionLine1": "Naučte se programovat",
-    "valuePropositionLine2": "jen 10 minut denně."
+    "valuePropositionLine2": "Stačí 10 minut denně."
   },
   "menu": "Menu",
   "groups": "Skupiny",
@@ -223,6 +223,8 @@
     "learnTab": "Učení",
     "reviewTab": "Opakování",
     "nextStudyPlanLesson": "Další lekce studijního plánu.",
+    "nextLesson": "Další lekce",
+    "chapterNumber": "Kapitola {{number}}",
     "startLesson": "Spustit lekci",
     "allLessonsLearnedTitle": "Všechny lekce dokončeny!",
     "allLessonsLearnedSubtitle": "Začněte nový kurz a učte se další lekce.",
@@ -351,25 +353,102 @@
       "mythic": "Mýtická"
     },
     "notStartedMessage": "Dokončete jakoukoli lekci nebo opakování pro připojení do ligy",
-    "title": "Žebříček"
+    "title": "Žebříček",
+    "promotionZone": "Postupová zóna",
+    "demotionZone": "Sestupová zóna"
   },
   "achievements": {
     "achievements": "Ocenění",
     "collectReward": "Sebrat odměnu",
     "achievementsByType": {
-      "lessonCompletions": "Mistr lekcí",
-      "reviewCompletions": "Mistr opakování",
-      "courseCompletions": "Dokončovač kurzů",
-      "streakDays": "Udržovač streaků",
-      "perfectLessonCompletions": "Perfektní výkon",
-      "feedReactions": "Podporující kamarád",
-      "leagueTier": "Soutěživec",
-      "leagueFirstPlaceAny": "Vzrůstající ligový vítěz",
-      "leagueFirstPlaceMythic": "Legendární ligový vítěz"
+      "lessonCompletions": {
+        "title": "Mistr lekcí",
+        "notAchieved": "Pro odemčení tohoto ocenění dokončete {{achievedGoal}} lekcí.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dokončete {{nextGoal}} lekcí.",
+        "completedAllLevels": "Toto ocenění jste získali dokončením {{achievedGoal}} lekcí.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) dokončením {{achievedGoal}} lekcí.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění dokončením {{achievedGoal}} lekcí.",
+        "earnedNoticeDescription": "Získali jste ocenění za dokončování lekcí."
+      },
+      "reviewCompletions": {
+        "title": "Mistr opakování",
+        "notAchieved": "Pro odemčení tohoto ocenění dokončete {{achievedGoal}} opakování.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dokončete {{nextGoal}} opakování.",
+        "completedAllLevels": "Toto ocenění jste získali dokončením {{achievedGoal}} opakování.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) dokončením {{achievedGoal}} opakování.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění dokončením {{achievedGoal}} opakování.",
+        "earnedNoticeDescription": "Získali jste ocenění za dokončování opakování."
+      },
+      "courseCompletions": {
+        "title": "Dokončovač kurzů",
+        "notAchieved": "Pro odemčení tohoto ocenění dokončete {{achievedGoal}} kurzů.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dokončete {{nextGoal}} kurzů.",
+        "completedAllLevels": "Toto ocenění jste získali dokončením {{achievedGoal}} kurzů.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) dokončením {{achievedGoal}} kurzů.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění dokončením {{achievedGoal}} kurzů.",
+        "earnedNoticeDescription": "Získali jste ocenění za dokončování kurzů."
+      },
+      "streakDays": {
+        "title": "Udržovač streaků",
+        "notAchieved": "Pro odemčení tohoto ocenění udržte streak {{achievedGoal}} dní.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění udržte streak {{nextGoal}} dní.",
+        "completedAllLevels": "Toto ocenění jste získali udržením streaku {{achievedGoal}} dní.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) udržením streaku {{achievedGoal}} dní.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění udržením streaku {{achievedGoal}} dní.",
+        "earnedNoticeDescription": "Získali jste ocenění za udržování streaku."
+      },
+      "perfectLessonCompletions": {
+        "title": "Perfektní výkon",
+        "notAchieved": "Pro odemčení tohoto ocenění dokončete {{achievedGoal}} perfektních lekcí.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dokončete {{nextGoal}} perfektních lekcí.",
+        "completedAllLevels": "Toto ocenění jste získali dokončením {{achievedGoal}} perfektních lekcí.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) dokončením {{achievedGoal}} perfektních lekcí.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění dokončením {{achievedGoal}} perfektních lekcí.",
+        "earnedNoticeDescription": "Získali jste ocenění za perfektně dokončené lekce."
+      },
+      "feedReactions": {
+        "title": "Podporující kamarád",
+        "notAchieved": "Pro odemčení tohoto ocenění dejte {{achievedGoal}} reakcí ostatním ve feedu.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dejte {{nextGoal}} reakcí ostatním ve feedu.",
+        "completedAllLevels": "Toto ocenění jste získali udělením {{achievedGoal}} reakcí ostatním ve feedu.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) udělením {{achievedGoal}} reakcí ostatním ve feedu.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění udělením {{achievedGoal}} reakcí ostatním ve feedu.",
+        "earnedNoticeDescription": "Získali jste ocenění za podporu ostatních reakcemi ve feedu."
+      },
+      "leagueTier": {
+        "title": "Soutěživec",
+        "notAchieved": "Pro odemčení tohoto ocenění dosáhněte ligové úrovně {{achievedGoal}}.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění dosáhněte ligové úrovně {{nextGoal}}.",
+        "completedAllLevels": "Toto ocenění jste získali dosažením ligové úrovně {{achievedGoal}}.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) dosažením ligové úrovně {{achievedGoal}}.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění dosažením ligové úrovně {{achievedGoal}}.",
+        "earnedNoticeDescription": "Získali jste ocenění za postup v ligách."
+      },
+      "leagueFirstPlaceAny": {
+        "title": "Vzrůstající ligový vítěz",
+        "notAchieved": "Pro odemčení tohoto ocenění skončete {{achievedGoal}}krát první v lize.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění skončete {{nextGoal}}krát první v lize.",
+        "completedAllLevels": "Toto ocenění jste získali {{achievedGoal}} vítězstvími v lize.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) {{achievedGoal}} vítězstvími v lize.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění {{achievedGoal}} vítězstvími v lize.",
+        "earnedNoticeDescription": "Získali jste ocenění za vítězství v lize."
+      },
+      "leagueFirstPlaceMythic": {
+        "title": "Legendární ligový vítěz",
+        "notAchieved": "Pro odemčení tohoto ocenění skončete {{achievedGoal}}krát první v mýtické lize.",
+        "inProgress": "Pro odemčení další úrovně tohoto ocenění skončete {{nextGoal}}krát první v mýtické lize.",
+        "completedAllLevels": "Toto ocenění jste získali {{achievedGoal}} vítězstvími v mýtické lize.",
+        "otherUserNotAchieved": "{{userName}} zatím toto ocenění nezískal(a) {{achievedGoal}} vítězstvími v mýtické lize.",
+        "otherUserAchieved": "{{userName}} získal(a) toto ocenění {{achievedGoal}} vítězstvími v mýtické lize.",
+        "earnedNoticeDescription": "Získali jste ocenění za vítězství v mýtické lize."
+      }
     },
     "achievementsById": {
       "streak_master": "Mistr streaku",
       "first_100_xp": "Prvních 100 XP"
+    },
+    "dialog": {
+      "level": "Úroveň {{currentLevel}}/{{maxLevel}}"
     }
   },
   "feed": {
@@ -416,6 +495,8 @@
     "level": "Úroveň",
     "followers": "Sledující",
     "following": "Sleduje",
+    "noFollowers": "Tento uživatel zatím nemá žádné sledující.",
+    "noFollowing": "Tento uživatel zatím nikoho nesleduje.",
     "userIsFollowing": "Sleduji",
     "userIsNotFollowing": "Sledovat",
     "stats": "Statistiky",

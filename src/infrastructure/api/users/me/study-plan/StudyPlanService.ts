@@ -1,4 +1,5 @@
 import { Modify } from "domain/models/utils/modify";
+import { mutate } from "swr";
 
 import { FetchHook } from "infrastructure/api/API";
 import { StudyPlanOverviewModel } from "infrastructure/api/generated/models";
@@ -31,6 +32,14 @@ const StudyPlanService = {
       return response.data;
     } catch (error) {
       return toErrorCode(error);
+    }
+  },
+
+  async invalidateStudyPlan(): Promise<void> {
+    try {
+      await mutate(this.URI);
+    } catch {
+      // Non-blocking revalidation should not fail user-facing flows.
     }
   },
 };

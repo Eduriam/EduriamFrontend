@@ -14,8 +14,6 @@ export interface GetUserModel {
   email: string;
   username: string;
   name: string;
-  /** @nullable */
-  profileImageUrl?: string | null;
   streak: number;
   balance: number;
   /** @nullable */
@@ -25,6 +23,7 @@ export interface GetUserModel {
   streakFreezes: number;
   league?: LeagueType | null;
   accountInitialized: boolean;
+  xp: number;
   activeSubscription?: SubscriptionModel | null;
   avatar: AvatarModel;
 }

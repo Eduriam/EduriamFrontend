@@ -1,6 +1,7 @@
 "use client";
 
 import { PageRoot } from "@eduriam/ui-core";
+import { PREMIUM_MESSAGES, getPremiumRoute } from "app/premium/premiumMessages";
 import { Id } from "domain/models/types/core";
 import { parseId } from "util/functions/api";
 
@@ -8,7 +9,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { UserRole } from "infrastructure/api/generated/models";
 import { StudyProductService } from "infrastructure/services/courses/StudyProductService";
+import useAuth from "infrastructure/services/AuthProvider";
 
 import LearnLessonStudySession from "./components/LearnLessonStudySession";
 
@@ -20,6 +23,7 @@ const StudyPage: React.FC<IStudyPage> = () => {
   const courseIdRaw = searchParams.get("courseId");
   const lessonIdParam = parseId(lessonIdRaw);
   const courseIdParam = parseId(courseIdRaw);
+  const { user } = useAuth();
   const shouldRedirectToHomeOnInitialLoad = useRef(
     !lessonIdParam && !courseIdParam,
   );
@@ -34,8 +38,27 @@ const StudyPage: React.FC<IStudyPage> = () => {
     }
   }, [router]);
 
+  const hasNoEnergy = (user?.energy ?? 0) <= 0;
+  const isPremiumUser = user?.role === UserRole.PremiumUser;
+  const hasStudySessionRequest =
+    lessonIdParam !== undefined || courseIdParam !== undefined;
+  const shouldRedirectToPremiumBecauseNoEnergy =
+    Boolean(user && hasStudySessionRequest && !isPremiumUser && hasNoEnergy);
+
+  useEffect(() => {
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      router.replace(getPremiumRoute(PREMIUM_MESSAGES.noEnergyLeft), {
+        scroll: false,
+      });
+    }
+  }, [router, shouldRedirectToPremiumBecauseNoEnergy]);
+
   useEffect(() => {
     let isCancelled = false;
+
+    if (shouldRedirectToPremiumBecauseNoEnergy) {
+      return;
+    }
 
     if (lessonIdRaw && lessonIdParam === undefined) {
       router.replace("/", { scroll: false });
@@ -89,9 +112,16 @@ const StudyPage: React.FC<IStudyPage> = () => {
     return () => {
       isCancelled = true;
     };
-  }, [courseIdParam, courseIdRaw, lessonIdParam, lessonIdRaw, router]);
+  }, [
+    courseIdParam,
+    courseIdRaw,
+    lessonIdParam,
+    lessonIdRaw,
+    router,
+    shouldRedirectToPremiumBecauseNoEnergy,
+  ]);
 
-  if (isResolvingCourseLesson) {
+  if (isResolvingCourseLesson || shouldRedirectToPremiumBecauseNoEnergy) {
     return null;
   }
 

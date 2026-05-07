@@ -9,6 +9,7 @@ import type {
 } from "infrastructure/api/generated/models";
 import { getUsers } from "infrastructure/api/generated/users/users";
 import useAuthenticatedAPI from "infrastructure/api/hooks/useAuthenticatedAPI";
+import StudyPlanService from "infrastructure/api/users/me/study-plan/StudyPlanService";
 import { invalidateCurrentUser } from "infrastructure/services/users/currentUserState";
 import { toErrorCode } from "infrastructure/services/utils/toErrorCode";
 
@@ -17,6 +18,11 @@ const usersClient = getUsers();
 export interface UserProductsParams {}
 
 export type UserProduct = ProductBaseModel;
+
+interface UserProductMutationOptions {
+  revalidateUser?: boolean;
+  revalidateStudyPlan?: boolean;
+}
 
 const useUserProductsQuery = (
   params: UserProductsParams = {},
@@ -57,10 +63,20 @@ export const UserProductsService = {
     }
   },
 
-  async enrollInProduct(productId: Id): Promise<void> {
+  async enrollInProduct(
+    productId: Id,
+    options: UserProductMutationOptions = {},
+  ): Promise<void> {
     try {
       await usersClient.putApiUsersMeProductsProductId(productId);
-      await invalidateCurrentUser();
+      await Promise.all([
+        options.revalidateUser !== false
+          ? invalidateCurrentUser()
+          : Promise.resolve(),
+        options.revalidateStudyPlan !== false
+          ? StudyPlanService.invalidateStudyPlan()
+          : Promise.resolve(),
+      ]);
     } catch (error) {
       return toErrorCode(error);
     }

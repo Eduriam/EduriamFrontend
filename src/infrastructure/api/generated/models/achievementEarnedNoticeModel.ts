@@ -4,12 +4,14 @@
  * Eduriam API
  * OpenAPI spec version: v1
  */
+import type { AchievementType } from "./achievementType";
 import type { NoticeModel } from "./noticeModel";
 import type { NoticeType } from "./noticeType";
 
 export type AchievementEarnedNoticeModel = NoticeModel & {
   readonly type: NoticeType;
   achievementId: number;
+  achievementType: AchievementType;
   title: string;
   description: string;
   badgeIconName: string;

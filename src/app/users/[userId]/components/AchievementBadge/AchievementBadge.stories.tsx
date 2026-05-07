@@ -6,7 +6,12 @@ import { mockAchievementBadgeProps } from "./AchievementBadge.mocks";
 export default {
   title: "pages/users/[userId]/AchievementBadge",
   component: AchievementBadge,
-  argTypes: {},
+  argTypes: {
+    size: {
+      control: "select",
+      options: ["medium", "large"],
+    },
+  },
 } as ComponentMeta<typeof AchievementBadge>;
 
 const Template: ComponentStory<typeof AchievementBadge> = (args) => (
@@ -35,4 +40,11 @@ export const WithTextDisabled = Template.bind({});
 
 WithTextDisabled.args = {
   ...mockAchievementBadgeProps.withTextDisabled,
+} as IAchievementBadge;
+
+export const Large = Template.bind({});
+
+Large.args = {
+  ...mockAchievementBadgeProps.base,
+  size: "large",
 } as IAchievementBadge;

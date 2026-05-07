@@ -13,10 +13,11 @@ export interface UserAchievementModel {
   type: AchievementType;
   achievementMaxLevel: number;
   currentLevel: number;
+  currentValue: number;
   /** @nullable */
   achievedAt?: string | null;
   /** @nullable */
-  goal?: number | null;
+  achievedGoal?: number | null;
   /** @nullable */
-  nextLevelGoal?: number | null;
+  nextGoal?: number | null;
 }

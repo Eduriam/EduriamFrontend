@@ -12,7 +12,7 @@ import theme from "styles/theme";
 import { parseRequiredId } from "util/functions/api";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -27,11 +27,13 @@ import Avatar from "components/avatar/Avatar";
 import PageNavigation from "components/navigation/PageNavigation/PageNavigation";
 
 import { optimisticMutationOption } from "infrastructure/api/API";
+import type { UserAchievementModel } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 import { UserService } from "infrastructure/services/users/UserService";
 import { UsersService } from "infrastructure/services/users/UsersService";
 
 import AchievementBadge from "./components/AchievementBadge/AchievementBadge";
+import AchievementDialog from "./components/AchievementDialog/AchievementDialog";
 import CourseListItem from "./components/CourseListItem/CourseListItem";
 import DayStreakCard from "./components/DayStreakCard/DayStreakCard";
 import LeagueCard from "./components/LeagueCard/LeagueCard";
@@ -56,6 +58,8 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
   const navigateWithTransition = useTransitionNavigationHandler();
   const { t } = useTranslation("common");
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [selectedAchievement, setSelectedAchievement] =
+    useState<UserAchievementModel>();
 
   const isOwnProfile = userId !== null && user?.id === userId;
   const maxAchievementsToDisplay = mobile ? 3 : 4;
@@ -280,6 +284,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
                   badgeIconName={toAchievementBadgeIconName(achievement.type)}
                   name={t(toAchievementTitleKey(achievement.type))}
                   completed={isAchievementCompleted(achievement)}
+                  onClick={() => setSelectedAchievement(achievement)}
                 />
               ))}
           </Stack>
@@ -338,6 +343,14 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           }}
         />
       </ContentContainer>
+
+      <AchievementDialog
+        open={Boolean(selectedAchievement)}
+        achievement={selectedAchievement}
+        isOwnProfile={isOwnProfile}
+        userName={userProfile?.name}
+        onClose={() => setSelectedAchievement(undefined)}
+      />
     </PageRoot>
   );
 };

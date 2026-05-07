@@ -23,24 +23,48 @@ function formatIsoDuration(duration: string | undefined): string {
   }
 
   const match = duration.match(
-    /^P(?:\d+Y)?(?:\d+M)?(?:\d+D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:\d+S)?$/,
+    /^P(?:\d+Y)?(?:\d+M)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(?:\d+(?:\.\d+)?)S)?)?$/,
   );
   if (!match) {
     return duration;
   }
 
-  const hours = Number(match[1] ?? 0);
-  const minutes = Number(match[2] ?? 0);
+  const days = Number(match[1] ?? 0);
+  const hours = Number(match[2] ?? 0);
+  const minutes = Number(match[3] ?? 0);
+  const parts = [
+    days > 0 ? `${days}d` : null,
+    hours > 0 ? `${hours}h` : null,
+    minutes > 0 ? `${minutes}m` : null,
+  ].filter(Boolean);
 
-  if (hours > 0 && minutes > 0) {
-    return `${hours}h ${minutes}m`;
+  return parts.length > 0 ? parts.join(" ") : "0m";
+}
+
+function getPromotionEndIndex(
+  promotionZoneEndIndex: number | undefined,
+  userCount: number,
+): number {
+  if (promotionZoneEndIndex === undefined || promotionZoneEndIndex < 0) {
+    return 0;
   }
 
-  if (hours > 0) {
-    return `${hours}h`;
+  return Math.min(promotionZoneEndIndex + 1, userCount);
+}
+
+function getNeutralEndIndex(
+  demotionZoneStartIndex: number | undefined,
+  userCount: number,
+  promotionEndIndex: number,
+): number {
+  if (demotionZoneStartIndex === undefined || demotionZoneStartIndex < 0) {
+    return userCount;
   }
 
-  return `${minutes}m`;
+  return Math.max(
+    promotionEndIndex,
+    Math.min(demotionZoneStartIndex, userCount),
+  );
 }
 
 const LeaderboardPage: React.FC = () => {
@@ -63,14 +87,22 @@ const LeaderboardPage: React.FC = () => {
       avatar: entry.avatarDefinition,
     })) ?? [];
 
-  const currentLeagueName = t(`leaderboard.leagues.${currentLeague ?? "empty"}`);
+  const currentLeagueName = t(
+    `leaderboard.leagues.${currentLeague ?? "empty"}`,
+  );
   const navbarHeader = hasStartedWeek
     ? `${currentLeagueName} ${t("leaderboard.league")}`
     : t("leaderboard.leaguesLabel");
 
-  const promotionZoneEndIndex = leaderboard?.zones?.promotionZoneEndIndex ?? 0;
-  const demotionZoneStartIndex =
-    leaderboard?.zones?.demotionZoneStartIndex ?? users.length;
+  const promotionZoneEndIndex = getPromotionEndIndex(
+    leaderboard?.zones?.promotionZoneEndIndex,
+    users.length,
+  );
+  const demotionZoneStartIndex = getNeutralEndIndex(
+    leaderboard?.zones?.demotionZoneStartIndex,
+    users.length,
+    promotionZoneEndIndex,
+  );
 
   return (
     <PageRoot data-test="leaderboard-page">
@@ -88,52 +120,48 @@ const LeaderboardPage: React.FC = () => {
           <LeaguesShelf currentLeague={currentLeague} />
 
           {hasStartedWeek ? (
-            <Box data-test="leaderboard-section" sx={{ width: "100%" }}>
-              <Stack spacing={0.5}>
+            <Stack
+              data-test="leaderboard-section"
+              sx={{ width: "100%" }}
+              spacing={4}
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                  {t("leaderboard.title")}
+                </Typography>
+
                 <Stack
                   direction="row"
+                  spacing={0.5}
                   alignItems="center"
-                  justifyContent="space-between"
+                  data-test="time-left-section"
                 >
-                  <Typography
-                    variant="h6"
-                    sx={{ color: "#111", fontWeight: 600 }}
-                  >
-                    {t("leaderboard.title")}
-                  </Typography>
-
-                  <Stack
-                    direction="row"
-                    spacing={0.5}
-                    alignItems="center"
-                    data-test="time-left-section"
-                  >
-                    <AccessTimeOutlinedIcon
-                      sx={{ color: "text.secondary", fontSize: 24 }}
-                    />
-                    <Typography variant="body1" color="text.secondary">
-                      {formatIsoDuration(leaderboard?.timeLeft)}
-                    </Typography>
-                  </Stack>
-                </Stack>
-
-                <Box
-                  data-test="leaderboard-users-section"
-                  sx={{ width: "100%" }}
-                >
-                  <LeaderboardComponent
-                    users={users}
-                    promotionEndIndex={promotionZoneEndIndex}
-                    neutralEndIndex={demotionZoneStartIndex}
-                    promotionLabel="Promotion Zone"
-                    neutralLabel=""
-                    demotionLabel="Demotion Zone"
-                    currentUserId={user?.id ?? undefined}
-                    currentUserDataTest="current-user-leaderboard-section"
+                  <AccessTimeOutlinedIcon
+                    sx={{ color: "text.secondary", fontSize: 24 }}
                   />
-                </Box>
+                  <Typography variant="body1" color="text.secondary">
+                    {formatIsoDuration(leaderboard?.timeLeft)}
+                  </Typography>
+                </Stack>
               </Stack>
-            </Box>
+
+              <Box data-test="leaderboard-users-section" sx={{ width: "100%" }}>
+                <LeaderboardComponent
+                  users={users}
+                  promotionEndIndex={promotionZoneEndIndex}
+                  neutralEndIndex={demotionZoneStartIndex}
+                  promotionLabel={t("leaderboard.promotionZone")}
+                  neutralLabel=""
+                  demotionLabel={t("leaderboard.demotionZone")}
+                  currentUserId={user?.id ?? undefined}
+                  currentUserDataTest="current-user-leaderboard-section"
+                />
+              </Box>
+            </Stack>
           ) : (
             <Box
               data-test="complete-lesson-or-review-section"

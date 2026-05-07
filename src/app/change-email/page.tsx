@@ -1,18 +1,19 @@
 "use client";
 
+import {
+  ContentContainer,
+  Header,
+  LargeButton,
+  PageRoot,
+} from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
+import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
 import { useEffect, useMemo, useState } from "react";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 import { ChangeEmailService } from "infrastructure/services/auth/ChangeEmailService";
 
@@ -20,7 +21,7 @@ export interface IChangeEmailPage {}
 
 const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
   const { t } = useTranslation("form");
-  const router = useRouter();
+  const navigateWithTransition = useTransitionNavigationHandler();
 
   const searchParams = useSearchParams();
   const token = searchParams?.get("token");
@@ -61,46 +62,58 @@ const ChangeEmailPage: React.FC<IChangeEmailPage> = () => {
   }, [token, userId, newEmail, emailChanged, setEmailChanged]);
 
   return (
-    <Container maxWidth="xs" sx={{ pt: 3 }}>
-      {token && userId !== null && newEmail ? (
-        <>
-          {emailChanged === true ? (
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <Typography variant="h3">
-                  {t("changeEmail.emailChanged")}
-                </Typography>
-                <Typography variant="body2">
-                  {t("changeEmail.emailChangedDescription")}
-                </Typography>
-              </Box>
+    <PageRoot data-test="change-email-page">
+      <ContentContainer
+        paddingTop="large"
+        width="small"
+        justifyContent="space-between"
+        paddingBottom="medium"
+      >
+        {token && userId !== null && newEmail ? (
+          <>
+            {emailChanged === true ? (
+              <>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  <Header
+                    variant="title"
+                    text={t("changeEmail.emailChanged")}
+                  />
+                  <Typography variant="subtitle1">
+                    {t("changeEmail.emailChangedDescription")}
+                  </Typography>
+                </Box>
 
-              <Button
-                variant="contained"
-                onClick={() => router.push("/signout")}
-                sx={{ justifySelf: "center" }}
-              >
-                {t("changeEmail.signin")}
-              </Button>
-            </Box>
-          ) : (
-            <CircularProgress />
-          )}
-        </>
-      ) : (
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <Typography variant="body2">{t("changeEmail.invalidData")}</Typography>
+                <LargeButton
+                  variant="contained"
+                  onClick={navigateWithTransition("/signout")}
+                  fullWidth
+                >
+                  {t("changeEmail.signin")}
+                </LargeButton>
+              </>
+            ) : (
+              <CircularProgress />
+            )}
+          </>
+        ) : (
+          <>
+            <Typography variant="subtitle1">
+              {t("changeEmail.invalidData")}
+            </Typography>
 
-          <Button
-            variant="contained"
-            onClick={() => router.push("/settings")}
-            sx={{ justifySelf: "center" }}
-          >
-            {t("changeEmail.backToSettings")}
-          </Button>
-        </Box>
-      )}
-    </Container>
+            <LargeButton
+              variant="contained"
+              onClick={navigateWithTransition("/settings", {
+                direction: "back",
+              })}
+              fullWidth
+            >
+              {t("changeEmail.backToSettings")}
+            </LargeButton>
+          </>
+        )}
+      </ContentContainer>
+    </PageRoot>
   );
 };
 

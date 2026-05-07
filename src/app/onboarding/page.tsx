@@ -157,8 +157,13 @@ const OnboardingPage: React.FC<IOnboardingPage> = () => {
     }
 
     try {
-      await AccountSetupService.setupAccount({ dailyGoal: dailyGoalValue });
-      await UserProductsService.enrollInProduct(selectedCourseId);
+      await AccountSetupService.setupAccount(
+        { dailyGoal: dailyGoalValue },
+        { revalidateUser: false },
+      );
+      await UserProductsService.enrollInProduct(selectedCourseId, {
+        revalidateUser: false,
+      });
       transitionStep(() => setStep("complete"), "forward", step);
     } catch {
       transitionStep(() => setStep("complete"), "forward", step);

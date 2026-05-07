@@ -19,7 +19,11 @@ import { getPremiumBackgroundGradient } from "components/premium/premiumBackgrou
 import { UserRole } from "infrastructure/api/generated/models";
 import useAuth from "infrastructure/services/AuthProvider";
 
-import { PREMIUM_MESSAGES, type PremiumMessageValue } from "./premiumMessages";
+import {
+  PREMIUM_MESSAGES,
+  getPremiumMessageFromQuery,
+  type PremiumMessageValue,
+} from "./premiumMessages";
 
 export interface IPremiumPage {}
 
@@ -31,23 +35,30 @@ const PremiumPage: React.FC<IPremiumPage> = () => {
   const { user } = useAuth();
   const isPremiumUser = user?.role === UserRole.PremiumUser;
 
-  const [message, setMessage] = useState<PremiumMessageValue>(() => {
-    const messageFromQuery = searchParams.get(PREMIUM_MESSAGES.queryParam);
-    return (
-      (messageFromQuery as PremiumMessageValue) || PREMIUM_MESSAGES.default
-    );
-  });
+  const queryMessage = getPremiumMessageFromQuery(
+    searchParams.get(PREMIUM_MESSAGES.queryParam),
+  );
+  const [savedMessage, setSavedMessage] = useState<PremiumMessageValue>(
+    () => queryMessage || PREMIUM_MESSAGES.default,
+  );
+  const message = queryMessage || savedMessage;
 
   useEffect(() => {
-    const currentMessage = searchParams.get(PREMIUM_MESSAGES.queryParam);
-    if (currentMessage) {
-      setMessage(currentMessage as PremiumMessageValue);
+    if (queryMessage) {
+      setSavedMessage(queryMessage);
     }
 
-    if (searchParams.toString().length > 0) {
-      router.replace("/premium", { scroll: false });
+    if (searchParams.has(PREMIUM_MESSAGES.queryParam)) {
+      const updatedSearchParams = new URLSearchParams(searchParams.toString());
+      updatedSearchParams.delete(PREMIUM_MESSAGES.queryParam);
+      const updatedQuery = updatedSearchParams.toString();
+      window.history.replaceState(
+        window.history.state,
+        "",
+        updatedQuery ? `/premium?${updatedQuery}` : "/premium",
+      );
     }
-  }, [router, searchParams]);
+  }, [queryMessage, searchParams]);
 
   const subtitle = useMemo(() => {
     if (message === PREMIUM_MESSAGES.noEnergyLeft) {

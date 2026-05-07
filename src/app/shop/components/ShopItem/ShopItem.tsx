@@ -94,6 +94,7 @@ const ShopItem: React.FC<IShopItem> = ({
           height="100%"
           justifyContent="center"
           spacing={0.75}
+          width="100%"
         >
           <Box sx={{ height: previewSize, width: previewSize }}>
             {item.image.kind === ShopImageKind.Avatar ? (
