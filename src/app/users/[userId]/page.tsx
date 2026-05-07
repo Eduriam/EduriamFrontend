@@ -64,6 +64,11 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
   const isOwnProfile = userId !== null && user?.id === userId;
   const maxAchievementsToDisplay = mobile ? 3 : 4;
   const achievements = userProfile?.achievements ?? [];
+  const summaryAchievements = [...achievements].sort(
+    (firstAchievement, secondAchievement) =>
+      Number(isAchievementCompleted(secondAchievement)) -
+      Number(isAchievementCompleted(firstAchievement)),
+  );
   const courses = userProfile?.courses ?? [];
 
   useEffect(() => {
@@ -276,7 +281,7 @@ const UsersPage: React.FC<IUsersPage> = ({ params }) => {
           </Stack>
 
           <Stack direction="row" justifyContent="space-between">
-            {achievements
+            {summaryAchievements
               .slice(0, maxAchievementsToDisplay)
               .map((achievement) => (
                 <AchievementBadge

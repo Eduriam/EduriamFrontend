@@ -53,7 +53,7 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
   const title = t(toAchievementTitleKey(achievement.type));
   const achievedGoal = toAchievementAchievedGoal(achievement);
   const nextGoal = achievement.nextGoal ?? achievedGoal;
-  const progressTarget = achieved ? nextGoal : achievedGoal;
+  const progressTarget = nextGoal;
   const showProgress = isOwnProfile && !completedAllLevels && progressTarget > 0;
   const progressValue = toProgressPercentage(
     achievement.currentValue,
@@ -190,7 +190,11 @@ function getAchievementDescription({
     isOwnProfile,
   });
   const key = toAchievementDialogTextKey(type, state);
-  const values = { achievedGoal, nextGoal, userName };
+  const values = {
+    achievedGoal: achieved ? achievedGoal : nextGoal,
+    nextGoal,
+    userName,
+  };
 
   return t(key, values);
 }
