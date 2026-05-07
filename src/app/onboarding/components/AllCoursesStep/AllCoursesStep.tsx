@@ -3,8 +3,9 @@
 import { ContentContainer, Header, Tabs } from "@eduriam/ui-core";
 import type { Id } from "domain/models/types/core";
 import { useTranslation } from "i18n/client";
+import { useScrollSpy } from "util/hooks/useScrollSpy";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -54,12 +55,13 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
   const { t: tCommon } = useTranslation("common");
   const premiumLabel = tCommon("courses.premiumLabel");
 
-  const groups = groupCoursesByCategory(courses);
+  const groups = useMemo(() => groupCoursesByCategory(courses), [courses]);
   const firstCategory = groups[0]?.category ?? DEFAULT_CATEGORY;
 
   const [selectedTab, setSelectedTab] = useState<string | number>(
     firstCategory,
   );
+  const manualTabActivationUntilRef = useRef(0);
 
   const categoryIds = groups.map((g) => g.category);
   const effectiveTab =
@@ -71,7 +73,24 @@ const AllCoursesStep: React.FC<IAllCoursesStepProps> = ({
     window.scrollTo(0, 0);
   }, []);
 
+  const scrollSpySectionIds = useMemo(
+    () => groups.map((g) => `category-${g.category}`),
+    [groups],
+  );
+
+  useScrollSpy({
+    sectionIds: scrollSpySectionIds,
+    getTabValueFromSectionId: (id) => id.replace(/^category-/, ""),
+    onActiveSectionChange: (value) => {
+      if (Date.now() < manualTabActivationUntilRef.current) {
+        return;
+      }
+      setSelectedTab(value);
+    },
+  });
+
   const handleTabChange = (value: string | number) => {
+    manualTabActivationUntilRef.current = Date.now() + 800;
     setSelectedTab(value);
     const el = document.getElementById(`category-${value}`);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });

@@ -79,14 +79,24 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
           return;
         }
 
-        const confirmIntent =
-          type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
-
-        const { error: intentError } = await confirmIntent({
-          elements,
-          clientSecret,
-          redirect: "if_required",
-        });
+        const { error: intentError } =
+          type === "setup"
+            ? await stripe.confirmSetup({
+                elements,
+                clientSecret,
+                confirmParams: {
+                  return_url: window.location.href,
+                },
+                redirect: "if_required",
+              })
+            : await stripe.confirmPayment({
+                elements,
+                clientSecret,
+                confirmParams: {
+                  return_url: window.location.href,
+                },
+                redirect: "if_required",
+              });
 
         if (intentError) {
           handleError(intentError.message);

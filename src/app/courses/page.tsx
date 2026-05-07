@@ -12,7 +12,7 @@ import { useTranslation } from "i18n/client";
 import { useScrollSpy } from "util/hooks/useScrollSpy";
 import useTransitionNavigationHandler from "util/hooks/useTransitionNavigationHandler";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -116,14 +116,17 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
   const { products } = StudyProductService.useProducts();
 
   const displayRecommended = (recommendedProducts ?? []).slice(0, 2);
-  const displayAllCourses = products ?? [];
-  const allCourseGroups = groupCoursesByCategory(displayAllCourses);
+  const allCourseGroups = useMemo(
+    () => groupCoursesByCategory(products ?? []),
+    [products],
+  );
 
   const firstCategory = allCourseGroups[0]?.category ?? DEFAULT_CATEGORY;
   const categoryIds = allCourseGroups.map((g) => g.category);
   const [selectedTab, setSelectedTab] = useState<string | number>(
     RECOMMENDED_TAB_VALUE,
   );
+  const manualTabActivationUntilRef = useRef(0);
   const effectiveTab =
     selectedTab === RECOMMENDED_TAB_VALUE
       ? RECOMMENDED_TAB_VALUE
@@ -149,10 +152,16 @@ const CoursesPage: React.FC<ICoursesPage> = () => {
       id === "recommended-courses-section"
         ? RECOMMENDED_TAB_VALUE
         : id.replace(/^category-/, ""),
-    onActiveSectionChange: setSelectedTab,
+    onActiveSectionChange: (value) => {
+      if (Date.now() < manualTabActivationUntilRef.current) {
+        return;
+      }
+      setSelectedTab(value);
+    },
   });
 
   const handleTabChange = (value: string | number) => {
+    manualTabActivationUntilRef.current = Date.now() + 800;
     setSelectedTab(value);
     const targetId =
       value === RECOMMENDED_TAB_VALUE

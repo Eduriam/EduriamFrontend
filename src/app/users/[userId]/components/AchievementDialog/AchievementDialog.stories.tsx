@@ -32,9 +32,9 @@ NotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
-    currentValue: 0,
+    currentValue: 1,
     achievedAt: null,
-    achievedGoal: 10,
+    achievedGoal: 0,
     nextGoal: 10,
   },
 } as AchievementDialogProps;
@@ -78,9 +78,9 @@ OtherUserNotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
-    currentValue: 0,
+    currentValue: 1,
     achievedAt: null,
-    achievedGoal: 10,
+    achievedGoal: 0,
     nextGoal: 10,
   },
 } as AchievementDialogProps;

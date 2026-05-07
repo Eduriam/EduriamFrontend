@@ -8,6 +8,8 @@ Feature: Shop streak freeze purchase
     And I am on the "shop-page" page
     Then I should see the "virtual-currency-balance-section" section
     And I should see the "streak-freeze-items-section" section
+    And I should see 2 "streak-freeze-item-slot" elements
+    And I should see 2 "streak-freeze-item-button" elements
     When I click on the "streak-freeze-item-button" button
     Then I should see the "shop-item-details-section" section
     And I should see the "buy-item-button" button

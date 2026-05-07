@@ -57,6 +57,26 @@ Then(
 );
 
 Then(
+  "I should see {int} {string} elements",
+  async function (this: CustomWorld, expectedCount: number, testId: string) {
+    if (!this.page) {
+      throw new Error("Page is not initialized.");
+    }
+
+    await expect
+      .poll(
+        async () =>
+          this.page?.locator(`[data-test="${testId}"]:visible`).count() ?? 0,
+        {
+          timeout: 15000,
+          message: `Expected ${expectedCount} visible elements with data-test "${testId}"`,
+        },
+      )
+      .toBe(expectedCount);
+  },
+);
+
+Then(
   "I should not see the {string} button",
   async function (this: CustomWorld, buttonTestId: string) {
     if (!this.page) {

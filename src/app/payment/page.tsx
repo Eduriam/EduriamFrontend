@@ -77,16 +77,22 @@ const PaymentPage: React.FC<IPaymentPage> = () => {
       const { type, clientSecret } =
         await SubscriptionsService.createSubscription();
       if (clientSecret) {
-        const confirmIntent =
-          type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
-
-        const { error: intentError } = await confirmIntent({
-          elements,
-          clientSecret,
-          confirmParams: {
-            return_url: PAYMENT_SUCCESS_URL,
-          },
-        });
+        const { error: intentError } =
+          type === "setup"
+            ? await stripe.confirmSetup({
+                elements,
+                clientSecret,
+                confirmParams: {
+                  return_url: PAYMENT_SUCCESS_URL,
+                },
+              })
+            : await stripe.confirmPayment({
+                elements,
+                clientSecret,
+                confirmParams: {
+                  return_url: PAYMENT_SUCCESS_URL,
+                },
+              });
 
         if (intentError) {
           handleError(intentError.message);

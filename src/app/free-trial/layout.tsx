@@ -16,7 +16,9 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 const FreeTrialLayout: React.FC<IFreeTrialLayout> = ({ children }) => {
   const options = {
-    ...PLAN_PRICING_OPTIONS,
+    mode: "setup" as const,
+    currency: PLAN_PRICING_OPTIONS.currency,
+    paymentMethodTypes: ["card"],
     appearance: {
       variables: {
         colorPrimary: theme.palette.primary.main,

@@ -271,7 +271,7 @@
       "Žádné reklamy při učení"
     ],
     "successfullyUnsubscibed": "Předplatné bylo úspěšně zrušeno.",
-    "notSubscribed": "Nemáte žádné předplatné",
+    "notSubscribed": "Nemáte aktivní žádné předplatné",
     "subscriptionState": "Stav předplatného",
     "subscriptionStates": {
       "cancelled": "zrušeno",
