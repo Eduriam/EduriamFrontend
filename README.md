@@ -1,5 +1,7 @@
 # Eduriam Frontend
 
+> Součástí diplomové práce Bc. Jana Jeníčka jsou všechny git commits provedené mezi daty 14. srpna 2025 a 7. května 2026.
+
 ## Prerekvizity
 
 Ke spuštění projektu lokálně je třeba mít nainstalovaný `npm` a `yarn`. Dále je třeba mít nainstalovanou aplikaci [Mockoon](https://mockoon.com/).
@@ -14,6 +16,8 @@ Před spuštěním projektu je třeba spustit příkaz `yarn install`. Pro spuš
 set -a; . ./.env; set +a    # Načtení lokálních proměnných .env
 yarn install
 ```
+
+> Klíč `NPM_AUTH_TOKEN` mohu poskytnout na vyžádání. V případě zájmu mě kontaktujte na `jenicja2@fit.cvut.cz`.
 
 ## Lint
 
