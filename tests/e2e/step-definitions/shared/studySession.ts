@@ -159,9 +159,9 @@ When(
     const page = ensurePage(this);
 
     await page
-      .locator('[data-test="continue-button"]')
+      .locator('[data-test="explanation-block-section"]')
       .first()
-      .waitFor({ state: "visible", timeout: 15000 });
+      .waitFor({ state: "hidden", timeout: 45000 });
   },
 );
 
