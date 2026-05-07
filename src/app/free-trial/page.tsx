@@ -84,11 +84,17 @@ const FreeTrialPage: React.FC<IFreeTrialPage> = () => {
             ? await stripe.confirmSetup({
                 elements,
                 clientSecret,
+                confirmParams: {
+                  return_url: window.location.href,
+                },
                 redirect: "if_required",
               })
             : await stripe.confirmPayment({
                 elements,
                 clientSecret,
+                confirmParams: {
+                  return_url: window.location.href,
+                },
                 redirect: "if_required",
               });
 
