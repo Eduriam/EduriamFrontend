@@ -14,9 +14,9 @@ export interface ShopItemViewModel {
   type: ShopItemType;
   image: ShopItemImageModel;
   isLocked: boolean;
+  availableToPurchase: number;
   /** @nullable */
   requiredAchievementId?: number | null;
-  /** @nullable */
-  maxPurchasesPerUser?: number | null;
+  maxPurchasesPerUser: number;
   remainingCount: number;
 }

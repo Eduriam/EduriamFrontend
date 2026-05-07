@@ -32,6 +32,7 @@ NotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
+    progress: 0,
     achievedAt: null,
     goal: 10,
     nextLevelGoal: 10,
@@ -47,6 +48,7 @@ InProgress.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 1,
+    progress: 25,
     goal: 10,
     nextLevelGoal: 50,
   },
@@ -61,6 +63,7 @@ CompletedAllLevels.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 10,
+    progress: 1000,
     goal: 1000,
     nextLevelGoal: null,
   },
@@ -75,6 +78,7 @@ OtherUserNotAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 0,
+    progress: 0,
     achievedAt: null,
     goal: 10,
     nextLevelGoal: 10,
@@ -90,6 +94,7 @@ OtherUserAchieved.args = {
   achievement: {
     ...baseAchievement,
     currentLevel: 7,
+    progress: 250,
     goal: 250,
     nextLevelGoal: 500,
   },

@@ -4,9 +4,11 @@ import {
   BasicNavbar,
   ContentContainer,
   FullscreenDialog,
+  ProgressBar,
 } from "@eduriam/ui-core";
 import { useTranslation } from "i18n/client";
 
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
@@ -31,6 +33,7 @@ export interface AchievementDialogProps {
 }
 
 const DESCRIPTION_WIDTH = 309;
+const PROGRESS_WIDTH = 309;
 
 const AchievementDialog: React.FC<AchievementDialogProps> = ({
   achievement,
@@ -50,6 +53,12 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
   const title = t(toAchievementTitleKey(achievement.type));
   const goal = toAchievementRequirement(achievement);
   const nextLevelGoal = achievement.nextLevelGoal ?? goal;
+  const progressTarget = achieved ? nextLevelGoal : goal;
+  const showProgress = isOwnProfile && !completedAllLevels && progressTarget > 0;
+  const progressValue = toProgressPercentage(
+    achievement.progress,
+    progressTarget,
+  );
   const levelLabel = achieved
     ? t("achievements.dialog.level", {
         currentLevel: achievement.currentLevel,
@@ -118,17 +127,36 @@ const AchievementDialog: React.FC<AchievementDialogProps> = ({
             </Stack>
           </Stack>
 
-          <Typography
-            variant="subtitle1"
-            sx={{
-              width: DESCRIPTION_WIDTH,
-              maxWidth: "100%",
-              color: achieved ? "text.primary" : "text.secondary",
-              textAlign: "center",
-            }}
-          >
-            {description}
-          </Typography>
+          <Stack spacing={2} alignItems="center" sx={{ width: "100%" }}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                width: DESCRIPTION_WIDTH,
+                maxWidth: "100%",
+                color: achieved ? "text.primary" : "text.secondary",
+                textAlign: "center",
+              }}
+            >
+              {description}
+            </Typography>
+
+            {showProgress && (
+              <Stack
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
+                sx={{ width: PROGRESS_WIDTH, maxWidth: "100%" }}
+                data-test="achievement-progress-section"
+              >
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <ProgressBar value={progressValue} size="large" />
+                </Box>
+                <Typography variant="body1" sx={{ color: "text.primary" }}>
+                  {`${achievement.progress}/${progressTarget}`}
+                </Typography>
+              </Stack>
+            )}
+          </Stack>
         </Stack>
       </ContentContainer>
     </FullscreenDialog>
@@ -199,6 +227,14 @@ function toAchievementRequirement(achievement: UserAchievementModel): number {
     achievement.nextLevelGoal ??
     Math.max(achievement.achievementMaxLevel, 1)
   );
+}
+
+function toProgressPercentage(progress: number, target: number): number {
+  if (target <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(100, (progress / target) * 100));
 }
 
 export default AchievementDialog;
