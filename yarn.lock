@@ -1954,9 +1954,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eduriam/ui-core@npm:^0.6.85":
-  version: 0.6.85
-  resolution: "@eduriam/ui-core@npm:0.6.85::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.6.85%2F4e5658d99fd9ed8db6d1a07310e3170dba859d47"
+"@eduriam/ui-core@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "@eduriam/ui-core@npm:0.7.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-core%2F0.7.0%2Fecdb25538f2b74fd0084c15e4f4d762240efea5b"
   dependencies:
     mermaid: "npm:^11.12.0"
   peerDependencies:
@@ -1965,17 +1965,17 @@ __metadata:
     "@mui/material": ^5
     react: ^18
     react-dom: ^18
-  checksum: 10c0/9cfafdc5927a9ce63e28684f3cb85a78d3da09feb677825f7c8fabb1bd3a55a246f749aacfd747a967d3ccd188c4e99097a600e381c66c2920740c39dbadb2c0
+  checksum: 10c0/003c00593a106a3acddcc2a75b196930447b769784e61652d906e36147146228fc6999aaa241cef6feb6e6d187b02aaea312a84d73b85e19c7c032e412c88306
   languageName: node
   linkType: hard
 
-"@eduriam/ui-x@npm:^0.2.119":
-  version: 0.2.119
-  resolution: "@eduriam/ui-x@npm:0.2.119::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.2.119%2F96a05641caa4c28cfdf599a8560b02f8c2bdb6f0"
+"@eduriam/ui-x@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@eduriam/ui-x@npm:0.3.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40eduriam%2Fui-x%2F0.3.0%2F514fbe3a82b5e08ce29c8e4567e70f7bf77990db"
   dependencies:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eduriam/ui-core": "npm:^0.6.85"
+    "@eduriam/ui-core": "npm:^0.7.0"
     "@remotion/captions": "npm:^4.0.353"
     "@remotion/gif": "npm:^4.0.353"
     "@remotion/player": "npm:^4.0.353"
@@ -1996,7 +1996,7 @@ __metadata:
     react-dom: ^18
     react-speech-recognition: ^3.10.0
     regenerator-runtime: ^0.13.11
-  checksum: 10c0/312d4262633882f09ce0384a6cb984622d584a79c45957657d8ced4c77bd88060e12ff0329d44d85bc06bf103c0b118c0754aa1d2f5312716cf773be878f8169
+  checksum: 10c0/bef354938e5442b38f304bfcaa93a5b47c5c574caef4a582056f13410e44e2baaa191340efdd190a89c32f84908747b92540f931a9e1f0b490c11a221fb9bbdb
   languageName: node
   linkType: hard
 
@@ -15663,8 +15663,8 @@ __metadata:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@eduriam/ui-core": "npm:^0.6.85"
-    "@eduriam/ui-x": "npm:^0.2.119"
+    "@eduriam/ui-core": "npm:^0.7.0"
+    "@eduriam/ui-x": "npm:^0.3.0"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.11.16"
