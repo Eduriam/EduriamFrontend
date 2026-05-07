@@ -6,10 +6,21 @@ import type {
 export function toAchievementTitleKey(
   achievementType: AchievementType,
 ): string {
-  return (
-    ACHIEVEMENT_TYPE_TO_TITLE_KEY[achievementType] ??
-    "achievements.achievements"
-  );
+  return `${toAchievementLocalizationBaseKey(achievementType)}.title`;
+}
+
+export type AchievementDialogTextState =
+  | "notAchieved"
+  | "inProgress"
+  | "completedAllLevels"
+  | "otherUserNotAchieved"
+  | "otherUserAchieved";
+
+export function toAchievementDialogTextKey(
+  achievementType: AchievementType,
+  state: AchievementDialogTextState,
+): string {
+  return `${toAchievementLocalizationBaseKey(achievementType)}.${state}`;
 }
 
 export function toAchievementBadgeIconName(
@@ -21,10 +32,16 @@ export function toAchievementBadgeIconName(
 export function isAchievementCompleted(
   achievement: UserAchievementModel,
 ): boolean {
-  return achievement.currentLevel >= toAchievementGoal(achievement);
+  return achievement.currentLevel > 0;
 }
 
-const ACHIEVEMENT_TYPE_TO_TITLE_KEY: Record<AchievementType, string> = {
+export function isAchievementMaxLevelCompleted(
+  achievement: UserAchievementModel,
+): boolean {
+  return achievement.currentLevel >= achievement.achievementMaxLevel;
+}
+
+const ACHIEVEMENT_TYPE_TO_LOCALIZATION_KEY: Record<AchievementType, string> = {
   0: "achievements.achievementsByType.lessonCompletions",
   1: "achievements.achievementsByType.reviewCompletions",
   2: "achievements.achievementsByType.courseCompletions",
@@ -36,6 +53,11 @@ const ACHIEVEMENT_TYPE_TO_TITLE_KEY: Record<AchievementType, string> = {
   8: "achievements.achievementsByType.leagueFirstPlaceMythic",
 };
 
-function toAchievementGoal(achievement: UserAchievementModel): number {
-  return achievement.goal ?? Math.max(achievement.achievementMaxLevel, 1);
+function toAchievementLocalizationBaseKey(
+  achievementType: AchievementType,
+): string {
+  return (
+    ACHIEVEMENT_TYPE_TO_LOCALIZATION_KEY[achievementType] ??
+    "achievements.achievements"
+  );
 }
